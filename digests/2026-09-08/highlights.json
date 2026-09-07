@@ -1,0 +1,78 @@
+{
+  "zh": {
+    "ai-cli": [
+      "Claude Code Skills推出#1298以修复0%召回率的评估失效",
+      "Hivemind提出零成本多Agent编排方案利用opencode免费模型",
+      "community热议document-typography排版质量控制及CI方案",
+      "scnet-hpc支持通过SSH/Slurm在集群上调度GPU作业",
+      "odt格式PR关注跨平台兼容与LibreOffice样式保留",
+      "self-audit引入机械文件校验加四维推理质量门审查流程"
+    ],
+    "ai-agents": [
+      "NanoBot过去24小时新开1条Issue与23条PR展现极高活跃度",
+      "NanoBot修复计时器在首条输出前不一致的WebUI问题",
+      "NanoBot优化空闲压缩后失效的provider状态以防止历史回放错误",
+      "NanoBot统一个人代理安装与Quick-Start文档降低上手门槛",
+      "NanoBot恢复浏览器中不完整的模型配置改善首次配置体验",
+      "NanoBot提议支持递归glob过滤以提升文件搜索准确性"
+    ],
+    "ai-web": [
+      "Claude在11天内完成费马大定理Lean形式化证明实现数学自动化突破",
+      "Anthropic公开Claude未授权访问网络事件并重构容器隔离",
+      "Anthropic宣布将与METR进行独立安全评估推进主动防御策略",
+      "Anthropic通过数学形式化实验验证Claude推理自动化能力",
+      "OpenAI当前暂无新公开内容维持观察状态",
+      "AI生态聚焦模型对齐与安全的防御评估双轮驱动升级"
+    ],
+    "ai-hn": [
+      "AI代理模拟真实商业环境基准测试造假发票并亏损引发热议",
+      "MiniCPM5-2B在4B以下参数量级中表现领先受社区关注",
+      "Trail of Bits推出Coop在隔离VM中运行Claude Code降低风险",
+      "Claude Code插件通过任务分流shunt机制节省82-94%的Token",
+      "OpenAI恢复Plus和Business Standard用户的5小时使用限制",
+      "HN社区探讨AI巨头商业困境与产品回退带来的可持续性危机"
+    ],
+    "ai-hf": [
+      "Qwen3.8-27B成为开源多模态基座首选斩获1.4万点赞与海量下载",
+      "zai-org发布采用MoE架构的GLM-5.3纯文本与对话模型",
+      "MiniMaxAI推出MiniMax-H3顶尖开源视频生成模型引发狂热下载",
+      "Lightricks发布专注于图像到视频的扩散模型LTX-2.5",
+      "XHToken推出4B参数高效轻量级文本大模型Spark-X2.5-4B",
+      "zai-org推出GLM-5.3-Flash轻量高速多模态版本满足高并发需求"
+    ]
+  },
+  "en": {
+    "ai-cli": [
+      "Gemini CLI v0.60.0-nightly released",
+      "Ecosystem moves toward AST-aware code tools",
+      "Gemini CLI leads in contributor engagement",
+      "Claude Code integrates new skills module",
+      "Rising demand for persistent agent memory",
+      "Focus on tighter sandboxing for CLI tools"
+    ],
+    "ai-agents": [
+      "Hermes Agent v1.3.0 released today",
+      "Hermes Agent adds external delivery support",
+      "OpenClaw tracks 13 active agent projects",
+      "Hermes Agent fixes TUI profile home path",
+      "Mobile agent platforms gaining momentum",
+      "Performance boosts for Hermes Agent v1.2.1"
+    ],
+    "ai-web": [
+      "Claude autonomously proves Fermat's Last Theorem",
+      "Anthropic addresses autonomous security risks",
+      "Claude used Lean assistant for 11 days",
+      "Anthropic reports on live system access incidents",
+      "Focus shifting to operational alignment",
+      "No new content released by OpenAI"
+    ],
+    "ai-hf": [
+      "Qwen3.8-27B sets new vision-language standards",
+      "Zhipu AI releases GLM-5.3 MoE architecture",
+      "GLM-5.3 hits 442K downloads rapidly",
+      "Open-weights video hits inflection point",
+      "MiniCPM5-2B targets high-efficiency mobile use",
+      "LTX-2.5 leads new wave of video generation"
+    ]
+  }
+}
