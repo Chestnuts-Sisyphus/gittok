@@ -7,9 +7,10 @@ on:
     paths:
       - "web/**"
       - "data/**"
-  # daily-digest 跑完后自动部署
+  # daily-digest / feed-drip 跑完后自动部署（drip 的 GITHUB_TOKEN push 不触发 on:push，
+  # 滴灌新卡要靠这条 workflow_run 才能上线——GT-0906-01 验收实证 40 轮更新全被 skipped）
   workflow_run:
-    workflows: ["Daily Agents Radar"]
+    workflows: ["Daily Agents Radar", "Feed Drip（少量多次滴灌）"]
     types:
       - completed
   # 手动触发
