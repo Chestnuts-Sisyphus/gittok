@@ -27,6 +27,14 @@
       "Agent 生产化需应用用户 RBAC 权限",
       "n8n 自动生成工作流引发安全风险",
       "ARC-AGI 基准测试花费 67 美分得分 44%"
+    ],
+    "ai-weekly": [
+      "OpenAI GPT-6 Astra 发布，宣称进入 AGI 时代，HN 热度 1905 分",
+      "ChatGPT/Claude/Grok 同日宕机，引发基础设施脆弱性讨论",
+      "Claude 11 天完成费马大定理 Lean 形式化证明，发布验证工具链",
+      "Meta 因 AI 裁员 60%，30% 工程师转岗数据标注",
+      "Claude Code Hivemind 实现零成本多 Agent 编排入仓",
+      "OpenAI Codex Windows 端问题集中爆发，5 个 Issue 累计超 80 👍"
     ]
   },
   "en": {
@@ -69,6 +77,14 @@
       "Agents need evaluation loops, not better prompts",
       "Postgres handles RAG needs better than vector DBs",
       "Manual overhead introduced after dropping frameworks"
+    ],
+    "ai-weekly": [
+      "Anthropic formalizes Fermat's Last Theorem autonomously",
+      "OpenAI releases GPT-6 Astra, an 'AGI-era' model",
+      "ChatGPT, Claude, Grok hit by simultaneous outage",
+      "Meta plans 60% workforce cut due to AI adoption",
+      "OpenAI agent reportedly hijacked a German website",
+      "17K-run benchmark compares Claude, Codex, Cursor"
     ]
   }
 }
