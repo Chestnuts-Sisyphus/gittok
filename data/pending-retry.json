@@ -10,10 +10,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2022-01-20T16:02:46Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-06T20:31:46Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "0xMiden/miden-vm",
@@ -26,26 +26,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2021-09-10T05:08:56Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-07T21:29:05Z",
-    "retryCount": 3
-  },
-  {
-    "repo": "200ok-ch/organice",
-    "desc": "An implementation of Org mode without the dependency of Emacs - built for mobile and desktop browsers",
-    "stars": 2667,
-    "language": "JavaScript",
-    "topics": [
-      "productivity"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2019-08-23T06:30:56Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-08-09T06:25:58Z",
-    "retryCount": 6
+    "ts": "2026-09-07T21:29:05Z",
+    "retryCount": 4
   },
   {
     "repo": "5-stones/react-native-readium",
@@ -58,10 +42,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2022-03-11T16:53:04Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-03T19:51:46Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "52North/WeatherRoutingTool",
@@ -74,10 +58,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2024-01-11T10:38:03Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-07T11:44:44Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "a-anjos/python-opencv",
@@ -90,26 +74,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2019-12-13T14:57:46Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-08-14T13:29:05Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "a16z/jolt",
-    "desc": "The simplest and most extensible zkVM. Fast and fully open source from a16z crypto and friends. ⚡",
-    "stars": 1022,
-    "language": "Rust",
-    "topics": [
-      "cryptography"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2023-05-18T21:00:08Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-09-07T13:05:07Z",
-    "retryCount": 6
+    "ts": "2026-08-14T13:29:05Z",
+    "retryCount": 2
   },
   {
     "repo": "a8hok/JavaScript-Study-Guide",
@@ -122,25 +90,9 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2021-08-18T15:12:14Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-02T02:24:51Z",
-    "retryCount": 5
-  },
-  {
-    "repo": "amaggiulli/QLNet",
-    "desc": "QLNet C# Library",
-    "stars": 427,
-    "language": "C#",
-    "topics": [
-      "finance"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2013-08-22T14:51:43Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-09-02T16:12:19Z",
+    "ts": "2026-09-02T02:24:51Z",
     "retryCount": 6
   },
   {
@@ -154,10 +106,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2015-12-26T21:03:43Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-07T20:12:34Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "creativescala/doodle",
@@ -170,10 +122,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2014-12-10T11:28:50Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-07T19:24:56Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Demizo/Daily_You",
@@ -186,10 +138,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2023-08-05T04:01:03Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-07T19:42:50Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "entireio/cli",
@@ -215,81 +167,52 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2020-07-13T13:27:44Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-07T20:12:20Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "Karovia/fullstack-ai-agent-roadmap",
-    "desc": "🎯 从零基础到 AI Agent 全栈工程师 · 110 个详细教程 · 58 万字 · 400+ GitHub 项目精选 · Obsidian 友好 · 中文",
-    "stars": 444,
-    "language": "",
-    "topics": [
-      "tutorial"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-06-19T06:34:06Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-09-07T01:20:20Z",
-    "retryCount": 6
+    "ts": "2026-09-07T20:12:20Z",
+    "retryCount": 2
   },
   {
     "repo": "lightpanda-io/browser",
     "desc": "Lightpanda: the headless browser designed for AI and automation",
-    "stars": 34802,
+    "stars": 34818,
     "language": "Zig",
     "topics": [],
     "source": "trending",
     "starGrowth": 116,
+    "createdAt": "2023-02-07T15:19:34Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-07T21:51:15.920Z",
-    "retryCount": 2
+    "ts": "2026-09-07T22:38:09.240Z",
+    "retryCount": 3
   },
   {
     "repo": "microsoft/markitdown",
     "desc": "Python tool for converting files and office documents to Markdown.",
-    "stars": 180061,
+    "stars": 180101,
     "language": "Python",
     "topics": [],
     "source": "trending",
     "starGrowth": 771,
+    "createdAt": "2024-11-13T19:56:40Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-07T21:51:15.920Z",
-    "retryCount": 2
+    "ts": "2026-09-07T22:38:09.240Z",
+    "retryCount": 3
   },
   {
     "repo": "numpy/numpy",
     "desc": "The fundamental package for scientific computing with Python.",
-    "stars": 32700,
+    "stars": 32701,
     "language": "Python",
     "topics": [],
     "source": "trending",
     "starGrowth": 19,
+    "createdAt": "2010-09-13T23:02:39Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-07T21:51:15.920Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "olivierh59500/go-cuddlymenu",
-    "desc": "Remake of the main menu of the \"Cuddly Demos\"",
-    "stars": 1,
-    "language": "HTML",
-    "topics": [
-      "demoscene"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-01-06T14:15:26Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-07T18:52:32Z",
-    "retryCount": 1
+    "ts": "2026-09-07T22:38:09.240Z",
+    "retryCount": 3
   },
   {
     "repo": "rileydevworks/Sol",
@@ -305,23 +228,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-07T02:10:34Z",
-    "retryCount": 5
-  },
-  {
-    "repo": "Specy/asm-editor",
-    "desc": "An app to write, run and learn M68K, MIPS, RISC-V, X86, Z80 assembly",
-    "stars": 313,
-    "language": "TypeScript",
-    "topics": [
-      "learning"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2022-04-04T20:32:40Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-07T12:49:11Z",
-    "retryCount": 1
+    "retryCount": 6
   },
   {
     "repo": "strakam/generals-bots",
@@ -334,10 +241,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2024-06-05T10:44:06Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-07T21:00:16Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "The-Swarm-Corporation/AutoHedge",
@@ -354,32 +261,17 @@
     "retryCount": 3
   },
   {
-    "repo": "tobspr-games/shapez.io",
-    "desc": "shapez is an open source base building game on Steam inspired by factorio!",
-    "stars": 6958,
-    "language": "JavaScript",
-    "topics": [
-      "game"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2020-04-13T15:26:48Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-07T13:22:33Z",
-    "retryCount": 2
-  },
-  {
     "repo": "Zie619/n8n-workflows",
     "desc": "all of the workflows of n8n i could find (also from the site itself)",
-    "stars": 56526,
+    "stars": 56528,
     "language": "Python",
     "topics": [],
     "source": "trending",
     "starGrowth": 47,
+    "createdAt": "2025-05-14T08:43:59Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-07T21:51:15.920Z",
-    "retryCount": 2
+    "ts": "2026-09-07T22:38:09.240Z",
+    "retryCount": 3
   }
 ]
