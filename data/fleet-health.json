@@ -349,22 +349,31 @@
   },
   {
     "job": "feed",
-    "at": "2026-09-06T23:42:27.825Z",
+    "at": "2026-09-07T00:08:29.727Z",
     "workers": [
       {
         "name": "zhipu",
-        "calls": 1,
+        "calls": 2,
         "ok": 0,
         "err429": 0,
         "cooldowns": 0,
-        "otherErrors": 1,
+        "otherErrors": 2,
         "cooling": false,
         "lastError": "Error: 401 令牌已过期或验证不正确"
       },
       {
         "name": "agnes",
-        "calls": 1,
-        "ok": 0,
+        "calls": 2,
+        "ok": 2,
+        "err429": 0,
+        "cooldowns": 0,
+        "otherErrors": 0,
+        "cooling": false
+      },
+      {
+        "name": "agnes#2",
+        "calls": 2,
+        "ok": 1,
         "err429": 0,
         "cooldowns": 0,
         "otherErrors": 1,
@@ -372,22 +381,13 @@
         "lastError": "Error: Unexpected empty response from agnes"
       },
       {
-        "name": "agnes#2",
-        "calls": 1,
-        "ok": 1,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 0,
-        "cooling": false
-      },
-      {
         "name": "zhipu#2",
-        "calls": 2,
+        "calls": 6,
         "ok": 1,
-        "err429": 1,
-        "cooldowns": 0,
+        "err429": 5,
+        "cooldowns": 1,
         "otherErrors": 0,
-        "cooling": false,
+        "cooling": true,
         "lastError": "Error: 429 您的账户已达到速率限制，请您控制请求频率"
       },
       {
@@ -410,16 +410,34 @@
       },
       {
         "name": "zhipu#5",
-        "calls": 3,
+        "calls": 1,
         "ok": 1,
-        "err429": 2,
+        "err429": 0,
         "cooldowns": 0,
         "otherErrors": 0,
-        "cooling": false,
-        "lastError": "Error: 429 您的账户已达到速率限制，请您控制请求频率"
+        "cooling": false
       },
       {
         "name": "groq",
+        "calls": 1,
+        "ok": 1,
+        "err429": 0,
+        "cooldowns": 0,
+        "otherErrors": 0,
+        "cooling": false
+      },
+      {
+        "name": "groq#2",
+        "calls": 4,
+        "ok": 0,
+        "err429": 4,
+        "cooldowns": 1,
+        "otherErrors": 0,
+        "cooling": false,
+        "lastError": "Error: 429 Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199524, Requested 16"
+      },
+      {
+        "name": "groq#3",
         "calls": 4,
         "ok": 0,
         "err429": 4,
@@ -429,40 +447,24 @@
         "lastError": "Error: 429 Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199524, Requested 15"
       },
       {
-        "name": "groq#2",
-        "calls": 1,
-        "ok": 1,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 0,
-        "cooling": false
-      },
-      {
-        "name": "groq#3",
-        "calls": 1,
-        "ok": 1,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 0,
-        "cooling": false
-      },
-      {
         "name": "groq#4",
-        "calls": 1,
-        "ok": 1,
-        "err429": 0,
-        "cooldowns": 0,
+        "calls": 4,
+        "ok": 0,
+        "err429": 4,
+        "cooldowns": 1,
         "otherErrors": 0,
-        "cooling": false
+        "cooling": false,
+        "lastError": "Error: 429 Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199524, Requested 16"
       },
       {
         "name": "groq#5",
-        "calls": 1,
-        "ok": 1,
-        "err429": 0,
-        "cooldowns": 0,
+        "calls": 4,
+        "ok": 0,
+        "err429": 4,
+        "cooldowns": 1,
         "otherErrors": 0,
-        "cooling": false
+        "cooling": false,
+        "lastError": "Error: 429 Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199524, Requested 15"
       },
       {
         "name": "groq#6",
@@ -472,7 +474,7 @@
         "cooldowns": 1,
         "otherErrors": 0,
         "cooling": false,
-        "lastError": "Error: 429 Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199524, Requested 16"
+        "lastError": "Error: 429 Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199524, Requested 32"
       },
       {
         "name": "groq#7",
@@ -485,18 +487,19 @@
       },
       {
         "name": "groq#8",
-        "calls": 1,
-        "ok": 1,
-        "err429": 0,
-        "cooldowns": 0,
+        "calls": 4,
+        "ok": 0,
+        "err429": 4,
+        "cooldowns": 1,
         "otherErrors": 0,
-        "cooling": false
+        "cooling": false,
+        "lastError": "Error: 429 Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199519, Requested 160"
       },
       {
         "name": "groq#9",
-        "calls": 3,
+        "calls": 2,
         "ok": 1,
-        "err429": 2,
+        "err429": 1,
         "cooldowns": 0,
         "otherErrors": 0,
         "cooling": false,
@@ -676,31 +679,33 @@
         "err429": 4,
         "cooldowns": 1,
         "otherErrors": 0,
-        "cooling": true,
+        "cooling": false,
         "lastError": "Error: 429 Provider returned error"
       },
       {
         "name": "custom-modelscope",
         "calls": 1,
-        "ok": 1,
+        "ok": 0,
         "err429": 0,
         "cooldowns": 0,
-        "otherErrors": 0,
-        "cooling": false
+        "otherErrors": 1,
+        "cooling": false,
+        "lastError": "Error: Request timed out."
       },
       {
         "name": "custom-modelscope#2",
-        "calls": 0,
+        "calls": 1,
         "ok": 0,
         "err429": 0,
         "cooldowns": 0,
-        "otherErrors": 0,
-        "cooling": false
+        "otherErrors": 1,
+        "cooling": false,
+        "lastError": "SyntaxError: Unexpected token '�', \"�停止维护了，dom\"... is not valid JSON"
       },
       {
         "name": "custom-spark",
-        "calls": 0,
-        "ok": 0,
+        "calls": 1,
+        "ok": 1,
         "err429": 0,
         "cooldowns": 0,
         "otherErrors": 0,
