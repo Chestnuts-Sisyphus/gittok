@@ -349,7 +349,7 @@
   },
   {
     "job": "feed",
-    "at": "2026-09-07T18:45:32.772Z",
+    "at": "2026-09-07T22:07:58.964Z",
     "workers": [
       {
         "name": "zhipu",
@@ -381,9 +381,9 @@
       },
       {
         "name": "zhipu#2",
-        "calls": 3,
+        "calls": 4,
         "ok": 2,
-        "err429": 1,
+        "err429": 2,
         "cooldowns": 0,
         "otherErrors": 0,
         "cooling": false,
@@ -409,12 +409,13 @@
       },
       {
         "name": "zhipu#5",
-        "calls": 2,
+        "calls": 4,
         "ok": 2,
-        "err429": 0,
+        "err429": 2,
         "cooldowns": 0,
         "otherErrors": 0,
-        "cooling": false
+        "cooling": false,
+        "lastError": "Error: 429 您的账户已达到速率限制，请您控制请求频率"
       },
       {
         "name": "groq",
@@ -427,53 +428,51 @@
       },
       {
         "name": "groq#2",
-        "calls": 3,
-        "ok": 1,
-        "err429": 1,
+        "calls": 2,
+        "ok": 2,
+        "err429": 0,
         "cooldowns": 0,
-        "otherErrors": 1,
-        "cooling": false,
-        "lastError": "Error: 413 Request too large for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Requested 10102, please r"
+        "otherErrors": 0,
+        "cooling": false
       },
       {
         "name": "groq#3",
-        "calls": 2,
-        "ok": 1,
-        "err429": 0,
+        "calls": 3,
+        "ok": 2,
+        "err429": 1,
         "cooldowns": 0,
-        "otherErrors": 1,
+        "otherErrors": 0,
         "cooling": false,
-        "lastError": "Error: Unexpected empty response from groq"
+        "lastError": "Error: 429 Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 6843, Requested 473"
       },
       {
         "name": "groq#4",
-        "calls": 1,
-        "ok": 0,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 1,
-        "cooling": false,
-        "lastError": "Error: Unexpected empty response from groq"
-      },
-      {
-        "name": "groq#5",
         "calls": 2,
         "ok": 1,
         "err429": 1,
         "cooldowns": 0,
         "otherErrors": 0,
         "cooling": false,
-        "lastError": "Error: 429 Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 7148, Requested 220"
+        "lastError": "Error: 429 Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 4817, Requested 473"
+      },
+      {
+        "name": "groq#5",
+        "calls": 1,
+        "ok": 1,
+        "err429": 0,
+        "cooldowns": 0,
+        "otherErrors": 0,
+        "cooling": false
       },
       {
         "name": "groq#6",
-        "calls": 1,
-        "ok": 0,
-        "err429": 0,
+        "calls": 2,
+        "ok": 1,
+        "err429": 1,
         "cooldowns": 0,
-        "otherErrors": 1,
+        "otherErrors": 0,
         "cooling": false,
-        "lastError": "Error: Unexpected empty response from groq"
+        "lastError": "Error: 429 Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 5206, Requested 581"
       },
       {
         "name": "groq#7",
@@ -532,11 +531,12 @@
       {
         "name": "gemini#3",
         "calls": 1,
-        "ok": 1,
+        "ok": 0,
         "err429": 0,
         "cooldowns": 0,
-        "otherErrors": 0,
-        "cooling": false
+        "otherErrors": 1,
+        "cooling": false,
+        "lastError": "Error: 503 status code (no body)"
       },
       {
         "name": "gemini#4",

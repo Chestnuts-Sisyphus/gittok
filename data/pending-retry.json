@@ -13,23 +13,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-06T20:31:46Z",
-    "retryCount": 4
-  },
-  {
-    "repo": "0xInfection/Awesome-WAF",
-    "desc": "Everything about Web Application Firewalls (WAFs) from Security Standpoint! 🔥",
-    "stars": 7610,
-    "language": "Python",
-    "topics": [
-      "awesome"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2019-01-08T04:57:06Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-08-26T12:48:34Z",
-    "retryCount": 1
+    "retryCount": 5
   },
   {
     "repo": "0xMiden/miden-vm",
@@ -44,8 +28,8 @@
     "createdAt": "2021-09-10T05:08:56Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-07T12:29:29Z",
-    "retryCount": 2
+    "ts": "2026-09-07T21:29:05Z",
+    "retryCount": 3
   },
   {
     "repo": "200ok-ch/organice",
@@ -61,7 +45,23 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-08-09T06:25:58Z",
-    "retryCount": 5
+    "retryCount": 6
+  },
+  {
+    "repo": "5-stones/react-native-readium",
+    "desc": "📚 📖   React Native ebook reader for iOS, Android, & Web via Readium",
+    "stars": 172,
+    "language": "HTML",
+    "topics": [
+      "ebook"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2022-03-11T16:53:04Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-03T19:51:46Z",
+    "retryCount": 1
   },
   {
     "repo": "52North/WeatherRoutingTool",
@@ -77,7 +77,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-07T11:44:44Z",
-    "retryCount": 2
+    "retryCount": 3
+  },
+  {
+    "repo": "a-anjos/python-opencv",
+    "desc": "Cheat sheet for OpenCV 4.x (Python)",
+    "stars": 58,
+    "language": "TeX",
+    "topics": [
+      "cheatsheet"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2019-12-13T14:57:46Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-08-14T13:29:05Z",
+    "retryCount": 1
   },
   {
     "repo": "a16z/jolt",
@@ -93,7 +109,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-07T13:05:07Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "a8hok/JavaScript-Study-Guide",
@@ -109,39 +125,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-02T02:24:51Z",
-    "retryCount": 4
-  },
-  {
-    "repo": "abdullahbutt/leben-in-deutschland-test",
-    "desc": "German Citizenship Test (Einbürgerungstest) — All 300+160 questions with translations in English & Urdu, correct answers, and explanations",
-    "stars": 22,
-    "language": "",
-    "topics": [
-      "english"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-04-07T09:09:41Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-04T08:56:14Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "AkaliKong/MiniOneRec",
-    "desc": "Minimal reproduction of OneRec",
-    "stars": 1795,
-    "language": "Python",
-    "topics": [
-      "llm-model"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2025-10-21T14:02:08Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-07T02:57:58Z",
-    "retryCount": 1
+    "retryCount": 5
   },
   {
     "repo": "amaggiulli/QLNet",
@@ -157,86 +141,54 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-02T16:12:19Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
-    "repo": "Ar57m/octofractalis",
-    "desc": "Fractal explorer supporting complex, quaternion, and octonion spaces with custom equations (C++20, CLI + UI)",
-    "stars": 6,
-    "language": "C++",
-    "topics": [
-      "generative-art"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2024-04-15T00:02:33Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-08-12T00:30:51Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "azihsoyn/ratslate",
-    "desc": "An infinite canvas in your terminal: boxes, arrows and tables drawn with the mouse. Obsidian Canvas compatible, ASCII export, JSON API + CRDT for live human/AI co-editing",
-    "stars": 5,
-    "language": "Rust",
+    "repo": "chubin/wttr.in",
+    "desc": ":partly_sunny: The right way to check the weather",
+    "stars": 30497,
+    "language": "Go",
     "topics": [
       "ascii-art"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2026-08-26T13:43:22Z",
+    "createdAt": "2015-12-26T21:03:43Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-07T14:53:56Z",
+    "ts": "2026-09-07T20:12:34Z",
     "retryCount": 1
   },
   {
-    "repo": "B-Bischoff/MidiPlayer",
-    "desc": "Application for exploring sound synthesis and designing custom instruments from scratch, controllable via any MIDI device.",
-    "stars": 4,
-    "language": "C++",
+    "repo": "creativescala/doodle",
+    "desc": "Compositional vector graphics in Scala / Scala.JS",
+    "stars": 348,
+    "language": "Scala",
     "topics": [
-      "synthesizer"
+      "creative-coding"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2023-11-26T11:19:12Z",
+    "createdAt": "2014-12-10T11:28:50Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-07T14:13:22Z",
+    "ts": "2026-09-07T19:24:56Z",
     "retryCount": 1
   },
   {
-    "repo": "chatanywhere/GPT_API_free",
-    "desc": "免费大模型API，支持免费调用GPT、DeepSeek等主流模型，免费额度10000点，每日刷新！另付费价格最低官方1-2折！",
-    "stars": 42014,
-    "language": "",
+    "repo": "Demizo/Daily_You",
+    "desc": "Daily diary & journaling app",
+    "stars": 1291,
+    "language": "Dart",
     "topics": [
-      "api"
+      "note-taking"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2023-04-23T12:42:08Z",
+    "createdAt": "2023-08-05T04:01:03Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-07T17:19:11Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "dogxii/iFace",
-    "desc": "Agent/前端/Golang/Java 面试题库 -  智能刷题工具，自定义 AI 接口，实现高效辅助学习",
-    "stars": 138,
-    "language": "TypeScript",
-    "topics": [
-      "interview"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-03-08T16:56:04Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-07T07:14:59Z",
+    "ts": "2026-09-07T19:42:50Z",
     "retryCount": 1
   },
   {
@@ -253,35 +205,19 @@
     "retryCount": 1
   },
   {
-    "repo": "GD4AI/obsidian-llm-wiki",
-    "desc": "Karpathy's LLM Wiki implementation plugin for Obsidian - turns notes and PDFs into a linked, LLM-powered knowledge base with entity pages, concept pages, graph-powered Q&A, and local-first privacy.",
-    "stars": 581,
-    "language": "TypeScript",
+    "repo": "iggredible/Learn-Vim",
+    "desc": "Learning Vim and Vimscript doesn't have to be hard. This is the guide that you're looking for 📖",
+    "stars": 15213,
+    "language": "Dockerfile",
     "topics": [
-      "note-taking"
+      "editor"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2026-04-26T14:57:39Z",
+    "createdAt": "2020-07-13T13:27:44Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-07T04:23:52Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "HarrierOnChain/Prediction-Markets-Trading-Bot-Toolkits",
-    "desc": "Rust trading bots for prediction markets — Polymarket, Kalshi, Limitless. Copy Trading is production-ready; nine more strategies in development on the same execution core. Dry-run by default, self-custody, MIT.",
-    "stars": 433,
-    "language": "Rust",
-    "topics": [
-      "trading"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2025-09-29T15:17:57Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-07T11:44:40Z",
+    "ts": "2026-09-07T20:12:20Z",
     "retryCount": 1
   },
   {
@@ -298,65 +234,33 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-07T01:20:20Z",
-    "retryCount": 5
-  },
-  {
-    "repo": "liangleslie/nea_sg_weather",
-    "desc": "Home Assistant integration for NEA Weather forecasts",
-    "stars": 50,
-    "language": "Python",
-    "topics": [
-      "weather"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2021-11-06T02:55:18Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-07T09:42:24Z",
-    "retryCount": 1
+    "retryCount": 6
   },
   {
     "repo": "lightpanda-io/browser",
     "desc": "Lightpanda: the headless browser designed for AI and automation",
-    "stars": 34748,
+    "stars": 34802,
     "language": "Zig",
     "topics": [],
     "source": "trending",
     "starGrowth": 116,
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-07T18:28:48.958Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "meilisearch/meilisearch-dotnet",
-    "desc": ".NET client for Meilisearch",
-    "stars": 345,
-    "language": "C#",
-    "topics": [
-      "vector-db"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2020-05-24T08:59:06Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-01T04:05:10Z",
-    "retryCount": 1
+    "ts": "2026-09-07T21:51:15.920Z",
+    "retryCount": 2
   },
   {
     "repo": "microsoft/markitdown",
     "desc": "Python tool for converting files and office documents to Markdown.",
-    "stars": 179863,
+    "stars": 180061,
     "language": "Python",
     "topics": [],
     "source": "trending",
     "starGrowth": 771,
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-07T18:28:48.958Z",
-    "retryCount": 1
+    "ts": "2026-09-07T21:51:15.920Z",
+    "retryCount": 2
   },
   {
     "repo": "numpy/numpy",
@@ -368,7 +272,23 @@
     "starGrowth": 19,
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-07T18:28:48.958Z",
+    "ts": "2026-09-07T21:51:15.920Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "olivierh59500/go-cuddlymenu",
+    "desc": "Remake of the main menu of the \"Cuddly Demos\"",
+    "stars": 1,
+    "language": "HTML",
+    "topics": [
+      "demoscene"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-01-06T14:15:26Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-07T18:52:32Z",
     "retryCount": 1
   },
   {
@@ -385,23 +305,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-07T02:10:34Z",
-    "retryCount": 4
-  },
-  {
-    "repo": "sonosaurus/sonobus",
-    "desc": "Source code for SonoBus, a real-time network audio streaming collaboration tool.",
-    "stars": 2180,
-    "language": "C++",
-    "topics": [
-      "music"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2020-07-30T04:17:14Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-04T21:37:12Z",
-    "retryCount": 1
+    "retryCount": 5
   },
   {
     "repo": "Specy/asm-editor",
@@ -417,6 +321,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-07T12:49:11Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "strakam/generals-bots",
+    "desc": "Develop your agent for generals.io! ",
+    "stars": 112,
+    "language": "Python",
+    "topics": [
+      "pygame"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2024-06-05T10:44:06Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-07T21:00:16Z",
     "retryCount": 1
   },
   {
@@ -447,67 +367,19 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-07T13:22:33Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "vesoft-inc/nebula",
-    "desc": "  A distributed, fast open-source graph database featuring horizontal scalability and high availability",
-    "stars": 12379,
-    "language": "C++",
-    "topics": [
-      "database"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2018-08-28T14:25:09Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-07T09:26:21Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "yolowex/snake_ai",
-    "desc": "A polished pygame Snake game with a trainable DQN agent. Clean separation between pure game engine, UI, and training code. Includes automatic weight loading, AI recording to GIF, and a ready-to-use 22-feature observation space.",
-    "stars": 2,
-    "language": "Python",
-    "topics": [
-      "pygame"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-09-07T09:14:56Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-07T10:23:42Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "zeidalidiez/Notenotes",
-    "desc": "Notenotes is a tiny, browser-based musical 'post it note' for capturing the idea of music with unconventional instruments and visual aids.",
-    "stars": 12,
-    "language": "JavaScript",
-    "topics": [
-      "synthesizer"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-05-03T03:27:18Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-07T08:16:55Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Zie619/n8n-workflows",
     "desc": "all of the workflows of n8n i could find (also from the site itself)",
-    "stars": 56521,
+    "stars": 56526,
     "language": "Python",
     "topics": [],
     "source": "trending",
     "starGrowth": 47,
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-07T18:28:48.958Z",
-    "retryCount": 1
+    "ts": "2026-09-07T21:51:15.920Z",
+    "retryCount": 2
   }
 ]
