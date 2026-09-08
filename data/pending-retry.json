@@ -1,21 +1,5 @@
 [
   {
-    "repo": "0xMiden/miden-vm",
-    "desc": "STARK-based virtual machine",
-    "stars": 770,
-    "language": "Rust",
-    "topics": [
-      "cryptography"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2021-09-10T05:08:56Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-09-08T19:16:33Z",
-    "retryCount": 6
-  },
-  {
     "repo": "5-stones/react-native-readium",
     "desc": "📚 📖   React Native ebook reader for iOS, Android, & Web via Readium",
     "stars": 172,
@@ -29,23 +13,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-03T19:51:46Z",
-    "retryCount": 4
-  },
-  {
-    "repo": "52North/WeatherRoutingTool",
-    "desc": "A tool to perform optimization of ship routes based on fuel consumption in different weather conditions",
-    "stars": 64,
-    "language": "Python",
-    "topics": [
-      "weather"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2024-01-11T10:38:03Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-09-07T11:44:44Z",
-    "retryCount": 6
+    "retryCount": 5
   },
   {
     "repo": "a-anjos/python-opencv",
@@ -61,7 +29,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-08-14T13:29:05Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "chubin/wttr.in",
@@ -77,7 +45,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-07T20:12:34Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "creativescala/doodle",
@@ -93,7 +61,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-07T19:24:56Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "Demizo/Daily_You",
@@ -109,7 +77,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-07T19:42:50Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "hpcaitech/Open-Sora",
@@ -121,8 +89,8 @@
     "starGrowth": 212,
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-08T20:25:23.540Z",
-    "retryCount": 2
+    "ts": "2026-09-08T22:27:02.698Z",
+    "retryCount": 3
   },
   {
     "repo": "iggredible/Learn-Vim",
@@ -138,7 +106,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-07T20:12:20Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "lencx/ChatGPT",
@@ -150,8 +118,8 @@
     "starGrowth": 8,
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-08T20:25:23.540Z",
-    "retryCount": 2
+    "ts": "2026-09-08T22:27:02.698Z",
+    "retryCount": 3
   },
   {
     "repo": "lightpanda-io/browser",
@@ -165,20 +133,20 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-07T22:38:09.240Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "microsoft/markitdown",
     "desc": "Python tool for converting files and office documents to Markdown.",
-    "stars": 181577,
+    "stars": 181611,
     "language": "Python",
     "topics": [],
     "source": "trending",
     "starGrowth": 2045,
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-08T20:25:23.540Z",
-    "retryCount": 5
+    "ts": "2026-09-08T22:27:02.698Z",
+    "retryCount": 6
   },
   {
     "repo": "Mukosame/Anime2Sketch",
@@ -194,20 +162,20 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-08T17:38:03Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "NdoleStudio/httpsms",
     "desc": "Send and receive SMS messages using your Android phone programmatically via a simple HTTP API",
-    "stars": 4981,
+    "stars": 4983,
     "language": "Go",
     "topics": [],
     "source": "trending",
     "starGrowth": 45,
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-08T20:25:23.540Z",
-    "retryCount": 1
+    "ts": "2026-09-08T22:27:02.698Z",
+    "retryCount": 2
   },
   {
     "repo": "neka-nat/freecad-mcp",
@@ -234,49 +202,33 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-07T22:38:09.240Z",
-    "retryCount": 5
-  },
-  {
-    "repo": "P5-wrapper/next",
-    "desc": "A NextJS specific library for the @P5-Wrapper/react project.",
-    "stars": 53,
-    "language": "TypeScript",
-    "topics": [
-      "creative-coding"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2023-04-19T11:47:41Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-08T20:09:50Z",
-    "retryCount": 1
+    "retryCount": 6
   },
   {
     "repo": "PostHog/posthog",
     "desc": "🦔 PostHog is the leading platform for building self-driving products. Our developer tools – AI observability, analytics, session replay, flags, experiments, error tracking, logs, and more – capture all the context agents need to diagnose problems, uncover opportunities, and ship fixes. Steer it all from Slack, web, desktop, or the MCP.",
-    "stars": 39673,
+    "stars": 39675,
     "language": "Python",
     "topics": [],
     "source": "trending",
     "starGrowth": 23,
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-08T20:25:23.540Z",
-    "retryCount": 2
+    "ts": "2026-09-08T22:27:02.698Z",
+    "retryCount": 3
   },
   {
     "repo": "rust-lang/rustlings",
     "desc": "🦀 Small exercises to get you used to reading and writing Rust code!",
-    "stars": 64097,
+    "stars": 64103,
     "language": "Rust",
     "topics": [],
     "source": "trending",
     "starGrowth": 30,
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-08T20:25:23.540Z",
-    "retryCount": 2
+    "ts": "2026-09-08T22:27:02.698Z",
+    "retryCount": 3
   },
   {
     "repo": "strakam/generals-bots",
@@ -292,7 +244,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-08T09:25:37Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "Tencent/teamai-cli",
@@ -335,19 +287,19 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-08T18:54:23Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Zie619/n8n-workflows",
     "desc": "all of the workflows of n8n i could find (also from the site itself)",
-    "stars": 56552,
+    "stars": 56553,
     "language": "Python",
     "topics": [],
     "source": "trending",
     "starGrowth": 36,
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-08T20:25:23.540Z",
-    "retryCount": 5
+    "ts": "2026-09-08T22:27:02.698Z",
+    "retryCount": 6
   }
 ]
