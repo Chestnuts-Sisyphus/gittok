@@ -1,21 +1,5 @@
 [
   {
-    "repo": "0jonjo/calcpace",
-    "desc": "A Ruby gem for runners: pace, time, and distance calculations, unit conversions, race predictions, GPS track analysis, age grading, VO2max estimation, and training zones.",
-    "stars": 14,
-    "language": "Ruby",
-    "topics": [
-      "fitness"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2022-01-20T16:02:46Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-09-06T20:31:46Z",
-    "retryCount": 6
-  },
-  {
     "repo": "0xMiden/miden-vm",
     "desc": "STARK-based virtual machine",
     "stars": 770,
@@ -28,8 +12,8 @@
     "createdAt": "2021-09-10T05:08:56Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-09-07T21:29:05Z",
-    "retryCount": 4
+    "ts": "2026-09-08T16:31:46Z",
+    "retryCount": 5
   },
   {
     "repo": "5-stones/react-native-readium",
@@ -45,7 +29,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-03T19:51:46Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "52North/WeatherRoutingTool",
@@ -61,7 +45,23 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-07T11:44:44Z",
-    "retryCount": 4
+    "retryCount": 5
+  },
+  {
+    "repo": "8b-is/centerfugeq",
+    "desc": "centerfugeq — the 8b-is physics + world-building foundation. Ternary wire seed → trits → game/video/image/scene → Blender EEVEE + Unity. The floors live at pocoo.vaked.dev. vaked.dev · 8b.is",
+    "stars": 0,
+    "language": "HTML",
+    "topics": [
+      "demoscene"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-09-05T03:30:34Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-08T12:02:09Z",
+    "retryCount": 1
   },
   {
     "repo": "a-anjos/python-opencv",
@@ -77,23 +77,39 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-08-14T13:29:05Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
-    "repo": "a8hok/JavaScript-Study-Guide",
-    "desc": "Javascript Study Guide",
-    "stars": 39,
-    "language": "",
+    "repo": "a16z/jolt",
+    "desc": "The simplest and most extensible zkVM. Fast and fully open source from a16z crypto and friends. ⚡",
+    "stars": 1022,
+    "language": "Rust",
     "topics": [
-      "interview"
+      "cryptography"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2021-08-18T15:12:14Z",
-    "silentRounds": 1,
+    "createdAt": "2023-05-18T21:00:08Z",
+    "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-02T02:24:51Z",
-    "retryCount": 6
+    "ts": "2026-09-08T17:31:47Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "BastiTee/tolino-notes",
+    "desc": "Convert Tolino notes into useful formats",
+    "stars": 11,
+    "language": "Python",
+    "topics": [
+      "ebook"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2023-08-19T14:37:45Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-06T17:50:33Z",
+    "retryCount": 1
   },
   {
     "repo": "chubin/wttr.in",
@@ -109,7 +125,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-07T20:12:34Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "creativescala/doodle",
@@ -125,7 +141,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-07T19:24:56Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "Demizo/Daily_You",
@@ -141,19 +157,67 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-07T19:42:50Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
-    "repo": "entireio/cli",
-    "desc": "📜 Entire CLI hooks into your Git workflow to capture AI agent sessions as you work. Sessions are indexed alongside commits, creating a searchable record of how code was written in your repo.",
-    "stars": 5074,
-    "language": "Go",
-    "topics": [],
-    "source": "trending",
-    "starGrowth": 7,
+    "repo": "dwkrider/Math-Art",
+    "desc": "A Blender 4.2+/5.x extension with 150+ generators for mathematical sculpture: minimal surfaces, polyhedra, knots, fractals, tilings and more.",
+    "stars": 6,
+    "language": "Python",
+    "topics": [
+      "generative-art"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-07-27T15:49:05Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-07T18:28:48.958Z",
+    "ts": "2026-09-08T07:22:44Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "Het161/Het161",
+    "desc": "My GitHub profile README — animated isometric 3D artwork generated from scratch in SVG, plus a self-hosted stats card",
+    "stars": 6,
+    "language": "Python",
+    "topics": [
+      "generative-art"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2025-11-28T15:14:20Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-08T15:58:51Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "hpcaitech/Open-Sora",
+    "desc": "Open-Sora: Democratizing Efficient Video Production for All",
+    "stars": 29697,
+    "language": "Python",
+    "topics": [],
+    "source": "trending",
+    "starGrowth": 212,
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-08T17:39:23.082Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "iamtouchskyer/memex",
+    "desc": "Zettelkasten-based persistent memory for AI coding agents. Works with Claude Code, Cursor, VS Code Copilot, Codex, Windsurf & any MCP client. No vector DB — just markdown + git sync.",
+    "stars": 141,
+    "language": "TypeScript",
+    "topics": [
+      "knowledge-management"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-03-20T03:06:21Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-08T16:20:21Z",
     "retryCount": 1
   },
   {
@@ -170,7 +234,52 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-07T20:12:20Z",
-    "retryCount": 2
+    "retryCount": 3
+  },
+  {
+    "repo": "Karovia/fullstack-ai-agent-roadmap",
+    "desc": "🎯 从零基础到 AI Agent 全栈工程师 · 110 个详细教程 · 58 万字 · 400+ GitHub 项目精选 · Obsidian 友好 · 中文",
+    "stars": 447,
+    "language": "",
+    "topics": [
+      "tutorial"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-06-19T06:34:06Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-07T01:20:20Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "kjtsune/embyToLocalPlayer",
+    "desc": "etlp - Emby/Jellyfin 调用外部本地播放器，并回传播放记录。适配 Plex。",
+    "stars": 1431,
+    "language": "Python",
+    "topics": [
+      "jellyfin"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2022-07-29T13:57:48Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-08T07:54:50Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "lencx/ChatGPT",
+    "desc": "❄️ ChatGPT Desktop Application (Mac, Windows and Linux)",
+    "stars": 54495,
+    "language": "Rust",
+    "topics": [],
+    "source": "trending",
+    "starGrowth": 8,
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-08T17:39:23.082Z",
+    "retryCount": 1
   },
   {
     "repo": "lightpanda-io/browser",
@@ -179,26 +288,70 @@
     "language": "Zig",
     "topics": [],
     "source": "trending",
-    "starGrowth": 116,
+    "starGrowth": 0,
     "createdAt": "2023-02-07T15:19:34Z",
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-07T22:38:09.240Z",
-    "retryCount": 3
+    "retryCount": 4
+  },
+  {
+    "repo": "LucaTNT/CloudyTube",
+    "desc": "Web app to extract audio from web videos and upload them to Overcast Premium",
+    "stars": 8,
+    "language": "Python",
+    "topics": [
+      "podcast"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2020-11-23T19:12:36Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-08-28T01:42:45Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "MeltedMindz/relicsv4",
+    "desc": "Fork-and-launch starter for fully on-chain generative art powered by Uniswap v4 hooks: swaps, liquidity, volatility and market history become live artistic evolution. Contracts, renderer, hook logic, deployment tooling, tests, and a Next.js app.",
+    "stars": 6,
+    "language": "Solidity",
+    "topics": [
+      "generative-art"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-08-04T17:52:55Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-08T17:27:20Z",
+    "retryCount": 1
   },
   {
     "repo": "microsoft/markitdown",
     "desc": "Python tool for converting files and office documents to Markdown.",
-    "stars": 180101,
+    "stars": 181485,
     "language": "Python",
     "topics": [],
     "source": "trending",
-    "starGrowth": 771,
-    "createdAt": "2024-11-13T19:56:40Z",
+    "starGrowth": 2045,
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-07T22:38:09.240Z",
-    "retryCount": 3
+    "ts": "2026-09-08T17:39:23.082Z",
+    "retryCount": 4
+  },
+  {
+    "repo": "neka-nat/freecad-mcp",
+    "desc": "FreeCAD MCP(Model Context Protocol) server",
+    "stars": 2106,
+    "language": "Python",
+    "topics": [],
+    "source": "trending",
+    "starGrowth": 39,
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-08T17:39:23.082Z",
+    "retryCount": 1
   },
   {
     "repo": "numpy/numpy",
@@ -207,28 +360,70 @@
     "language": "Python",
     "topics": [],
     "source": "trending",
-    "starGrowth": 19,
+    "starGrowth": 0,
     "createdAt": "2010-09-13T23:02:39Z",
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-07T22:38:09.240Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
-    "repo": "rileydevworks/Sol",
-    "desc": "Native macOS music player for local libraries and Subsonic/Navidrome servers, with bitperfect output, podcasts and a metadata editor.",
-    "stars": 42,
-    "language": "Swift",
+    "repo": "pizslacker/infinite-3d-floor-python3",
+    "desc": "A personal challenge creating yet another demoscene'ish program in Python3, showing off classic Amiga demoscene-like \"infinite floor\" graphics, On Linux.",
+    "stars": 0,
+    "language": "Python",
     "topics": [
-      "podcast"
+      "demoscene"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2026-09-06T16:45:31Z",
+    "createdAt": "2026-09-07T16:02:42Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-07T02:10:34Z",
-    "retryCount": 6
+    "ts": "2026-09-08T07:45:30Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "PostHog/posthog",
+    "desc": "🦔 PostHog is the leading platform for building self-driving products. Our developer tools – AI observability, analytics, session replay, flags, experiments, error tracking, logs, and more – capture all the context agents need to diagnose problems, uncover opportunities, and ship fixes. Steer it all from Slack, web, desktop, or the MCP.",
+    "stars": 39672,
+    "language": "Python",
+    "topics": [],
+    "source": "trending",
+    "starGrowth": 23,
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-08T17:39:23.082Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "raeq/ibook2epub",
+    "desc": "Export your Apple Books (iBooks) library as standard EPUB files. Batch-converts the .epub package folders macOS keeps in iCloud into spec-valid epubs. Pure-Python CLI, zero dependencies, safe to re-run, optional Kindle-safe naming.",
+    "stars": 11,
+    "language": "Python",
+    "topics": [
+      "ebook"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2023-05-08T14:28:58Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-08-28T19:33:20Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "rust-lang/rustlings",
+    "desc": "🦀 Small exercises to get you used to reading and writing Rust code!",
+    "stars": 64095,
+    "language": "Rust",
+    "topics": [],
+    "source": "trending",
+    "starGrowth": 30,
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-08T17:39:23.082Z",
+    "retryCount": 1
   },
   {
     "repo": "strakam/generals-bots",
@@ -243,8 +438,21 @@
     "createdAt": "2024-06-05T10:44:06Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-09-07T21:00:16Z",
-    "retryCount": 2
+    "ts": "2026-09-08T09:25:37Z",
+    "retryCount": 3
+  },
+  {
+    "repo": "Tencent/teamai-cli",
+    "desc": "Make Every Team AI Native",
+    "stars": 2263,
+    "language": "TypeScript",
+    "topics": [],
+    "source": "trending",
+    "starGrowth": 1215,
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-08T17:39:23.082Z",
+    "retryCount": 1
   },
   {
     "repo": "The-Swarm-Corporation/AutoHedge",
@@ -261,17 +469,32 @@
     "retryCount": 3
   },
   {
+    "repo": "toxicbishop/Weather-ascii",
+    "desc": "A terminal-based weather application that renders immersive ASCII animations of current weather conditions using real-time data from Open-Meteo.",
+    "stars": 5,
+    "language": "Rust",
+    "topics": [
+      "ascii-art"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-02-22T07:13:47Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-08T13:24:07Z",
+    "retryCount": 1
+  },
+  {
     "repo": "Zie619/n8n-workflows",
     "desc": "all of the workflows of n8n i could find (also from the site itself)",
-    "stars": 56528,
+    "stars": 56549,
     "language": "Python",
     "topics": [],
     "source": "trending",
-    "starGrowth": 47,
-    "createdAt": "2025-05-14T08:43:59Z",
+    "starGrowth": 36,
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-07T22:38:09.240Z",
-    "retryCount": 3
+    "ts": "2026-09-08T17:39:23.082Z",
+    "retryCount": 4
   }
 ]
