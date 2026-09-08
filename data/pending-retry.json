@@ -12,8 +12,8 @@
     "createdAt": "2021-09-10T05:08:56Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-09-08T16:31:46Z",
-    "retryCount": 5
+    "ts": "2026-09-08T19:16:33Z",
+    "retryCount": 6
   },
   {
     "repo": "5-stones/react-native-readium",
@@ -29,7 +29,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-03T19:51:46Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "52North/WeatherRoutingTool",
@@ -45,23 +45,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-07T11:44:44Z",
-    "retryCount": 5
-  },
-  {
-    "repo": "8b-is/centerfugeq",
-    "desc": "centerfugeq — the 8b-is physics + world-building foundation. Ternary wire seed → trits → game/video/image/scene → Blender EEVEE + Unity. The floors live at pocoo.vaked.dev. vaked.dev · 8b.is",
-    "stars": 0,
-    "language": "HTML",
-    "topics": [
-      "demoscene"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-09-05T03:30:34Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-08T12:02:09Z",
-    "retryCount": 1
+    "retryCount": 6
   },
   {
     "repo": "a-anjos/python-opencv",
@@ -77,39 +61,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-08-14T13:29:05Z",
-    "retryCount": 3
-  },
-  {
-    "repo": "a16z/jolt",
-    "desc": "The simplest and most extensible zkVM. Fast and fully open source from a16z crypto and friends. ⚡",
-    "stars": 1022,
-    "language": "Rust",
-    "topics": [
-      "cryptography"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2023-05-18T21:00:08Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-08T17:31:47Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "BastiTee/tolino-notes",
-    "desc": "Convert Tolino notes into useful formats",
-    "stars": 11,
-    "language": "Python",
-    "topics": [
-      "ebook"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2023-08-19T14:37:45Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-06T17:50:33Z",
-    "retryCount": 1
+    "retryCount": 4
   },
   {
     "repo": "chubin/wttr.in",
@@ -125,7 +77,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-07T20:12:34Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "creativescala/doodle",
@@ -141,7 +93,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-07T19:24:56Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "Demizo/Daily_You",
@@ -157,68 +109,20 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-07T19:42:50Z",
-    "retryCount": 3
-  },
-  {
-    "repo": "dwkrider/Math-Art",
-    "desc": "A Blender 4.2+/5.x extension with 150+ generators for mathematical sculpture: minimal surfaces, polyhedra, knots, fractals, tilings and more.",
-    "stars": 6,
-    "language": "Python",
-    "topics": [
-      "generative-art"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-07-27T15:49:05Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-08T07:22:44Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "Het161/Het161",
-    "desc": "My GitHub profile README — animated isometric 3D artwork generated from scratch in SVG, plus a self-hosted stats card",
-    "stars": 6,
-    "language": "Python",
-    "topics": [
-      "generative-art"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2025-11-28T15:14:20Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-08T15:58:51Z",
-    "retryCount": 1
+    "retryCount": 4
   },
   {
     "repo": "hpcaitech/Open-Sora",
     "desc": "Open-Sora: Democratizing Efficient Video Production for All",
-    "stars": 29697,
+    "stars": 29699,
     "language": "Python",
     "topics": [],
     "source": "trending",
     "starGrowth": 212,
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-08T17:39:23.082Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "iamtouchskyer/memex",
-    "desc": "Zettelkasten-based persistent memory for AI coding agents. Works with Claude Code, Cursor, VS Code Copilot, Codex, Windsurf & any MCP client. No vector DB — just markdown + git sync.",
-    "stars": 141,
-    "language": "TypeScript",
-    "topics": [
-      "knowledge-management"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-03-20T03:06:21Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-08T16:20:21Z",
-    "retryCount": 1
+    "ts": "2026-09-08T20:25:23.540Z",
+    "retryCount": 2
   },
   {
     "repo": "iggredible/Learn-Vim",
@@ -234,52 +138,20 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-07T20:12:20Z",
-    "retryCount": 3
-  },
-  {
-    "repo": "Karovia/fullstack-ai-agent-roadmap",
-    "desc": "🎯 从零基础到 AI Agent 全栈工程师 · 110 个详细教程 · 58 万字 · 400+ GitHub 项目精选 · Obsidian 友好 · 中文",
-    "stars": 447,
-    "language": "",
-    "topics": [
-      "tutorial"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-06-19T06:34:06Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-07T01:20:20Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "kjtsune/embyToLocalPlayer",
-    "desc": "etlp - Emby/Jellyfin 调用外部本地播放器，并回传播放记录。适配 Plex。",
-    "stars": 1431,
-    "language": "Python",
-    "topics": [
-      "jellyfin"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2022-07-29T13:57:48Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-08T07:54:50Z",
-    "retryCount": 1
+    "retryCount": 4
   },
   {
     "repo": "lencx/ChatGPT",
     "desc": "❄️ ChatGPT Desktop Application (Mac, Windows and Linux)",
-    "stars": 54495,
+    "stars": 54496,
     "language": "Rust",
     "topics": [],
     "source": "trending",
     "starGrowth": 8,
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-08T17:39:23.082Z",
-    "retryCount": 1
+    "ts": "2026-09-08T20:25:23.540Z",
+    "retryCount": 2
   },
   {
     "repo": "lightpanda-io/browser",
@@ -293,52 +165,49 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-07T22:38:09.240Z",
-    "retryCount": 4
-  },
-  {
-    "repo": "LucaTNT/CloudyTube",
-    "desc": "Web app to extract audio from web videos and upload them to Overcast Premium",
-    "stars": 8,
-    "language": "Python",
-    "topics": [
-      "podcast"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2020-11-23T19:12:36Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-08-28T01:42:45Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "MeltedMindz/relicsv4",
-    "desc": "Fork-and-launch starter for fully on-chain generative art powered by Uniswap v4 hooks: swaps, liquidity, volatility and market history become live artistic evolution. Contracts, renderer, hook logic, deployment tooling, tests, and a Next.js app.",
-    "stars": 6,
-    "language": "Solidity",
-    "topics": [
-      "generative-art"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-08-04T17:52:55Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-08T17:27:20Z",
-    "retryCount": 1
+    "retryCount": 5
   },
   {
     "repo": "microsoft/markitdown",
     "desc": "Python tool for converting files and office documents to Markdown.",
-    "stars": 181485,
+    "stars": 181577,
     "language": "Python",
     "topics": [],
     "source": "trending",
     "starGrowth": 2045,
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-08T17:39:23.082Z",
-    "retryCount": 4
+    "ts": "2026-09-08T20:25:23.540Z",
+    "retryCount": 5
+  },
+  {
+    "repo": "Mukosame/Anime2Sketch",
+    "desc": "A sketch extractor for anime/illustration.",
+    "stars": 2130,
+    "language": "Python",
+    "topics": [
+      "anime"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2021-04-09T00:26:49Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-08T17:38:03Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "NdoleStudio/httpsms",
+    "desc": "Send and receive SMS messages using your Android phone programmatically via a simple HTTP API",
+    "stars": 4981,
+    "language": "Go",
+    "topics": [],
+    "source": "trending",
+    "starGrowth": 45,
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-08T20:25:23.540Z",
+    "retryCount": 1
   },
   {
     "repo": "neka-nat/freecad-mcp",
@@ -365,65 +234,49 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-07T22:38:09.240Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
-    "repo": "pizslacker/infinite-3d-floor-python3",
-    "desc": "A personal challenge creating yet another demoscene'ish program in Python3, showing off classic Amiga demoscene-like \"infinite floor\" graphics, On Linux.",
-    "stars": 0,
-    "language": "Python",
+    "repo": "P5-wrapper/next",
+    "desc": "A NextJS specific library for the @P5-Wrapper/react project.",
+    "stars": 53,
+    "language": "TypeScript",
     "topics": [
-      "demoscene"
+      "creative-coding"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2026-09-07T16:02:42Z",
+    "createdAt": "2023-04-19T11:47:41Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-08T07:45:30Z",
+    "ts": "2026-09-08T20:09:50Z",
     "retryCount": 1
   },
   {
     "repo": "PostHog/posthog",
     "desc": "🦔 PostHog is the leading platform for building self-driving products. Our developer tools – AI observability, analytics, session replay, flags, experiments, error tracking, logs, and more – capture all the context agents need to diagnose problems, uncover opportunities, and ship fixes. Steer it all from Slack, web, desktop, or the MCP.",
-    "stars": 39672,
+    "stars": 39673,
     "language": "Python",
     "topics": [],
     "source": "trending",
     "starGrowth": 23,
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-08T17:39:23.082Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "raeq/ibook2epub",
-    "desc": "Export your Apple Books (iBooks) library as standard EPUB files. Batch-converts the .epub package folders macOS keeps in iCloud into spec-valid epubs. Pure-Python CLI, zero dependencies, safe to re-run, optional Kindle-safe naming.",
-    "stars": 11,
-    "language": "Python",
-    "topics": [
-      "ebook"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2023-05-08T14:28:58Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-08-28T19:33:20Z",
-    "retryCount": 1
+    "ts": "2026-09-08T20:25:23.540Z",
+    "retryCount": 2
   },
   {
     "repo": "rust-lang/rustlings",
     "desc": "🦀 Small exercises to get you used to reading and writing Rust code!",
-    "stars": 64095,
+    "stars": 64097,
     "language": "Rust",
     "topics": [],
     "source": "trending",
     "starGrowth": 30,
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-08T17:39:23.082Z",
-    "retryCount": 1
+    "ts": "2026-09-08T20:25:23.540Z",
+    "retryCount": 2
   },
   {
     "repo": "strakam/generals-bots",
@@ -439,7 +292,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-08T09:25:37Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "Tencent/teamai-cli",
@@ -469,32 +322,32 @@
     "retryCount": 3
   },
   {
-    "repo": "toxicbishop/Weather-ascii",
-    "desc": "A terminal-based weather application that renders immersive ASCII animations of current weather conditions using real-time data from Open-Meteo.",
-    "stars": 5,
-    "language": "Rust",
+    "repo": "zcreativelabs/react-simple-maps",
+    "desc": "Beautiful React SVG maps with d3-geo and topojson using a declarative api.",
+    "stars": 3308,
+    "language": "TypeScript",
     "topics": [
-      "ascii-art"
+      "data-visualization"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2026-02-22T07:13:47Z",
+    "createdAt": "2017-03-03T18:17:19Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-08T13:24:07Z",
+    "ts": "2026-09-08T18:54:23Z",
     "retryCount": 1
   },
   {
     "repo": "Zie619/n8n-workflows",
     "desc": "all of the workflows of n8n i could find (also from the site itself)",
-    "stars": 56549,
+    "stars": 56552,
     "language": "Python",
     "topics": [],
     "source": "trending",
     "starGrowth": 36,
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-08T17:39:23.082Z",
-    "retryCount": 4
+    "ts": "2026-09-08T20:25:23.540Z",
+    "retryCount": 5
   }
 ]
