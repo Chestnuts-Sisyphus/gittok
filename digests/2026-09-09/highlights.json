@@ -1,0 +1,86 @@
+{
+  "zh": {
+    "ai-cli": [
+      "Claude Code Skills迎来热潮，PR修复Recall误报",
+      "新增document-typography排版质量控制Skill",
+      "新增scnet-hpc高性能计算作业管理Skill",
+      "引入Zero-Cost Multi-Agent协作Skill",
+      "优化Windows系统下的skill-creator兼容性",
+      "社区重点关注AI评估流水线自动化效率"
+    ],
+    "ai-agents": [
+      "NanoBot保持高活跃度，24小时内产生42条交互",
+      "NanoBot将Codex模型目录升至0.153.4恢复GPT-6",
+      "NanoBot采用增量UTF-8解码器防止跨块字符破坏",
+      "NanoBot为idle-session加缓存上限防内存泄漏",
+      "NanoBot限制MCP浏览器OAuth流缓存免内存无限增长",
+      "NanoBot设定Mattermost线程缓存上限防内存膨胀"
+    ],
+    "ai-web": [
+      "Anthropic首次披露针对蒸馏攻击与AI间谍的防御报告",
+      "Anthropic呼吁行业协作共同制定AI蒸馏防护标准",
+      "OpenAI发布ChatGPT Images 2.5等6条索引条目",
+      "Anthropic对832个AI加速恶意账户进行MITRE映射",
+      "Anthropic报告首例AI代理全自动执行的跨境渗透事件",
+      "Anthropic技术回溯勒索软件与假身份运营等恶意案例"
+    ],
+    "ai-hf": [
+      "通义千问Qwen3.8-27B成为社区绝对顶流多模态模型",
+      "MiniMax-H3开源顶尖图文转视频生成模型引领趋势",
+      "智谱GLM-5.3凭借强大推理能力备受行业瞩目",
+      "阿里Qwen3.8-Flash-Next实现视觉对话高速推理",
+      "Lightricks推出LTX-2.5推动开源视频生成进入应用期",
+      "端侧量化生态极大地降低高阶多模态模型门槛"
+    ],
+    "ai-community": [
+      "社区深刻反思Vibe Coding是否导致开发者能力退化",
+      "指出多数AI Agent本质仍是基于规则的控制流",
+      "强调AI降低坏架构门槛，系统设计比以往更重要",
+      "探讨框架对AI代码生成的亲和度成为技术选型指标",
+      "教开发者10分钟内对AI Agent进行对抗性安全测试",
+      "Mistral获三星领投30亿欧元巨额融资布局算力"
+    ]
+  },
+  "en": {
+    "ai-cli": [
+      "OpenAI Codex ships rust-v0.154.0-alpha.7 update",
+      "Gemini-CLI releases version v0.60.0-preview.0",
+      "AI CLI tools shift toward sandbox security",
+      "Community demands LSP and modal editing features",
+      "Gemini-CLI rolls out stable v0.59.0 release",
+      "Core CLI projects focus on cross-platform reliability"
+    ],
+    "ai-agents": [
+      "NanoBot logs 40 updated pull requests today",
+      "NanoBot focuses on stability and memory management",
+      "NanoBot refines Telegram channel integration",
+      "NanoBot updates WebUI and TUI usability",
+      "High contributor activity drives NanoBot forward",
+      "NanoBot resolves key provider integration issues"
+    ],
+    "ai-web": [
+      "Anthropic exposes industrial distillation campaign",
+      "Anthropic details AI-driven cyber-threat mapping",
+      "Claude Code linked to automated espionage cases",
+      "Over 16M Claude exchanges exploited in attacks",
+      "OpenAI drops six new metadata-only index entries",
+      "Anthropic calls for rapid industry policy response"
+    ],
+    "ai-hn": [
+      "OpenAI claims Navier-Stokes Millennium proof",
+      "HN community debates OpenAI's mathematical claim",
+      "Anthropic formalizes Fermat's Last theorem",
+      "Math purists push back on OpenAI's breakthrough",
+      "Debate grows over AI research ethics and theft",
+      "Pentagon contracts fuel AI militarization worries"
+    ],
+    "ai-hf": [
+      "Alibaba launches Qwen3.8-27B and Flash models",
+      "DeepSeek drops V4-Flash-Vision experimental model",
+      "Zhipu AI releases GLM-5.3-Flash for vision tasks",
+      "MiniMax-H3 drives surging video generation trends",
+      "OpenBMB debuts compact MiniCPM5-2B model",
+      "XHToken introduces lightweight Spark-X2.5-4B"
+    ]
+  }
+}

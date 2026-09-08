@@ -1,352 +1,5 @@
 [
   {
-    "job": "digest",
-    "at": "2026-09-07T22:35:45.166Z",
-    "workers": [
-      {
-        "name": "zhipu",
-        "calls": 2,
-        "ok": 0,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 2,
-        "cooling": false,
-        "lastError": "Error: 401 令牌已过期或验证不正确"
-      },
-      {
-        "name": "agnes",
-        "calls": 2,
-        "ok": 2,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 0,
-        "cooling": false
-      },
-      {
-        "name": "agnes#2",
-        "calls": 2,
-        "ok": 2,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 0,
-        "cooling": false
-      },
-      {
-        "name": "zhipu#2",
-        "calls": 5,
-        "ok": 2,
-        "err429": 3,
-        "cooldowns": 0,
-        "otherErrors": 0,
-        "cooling": false,
-        "lastError": "Error: 429 您的账户已达到速率限制，请您控制请求频率"
-      },
-      {
-        "name": "zhipu#3",
-        "calls": 2,
-        "ok": 2,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 0,
-        "cooling": false
-      },
-      {
-        "name": "zhipu#4",
-        "calls": 2,
-        "ok": 2,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 0,
-        "cooling": false
-      },
-      {
-        "name": "zhipu#5",
-        "calls": 4,
-        "ok": 2,
-        "err429": 2,
-        "cooldowns": 0,
-        "otherErrors": 0,
-        "cooling": false,
-        "lastError": "Error: 429 您的账户已达到速率限制，请您控制请求频率"
-      },
-      {
-        "name": "groq",
-        "calls": 2,
-        "ok": 0,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 2,
-        "cooling": false,
-        "lastError": "Error: 413 Request too large for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Requested 9514, please re"
-      },
-      {
-        "name": "groq#2",
-        "calls": 2,
-        "ok": 0,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 2,
-        "cooling": false,
-        "lastError": "Error: 400 Please reduce the length of the messages or completion."
-      },
-      {
-        "name": "groq#3",
-        "calls": 2,
-        "ok": 0,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 2,
-        "cooling": false,
-        "lastError": "Error: 413 Request too large for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Requested 15896, please r"
-      },
-      {
-        "name": "groq#4",
-        "calls": 2,
-        "ok": 1,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 1,
-        "cooling": false,
-        "lastError": "Error: 413 Request too large for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Requested 13181, please r"
-      },
-      {
-        "name": "groq#5",
-        "calls": 2,
-        "ok": 1,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 1,
-        "cooling": false,
-        "lastError": "Error: 413 Request too large for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Requested 10263, please r"
-      },
-      {
-        "name": "groq#6",
-        "calls": 2,
-        "ok": 1,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 1,
-        "cooling": false,
-        "lastError": "Error: 413 Request too large for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Requested 9671, please re"
-      },
-      {
-        "name": "groq#7",
-        "calls": 2,
-        "ok": 1,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 1,
-        "cooling": false,
-        "lastError": "Error: 413 Request too large for model `openai/gpt-oss-20b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Requested 11447, please re"
-      },
-      {
-        "name": "groq#8",
-        "calls": 2,
-        "ok": 2,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 0,
-        "cooling": false
-      },
-      {
-        "name": "groq#9",
-        "calls": 2,
-        "ok": 2,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 0,
-        "cooling": false
-      },
-      {
-        "name": "groq#10",
-        "calls": 3,
-        "ok": 2,
-        "err429": 1,
-        "cooldowns": 0,
-        "otherErrors": 0,
-        "cooling": false,
-        "lastError": "Error: 429 Request too large for model `qwen/qwen3.8-27b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on output tokens per minute (OTPM): Limit 1000, Requested 1474. The "
-      },
-      {
-        "name": "gemini",
-        "calls": 2,
-        "ok": 0,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 2,
-        "cooling": false,
-        "lastError": "Error: 503 status code (no body)"
-      },
-      {
-        "name": "gemini#2",
-        "calls": 5,
-        "ok": 1,
-        "err429": 4,
-        "cooldowns": 1,
-        "otherErrors": 0,
-        "cooling": true,
-        "lastError": "Error: 429 status code (no body)"
-      },
-      {
-        "name": "gemini#3",
-        "calls": 2,
-        "ok": 1,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 1,
-        "cooling": false,
-        "lastError": "Error: 503 status code (no body)"
-      },
-      {
-        "name": "gemini#4",
-        "calls": 2,
-        "ok": 0,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 2,
-        "cooling": false,
-        "lastError": "Error: 404 status code (no body)"
-      },
-      {
-        "name": "gemini#5",
-        "calls": 2,
-        "ok": 0,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 2,
-        "cooling": false,
-        "lastError": "Error: 404 status code (no body)"
-      },
-      {
-        "name": "gemini#6",
-        "calls": 2,
-        "ok": 1,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 1,
-        "cooling": false,
-        "lastError": "Error: 503 status code (no body)"
-      },
-      {
-        "name": "gemini#7",
-        "calls": 2,
-        "ok": 1,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 1,
-        "cooling": false,
-        "lastError": "Error: 503 status code (no body)"
-      },
-      {
-        "name": "gemini#8",
-        "calls": 2,
-        "ok": 2,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 0,
-        "cooling": false
-      },
-      {
-        "name": "mistral",
-        "calls": 1,
-        "ok": 0,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 1,
-        "cooling": false,
-        "lastError": "Error: 401 status code (no body)"
-      },
-      {
-        "name": "mistral#2",
-        "calls": 1,
-        "ok": 0,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 1,
-        "cooling": false,
-        "lastError": "Error: 401 status code (no body)"
-      },
-      {
-        "name": "mistral#3",
-        "calls": 1,
-        "ok": 0,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 1,
-        "cooling": false,
-        "lastError": "Error: 401 status code (no body)"
-      },
-      {
-        "name": "mistral#4",
-        "calls": 1,
-        "ok": 0,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 1,
-        "cooling": false,
-        "lastError": "Error: 401 status code (no body)"
-      },
-      {
-        "name": "hf",
-        "calls": 1,
-        "ok": 0,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 1,
-        "cooling": false,
-        "lastError": "Error: 402 \"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\""
-      },
-      {
-        "name": "hf#2",
-        "calls": 1,
-        "ok": 0,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 1,
-        "cooling": false,
-        "lastError": "Error: 402 \"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\""
-      },
-      {
-        "name": "openrouter",
-        "calls": 4,
-        "ok": 0,
-        "err429": 4,
-        "cooldowns": 1,
-        "otherErrors": 0,
-        "cooling": false,
-        "lastError": "Error: 429 Provider returned error"
-      },
-      {
-        "name": "custom-modelscope",
-        "calls": 1,
-        "ok": 1,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 0,
-        "cooling": false
-      },
-      {
-        "name": "custom-modelscope#2",
-        "calls": 1,
-        "ok": 0,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 1,
-        "cooling": false,
-        "lastError": "Error: Unexpected empty response from custom-modelscope"
-      },
-      {
-        "name": "custom-spark",
-        "calls": 1,
-        "ok": 1,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 0,
-        "cooling": false
-      }
-    ]
-  },
-  {
     "job": "feed",
     "at": "2026-09-08T20:44:45.542Z",
     "workers": [
@@ -694,6 +347,346 @@
         "name": "custom-spark",
         "calls": 0,
         "ok": 0,
+        "err429": 0,
+        "cooldowns": 0,
+        "otherErrors": 0,
+        "cooling": false
+      }
+    ]
+  },
+  {
+    "job": "digest",
+    "at": "2026-09-08T22:24:38.354Z",
+    "workers": [
+      {
+        "name": "zhipu",
+        "calls": 2,
+        "ok": 0,
+        "err429": 0,
+        "cooldowns": 0,
+        "otherErrors": 2,
+        "cooling": false,
+        "lastError": "Error: 401 令牌已过期或验证不正确"
+      },
+      {
+        "name": "agnes",
+        "calls": 2,
+        "ok": 2,
+        "err429": 0,
+        "cooldowns": 0,
+        "otherErrors": 0,
+        "cooling": false
+      },
+      {
+        "name": "agnes#2",
+        "calls": 2,
+        "ok": 2,
+        "err429": 0,
+        "cooldowns": 0,
+        "otherErrors": 0,
+        "cooling": false
+      },
+      {
+        "name": "zhipu#2",
+        "calls": 2,
+        "ok": 2,
+        "err429": 0,
+        "cooldowns": 0,
+        "otherErrors": 0,
+        "cooling": false
+      },
+      {
+        "name": "zhipu#3",
+        "calls": 2,
+        "ok": 2,
+        "err429": 0,
+        "cooldowns": 0,
+        "otherErrors": 0,
+        "cooling": false
+      },
+      {
+        "name": "zhipu#4",
+        "calls": 4,
+        "ok": 2,
+        "err429": 2,
+        "cooldowns": 0,
+        "otherErrors": 0,
+        "cooling": false,
+        "lastError": "Error: 429 您的账户已达到速率限制，请您控制请求频率"
+      },
+      {
+        "name": "zhipu#5",
+        "calls": 4,
+        "ok": 1,
+        "err429": 2,
+        "cooldowns": 0,
+        "otherErrors": 1,
+        "cooling": false,
+        "lastError": "Error: 400 Prompt exceeds max length"
+      },
+      {
+        "name": "groq",
+        "calls": 2,
+        "ok": 1,
+        "err429": 0,
+        "cooldowns": 0,
+        "otherErrors": 1,
+        "cooling": false,
+        "lastError": "Error: 413 Request too large for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Requested 9585, please re"
+      },
+      {
+        "name": "groq#2",
+        "calls": 2,
+        "ok": 2,
+        "err429": 0,
+        "cooldowns": 0,
+        "otherErrors": 0,
+        "cooling": false
+      },
+      {
+        "name": "groq#3",
+        "calls": 2,
+        "ok": 0,
+        "err429": 0,
+        "cooldowns": 0,
+        "otherErrors": 2,
+        "cooling": false,
+        "lastError": "Error: 413 Request too large for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Requested 12690, please r"
+      },
+      {
+        "name": "groq#4",
+        "calls": 3,
+        "ok": 1,
+        "err429": 1,
+        "cooldowns": 0,
+        "otherErrors": 1,
+        "cooling": false,
+        "lastError": "Error: 413 Request too large for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Requested 15840, please r"
+      },
+      {
+        "name": "groq#5",
+        "calls": 2,
+        "ok": 2,
+        "err429": 0,
+        "cooldowns": 0,
+        "otherErrors": 0,
+        "cooling": false
+      },
+      {
+        "name": "groq#6",
+        "calls": 2,
+        "ok": 0,
+        "err429": 0,
+        "cooldowns": 0,
+        "otherErrors": 2,
+        "cooling": false,
+        "lastError": "Error: 413 Request too large for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Requested 12617, please r"
+      },
+      {
+        "name": "groq#7",
+        "calls": 2,
+        "ok": 2,
+        "err429": 0,
+        "cooldowns": 0,
+        "otherErrors": 0,
+        "cooling": false
+      },
+      {
+        "name": "groq#8",
+        "calls": 2,
+        "ok": 2,
+        "err429": 0,
+        "cooldowns": 0,
+        "otherErrors": 0,
+        "cooling": false
+      },
+      {
+        "name": "groq#9",
+        "calls": 7,
+        "ok": 1,
+        "err429": 6,
+        "cooldowns": 1,
+        "otherErrors": 0,
+        "cooling": true,
+        "lastError": "Error: 429 Request too large for model `qwen/qwen3.8-27b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on output tokens per minute (OTPM): Limit 1000, Requested 1164. The "
+      },
+      {
+        "name": "groq#10",
+        "calls": 5,
+        "ok": 1,
+        "err429": 4,
+        "cooldowns": 1,
+        "otherErrors": 0,
+        "cooling": false,
+        "lastError": "Error: 429 Request too large for model `qwen/qwen3.8-27b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on output tokens per minute (OTPM): Limit 1000, Requested 1599. The "
+      },
+      {
+        "name": "gemini",
+        "calls": 2,
+        "ok": 2,
+        "err429": 0,
+        "cooldowns": 0,
+        "otherErrors": 0,
+        "cooling": false
+      },
+      {
+        "name": "gemini#2",
+        "calls": 2,
+        "ok": 2,
+        "err429": 0,
+        "cooldowns": 0,
+        "otherErrors": 0,
+        "cooling": false
+      },
+      {
+        "name": "gemini#3",
+        "calls": 2,
+        "ok": 2,
+        "err429": 0,
+        "cooldowns": 0,
+        "otherErrors": 0,
+        "cooling": false
+      },
+      {
+        "name": "gemini#4",
+        "calls": 2,
+        "ok": 0,
+        "err429": 0,
+        "cooldowns": 0,
+        "otherErrors": 2,
+        "cooling": false,
+        "lastError": "Error: 404 status code (no body)"
+      },
+      {
+        "name": "gemini#5",
+        "calls": 2,
+        "ok": 0,
+        "err429": 0,
+        "cooldowns": 0,
+        "otherErrors": 2,
+        "cooling": false,
+        "lastError": "Error: 404 status code (no body)"
+      },
+      {
+        "name": "gemini#6",
+        "calls": 2,
+        "ok": 2,
+        "err429": 0,
+        "cooldowns": 0,
+        "otherErrors": 0,
+        "cooling": false
+      },
+      {
+        "name": "gemini#7",
+        "calls": 2,
+        "ok": 2,
+        "err429": 0,
+        "cooldowns": 0,
+        "otherErrors": 0,
+        "cooling": false
+      },
+      {
+        "name": "gemini#8",
+        "calls": 1,
+        "ok": 1,
+        "err429": 0,
+        "cooldowns": 0,
+        "otherErrors": 0,
+        "cooling": false
+      },
+      {
+        "name": "mistral",
+        "calls": 1,
+        "ok": 0,
+        "err429": 0,
+        "cooldowns": 0,
+        "otherErrors": 1,
+        "cooling": false,
+        "lastError": "Error: 401 status code (no body)"
+      },
+      {
+        "name": "mistral#2",
+        "calls": 1,
+        "ok": 0,
+        "err429": 0,
+        "cooldowns": 0,
+        "otherErrors": 1,
+        "cooling": false,
+        "lastError": "Error: 401 status code (no body)"
+      },
+      {
+        "name": "mistral#3",
+        "calls": 1,
+        "ok": 0,
+        "err429": 0,
+        "cooldowns": 0,
+        "otherErrors": 1,
+        "cooling": false,
+        "lastError": "Error: 401 status code (no body)"
+      },
+      {
+        "name": "mistral#4",
+        "calls": 1,
+        "ok": 0,
+        "err429": 0,
+        "cooldowns": 0,
+        "otherErrors": 1,
+        "cooling": false,
+        "lastError": "Error: 401 status code (no body)"
+      },
+      {
+        "name": "hf",
+        "calls": 1,
+        "ok": 0,
+        "err429": 0,
+        "cooldowns": 0,
+        "otherErrors": 1,
+        "cooling": false,
+        "lastError": "Error: 402 \"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\""
+      },
+      {
+        "name": "hf#2",
+        "calls": 1,
+        "ok": 0,
+        "err429": 0,
+        "cooldowns": 0,
+        "otherErrors": 1,
+        "cooling": false,
+        "lastError": "Error: 402 \"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\""
+      },
+      {
+        "name": "openrouter",
+        "calls": 4,
+        "ok": 0,
+        "err429": 4,
+        "cooldowns": 1,
+        "otherErrors": 0,
+        "cooling": false,
+        "lastError": "Error: 429 Provider returned error"
+      },
+      {
+        "name": "custom-modelscope",
+        "calls": 1,
+        "ok": 1,
+        "err429": 0,
+        "cooldowns": 0,
+        "otherErrors": 0,
+        "cooling": false
+      },
+      {
+        "name": "custom-modelscope#2",
+        "calls": 1,
+        "ok": 0,
+        "err429": 0,
+        "cooldowns": 0,
+        "otherErrors": 1,
+        "cooling": false,
+        "lastError": "Error: Unexpected empty response from custom-modelscope"
+      },
+      {
+        "name": "custom-spark",
+        "calls": 1,
+        "ok": 1,
         "err429": 0,
         "cooldowns": 0,
         "otherErrors": 0,
