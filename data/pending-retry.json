@@ -26,7 +26,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-09T09:32:06Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "Bouwles/DriftSync",
@@ -42,23 +42,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-09T10:45:10Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "branch-danya-dev/ssad-methodology",
-    "desc": "Practical system-analysis methodology for structuring, validating, and evolving knowledge around real system boundaries, responsibilities, ownership, and delivery workflows.",
-    "stars": 56,
-    "language": "",
-    "topics": [
-      "knowledge-management"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-08-29T01:15:33Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-08-30T16:51:06Z",
-    "retryCount": 1
+    "retryCount": 3
   },
   {
     "repo": "chenhg5/cc-connect",
@@ -74,35 +58,51 @@
     "retryCount": 2
   },
   {
-    "repo": "Chimahon/chimahon",
-    "desc": "Mihon immersion fork with native dictionary lookup (Yomitan), Mokuro manga and anime support, Novel EPUB reader, and instant Anki card mining.",
-    "stars": 192,
-    "language": "Kotlin",
+    "repo": "chubin/wttr.in",
+    "desc": ":partly_sunny: The right way to check the weather",
+    "stars": 30505,
+    "language": "Go",
     "topics": [
-      "anime"
+      "ascii-art"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2026-03-27T13:58:01Z",
+    "createdAt": "2015-12-26T21:03:43Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-04T21:30:26Z",
+    "ts": "2026-09-07T20:12:34Z",
     "retryCount": 1
   },
   {
-    "repo": "DanielMartensson/Open-SAE-J1939",
-    "desc": "SAE J1939 protocol free to use for embedded systems or PC with CAN-bus",
-    "stars": 648,
-    "language": "C",
+    "repo": "creativescala/doodle",
+    "desc": "Compositional vector graphics in Scala / Scala.JS",
+    "stars": 348,
+    "language": "Scala",
     "topics": [
-      "arduino"
+      "creative-coding"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2021-07-14T17:54:40Z",
+    "createdAt": "2014-12-10T11:28:50Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-09T19:55:24Z",
+    "ts": "2026-09-07T19:24:56Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "Demizo/Daily_You",
+    "desc": "Daily diary & journaling app",
+    "stars": 1298,
+    "language": "Dart",
+    "topics": [
+      "note-taking"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2023-08-05T04:01:03Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-09T01:16:56Z",
     "retryCount": 1
   },
   {
@@ -119,7 +119,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-09T02:27:42Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "go-resty/resty",
@@ -146,7 +146,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-08T22:27:02.698Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "huggingface/agents-course",
@@ -162,7 +162,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-09T15:03:13Z",
-    "retryCount": 2
+    "retryCount": 3
+  },
+  {
+    "repo": "iggredible/Learn-Vim",
+    "desc": "Learning Vim and Vimscript doesn't have to be hard. This is the guide that you're looking for 📖",
+    "stars": 15212,
+    "language": "Dockerfile",
+    "topics": [
+      "editor"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2020-07-13T13:27:44Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-07T20:12:20Z",
+    "retryCount": 1
   },
   {
     "repo": "leandrowd/react-responsive-carousel",
@@ -178,7 +194,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-08-26T08:08:43Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "leeoniya/uPlot",
@@ -194,7 +210,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-09T14:23:51Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "lencx/ChatGPT",
@@ -208,7 +224,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-08T22:27:02.698Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "liquidslr/system-design-notes",
@@ -237,7 +253,23 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-08T17:38:03Z",
-    "retryCount": 4
+    "retryCount": 5
+  },
+  {
+    "repo": "nasa/apod-api",
+    "desc": "Astronomy Picture of the Day API service",
+    "stars": 1081,
+    "language": "Python",
+    "topics": [
+      "astronomy"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2015-12-01T21:33:12Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-09T15:01:03Z",
+    "retryCount": 1
   },
   {
     "repo": "NdoleStudio/httpsms",
@@ -251,7 +283,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-09T17:25:03.896Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "open-gsd/gsd-core",
@@ -267,70 +299,6 @@
     "retryCount": 2
   },
   {
-    "repo": "opendsm/eeweather",
-    "desc": "Fetch NCDC ISD, TMY3, or CZ2010 weather data that corresponds to ZIP Code Tabulation Areas or Latitude/Longitude.",
-    "stars": 51,
-    "language": "Python",
-    "topics": [
-      "weather"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2018-01-29T21:14:08Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-09T19:39:37Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "osdeving/borrow-fighters",
-    "desc": "Docs-first 2D fighting game prototype with programming humor",
-    "stars": 6,
-    "language": "Rust",
-    "topics": [
-      "raylib"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-06-20T17:34:07Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-09T19:45:51Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "realth000/tsdm_client",
-    "desc": "天使动漫论坛官方跨平台客户端",
-    "stars": 349,
-    "language": "Dart",
-    "topics": [
-      "anime"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2023-03-03T18:14:48Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-09T11:45:01Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "RickStrahl/MarkdownMonster",
-    "desc": "An extensible Markdown Editor, Viewer and Weblog Publisher for Windows",
-    "stars": 1692,
-    "language": "HTML",
-    "topics": [
-      "documentation"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2016-05-05T22:22:59Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-09T18:02:35Z",
-    "retryCount": 1
-  },
-  {
     "repo": "rust-lang/rustlings",
     "desc": "🦀 Small exercises to get you used to reading and writing Rust code!",
     "stars": 64114,
@@ -342,7 +310,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-08T22:27:02.698Z",
-    "retryCount": 5
+    "retryCount": 6
+  },
+  {
+    "repo": "strakam/generals-bots",
+    "desc": "Develop your agent for generals.io! ",
+    "stars": 114,
+    "language": "Python",
+    "topics": [
+      "pygame"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2024-06-05T10:44:06Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-08T09:25:37Z",
+    "retryCount": 1
   },
   {
     "repo": "Tencent/teamai-cli",
@@ -372,35 +356,19 @@
     "retryCount": 3
   },
   {
-    "repo": "Tonner-Zech-Group/chem-diagrams",
-    "desc": "Python package for the creation of publication-quality reaction energy diagrams with Matplotlib.",
-    "stars": 90,
-    "language": "Python",
+    "repo": "wyhinton/AwesomeHoudini",
+    "desc": "A collection of awesome Free/Open Source things regarding the SideFx Houdini ecosystem.",
+    "stars": 521,
+    "language": "",
     "topics": [
-      "physics"
+      "procedural-generation"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2026-01-30T13:22:41Z",
+    "createdAt": "2022-06-15T19:40:20Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-09T14:46:11Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "vincentchyu/photools",
-    "desc": "📸 Turn GPX tracks into GPS-tagged, location-aware photo libraries. Offline reverse geocoding, intelligent GPS interpolation, and date-based organization for photographers. (macOS App & CLI)",
-    "stars": 11,
-    "language": "Go",
-    "topics": [
-      "photography"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-05-10T01:55:20Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-03T13:26:11Z",
+    "ts": "2026-09-09T20:33:53Z",
     "retryCount": 1
   },
   {
@@ -417,23 +385,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-09T12:56:20Z",
-    "retryCount": 4
-  },
-  {
-    "repo": "zivavu/OpenMosh",
-    "desc": "No login Svelte clone of MoshPro app with improved UX and much more. Work in progress",
-    "stars": 5,
-    "language": "TypeScript",
-    "topics": [
-      "video-editor"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-02-23T19:05:57Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-09T17:50:20Z",
-    "retryCount": 1
+    "retryCount": 5
   },
   {
     "repo": "zynaddsubfx/zynaddsubfx",
@@ -449,6 +401,6 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-08T09:08:35Z",
-    "retryCount": 2
+    "retryCount": 3
   }
 ]
