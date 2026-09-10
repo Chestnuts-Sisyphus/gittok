@@ -1,18 +1,16 @@
 [
   {
-    "repo": "allkern/iris",
-    "desc": "Sony PlayStation 2 emulator for Windows, Linux and macOS",
-    "stars": 472,
-    "language": "C",
-    "topics": [
-      "emulator"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2024-10-16T01:11:36Z",
+    "repo": "akitaonrails/ai-usagebar",
+    "desc": "Rust-based waybar widget to monitor status of Claude, GPT, GLM, OpenRouter plans/credits - inspired by claudebar/codexbar",
+    "stars": 461,
+    "language": "Rust",
+    "topics": [],
+    "source": "trending",
+    "starGrowth": 30,
+    "createdAt": "2026-05-24T00:29:51Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-04T13:40:34Z",
+    "ts": "2026-09-10T20:10:58.577Z",
     "retryCount": 1
   },
   {
@@ -26,58 +24,42 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2013-10-02T22:27:48Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-09T09:32:06Z",
-    "retryCount": 4
-  },
-  {
-    "repo": "Azgaar/Armoria",
-    "desc": "Heraldry generator and editor",
-    "stars": 363,
-    "language": "Svelte",
-    "topics": [
-      "procedural-generation"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2020-11-23T21:15:06Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-08-19T08:23:06Z",
-    "retryCount": 1
+    "retryCount": 5
   },
   {
     "repo": "Bouwles/DriftSync",
     "desc": "A real-time machine learning system that predicts when a user is likely to make a mistake before it occurs.",
-    "stars": 134,
+    "stars": 220,
     "language": "Python",
     "topics": [
       "pygame"
     ],
     "source": "search",
-    "starGrowth": 0,
+    "starGrowth": 86,
     "createdAt": "2026-03-03T08:59:21Z",
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-09T10:45:10Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "chubin/wttr.in",
     "desc": ":partly_sunny: The right way to check the weather",
-    "stars": 30505,
+    "stars": 30509,
     "language": "Go",
     "topics": [
       "ascii-art"
     ],
     "source": "search",
-    "starGrowth": 0,
+    "starGrowth": 4,
     "createdAt": "2015-12-26T21:03:43Z",
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-07T20:12:34Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "creativescala/doodle",
@@ -90,135 +72,26 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2014-12-10T11:28:50Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-07T19:24:56Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "datamoc/mwg",
-    "desc": "A TypeScript game framework that runs from a local file : no server, no install. The game can also be run from a server or like an app.",
-    "stars": 1,
-    "language": "TypeScript",
-    "topics": [
-      "roguelike"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-09-02T09:59:04Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-10T16:43:37Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "dcheon/token-eater",
-    "desc": "A sidebar pet that eats your Claude Code tokens - it levels up, gets fat, and evolves from slime to dragon.",
-    "stars": 0,
-    "language": "TypeScript",
-    "topics": [
-      "virtual-pet"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-08-29T14:22:30Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-10T16:30:30Z",
-    "retryCount": 1
+    "retryCount": 3
   },
   {
     "repo": "Demizo/Daily_You",
     "desc": "Daily diary & journaling app",
-    "stars": 1298,
+    "stars": 1301,
     "language": "Dart",
     "topics": [
       "note-taking"
     ],
     "source": "search",
-    "starGrowth": 0,
+    "starGrowth": 3,
     "createdAt": "2023-08-05T04:01:03Z",
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-09T01:16:56Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "Desert-Ant-Labs/demo-clipper",
-    "desc": "Example macOS app and CLI to generate short clips, fully on device.",
-    "stars": 13,
-    "language": "Swift",
-    "topics": [
-      "podcast"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-08-09T08:02:09Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-01T20:35:57Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "dsh0416/godot-cef",
-    "desc": "A cross-platform GPU-accelerated CEF-based (Chromium Embedded Framework) WebView Extension for Godot 4",
-    "stars": 219,
-    "language": "Rust",
-    "topics": [
-      "godot"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2025-12-31T12:25:54Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-09T03:34:33Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "Eigenwise/eigenwise-toolshed",
-    "desc": "Six Claude Code plugins for the work that keeps coming back: repo maps, conditional rules, ticketed parallel work, extra subscription models, local usage metrics, and guided setup.",
-    "stars": 126,
-    "language": "JavaScript",
-    "topics": [],
-    "source": "trending",
-    "starGrowth": 23,
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-10T17:23:15.587Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "EthanAlgoX/AIStock",
-    "desc": "A multi-agent AI trading system using LLMs to optimize strategies and adapt to market conditions in real-time.",
-    "stars": 318,
-    "language": "Python",
-    "topics": [
-      "trading"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2025-12-20T10:04:55Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-10T17:20:51Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "GH-X-ST/Aeronautical-Engineering-Imperial",
-    "desc": "Imperial College London Aeronautical Engineering (MEng 4YFT) Study Materials",
-    "stars": 63,
-    "language": "C++",
-    "topics": [
-      "mathematics"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2025-12-25T16:32:33Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-10T08:37:33Z",
-    "retryCount": 1
+    "retryCount": 3
   },
   {
     "repo": "go-ego/gse",
@@ -231,42 +104,42 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2017-06-23T15:42:35Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-09T02:27:42Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
-    "repo": "godofecht/Ngoma",
-    "desc": "A drone synthesizer instrument built in Max MSP as an academic project.",
-    "stars": 5,
-    "language": "Max",
+    "repo": "honzaap/Systemizer",
+    "desc": "A system design tool that allows you to simulate data flow of distributed systems.",
+    "stars": 1462,
+    "language": "TypeScript",
     "topics": [
-      "synthesizer"
+      "backend"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2020-06-03T09:58:23Z",
+    "createdAt": "2021-04-26T17:00:21Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-08-23T19:45:21Z",
+    "ts": "2026-09-10T19:26:04Z",
     "retryCount": 1
   },
   {
     "repo": "huggingface/agents-course",
     "desc": "This repository contains the Hugging Face Agents Course. ",
-    "stars": 32365,
+    "stars": 32406,
     "language": "MDX",
     "topics": [
       "agents"
     ],
     "source": "search",
-    "starGrowth": 0,
+    "starGrowth": 41,
     "createdAt": "2025-01-16T19:50:22Z",
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-09T15:03:13Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "iggredible/Learn-Vim",
@@ -279,10 +152,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2020-07-13T13:27:44Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-07T20:12:20Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "intellij-elixir/intellij-elixir",
@@ -295,74 +168,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2014-07-28T03:09:05Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-10T16:16:50Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "JHUISI/charm",
-    "desc": "Charm: A Framework for Rapidly Prototyping Cryptosystems",
-    "stars": 649,
-    "language": "Python",
-    "topics": [
-      "cryptography"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2011-05-15T17:59:52Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-10T04:07:47Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "kiyotakali/Miru",
-    "desc": "An open-source AI companion that actually remembers you — runs entirely on your own Mac or server. Desktop pet · long-term memory · proactive companionship · multi-device sync.",
-    "stars": 119,
-    "language": "Python",
-    "topics": [
-      "anime"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-07-03T09:10:18Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-10T06:37:14Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "kuyaEJ/ninja-game",
-    "desc": "A 2D pixel game in Python built with pygame-ce that follows DaFluffyPotato's tutorial",
-    "stars": 1,
-    "language": "Python",
-    "topics": [
-      "pygame"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-08-13T23:39:37Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-05T03:59:54Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "larden29/Tamagotchi-Full-Version",
-    "desc": "Tamagotchi is a free full-version children's game for Windows that lets you raise your own virtual pet just like the beloved handheld original. Feed, play, and care for your Tamagotchi to help it grow and form a family. Download and install in minutes.",
-    "stars": 0,
-    "language": "",
-    "topics": [
-      "virtual-pet"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-09-10T12:13:19Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-10T16:53:30Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "leandrowd/react-responsive-carousel",
@@ -375,26 +184,26 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2015-02-08T10:59:28Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-08-26T08:08:43Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "leeoniya/uPlot",
     "desc": "📈 A small, fast chart for time series, lines, areas, ohlc & bars",
-    "stars": 10480,
+    "stars": 10483,
     "language": "JavaScript",
     "topics": [
       "data-visualization"
     ],
     "source": "search",
-    "starGrowth": 0,
+    "starGrowth": 3,
     "createdAt": "2019-09-27T18:45:21Z",
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-09T22:19:48Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "liquidslr/system-design-notes",
@@ -410,70 +219,6 @@
     "retryCount": 2
   },
   {
-    "repo": "matthew-kissinger/kiln",
-    "desc": "Text-to-3D as code: language models write JavaScript programs that build game-ready GLBs, look at their own renders, and revise. Ships as an MCP server plus skills for any harness.",
-    "stars": 21,
-    "language": "TypeScript",
-    "topics": [
-      "procedural-generation"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-06-23T17:26:16Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-09T20:24:05Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "mes51/NiVE3",
-    "desc": "After Effects like OSS motion graphics software",
-    "stars": 7,
-    "language": "C#",
-    "topics": [
-      "video-editor"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2022-06-10T14:00:32Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-10T12:57:17Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "microsoft/BotFramework-WebChat",
-    "desc": "A highly-customizable web-based client for Azure Bot Services.",
-    "stars": 1786,
-    "language": "HTML",
-    "topics": [
-      "chatbot"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2016-07-07T23:16:57Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-10T02:52:14Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "Mukosame/Anime2Sketch",
-    "desc": "A sketch extractor for anime/illustration.",
-    "stars": 2130,
-    "language": "Python",
-    "topics": [
-      "anime"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2021-04-09T00:26:49Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-09-08T17:38:03Z",
-    "retryCount": 6
-  },
-  {
     "repo": "nasa/apod-api",
     "desc": "Astronomy Picture of the Day API service",
     "stars": 1081,
@@ -484,56 +229,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2015-12-01T21:33:12Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-09-10T13:07:32Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "NdoleStudio/httpsms",
-    "desc": "Send and receive SMS messages using your Android phone programmatically via a simple HTTP API",
-    "stars": 5032,
-    "language": "Go",
-    "topics": [],
-    "source": "trending",
-    "starGrowth": 0,
-    "createdAt": "2022-05-29T14:02:55Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-09T17:25:03.896Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "ohsusannamarie/Collection-of-Recruitment-related-Resources-and-Reference-Materials",
-    "desc": "Collection of 15+ recruitment-related resources & reference materials - Whitepapers, cheat-sheets, 1pagers, eBooks, etc.",
-    "stars": 8,
-    "language": "",
-    "topics": [
-      "cheatsheet"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2024-06-13T11:39:04Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-10T08:08:38Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "Pasta-Devs/Marinara-Engine",
-    "desc": "AI frontend",
-    "stars": 640,
-    "language": "TypeScript",
-    "topics": [
-      "frontend"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-03-04T15:37:29Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-10T16:29:12Z",
-    "retryCount": 1
+    "ts": "2026-09-10T18:52:51Z",
+    "retryCount": 3
   },
   {
     "repo": "R-s0n/ars0n-framework-v2",
@@ -549,22 +248,6 @@
     "retryCount": 1
   },
   {
-    "repo": "ReiHastings/Glim",
-    "desc": "A pet project consisting of a browser-based wellness companion PWA with an interactive creature, habit tracking, and cross-device sync",
-    "stars": 0,
-    "language": "JavaScript",
-    "topics": [
-      "virtual-pet"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-03-24T20:16:03Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-10T02:48:25Z",
-    "retryCount": 1
-  },
-  {
     "repo": "rubenafo/chalks",
     "desc": "A set of methods to manipulate data in p5js",
     "stars": 5,
@@ -575,26 +258,26 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2018-08-20T05:48:00Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-08-22T14:26:42Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "strakam/generals-bots",
     "desc": "Develop your agent for generals.io! ",
-    "stars": 114,
+    "stars": 116,
     "language": "Python",
     "topics": [
       "pygame"
     ],
     "source": "search",
-    "starGrowth": 0,
+    "starGrowth": 2,
     "createdAt": "2024-06-05T10:44:06Z",
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-08T09:25:37Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "Tencent/teamai-cli",
@@ -620,10 +303,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2017-03-22T08:22:35Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-08-26T03:56:50Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "theagentrouter/agent-router",
@@ -641,18 +324,18 @@
   {
     "repo": "Toni-SM/skrl",
     "desc": "Modular Reinforcement Learning (RL) library (implemented in PyTorch, JAX, and NVIDIA Warp) with support for Gymnasium/Gym, NVIDIA Isaac Lab, MuJoCo Playground and other environments",
-    "stars": 1096,
+    "stars": 1097,
     "language": "Python",
     "topics": [
       "robotics"
     ],
     "source": "search",
-    "starGrowth": 0,
+    "starGrowth": 1,
     "createdAt": "2021-10-18T07:53:11Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-10T13:48:35Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "TQDuysuke/kinx_lab_photoframe",
@@ -665,10 +348,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-03-07T15:17:26Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-08-25T18:58:05Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "vortico/flama",
@@ -681,26 +364,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2018-09-27T15:29:54Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-10T13:29:21Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "wrenfold/wrenfold",
-    "desc": "Toolkit for generating code from symbolic math expressions.",
-    "stars": 77,
-    "language": "C++",
-    "topics": [
-      "mathematics"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2021-10-30T22:37:31Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-10T14:48:44Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "wyhinton/AwesomeHoudini",
@@ -713,10 +380,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2022-06-15T19:40:20Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-09T20:33:53Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "yilewang/llm-for-zotero",
@@ -732,38 +399,6 @@
     "retryCount": 1
   },
   {
-    "repo": "zcreativelabs/react-simple-maps",
-    "desc": "Beautiful React SVG maps with d3-geo and topojson using a declarative api.",
-    "stars": 3307,
-    "language": "TypeScript",
-    "topics": [
-      "data-visualization"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2017-03-03T18:17:19Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-09-09T12:56:20Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "zqj372-ops/ai-passport-vpet",
-    "desc": "FoloToy AI Passport 开源固件：数码暴龙机风格养成游戏（31 种怪兽 / 进化动画 / 双机 BLE 对战 / 中文界面）",
-    "stars": 0,
-    "language": "C",
-    "topics": [
-      "virtual-pet"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-09-10T10:40:27Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-10T10:54:46Z",
-    "retryCount": 1
-  },
-  {
     "repo": "zynaddsubfx/zynaddsubfx",
     "desc": "ZynAddSubFX open source synthesizer",
     "stars": 1174,
@@ -774,9 +409,9 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2014-07-05T18:33:25Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-08T09:08:35Z",
-    "retryCount": 4
+    "retryCount": 5
   }
 ]
