@@ -1,0 +1,102 @@
+{
+  "zh": {
+    "ai-cli": [
+      "Claude Code的skill-creator评估脚本修复0% recall问题",
+      "社区PR新增document-typography skill实现文档排版自动检查",
+      "支持OpenDocument(.odt/.ods)格式的ODT skill提交PR",
+      "微软及开源社区持续推动各类CLI工具的跨平台兼容性优化",
+      "开发者热议如何通过Skills统一规范AI生成内容格式",
+      "多款主流AI CLI工具对Windows流读取与并行进程进行适配"
+    ],
+    "ai-agents": [
+      "NanoBot过去24小时保持高活跃度，提交27条PR与4条Issue",
+      "NanoBot PR #5356重新设计多渠道Setup流程并序列化安装",
+      "NanoBot PR #5214修复DeepSeek OpenAI-Response API序列化错误",
+      "NanoBot PR #5255在WebUI中正确报告外部API服务状态",
+      "NanoBot PR #5230解决Gemini跨提供商迁移时丢失签名问题",
+      "开源Agent社区聚焦AnySearch集成与首次启动密码障碍"
+    ],
+    "ai-web": [
+      "Anthropic推出Claude Corps青年AI服务计划并承诺投入1.5亿美元",
+      "Anthropic公开多篇AI经济指数系列报告量化Claude使用模式",
+      "Anthropic发表多重提示Jailbreaking研究揭示大上下文窗口漏洞",
+      "Anthropic联合外部机构开放聚合使用数据与Anthropic Insights工具",
+      "Anthropic研究通过神经元聚类首次映射大语言模型内部思维机制",
+      "OpenAI新增Scaling Storage One Billion Users存储扩展页面"
+    ],
+    "ai-hn": [
+      "Hacker News头条呼吁限制AI新闻洪流反映社区过度饱和情绪",
+      "Anthropic年龄限制政策引发隐私、合规与用户自由权激烈辩论",
+      "传OpenAI CEO Sam Altman向员工透露可能放缓前沿AI研发节奏",
+      "媒体曝出伊朗曾使用美国Anthropic的AI模型锁定美军战舰目标",
+      "HN社区高度关注AI滥用与伦理底线争议及其地缘政治影响",
+      "顶级数学家抗议与黑客马拉松撤场加剧OpenAI科研信任危机"
+    ],
+    "ai-arxiv": [
+      "研究揭示稀疏混合专家MoE架构比密集Transformer更容易过拟合",
+      "提出Headroom-Closed Index指标评估大模型递归自我改进瓶颈",
+      "通过隐状态干预揭示LLM从查询路由到内部知识提取的机制",
+      "提出任务感知低秩微调LOCUS大幅削减冗余Token降低推理成本",
+      "针对Agentic AI提出内生驱动力与持久对齐控制理论框架",
+      "首次将回溯思考机制引入端到端语音大语言模型弥补推理差距"
+    ],
+    "ai-hf": [
+      "OpenBmb推出面向端侧设备的2B极小语言模型MiniCPM5-2B",
+      "XHToken发布轻量级4B对话与文本生成模型Spark-X2.5-4B",
+      "Nex-Agi推出基于Qwen3.5 MoE架构的Nex-N2.5-mini",
+      "Nex-Agi推出高性能进阶版模型Nex-N2.5-Pro适应复杂推理",
+      "IFM推出采用MoVA架构的36B稀疏模型K2-Horizon-MoVA",
+      "DeepSeek-V4.1-Flash等原生多模态轻量极速版齐聚HuggingFace榜单"
+    ]
+  },
+  "en": {
+    "ai-cli": [
+      "Claude Code moves to agentic development environments",
+      "OpenAI Codex v0.155.0-alpha release focuses on Rust",
+      "TUI and desktop front-ends lead CLI tool trends",
+      "GitHub Copilot CLI adds new plugin API support",
+      "DeepSeek TUI gains traction in Linux dev stacks",
+      "Sandboxed execution now standard for secure CLI agents"
+    ],
+    "ai-agents": [
+      "NanoBot enhances WebUI performance and UX",
+      "OpenClaw ecosystem expands to 13 active projects",
+      "NanoBot resolves critical gateway shutdown bugs",
+      "WebUI reliability gains remain a priority",
+      "Provider compatibility improvements in NanoBot",
+      "Active development observed across the OpenClaw stack"
+    ],
+    "ai-web": [
+      "Anthropic releases Claude Sonnet interpretability data",
+      "Claude Corps launches $150M nonprofit fellowship",
+      "Anthropic maps values into warmth vs. rigor axes",
+      "New study: how Claude values shift across languages",
+      "OpenAI focuses on storage for one billion users",
+      "Anthropic research deepens on misuse risk policies"
+    ],
+    "ai-hn": [
+      "HN community debates limiting the AI news flood",
+      "Allegations of Claude misuse in Middle East warfare",
+      "OpenAI releases GPT-Live-1 for real-time interaction",
+      "GPT-6-sol rumors surface on OpenAI API",
+      "Mathematicians protest OpenAI's research methods",
+      "Senior researchers depart labs over safety fears"
+    ],
+    "ai-arxiv": [
+      "GPU-CFR delivers 80x speedup for gaming agents",
+      "MoE models found to overfit on repeated data",
+      "New HCI index measures LLM capability ceilings",
+      "Research tracks hidden state factual synthesis",
+      "New Looped Flows method aids agentic reasoning",
+      "Mechanistic analysis of Qwen and Llama internal states"
+    ],
+    "ai-community": [
+      "Nexpath evaluates AI prompt quality layers",
+      "Devs discuss fatigue managing background agents",
+      "Debate: are reasoning traces just reversed answers?",
+      "TS Evidence Graph enforces skill instructions",
+      "Focus shifts to governance in multi-agent workflows",
+      "Engineers address non-deterministic code debugging"
+    ]
+  }
+}
