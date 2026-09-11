@@ -345,7 +345,7 @@
   },
   {
     "job": "feed",
-    "at": "2026-09-11T17:40:45.355Z",
+    "at": "2026-09-11T20:25:59.988Z",
     "workers": [
       {
         "name": "zhipu",
@@ -359,6 +359,46 @@
       },
       {
         "name": "agnes",
+        "calls": 4,
+        "ok": 2,
+        "err429": 2,
+        "cooldowns": 0,
+        "otherErrors": 0,
+        "cooling": false,
+        "lastError": "Error: 429 You’ve reached the API rate limit for free users. Upgrade to a Token Plan to unlock higher limits and continue using the API without interruption. (request id: 20260911201129136243851UB8mKB"
+      },
+      {
+        "name": "agnes#2",
+        "calls": 4,
+        "ok": 2,
+        "err429": 2,
+        "cooldowns": 0,
+        "otherErrors": 0,
+        "cooling": false,
+        "lastError": "Error: 429 You’ve reached the API rate limit for free users. Upgrade to a Token Plan to unlock higher limits and continue using the API without interruption. (request id: 20260911202338458180965anDlUo"
+      },
+      {
+        "name": "zhipu#2",
+        "calls": 4,
+        "ok": 2,
+        "err429": 2,
+        "cooldowns": 0,
+        "otherErrors": 0,
+        "cooling": false,
+        "lastError": "Error: 429 您的账户已达到速率限制，请您控制请求频率"
+      },
+      {
+        "name": "zhipu#3",
+        "calls": 4,
+        "ok": 2,
+        "err429": 2,
+        "cooldowns": 0,
+        "otherErrors": 0,
+        "cooling": false,
+        "lastError": "Error: 429 您的账户已达到速率限制，请您控制请求频率"
+      },
+      {
+        "name": "zhipu#4",
         "calls": 2,
         "ok": 2,
         "err429": 0,
@@ -367,47 +407,9 @@
         "cooling": false
       },
       {
-        "name": "agnes#2",
-        "calls": 6,
-        "ok": 1,
-        "err429": 4,
-        "cooldowns": 0,
-        "otherErrors": 1,
-        "cooling": false,
-        "lastError": "Error: 429 You’ve reached the API rate limit for free users. Upgrade to a Token Plan to unlock higher limits and continue using the API without interruption. (request id: 20260911173933263266611ww6M5B"
-      },
-      {
-        "name": "zhipu#2",
-        "calls": 1,
-        "ok": 1,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 0,
-        "cooling": false
-      },
-      {
-        "name": "zhipu#3",
-        "calls": 1,
-        "ok": 1,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 0,
-        "cooling": false
-      },
-      {
-        "name": "zhipu#4",
-        "calls": 2,
-        "ok": 1,
-        "err429": 1,
-        "cooldowns": 0,
-        "otherErrors": 0,
-        "cooling": false,
-        "lastError": "Error: 429 该模型当前访问量过大，请您稍后再试"
-      },
-      {
         "name": "zhipu#5",
-        "calls": 1,
-        "ok": 1,
+        "calls": 2,
+        "ok": 2,
         "err429": 0,
         "cooldowns": 0,
         "otherErrors": 0,
@@ -448,7 +450,7 @@
         "cooldowns": 0,
         "otherErrors": 1,
         "cooling": false,
-        "lastError": "Error: 413 Request too large for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Requested 8960, please re"
+        "lastError": "Error: 413 Request too large for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Requested 10127, please r"
       },
       {
         "name": "groq#5",
@@ -462,13 +464,12 @@
       },
       {
         "name": "groq#6",
-        "calls": 2,
-        "ok": 0,
-        "err429": 1,
+        "calls": 1,
+        "ok": 1,
+        "err429": 0,
         "cooldowns": 0,
-        "otherErrors": 1,
-        "cooling": false,
-        "lastError": "Error: 413 Request too large for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Requested 10151, please r"
+        "otherErrors": 0,
+        "cooling": false
       },
       {
         "name": "groq#7",
@@ -500,13 +501,12 @@
       },
       {
         "name": "groq#10",
-        "calls": 4,
-        "ok": 0,
-        "err429": 4,
-        "cooldowns": 1,
+        "calls": 1,
+        "ok": 1,
+        "err429": 0,
+        "cooldowns": 0,
         "otherErrors": 0,
-        "cooling": false,
-        "lastError": "Error: 429 Request too large for model `qwen/qwen3.8-27b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on output tokens per minute (OTPM): Limit 1000, Requested 1010. The "
+        "cooling": false
       },
       {
         "name": "gemini",
