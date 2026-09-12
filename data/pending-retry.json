@@ -1,21 +1,5 @@
 [
   {
-    "repo": "0xCUB3/wBlock",
-    "desc": "The next-generation ad blocker for Safari. Free and open source on macOS, iOS, iPadOS, and visionOS, with 750,000 rules, userscripts, userstyles, and an element zapper.",
-    "stars": 2870,
-    "language": "Swift",
-    "topics": [
-      "privacy"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2024-07-18T12:49:38Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-12T10:13:36Z",
-    "retryCount": 1
-  },
-  {
     "repo": "abhisheknaiidu/awesome-github-profile-readme",
     "desc": "😎 A curated list of awesome GitHub Profile which updates in real time ",
     "stars": 31045,
@@ -29,6 +13,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-11T23:08:19Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "aipoch/medical-research-skills",
+    "desc": "Hundreds of agent skills for medical research, including protocol design, data analysis, evidence insights, and academic writing.",
+    "stars": 1868,
+    "language": "Python",
+    "topics": [
+      "data-visualization"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-02-04T07:50:06Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-12T15:44:33Z",
     "retryCount": 1
   },
   {
@@ -45,7 +45,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-08T20:11:18Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "ATH-MaaS/ComfyUI-Copilot",
@@ -61,23 +61,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-11T02:19:06Z",
-    "retryCount": 4
-  },
-  {
-    "repo": "avhz/RustQuant",
-    "desc": "Rust library for quantitative finance.",
-    "stars": 1822,
-    "language": "Rust",
-    "topics": [
-      "mathematics"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2022-08-31T10:03:24Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-12T12:20:21Z",
-    "retryCount": 1
+    "retryCount": 5
   },
   {
     "repo": "bengarrett/RetroTxt",
@@ -93,23 +77,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-12T10:39:46Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "bengarrett/zipcmt",
-    "desc": "Zip Comment is the super-fast, file comment viewer and extractor.",
-    "stars": 8,
-    "language": "Go",
-    "topics": [
-      "ascii-art"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2021-05-08T08:12:47Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-12T10:56:16Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "bluescarni/heyoka",
@@ -125,7 +93,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-12T12:01:14Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "brentvollebregt/auto-py-to-exe",
@@ -141,7 +109,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-11T08:54:32Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "BuilderIO/agent-native",
@@ -170,39 +138,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-11T10:16:43Z",
-    "retryCount": 4
-  },
-  {
-    "repo": "camilleroux/genartclub",
-    "desc": "Website of the Generative Artists Club — a community of generative artists founded in 2019 as a Parisian salon. Built with Astro, one Markdown file per member.",
-    "stars": 5,
-    "language": "Astro",
-    "topics": [
-      "generative-art"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-08-15T21:30:06Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-06T09:20:13Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "chubin/wttr.in",
-    "desc": ":partly_sunny: The right way to check the weather",
-    "stars": 30519,
-    "language": "Go",
-    "topics": [
-      "ascii-art"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2015-12-26T21:03:43Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-07T20:12:34Z",
-    "retryCount": 1
+    "retryCount": 5
   },
   {
     "repo": "codelitdev/courselit",
@@ -218,7 +154,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-10T12:30:15Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "creativescala/doodle",
@@ -234,7 +170,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-07T19:24:56Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "cskefu/cskefu",
@@ -250,7 +186,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-12T07:57:58Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "cxfksword/jellyfin-plugin-metashark",
@@ -266,23 +202,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-12T09:50:08Z",
-    "retryCount": 4
-  },
-  {
-    "repo": "DarkflameUniverse/DarkflameServer",
-    "desc": "The main repository for the Darkflame Universe Server Emulator project.",
-    "stars": 756,
-    "language": "C++",
-    "topics": [
-      "emulator"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2021-12-04T19:09:48Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-11T01:24:32Z",
-    "retryCount": 1
+    "retryCount": 5
   },
   {
     "repo": "Demizo/Daily_You",
@@ -298,7 +218,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-12T16:03:01Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "dragonbough/tomo",
@@ -314,7 +234,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-10T22:32:42Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "DSH-EAC/DSH-Desktop-EAC",
@@ -330,23 +250,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-12T15:06:49Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "duckframework/duck",
-    "desc": "Build high-performance, scalable, server-side reactive web applications — without a separate frontend framework or a complex JavaScript stack.",
-    "stars": 46,
-    "language": "Python",
-    "topics": [
-      "web-framework"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2022-12-04T11:54:27Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-11T21:53:03Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "elringus/sprite-dicing",
@@ -362,23 +266,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-11T18:58:21Z",
-    "retryCount": 4
-  },
-  {
-    "repo": "exceptionless/Exceptionless",
-    "desc": "Exceptionless application",
-    "stars": 2455,
-    "language": "C#",
-    "topics": [
-      "monitoring"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2014-02-07T00:48:37Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-11T16:10:38Z",
-    "retryCount": 1
+    "retryCount": 5
   },
   {
     "repo": "facebook/pyrefly",
@@ -396,15 +284,15 @@
   {
     "repo": "Flowseal/zapret-discord-youtube",
     "desc": "",
-    "stars": 33183,
+    "stars": 33197,
     "language": "Batchfile",
     "topics": [],
     "source": "trending",
     "starGrowth": 52,
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-12T16:36:53.136Z",
-    "retryCount": 1
+    "ts": "2026-09-12T19:46:50.182Z",
+    "retryCount": 2
   },
   {
     "repo": "git-town/git-town",
@@ -419,8 +307,8 @@
     "createdAt": "2014-05-15T15:44:29Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-12T15:31:14Z",
-    "retryCount": 1
+    "ts": "2026-09-12T17:17:21Z",
+    "retryCount": 2
   },
   {
     "repo": "google-gemini/gemini-skills",
@@ -433,22 +321,6 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-12T16:36:53.136Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "HaD0Yun/Doyunha-Gopeak",
-    "desc": "GoPeak — The most comprehensive MCP server for Godot Engine. 95+ tools: scene management, GDScript LSP, DAP debugger, screenshot capture, input injection, ClassDB introspection, CC0 asset library. npx gopeak",
-    "stars": 252,
-    "language": "TypeScript",
-    "topics": [
-      "godot"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-01-11T09:16:06Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-12T13:23:34Z",
     "retryCount": 1
   },
   {
@@ -465,23 +337,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-11T09:10:30Z",
-    "retryCount": 4
-  },
-  {
-    "repo": "honzaap/Systemizer",
-    "desc": "A system design tool that allows you to simulate data flow of distributed systems.",
-    "stars": 1462,
-    "language": "TypeScript",
-    "topics": [
-      "backend"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2021-04-26T17:00:21Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-09-10T19:26:04Z",
-    "retryCount": 6
+    "retryCount": 5
   },
   {
     "repo": "hrvach/deskhop",
@@ -496,8 +352,8 @@
     "createdAt": "2023-12-24T22:20:37Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-09-12T12:30:15Z",
-    "retryCount": 4
+    "ts": "2026-09-12T19:01:25Z",
+    "retryCount": 5
   },
   {
     "repo": "iggredible/Learn-Vim",
@@ -513,7 +369,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-07T20:12:20Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "igraph/igraph",
@@ -529,39 +385,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-11T17:46:08Z",
-    "retryCount": 4
-  },
-  {
-    "repo": "jdtoscano94/NABLA-SciML",
-    "desc": "Physics Informed Machine Learning Tutorials (Pytorch and Jax)",
-    "stars": 683,
-    "language": "Jupyter Notebook",
-    "topics": [
-      "tutorial"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2022-04-04T00:29:04Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-12T05:31:33Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "JekSun97/gdTree3D",
-    "desc": "🌳 Plugin for procedural generation of 3D trees of varying complexity for Godot Engine.",
-    "stars": 360,
-    "language": "C++",
-    "topics": [
-      "godot"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2024-07-09T17:23:25Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-12T15:49:21Z",
-    "retryCount": 1
+    "retryCount": 5
   },
   {
     "repo": "joaquinbejar/OrderBook-rs",
@@ -576,23 +400,23 @@
     "createdAt": "2025-03-30T07:38:45Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-12T14:54:59Z",
-    "retryCount": 1
+    "ts": "2026-09-12T19:36:48Z",
+    "retryCount": 2
   },
   {
-    "repo": "kiaquila/ember",
-    "desc": "A dark, tangled wireframe figure smolders with golden embers, burns down completely, and reassembles, all scored by a deep, meditative 136.1 Hz tuning-fork tone synthesized with the Web Audio API.",
-    "stars": 8,
-    "language": "JavaScript",
+    "repo": "karacca/moodstone",
+    "desc": "Animated, procedurally generated agent avatars for React Native.",
+    "stars": 6,
+    "language": "TypeScript",
     "topics": [
       "generative-art"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2026-08-21T14:34:58Z",
+    "createdAt": "2026-09-12T10:34:11Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-11T19:26:04Z",
+    "ts": "2026-09-12T12:55:50Z",
     "retryCount": 1
   },
   {
@@ -609,7 +433,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-08-27T06:01:34Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "linagora/tmail-flutter",
@@ -625,6 +449,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-11T12:50:08Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "LuisR385/rtextJP",
+    "desc": "",
+    "stars": 6,
+    "language": "C",
+    "topics": [
+      "raylib"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-07-21T12:21:43Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-12T18:14:19Z",
     "retryCount": 1
   },
   {
@@ -641,7 +481,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-12T06:13:32Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "mahmoudparsian/data-algorithms-with-spark",
@@ -657,7 +497,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-12T05:19:21Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "marswaveai/ColaMD",
@@ -673,7 +513,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-12T14:26:57Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "martin-ger/esp32_nat_router",
@@ -689,7 +529,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-11T09:47:16Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "Mukosame/Anime2Sketch",
@@ -705,7 +545,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-08T17:38:03Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "multimodal-art-projection/YuE",
@@ -721,22 +561,6 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-12T16:36:53.136Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "nCine/nCine",
-    "desc": "A cross-platform 2D game engine",
-    "stars": 1329,
-    "language": "C++",
-    "topics": [
-      "game-development"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2019-05-28T17:31:43Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-08-24T13:51:00Z",
     "retryCount": 1
   },
   {
@@ -766,7 +590,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-12T11:51:56Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Open330/travelback",
@@ -782,22 +606,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-12T11:50:34Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
-    "repo": "pdulvp/jellyfin-qnap",
-    "desc": "Jellyfin server packaging for QNAP NAS",
-    "stars": 779,
-    "language": "Shell",
+    "repo": "OutBlade/balatro-web",
+    "desc": "Play the Balatro GBA fan demake instantly in your browser - no download, no install. Works on PC and mobile.",
+    "stars": 9,
+    "language": "HTML",
     "topics": [
-      "jellyfin"
+      "roguelike"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2021-12-24T14:23:39Z",
+    "createdAt": "2026-04-01T09:08:37Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-12T14:56:30Z",
+    "ts": "2026-09-12T19:19:23Z",
     "retryCount": 1
   },
   {
@@ -813,8 +637,8 @@
     "createdAt": "2026-09-10T17:58:03Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-12T14:59:45Z",
-    "retryCount": 1
+    "ts": "2026-09-12T17:23:54Z",
+    "retryCount": 2
   },
   {
     "repo": "petergyang/no-ai-slop",
@@ -827,22 +651,6 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-12T16:36:53.136Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "plbrault/youre-the-os",
-    "desc": "A game where you are a computer's OS and you have to manage processes, memory and I/O events.",
-    "stars": 2682,
-    "language": "Python",
-    "topics": [
-      "game"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2022-11-17T01:33:59Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-11T22:37:15Z",
     "retryCount": 1
   },
   {
@@ -859,7 +667,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-11T01:36:42Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "raine/workmux",
@@ -875,67 +683,19 @@
     "retryCount": 1
   },
   {
-    "repo": "randspace0/Anime4K-rs",
-    "desc": "An attempt to write Anime4K in Rust",
-    "stars": 133,
-    "language": "Rust",
-    "topics": [
-      "anime"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2019-10-18T18:00:28Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-12T04:43:24Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "rbouteiller/airplay-esp32",
-    "desc": "This firmware turns a cheap ESP32 board into a wireless AirPlay 2 speaker. Plug it into an amplifier or powered speakers and it shows up on your iPhone, iPad or Mac just like a HomePod or an AirPlay TV.",
-    "stars": 539,
+    "repo": "ray77/gorph",
+    "desc": "GORPH - Galactic Organic Robot Phalanx: nativer C89/SDL2-Shooter im C64-Look mit Amiga-Demo-Credits",
+    "stars": 0,
     "language": "C",
     "topics": [
-      "esp32"
+      "demoscene"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2026-01-22T21:56:56Z",
+    "createdAt": "2026-09-12T18:10:44Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-09T20:02:09Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "reactive-resume/reactive-resume",
-    "desc": "A one-of-a-kind resume builder that keeps your privacy in mind. Completely secure, customizable, portable, open-source and free forever. Try it out today!",
-    "stars": 42525,
-    "language": "TypeScript",
-    "topics": [
-      "ai"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2020-03-25T14:08:22Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-12T09:29:07Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "resux1338/OSCP-Cheatsheet-v2",
-    "desc": "Quick reference sheet for OSCP exam.",
-    "stars": 17,
-    "language": "PowerShell",
-    "topics": [
-      "cheatsheet"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-05-31T21:23:44Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-12T15:56:55Z",
+    "ts": "2026-09-12T18:37:48Z",
     "retryCount": 1
   },
   {
@@ -952,7 +712,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-12T08:29:49Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "rock-paper-ai/rock-paper-ai",
@@ -968,7 +728,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-12T10:54:39Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Sal-ami/QRay",
@@ -984,7 +744,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-12T09:57:07Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "sandeco/reversa",
@@ -1012,8 +772,8 @@
     "createdAt": "2026-09-12T13:31:14Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-12T13:32:50Z",
-    "retryCount": 1
+    "ts": "2026-09-12T19:05:47Z",
+    "retryCount": 2
   },
   {
     "repo": "supranim/supranim",
@@ -1029,7 +789,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-04T07:45:35Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "symbolica-dev/numerica",
@@ -1045,7 +805,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-12T08:25:36Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "teamclouday/AndroidMic",
@@ -1058,19 +818,6 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-12T16:36:53.136Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "Tencent/teamai-cli",
-    "desc": "Make Every Team AI Native",
-    "stars": 2263,
-    "language": "TypeScript",
-    "topics": [],
-    "source": "trending",
-    "starGrowth": 1215,
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-08T17:39:23.082Z",
     "retryCount": 1
   },
   {
@@ -1087,7 +834,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-10T14:30:22Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "undefined-ui/second-brain-os",
@@ -1103,7 +850,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-10T16:37:36Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "wajeeha-asad/CivicAgent-PK-wajeeha",
@@ -1119,20 +866,20 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-12T13:19:07Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "wechaty/wechaty",
     "desc": "Conversational RPA SDK for Chatbot Makers. Join our Discord: https://discord.gg/7q8NBZbQzt",
-    "stars": 23157,
+    "stars": 23162,
     "language": "TypeScript",
     "topics": [],
     "source": "trending",
     "starGrowth": 44,
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-12T16:36:53.136Z",
-    "retryCount": 1
+    "ts": "2026-09-12T19:46:50.182Z",
+    "retryCount": 2
   },
   {
     "repo": "wonderwhy-er/DesktopCommanderMCP",
@@ -1144,20 +891,20 @@
     "starGrowth": 17,
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-12T16:36:53.136Z",
-    "retryCount": 1
+    "ts": "2026-09-12T19:46:50.182Z",
+    "retryCount": 2
   },
   {
     "repo": "yuliskov/SmartTube",
     "desc": "Browse media content with your own rules on Android TV",
-    "stars": 33139,
+    "stars": 33167,
     "language": "Java",
     "topics": [],
     "source": "trending",
     "starGrowth": 160,
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-12T16:36:53.136Z",
-    "retryCount": 1
+    "ts": "2026-09-12T19:46:50.182Z",
+    "retryCount": 2
   }
 ]
