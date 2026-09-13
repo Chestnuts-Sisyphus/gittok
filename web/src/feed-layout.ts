@@ -53,7 +53,10 @@ export function feedWindow(opts: {
   const overscan = opts.overscanRows ?? FEED_OVERSCAN_ROWS;
   const viewTop = -opts.listTop;
   const startRow = Math.max(0, Math.floor(viewTop / rowH) - overscan);
-  const endRow = Math.min(rowCount, Math.max(startRow, Math.ceil((viewTop + opts.viewportHeight) / rowH) + overscan));
+  const endRow = Math.min(
+    rowCount,
+    Math.max(startRow, Math.ceil((viewTop + opts.viewportHeight) / rowH) + overscan),
+  );
   return {
     startRow,
     endRow,
@@ -66,10 +69,7 @@ export function feedWindow(opts: {
 
 export function sameFeedWindow(a: FeedWindow, b: FeedWindow): boolean {
   return (
-    a.startIdx === b.startIdx &&
-    a.endIdx === b.endIdx &&
-    a.topPad === b.topPad &&
-    a.bottomPad === b.bottomPad
+    a.startIdx === b.startIdx && a.endIdx === b.endIdx && a.topPad === b.topPad && a.bottomPad === b.bottomPad
   );
 }
 
@@ -101,7 +101,10 @@ export function feedViewportOf(
   listEl: ListBox,
   root: WindowLike | ElementLike,
 ): { listTop: number; viewportHeight: number } {
-  if (typeof (root as WindowLike).innerHeight === "number" && typeof root.getBoundingClientRect !== "function") {
+  if (
+    typeof (root as WindowLike).innerHeight === "number" &&
+    typeof root.getBoundingClientRect !== "function"
+  ) {
     return {
       listTop: listEl.getBoundingClientRect().top,
       viewportHeight: (root as WindowLike).innerHeight,

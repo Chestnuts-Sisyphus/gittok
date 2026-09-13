@@ -27,7 +27,11 @@ export const OPEN_SPRING_SAMPLES = 80;
 export const OPEN_SPRING_SIMPLIFY = 0.0005;
 
 /** 欠阻尼弹簧位移 0→1。 */
-export function springProgress(t: number, response = OPEN_SPRING_RESPONSE, zeta = OPEN_SPRING_DAMPING): number {
+export function springProgress(
+  t: number,
+  response = OPEN_SPRING_RESPONSE,
+  zeta = OPEN_SPRING_DAMPING,
+): number {
   if (t <= 0) return 0;
   const w0 = (2 * Math.PI) / response;
   if (zeta >= 1) {

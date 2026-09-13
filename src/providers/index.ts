@@ -22,6 +22,7 @@ export { GithubModelsProvider } from "./github-models.ts";
 export { MistralProvider } from "./mistral.ts";
 export { HfProvider } from "./hf.ts";
 export { CustomProvider, assertSafeBaseUrl } from "./custom.ts";
+export { BailianProvider } from "./bailian.ts";
 
 import type { LlmProvider, ProviderFactory } from "./types.ts";
 import { AnthropicProvider } from "./anthropic.ts";
@@ -39,6 +40,7 @@ import { GithubModelsProvider } from "./github-models.ts";
 import { MistralProvider } from "./mistral.ts";
 import { HfProvider } from "./hf.ts";
 import { CustomProvider } from "./custom.ts";
+import { BailianProvider } from "./bailian.ts";
 
 // ---------------------------------------------------------------------------
 // Single source of truth — add new providers here only.
@@ -60,6 +62,7 @@ const PROVIDERS = {
   "github-models": (model, apiKey) => new GithubModelsProvider({ model, apiKey }),
   mistral: (model, apiKey) => new MistralProvider({ model, apiKey }),
   hf: (model, apiKey) => new HfProvider({ model, apiKey }),
+  bailian: (model, apiKey) => new BailianProvider({ model, apiKey }),
 } satisfies Record<string, ProviderFactory>;
 
 /** Supported provider name — derived from the PROVIDERS registry. */

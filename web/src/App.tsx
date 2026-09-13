@@ -18,9 +18,12 @@ import {
 } from "./feed-layout.ts";
 import {
   AlertTriangle,
+  BookOpen,
+  Bot,
   ChevronRight,
   ExternalLink,
   Folder,
+  Gamepad2,
   Heart,
   Home,
   Inbox,
@@ -32,6 +35,7 @@ import {
   Trash2,
   User,
   UserMinus,
+  Wrench,
   X,
   CHANNEL_ICONS,
   GitTokLogo,
@@ -138,6 +142,8 @@ interface Feedback {
 interface Preferences {
   tagWeights: Record<string, number>;
   lastUpdateTs: string;
+  /** 显式偏好（个性化 v2.2 L3）：首屏三选一/设置页选择；null=跳过/未设置。驱动推荐配额 */
+  preferredZone?: string | null;
 }
 
 type InteractionType = "like" | "dislike" | "bookmark";
@@ -149,11 +155,12 @@ interface InteractionRecord {
 
 const SNAPSHOT_CAP = 1000; // 喜欢/收藏快照总条数上限（~1KB/张，1MB 内安全；超出后新操作只记 repo 名）
 
-// 动态分区（不互斥，可有可无）
+// 动态分区（不互斥，可有可无；乐趣=标签分区 v2.2 体验轴频道）
 const DYNAMIC_SECTIONS: { key: string; icon: string; title: string; desc: string }[] = [
   { key: "recommended", icon: "sparkles", title: "推荐", desc: "为你挑选" },
-  { key: "hot", icon: "flame", title: "热门", desc: "高星项目" },
-  { key: "daily", icon: "trending-up", title: "每日", desc: "今日star增长" },
+  { key: "hot", icon: "flame", title: "热门", desc: "正在被大众发现" },
+  { key: "daily", icon: "trending-up", title: "每日", desc: "今天新出/在涨" },
+  { key: "fun", icon: "party-popper", title: "乐趣", desc: "好玩得想点开" },
   { key: "following", icon: "heart", title: "关注", desc: "关注创作者的项目" },
 ];
 
@@ -502,6 +509,118 @@ function seenPenaltyOf(c: FeedCard, seen: Record<string, number>, now: number): 
   return 1;
 }
 
+// ---------------------------------------------------------------------------
+// 频道函数 v2.2（标签分区定稿落地：热门动量/每日两段/乐趣 fun_score/四区配额）
+// 前端只读不猜：zone 字段优先，回退旧 category 映射；配额是频道强制组件
+// ---------------------------------------------------------------------------
+
+/** 卡的内容分区（服务端 zone 中文四区；回退旧 category：ai→AI/learning→资源/tool→工具/fun→创意） */
+function zoneOfCard(c: FeedCard): string | null {
+  if (c.zone) return c.zone;
+  switch (c.category) {
+    case "ai":
+      return "AI";
+    case "learning":
+      return "资源";
+    case "tool":
+      return "工具";
+    case "fun":
+      return "创意";
+    default:
+      return null;
+  }
+}
+
+/** 规模平滑：min(1, log10(stars)/4)——防小库日均涨星虚高，也防大库只靠存量 */
+function scaleSmooth(stars: number): number {
+  if (stars <= 0) return 0;
+  return Math.min(1, Math.log10(stars) / 4);
+}
+
+/** 热门动量分：starGrowth × 规模平滑（30 天日均口径） */
+function hotMomentum(c: FeedCard): number {
+  return (c.starGrowth ?? 0) * scaleSmooth(c.stars ?? 0);
+}
+
+/**
+ * 热门/每日增速段配额：AI 硬席 30%，其余三区共享 70% 按各自卡量加权。
+ * 与后端 channels.ts aiCapQuota 同构（标签分区定稿 §3.2）。
+ */
+function aiCapQuota(cards: FeedCard[], limit: number): FeedCard[] {
+  if (limit <= 0 || cards.length === 0) return [];
+  const zoned = cards.filter((c) => zoneOfCard(c) !== null);
+  const ai = zoned.filter((c) => zoneOfCard(c) === "AI");
+  const rest = zoned.filter((c) => zoneOfCard(c) !== "AI");
+  const aiSeats = Math.min(ai.length, Math.floor(limit * 0.3));
+  const restSeats = limit - aiSeats;
+  const picks: FeedCard[] = [...ai.slice(0, aiSeats)];
+  if (restSeats > 0 && rest.length > 0) {
+    const byZone = new Map<string, FeedCard[]>();
+    for (const c of rest) {
+      const z = zoneOfCard(c)!;
+      if (!byZone.has(z)) byZone.set(z, []);
+      byZone.get(z)!.push(c);
+    }
+    const zones = [...byZone.keys()].sort(
+      (a, b) => byZone.get(b)!.length - byZone.get(a)!.length || a.localeCompare(b),
+    );
+    const totalW = zones.reduce((s, z) => s + byZone.get(z)!.length, 0);
+    const seats = new Map(zones.map((z) => [z, Math.floor(restSeats * (byZone.get(z)!.length / totalW))]));
+    let allocated = 0;
+    for (const z of zones) {
+      const k = Math.min(byZone.get(z)!.length, seats.get(z)!);
+      picks.push(...byZone.get(z)!.slice(0, k));
+      allocated += k;
+    }
+    let remaining = restSeats - allocated;
+    for (const z of zones) {
+      if (remaining <= 0) break;
+      const from = seats.get(z)!;
+      const take = Math.min(remaining, byZone.get(z)!.length - from);
+      if (take > 0) picks.push(...byZone.get(z)!.slice(from, from + take));
+      remaining -= take;
+    }
+  }
+  const order = new Map(cards.map((c, i) => [c.repo, i] as const));
+  return picks.sort((a, b) => order.get(a.repo)! - order.get(b.repo)! || 0);
+}
+
+/** 当日新入库（createdAt 当天）→ 每日频道段 1 保底席 */
+function isTodayNew(c: FeedCard, now: Date): boolean {
+  if (!c.createdAt) return false;
+  const d = new Date(c.createdAt);
+  return (
+    d.getUTCFullYear() === now.getUTCFullYear() &&
+    d.getUTCMonth() === now.getUTCMonth() &&
+    d.getUTCDate() === now.getUTCDate()
+  );
+}
+
+/** 乐趣分：fun_score × (1 + 增长动量)；fun_score 缺失 = 0（无独立信号不开） */
+function funScoreOf(c: FeedCard): number {
+  if (c.funScore === undefined || !Number.isFinite(c.funScore)) return 0;
+  return c.funScore * (1 + Math.min((c.starGrowth ?? 0) / 50, 1) * 0.35);
+}
+
+/** 乐趣频道配额：创意 40% / 其余三区各 20% */
+function funQuota(cards: FeedCard[], limit: number): FeedCard[] {
+  if (limit <= 0 || cards.length === 0) return [];
+  const n = Math.min(limit, cards.length);
+  const byZone = new Map<string, FeedCard[]>();
+  for (const c of cards) {
+    const z = zoneOfCard(c) ?? "工具"; // 无 zone 兜底工具（不丢卡）
+    if (!byZone.has(z)) byZone.set(z, []);
+    byZone.get(z)!.push(c);
+  }
+  const weights: Record<string, number> = { AI: 0.2, 资源: 0.2, 工具: 0.2, 创意: 0.4 };
+  const picks: FeedCard[] = [];
+  for (const [z, list] of byZone) {
+    picks.push(...list.slice(0, Math.min(list.length, Math.floor(n * (weights[z] ?? 0.2)))));
+  }
+  const order = new Map(cards.map((c, i) => [c.repo, i] as const));
+  return picks.sort((a, b) => order.get(a.repo)! - order.get(b.repo)! || 0).slice(0, n);
+}
+
 function getSectionCards(
   cards: FeedCard[],
   sectionKey: string,
@@ -511,50 +630,107 @@ function getSectionCards(
 ): FeedCard[] {
   switch (sectionKey) {
     case "hot":
-      // 热门频道按增长数降序策展（2026-09-05 二次拍板：每日看增长幅度=相对增速 heatScore，
-      // 热门看增长数本身=绝对增量 starGrowth；同增量比总星，大库优先）
-      return cards
-        .filter((c) => c.momentum?.includes("hot"))
-        .sort((a, b) => (b.starGrowth ?? 0) - (a.starGrowth ?? 0) || b.stars - a.stars);
-    case "daily":
-      // 每日频道按时效热度分排序：涨得快（相对增速）> 涨得多（2026-09-05 拍板）；
-      // 乘新鲜度降权（看过的平滑衰减不排除，2026-09-05 四次拍板）
-      return cards
-        .filter((c) => c.momentum?.includes("daily"))
-        .sort(
+      // 热门（大众验证）：动量分降序（starGrowth × 规模平滑）+ AI 30% 硬席配额
+      return aiCapQuota(
+        cards
+          .filter((c) => (c.starGrowth ?? 0) > 0)
+          .sort((a, b) => hotMomentum(b) - hotMomentum(a) || (b.stars ?? 0) - (a.stars ?? 0)),
+        60,
+      );
+    case "daily": { // 每日（时效，两段）：段 1=当日新入库（createdAt 降序）；段 2=heatScore × 已读降权 + AI 30% 配额
+      const nowD = new Date(now);
+      const newToday = cards
+        .filter((c) => isTodayNew(c, nowD))
+        .sort((a, b) => (b.createdAt ?? "").localeCompare(a.createdAt ?? ""));
+      const rest = cards.filter((c) => !isTodayNew(c, nowD) && (c.heatScore ?? 0) > 0);
+      const speed = aiCapQuota(
+        rest.sort(
           (a, b) =>
             (b.heatScore ?? 0) * seenPenaltyOf(b, seen, now) -
             (a.heatScore ?? 0) * seenPenaltyOf(a, seen, now),
-        );
+        ),
+        Math.max(0, 60 - newToday.length),
+      );
+      return [...newToday, ...speed].slice(0, 60);
+    }
+    case "fun":
+      // 乐趣（体验轴）：fun_score × (1+增长动量) 降序 + 创意 40% 配额；fun_score 缺失不进
+      return funQuota(
+        cards
+          .filter((c) => c.funScore !== undefined && Number.isFinite(c.funScore))
+          .sort((a, b) => funScoreOf(b) - funScoreOf(a)),
+        60,
+      );
     case "following":
-      // 关注频道 = 我真正关注的创作者出的项目（2026-09-05：陌生库的自动 star 盖章不再是关注语义）；
-      // 动态时间序语义，不掺降权
+      // 关注（关系视图）：repo 发布时间降序（createdAt），不掺降权
       return cards
         .filter((c) => followingSet.has(c.owner))
-        .sort((a, b) => new Date(b.ts).getTime() - new Date(a.ts).getTime());
+        .sort((a, b) => (b.createdAt ?? b.ts).localeCompare(a.createdAt ?? a.ts));
     default:
-      // 固有分类频道（AI/兴趣/工具/学习）按 aiScore 策展排序，同分看涨星势头——
-      // 每个频道打开头部都是评分最高、最有看头的项目，而不是取材流水顺序（2026-09-05）
+      // 固有分类频道（AI/兴趣/工具/学习）按 aiScore 策展排序，同分看涨星势头
       return cards
-        .filter((c) => c.category === sectionKey)
+        .filter((c) => (c.zone ? zoneOfCard(c) === sectionZoneOf(sectionKey) : c.category === sectionKey))
         .sort((a, b) => (b.aiScore ?? 0.5) - (a.aiScore ?? 0.5) || (b.starGrowth ?? 0) - (a.starGrowth ?? 0));
   }
 }
 
+/** 分类 tab key → 服务端 zone（ai→AI/learning→资源/tool→工具/fun→创意；其余 null） */
+function sectionZoneOf(key: string): string | null {
+  switch (key) {
+    case "ai":
+      return "AI";
+    case "learning":
+      return "资源";
+    case "tool":
+      return "工具";
+    case "fun":
+      return "创意";
+    default:
+      return null;
+  }
+}
+
 // ---------------------------------------------------------------------------
-// 推荐分区（前端个性化生成：分区配额抽样 + 权重排序）
+// 推荐分区 v2.2（个性化四层：L0 池过滤 → L2 多因子分 → L1 已读系数 → L3 显式偏好配额 + L4 隐式微调）
+// 替换旧 tagScore 加权和（weightedCosine 服务端死代码同步作废；「千人百面」边界：领域级可区分）
 // ---------------------------------------------------------------------------
+
+/** 显式偏好驱动的推荐配额：选区上调 50%，其余三区共享 50%（设置页可改可重置） */
+const PREF_QUOTA: Record<string, [number, number, number, number]> = {
+  ai: [0.5, 0.16, 0.18, 0.16], // [ai, fun, tool, learning]
+  fun: [0.16, 0.5, 0.18, 0.16],
+  tool: [0.16, 0.16, 0.5, 0.18],
+  learning: [0.16, 0.18, 0.16, 0.5],
+};
+const DEFAULT_QUOTA: [number, number, number, number] = [0.4, 0.2, 0.2, 0.2]; // AI:非AI = 2:3（现状 40/20/20/20）
+
+/** 死内容降权（P1 pushedAt 活动度）：超 1 年未更新的高星库 ×0.6；缺 pushedAt 用 ts 近似 */
+function activityFactor(c: FeedCard, now: number): number {
+  const ts = c.pushedAt ?? c.ts;
+  if (!ts) return 1;
+  const days = (now - new Date(ts).getTime()) / 86_400_000;
+  if (days > 365) return 0.6;
+  return 1;
+}
+
+/** L2 多因子分：aiScore 相关度 × 星数增长 × 新鲜度 × 活动度（内容基默认流，0 积累也自洽） */
+function multiFactorScore(c: FeedCard, now: number): number {
+  const ai = c.aiScore ?? 0.5;
+  const growth = 1 + Math.min((c.starGrowth ?? 0) / 50, 1) * 0.35;
+  const daysSince = (now - new Date(c.ts).getTime()) / 86_400_000;
+  const freshness = 0.4 + 0.6 * Math.exp(-daysSince / 7); // 半衰期约 5 天
+  return ai * growth * freshness * activityFactor(c, now);
+}
 
 function buildRecommended(
   cards: FeedCard[],
-  tagWeights: Record<string, number>,
+  preferences: Preferences,
   seen: Record<string, number>,
   interactions: Record<string, InteractionRecord>,
   followingSet: ReadonlySet<string> = new Set(),
 ): FeedCard[] {
   const now = Date.now();
-  const DAY_MS = 86_400_000;
-  // 排除：点踩过的；沉寂库退场（连续 3 轮无动静=真沉寂，底库搜索仍可见；收藏豁免）
+  // L0 池过滤：点踩排除；沉寂库退场（真沉寂，收藏豁免）
   const pool = cards.filter((c) => {
     const inter = interactions[c.repo];
     if (inter?.type === "dislike") return false;
@@ -562,37 +738,45 @@ function buildRecommended(
     return true;
   });
   if (pool.length === 0) return [];
-  // 个性化权重分：标签权重匹配 + aiScore 辅助 + 关注轻微抬推荐（2026-09-01 关注解耦；
-  // bigbros 加权出口已随 bigbros 全出口退役移除，2026-09-05）
-  // 已读降权（2026-09-05 拍板：适当降权不一刀切）——7 天内看过未互动的 ×0.7，仍可再次出现
-  const weightOf = (c: FeedCard): number => {
-    const tagScore = (c.tags || []).reduce((s, t) => s + (tagWeights[t.name] ?? 0.15) * (t.weight ?? 0.5), 0);
-    const followBoost = followingSet.has(c.owner) ? 0.3 : 0;
-    const seenTs = seen[c.repo];
+
+  // L2 × L1 合成：多因子分 × 已读系数 + L4 隐式微调（互动加性小 boost，不破坏大序）
+  const scoreOf = (c: FeedCard): number => {
+    const base = multiFactorScore(c, now) * seenPenaltyOf(c, seen, now);
     const inter = interactions[c.repo];
-    const seenPenalty = seenTs && !inter && now - seenTs < 7 * DAY_MS ? 0.7 : 1;
-    return (tagScore + (c.aiScore ?? 0) * 0.5 + followBoost) * seenPenalty;
+    const micro = inter?.type === "like" || inter?.type === "bookmark" ? 0.1 : 0;
+    const followBoost = followingSet.has(c.owner) ? 0.06 : 0; // 关注轻微抬推荐（2026-09-01 关注解耦）
+    return base + micro + followBoost;
   };
-  // 按固有分区分组
+
+  // 按前端分区键分组（zone 优先，回退 category）
   const byCat = new Map<string, FeedCard[]>();
   for (const c of pool) {
-    const key = c.category || "tool";
+    const key = c.zone ? (sectionZoneOf(c.zone) ?? c.category ?? "tool") : c.category || "tool";
     if (!byCat.has(key)) byCat.set(key, []);
     byCat.get(key)!.push(c);
   }
-  // 配额：AI 40%（AI:非AI = 2:3），其余三区各 20%
+
+  // L3 显式偏好配额：preferredZone 驱动（默认 2:3；选区上调 50%）
+  const quota = preferences.preferredZone
+    ? (PREF_QUOTA[preferences.preferredZone] ?? DEFAULT_QUOTA)
+    : DEFAULT_QUOTA;
   const total = Math.min(RECOMMEND_SIZE, pool.length);
-  const aiK = Math.round(total * 0.4);
-  const otherK = Math.round(total * 0.2);
-  const picked: FeedCard[] = [];
   const cats = ["ai", "fun", "tool", "learning"];
-  for (const cat of cats) {
-    const list = (byCat.get(cat) ?? []).sort((a, b) => weightOf(b) - weightOf(a));
-    const k = cat === "ai" ? aiK : otherK;
+  const picked: FeedCard[] = [];
+  cats.forEach((cat, i) => {
+    const list = (byCat.get(cat) ?? []).sort((a, b) => scoreOf(b) - scoreOf(a));
+    const k = Math.min(list.length, Math.floor(total * quota[i]!));
     picked.push(...list.slice(0, k));
+  });
+  // 剩余席位按综合分补（配额未满时不浪费）
+  const have = new Set(picked.map((c) => c.repo));
+  const remaining = total - picked.length;
+  if (remaining > 0) {
+    const rest = pool.filter((c) => !have.has(c.repo)).sort((a, b) => scoreOf(b) - scoreOf(a));
+    picked.push(...rest.slice(0, remaining));
   }
-  // 合并后按权重分排序（推荐流开头最相关）
-  return picked.sort((a, b) => weightOf(b) - weightOf(a)).slice(0, total);
+  // 合并后按综合分排序（推荐流开头最相关）
+  return picked.sort((a, b) => scoreOf(b) - scoreOf(a)).slice(0, total);
 }
 
 // ---------------------------------------------------------------------------
@@ -760,8 +944,19 @@ export default function App() {
   const likedSet = useMemo(() => new Set(feedback.likes), [feedback.likes]);
   const dislikedSet = useMemo(() => new Set(feedback.dislikes), [feedback.dislikes]);
   // 权重/交互只写 localStorage，不触发重渲染（交互零重排核心：点赞/点踩不重算 sections）
-  const [preferences] = useState<Preferences>(loadPreferences);
+  const [preferences, setPreferences] = useState<Preferences>(loadPreferences);
   const prefsRef = useRef(preferences);
+  // 首屏三选一引导（个性化 v2.2 L3 显式偏好）：preferredZone 未设置（首次/未跳过）时显示
+  const [showPrefPrompt, setShowPrefPrompt] = useState<boolean>(
+    () => preferences.preferredZone === undefined,
+  );
+  const pickPreferredZone = (zone: string | null) => {
+    const next = { ...prefsRef.current, preferredZone: zone, lastUpdateTs: new Date().toISOString() };
+    prefsRef.current = next;
+    savePreferences(next);
+    setPreferences(next);
+    setShowPrefPrompt(false);
+  };
   const [interactions] = useState<Record<string, InteractionRecord>>(loadInteractions);
   const interactionsRef = useRef(interactions);
   const [collections, setCollections] = useState<Collection[]>(loadCollections);
@@ -1256,7 +1451,7 @@ export default function App() {
       cards:
         s.key === "recommended"
           ? applyJitter(
-              buildRecommended(visibleCards, preferences.tagWeights, seen, interactions, followingSet),
+              buildRecommended(visibleCards, preferences, seen, interactions, followingSet),
               seed,
               seen,
               now,
@@ -1442,6 +1637,28 @@ export default function App() {
                     <ChannelNav sections={sections} activeKey={feedChannel} onPick={switchFeedChannel} />
                   </aside>
                   <div className="feed-content">
+                    {showPrefPrompt && feedChannel === "recommended" && (
+                      <div className="pref-prompt">
+                        <p className="pref-title">想让推荐更懂你？选一个更想看的类别（随时可在设置里改）</p>
+                        <div className="pref-options">
+                          <button onClick={() => pickPreferredZone("ai")}>
+                            <Bot size={16} /> AI
+                          </button>
+                          <button onClick={() => pickPreferredZone("fun")}>
+                            <Gamepad2 size={16} /> 创意
+                          </button>
+                          <button onClick={() => pickPreferredZone("tool")}>
+                            <Wrench size={16} /> 工具
+                          </button>
+                          <button onClick={() => pickPreferredZone("learning")}>
+                            <BookOpen size={16} /> 资源
+                          </button>
+                        </div>
+                        <button className="pref-skip" onClick={() => pickPreferredZone(null)}>
+                          先随便看看
+                        </button>
+                      </div>
+                    )}
                     {feedChannel === "following" && !activeSection && (
                       <div className="status">
                         <p>

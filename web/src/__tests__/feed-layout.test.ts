@@ -122,9 +122,10 @@ describe("滚动口识别", () => {
 
 describe("feedViewportOf", () => {
   it("window 根：listTop 就是视口 y", () => {
-    expect(
-      feedViewportOf({ getBoundingClientRect: () => ({ top: 80 }) }, { innerHeight: 900 }),
-    ).toEqual({ listTop: 80, viewportHeight: 900 });
+    expect(feedViewportOf({ getBoundingClientRect: () => ({ top: 80 }) }, { innerHeight: 900 })).toEqual({
+      listTop: 80,
+      viewportHeight: 900,
+    });
   });
 
   it("元素根：listTop 相对滚动口顶，不含顶栏高度", () => {

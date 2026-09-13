@@ -47,6 +47,16 @@ export interface RepoForScoring {
   stars: number;
   language: string;
   topics: string[];
+  /** 原始 README markdown（stage1 输入块用；缺省时 prompt 降级为一行式列表） */
+  readme?: string;
+  /** 仓库创建时间 ISO（输入块元数据展示/每日频道新卡段） */
+  createdAt?: string;
+}
+
+/** 千人千面独有事实（claim=独立归纳断言，source=参考文档原句证据） */
+export interface Fact {
+  claim: string;
+  source: string;
 }
 
 /** LLM 评分结果（JSON 解析） */
@@ -58,12 +68,22 @@ export interface ScoringResult {
   aiDim: string;
   /** 与用户兴趣的相关度 0-1 */
   aiScore: number;
+  /** 内容分区（AI/资源/工具/创意，判定链四问输出；v6 新增） */
+  zone?: string;
+  /** 乐趣强度 0-1（体验轴信号：让人想点开玩的冲动；标签分区 v2.2 新增） */
+  funScore?: number;
+  /** 领域标签 3-6 个（LLM 自由出的领域词，面向人可读；替代 topics 噪音） */
+  tags?: string[];
+  /** 千人千面独有事实（claim/source 两阶段输出） */
+  facts?: Fact[];
   /** 一句话通俗概括 */
   summaryCn: string;
   /** 简要介绍（两三行，含专业术语） */
   reasonCn: string;
   /** 详情介绍（长文，兼顾通俗+专业+细致） */
   detailCn: string;
+  /** 内部字段：评分模型键（分位归一化按模型分桶用；不落盘 feed.json） */
+  _model?: string;
 }
 
 /** 固有分区标签（互斥，每个项目必有其一；tool 为最宽兜底） */
@@ -101,6 +121,16 @@ export interface FeedCard {
   aiDims: string[];
   /** @deprecated 等于 aiDims[0]，向后兼容 */
   aiDim: string;
+  /** 内容分区（AI/资源/工具/创意，LLM 判定链输出；前端只读不猜，废止正则推导 category） */
+  zone?: string;
+  /** 乐趣强度 0-1（乐趣频道信号；体验轴，与 zone 题材轴正交） */
+  funScore?: number;
+  /** 领域标签（LLM 自由领域词 3-6 个，展示/搜索/千人千面素材；计算侧走 domainKey） */
+  domainTags?: string[];
+  /** 确定性领域键（从 zone+domainTags 派生，聚合计算/打包同键/配额统计用） */
+  domainKey?: string;
+  /** 最近活动时间 ISO（默认流死内容过滤：超 1 年未更新的高星库降权，P1） */
+  pushedAt?: string;
   /** 综合标签（LLM + GitHub topics + language 融合） */
   tags: Tag[];
   aiScore: number;

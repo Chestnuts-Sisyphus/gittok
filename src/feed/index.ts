@@ -23,6 +23,8 @@ import {
   parseScoringResult,
   buildPhase1ScoringPrompt,
   parsePhase1ScoringResult,
+  buildRetryPrompt,
+  domainKeyOf,
   type Phase1Score,
 } from "./prompts.ts";
 import { loadPhase1Scores, appendPhase1Scores, selectForProse, type SelectionInput } from "./two-phase.ts";
@@ -35,6 +37,12 @@ import {
   rankCards,
   initTagWeights,
 } from "./personalize.ts";
+import { cardChecks, effLen, detailQualified } from "./checks.ts";
+import { cleanV4, isSkeleton, isMirror } from "./stage1.ts";
+import { pack, checkBatch, fixAdjacent } from "./stage2.ts";
+import { ProductionScheduler, parseMatrix } from "./scheduler.ts";
+import { ScheduledLlmExecutor, executorFromMatrix } from "./executor.ts";
+import { QuantileNormalizer } from "./normalize.ts";
 import type {
   FeedCard,
   FeedCategory,
@@ -45,6 +53,8 @@ import type {
   Tag,
   UserProfile,
 } from "./types.ts";
+
+export { effLen }; // 兼容既有测试 import（feed-length.test.ts）
 
 const DATA_DIR = "data";
 const FEED_PATH = path.join(DATA_DIR, "feed.json");
@@ -192,6 +202,22 @@ const AI_PREFIXES = [
   "提示工程",
   "向量数据库",
 ];
+
+/** zone → 旧分区（前端分类 tab 兼容；AI→ai/资源→learning/工具→tool/创意→fun；缺省 null 回退 classifyCategory） */
+function zoneToCategory(zone: string | undefined): FeedCategory | null {
+  switch (zone) {
+    case "AI":
+      return "ai";
+    case "资源":
+      return "learning";
+    case "工具":
+      return "tool";
+    case "创意":
+      return "fun";
+    default:
+      return null;
+  }
+}
 
 /** 固有标签判定（互斥，每个项目必有其一；tool 为最宽兜底，全覆盖无死角） */
 export function classifyCategory(card: Pick<FeedCard, "repo" | "desc" | "topics" | "aiDims">): FeedCategory {
@@ -351,6 +377,8 @@ interface MergedRepo {
   starGrowth: number;
   /** 仓库创建时间 ISO（rising 判定；search API/轮转刷新携带，trending HTML 无） */
   createdAt?: string;
+  /** 原始 README markdown（精评拉取后回写；组装循环 G-source 校验用） */
+  readme?: string;
   /** 静默轮数（跨轮累计于 feed.json）：刷新无信号 +1、有信号清零；≥3 退出默认推荐流 */
   silentRounds?: number;
   bigbros: string[];
@@ -485,32 +513,9 @@ async function refreshStarsRoundRobin(
 }
 
 // ---------------------------------------------------------------------------
-// P0a 长度校验：reasonCn 等效宽度 ≥100 + summaryCn 20-35 字
+// P0a 长度校验（effLen 定义已移至 checks.ts，此处 re-export 保持测试兼容）
+// reasonCn 等效宽度 ≥100 + summaryCn 20-35 字（现行实现=checks.cardChecks 全闸的一部分）
 // ---------------------------------------------------------------------------
-
-/**
- * 中文字符串等效宽度：全角（汉字/CJK 标点/全角符号）算 1，其余（半角）算 0.5。
- * 混英文时字符数不可靠（96 字可能 2 行也可能 3 行），卡宽 710 的空行边界实测 effLen 93-95，
- * 校验线 effLen ≥100 为安全线（栗子已拍板）。
- */
-export function effLen(s: string): number {
-  let w = 0;
-  for (const ch of s) {
-    w += /[\u4e00-\u9fff\u3000-\u303f\uff00-\uffef]/.test(ch) ? 1 : 0.5;
-  }
-  return w;
-}
-
-/** reasonCn effLen ≥100 且 summaryCn 20-35 字（P0a 长度校验线） */
-function passesLengthCheck(sc: ScoringResult): boolean {
-  return (
-    !!sc.reasonCn &&
-    effLen(sc.reasonCn) >= 100 &&
-    !!sc.summaryCn &&
-    sc.summaryCn.length >= 20 &&
-    sc.summaryCn.length <= 35
-  );
-}
 
 /**
  * detail 兜底：从 detailCn 截取 reason 用内容（零成本，防重评失败丢卡）。
@@ -684,12 +689,73 @@ function savePendingRetries(entries: PendingEntry[]): void {
 }
 
 // ---------------------------------------------------------------------------
+// README 拉取（stage1 输入块数据源；增量模式只拉未评分新卡；URL 固定 https api.github.com）
+// ---------------------------------------------------------------------------
+
+const README_FETCH_CONCURRENCY = 8;
+/** repo 格式校验（owner/repo，字母数字连字符点；防路径注入，URL 仅 https 固定 host） */
+const REPO_RE = /^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/;
+
+/**
+ * 拉取一批仓库的 README（GitHub API raw；token 轮换；失败容错=缺省，prompt 降级一行式）。
+ * 空壳/镜像仓库（清洗后 <150 且 desc <40 / topics 或 README 自述 mirror）标记 readme="" 跳过。
+ */
+async function fetchReadmes(repos: RepoForScoring[]): Promise<void> {
+  const todo = repos.filter((r) => r.readme === undefined);
+  if (todo.length === 0) return;
+  let qi = 0;
+  const worker = async () => {
+    while (qi < todo.length) {
+      const r = todo[qi++]!;
+      if (!REPO_RE.test(r.repo)) {
+        r.readme = ""; // 非法 repo 格式：不进输入块
+        continue;
+      }
+      try {
+        const token = nextApiToken();
+        const headers: Record<string, string> = {
+          Accept: "application/vnd.github.raw",
+          "X-GitHub-Api-Version": "2022-11-28",
+        };
+        if (token) headers["Authorization"] = `Bearer ${token}`;
+        const resp = await fetch(`https://api.github.com/repos/${r.repo}/readme`, { headers });
+        if (!resp.ok) {
+          if (resp.status === 403 || resp.status === 429) {
+            console.error(`  [feed/readme] rate limited at ${r.repo}, rotating`);
+          }
+          r.readme = "";
+          continue;
+        }
+        const raw = await resp.text();
+        const clean = cleanV4(raw);
+        if (isSkeleton(clean, r.description) || isMirror(r.topics, clean)) {
+          r.readme = ""; // 空壳/镜像：不进输入块（原材料铁律）
+        } else {
+          r.readme = raw;
+        }
+      } catch {
+        r.readme = ""; // 拉取失败=无 README，prompt 降级一行式（不阻塞）
+      }
+    }
+  };
+  const workers = Array.from({ length: README_FETCH_CONCURRENCY }, () => worker());
+  await Promise.all(workers);
+  const withReadme = repos.filter((r) => r.readme).length;
+  console.log(`  [feed/readme] fetched ${withReadme}/${todo.length} READMEs`);
+}
+
+// ---------------------------------------------------------------------------
 // LLM 批量评分
 // ---------------------------------------------------------------------------
 
 /** 海选批跑（两段式第一段）：只打分贴标签，输出极短；批大小 PHASE1_BATCH_SIZE。
  *  缺失不做逐库重试（海选便宜，落下的库下轮经 phase1 缓存补筛），chunk 即落缓存。 */
-async function phase1Batched(repos: RepoForScoring[], aiInterestsText: string): Promise<Phase1Score[]> {
+async function phase1Batched(
+  repos: RepoForScoring[],
+  aiInterestsText: string,
+  scheduler?: ProductionScheduler,
+  executor?: ScheduledLlmExecutor,
+): Promise<Phase1Score[]> {
   const results: Phase1Score[] = [];
   const batches: RepoForScoring[][] = [];
   for (let i = 0; i < repos.length; i += PHASE1_BATCH_SIZE) {
@@ -705,12 +771,20 @@ async function phase1Batched(repos: RepoForScoring[], aiInterestsText: string): 
     const chunkResults = await Promise.all(
       chunk.map(async (batch, idx) => {
         const batchNum = i + idx + 1;
+        const route =
+          scheduler?.routeBatch(
+            batch.length,
+            batch.map((r) => r.stars),
+          ) ?? null;
+        // 执行层：路由给谁就谁跑；未注册/熔断 → 编队兜底（付费压舱石通道，生产不中断）
+        const routeCaller = route ? (executor?.callerFor(route.model) ?? null) : null;
         try {
           const prompt = buildPhase1ScoringPrompt(batch, aiInterestsText);
-          const raw = await callLlm(prompt, 2048);
+          const raw = routeCaller ? await routeCaller(prompt, 2048) : await callLlm(prompt, 2048);
           const parsed = parsePhase1ScoringResult(raw);
+          scheduler?.recordCall(route?.model ?? "legacy", prompt.length, raw.length, parsed.length);
           console.log(
-            `  [feed/phase1] batch ${batchNum}/${batches.length}: ${parsed.length}/${batch.length} screened`,
+            `  [feed/phase1] batch ${batchNum}/${batches.length}: ${parsed.length}/${batch.length} screened${route ? ` (route=${route.model}${routeCaller ? "" : "·编队"})` : ""}`,
           );
           return parsed;
         } catch (err) {
@@ -722,6 +796,7 @@ async function phase1Batched(repos: RepoForScoring[], aiInterestsText: string): 
     for (const r of chunkResults) results.push(...r);
     // 海选结果即筛即落缓存：被杀/重跑不重复烧筛分
     appendPhase1Scores(chunkResults.flat());
+    scheduler?.persist();
   }
   return results;
 }
@@ -730,26 +805,49 @@ async function scoreBatched(
   repos: RepoForScoring[],
   aiInterestsText: string,
   scoringDeadline = Number.POSITIVE_INFINITY,
+  scheduler?: ProductionScheduler,
+  repoMap?: Map<string, MergedRepo>,
+  executor?: ScheduledLlmExecutor,
 ): Promise<ScoringResult[]> {
   const results: ScoringResult[] = [];
-  const batches: RepoForScoring[][] = [];
-  for (let i = 0; i < repos.length; i += BATCH_SIZE) {
-    const batch = repos.slice(i, i + BATCH_SIZE);
-    if (batch.length > 0) batches.push(batch);
+  // stage1 输入块数据源：拉 README（增量只拉无 readme 的新卡；空壳/镜像过滤）；回写 repoMap 供组装循环 G-source 校验
+  await fetchReadmes(repos);
+  if (repoMap) {
+    for (const r of repos) {
+      const m = repoMap.get(r.repo);
+      if (m) m.readme = r.readme;
+    }
   }
+  // stage2 确定性装箱：头部单卡批（高档模型额度）+ 长尾异质批（flash 档），同键批内 ≤1
+  const byRepo = new Map(repos.map((r) => [r.repo, r] as const));
+  const packed = pack(
+    repos.map((r) => ({ repo: r.repo, desc: r.description, topics: r.topics, stars: r.stars })),
+    BATCH_SIZE,
+  );
+  const batches = packed.map((b) => b.map((x) => byRepo.get(x.repo)!));
   console.log(
     `  [feed/scoring] ${batches.length} batches (${repos.length} repos), concurrency=${SCORE_CONCURRENCY}`,
   );
 
-  // 并行评分：每次 SCORE_CONCURRENCY 个批次同时进行，利用 LLM 并发槽位
+  // 并行评分：每次 SCORE_CONCURRENCY 个批次同时进行，利用 LLM 并发槽位。
+  // 轻语义：只做「解析 + 缺失重试（1 次）+ G9 批内剔除」；G1-G9 全闸裁决在组装循环
+  //（那里有带反馈重评 ≤3 次 + detail 兜底 + pending 兜底，是单卡质量裁决的唯一权威点）。
   for (let i = 0; i < batches.length; i += SCORE_CONCURRENCY) {
     const chunk = batches.slice(i, i + SCORE_CONCURRENCY);
     const chunkResults = await Promise.all(
       chunk.map(async (batch, idx) => {
         const batchNum = i + idx + 1;
+        // 调度器：批粒度路由（头部单卡批 → 高档；长尾批 → flash；全池耗尽 → null=付费兜底）
+        const route =
+          scheduler?.routeBatch(
+            batch.length,
+            batch.map((r) => r.stars),
+          ) ?? null;
+        // 执行层：按路由键直连 provider（参数纪律落地）；未注册/熔断 → 编队兜底
+        const routeCaller = route ? (executor?.callerFor(route.model) ?? null) : null;
         try {
           const prompt = buildFeedScoringPrompt(batch, aiInterestsText);
-          const raw = await callLlm(prompt, 8192);
+          const raw = routeCaller ? await routeCaller(prompt, 8192) : await callLlm(prompt, 8192);
           const parsed = parseScoringResult(raw);
           // 失败重试：如果解析结果太少，拆分批次逐个重试（LLM 长输出易截断）
           if (parsed.length < batch.length) {
@@ -757,13 +855,34 @@ async function scoreBatched(
             console.log(
               `  [feed/scoring] batch ${batchNum}/${batches.length}: ${parsed.length}/${batch.length} scored, retrying ${missing.length} missing...`,
             );
-            const retried = await retryScoring(missing, aiInterestsText, 1, false, scoringDeadline);
-            return [...parsed, ...retried];
+            const retried = await retryScoring(
+              missing,
+              aiInterestsText,
+              1,
+              false,
+              scoringDeadline,
+              undefined,
+              scheduler,
+              executor,
+            );
+            parsed.push(...retried);
           }
+          const got = parsed.filter((p) => batch.some((r) => r.repo === p.repo));
+          // G9 批内（对同批解析成功的卡）：开头撞车 → 剔除（组装循环带 g9Feedback 重评）
+          if (got.length >= 2) {
+            const batchCards = got.map((sc) => ({ repo: sc.repo, detail_cn: sc.detailCn }));
+            for (const hit of checkBatch(batchCards)) {
+              const hitRepo = batchCards[hit.i]!.repo;
+              const idx2 = got.findIndex((sc) => sc.repo === hitRepo);
+              if (idx2 >= 0) got.splice(idx2, 1);
+            }
+          }
+          scheduler?.recordCall(route?.model ?? "legacy", prompt.length, raw.length, got.length);
+          const modelKey = route?.model ?? "legacy";
           console.log(
-            `  [feed/scoring] batch ${batchNum}/${batches.length}: ${parsed.length}/${batch.length} scored`,
+            `  [feed/scoring] batch ${batchNum}/${batches.length}: ${got.length}/${batch.length} scored${route ? ` (route=${route.model}${routeCaller ? "" : "·编队"})` : ""}`,
           );
-          return parsed;
+          return got.map((sc) => ({ ...sc, _model: modelKey }));
         } catch (err) {
           console.error(`  [feed/scoring] batch ${batchNum}/${batches.length} failed: ${err}`);
           return [];
@@ -774,22 +893,25 @@ async function scoreBatched(
     // 评分增量落盘：每 chunk 成功评分立即写缓存——digest 撞超时墙被杀时
     // 已评部分下轮直接命中缓存零成本续跑（2026-09-05 两轮撞墙零产出之鉴）
     appendPartialScores(chunkResults.flat());
+    scheduler?.persist();
   }
   return results;
 }
 
 /** 对缺失/不达标的 repo 逐个重试 LLM 评分（单 repo prompt，输出短，成功率更高）。
- *  checkLength=true 时每个 repo 最多重试 maxAttempts 次，每次校验长度（reasonCn effLen≥100 且 summaryCn 20-35 字），达标即用；
- *  checkLength=false 用于批量解析缺失补评（长度校验统一在组装循环做）。
+ *  checkLength=true 时每个 repo 最多重试 maxAttempts 次，每次过 G1-G9 全闸（cardChecks），
+ *  带上一轮失败明细（buildRetryPrompt）修正重写；达标即用。
  *  deadline（GT-0906-01 连环刀）：评分段墙钟红线，到线即停——剩余仓库由调用方记入
- *  failedThisRound → pending-retry 下轮自动补评，绝不阻塞轮次（组装循环逐仓调用是串行的，
- *  不设红线的话饱和时段 60 仓 × 3 次重评能把轮次拖过作业窗）。 */
+ *  failedThisRound → pending-retry 下轮自动补评，绝不阻塞轮次。 */
 async function retryScoring(
   repos: RepoForScoring[],
   aiInterestsText: string,
   maxAttempts = 3,
   checkLength = true,
   deadline = Number.POSITIVE_INFINITY,
+  initialFails?: string[],
+  scheduler?: ProductionScheduler,
+  executor?: ScheduledLlmExecutor,
 ): Promise<ScoringResult[]> {
   const results: ScoringResult[] = [];
   for (const repo of repos) {
@@ -799,19 +921,30 @@ async function retryScoring(
       );
       break;
     }
+    // 逐仓重评也走矩阵：单卡批 → 头部档（star≥1万）/长尾档；额度耗尽自动降级
+    const route = scheduler?.routeBatch(1, [repo.stars]) ?? null;
+    const routeCaller = route ? (executor?.callerFor(route.model) ?? null) : null;
+    let prevFails = initialFails;
     for (let attempt = 0; attempt < maxAttempts; attempt++) {
       if (Date.now() > deadline) break;
       try {
-        const prompt = buildFeedScoringPrompt([repo], aiInterestsText);
-        const raw = await callLlm(prompt, 4096);
+        const base = buildFeedScoringPrompt([repo], aiInterestsText);
+        const prompt = prevFails && prevFails.length > 0 ? buildRetryPrompt(base, prevFails) : base;
+        const raw = routeCaller ? await routeCaller(prompt, 4096) : await callLlm(prompt, 4096);
+        scheduler?.recordCall(route?.model ?? "legacy", prompt.length, raw.length, 0);
         const parsed = parseScoringResult(raw);
-        if (parsed[0] && (!checkLength || passesLengthCheck(parsed[0]))) {
-          results.push(parsed[0]);
-          break;
-        }
-        if (parsed[0]) {
+        const sc = parsed[0];
+        if (sc) {
+          const doc = repo.readme ? cleanV4(repo.readme) : undefined;
+          const { ok, fails } = cardChecks(sc, doc);
+          if (!checkLength || ok) {
+            results.push({ ...sc, _model: route?.model ?? "retry" });
+            scheduler?.markOk(route?.model ?? "legacy");
+            break;
+          }
+          prevFails = fails;
           console.log(
-            `  [feed/scoring] retry ${repo.repo} attempt ${attempt + 1}: length check failed (reason effLen=${effLen(parsed[0].reasonCn).toFixed(1)}, summary ${parsed[0].summaryCn.length}字)`,
+            `  [feed/scoring] retry ${repo.repo} attempt ${attempt + 1}: ${fails.slice(0, 3).join("；")}`,
           );
         }
       } catch (err) {
@@ -855,6 +988,29 @@ export async function generateFeed(
 ): Promise<FeedCard[]> {
   const now = new Date().toISOString();
   console.log("[feed] merging trending + search (incremental, bigbro stamping inside)...");
+
+  // 调度器（方案 B 框架：批粒度路由/额度记账/断点续跑）+ 分位归一化（多模型混产前提）
+  const scheduler = new ProductionScheduler();
+  const aiNorm = new QuantileNormalizer();
+  const funNorm = new QuantileNormalizer();
+  // 执行层（2026-09-14）：矩阵键 → 独立调用通道（参数纪律 + 节流熔断）；缺 key 的通道不阻塞其余源
+  let executor: ScheduledLlmExecutor;
+  try {
+    executor = executorFromMatrix(parseMatrix());
+  } catch (err) {
+    console.error(`  [feed] executor init failed, falling back to fleet for all routes: ${err}`);
+    executor = new ScheduledLlmExecutor([]);
+  }
+  if (executor.size > 0) {
+    console.log(
+      `  [feed] executor lanes: ${scheduler.ledger
+        .snapshot()
+        .models.map((m) => m.model)
+        .join(" | ")}`,
+    );
+  } else {
+    console.log("  [feed] executor lanes: 空（SCHED_*_MODELS 未注入）→ 全部走 callLlm 编队");
+  }
 
   // 增长差分的摊薄间隔：默认按 git 历史自动探测（停摆 N 天 → 增量摊成日均），测试可注入固定值
   const runIntervalDays = opts?.runIntervalDays ?? (await detectRunIntervalDays());
@@ -1035,7 +1191,9 @@ export async function generateFeed(
   // 到线后重评放弃 → failedThisRound → pending-retry，轮时长上界锁回 ≤20 分钟
   const scoringDeadline = Date.now() + SCORING_BUDGET_MS;
   const freshPhase1 =
-    needScreen.length > 0 ? await phase1Batched(needScreen, config.interests.aiInterestsText) : [];
+    needScreen.length > 0
+      ? await phase1Batched(needScreen, config.interests.aiInterestsText, scheduler, executor)
+      : [];
   const freshMap = new Map(freshPhase1.map((p) => [p.repo, p] as const));
 
   // 3.2 第二段「精评」top-K 选择：海选分最高的 K 张卡才写中文文案。
@@ -1063,7 +1221,14 @@ export async function generateFeed(
   );
   const newScoringResults =
     reposNeedingScore.length > 0
-      ? await scoreBatched(reposNeedingScore, config.interests.aiInterestsText, scoringDeadline)
+      ? await scoreBatched(
+          reposNeedingScore,
+          config.interests.aiInterestsText,
+          scoringDeadline,
+          scheduler,
+          repoMap,
+          executor,
+        )
       : [];
   const scoringMap = new Map<string, ScoringResult>([
     ...existingScores,
@@ -1104,29 +1269,49 @@ export async function generateFeed(
           continue;
         }
       }
-      // P0a 长度校验：reasonCn effLen <100（等高卡片第三行空白）或 summaryCn 不在 20-35 字 → 不达标
-      if (
-        !sc ||
-        !sc.reasonCn ||
-        effLen(sc.reasonCn) < 100 ||
-        !sc.summaryCn ||
-        sc.summaryCn.length < 20 ||
-        sc.summaryCn.length > 35
-      ) {
-        // 不达标 → 单 repo 重评 ≤3 次（每次校验，达标即用）
+      // 全闸裁决（G1-G9 + 调度器合法性闸，2026-09-13 v6 全闸进生产）：
+      // reason/summary/detail 长度、开头黑名单、覆盖度、序号模板、时效/推广词、zone/fun_score/tags/facts 合法性
+      // 不达标 → 带反馈单 repo 重评 ≤3 次（每次过全闸，达标即用）
+      let gateFails: string[] = [];
+      if (sc) {
+        const doc = m.readme ? cleanV4(m.readme) : undefined;
+        const gate = cardChecks(sc, doc);
+        if (!gate.ok) gateFails = gate.fails;
+      }
+      if (!sc || gateFails.length > 0) {
         const retried = await retryScoring(
-          [{ repo: m.repo, description: m.desc, stars: m.stars, language: m.language, topics: m.topics }],
+          [
+            {
+              repo: m.repo,
+              description: m.desc,
+              stars: m.stars,
+              language: m.language,
+              topics: m.topics,
+              readme: m.readme,
+            },
+          ],
           config.interests.aiInterestsText,
           3,
           true,
           scoringDeadline,
+          gateFails.length > 0 ? gateFails : undefined,
+          scheduler,
+          executor,
         );
         if (retried.length > 0) {
           sc = retried[0]!;
         } else {
           const detail = sc?.detailCn || detailMap.get(m.repo) || "";
-          if (detail) {
-            // 重评仍失败 + 有历史/本轮 detail → detail 第二段兜底（零成本，防丢卡）
+          // 兜底条件：detail 自身合格（detailQualified：500-800 字/3-5 段/无黑词/无代码块）
+          // 且（① 纯长度类失败——reason/summary 字数；② 无评分但有历史合格 detail——防丢卡）。
+          // 从合格 detail 截取 reason/summary = 复用合格内容，非掩盖不合格；
+          // zone/fun_score/tags/facts 等合法性失败不可被兜底掩盖（宁缺毋滥）。
+          const lengthOnly =
+            gateFails.length > 0 &&
+            gateFails.every((f) => f.startsWith("一句话描述") || f.startsWith("简要介绍"));
+          const detailUsable = detail.length > 0 && detailQualified(detail) && (lengthOnly || !sc);
+          if (detailUsable) {
+            // 重评仍失败 + 有历史/本轮 detail + 纯长度失败 → detail 第二段兜底（零成本，防丢卡）
             const fallback = fallbackReasonFromDetail(detail);
             if (fallback) {
               console.log(
@@ -1155,18 +1340,13 @@ export async function generateFeed(
                   summaryCn: summaryOk ? sc.summaryCn : summaryFromDetailFirstPara(detail),
                 };
               }
-            } else if (sc) {
-              // 重评失败 + detail 兜底也失败（detail 异常短）：保留原评分进 feed（不丢卡，符合只增不减设计）
-              console.warn(
-                `  [feed/scoring] ${m.repo}: rescore failed & detail fallback failed, keeping original score`,
-              );
             } else {
-              // 无评分可保留 → 待补评队列，下轮补评
+              // 纯长度失败但 detail 兜底不可用（detail 异常短）→ 不合格不上站（宁缺毋滥）
               failedThisRound.push(m);
               continue;
             }
           } else {
-            // 重评失败且无 detail 可兜底 → 记入待补评队列，下轮补评（本轮不进 feed）
+            // 非纯长度失败（内容/合法性闸失败）或无可兜底 detail → 不合格不上站，进待补评
             failedThisRound.push(m);
             continue;
           }
@@ -1177,6 +1357,17 @@ export async function generateFeed(
     if (!sc || !sc.reasonCn) {
       failedThisRound.push(m);
       continue;
+    }
+    // 分位归一化（多模型混产前提）：只作用于本轮新评分卡（缓存命中卡保持历史值——增量「历史卡零重评」铁律）
+    if (!cachedHit) {
+      const modelKey = sc._model ?? "legacy";
+      aiNorm.record(modelKey, sc.aiScore);
+      if (sc.funScore !== undefined) funNorm.record(modelKey, sc.funScore);
+      sc = {
+        ...sc,
+        aiScore: aiNorm.normalize(modelKey, sc.aiScore),
+        funScore: sc.funScore !== undefined ? funNorm.normalize(modelKey, sc.funScore) : sc.funScore,
+      };
     }
     const [owner = "", ...nameParts] = m.repo.split("/");
     const name = nameParts.join("/") || m.repo;
@@ -1197,6 +1388,12 @@ export async function generateFeed(
       topics: m.topics,
       aiDims: sc.aiDims,
       aiDim: sc.aiDim,
+      zone: sc.zone,
+      funScore: sc.funScore,
+      domainTags: sc.tags,
+      domainKey:
+        sc.zone && sc.tags && sc.tags.length > 0 ? (domainKeyOf(sc.zone, sc.tags) ?? undefined) : undefined,
+      pushedAt: m.ts, // search 来源 ts=pushedAt 近似（死内容过滤 P1）
       tags: buildTags(sc.aiDims, m.topics, m.language),
       aiScore: sc.aiScore,
       source: m.source,
@@ -1208,7 +1405,8 @@ export async function generateFeed(
     };
     cards.push({
       ...partialCard,
-      category: classifyCategory(partialCard),
+      // 分区信号：zone（LLM 判定链）优先，缺省回退 classifyCategory（存量兼容）
+      category: zoneToCategory(sc.zone) ?? classifyCategory(partialCard),
       ...classifyMomentum(partialCard),
     });
   }
@@ -1294,9 +1492,15 @@ export async function generateFeed(
   // 6.5 多样性交错：AI:非AI = 2:3 轮播（只改输出顺序，不改 score 值）
   const diversified = diversifyCards(ranked);
 
+  // 6.6 排列层（stage2.fix_adjacent 移植）：相邻展示卡开头前缀互异（撞了就近换位；只改顺序零成本）
+  const fixed = fixAdjacent(
+    diversified.map((c) => ({ card: c, repo: c.repo, detail_cn: c.detailCn, language: c.language })),
+  );
+  const diversifiedFinal = fixed.map((x) => x.card);
+
   // 7. 内容淘汰：只增不减（不做年龄硬淘汰——历史项目永久保留）；
   //    容量上限 MAX_FEED_SIZE：超出后淘汰最老 + 未收藏（profile.bookmarks 豁免，互动过的靠前端快照兜底）
-  const pruned = diversified.filter((c) => {
+  const pruned = diversifiedFinal.filter((c) => {
     if (c.score < 0.01) return false;
     return true;
   });
@@ -1322,6 +1526,10 @@ export async function generateFeed(
   console.log(`  [feed] saved ${final.length} cards to ${FEED_PATH}`);
   // 完整落盘成功 → 评分增量缓存已完成历史使命，清空（下轮从干净状态开始）
   clearPartialScores();
+
+  // 调度器收尾：额度账本落盘（同日重跑接着记账，不重复吃免费额度）+ 通道健康摘要
+  scheduler.persist();
+  executor.logHealth();
 
   return final;
 }

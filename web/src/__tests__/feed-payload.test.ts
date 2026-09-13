@@ -9,7 +9,11 @@ describe("splitFeedPayload", () => {
       { repo: "c/d", name: "d", detailCn: "" },
       { repo: "e/f", name: "f" },
     ]);
-    expect(list).toEqual([{ repo: "a/b", name: "b" }, { repo: "c/d", name: "d" }, { repo: "e/f", name: "f" }]);
+    expect(list).toEqual([
+      { repo: "a/b", name: "b" },
+      { repo: "c/d", name: "d" },
+      { repo: "e/f", name: "f" },
+    ]);
     expect(list.every((c) => !("detailCn" in c) || c.detailCn === undefined)).toBe(true);
     expect(details).toEqual({ "a/b": "长文A" });
   });

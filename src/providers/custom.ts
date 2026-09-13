@@ -6,12 +6,31 @@
  *   {NAME}_API_KEY   - key（可逗号分隔多 key，worker 池按序取号）
  *   {NAME}_BASE_URL  - OpenAI 兼容端点（如 https://api.example.com/v1）
  *   {NAME}_MODEL     - 默认模型名
+ * 可选第四个：
+ *   {NAME}_EXTRA_PARAMS - 额外请求体参数（JSON 对象字面量，如
+ *     `{"enable_thinking":false}`）——部分源要求显式关思考，不写会拖慢响应/污染输出；
+ *     非法 JSON 或非对象直接报错（fail-fast，不静默降级）。
  *
  * 安全（SSRF 防护，硬性）：BASE_URL 只接受 http/https，拒绝 localhost/环回/
  * 私网/链路本地/保留地址——不合法直接报错不入队。校验在构造期完成（fail-fast）。
  */
 
 import { OpenAICompatibleProvider } from "./openai-compatible.ts";
+
+/** 解析 {NAME}_EXTRA_PARAMS（JSON 对象字面量）→ 附加请求体参数；缺省空对象，非法报错。 */
+export function parseExtraParams(raw: string | undefined, slug: string): Record<string, unknown> {
+  if (!raw || !raw.trim()) return {};
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(raw);
+  } catch {
+    throw new Error(`custom:${slug} 的 EXTRA_PARAMS 不是合法 JSON`);
+  }
+  if (typeof parsed !== "object" || parsed === null || Array.isArray(parsed)) {
+    throw new Error(`custom:${slug} 的 EXTRA_PARAMS 必须是 JSON 对象`);
+  }
+  return parsed as Record<string, unknown>;
+}
 
 /** 校验 BASE_URL 防 SSRF：仅 http/https，拒 localhost/环回/私网/保留地址。 */
 export function assertSafeBaseUrl(raw: string): URL {
@@ -62,8 +81,13 @@ export function assertSafeBaseUrl(raw: string): URL {
 
 export class CustomProvider extends OpenAICompatibleProvider {
   override readonly name: string;
+  /** 附加请求体参数（{NAME}_EXTRA_PARAMS）；构造期解析，请求时并进 body */
+  private readonly extraParams: Record<string, unknown>;
 
-  constructor(slug: string, opts?: { apiKey?: string; model?: string }) {
+  constructor(
+    slug: string,
+    opts?: { apiKey?: string; model?: string; extraParams?: Record<string, unknown> },
+  ) {
     const env = slug.toUpperCase().replace(/[^A-Z0-9]/g, "_");
     const baseUrl = process.env[`${env}_BASE_URL`] ?? "";
     if (!baseUrl) {
@@ -80,6 +104,7 @@ export class CustomProvider extends OpenAICompatibleProvider {
       model,
     });
     this.name = `custom-${slug}`;
+    this.extraParams = opts?.extraParams ?? parseExtraParams(process.env[`${env}_EXTRA_PARAMS`], slug);
   }
 
   // 泛化源按 OpenAI 经典 max_tokens 兼容面处理
@@ -89,6 +114,7 @@ export class CustomProvider extends OpenAICompatibleProvider {
       model: this.model,
       max_tokens: maxTokens,
       messages: [{ role: "user", content: prompt }],
+      ...this.extraParams,
     };
     const response = await this.client.chat.completions.create(params);
     const text = response.choices[0]?.message?.content;

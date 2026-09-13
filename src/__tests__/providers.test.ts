@@ -159,6 +159,7 @@ describe("VALID_PROVIDER_NAMES", () => {
       "github-models",
       "mistral",
       "hf",
+      "bailian",
     ]);
   });
 });

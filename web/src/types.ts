@@ -55,6 +55,16 @@ export interface FeedCard {
   aiDims: string[];
   /** @deprecated 等于 aiDims[0]；构建 payload 已剔除，仅为历史数据解析保留 */
   aiDim?: string;
+  /** 内容分区（AI/资源/工具/创意，LLM 判定链输出；前端只读不猜，废止正则推导 category） */
+  zone?: string;
+  /** 乐趣强度 0-1（乐趣频道信号；体验轴，与 zone 题材轴正交） */
+  funScore?: number;
+  /** 领域标签（LLM 自由领域词 3-6 个，展示/搜索用） */
+  domainTags?: string[];
+  /** 确定性领域键（从 zone+domainTags 派生，聚合计算用） */
+  domainKey?: string;
+  /** 最近活动时间 ISO（默认流死内容过滤） */
+  pushedAt?: string;
   /** 综合标签（LLM + GitHub topics + language） */
   tags: Tag[];
   aiScore: number;

@@ -157,6 +157,10 @@ export function decayTagWeights(
 /**
  * 计算仓库标签与用户偏好的加权重叠度。
  * 使用加权余弦相似度，结果线性变换到 [0.5, 1.0]。
+ *
+ * @deprecated 2026-09-13 个性化 v2.2：推荐已改为前端四层架构（L0 池过滤 → L2 多因子 → L1 已读 → L3 显式偏好 + L4 隐式微调），
+ * 旧 tagScore 加权和由前端 buildRecommended 接管（显式偏好在本机 localStorage）。本函数仅为服务端批跑排序
+ * （generateFeed 的 rankCards 输出 score 字段）保留兼容，前端不消费该 score。
  */
 export function weightedCosine(cardTags: Tag[], userWeights: Record<string, number>): number {
   let dotProduct = 0;
