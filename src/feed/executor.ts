@@ -149,13 +149,16 @@ export class ScheduledLlmExecutor {
     this.opts = {
       emptyRetries: opts?.emptyRetries ?? 2,
       emptyBackoffMs: opts?.emptyBackoffMs ?? 3_000,
-      // 熔断时长：魔搭节流是「分钟级窗口」（B 实测同日先正常后空响应）——5 分钟与编队 429 冷却同刻
-      cooldownMs: opts?.cooldownMs ?? 5 * 60_000,
+      // 账号冷却：智谱/魔搭/OR 的 429 基本都是**分钟级窗口**（实测「该模型当前访问量过大」
+      // 与「账户已达到速率限制」都在 1-2 分钟内恢复）→ 60s 冷却是更贴合的档位；
+      // 真正的日额耗尽由 QuotaLedger（token 账本）负责，不靠冷却时长兜。
+      cooldownMs: opts?.cooldownMs ?? 60_000,
       // 降档等待：全池冷却时不立刻熔断失败，而是等到最早账号解冻再试（免费档友好；
-      // 30 个并发批撞分钟级窗口时把「熔断-降级」变成「排队慢跑」——实测 32 并发 3 秒打满双账号）
+      // 实测 32 并发 3 秒打满智谱双账号，旧行为直接熔断降级付费编队）
       waitForCooldown: opts?.waitForCooldown ?? true,
-      // 等待上限：单次调用最多等这么久（超过则交上层重评/pending；避免把批窗全耗在等待上）
-      maxWaitMs: opts?.maxWaitMs ?? 90_000,
+      // 等待上限：≥ 账号冷却，保证「池内全冷」时能等到解冻再跑（免费额度吃干优先）；
+      // 超过才交上层重评/pending
+      maxWaitMs: opts?.maxWaitMs ?? 120_000,
     };
     for (const s of specs) this.register(s);
   }
@@ -212,8 +215,11 @@ export class ScheduledLlmExecutor {
       let emptyRetried = 0;
       // 两档节流分开处理：
       //  - 空响应（魔搭节流 stub）：同账号短退避重试 ≤ emptyRetries 次（账号没问题，重试可能恢复）
-      //  - 429（账号限流）：该账号进入冷却，换池内下一个账号；全池冷却才熔断整条通道
-      for (let guard = 0; guard < pool.length + this.opts.emptyRetries + 1; guard++) {
+      //  - 429（账号限流）：该账号进入冷却，换池内下一个账号；全池冷却时降档等待解冻，
+      //    等待超限或次数耗尽才熔断整条通道
+      // guard 额度：每账号最多 2 轮（首发 + 解冻后重试）+ 空响应重试 + 1
+      const maxTries = pool.length * 2 + this.opts.emptyRetries + 1;
+      for (let guard = 0; guard < maxTries; guard++) {
         const now = Date.now();
         let idx = -1;
         for (let i = 0; i < pool.length; i++) {
