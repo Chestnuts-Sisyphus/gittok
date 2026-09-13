@@ -51,6 +51,8 @@ export interface RepoForScoring {
   readme?: string;
   /** 仓库创建时间 ISO（输入块元数据展示/每日频道新卡段） */
   createdAt?: string;
+  /** 最后一次 push 时间 ISO（GitHub repos API pushed_at；P1 全量补齐，与 README 同批抓取） */
+  pushedAt?: string;
 }
 
 /** 千人千面独有事实（claim=独立归纳断言，source=参考文档原句证据） */

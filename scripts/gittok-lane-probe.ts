@@ -8,7 +8,7 @@
  */
 
 import { buildPlan } from "./gittok-fullbuild-lib.ts";
-import { ScheduledLlmExecutor, executorFromMatrix } from "../src/feed/executor.ts";
+import { ScheduledLlmExecutor } from "../src/feed/executor.ts";
 import { parseMatrix } from "../src/feed/scheduler.ts";
 
 const PROMPT = '只回一行 JSON，不要任何其他文字：{"ok":true,"n":7}';

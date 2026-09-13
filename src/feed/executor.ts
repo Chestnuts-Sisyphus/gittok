@@ -47,8 +47,9 @@ export interface LaneOpts {
 export interface LaneSpec extends LaneOpts {
   provider: string;
   model: string;
-  /** 通道实例工厂；缺省=按 provider 名造真 provider（测试注入假实现用） */
-  factory?: () => LlmProvider;
+  /** 通道实例工厂；缺省=按 provider 名造真 provider（测试注入假实现用）。
+   *  返回数组 = 多实例池（多 key 轮转）；单实例写单项数组即可。 */
+  factory?: () => LlmProvider[];
 }
 
 /** 通道运行时状态（供健康报告/诊断） */
@@ -69,6 +70,12 @@ interface Lane {
   /** 惰性实例化：缺 key 的通道在被首次路由到时才报错跳过（不阻塞其他源入池）。
    *  返回该通道的 provider 序列（多 key=多实例轮转）。 */
   lazy: () => LlmProvider[];
+  /** 惰性构造的实例池（跨 caller 复用：冷却状态必须活过单次批调用） */
+  pool: LlmProvider[] | null;
+  /** 每个账号的冷却截止时间（账号级 429 只冷该账号；跨 caller 累积） */
+  instCooldownUntil: number[];
+  /** 池内轮转游标（跨 caller 累积） */
+  cursor: number;
   calls: number;
   ok: number;
   emptyRetries: number;
@@ -81,24 +88,35 @@ interface Lane {
 function makeProvider(spec: LaneSpec, apiKey?: string): LlmProvider {
   const { provider, model, extraParams } = spec;
   const key = apiKey ?? spec.apiKey;
-  if (provider === "openrouter") return new OpenRouterProvider({ model, apiKey: key, extraParams });
-  if (provider === "zhipu") return new ZhipuProvider({ model, apiKey: key });
-  if (provider === "custom") {
-    // 矩阵条目 `custom:名字:模型` 经 parseMatrix 后 = provider="custom" + model="名字:模型"
-    // （冒号保留在 model 里，:free 类模型名同理）；泛化通道 slug 取第一个冒号前的段。
-    const cut = model.indexOf(":");
-    const slug = cut > 0 ? model.slice(0, cut) : model;
-    const realModel = cut > 0 ? model.slice(cut + 1) : model;
-    return new CustomProvider(slug, { model: realModel, apiKey: key, extraParams });
+  try {
+    if (provider === "openrouter") return new OpenRouterProvider({ model, apiKey: key, extraParams });
+    if (provider === "zhipu") return new ZhipuProvider({ model, apiKey: key });
+    if (provider === "custom") {
+      // 矩阵条目 `custom:名字:模型` 经 parseMatrix 后 = provider="custom" + model="名字:模型"
+      // （冒号保留在 model 里，:free 类模型名同理）；泛化通道 slug 取第一个冒号前的段。
+      const cut = model.indexOf(":");
+      const slug = cut > 0 ? model.slice(0, cut) : model;
+      const realModel = cut > 0 ? model.slice(cut + 1) : model;
+      return new CustomProvider(slug, { model: realModel, apiKey: key, extraParams });
+    }
+    // 其余源走统一注册表（key 默认读该源标准 env）
+    return createProvider(provider, model, key);
+  } catch (err) {
+    // 构造失败带上指纹（零回显）：生产里能一眼看出是「哪个账号的 key 配错/缺失」
+    throw new Error(`${provider}:${model} 通道构造失败（key=${keyFp(key)}）: ${String(err)}`);
   }
-  // 其余源走统一注册表（key 默认读该源标准 env）
-  return createProvider(provider, model, key);
 }
 
-/** 单条通道使用的 provider 序列：多 key → 多实例轮转（同源多账号分摊限流）。 */
-function providersFor(spec: LaneSpec): LlmProvider[] {
+/** 单条通道使用的 provider 序列：多 key → 多实例轮转（同源多账号分摊限流）。
+ *  导出供测试断言「池长度 = key 数」（防逗号串当单 key 的 401 病根复发）。 */
+export function buildProviderPool(spec: LaneSpec): LlmProvider[] {
   const keys = spec.keys && spec.keys.length > 0 ? spec.keys : [undefined];
   return keys.map((k) => makeProvider(spec, k));
+}
+
+/** 密钥指纹（前 5 字符 + 长度）；诊断用，零回显全量 key。 */
+export function keyFp(k: string | undefined): string {
+  return k ? `${k.slice(0, 5)}…(${k.length})` : "(env)";
 }
 
 /**
@@ -131,7 +149,10 @@ export class ScheduledLlmExecutor {
       key,
       provider: spec.provider,
       model: spec.model,
-      lazy: spec.factory ? () => [spec.factory!()] : () => providersFor(spec),
+      lazy: spec.factory ?? (() => buildProviderPool(spec)),
+      pool: null,
+      instCooldownUntil: [],
+      cursor: 0,
       calls: 0,
       ok: 0,
       emptyRetries: 0,
@@ -153,44 +174,75 @@ export class ScheduledLlmExecutor {
   /**
    * 取某矩阵键的调用函数；未注册或熔断中返回 null（调用方落编队兜底）。
    * 返回的函数语义与 `callLlm(prompt, maxTokens)` 一致：失败抛错。
+   *
+   * 多 key 池语义（2026-09-14 首跑实测补充）：**账号级 429 只冷却该账号**，
+   * 下一个请求换池内其它账号；全池冷却才熔断整条通道——「同源多账号=分摊限流」，
+   * 单账号打满不该拖停整条免费通道（首跑里 zhipu 3 连 429 即全线熔断 = 掉在这一点上）。
    */
   callerFor(key: string): ((prompt: string, maxTokens: number) => Promise<string>) | null {
     const lane = this.lanes.get(key);
     if (!lane) return null;
     if (lane.cooldownUntil > Date.now()) return null;
-    let pool: LlmProvider[] | null = null;
-    let cursor = 0;
     return async (prompt: string, maxTokens: number): Promise<string> => {
-      if (!pool) pool = lane.lazy(); // 首次调用才实例化（缺 key 在这里抛错 → 上层兜底）
+      if (!lane.pool) {
+        lane.pool = lane.lazy(); // 首次调用才实例化（缺 key 在这里抛错 → 上层兜底）
+        lane.instCooldownUntil = lane.pool.map(() => 0);
+      }
+      const pool = lane.pool;
       lane.calls++;
-      const maxAttempts = this.opts.emptyRetries + pool.length; // 多 key：每个账号至少试一次
-      for (let attempt = 0; ; attempt++) {
-        const inst = pool[cursor % pool.length]!;
-        cursor++;
+      let lastErr: unknown;
+      let sawThrottle = false;
+      let emptyRetried = 0;
+      // 两档节流分开处理：
+      //  - 空响应（魔搭节流 stub）：同账号短退避重试 ≤ emptyRetries 次（账号没问题，重试可能恢复）
+      //  - 429（账号限流）：该账号进入冷却，换池内下一个账号；全池冷却才熔断整条通道
+      for (let guard = 0; guard < pool.length + this.opts.emptyRetries + 1; guard++) {
+        const now = Date.now();
+        let idx = -1;
+        for (let i = 0; i < pool.length; i++) {
+          const cand = (lane.cursor + i) % pool.length;
+          if (lane.instCooldownUntil[cand]! <= now) {
+            idx = cand;
+            break;
+          }
+        }
+        if (idx < 0) break; // 池内全冷却 → 熔断判定
+        lane.cursor = idx + 1;
+        const inst = pool[idx]!;
         try {
           const text = await inst.call(prompt, maxTokens);
           if (!text || !text.trim()) throw new Error(`Unexpected empty response from ${lane.key}`);
           lane.ok++;
           return text;
         } catch (err) {
+          lastErr = err;
           lane.lastError = String(err).slice(0, 200);
-          const throttled = isEmptyResponseError(err) || is429(err);
-          if (throttled && attempt + 1 < maxAttempts) {
+          const empty = isEmptyResponseError(err);
+          const throttled = empty || is429(err);
+          if (!throttled) throw err; // 非节流（401/内容错）直接上抛
+          sawThrottle = true;
+          if (empty && emptyRetried < this.opts.emptyRetries) {
+            // 同账号重试（不冷却账号：stub 是瞬时故障）
+            emptyRetried++;
             lane.emptyRetries++;
             await new Promise((r) => setTimeout(r, this.opts.emptyBackoffMs));
+            lane.cursor = idx; // 下一轮仍优先该账号
             continue;
           }
-          if (throttled) {
-            // 熔断：该通道冷却，本批/本卡失败交上层重评 + pending 兜底（不污染成内容差）
-            lane.cooldowns++;
-            lane.cooldownUntil = Date.now() + this.opts.cooldownMs;
-            console.error(
-              `[executor] ${lane.key} 节流/空响应 ${maxAttempts} 连 —— 熔断 ${this.opts.cooldownMs / 1000}s`,
-            );
-          }
-          throw err;
+          // 429（或空重试耗尽）→ 该账号冷却，换下一个
+          lane.instCooldownUntil[idx] = Date.now() + this.opts.cooldownMs;
+          lane.emptyRetries++;
         }
       }
+      if (sawThrottle && lane.instCooldownUntil.every((t) => t > Date.now())) {
+        // 全池冷却 → 通道级熔断（交上层重评 + pending 兜底，不污染成内容差）
+        lane.cooldowns++;
+        lane.cooldownUntil = Date.now() + this.opts.cooldownMs;
+        console.error(
+          `[executor] ${lane.key} 全池 ${pool.length} 账号节流 —— 通道熔断 ${this.opts.cooldownMs / 1000}s`,
+        );
+      }
+      throw lastErr ?? new Error(`${lane.key} 不可用`);
     };
   }
 
@@ -235,6 +287,12 @@ export function matrixEnvKey(provider: string, model: string): string {
   return `SCHED_PARAMS_${slug}`;
 }
 
+/** 多 key 池环境变量名（同一 SLUG 规则，互不冲突）。 */
+export function matrixKeysEnvKey(provider: string, model: string): string {
+  const slug = `${provider}_${model}`.toUpperCase().replace(/[^A-Z0-9]/g, "_");
+  return `SCHED_KEYS_${slug}`;
+}
+
 export function executorFromMatrix(
   entries: Array<{ provider: string; model: string }>,
   env: NodeJS.ProcessEnv = process.env,
@@ -249,7 +307,17 @@ export function executorFromMatrix(
       }
       extraParams = parsed as Record<string, unknown>;
     }
-    return { provider: e.provider, model: e.model, extraParams };
+    // 多 key 轮转池（SCHED_KEYS_<SLUG>，逗号分隔）：同源多账号分摊限流。
+    // 注意：{NAME}_API_KEY 里的逗号在多 key 场景下**不能**直接当单 key 用（会整个当 Bearer 串），
+    // 必须经此池拆分成独立实例。
+    const keysRaw = env[matrixKeysEnvKey(e.provider, e.model)];
+    const keys = keysRaw
+      ? keysRaw
+          .split(",")
+          .map((k) => k.trim())
+          .filter(Boolean)
+      : undefined;
+    return { provider: e.provider, model: e.model, extraParams, keys };
   });
   return new ScheduledLlmExecutor(specs);
 }

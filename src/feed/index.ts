@@ -379,6 +379,8 @@ interface MergedRepo {
   createdAt?: string;
   /** 原始 README markdown（精评拉取后回写；组装循环 G-source 校验用） */
   readme?: string;
+  /** 最后一次 push 时间 ISO（fetchReadmes 同批抓取；pushedAt 全量补齐 P1） */
+  pushedAt?: string;
   /** 静默轮数（跨轮累计于 feed.json）：刷新无信号 +1、有信号清零；≥3 退出默认推荐流 */
   silentRounds?: number;
   bigbros: string[];
@@ -699,11 +701,13 @@ const REPO_RE = /^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/;
 /**
  * 拉取一批仓库的 README（GitHub API raw；token 轮换；失败容错=缺省，prompt 降级一行式）。
  * 空壳/镜像仓库（清洗后 <150 且 desc <40 / topics 或 README 自述 mirror）标记 readme="" 跳过。
+ * 同批顺带取 repos API 的 pushed_at（pushedAt 全量补齐，P1；与 README 同批=不额外加轮次）。
  */
 async function fetchReadmes(repos: RepoForScoring[]): Promise<void> {
   const todo = repos.filter((r) => r.readme === undefined);
   if (todo.length === 0) return;
   let qi = 0;
+  const stats = { skeleton: 0, mirror: 0, noReadme: 0, pushedAt: 0 };
   const worker = async () => {
     while (qi < todo.length) {
       const r = todo[qi++]!;
@@ -724,24 +728,50 @@ async function fetchReadmes(repos: RepoForScoring[]): Promise<void> {
             console.error(`  [feed/readme] rate limited at ${r.repo}, rotating`);
           }
           r.readme = "";
+          stats.noReadme++;
           continue;
         }
         const raw = await resp.text();
         const clean = cleanV4(raw);
-        if (isSkeleton(clean, r.description) || isMirror(r.topics, clean)) {
-          r.readme = ""; // 空壳/镜像：不进输入块（原材料铁律）
+        if (isSkeleton(clean, r.description)) {
+          r.readme = ""; // 空壳：不进输入块（原材料铁律）
+          stats.skeleton++;
+        } else if (isMirror(r.topics, clean)) {
+          r.readme = ""; // 镜像：不进输入块
+          stats.mirror++;
         } else {
           r.readme = raw;
         }
       } catch {
         r.readme = ""; // 拉取失败=无 README，prompt 降级一行式（不阻塞）
+        stats.noReadme++;
+      }
+      // pushed_at（同一 worker 顺带取；失败不影响主流程——pushedAt 缺失时组装回退 ts）
+      if (r.pushedAt === undefined) {
+        try {
+          const token = nextApiToken();
+          const headers: Record<string, string> = { "X-GitHub-Api-Version": "2022-11-28" };
+          if (token) headers["Authorization"] = `Bearer ${token}`;
+          const resp = await fetch(`https://api.github.com/repos/${r.repo}`, { headers });
+          if (resp.ok) {
+            const meta = (await resp.json()) as { pushed_at?: string };
+            if (meta.pushed_at) {
+              r.pushedAt = meta.pushed_at;
+              stats.pushedAt++;
+            }
+          }
+        } catch {
+          // 静默：pushedAt 是 P1 增强，缺失不阻塞
+        }
       }
     }
   };
   const workers = Array.from({ length: README_FETCH_CONCURRENCY }, () => worker());
   await Promise.all(workers);
   const withReadme = repos.filter((r) => r.readme).length;
-  console.log(`  [feed/readme] fetched ${withReadme}/${todo.length} READMEs`);
+  console.log(
+    `  [feed/readme] fetched ${withReadme}/${todo.length} READMEs（空壳 ${stats.skeleton} / 镜像 ${stats.mirror} / 拉取失败 ${stats.noReadme}）；pushedAt 补齐 ${stats.pushedAt}/${todo.length}`,
+  );
 }
 
 // ---------------------------------------------------------------------------
@@ -1393,7 +1423,7 @@ export async function generateFeed(
       domainTags: sc.tags,
       domainKey:
         sc.zone && sc.tags && sc.tags.length > 0 ? (domainKeyOf(sc.zone, sc.tags) ?? undefined) : undefined,
-      pushedAt: m.ts, // search 来源 ts=pushedAt 近似（死内容过滤 P1）
+      pushedAt: m.pushedAt ?? m.ts, // 真实 pushed_at（fetchReadmes 同批抓）；缺失回退 ts
       tags: buildTags(sc.aiDims, m.topics, m.language),
       aiScore: sc.aiScore,
       source: m.source,

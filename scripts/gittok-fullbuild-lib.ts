@@ -11,6 +11,7 @@ import path from "node:path";
 export const KEY_DIR = process.env["KEY_DIR"] ?? "D:/AI/KEY";
 export const FREE_FLEET = path.join(KEY_DIR, "FREE-FLEET.txt");
 export const PAID_LLM = path.join(KEY_DIR, "PAID-LLM.txt");
+export const GITHUB_TOKENS = path.join(KEY_DIR, "GITHUB-TOKENS.txt");
 
 /** 只显前 5 字符的密钥指纹（KEY 协议）。 */
 export const fp = (k: string) => `${k.slice(0, 5)}…(${k.length}字符)`;
@@ -110,6 +111,11 @@ export function matrixEnvKey(provider: string, model: string): string {
 /**
  * 组装矩阵：按**实际拿到的 key** 决定哪些源进矩阵（缺 key 的源不进 → 路由自然跳过，不一路 401）。
  * quotaTokens 默认按 B 会话实测日额折算，可用 SCHED_QUOTA_* 覆盖。
+ *
+ * key 来源优先序（本地 = KEY 文件；CI/线上 = Secrets 注入的环境变量）：
+ *  1. 环境变量（GH Actions Secrets 直灌，如 ZHIPU_API_KEY / MODELSCOPE_API_KEY）——
+ *     存在则直接用，**不读本地文件**（CI 机器上没有 D:/AI/KEY）。
+ *  2. 本地 KEY 文件（D:/AI/KEY/FREE-FLEET.txt 等）——开发机默认路径。
  */
 export function buildPlan(env: NodeJS.ProcessEnv = process.env): PlanResult {
   const fleet = parseKeyFile(readKeyFile(FREE_FLEET));
@@ -119,8 +125,17 @@ export function buildPlan(env: NodeJS.ProcessEnv = process.env): PlanResult {
   const head: LanePlan[] = [];
   const missing: string[] = [];
 
+  /** 环境变量优先（逗号分隔多 key），缺省回退 KEY 文件解析结果。 */
+  const resolveKeys = (envName: string, fileKeys: string[]): string[] => {
+    const fromEnv = (env[envName] ?? "")
+      .split(",")
+      .map((k) => k.trim())
+      .filter(Boolean);
+    return fromEnv.length > 0 ? fromEnv : fileKeys;
+  };
+
   // ① 智谱 GLM-4.7-Flash（免费主力，双账号分摊 429；thinking disabled 走 provider 内置）
-  const zhipuKeys = collectKeys(fleet, "智谱 GLM", "BigModel");
+  const zhipuKeys = resolveKeys("ZHIPU_API_KEY", collectKeys(fleet, "智谱 GLM", "BigModel"));
   if (zhipuKeys.length > 0) {
     outEnv["ZHIPU_API_KEY"] = zhipuKeys.join(",");
     tail.push({
@@ -132,11 +147,11 @@ export function buildPlan(env: NodeJS.ProcessEnv = process.env): PlanResult {
       keyFp: fp(zhipuKeys[0]!),
     });
   } else {
-    missing.push("智谱 GLM key（FREE-FLEET.txt）");
+    missing.push("智谱 GLM key（ZHIPU_API_KEY 或 FREE-FLEET.txt）");
   }
 
   // ② 魔搭 DeepSeek-V4-Flash-0731（免费档最能打；250 次/日；须 enable_thinking:false）
-  const msKeys = collectKeys(fleet, "魔搭", "ModelScope");
+  const msKeys = resolveKeys("MODELSCOPE_API_KEY", collectKeys(fleet, "魔搭", "ModelScope"));
   if (msKeys.length > 0) {
     outEnv["MODELSCOPE_API_KEY"] = msKeys.join(",");
     outEnv["MODELSCOPE_BASE_URL"] = "https://api-inference.modelscope.cn/v1";
@@ -147,37 +162,66 @@ export function buildPlan(env: NodeJS.ProcessEnv = process.env): PlanResult {
       entry: `custom:modelscope:${model}:${envInt("SCHED_QUOTA_MODELSCOPE", 250_000, env)}`,
       params: { enable_thinking: false },
       paramsEnv: matrixEnvKey("custom:modelscope", model),
+      keys: msKeys,
       note: "精评/千人千面主力；节流 stub → 执行层空响应重试+熔断",
       keyFp: fp(msKeys[0]!),
     });
   } else {
-    missing.push("魔搭 ModelScope key（FREE-FLEET.txt）");
+    missing.push("魔搭 ModelScope key（MODELSCOPE_API_KEY 或 FREE-FLEET.txt）");
   }
 
   // ③ OpenRouter nemotron-3-ultra-550b:free（免费次选；50/日，充$10→1000；
   //    推理型须 reasoning disabled + max_tokens 8192，否则思考吃爆预算 → JSON 截断）
-  const orKeys = collectKeys(fleet, "OpenRouter");
+  const orKeys = resolveKeys("OPENROUTER_API_KEY", collectKeys(fleet, "OpenRouter"));
   if (orKeys.length > 0) {
-    outEnv["OPENROUTER_API_KEY"] = orKeys[0]!;
+    outEnv["OPENROUTER_API_KEY"] = orKeys.join(",");
     const model = "nvidia/nemotron-3-ultra-550b-a55b:free";
     tail.push({
       entry: `openrouter:${model}:${envInt("SCHED_QUOTA_OPENROUTER", 50_000, env)}`,
       params: { reasoning: { enabled: false }, max_tokens: 8192 },
       paramsEnv: matrixEnvKey("openrouter", model),
+      keys: orKeys,
       note: "免费次选（50/日；充$10→1000/日 待栗子支付）",
       keyFp: fp(orKeys[0]!),
     });
   } else {
-    missing.push("OpenRouter key（FREE-FLEET.txt）");
+    missing.push("OpenRouter key（OPENROUTER_API_KEY 或 FREE-FLEET.txt）");
   }
 
   // ④ 付费兜底压舱石：百炼 qwen3.7-flash（Batch 半价 ¥22.5 全站）——作编队主源用，
   //    不进矩阵（quota=0 语义为不限额，不该给付费源挂 unlimited）。
-  const wsKeys = collectKeys(paid, "百炼", "bailian", "DashScope");
+  const wsKeys = resolveKeys("BAILIAN_API_KEY", collectKeys(paid, "百炼", "bailian", "DashScope"));
   if (wsKeys.length > 0) {
     outEnv["BAILIAN_API_KEY"] = wsKeys[0]!;
   } else {
-    missing.push("百炼 qwen3.7-flash key（PAID-LLM.txt）——付费兜底通道");
+    missing.push("百炼 qwen3.7-flash key（BAILIAN_API_KEY 或 PAID-LLM.txt）——付费兜底通道");
+  }
+
+  // ⑤ 编队其它通道（env 优先；本地从 FREE-FLEET 补）
+  const agnesKeys = resolveKeys("AGNES_API_KEY", collectKeys(fleet, "AGNES"));
+  if (agnesKeys.length > 0) outEnv["AGNES_API_KEY"] = agnesKeys[0]!;
+  const hfKeys = resolveKeys("HF_TOKEN", collectKeys(fleet, "Hugging Face"));
+  if (hfKeys.length > 0) outEnv["HF_TOKEN"] = hfKeys[0]!;
+
+  // ⑥ GitHub PAT 池（README 拉取 + search 配额）：EXTRA_GITHUB_PATS（env 优先，逗号分隔）
+  //    或本地 GITHUB-TOKENS.txt 全量并入。
+  //    单 token = 5000/h core + 30/min search；5 token = 5 倍（全量建库的硬前置）。
+  const envPats = (env["EXTRA_GITHUB_PATS"] ?? "")
+    .split(",")
+    .map((t) => t.trim())
+    .filter(Boolean);
+  const ghText = readKeyFile(GITHUB_TOKENS);
+  const ghTokens: string[] = [...envPats];
+  for (const line of ghText.split(/\r?\n/)) {
+    const t = line.trim();
+    if (!t || t.startsWith("#")) continue;
+    if (!/^(ghp_|github_pat_|gho_|ghs_)[A-Za-z0-9_]+$/.test(t)) continue;
+    if (!ghTokens.includes(t)) ghTokens.push(t);
+  }
+  if (ghTokens.length > 0) {
+    outEnv["EXTRA_GITHUB_PATS"] = ghTokens.join(",");
+  } else {
+    missing.push("GitHub PAT 池（GITHUB-TOKENS.txt）——README 拉取配额");
   }
 
   return { tail, head, env: outEnv, missing };

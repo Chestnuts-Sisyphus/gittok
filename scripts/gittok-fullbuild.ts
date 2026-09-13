@@ -18,6 +18,7 @@
 
 import { spawnSync } from "node:child_process";
 import { buildPlan } from "./gittok-fullbuild-lib.ts";
+import { matrixKeysEnvKey } from "../src/feed/executor.ts";
 
 function main(): void {
   const dryRun = process.argv.includes("--dry-run");
@@ -31,11 +32,48 @@ function main(): void {
   env["SCHED_TAIL_MODELS"] = tailStr;
   for (const t of tail) {
     if (t.paramsEnv) env[t.paramsEnv] = JSON.stringify(t.params);
+    // 多 key 池：{NAME}_API_KEY 是逗号串（供编队 worker 轮转），执行层按通道拆成独立实例用
+    if (t.keys && t.keys.length > 1) {
+      const first = t.entry.indexOf(":");
+      const entryTail = t.entry.slice(t.entry.lastIndexOf(":") + 1);
+      const model = t.entry.slice(first + 1, /^\d+$/.test(entryTail) ? t.entry.lastIndexOf(":") : undefined);
+      env[matrixKeysEnvKey(t.entry.slice(0, first), model)] = t.keys.join(",");
+    }
   }
   // 锁死免费纪律：主源显式指向付费压舱石（矩阵外的编队通道），杜绝误用未知主源。
   if (env["BAILIAN_API_KEY"]) {
     env["LLM_PROVIDER"] = "bailian";
     env["BAILIAN_MODEL"] = "qwen3.7-flash";
+  }
+
+  // 诊断（零回显：只显前 5 字符指纹）：确认注入到子进程的 key 与实际期望一致
+  if (process.argv.includes("--debug-keys")) {
+    for (const name of ["ZHIPU_API_KEY", "MODELSCOPE_API_KEY", "OPENROUTER_API_KEY", "BAILIAN_API_KEY"]) {
+      const v = env[name];
+      console.log(
+        `[launcher/debug] ${name} = ${
+          v
+            ? v
+                .split(",")
+                .map((k) => `${k.slice(0, 5)}…(${k.length})`)
+                .join(" + ")
+            : "(未注入)"
+        }`,
+      );
+    }
+    for (const [name, v] of Object.entries(env)) {
+      if (!name.startsWith("SCHED_KEYS_")) continue;
+      console.log(
+        `[launcher/debug] ${name} = ${(v ?? "")
+          .split(",")
+          .map((k) => `${k.slice(0, 5)}…(${k.length})`)
+          .join(" + ")}`,
+      );
+    }
+    const pats = (env["EXTRA_GITHUB_PATS"] ?? "").split(",").filter(Boolean);
+    console.log(
+      `[launcher/debug] EXTRA_GITHUB_PATS = ${pats.length} 个（含 .env 主 token 共 ${pats.length + 1} 个轮转）`,
+    );
   }
 
   console.log("[launcher] 调度矩阵：");

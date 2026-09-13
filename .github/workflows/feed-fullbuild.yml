@@ -1,0 +1,113 @@
+name: Feed Full Build（全量建库·点火就绪）
+
+# 全量建库入口（2026-09-14 单线推进刀）：把 1k+ 星全池（stage1 干净库 59,391）灌进生产线。
+#
+# 与 feed-drip 的分工：
+#   - drip（每 3h，400/60）：日常增量，保持站点新鲜
+#   - full-build（手动触发）：大窗口一次性推进全池，cap/K 可由输入放大
+#
+# 免费矩阵注入走 scripts/gittok-fullbuild.ts（矩阵/matrix 参数/多 key 池/参数纪律全在里面）；
+# CI 上该脚本的 key 解析优先读环境变量（本 workflow 的 secrets），本地则读 D:/AI/KEY/。
+# 免费额度耗尽时执行层自动降级 callLlm 编队（qwen3.7-flash 压舱石，Batch 半价）。
+#
+# 首次点火建议：screen_cap=1000 / prose_top_k=200 / 预算 45min，看空壳率/镜像率/过闸率，
+# 确认无异常后再把 cap 拉到全池（60000）。
+
+on:
+  workflow_dispatch:
+    inputs:
+      screen_cap:
+        description: "海选上限（本轮最多海选的候选数；全池 ≈ 60000）"
+        required: false
+        default: "1000"
+        type: string
+      prose_top_k:
+        description: "精评 top-K（本轮最多产出全套文案的卡数）"
+        required: false
+        default: "200"
+        type: string
+      scoring_budget_ms:
+        description: "评分段墙钟预算（ms；默认 45 分钟 = 2700000）"
+        required: false
+        default: "2700000"
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: feed-fullbuild
+  cancel-in-progress: false # 全量轮不互相顶掉（drip 的 cancel-in-progress 语义相反，故单开 group）
+
+jobs:
+  fullbuild:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Setup pnpm
+        uses: actions/setup-pnpm@v6
+        with:
+          version: 9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run full build（免费矩阵注入 + 全池推进）
+        env:
+          FEED_FETCH: "1"
+          SCREEN_CAP: ${{ github.event.inputs.screen_cap || '1000' }}
+          PROSE_TOP_K: ${{ github.event.inputs.prose_top_k || '200' }}
+          SCORING_BUDGET_MS: ${{ github.event.inputs.scoring_budget_ms || '2700000' }}
+          # 主 token（Actions 注入）+ 额外 PAT 池（secrets，逗号分隔多 token 轮转 README/search 配额）
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          EXTRA_GITHUB_PATS: ${{ secrets.EXTRA_GITHUB_PATS }}
+          # 免费矩阵三源（执行层按矩阵直连；缺 key 的源自动不进矩阵）
+          ZHIPU_API_KEY: ${{ secrets.ZHIPU_API_KEY }}
+          MODELSCOPE_API_KEY: ${{ secrets.MODELSCOPE_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          # 付费压舱石（免费额度耗尽后的编队主源）
+          BAILIAN_API_KEY: ${{ secrets.BAILIAN_API_KEY }}
+          # 编队其它通道（保留 drip 的既有编队，双保险）
+          LLM_FALLBACKS: agnes,agnes,zhipu,zhipu,zhipu,zhipu,groq,groq,groq,groq,groq,groq,groq@openai/gpt-oss-20b,groq@openai/gpt-oss-20b,groq@qwen/qwen3.8-27b,groq@qwen/qwen3.8-27b,gemini,gemini,gemini,gemini@gemini-2.5-flash-lite,gemini@gemini-2.5-flash-lite,gemini@gemini-3.5-flash-lite,gemini@gemini-3.5-flash-lite,gemini@gemini-3.1-flash-lite,mistral,mistral,mistral,mistral,cerebras,cerebras,hf@meta-llama/Llama-3.3-70B-Instruct,hf@Qwen/Qwen2.5-72B-Instruct,openrouter@google/gemma-4-31b-it:free,custom:modelscope,custom:spark
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          SILICONFLOW_API_KEY: ${{ secrets.SILICONFLOW_API_KEY }}
+          MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+          HF_API_KEY: ${{ secrets.HF_API_KEY }}
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+          AGNES_MODEL: ${{ secrets.AGNES_MODEL || 'agnes-2.0-flash' }}
+          CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+          MODELSCOPE_BASE_URL: https://api-inference.modelscope.cn/v1
+          MODELSCOPE_MODEL: deepseek-ai/DeepSeek-V4-Flash-0731
+          MODELSCOPE_EXTRA_PARAMS: '{"enable_thinking":false}'
+          SPARK_API_KEY: ${{ secrets.SPARK_API_KEY }}
+          SPARK_BASE_URL: https://spark-api-open.xf-yun.com/v1
+          SPARK_MODEL: lite
+          DIGEST_REPO: ${{ github.repository }}
+        run: npx tsx scripts/gittok-fullbuild.ts
+
+      - name: Commit feed data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/
+          if git diff --cached --quiet; then
+            echo "No new feed files to commit"
+          else
+            DATE=$(date -u +%Y-%m-%d)
+            git commit -m "feed: ${DATE} full-build update"
+            git pull --rebase
+            git push
+          fi
