@@ -959,6 +959,11 @@ async function retryScoring(
   executor?: ScheduledLlmExecutor,
 ): Promise<ScoringResult[]> {
   const results: ScoringResult[] = [];
+  // 重评前补 README（2026-09-14 实测修正）：批量评分路径会先 fetchReadmes，但重评路径
+  // （pending 恢复的老候选、批量失败后逐仓补评）此前直接进模型——没 README 的卡会被
+  // facts 的 G-source 硬闸判「source 不在参考文档」而空转 3 次、烧光预算。
+  // 这里补一道：本轮还没取到 README 的先取（走 README 专用 token，与首轮共用预算）。
+  await fetchReadmes(repos);
   for (const repo of repos) {
     if (Date.now() > deadline) {
       console.warn(
@@ -1361,17 +1366,16 @@ export async function generateFeed(
         if (!gate.ok) gateFails = gate.fails;
       }
       if (!sc || gateFails.length > 0) {
+        const retryRepo: RepoForScoring = {
+          repo: m.repo,
+          description: m.desc,
+          stars: m.stars,
+          language: m.language,
+          topics: m.topics,
+          readme: m.readme,
+        };
         const retried = await retryScoring(
-          [
-            {
-              repo: m.repo,
-              description: m.desc,
-              stars: m.stars,
-              language: m.language,
-              topics: m.topics,
-              readme: m.readme,
-            },
-          ],
+          [retryRepo],
           config.interests.aiInterestsText,
           3,
           true,
@@ -1382,6 +1386,9 @@ export async function generateFeed(
         );
         if (retried.length > 0) {
           sc = retried[0]!;
+          // 重评内补拉的 README 回写 repoMap：后续装配/闸校验与下一轮都受益（零额外成本）
+          const refetched = retryRepo.readme;
+          if (refetched && !m.readme) m.readme = refetched;
         } else {
           const detail = sc?.detailCn || detailMap.get(m.repo) || "";
           // 兜底条件：detail 自身合格（detailQualified：500-800 字/3-5 段/无黑词/无代码块）
