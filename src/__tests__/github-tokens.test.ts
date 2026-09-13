@@ -45,4 +45,23 @@ describe("github token 池（多 PAT 轮转）", () => {
     expect(mod2.getApiTokens()).toEqual([]);
     expect(mod2.nextApiToken()).toBe("");
   });
+
+  it("角色分账：README 固定首 token；轮转跳过它（池 ≥2）", async () => {
+    setEnv("readme-tok", "rot-a,rot-b");
+    const mod = await import("../github-tokens.ts");
+    // README 恒用首个（不被轮转挤占）
+    expect(mod.nextReadmeToken()).toBe("readme-tok");
+    expect(mod.nextReadmeToken()).toBe("readme-tok");
+    // 轮转在其余 token 间循环，不碰 README 专用
+    const seq = [mod.nextRotationToken(), mod.nextRotationToken(), mod.nextRotationToken()];
+    expect(seq).toEqual(["rot-a", "rot-b", "rot-a"]);
+    expect(seq).not.toContain("readme-tok");
+  });
+
+  it("角色分账：池只有一个 token 时两边共用（靠 REFRESH_BATCH 让位）", async () => {
+    setEnv("solo", undefined);
+    const mod = await import("../github-tokens.ts");
+    expect(mod.nextReadmeToken()).toBe("solo");
+    expect(mod.nextRotationToken()).toBe("solo");
+  });
 });

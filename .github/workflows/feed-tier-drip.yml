@@ -1,0 +1,112 @@
+name: Feed Tier Drip（分档 24h 运转）
+
+# 分档全量推进（2026-09-14 栗子拍板）：全量完成前 GitTok 24 小时不间断运转。
+#
+# 与既有 workflow 的分工：
+#   - feed-drip（夜间 4 班）：日常新鲜度，小窗口（400/60）
+#   - feed-fullbuild（手动）：大批量冲刺（1000/200+，可手动拉到全池）
+#   - **本 workflow（每 2 小时）：分档队列稳态推进**——按 t1(10k+) → t2(5k-10k) → t3(1k-5k)
+#     顺序消费 data/repo-tiers.json，把「全量建库」变成可续跑的长跑
+#
+# 队列来源：data/repo-tiers.json（scripts/gittok-tier-index.ts 产出，随仓提交）。
+# 管道侧自动把它灌进候选池头部（tier 优先于 trend/search），窗口 cap 天然形成档间推进。
+# 进度盘账写 data/tier-progress.json（每档覆盖率 + 剩余时间估算）。
+#
+# 并发：与 feed-drip 同 group 会互相顶掉；这里单开 group 且 cancel-in-progress=false
+# （分档轮不互相打断，宁可排队等下一班）。
+
+on:
+  schedule:
+    # 每 2 小时一班（UTC 偶数点；24h 不间断）
+    - cron: "0 */2 * * *"
+  workflow_dispatch:
+    inputs:
+      screen_cap:
+        description: "海选上限（本轮）"
+        required: false
+        default: "600"
+        type: string
+      prose_top_k:
+        description: "精评 top-K（本轮产出卡数）"
+        required: false
+        default: "120"
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: feed-tier-drip
+  cancel-in-progress: false
+
+jobs:
+  tier-drip:
+    runs-on: ubuntu-latest
+    timeout-minutes: 100
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Setup pnpm
+        uses: actions/setup-pnpm@v6
+        with:
+          version: 9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run tier drip（分档队列稳态推进）
+        env:
+          FEED_FETCH: "1"
+          SCREEN_CAP: ${{ github.event.inputs.screen_cap || '600' }}
+          PROSE_TOP_K: ${{ github.event.inputs.prose_top_k || '120' }}
+          SCORING_BUDGET_MS: "2400000"
+          # 单账号配额：轮转压低让位 README（README 用池首 token，见 github-tokens.ts）
+          REFRESH_BATCH: "600"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          EXTRA_GITHUB_PATS: ${{ secrets.EXTRA_GITHUB_PATS }}
+          # 免费矩阵（执行层按模型直连）
+          ZHIPU_API_KEY: ${{ secrets.ZHIPU_API_KEY }}
+          MODELSCOPE_API_KEY: ${{ secrets.MODELSCOPE_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          BAILIAN_API_KEY: ${{ secrets.BAILIAN_API_KEY }}
+          LLM_FALLBACKS: agnes,agnes,zhipu,zhipu,zhipu,zhipu,groq,groq,groq,groq,groq,groq,groq@openai/gpt-oss-20b,groq@openai/gpt-oss-20b,groq@qwen/qwen3.8-27b,groq@qwen/qwen3.8-27b,gemini,gemini,gemini,gemini@gemini-2.5-flash-lite,gemini@gemini-2.5-flash-lite,gemini@gemini-3.5-flash-lite,gemini@gemini-3.5-flash-lite,gemini@gemini-3.1-flash-lite,mistral,mistral,mistral,mistral,cerebras,cerebras,hf@meta-llama/Llama-3.3-70B-Instruct,hf@Qwen/Qwen2.5-72B-Instruct,openrouter@google/gemma-4-31b-it:free,custom:modelscope,custom:spark
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          SILICONFLOW_API_KEY: ${{ secrets.SILICONFLOW_API_KEY }}
+          MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+          HF_API_KEY: ${{ secrets.HF_API_KEY }}
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+          AGNES_MODEL: ${{ secrets.AGNES_MODEL || 'agnes-2.0-flash' }}
+          CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+          MODELSCOPE_BASE_URL: https://api-inference.modelscope.cn/v1
+          MODELSCOPE_MODEL: deepseek-ai/DeepSeek-V4-Flash-0731
+          MODELSCOPE_EXTRA_PARAMS: '{"enable_thinking":false}'
+          SPARK_API_KEY: ${{ secrets.SPARK_API_KEY }}
+          SPARK_BASE_URL: https://spark-api-open.xf-yun.com/v1
+          SPARK_MODEL: lite
+          DIGEST_REPO: ${{ github.repository }}
+        run: npx tsx scripts/gittok-fullbuild.ts
+
+      - name: Commit feed + tier progress
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/
+          if git diff --cached --quiet; then
+            echo "No new feed files to commit"
+          else
+            DATE=$(date -u +%Y-%m-%dT%H:%MZ)
+            git commit -m "feed: ${DATE} tier drip update"
+            git pull --rebase
+            git push
+          fi

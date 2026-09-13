@@ -87,6 +87,7 @@ export const SOURCE_LABELS: Record<string, string> = {
   trending: "热门",
   bigbro: "收录",
   search: "搜索",
+  tier: "全量", // 分档队列（1k+ 星全池按档推进）来源标识
 };
 
 // ---------------------------------------------------------------------------

@@ -203,9 +203,11 @@ export function buildPlan(env: NodeJS.ProcessEnv = process.env): PlanResult {
   const hfKeys = resolveKeys("HF_TOKEN", collectKeys(fleet, "Hugging Face"));
   if (hfKeys.length > 0) outEnv["HF_TOKEN"] = hfKeys[0]!;
 
-  // ⑥ GitHub PAT 池（README 拉取 + search 配额）：EXTRA_GITHUB_PATS（env 优先，逗号分隔）
-  //    或本地 GITHUB-TOKENS.txt 全量并入。
-  //    单 token = 5000/h core + 30/min search；5 token = 5 倍（全量建库的硬前置）。
+  // ⑥ GitHub PAT 池（README 拉取 + search + stars 轮转共用 core 配额）。
+  //    实测（2026-09-14）：KEY 文件里 5 个 token **同属一个账号**（login 相同）——
+  //    共享同一个 5000/h 桶，多 token ≠ 多额度；真正的让位手段是 REFRESH_BATCH。
+  //    另实测：.env 的 GITHUB_TOKEN 已失效（/user 401）→ 必须用 KEY 文件的 token 覆盖主位，
+  //    否则主请求位（nextApiToken 池首）是坏 token，README 全 403。
   const envPats = (env["EXTRA_GITHUB_PATS"] ?? "")
     .split(",")
     .map((t) => t.trim())
@@ -219,6 +221,11 @@ export function buildPlan(env: NodeJS.ProcessEnv = process.env): PlanResult {
     if (!ghTokens.includes(t)) ghTokens.push(t);
   }
   if (ghTokens.length > 0) {
+    // 主位（GITHUB_TOKEN）用池内首个有效 token：覆盖 .env 里可能已失效的旧值
+    outEnv["GITHUB_TOKEN"] =
+      env["GITHUB_TOKEN"] && env["GITHUB_TOKEN"].length > 0 && envPats.includes(env["GITHUB_TOKEN"]!)
+        ? env["GITHUB_TOKEN"]
+        : ghTokens[0]!;
     outEnv["EXTRA_GITHUB_PATS"] = ghTokens.join(",");
   } else {
     missing.push("GitHub PAT 池（GITHUB-TOKENS.txt）——README 拉取配额");

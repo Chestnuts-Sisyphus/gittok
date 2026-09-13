@@ -28,7 +28,7 @@ import {
   type Phase1Score,
 } from "./prompts.ts";
 import { loadPhase1Scores, appendPhase1Scores, selectForProse, type SelectionInput } from "./two-phase.ts";
-import { nextApiToken, getApiTokens } from "../github-tokens.ts";
+import { nextReadmeToken, nextRotationToken, getApiTokens } from "../github-tokens.ts";
 import {
   loadProfile,
   saveProfile,
@@ -42,6 +42,14 @@ import { cleanV4, isSkeleton, isMirror } from "./stage1.ts";
 import { pack, checkBatch, fixAdjacent } from "./stage2.ts";
 import { ProductionScheduler, parseMatrix } from "./scheduler.ts";
 import { ScheduledLlmExecutor, executorFromMatrix } from "./executor.ts";
+import {
+  loadTierIndex,
+  loadTierProgress,
+  saveTierProgress,
+  tierCandidates,
+  tierProgress,
+  estimateRemaining,
+} from "./tiers.ts";
 import { QuantileNormalizer } from "./normalize.ts";
 import type {
   FeedCard,
@@ -444,8 +452,9 @@ async function refreshStarsRoundRobin(
       const item = queue[qi++]!;
       scanned++;
       try {
-        // 多 PAT 轮转（2026-09-06）：core 5000/h 按 token 计，按请求取号
-        const token = nextApiToken();
+        // 单账号配额调度（2026-09-14）：轮转用非 README 专用 token（多 token 时跳过首个），
+        // 避免把 README 的额度吃掉
+        const token = nextRotationToken();
         const headers: Record<string, string> = {
           Accept: "application/vnd.github+json",
           "X-GitHub-Api-Version": "2022-11-28",
@@ -710,7 +719,7 @@ async function fetchReadmes(repos: RepoForScoring[]): Promise<void> {
   const todo = repos.filter((r) => r.readme === undefined);
   if (todo.length === 0) return;
   let qi = 0;
-  const stats = { skeleton: 0, mirror: 0, noReadme: 0, pushedAt: 0 };
+  const stats = { skeleton: 0, mirror: 0, noReadme: 0, rateLimited: 0, pushedAt: 0 };
   const worker = async () => {
     while (qi < todo.length) {
       const r = todo[qi++]!;
@@ -719,7 +728,8 @@ async function fetchReadmes(repos: RepoForScoring[]): Promise<void> {
         continue;
       }
       try {
-        const token = nextApiToken();
+        // README 专用 token（首个 token 保留；轮转不碰）——单账号配额调度：README 永不饿死
+        const token = nextReadmeToken();
         const headers: Record<string, string> = {
           Accept: "application/vnd.github.raw",
           "X-GitHub-Api-Version": "2022-11-28",
@@ -728,7 +738,9 @@ async function fetchReadmes(repos: RepoForScoring[]): Promise<void> {
         const resp = await fetch(`https://api.github.com/repos/${r.repo}/readme`, { headers });
         if (!resp.ok) {
           if (resp.status === 403 || resp.status === 429) {
+            // 限流与「真无 README」分开计数：403 是配额/滥用闸（可重试），404 才是真无
             console.error(`  [feed/readme] rate limited at ${r.repo}, rotating`);
+            stats.rateLimited++;
           }
           r.readme = "";
           stats.noReadme++;
@@ -752,7 +764,7 @@ async function fetchReadmes(repos: RepoForScoring[]): Promise<void> {
       // pushed_at（同一 worker 顺带取；失败不影响主流程——pushedAt 缺失时组装回退 ts）
       if (r.pushedAt === undefined) {
         try {
-          const token = nextApiToken();
+          const token = nextReadmeToken(); // 同属「卡片输入侧」配额，用 README 专用 token
           const headers: Record<string, string> = { "X-GitHub-Api-Version": "2022-11-28" };
           if (token) headers["Authorization"] = `Bearer ${token}`;
           const resp = await fetch(`https://api.github.com/repos/${r.repo}`, { headers });
@@ -773,7 +785,7 @@ async function fetchReadmes(repos: RepoForScoring[]): Promise<void> {
   await Promise.all(workers);
   const withReadme = repos.filter((r) => r.readme).length;
   console.log(
-    `  [feed/readme] fetched ${withReadme}/${todo.length} READMEs（空壳 ${stats.skeleton} / 镜像 ${stats.mirror} / 拉取失败 ${stats.noReadme}）；pushedAt 补齐 ${stats.pushedAt}/${todo.length}`,
+    `  [feed/readme] fetched ${withReadme}/${todo.length} READMEs（空壳 ${stats.skeleton} / 镜像 ${stats.mirror} / 拉取失败 ${stats.noReadme}〔其中限流 ${stats.rateLimited}〕）；pushedAt 补齐 ${stats.pushedAt}/${todo.length}`,
   );
 }
 
@@ -1020,6 +1032,7 @@ export async function generateFeed(
   opts?: { runIntervalDays?: number },
 ): Promise<FeedCard[]> {
   const now = new Date().toISOString();
+  const runStartedAt = Date.now(); // 轮时长基准（分档剩余时间估算用）
   console.log("[feed] merging trending + search (incremental, bigbro stamping inside)...");
 
   // 调度器（方案 B 框架：批粒度路由/额度记账/断点续跑）+ 分位归一化（多模型混产前提）
@@ -1165,15 +1178,48 @@ export async function generateFeed(
   // 评分队列均衡：trending 来源优先（保证今日热门不被 search 淹没）；
   // search 组内按领域（searchQuery label = topics[0]）分桶、桶内按 star 降序、桶间轮询合并，
   // 保证每个领域都有代表进入评分队列（否则高星 AI 会挤掉低星非 AI，非 AI 拿不到评分就进不了 feed）
+  // 3.0 分档队列（2026-09-14 栗子拍板）：索引里「尚未产出卡」的仓库按 档位→星级 排序，
+  //     直接插到候选池头部——配合 cap 窗口形成「先把 t1 档吃完、再吃 t2、最后 t3」的推进。
+  //     索引缺失时整段跳过（降级为原有 trend+search 路径，不阻塞）。
+  const tierIndex = loadTierIndex();
+  if (tierIndex) {
+    const doneSet = new Set(existingScores.keys());
+    const candidates = tierCandidates(tierIndex, doneSet);
+    const tierOfRepo = tierIndex.repos ?? {};
+    let injected = 0;
+    for (const c of candidates) {
+      if (repoMap.has(c.repo)) continue; // 今天已抓到（trend/search 更鲜）→ 保留新数据
+      const e = tierOfRepo[c.repo];
+      repoMap.set(c.repo, {
+        repo: c.repo,
+        desc: "",
+        stars: c.stars,
+        language: c.lang ?? "",
+        topics: [],
+        source: "tier",
+        starGrowth: 0,
+        createdAt: undefined,
+        pushedAt: e?.pushedAt,
+        bigbros: [],
+        ts: now,
+      });
+      injected++;
+    }
+    console.log(`  [feed/tier] injected ${injected} 未完成仓库（索引 ${Object.keys(tierOfRepo).length} 条）`);
+  }
+
   const notScored = [...repoMap.values()].filter((m) => !existingScores.has(m.repo));
   // 待补评恢复的 repo 排最前（它们已经等了一轮，先补评）
   const pendingFirst = notScored.filter((m) => m.pending);
   const rest = notScored.filter((m) => !m.pending);
   // 非 search 新卡（trending；pending 恢复的 source=bigbro 旧快照也在此路径补评）
   // 2026-09-01 关注解耦：不再有 bigbro 新卡，旧的 MAX_BIGBRO_SCORE 配额随灌卡语义一并退役
-  const nonSearch = rest.filter((m) => m.source !== "search").sort((a, b) => b.stars - a.stars);
+  // 分档仓（source=tier）单列且排最前：它们是「全量建库」的主队列，优先于 trend/search
+  const tierFirst = rest.filter((m) => m.source === "tier").sort((a, b) => b.stars - a.stars);
+  const nonTier = rest.filter((m) => m.source !== "tier");
+  const nonSearch = nonTier.filter((m) => m.source !== "search").sort((a, b) => b.stars - a.stars);
   const searchBuckets = new Map<string, MergedRepo[]>();
-  for (const m of rest) {
+  for (const m of nonTier) {
     if (m.source !== "search") continue;
     const key = m.topics[0] ?? "unknown";
     if (!searchBuckets.has(key)) searchBuckets.set(key, []);
@@ -1203,8 +1249,11 @@ export async function generateFeed(
   // 已海选未精评的仓库本轮已消费过 prose 机会，不再占窗——否则窗口每轮只推进 prose 数（~60）而非
   // cap 数（400），万级池要 100+ 轮才筛得完；fresh 过滤后窗口每轮推进 cap 数，~20 轮筛完全池。
   // cap ≥ 全池（完整轮）时 fresh 过滤即空操作，语义与旧管道一致。
+  // 分档仓（source=tier）已在 tierFirst（按星级降序）→ 直接接在海选窗尾部：
+  // tier 队列优先于 trend/search（全量建库的主队列），但 pending 补评仍最前。
   const screenQueue: RepoForScoring[] = [
     ...pendingFirst,
+    ...tierFirst.filter((m) => !phase1Cache.has(m.repo)),
     ...nonSearch.filter((m) => !phase1Cache.has(m.repo)),
     ...roundRobin.filter((m) => !phase1Cache.has(m.repo)),
   ]
@@ -1564,7 +1613,30 @@ export async function generateFeed(
   scheduler.persist();
   executor.logHealth();
 
+  // 分档进度盘账（2026-09-14）：索引存在时按档统计覆盖率 + 剩余时间估算（线性外推，如实标注）
+  if (tierIndex) {
+    const prev = loadTierProgress();
+    const progress = tierProgress(tierIndex, final, prev);
+    saveTierProgress(progress);
+    const perRound = final.length - (prev ? sumTierDone(prev) : 0);
+    const roundMinutes = Math.max(1, Math.round((Date.now() - runStartedAt) / 60_000));
+    console.log(
+      `  [feed/tier] 进度：${Object.entries(progress.tiers)
+        .map(([k, v]) => `${k}=${v.done}/${v.total}(${(v.coverage * 100).toFixed(1)}%)`)
+        .join(" ")}${progress.activeTier ? ` 当前档=${progress.activeTier}` : " 全部完成"}`,
+    );
+    if (perRound > 0) {
+      const est = estimateRemaining(progress, perRound, roundMinutes);
+      console.log(`  [feed/tier] 估算：${est.text}`);
+    }
+  }
+
   return final;
+}
+
+/** 上一轮各档 done 之和（用于算「本轮新增了几张卡」） */
+function sumTierDone(p: { tiers: Record<string, { done: number }> }): number {
+  return Object.values(p.tiers).reduce((s, v) => s + (v.done ?? 0), 0);
 }
 
 // ---------------------------------------------------------------------------

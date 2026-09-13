@@ -6,7 +6,7 @@
  */
 
 /** 项目进入信息流的来源 */
-export type FeedSource = "trending" | "bigbro" | "search";
+export type FeedSource = "trending" | "bigbro" | "search" | "tier";
 
 /** 标签来源 */
 export type TagSource = "llm" | "github" | "language";
