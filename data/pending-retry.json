@@ -1,5 +1,21 @@
 [
   {
+    "repo": "AaronShawn/Maodie-Desktop-Pet",
+    "desc": "耄耋 Maodie — 折耳橘猫 Windows 桌宠：眼睛跟着鼠标看、点它会哈气、喂小鱼干会变圆 | Python + PyQt5 + 参数化 SVG",
+    "stars": 0,
+    "language": "Python",
+    "topics": [
+      "virtual-pet"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-09-13T17:39:50Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-13T17:57:52Z",
+    "retryCount": 1
+  },
+  {
     "repo": "Aif4thah/Dojo-101",
     "desc": "Offline Cybersecurity Knowledge Base",
     "stars": 207,
@@ -24,12 +40,12 @@
       "data-visualization"
     ],
     "source": "search",
-    "starGrowth": 4,
+    "starGrowth": 0,
     "createdAt": "2026-02-04T07:50:06Z",
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-13T12:51:03Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "akustikrausch/amiga-paula-8364-emulator",
@@ -64,19 +80,19 @@
     "retryCount": 1
   },
   {
-    "repo": "AlexanderIstomin/h3ddle",
-    "desc": "Open-source native macOS studio for local AI video, image, music, sound effects, and speech generation, with timeline editing and export. No cloud or subscription.",
-    "stars": 4,
-    "language": "Swift",
+    "repo": "alexwest1981/sonix",
+    "desc": "Digital audio workstation i Rust — stems, kanalrack, mixer med bussar och sends, plugin-host och offline-export som låter som högtalarna.",
+    "stars": 7,
+    "language": "Rust",
     "topics": [
-      "video-editor"
+      "music-production"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2026-08-13T14:39:50Z",
+    "createdAt": "2026-09-05T19:44:33Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-08-31T11:10:08Z",
+    "ts": "2026-09-13T19:52:07Z",
     "retryCount": 1
   },
   {
@@ -125,7 +141,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-08T20:11:18Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "artempyanykh/marksman",
@@ -136,12 +152,28 @@
       "note-taking"
     ],
     "source": "search",
-    "starGrowth": 1,
+    "starGrowth": 0,
     "createdAt": "2021-03-06T13:23:47Z",
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-12T18:03:37Z",
-    "retryCount": 2
+    "retryCount": 3
+  },
+  {
+    "repo": "ATH-MaaS/ComfyUI-Copilot",
+    "desc": "An AI-powered custom node for ComfyUI designed to enhance workflow automation and provide intelligent assistance",
+    "stars": 5512,
+    "language": "TypeScript",
+    "topics": [
+      "rag"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2025-02-14T09:02:28Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-11T02:19:06Z",
+    "retryCount": 1
   },
   {
     "repo": "bengarrett/RetroTxt",
@@ -157,7 +189,23 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-12T10:39:46Z",
-    "retryCount": 4
+    "retryCount": 5
+  },
+  {
+    "repo": "brentvollebregt/auto-py-to-exe",
+    "desc": "Converts .py to .exe using a simple graphical interface ",
+    "stars": 4991,
+    "language": "JavaScript",
+    "topics": [
+      "automation"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2018-02-09T23:32:35Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-11T08:54:32Z",
+    "retryCount": 1
   },
   {
     "repo": "BuilderIO/agent-native",
@@ -166,12 +214,12 @@
     "language": "TypeScript",
     "topics": [],
     "source": "trending",
-    "starGrowth": 13,
+    "starGrowth": 0,
     "createdAt": "2026-03-12T14:57:10Z",
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-12T16:36:53.136Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "cartesiancs/cartcut",
@@ -190,6 +238,22 @@
     "retryCount": 1
   },
   {
+    "repo": "cheapsnack/lingosee",
+    "desc": "A voice-first roguelike for practicing conversational Japanese asking for repetition scores higher than a lucky guess.",
+    "stars": 1,
+    "language": "TypeScript",
+    "topics": [
+      "roguelike"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-09-03T18:49:30Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-07T17:21:12Z",
+    "retryCount": 1
+  },
+  {
     "repo": "Chess-analysis-mcp/tintins-chess-analysis",
     "desc": "Stockfish + LLM chess coach: an MCP server and web board that explain your mistakes in plain English",
     "stars": 44,
@@ -203,6 +267,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-13T11:22:27Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "codelitdev/courselit",
+    "desc": "Create/Sell courses and digital downloads and publish blogs on your own branded website. An open source alternative to Teachable, Thinkific, Podia and the likes.",
+    "stars": 1265,
+    "language": "TypeScript",
+    "topics": [
+      "course"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2019-07-31T16:34:00Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-10T12:30:15Z",
     "retryCount": 1
   },
   {
@@ -233,7 +313,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-07T19:24:56Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "cskefu/cskefu",
@@ -249,7 +329,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-12T07:57:58Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "Demizo/Daily_You",
@@ -260,12 +340,44 @@
       "note-taking"
     ],
     "source": "search",
-    "starGrowth": 4,
+    "starGrowth": 0,
     "createdAt": "2023-08-05T04:01:03Z",
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-12T16:03:01Z",
-    "retryCount": 4
+    "retryCount": 5
+  },
+  {
+    "repo": "Dobiasd/FunctionalPlus",
+    "desc": "Functional Programming Library for C++. Write concise and readable C++ code.",
+    "stars": 2294,
+    "language": "C++",
+    "topics": [
+      "algorithms"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2015-11-23T20:41:52Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-13T18:59:56Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "dragonbough/tomo",
+    "desc": "productivity tool featuring todo-lists, a virtual pet, and pomodoro timers: made for my a level compsci nea",
+    "stars": 1,
+    "language": "Python",
+    "topics": [
+      "virtual-pet"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2025-07-22T18:49:36Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-10T22:32:42Z",
+    "retryCount": 1
   },
   {
     "repo": "DSH-EAC/DSH-Desktop-EAC",
@@ -276,12 +388,28 @@
       "desktop"
     ],
     "source": "search",
-    "starGrowth": 7,
+    "starGrowth": 0,
     "createdAt": "2026-08-14T16:29:54Z",
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-13T01:55:30Z",
-    "retryCount": 4
+    "retryCount": 5
+  },
+  {
+    "repo": "elringus/sprite-dicing",
+    "desc": "Cross-engine tool for lossless compression of sprites with identical regions",
+    "stars": 1528,
+    "language": "Rust",
+    "topics": [
+      "godot"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2017-09-21T15:41:07Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-11T18:58:21Z",
+    "retryCount": 1
   },
   {
     "repo": "ergut/mcp-logseq",
@@ -297,7 +425,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-13T08:39:04Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Field-of-Dream-Studio/hotaru",
@@ -322,12 +450,12 @@
     "language": "Batchfile",
     "topics": [],
     "source": "trending",
-    "starGrowth": 55,
+    "starGrowth": 0,
     "createdAt": "2024-10-08T20:02:28Z",
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-12T22:00:03.438Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "git-bug/git-bug",
@@ -342,7 +470,7 @@
     "createdAt": "2018-07-12T07:55:57Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-13T16:11:48Z",
+    "ts": "2026-09-13T19:55:26Z",
     "retryCount": 1
   },
   {
@@ -359,7 +487,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-12T17:17:21Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "google-gemini/gemini-skills",
@@ -368,7 +496,7 @@
     "language": "Python",
     "topics": [],
     "source": "trending",
-    "starGrowth": 13,
+    "starGrowth": 0,
     "createdAt": "2026-02-06T04:17:28Z",
     "silentRounds": 0,
     "bigbros": [],
@@ -389,6 +517,38 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-10T05:13:08Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "HiThink-Tech/Financial-API",
+    "desc": "同花顺官方 A股金融数据服务，提供股票实时行情、历史行情、财务报表、指数、板块、涨停等数据，适用于 AI Agent、量化研究和应用开发，支持 API、MCP、CLI 和 Python。Official Tonghuashun (HiThink) A-share financial data service providing real-time and historical stock market data, financial statements, indices, sectors and limit-up data for AI agents, quantitative research and application development.",
+    "stars": 3232,
+    "language": "TypeScript",
+    "topics": [
+      "ai-agent"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-06-09T02:28:17Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-11T09:10:30Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "hrvach/deskhop",
+    "desc": "Fast Desktop Switching Device",
+    "stars": 7903,
+    "language": "C",
+    "topics": [
+      "raspberry-pi"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2023-12-24T22:20:37Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-13T18:58:06Z",
     "retryCount": 1
   },
   {
@@ -437,7 +597,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-13T02:11:29Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "kitao/pyxel-mcp",
@@ -453,7 +613,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-13T14:46:57Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "kitao/pyxel-skill",
@@ -469,23 +629,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-13T14:47:25Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "konamgil/mandu",
-    "desc": "An open-source framework that prevents AI agents from breaking your codebase.",
-    "stars": 46,
-    "language": "TypeScript",
-    "topics": [
-      "web-framework"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-01-21T15:48:41Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-08-27T06:01:34Z",
-    "retryCount": 3
+    "retryCount": 2
   },
   {
     "repo": "lingxuanqjc-alt/note-bridge-desktop",
@@ -501,7 +645,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-09T17:07:03Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "lk-geimfari/awesomo",
@@ -533,7 +677,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-12T23:54:55Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "mattpocock/dictionary-of-ai-coding",
@@ -563,7 +707,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-13T08:38:40Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "microsoft/AI-Engineering-Coach",
@@ -580,6 +724,22 @@
     "retryCount": 1
   },
   {
+    "repo": "Mikhelmariya/Forza-Horizon-6-Trainer",
+    "desc": "Forza Horizon 6 Trainer (FH6) - free all-in-one cheat tool: unlimited credits, wheelspins & skill points, free cars, autoshow unlock, free upgrades and a live memory scanner. Steam & GamePass. Portable exe.",
+    "stars": 42,
+    "language": "",
+    "topics": [
+      "cheatsheet"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-08-18T17:36:03Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-13T06:41:25Z",
+    "retryCount": 1
+  },
+  {
     "repo": "momuandteasteam/aidaw",
     "desc": "Headless DAW engine operated through MCP by Codex, Claude Code, and other coding agents",
     "stars": 4,
@@ -593,6 +753,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-11T19:25:44Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "moonbench/catode32",
+    "desc": "Virtual pet for the ESP32",
+    "stars": 105,
+    "language": "Rust",
+    "topics": [
+      "virtual-pet"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-02-07T14:26:31Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-13T18:23:15Z",
     "retryCount": 1
   },
   {
@@ -640,7 +816,7 @@
     "createdAt": "2018-12-23T19:55:49Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-13T07:50:40Z",
+    "ts": "2026-09-13T18:42:59Z",
     "retryCount": 1
   },
   {
@@ -657,7 +833,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-13T16:04:07Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "oguzhankayan/turkish-native",
@@ -673,6 +849,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-13T10:52:37Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "olivierh59500/3d_doc",
+    "desc": "Conversion in golang/ebiten of the demo \"3D-DOC\" from TCB",
+    "stars": 1,
+    "language": "Go",
+    "topics": [
+      "demoscene"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2025-06-03T12:34:23Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-13T19:47:46Z",
     "retryCount": 1
   },
   {
@@ -724,6 +916,22 @@
     "retryCount": 1
   },
   {
+    "repo": "passnodesewer/Serum-2-Free",
+    "desc": "Serum 2.1.5 Free is a powerful synth for music production, sound design, and creative audio projects. Explore Serum 2 presets, tutorials, features, installation guides, and useful resources for producers and electronic music enthusiasts on GitHub.to master the next-generation synthesizer in one place.",
+    "stars": 88,
+    "language": "C++",
+    "topics": [
+      "music-production"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-09-13T18:14:12Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-13T18:29:00Z",
+    "retryCount": 1
+  },
+  {
     "repo": "penberg/titania",
     "desc": "Project Titania is a complete large language model system, from transformer to transistor, simple enough for one person to understand.",
     "stars": 28,
@@ -732,12 +940,12 @@
       "llm-model"
     ],
     "source": "search",
-    "starGrowth": 28,
+    "starGrowth": 0,
     "createdAt": "2026-09-10T17:58:03Z",
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-13T09:49:57Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "petergyang/no-ai-slop",
@@ -746,12 +954,12 @@
     "language": "Python",
     "topics": [],
     "source": "trending",
-    "starGrowth": 495,
+    "starGrowth": 0,
     "createdAt": "2026-07-07T05:05:58Z",
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-12T16:36:53.136Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "postboy/roguehike",
@@ -766,7 +974,7 @@
     "createdAt": "2024-01-02T19:52:35Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-13T15:22:08Z",
+    "ts": "2026-09-13T19:54:18Z",
     "retryCount": 1
   },
   {
@@ -783,7 +991,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-13T07:53:31Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "raine/workmux",
@@ -812,6 +1020,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-12T20:22:27Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "RobLoach/raylib-lua-sol",
+    "desc": "A simple and easy-to-use Lua library to enjoy videogames programming",
+    "stars": 120,
+    "language": "C++",
+    "topics": [
+      "raylib"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2019-04-25T06:49:51Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-13T18:46:51Z",
     "retryCount": 1
   },
   {
@@ -831,18 +1055,34 @@
     "retryCount": 1
   },
   {
+    "repo": "RoyiAvital/StackExchangeCodes",
+    "desc": "Codes related to answers on StackExchange Network.",
+    "stars": 122,
+    "language": "MATLAB",
+    "topics": [
+      "mathematics"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2015-10-23T10:52:12Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-13T18:31:20Z",
+    "retryCount": 1
+  },
+  {
     "repo": "sandeco/reversa",
     "desc": "Transform legacy systems into executable specifications for AI coding agents",
     "stars": 1597,
     "language": "JavaScript",
     "topics": [],
     "source": "trending",
-    "starGrowth": 2,
+    "starGrowth": 0,
     "createdAt": "2026-04-26T13:47:10Z",
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-12T16:36:53.136Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "sezaakgun/cc-arcade",
@@ -858,7 +1098,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-13T14:36:07Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "shaun8149/sdf-js",
@@ -888,7 +1128,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-08-27T11:29:41Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "tbphp/gpt-load",
@@ -935,6 +1175,22 @@
     "retryCount": 1
   },
   {
+    "repo": "Toobad269/TB-32",
+    "desc": "Ein vollständiger virtueller PC, von Grund auf selbst gebaut: eigene 32-Bit-CPU, eigenes BIOS, eigener Assembler und C-Compiler, eigenes Betriebssystem mit Dateisystem, Fenstern und Netzwerkstack. Python emuliert nur die Chips — alles darüber ist echter Maschinencode.",
+    "stars": 2,
+    "language": "C",
+    "topics": [
+      "pygame"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-08-04T09:07:01Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-08-26T19:08:08Z",
+    "retryCount": 1
+  },
+  {
     "repo": "tuya-cloudcutter/tuya-cloudcutter",
     "desc": "A tool that disconnects Tuya IoT devices from the cloud, allowing them to run completely locally.",
     "stars": 1905,
@@ -959,12 +1215,12 @@
       "chatbot"
     ],
     "source": "search",
-    "starGrowth": 1,
+    "starGrowth": 0,
     "createdAt": "2020-03-21T13:01:53Z",
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-10T14:30:22Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "wajeeha-asad/CivicAgent-PK-wajeeha",
@@ -980,7 +1236,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-12T13:19:07Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "william-lbn/aiagentsystem",
@@ -996,7 +1252,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-13T13:21:31Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "wybthon/wybthon",
@@ -1012,7 +1268,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-06T22:37:55Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Xcy8010/Chevoink",
@@ -1028,6 +1284,6 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-13T17:01:42Z",
-    "retryCount": 1
+    "retryCount": 2
   }
 ]
