@@ -501,6 +501,21 @@ export function parseScoringResult(raw: string): ScoringResult[] {
     const arr = JSON.parse(jsonStr) as RawScoringItem[];
     return arr.map(mapRawItem).filter((x): x is ScoringResult => x !== null);
   } catch (err) {
+    // 修复「值未加引号」型畸形（实测：`"detail_cn":AI编程中充斥着…`——模型偶发漏开引号）。
+    // 只在直接解析失败后尝试，修好即用；修不好再走截断恢复/重评（不掩盖，只多一层容错）。
+    const repaired = quoteUnquotedValues(jsonStr);
+    if (repaired !== jsonStr) {
+      try {
+        const arr = JSON.parse(repaired) as RawScoringItem[];
+        const mapped = arr.map(mapRawItem).filter((x): x is ScoringResult => x !== null);
+        if (mapped.length > 0) {
+          console.log(`  [feed/scoring] recovered ${mapped.length} results after quoting repair`);
+          return mapped;
+        }
+      } catch {
+        // 修不好 → 落到下面的截断恢复
+      }
+    }
     const partial = extractPartialResults(jsonStr);
     if (partial.length > 0) {
       console.log(`  [feed/scoring] recovered ${partial.length} partial results from truncated JSON`);
@@ -509,6 +524,24 @@ export function parseScoringResult(raw: string): ScoringResult[] {
     console.error(`[feed/scoring] JSON parse failed: ${err}`);
     return [];
   }
+}
+
+/**
+ * 把「值缺开引号」的字段补上引号：`"key":裸值` → `"key":"裸值"`（裸值截到 `,` / `}` / `]` / 行末）。
+ * 只处理紧跟在 `"key":` 之后的裸值，不触碰已引号包裹的值与嵌套结构。
+ */
+export function quoteUnquotedValues(json: string): string {
+  return json.replace(
+    /("(?:[A-Za-z_][A-Za-z0-9_]*)":)\s*([^"[{\s][^,}\]]*?)(\s*[,}\]])/g,
+    (_m, key: string, value: string, tail: string) => {
+      const trimmed = value.trim().replace(/["\s]+$/, "");
+      if (!trimmed) return _m;
+      // 已引号/数字/布尔/null 不动（数字与字面量是合法 JSON）
+      if (/^-?\d+(\.\d+)?$/.test(trimmed) || /^(true|false|null)$/.test(trimmed)) return _m;
+      const escaped = trimmed.replace(/\\/g, "\\\\").replace(/"/g, '\\"');
+      return `${key}"${escaped}"${tail}`;
+    },
+  );
 }
 
 /** 修复 JSON 字符串值中的原始控制字符。仅修复字符串值内部的控制字符，不影响 JSON 结构。 */

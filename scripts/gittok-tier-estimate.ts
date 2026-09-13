@@ -15,7 +15,6 @@ const THRESHOLDS = [100_000, 50_000, 20_000, 10_000, 7_000, 5_000, 3_000, 2_000,
 
 /** 实测吞吐（可读环境变量覆盖；默认取 09-14 点火跑实据：60 精评卡 / 45 分钟窗口） */
 const CARDS_PER_ROUND = Number(process.env["EST_CARDS_PER_ROUND"] ?? 60);
-const ROUND_MINUTES = Number(process.env["EST_ROUND_MINUTES"] ?? 45);
 /** 24h 稳态运转：每天实际能跑的轮数（每 2h 一班 = 12 班/天；留 1 班给维护） */
 const ROUNDS_PER_DAY = Number(process.env["EST_ROUNDS_PER_DAY"] ?? 11);
 
