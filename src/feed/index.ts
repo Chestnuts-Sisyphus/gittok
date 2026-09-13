@@ -94,8 +94,11 @@ const DAILY_GROWTH_THRESHOLD = 5;
 const RISING_AGE_DAYS = 90;
 /** 「刚冒头」日涨星下限（高于 daily 的 5，确保是真实爆发而非缓慢积累） */
 const RISING_GROWTH_THRESHOLD = 30;
-/** stars 轮转刷新：每天最多刷新的库内 repo 数（rate limit 预算：search ~1050 + 轮转 2000 < 5000/h） */
-const REFRESH_BATCH = 2000;
+/** stars 轮转刷新：每天最多刷新的库内 repo 数（rate limit 预算：search ~1050 + 轮转 2000 < 5000/h）。
+ *  可用 REFRESH_BATCH 覆盖——**全量建库时必须压低**：star 轮转与 README 拉取共用同一 core 配额，
+ *  轮转吃满 5000/h 会让 README 全线 403（2026-09-14 实测：0/60 READMEs，根因=轮转先烧光 core）。
+ *  全量档建议 REFRESH_BATCH=200（只保时效信号），把配额让给 README。 */
+const REFRESH_BATCH = Number(process.env["REFRESH_BATCH"] ?? 2000);
 /** stars 刷新并发 */
 const REFRESH_CONCURRENCY = 8;
 /** 轮转游标文件（记录下次从哪开始刷新） */

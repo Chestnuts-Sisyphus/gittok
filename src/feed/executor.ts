@@ -128,17 +128,34 @@ export function keyFp(k: string | undefined): string {
  */
 export class ScheduledLlmExecutor {
   private readonly lanes = new Map<string, Lane>();
-  private readonly opts: { emptyRetries: number; emptyBackoffMs: number; cooldownMs: number };
+  private readonly opts: {
+    emptyRetries: number;
+    emptyBackoffMs: number;
+    cooldownMs: number;
+    waitForCooldown: boolean;
+    maxWaitMs: number;
+  };
 
   constructor(
     specs: LaneSpec[] = [],
-    opts?: { emptyRetries?: number; emptyBackoffMs?: number; cooldownMs?: number },
+    opts?: {
+      emptyRetries?: number;
+      emptyBackoffMs?: number;
+      cooldownMs?: number;
+      waitForCooldown?: boolean;
+      maxWaitMs?: number;
+    },
   ) {
     this.opts = {
       emptyRetries: opts?.emptyRetries ?? 2,
       emptyBackoffMs: opts?.emptyBackoffMs ?? 3_000,
       // 熔断时长：魔搭节流是「分钟级窗口」（B 实测同日先正常后空响应）——5 分钟与编队 429 冷却同刻
       cooldownMs: opts?.cooldownMs ?? 5 * 60_000,
+      // 降档等待：全池冷却时不立刻熔断失败，而是等到最早账号解冻再试（免费档友好；
+      // 30 个并发批撞分钟级窗口时把「熔断-降级」变成「排队慢跑」——实测 32 并发 3 秒打满双账号）
+      waitForCooldown: opts?.waitForCooldown ?? true,
+      // 等待上限：单次调用最多等这么久（超过则交上层重评/pending；避免把批窗全耗在等待上）
+      maxWaitMs: opts?.maxWaitMs ?? 90_000,
     };
     for (const s of specs) this.register(s);
   }
@@ -206,7 +223,17 @@ export class ScheduledLlmExecutor {
             break;
           }
         }
-        if (idx < 0) break; // 池内全冷却 → 熔断判定
+        if (idx < 0) {
+          // 池内全冷却：优先**降档等待**（等到最早账号解冻再试），而不是立刻熔断失败。
+          // 免费档友好（把「熔断-降级到编队」变成「排队慢跑」）；waitForCooldown=false 时保持旧语义。
+          const earliest = Math.min(...lane.instCooldownUntil);
+          const wait = earliest - Date.now();
+          if (this.opts.waitForCooldown && wait > 0 && wait <= this.opts.maxWaitMs) {
+            await new Promise((r) => setTimeout(r, wait + 50));
+            continue; // 重入循环（此时已有账号解冻）
+          }
+          break; // 超出等待上限 → 熔断判定
+        }
         lane.cursor = idx + 1;
         const inst = pool[idx]!;
         try {

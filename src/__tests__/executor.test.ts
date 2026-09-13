@@ -22,7 +22,9 @@ function fakeProvider(script: Array<{ text?: string; err?: string }>): LlmProvid
   return p;
 }
 
-const fast = { emptyRetries: 2, emptyBackoffMs: 1, cooldownMs: 20 };
+// 测试预设：全池冷却即熔断（waitForCooldown=false，专测硬失败路径）；
+// 降档等待语义（生产默认）另用 downshift 预设测。
+const fast = { emptyRetries: 2, emptyBackoffMs: 1, cooldownMs: 20, waitForCooldown: false };
 
 describe("ScheduledLlmExecutor 通道路由", () => {
   it("未注册键 → callerFor 返回 null（调用方走编队兜底）", () => {
@@ -124,6 +126,47 @@ describe("ScheduledLlmExecutor 通道路由", () => {
     const caller = ex.callerFor("openrouter:x:free")!;
     await expect(caller("p", 10)).rejects.toThrow(/rate limited/);
     expect(ex.callerFor("openrouter:x:free")).toBeNull();
+  });
+
+  it("降档等待（生产默认）：账号 429 冷却 → 等到解冻继续跑（不熔断）", async () => {
+    let aCalls = 0;
+    const a = {
+      name: "a",
+      async call(): Promise<string> {
+        aCalls++;
+        if (aCalls === 1) throw Object.assign(new Error("429 rate limited"), { status: 429 });
+        return "after-wait";
+      },
+    };
+    const ex = new ScheduledLlmExecutor([], {
+      emptyRetries: 1,
+      emptyBackoffMs: 1,
+      cooldownMs: 60,
+      waitForCooldown: true,
+      maxWaitMs: 5_000,
+    });
+    ex.register({ provider: "zhipu", model: "m", keys: ["k1"], factory: () => [a] });
+    const caller = ex.callerFor("zhipu:m")!;
+    // 单账号池：429 → 该账号冷却 → 降档等待解冻 → 重试成功（一次调用内完成）
+    expect(await caller("p", 10)).toBe("after-wait");
+    expect(aCalls).toBe(2);
+    expect(ex.health()[0]!.cooldowns).toBe(0); // 全程未熔断
+  });
+
+  it("降档等待上限：等待超过 maxWaitMs → 交上层（抛错，不无限挂）", async () => {
+    const dead = fakeProvider([{ err: "429 rate limited" }]);
+    const ex = new ScheduledLlmExecutor([], {
+      emptyRetries: 0,
+      emptyBackoffMs: 1,
+      cooldownMs: 5_000,
+      waitForCooldown: true,
+      maxWaitMs: 50, // 远小于 cooldownMs
+    });
+    ex.register({ provider: "zhipu", model: "m", keys: ["k1"], factory: () => [dead] });
+    const caller = ex.callerFor("zhipu:m")!;
+    await expect(caller("p", 10)).rejects.toThrow(/429/);
+    // 通道已熔断（等待超限后走熔断判定）
+    expect(ex.health()[0]!.cooldowns).toBe(1);
   });
 
   it("非节流错误（如 401）不重试不熔断，直接上抛", async () => {
