@@ -1207,6 +1207,8 @@ export async function generateFeed(
         pushedAt: e?.pushedAt,
         bigbros: [],
         ts: now,
+        // readme 留 undefined（**不是空串**）：空串会被 fetchReadmes 的「已处理」判定跳过，
+        // 导致分档仓永远拿不到输入块（facts 的 G-source 闸随之不可满足）——实测踩坑。
       });
       injected++;
     }
