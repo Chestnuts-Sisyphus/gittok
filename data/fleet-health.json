@@ -1,366 +1,5 @@
 [
   {
-    "job": "feed",
-    "at": "2026-09-13T20:15:41.249Z",
-    "workers": [
-      {
-        "name": "zhipu",
-        "calls": 1,
-        "ok": 0,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 1,
-        "cooling": false,
-        "lastError": "Error: 401 令牌已过期或验证不正确"
-      },
-      {
-        "name": "agnes",
-        "calls": 1,
-        "ok": 1,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 0,
-        "cooling": false
-      },
-      {
-        "name": "agnes#2",
-        "calls": 3,
-        "ok": 1,
-        "err429": 2,
-        "cooldowns": 0,
-        "otherErrors": 0,
-        "cooling": false,
-        "lastError": "Error: 429 You’ve reached the API rate limit for free users. Upgrade to a Token Plan to unlock higher limits and continue using the API without interruption. (request id: 2026091319592466472070SVRx9bT"
-      },
-      {
-        "name": "zhipu#2",
-        "calls": 3,
-        "ok": 1,
-        "err429": 2,
-        "cooldowns": 0,
-        "otherErrors": 0,
-        "cooling": false,
-        "lastError": "Error: 429 您的账户已达到速率限制，请您控制请求频率"
-      },
-      {
-        "name": "zhipu#3",
-        "calls": 2,
-        "ok": 1,
-        "err429": 1,
-        "cooldowns": 0,
-        "otherErrors": 0,
-        "cooling": false,
-        "lastError": "Error: 429 该模型当前访问量过大，请您稍后再试"
-      },
-      {
-        "name": "zhipu#4",
-        "calls": 1,
-        "ok": 1,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 0,
-        "cooling": false
-      },
-      {
-        "name": "zhipu#5",
-        "calls": 3,
-        "ok": 1,
-        "err429": 2,
-        "cooldowns": 0,
-        "otherErrors": 0,
-        "cooling": false,
-        "lastError": "Error: 429 您的账户已达到速率限制，请您控制请求频率"
-      },
-      {
-        "name": "groq",
-        "calls": 2,
-        "ok": 0,
-        "err429": 1,
-        "cooldowns": 0,
-        "otherErrors": 1,
-        "cooling": false,
-        "lastError": "Error: 413 Request too large for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Requested 8235, please re"
-      },
-      {
-        "name": "groq#2",
-        "calls": 1,
-        "ok": 1,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 0,
-        "cooling": false
-      },
-      {
-        "name": "groq#3",
-        "calls": 1,
-        "ok": 1,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 0,
-        "cooling": false
-      },
-      {
-        "name": "groq#4",
-        "calls": 2,
-        "ok": 0,
-        "err429": 1,
-        "cooldowns": 0,
-        "otherErrors": 1,
-        "cooling": false,
-        "lastError": "Error: 413 Request too large for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Requested 10833, please r"
-      },
-      {
-        "name": "groq#5",
-        "calls": 1,
-        "ok": 0,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 1,
-        "cooling": false,
-        "lastError": "Error: Unexpected empty response from groq"
-      },
-      {
-        "name": "groq#6",
-        "calls": 2,
-        "ok": 1,
-        "err429": 1,
-        "cooldowns": 0,
-        "otherErrors": 0,
-        "cooling": false,
-        "lastError": "Error: 429 Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 6817, Requested 506"
-      },
-      {
-        "name": "groq#7",
-        "calls": 1,
-        "ok": 0,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 1,
-        "cooling": false,
-        "lastError": "Error: Unexpected empty response from groq"
-      },
-      {
-        "name": "groq#8",
-        "calls": 1,
-        "ok": 0,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 1,
-        "cooling": false,
-        "lastError": "Error: Unexpected empty response from groq"
-      },
-      {
-        "name": "groq#9",
-        "calls": 1,
-        "ok": 1,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 0,
-        "cooling": false
-      },
-      {
-        "name": "groq#10",
-        "calls": 1,
-        "ok": 1,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 0,
-        "cooling": false
-      },
-      {
-        "name": "gemini",
-        "calls": 1,
-        "ok": 1,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 0,
-        "cooling": false
-      },
-      {
-        "name": "gemini#2",
-        "calls": 1,
-        "ok": 1,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 0,
-        "cooling": false
-      },
-      {
-        "name": "gemini#3",
-        "calls": 1,
-        "ok": 1,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 0,
-        "cooling": false
-      },
-      {
-        "name": "gemini#4",
-        "calls": 1,
-        "ok": 0,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 1,
-        "cooling": false,
-        "lastError": "Error: 404 status code (no body)"
-      },
-      {
-        "name": "gemini#5",
-        "calls": 1,
-        "ok": 0,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 1,
-        "cooling": false,
-        "lastError": "Error: 404 status code (no body)"
-      },
-      {
-        "name": "gemini#6",
-        "calls": 1,
-        "ok": 1,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 0,
-        "cooling": false
-      },
-      {
-        "name": "gemini#7",
-        "calls": 1,
-        "ok": 1,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 0,
-        "cooling": false
-      },
-      {
-        "name": "gemini#8",
-        "calls": 1,
-        "ok": 1,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 0,
-        "cooling": false
-      },
-      {
-        "name": "mistral",
-        "calls": 1,
-        "ok": 0,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 1,
-        "cooling": false,
-        "lastError": "Error: 401 status code (no body)"
-      },
-      {
-        "name": "mistral#2",
-        "calls": 1,
-        "ok": 0,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 1,
-        "cooling": false,
-        "lastError": "Error: 401 status code (no body)"
-      },
-      {
-        "name": "mistral#3",
-        "calls": 1,
-        "ok": 0,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 1,
-        "cooling": false,
-        "lastError": "Error: 401 status code (no body)"
-      },
-      {
-        "name": "mistral#4",
-        "calls": 1,
-        "ok": 0,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 1,
-        "cooling": false,
-        "lastError": "Error: 401 status code (no body)"
-      },
-      {
-        "name": "cerebras",
-        "calls": 1,
-        "ok": 0,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 1,
-        "cooling": false,
-        "lastError": "Error: 402 status code (no body)"
-      },
-      {
-        "name": "cerebras#2",
-        "calls": 1,
-        "ok": 0,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 1,
-        "cooling": false,
-        "lastError": "Error: 402 status code (no body)"
-      },
-      {
-        "name": "hf",
-        "calls": 1,
-        "ok": 0,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 1,
-        "cooling": false,
-        "lastError": "Error: 402 \"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\""
-      },
-      {
-        "name": "hf#2",
-        "calls": 1,
-        "ok": 0,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 1,
-        "cooling": false,
-        "lastError": "Error: 402 \"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\""
-      },
-      {
-        "name": "openrouter",
-        "calls": 4,
-        "ok": 0,
-        "err429": 4,
-        "cooldowns": 1,
-        "otherErrors": 0,
-        "cooling": false,
-        "lastError": "Error: 429 Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day"
-      },
-      {
-        "name": "custom-modelscope",
-        "calls": 1,
-        "ok": 1,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 0,
-        "cooling": false
-      },
-      {
-        "name": "custom-modelscope#2",
-        "calls": 0,
-        "ok": 0,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 0,
-        "cooling": false
-      },
-      {
-        "name": "custom-spark",
-        "calls": 0,
-        "ok": 0,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 0,
-        "cooling": false
-      }
-    ]
-  },
-  {
     "job": "digest",
     "at": "2026-09-13T22:05:49.623Z",
     "workers": [
@@ -698,6 +337,358 @@
         "name": "custom-spark",
         "calls": 1,
         "ok": 1,
+        "err429": 0,
+        "cooldowns": 0,
+        "otherErrors": 0,
+        "cooling": false
+      }
+    ]
+  },
+  {
+    "job": "feed",
+    "at": "2026-09-13T23:53:18.910Z",
+    "workers": [
+      {
+        "name": "zhipu",
+        "calls": 21,
+        "ok": 0,
+        "err429": 0,
+        "cooldowns": 0,
+        "otherErrors": 21,
+        "cooling": false,
+        "lastError": "Error: 401 令牌已过期或验证不正确"
+      },
+      {
+        "name": "agnes",
+        "calls": 45,
+        "ok": 19,
+        "err429": 26,
+        "cooldowns": 1,
+        "otherErrors": 0,
+        "cooling": false,
+        "lastError": "Error: 429 You’ve reached the API rate limit for free users. Upgrade to a Token Plan to unlock higher limits and continue using the API without interruption. (request id: 202609132346514970036735Trkxy"
+      },
+      {
+        "name": "agnes#2",
+        "calls": 39,
+        "ok": 18,
+        "err429": 20,
+        "cooldowns": 1,
+        "otherErrors": 1,
+        "cooling": false,
+        "lastError": "Error: 429 You’ve reached the API rate limit for free users. Upgrade to a Token Plan to unlock higher limits and continue using the API without interruption. (request id: 20260913234306792665460YcwTOh"
+      },
+      {
+        "name": "zhipu#2",
+        "calls": 36,
+        "ok": 21,
+        "err429": 15,
+        "cooldowns": 0,
+        "otherErrors": 0,
+        "cooling": false,
+        "lastError": "Error: 429 该模型当前访问量过大，请您稍后再试"
+      },
+      {
+        "name": "zhipu#3",
+        "calls": 42,
+        "ok": 19,
+        "err429": 23,
+        "cooldowns": 1,
+        "otherErrors": 0,
+        "cooling": false,
+        "lastError": "Error: 429 该模型当前访问量过大，请您稍后再试"
+      },
+      {
+        "name": "zhipu#4",
+        "calls": 40,
+        "ok": 18,
+        "err429": 21,
+        "cooldowns": 1,
+        "otherErrors": 1,
+        "cooling": false,
+        "lastError": "Error: 429 该模型当前访问量过大，请您稍后再试"
+      },
+      {
+        "name": "zhipu#5",
+        "calls": 31,
+        "ok": 21,
+        "err429": 10,
+        "cooldowns": 0,
+        "otherErrors": 0,
+        "cooling": false,
+        "lastError": "Error: 429 该模型当前访问量过大，请您稍后再试"
+      },
+      {
+        "name": "groq",
+        "calls": 36,
+        "ok": 8,
+        "err429": 28,
+        "cooldowns": 7,
+        "otherErrors": 0,
+        "cooling": true,
+        "lastError": "Error: 429 Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199044, Requested 24"
+      },
+      {
+        "name": "groq#2",
+        "calls": 27,
+        "ok": 9,
+        "err429": 18,
+        "cooldowns": 4,
+        "otherErrors": 0,
+        "cooling": false,
+        "lastError": "Error: 429 Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 197966, Requested 25"
+      },
+      {
+        "name": "groq#3",
+        "calls": 33,
+        "ok": 8,
+        "err429": 25,
+        "cooldowns": 6,
+        "otherErrors": 0,
+        "cooling": true,
+        "lastError": "Error: 429 Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199044, Requested 24"
+      },
+      {
+        "name": "groq#4",
+        "calls": 32,
+        "ok": 7,
+        "err429": 25,
+        "cooldowns": 6,
+        "otherErrors": 0,
+        "cooling": true,
+        "lastError": "Error: 429 Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199043, Requested 24"
+      },
+      {
+        "name": "groq#5",
+        "calls": 29,
+        "ok": 9,
+        "err429": 20,
+        "cooldowns": 5,
+        "otherErrors": 0,
+        "cooling": true,
+        "lastError": "Error: 429 Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199043, Requested 24"
+      },
+      {
+        "name": "groq#6",
+        "calls": 32,
+        "ok": 6,
+        "err429": 25,
+        "cooldowns": 6,
+        "otherErrors": 1,
+        "cooling": true,
+        "lastError": "Error: 429 Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199044, Requested 24"
+      },
+      {
+        "name": "groq#7",
+        "calls": 25,
+        "ok": 16,
+        "err429": 8,
+        "cooldowns": 2,
+        "otherErrors": 1,
+        "cooling": true,
+        "lastError": "Error: 429 Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 197987, Requested 255"
+      },
+      {
+        "name": "groq#8",
+        "calls": 25,
+        "ok": 15,
+        "err429": 8,
+        "cooldowns": 2,
+        "otherErrors": 2,
+        "cooling": true,
+        "lastError": "Error: 429 Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 197988, Requested 243"
+      },
+      {
+        "name": "groq#9",
+        "calls": 31,
+        "ok": 21,
+        "err429": 10,
+        "cooldowns": 0,
+        "otherErrors": 0,
+        "cooling": false,
+        "lastError": "Error: 429 Request too large for model `qwen/qwen3.8-27b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on output tokens per minute (OTPM): Limit 1000, Requested 3251. The "
+      },
+      {
+        "name": "groq#10",
+        "calls": 32,
+        "ok": 17,
+        "err429": 15,
+        "cooldowns": 1,
+        "otherErrors": 0,
+        "cooling": false,
+        "lastError": "Error: 429 Request too large for model `qwen/qwen3.8-27b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on output tokens per minute (OTPM): Limit 1000, Requested 1260. The "
+      },
+      {
+        "name": "gemini",
+        "calls": 32,
+        "ok": 4,
+        "err429": 28,
+        "cooldowns": 7,
+        "otherErrors": 0,
+        "cooling": false,
+        "lastError": "Error: 429 status code (no body)"
+      },
+      {
+        "name": "gemini#2",
+        "calls": 32,
+        "ok": 4,
+        "err429": 28,
+        "cooldowns": 7,
+        "otherErrors": 0,
+        "cooling": false,
+        "lastError": "Error: 429 status code (no body)"
+      },
+      {
+        "name": "gemini#3",
+        "calls": 32,
+        "ok": 4,
+        "err429": 28,
+        "cooldowns": 7,
+        "otherErrors": 0,
+        "cooling": false,
+        "lastError": "Error: 429 status code (no body)"
+      },
+      {
+        "name": "gemini#4",
+        "calls": 20,
+        "ok": 0,
+        "err429": 0,
+        "cooldowns": 0,
+        "otherErrors": 20,
+        "cooling": false,
+        "lastError": "Error: 404 status code (no body)"
+      },
+      {
+        "name": "gemini#5",
+        "calls": 20,
+        "ok": 0,
+        "err429": 0,
+        "cooldowns": 0,
+        "otherErrors": 20,
+        "cooling": false,
+        "lastError": "Error: 404 status code (no body)"
+      },
+      {
+        "name": "gemini#6",
+        "calls": 20,
+        "ok": 20,
+        "err429": 0,
+        "cooldowns": 0,
+        "otherErrors": 0,
+        "cooling": false
+      },
+      {
+        "name": "gemini#7",
+        "calls": 20,
+        "ok": 20,
+        "err429": 0,
+        "cooldowns": 0,
+        "otherErrors": 0,
+        "cooling": false
+      },
+      {
+        "name": "gemini#8",
+        "calls": 20,
+        "ok": 20,
+        "err429": 0,
+        "cooldowns": 0,
+        "otherErrors": 0,
+        "cooling": false
+      },
+      {
+        "name": "mistral",
+        "calls": 20,
+        "ok": 0,
+        "err429": 0,
+        "cooldowns": 0,
+        "otherErrors": 20,
+        "cooling": false,
+        "lastError": "Error: 401 status code (no body)"
+      },
+      {
+        "name": "mistral#2",
+        "calls": 20,
+        "ok": 0,
+        "err429": 0,
+        "cooldowns": 0,
+        "otherErrors": 20,
+        "cooling": false,
+        "lastError": "Error: 401 status code (no body)"
+      },
+      {
+        "name": "mistral#3",
+        "calls": 20,
+        "ok": 0,
+        "err429": 0,
+        "cooldowns": 0,
+        "otherErrors": 20,
+        "cooling": false,
+        "lastError": "Error: 401 status code (no body)"
+      },
+      {
+        "name": "mistral#4",
+        "calls": 20,
+        "ok": 0,
+        "err429": 0,
+        "cooldowns": 0,
+        "otherErrors": 20,
+        "cooling": false,
+        "lastError": "Error: 401 status code (no body)"
+      },
+      {
+        "name": "hf",
+        "calls": 20,
+        "ok": 0,
+        "err429": 0,
+        "cooldowns": 0,
+        "otherErrors": 20,
+        "cooling": false,
+        "lastError": "Error: 402 \"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\""
+      },
+      {
+        "name": "hf#2",
+        "calls": 20,
+        "ok": 0,
+        "err429": 0,
+        "cooldowns": 0,
+        "otherErrors": 20,
+        "cooling": false,
+        "lastError": "Error: 402 \"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\""
+      },
+      {
+        "name": "openrouter",
+        "calls": 36,
+        "ok": 0,
+        "err429": 36,
+        "cooldowns": 9,
+        "otherErrors": 0,
+        "cooling": false,
+        "lastError": "Error: 429 Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day"
+      },
+      {
+        "name": "custom-modelscope",
+        "calls": 36,
+        "ok": 0,
+        "err429": 36,
+        "cooldowns": 9,
+        "otherErrors": 0,
+        "cooling": false,
+        "lastError": "Error: 429 insufficient balance"
+      },
+      {
+        "name": "custom-modelscope#2",
+        "calls": 32,
+        "ok": 0,
+        "err429": 32,
+        "cooldowns": 8,
+        "otherErrors": 0,
+        "cooling": false,
+        "lastError": "Error: 429 insufficient balance"
+      },
+      {
+        "name": "custom-spark",
+        "calls": 20,
+        "ok": 20,
         "err429": 0,
         "cooldowns": 0,
         "otherErrors": 0,
