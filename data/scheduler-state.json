@@ -16,22 +16,22 @@
         "model": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
         "tier": "tail",
         "quotaTokens": 250000,
-        "usedTokens": 120336,
-        "calls": 17,
-        "cardsOk": 16,
-        "exhausted": false
+        "usedTokens": 293078,
+        "calls": 51,
+        "cardsOk": 312,
+        "exhausted": true
       },
       {
         "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
         "tier": "tail",
         "quotaTokens": 50000,
-        "usedTokens": 0,
-        "calls": 0,
-        "cardsOk": 0,
-        "exhausted": false
+        "usedTokens": 105078,
+        "calls": 15,
+        "cardsOk": 14,
+        "exhausted": true
       }
     ],
-    "fallbackCount": 588
+    "fallbackCount": 647
   },
-  "updatedAt": "2026-09-14T19:14:22.594Z"
+  "updatedAt": "2026-09-14T19:58:53.687Z"
 }
