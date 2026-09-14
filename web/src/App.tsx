@@ -165,11 +165,14 @@ const DYNAMIC_SECTIONS: { key: string; icon: string; title: string; desc: string
 ];
 
 // 固有分区（互斥，每个项目必有其一）
+// 2026-09-14 修正标签：旧词表（兴趣/学习）与新版四区（创意/资源）不一致 → 站上表现为
+// 「标签是旧的、内容也像旧的」观感（栗子实测发现）。此处与 zone 词表对齐；
+// key 不变（ai/fun/tool/learning）以兼容存量 category 与 sectionZoneOf 映射。
 const CATEGORY_SECTIONS: { key: string; icon: string; title: string; desc: string }[] = [
-  { key: "ai", icon: "bot", title: "AI", desc: "AI核心技术" },
-  { key: "fun", icon: "gamepad", title: "兴趣", desc: "好玩有趣" },
-  { key: "tool", icon: "wrench", title: "工具", desc: "Agent Skill / 效率工具" },
-  { key: "learning", icon: "book", title: "学习", desc: "学英语学代码" },
+  { key: "ai", icon: "bot", title: "AI", desc: "AI 技术与智能工具" },
+  { key: "fun", icon: "gamepad", title: "创意", desc: "玩与创作：游戏 / 脑洞 / 绘画 / 音乐" },
+  { key: "tool", icon: "wrench", title: "工具", desc: "干活用的：效率 / 开发 / 数据库 / 自托管" },
+  { key: "learning", icon: "book", title: "资源", desc: "学与看：教程 / 文档 / 数据集" },
 ];
 
 const ALL_SECTIONS = [...DYNAMIC_SECTIONS, ...CATEGORY_SECTIONS];
@@ -637,7 +640,8 @@ function getSectionCards(
           .sort((a, b) => hotMomentum(b) - hotMomentum(a) || (b.stars ?? 0) - (a.stars ?? 0)),
         60,
       );
-    case "daily": { // 每日（时效，两段）：段 1=当日新入库（createdAt 降序）；段 2=heatScore × 已读降权 + AI 30% 配额
+    case "daily": {
+      // 每日（时效，两段）：段 1=当日新入库（createdAt 降序）；段 2=heatScore × 已读降权 + AI 30% 配额
       const nowD = new Date(now);
       const newToday = cards
         .filter((c) => isTodayNew(c, nowD))
