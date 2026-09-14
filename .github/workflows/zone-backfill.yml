@@ -96,8 +96,10 @@ jobs:
           SPARK_BASE_URL: https://spark-api-open.xf-yun.com/v1
           SPARK_MODEL: lite
         run: |
-          ARGS="--workers=${ZONE_WORKERS} --batch=${ZONE_BATCH} --no-derive"
-          if [ "${ZONE_UPGRADE}" = "true" ]; then ARGS="$ARGS --upgrade-derived"; fi
+          # 第一遍：模型真判 + derived 兜底（保证站点数据当轮即自洽，覆盖率不留缺口）
+          # 第二遍起（upgrade_derived=true）：把上一遍的 derived 升级为模型真判
+          ARGS="--workers=${ZONE_WORKERS} --batch=${ZONE_BATCH}"
+          if [ "${ZONE_UPGRADE}" = "true" ]; then ARGS="$ARGS --upgrade-derived --no-derive"; fi
           if [ "${ZONE_LIMIT}" != "0" ]; then ARGS="$ARGS --limit=${ZONE_LIMIT}"; fi
           echo "[zone-backfill] npx tsx scripts/gittok-zone-parallel.ts $ARGS"
           npx tsx scripts/gittok-zone-parallel.ts $ARGS
