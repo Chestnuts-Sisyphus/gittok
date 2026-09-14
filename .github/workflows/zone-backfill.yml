@@ -57,9 +57,9 @@ jobs:
           ref: ${{ github.ref_name }}
 
       - name: Setup pnpm
+        # 版本由 package.json 的 packageManager(pnpm@9.15.9) 提供——再写 with.version
+        # 会触发 action v6 的「Multiple versions of pnpm specified」硬失败（实测 18s 即挂）。
         uses: pnpm/action-setup@v6
-        with:
-          version: 9
 
       - name: Setup Node.js
         uses: actions/setup-node@v7

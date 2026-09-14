@@ -54,8 +54,8 @@ jobs:
         # 2026-09-14 修：原 `actions/setup-pnpm@v6` **不存在**（正确动作是 `pnpm/action-setup`）→
         # workflow 在 Set up job 阶段即失败 → 全量建库点火从未真正跑过。
         uses: pnpm/action-setup@v6
-        with:
-          version: 9
+        # 版本由 package.json 的 packageManager(pnpm@9.15.9) 提供——不要在这里再写 with.version
+        # （action v6 对「两处都写版本」直接硬失败：Multiple versions of pnpm specified）
 
       - name: Setup Node.js
         uses: actions/setup-node@v7
