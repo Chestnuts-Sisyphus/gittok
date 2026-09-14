@@ -87,23 +87,50 @@ if (minutes > 0) {
   console.log("  （未传 --minutes/--cards：跳过单轮折算；传参即算）");
 }
 
-console.log("\n=== ④ 各档 ETA（按上面产能线性外推，诚实标注为外推） ===");
+console.log("\n=== ④ 各档 ETA（两种口径并列，禁止只报乐观那个） ===");
 const perMin = minutes > 0 && cards > 0 ? cards / minutes : 0;
 if (perMin <= 0) {
   console.log("  （需要 --minutes/--cards 才能算 ETA）");
 } else {
-  const perDay = perMin * 60 * 24;
-  let cum = 0;
-  for (const [id, e] of tiers) {
-    const remain = Math.max(0, e.total - e.done);
-    const days = remain / perDay;
-    cum += days;
-    console.log(`  ${id}: 剩 ${remain} 卡 → ${days.toFixed(1)} 天（累计 ${cum.toFixed(1)} 天）`);
+  const perDayRaw = perMin * 60 * 24;
+  // 饱和现实口径：自由额度被 429 打满 —— 实测一轮是「跑满一段（其间 429/空响应重试吃掉大量墙钟）
+  // 后被迫退出」。按「每次连续窗口净产 cards 张、窗口长度 minutes」估，但**不假设 24h 都能满速**：
+  // 用实测编队成功率与死通道占比给一个折扣，得「可持续口径」。
+  const successRate = (() => {
+    const w = last?.workers ?? [];
+    const calls = w.reduce((s, x) => s + (x.calls ?? 0), 0);
+    const ok = w.reduce((s, x) => s + (x.ok ?? 0), 0);
+    return calls > 0 ? ok / calls : 1;
+  })();
+  const aliveRatio = (() => {
+    const w = last?.workers ?? [];
+    if (w.length === 0) return 1;
+    return w.filter((x) => (x.ok ?? 0) > 0).length / w.length;
+  })();
+  const perDaySustain = perDayRaw * aliveRatio;
+  console.log(`  口径 A（满载上限，假设额度不饱和）：${perDayRaw.toFixed(0)} 卡/天`);
+  console.log(
+    `  口径 B（可持续，实测折扣：有产出通道 ${(aliveRatio * 100).toFixed(1)}%）：` +
+      `${perDaySustain.toFixed(0)} 卡/天`,
+  );
+  console.log(`  （实测有效调用成功率 ${(successRate * 100).toFixed(1)}%——429/空响应重试的代价体现在墙钟里）\n`);
+  for (const [label, perDay] of [
+    ["口径 A 满载", perDayRaw],
+    ["口径 B 可持续", perDaySustain],
+  ] as Array<[string, number]>) {
+    let cum = 0;
+    const rows: string[] = [];
+    for (const [id, e] of tiers) {
+      const remain = Math.max(0, e.total - e.done);
+      const days = remain / perDay;
+      cum += days;
+      rows.push(`${id} 剩 ${remain} → ${days.toFixed(1)} 天（累计 ${cum.toFixed(1)} 天）`);
+    }
+    console.log(`  【${label}】${rows.join("；")}`);
+    console.log(`    全量合计约 ${cum.toFixed(1)} 天`);
   }
-  console.log(`  ========================================`);
-  console.log(`  全量合计约 ${cum.toFixed(1)} 天（口径：${perDay.toFixed(0)} 卡/天，24h 满载）`);
 }
 console.log(
-  "\n[口径声明] 全部数字来自上面两个状态文件 + 传入的 CI 实测轮次；满载折算假设「额度不饱和」，" +
-    "饱和时段（429/死通道）已在 ① 列明，属实测。",
+  "\n[口径声明] 全部数字来自上面两个状态文件 + 传入的 CI 实测轮次；" +
+    "两种口径都列（满载 vs 可持续），饱和时段（429/死通道）已在 ① 列明，属实测。",
 );
