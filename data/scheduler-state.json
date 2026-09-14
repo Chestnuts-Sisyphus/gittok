@@ -2,8 +2,36 @@
   "done": {},
   "failed": {},
   "ledger": {
-    "models": [],
+    "models": [
+      {
+        "model": "zhipu:glm-4.7-flash",
+        "tier": "tail",
+        "quotaTokens": 1000000,
+        "usedTokens": 352714,
+        "calls": 71,
+        "cardsOk": 106,
+        "exhausted": false
+      },
+      {
+        "model": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+        "tier": "tail",
+        "quotaTokens": 250000,
+        "usedTokens": 0,
+        "calls": 0,
+        "cardsOk": 0,
+        "exhausted": false
+      },
+      {
+        "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+        "tier": "tail",
+        "quotaTokens": 50000,
+        "usedTokens": 0,
+        "calls": 0,
+        "cardsOk": 0,
+        "exhausted": false
+      }
+    ],
     "fallbackCount": 588
   },
-  "updatedAt": "2026-09-13T23:53:18.883Z"
+  "updatedAt": "2026-09-14T08:34:34.267Z"
 }
