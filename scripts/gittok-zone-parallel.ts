@@ -104,7 +104,10 @@ function loadJson<T>(file: string, dflt: T): T {
 
 /** 容错解析（去代码块 + 摘数组；与生产同款思路） */
 export function parseVerdicts(raw: string): Verdict[] {
-  let text = raw.trim().replace(/```(?:json)?/g, "").replace(/```/g, "");
+  let text = raw
+    .trim()
+    .replace(/```(?:json)?/g, "")
+    .replace(/```/g, "");
   const s = text.indexOf("[");
   const e = text.lastIndexOf("]");
   if (s === -1 || e === -1 || e <= s) return [];
@@ -262,7 +265,9 @@ async function main(): Promise<void> {
           if (dk) c.domainKey = dk;
         }
       }
-      state.done[c.repo] = "derived";
+      // 注意：**不写 state.done**——state 的语义是「已模型真判」的凭证（断点续跑的依据）。
+      // derived 只是兜底，写进去会让下一轮 upgrade 误判「这卡已完成」而永远不再升级
+      //（实测：CI 首跑 derived 兜底后 state 满员 → 升级轮 --upgrade-derived 变成空转）。
       d++;
     }
     return d;
@@ -322,7 +327,7 @@ async function main(): Promise<void> {
   //（`全池 1 账号节流 → 熔断 60s`），有效产能反而低于串行。
   const perLane: Card[][][] = alive.map(() => []);
   for (let i = 0; i < todo.length; i += batchSize) {
-    perLane[i / batchSize % alive.length]!.push(todo.slice(i, i + batchSize));
+    perLane[(i / batchSize) % alive.length]!.push(todo.slice(i, i + batchSize));
   }
 
   const runWorker = async (laneIdx: number): Promise<void> => {
