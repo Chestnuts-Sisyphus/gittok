@@ -213,6 +213,12 @@ async function main(): Promise<void> {
   const cards = JSON.parse(fs.readFileSync(FEED, "utf-8")) as Card[];
   const byRepo = new Map(cards.map((c) => [c.repo, c] as const));
   const state = loadJson<BackfillState>(STATE, { updatedAt: "", done: {} });
+  // 诊断（CI 排查用：state 是否存在、有多少条「已模型真判」凭证）
+  console.log(
+    `[zone-par] state ${STATE} 存在=${fs.existsSync(STATE)}｜已判凭证 ${
+      Object.keys(state.done ?? {}).length
+    } 条｜无 zone ${cards.filter((c) => !c.zone).length} 张`,
+  );
 
   // 待办：缺 zone 的优先；`--upgrade-derived` 时把 derived 兜底的卡也排进队（模型质量更高，
   // 实测与 derived 一致率仅 67.8%——derived 只是「先让站点自洽」，不该是终点）。
