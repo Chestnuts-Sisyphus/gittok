@@ -155,27 +155,20 @@ interface InteractionRecord {
 
 const SNAPSHOT_CAP = 1000; // 喜欢/收藏快照总条数上限（~1KB/张，1MB 内安全；超出后新操作只记 repo 名）
 
-// 动态分区（不互斥，可有可无；乐趣=标签分区 v2.2 体验轴频道）
-const DYNAMIC_SECTIONS: { key: string; icon: string; title: string; desc: string }[] = [
-  { key: "recommended", icon: "sparkles", title: "推荐", desc: "为你挑选" },
-  { key: "hot", icon: "flame", title: "热门", desc: "正在被大众发现" },
-  { key: "daily", icon: "trending-up", title: "每日", desc: "今天新出/在涨" },
-  { key: "fun", icon: "party-popper", title: "乐趣", desc: "好玩得想点开" },
-  { key: "following", icon: "heart", title: "关注", desc: "关注创作者的项目" },
-];
+// 频道/分区两轴的唯一定义源抽到 channels-axes.ts（可单测、模块加载即自检 key 唯一性——
+// 2026-09-14 栗子实测发现「乐趣」与「创意」共用 key=fun 导致串台，此为该 bug 的机制性修法）。
+import {
+  DYNAMIC_SECTIONS,
+  CATEGORY_SECTIONS,
+  ALL_SECTIONS,
+  categoryOfKey,
+  sectionZoneOf,
+  zoneForCategory,
+  categoryOfZone,
+  assertUniqueChannelKeys,
+} from "./channels-axes.ts";
 
-// 固有分区（互斥，每个项目必有其一）
-// 2026-09-14 修正标签：旧词表（兴趣/学习）与新版四区（创意/资源）不一致 → 站上表现为
-// 「标签是旧的、内容也像旧的」观感（栗子实测发现）。此处与 zone 词表对齐；
-// key 不变（ai/fun/tool/learning）以兼容存量 category 与 sectionZoneOf 映射。
-const CATEGORY_SECTIONS: { key: string; icon: string; title: string; desc: string }[] = [
-  { key: "ai", icon: "bot", title: "AI", desc: "AI 技术与智能工具" },
-  { key: "fun", icon: "gamepad", title: "创意", desc: "玩与创作：游戏 / 脑洞 / 绘画 / 音乐" },
-  { key: "tool", icon: "wrench", title: "工具", desc: "干活用的：效率 / 开发 / 数据库 / 自托管" },
-  { key: "learning", icon: "book", title: "资源", desc: "学与看：教程 / 文档 / 数据集" },
-];
-
-const ALL_SECTIONS = [...DYNAMIC_SECTIONS, ...CATEGORY_SECTIONS];
+assertUniqueChannelKeys();
 
 /** 频道图标渲染（按 SECTIONS icon 字段查 map，找不到渲染 null） */
 function SectionIcon({ icon, size = 18 }: { icon: string; size?: number }) {
@@ -670,27 +663,15 @@ function getSectionCards(
       return cards
         .filter((c) => followingSet.has(c.owner))
         .sort((a, b) => (b.createdAt ?? b.ts).localeCompare(a.createdAt ?? a.ts));
-    default:
-      // 固有分类频道（AI/兴趣/工具/学习）按 aiScore 策展排序，同分看涨星势头
+    default: // 固有分类频道（分区轴，key = `cat:xxx`）：按 aiScore 策展排序，同分看涨星势头。
+    // 数据侧双兼容：有 zone 按四区判（新卡），只有旧 category 的按 category 判（存量卡）。
+    {
+      const cat = categoryOfKey(sectionKey);
+      const zone = sectionZoneOf(sectionKey);
       return cards
-        .filter((c) => (c.zone ? zoneOfCard(c) === sectionZoneOf(sectionKey) : c.category === sectionKey))
+        .filter((c) => (c.zone ? zoneOfCard(c) === (zone ?? "\u0000") : c.category === cat))
         .sort((a, b) => (b.aiScore ?? 0.5) - (a.aiScore ?? 0.5) || (b.starGrowth ?? 0) - (a.starGrowth ?? 0));
-  }
-}
-
-/** 分类 tab key → 服务端 zone（ai→AI/learning→资源/tool→工具/fun→创意；其余 null） */
-function sectionZoneOf(key: string): string | null {
-  switch (key) {
-    case "ai":
-      return "AI";
-    case "learning":
-      return "资源";
-    case "tool":
-      return "工具";
-    case "fun":
-      return "创意";
-    default:
-      return null;
+    }
   }
 }
 
@@ -755,15 +736,19 @@ function buildRecommended(
   // 按前端分区键分组（zone 优先，回退 category）
   const byCat = new Map<string, FeedCard[]>();
   for (const c of pool) {
-    const key = c.zone ? (sectionZoneOf(c.zone) ?? c.category ?? "tool") : c.category || "tool";
+    // 归到存量 category 键（配额表按 category 建索引）：
+    // 新卡有 zone → 用 zone→category 转换；存量卡只有 category → 直接用。
+    const key = c.zone ? (categoryOfZone(c.zone) ?? c.category ?? "tool") : c.category || "tool";
     if (!byCat.has(key)) byCat.set(key, []);
     byCat.get(key)!.push(c);
   }
 
-  // L3 显式偏好配额：preferredZone 驱动（默认 2:3；选区上调 50%）
-  const quota = preferences.preferredZone
-    ? (PREF_QUOTA[preferences.preferredZone] ?? DEFAULT_QUOTA)
-    : DEFAULT_QUOTA;
+  // L3 显式偏好配额：preferredZone 驱动（默认 2:3；选区上调 50%）。
+  // 存量兼容：老版本把 category 值（fun/learning…）存进过同一个字段 → 两种写法都译成 category 再查表。
+  const prefCat = preferences.preferredZone
+    ? (categoryOfZone(preferences.preferredZone) ?? preferences.preferredZone)
+    : null;
+  const quota = prefCat ? (PREF_QUOTA[prefCat] ?? DEFAULT_QUOTA) : DEFAULT_QUOTA;
   const total = Math.min(RECOMMEND_SIZE, pool.length);
   const cats = ["ai", "fun", "tool", "learning"];
   const picked: FeedCard[] = [];
@@ -1645,16 +1630,16 @@ export default function App() {
                       <div className="pref-prompt">
                         <p className="pref-title">想让推荐更懂你？选一个更想看的类别（随时可在设置里改）</p>
                         <div className="pref-options">
-                          <button onClick={() => pickPreferredZone("ai")}>
+                          <button onClick={() => pickPreferredZone(zoneForCategory("ai"))}>
                             <Bot size={16} /> AI
                           </button>
-                          <button onClick={() => pickPreferredZone("fun")}>
+                          <button onClick={() => pickPreferredZone(zoneForCategory("fun"))}>
                             <Gamepad2 size={16} /> 创意
                           </button>
-                          <button onClick={() => pickPreferredZone("tool")}>
+                          <button onClick={() => pickPreferredZone(zoneForCategory("tool"))}>
                             <Wrench size={16} /> 工具
                           </button>
-                          <button onClick={() => pickPreferredZone("learning")}>
+                          <button onClick={() => pickPreferredZone(zoneForCategory("learning"))}>
                             <BookOpen size={16} /> 资源
                           </button>
                         </div>
