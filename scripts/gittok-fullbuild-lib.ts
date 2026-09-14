@@ -7,6 +7,7 @@
 
 import fs from "node:fs";
 import path from "node:path";
+import { loadLaneHealth, isLaneRetired } from "../src/feed/lane-health.ts";
 
 export const KEY_DIR = process.env["KEY_DIR"] ?? "D:/AI/KEY";
 export const FREE_FLEET = path.join(KEY_DIR, "FREE-FLEET.txt");
@@ -232,4 +233,40 @@ export function buildPlan(env: NodeJS.ProcessEnv = process.env): PlanResult {
   }
 
   return { tail, head, env: outEnv, missing };
+}
+
+/** 从矩阵条目 `provider:model[:quota]` 取通道键（与 executor 的 lane key 同构）。 */
+export function laneKeyOf(entry: string): string {
+  const first = entry.indexOf(":");
+  if (first === -1) return entry;
+  const last = entry.lastIndexOf(":");
+  const tailPart = entry.slice(last + 1);
+  const model = entry.slice(first + 1, /^\d+$/.test(tailPart) ? last : undefined);
+  return `${entry.slice(0, first)}:${model}`;
+}
+
+/**
+ * 死通道摘除（D4，2026-09-14）：把仍处在退出期内的通道从矩阵里摘掉。
+ *
+ * 动机：矩阵里常驻死通道（实测：modelscope 余额不足、openrouter 每日额度耗尽、mistral 令牌失效、
+ * hf 额度耗尽），它们会持续吃批次预算，而人肉从日志里发现总是滞后的。
+ * TTL 分档见 src/feed/lane-health.ts（配额类跨天自动复活，key 失效类等人工换 key）。
+ * 逃生口：`SCHED_IGNORE_LANE_HEALTH=1` 时不做摘除（排查「是不是账本误杀」）。
+ */
+export function dropRetiredLanes(plan: PlanResult): PlanResult {
+  if ((process.env["SCHED_IGNORE_LANE_HEALTH"] ?? "") === "1") return plan;
+  const ledger = loadLaneHealth();
+  const before = plan.tail.length;
+  const kept = plan.tail.filter((t) => {
+    if (isLaneRetired(ledger, laneKeyOf(t.entry))) {
+      console.log(`  [matrix] 摘除退出期通道 ${t.entry}（见 data/lane-health.json）`);
+      return false;
+    }
+    return true;
+  });
+  if (kept.length !== before) {
+    console.log(`  [matrix] 死通道摘除：${before} → ${kept.length} 条在岗通道`);
+    plan.tail = kept;
+  }
+  return plan;
 }

@@ -22,7 +22,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import "dotenv/config";
-import { buildPlan } from "./gittok-fullbuild-lib.ts";
+import { buildPlan, dropRetiredLanes } from "./gittok-fullbuild-lib.ts";
 import { ScheduledLlmExecutor } from "../src/feed/executor.ts";
 import { domainKeyOf } from "../src/feed/prompts.ts";
 
@@ -316,7 +316,7 @@ async function main(): Promise<void> {
   }
 
   // 执行层：与生产同构（免费矩阵优先）
-  const { tail, env } = buildPlan();
+  const { tail, env } = dropRetiredLanes(buildPlan());
   const merged: NodeJS.ProcessEnv = { ...process.env, ...env };
   for (const t of tail) if (t.paramsEnv) merged[t.paramsEnv] = JSON.stringify(t.params);
   for (const [k, v] of Object.entries(merged)) if (v !== undefined) process.env[k] = v;

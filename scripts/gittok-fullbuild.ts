@@ -17,12 +17,12 @@
  */
 
 import { spawnSync } from "node:child_process";
-import { buildPlan } from "./gittok-fullbuild-lib.ts";
+import { buildPlan, dropRetiredLanes } from "./gittok-fullbuild-lib.ts";
 import { matrixKeysEnvKey } from "../src/feed/executor.ts";
 
 function main(): void {
   const dryRun = process.argv.includes("--dry-run");
-  const { tail, head, env, missing } = buildPlan();
+  const { tail, head, env, missing } = dropRetiredLanes(buildPlan());
 
   // 矩阵：head 档留空（高档免费源待注册：z.ai / NVIDIA NIM / Cloudflare → 挂账带回栗子），
   // 路由的 allowHeadDegrade 会把头部批自动降级到 tail 档——生产不阻塞、不静默变付费。

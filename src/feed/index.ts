@@ -619,6 +619,14 @@ export function loadExistingScores(feedPath: string = FEED_PATH): {
           zoneSource: c.zoneSource ?? (c.zone ? "model" : undefined),
           funScore: c.funScore,
           funScoreSource: c.funScoreSource,
+          // v3 判定字段（2026-09-14 晚）：六维原始分 / 旧值对照 / 理由。
+          // 同一纪律——**不进 cache 的字段，下一轮重建就没了**（见上方事故注释），
+          // 所以任何新增的卡片判定字段都必须同时加在这里，并同步扩 feed-cache-zone.test.ts。
+          funDims: c.funDims,
+          legacyZone: c.legacyZone,
+          legacyFunScore: c.legacyFunScore,
+          zoneReason: c.zoneReason,
+          funReason: c.funReason,
           tags: c.domainTags,
           summaryCn: c.summaryCn,
           reasonCn: c.reasonCn,
@@ -1498,6 +1506,11 @@ export async function generateFeed(
       zoneSource: sc.zoneSource,
       funScore: sc.funScore,
       funScoreSource: sc.funScoreSource,
+      funDims: sc.funDims,
+      legacyZone: sc.legacyZone,
+      legacyFunScore: sc.legacyFunScore,
+      zoneReason: sc.zoneReason,
+      funReason: sc.funReason,
       domainTags: sc.tags,
       domainKey:
         sc.zone && sc.tags && sc.tags.length > 0 ? (domainKeyOf(sc.zone, sc.tags) ?? undefined) : undefined,

@@ -36,9 +36,12 @@ permissions:
   contents: write
 
 concurrency:
-  group: feed-fullbuild
-  cancel-in-progress: false # 全量轮不互相顶掉（drip 的 cancel-in-progress 语义相反，故单开 group）
-
+  # D1 根治（2026-09-14）：本 workflow 会整份重写 data/feed.json。
+  # 过去每个 workflow 只与自己串行（group 各自独立）→ 不同 workflow 可同时写同一份文件，
+  # 实测丢过成果（本地回填被 bot 提交覆盖 / CI rebase abort 丢工作树 / 两个回填进程互覆盖）。
+  # 现在**所有数据写入者共用同一个 group**：任一时刻只跑一个，其余排队（不取消，避免丢轮次）。
+  group: feed-data-writer
+  cancel-in-progress: false
 jobs:
   fullbuild:
     runs-on: ubuntu-latest

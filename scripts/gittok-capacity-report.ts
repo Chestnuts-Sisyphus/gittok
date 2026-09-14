@@ -62,7 +62,9 @@ if (last) {
   const alive = w.filter((x) => (x.ok ?? 0) > 0).length;
   console.log(`  轮次 ${last.at}｜通道实例 ${w.length} 个，其中**有产出的 ${alive} 个**`);
   console.log(`  调用 ${calls}｜成功 ${ok}（${((ok / Math.max(1, calls)) * 100).toFixed(1)}%）｜429 ${r429}`);
-  console.log(`  → 死通道占比 ${(((w.length - alive) / Math.max(1, w.length)) * 100).toFixed(1)}%（401/402/404 等硬失败）`);
+  console.log(
+    `  → 死通道占比 ${(((w.length - alive) / Math.max(1, w.length)) * 100).toFixed(1)}%（401/402/404 等硬失败）`,
+  );
 }
 
 console.log("\n=== ② 分档队列实况（data/tier-progress.json） ===");
@@ -113,7 +115,9 @@ if (perMin <= 0) {
     `  口径 B（可持续，实测折扣：有产出通道 ${(aliveRatio * 100).toFixed(1)}%）：` +
       `${perDaySustain.toFixed(0)} 卡/天`,
   );
-  console.log(`  （实测有效调用成功率 ${(successRate * 100).toFixed(1)}%——429/空响应重试的代价体现在墙钟里）\n`);
+  console.log(
+    `  （实测有效调用成功率 ${(successRate * 100).toFixed(1)}%——429/空响应重试的代价体现在墙钟里）\n`,
+  );
   for (const [label, perDay] of [
     ["口径 A 满载", perDayRaw],
     ["口径 B 可持续", perDaySustain],

@@ -25,6 +25,9 @@ const OUT = path.join("data", "repo-tiers.json");
 /** 覆盖账（哪些星区间已经拉过；增量模式只看这个） */
 const COVER_OUT = path.join("data", "tier-covered.json");
 
+/** 本轮因命中覆盖账而跳过的区间数（增量生效的可证明证据）。 */
+let skippedRanges = 0;
+
 export const TIERS: Array<{ id: string; label: string; min: number; max: number }> = [
   { id: "t1", label: "10k+", min: 10_000, max: Number.POSITIVE_INFINITY },
   { id: "t2", label: "5k-10k", min: 5_000, max: 10_000 },
@@ -87,13 +90,55 @@ async function searchPage(query: string, page: number): Promise<{ items: SearchI
  * 二分法：total ≤ 1000 直接翻页拿全；total > 1000 就切两半递归——
  * 每层调用都有实际收获、必然收敛（区间下界单调逼近）。
  */
+/**
+ * 覆盖账（D6，2026-09-14）：判断一个星数区间是否**已经被前一轮完整抓取过**。
+ * 事故：`coveredPrev` 此前只读出来打日志、从不参与判断——所谓「增量模式」是假的，
+ * 每轮都把整个星数域重新抓一遍（白烧 GitHub search 配额）。这里让它真正生效：
+ * 命中覆盖账的区间直接跳过（该区间的 repo 已经在索引文件里了）。
+ */
+export function isRangeCovered(lo: number, hi: number, ranges: Array<[number, number | null]>): boolean {
+  return ranges.some(([a, b]) => {
+    const upper = b === null ? Number.POSITIVE_INFINITY : b;
+    return lo >= a && (hi === -1 ? true : hi <= upper);
+  });
+}
+
+/** 合并覆盖区间（相邻/重叠直接并起来，避免覆盖账无限膨胀）。 */
+export function mergeRanges(
+  a: Array<[number, number | null]>,
+  b: Array<[number, number | null]>,
+): Array<[number, number | null]> {
+  const all = [...a, ...b].map(
+    ([x, y]) => [x, y === null ? Number.POSITIVE_INFINITY : y] as [number, number],
+  );
+  all.sort((p, q) => p[0] - q[0]);
+  const out: Array<[number, number | null]> = [];
+  for (const [lo, hi] of all) {
+    const last = out[out.length - 1];
+    if (last && lo <= (last[1] === null ? Number.POSITIVE_INFINITY : last[1]) + 1) {
+      const lastHi = last[1] === null ? Number.POSITIVE_INFINITY : last[1];
+      last[1] = Math.max(lastHi, hi) === Number.POSITIVE_INFINITY ? null : Math.max(lastHi, hi);
+    } else {
+      out.push([lo, hi === Number.POSITIVE_INFINITY ? null : hi]);
+    }
+  }
+  return out;
+}
+
 async function fetchRange(
   lo: number,
   hi: number,
   into: Map<string, TierEntry>,
   covered: Array<[number, number | null]>,
+  coveredPrev: Array<[number, number | null]> = [],
 ): Promise<void> {
   if (lo > hi && hi !== -1) return;
+  // D6：命中覆盖账 → 跳过（该区间上一轮已完整抓过，repo 已在索引里）
+  if (isRangeCovered(lo, hi, coveredPrev)) {
+    skippedRanges++;
+    console.log(`  [tier] 区间 ${lo}..${hi === -1 ? "∞" : hi} 已在覆盖账内 → 跳过（增量生效）`);
+    return;
+  }
   const rangeQ = hi === -1 ? `stars:>=${lo}` : `stars:${lo}..${hi}`;
   const first = await searchPage(rangeQ, 1);
   const pages = Math.min(10, Math.ceil(first.total / 100));
@@ -126,9 +171,9 @@ async function fetchRange(
   const mid = Math.floor((lo + top) / 2);
   console.log(`  [tier] ${rangeQ} total=${first.total} 超 1000 → 二分 ${lo}..${mid} / ${mid + 1}..${top}`);
   await sleep(2_200);
-  await fetchRange(lo, mid, into, covered);
+  await fetchRange(lo, mid, into, covered, coveredPrev);
   await sleep(2_200);
-  await fetchRange(mid + 1, top, into, covered);
+  await fetchRange(mid + 1, top, into, covered, coveredPrev);
 }
 
 function loadJson<T>(p: string, dflt: T): T {
@@ -146,7 +191,11 @@ function report(repos: Map<string, TierEntry>): void {
   console.log(`[tier] 现状：总计 ${repos.size}；${parts.join(" / ")}`);
 }
 
-function writeOut(repos: Map<string, TierEntry>, covered: Array<[number, number | null]>): void {
+function writeOut(
+  repos: Map<string, TierEntry>,
+  covered: Array<[number, number | null]>,
+  coveredPrev: Array<[number, number | null]> = [],
+): void {
   const counters: TierIndex["tiers"] = {};
   const byTier = new Map<string, number>();
   for (const v of repos.values()) byTier.set(v.tier, (byTier.get(v.tier) ?? 0) + 1);
@@ -162,7 +211,11 @@ function writeOut(repos: Map<string, TierEntry>, covered: Array<[number, number 
   fs.writeFileSync(OUT, JSON.stringify(index), "utf-8");
   fs.writeFileSync(
     COVER_OUT,
-    JSON.stringify({ updatedAt: new Date().toISOString(), covered }, null, 2),
+    JSON.stringify(
+      { updatedAt: new Date().toISOString(), covered: mergeRanges(covered, coveredPrev) },
+      null,
+      2,
+    ),
     "utf-8",
   );
   console.log(`[tier] 写入 ${OUT}（${repos.size} 条，${(fs.statSync(OUT).size / 1e6).toFixed(1)}MB）`);
@@ -186,6 +239,7 @@ async function main(): Promise<void> {
   }
 
   const covered: Array<[number, number | null]> = [];
+  skippedRanges = 0;
   const targets = rangeArg
     ? [TIERS.find((t) => rangeArg.slice(8) === t.id || rangeArg.slice(8) === t.label)]
     : TIERS;
@@ -194,10 +248,13 @@ async function main(): Promise<void> {
     console.log(
       `[tier] === 档 ${t.id}(${t.label}) stars ${t.min}..${Number.isFinite(t.max) ? t.max - 1 : "∞"} ===`,
     );
-    await fetchRange(t.min, Number.isFinite(t.max) ? t.max - 1 : -1, repos, covered);
+    await fetchRange(t.min, Number.isFinite(t.max) ? t.max - 1 : -1, repos, covered, coveredPrev);
     report(repos);
-    writeOut(repos, covered); // 每档落盘（中断可续）
+    writeOut(repos, covered, coveredPrev); // 每档落盘（中断可续）
   }
+  console.log(
+    `[tier] 覆盖账：本轮跳过 ${skippedRanges} 个已覆盖区间（增量生效；旧账 ${coveredPrev.length} 段）`,
+  );
   writeOut(repos, covered);
 }
 

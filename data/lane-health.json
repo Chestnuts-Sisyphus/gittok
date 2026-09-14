@@ -1,0 +1,95 @@
+{
+  "updatedAt": "2026-09-14T17:09:34.786Z",
+  "lanes": {
+    "zhipu": {
+      "key": "zhipu",
+      "calls": 374,
+      "ok": 172,
+      "lastError": "Error: 401 令牌已过期或验证不正确",
+      "lastClass": "ok",
+      "updatedAt": "2026-09-14T17:09:34.785Z"
+    },
+    "agnes": {
+      "key": "agnes",
+      "calls": 190,
+      "ok": 80,
+      "lastClass": "ok",
+      "updatedAt": "2026-09-14T17:09:34.785Z"
+    },
+    "groq": {
+      "key": "groq",
+      "calls": 660,
+      "ok": 258,
+      "lastError": "Error: 413 Request too large for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Requested 13695, please r",
+      "lastClass": "ok",
+      "updatedAt": "2026-09-14T17:09:34.785Z"
+    },
+    "gemini": {
+      "key": "gemini",
+      "calls": 420,
+      "ok": 164,
+      "lastError": "Error: 404 status code (no body)",
+      "lastClass": "ok",
+      "updatedAt": "2026-09-14T17:09:34.785Z"
+    },
+    "mistral": {
+      "key": "mistral",
+      "calls": 168,
+      "ok": 0,
+      "lastError": "Error: 401 status code (no body)",
+      "lastClass": "auth",
+      "updatedAt": "2026-09-14T17:09:34.785Z",
+      "retiredUntil": "2026-10-14T17:09:34.785Z"
+    },
+    "hf": {
+      "key": "hf",
+      "calls": 84,
+      "ok": 0,
+      "lastError": "Error: 402 \"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"",
+      "lastClass": "quota-exhausted",
+      "updatedAt": "2026-09-14T17:09:34.785Z",
+      "retiredUntil": "2026-09-15T17:09:34.785Z"
+    },
+    "openrouter": {
+      "key": "openrouter",
+      "calls": 80,
+      "ok": 0,
+      "lastError": "Error: 429 Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day",
+      "lastClass": "quota-daily",
+      "updatedAt": "2026-09-14T17:09:34.785Z",
+      "retiredUntil": "2026-09-15T05:09:34.785Z"
+    },
+    "custom-modelscope": {
+      "key": "custom-modelscope",
+      "calls": 76,
+      "ok": 0,
+      "lastError": "Error: 429 insufficient balance",
+      "lastClass": "quota-exhausted",
+      "updatedAt": "2026-09-14T17:06:29.611Z",
+      "retiredUntil": "2026-09-15T17:06:29.611Z"
+    },
+    "custom-spark": {
+      "key": "custom-spark",
+      "calls": 21,
+      "ok": 21,
+      "lastClass": "ok",
+      "updatedAt": "2026-09-14T17:06:29.611Z"
+    },
+    "modelscope": {
+      "key": "modelscope",
+      "calls": 76,
+      "ok": 0,
+      "lastError": "Error: 429 insufficient balance",
+      "lastClass": "quota-exhausted",
+      "updatedAt": "2026-09-14T17:09:34.785Z",
+      "retiredUntil": "2026-09-15T17:09:34.785Z"
+    },
+    "spark": {
+      "key": "spark",
+      "calls": 21,
+      "ok": 21,
+      "lastClass": "ok",
+      "updatedAt": "2026-09-14T17:09:34.785Z"
+    }
+  }
+}

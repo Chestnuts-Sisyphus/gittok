@@ -36,3 +36,14 @@ jobs:
 
       - name: Test
         run: pnpm test
+
+      # 卡片级不变量闸（D2，2026-09-14）：管道产物与人为改动都必须在提交前过这道闸——
+      # 「字段无声消失」那次事故（zone 覆盖率 100% → 0.2%）靠人肉发现太晚，改成机器拦。
+      # 硬失败（必备字段缺失 / 相对 feed.prev.json 字段回退）→ 这一步红 → 拒绝合并。
+      - name: Card invariants gate（D2）
+        run: npx tsx scripts/gittok-card-invariants.ts
+
+      # 频道容量闸（V-C，栗子 L8）：每个核心频道必须真的能滚到 ≥300 张、无重复、
+      # 显示张数 = 实际张数、前缀配额合规。
+      - name: Channel capacity check（V-C）
+        run: npx tsx scripts/gittok-channel-capacity.ts

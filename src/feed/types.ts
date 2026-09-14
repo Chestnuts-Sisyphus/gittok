@@ -79,6 +79,17 @@ export interface ScoringResult {
   funScore?: number;
   /** funScore 来源（同 zoneSource 口径） */
   funScoreSource?: "model" | "derived";
+  /** 乐趣六维原始分（v3 判据：意外感/可玩性/奇观/荒诞/表达欲/稀缺性，各 0-1；
+   *  funScore = max(维) + 0.1×(命中维数-1)。留着可归因——事后能看出这张卡靠哪一维得的分） */
+  funDims?: Record<string, number>;
+  /** 分区 v2.2 的旧值（v3 二分判定树重判前的 zone，供对照与回滚；不参与任何排序） */
+  legacyZone?: string;
+  /** v2.2 的旧乐趣分（对照用；同上不参与排序） */
+  legacyFunScore?: number;
+  /** 判定理由（模型输出的一句话依据；人工抽样核对与归因用） */
+  zoneReason?: string;
+  /** 乐趣理由（同上） */
+  funReason?: string;
   /** 领域标签 3-6 个（LLM 自由出的领域词，面向人可读；替代 topics 噪音） */
   tags?: string[];
   /** 千人千面独有事实（claim/source 两阶段输出） */
@@ -137,6 +148,16 @@ export interface FeedCard {
   funScore?: number;
   /** funScore 来源（同 zoneSource 口径；`derived`=由 aiDims 气质标签确定性映射） */
   funScoreSource?: "model" | "derived";
+  /** 乐趣六维原始分（v3 判据；同上，缓存重建必须原样带回） */
+  funDims?: Record<string, number>;
+  /** 分区旧值（v2.2 zone；对照用，缓存重建必须原样带回） */
+  legacyZone?: string;
+  /** 旧乐趣分（v2.2 funScore；对照用） */
+  legacyFunScore?: number;
+  /** 判定理由（模型一句话依据；人工核对与归因用） */
+  zoneReason?: string;
+  /** 乐趣理由（同上） */
+  funReason?: string;
   /** 领域标签（LLM 自由领域词 3-6 个，展示/搜索/千人千面素材；计算侧走 domainKey） */
   domainTags?: string[];
   /** 确定性领域键（从 zone+domainTags 派生，聚合计算/打包同键/配额统计用） */

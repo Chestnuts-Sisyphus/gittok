@@ -157,6 +157,8 @@ const SNAPSHOT_CAP = 1000; // 喜欢/收藏快照总条数上限（~1KB/张，1M
 
 // 频道/分区两轴的唯一定义源抽到 channels-axes.ts（可单测、模块加载即自检 key 唯一性——
 // 2026-09-14 栗子实测发现「乐趣」与「创意」共用 key=fun 导致串台，此为该 bug 的机制性修法）。
+import { applyFeedbackToFun } from "./feedback-score.ts";
+import { diversifyRank } from "../../src/feed/similarity.ts";
 import {
   DYNAMIC_SECTIONS,
   CATEGORY_SECTIONS,
@@ -167,6 +169,22 @@ import {
   categoryOfZone,
   assertUniqueChannelKeys,
 } from "./channels-axes.ts";
+// 频道价值函数 / 容量 / 配额：**唯一定义源**在服务端 src/feed/channel-policy.ts，前后端共用。
+// 起因（栗子 L8）：v2.2 前后端各写一份，且各自硬编码 60 → 热门池 418 张只展示 60、
+// 全库 2477 张任一频道最多看到 2.4%。这里只 import，不再复制任何一份。
+import {
+  RECOMMEND_PAGE_SIZE,
+  hotChannel,
+  dailyChannel,
+  funChannel,
+  followingChannel,
+  categoryChannel,
+  interleaveByCap,
+  aiCapCaps,
+  funCaps,
+  pagedQuotaMerge,
+  zoneOf as zoneOfPolicy,
+} from "../../src/feed/channel-policy.ts";
 
 assertUniqueChannelKeys();
 
@@ -228,8 +246,8 @@ function ChannelNav({
   );
 }
 
-/** 推荐分区每页条数 */
-const RECOMMEND_SIZE = 60;
+// 注：前端不需要「每批多少张」这个常量——虚拟列表按视口窗口渲染（feedWindow），
+// 容量与配额全部由 channel-policy 决定。CHANNEL_PAGE_SIZE 只服务于偏好配比的分页语义。
 
 /** AI 强特征前缀（与后端 classifyCategory 一致；用于推荐配额与分类兜底） */
 const AI_PREFIXES = [
@@ -495,7 +513,7 @@ function applyJitter(
  * 让没看过的自然排前面，看过的仍在流中随时可能回来。
  * seen 的写入点=卡片进入渲染窗口（曝光即看过）+打开详情，跨会话持久化。
  */
-function seenPenaltyOf(c: FeedCard, seen: Record<string, number>, now: number): number {
+function seenPenaltyOf(c: { repo: string }, seen: Record<string, number>, now: number): number {
   const ts = seen[c.repo];
   if (!ts) return 1;
   const days = (now - ts) / 86_400_000;
@@ -510,169 +528,65 @@ function seenPenaltyOf(c: FeedCard, seen: Record<string, number>, now: number): 
 // 前端只读不猜：zone 字段优先，回退旧 category 映射；配额是频道强制组件
 // ---------------------------------------------------------------------------
 
-/** 卡的内容分区（服务端 zone 中文四区；回退旧 category：ai→AI/learning→资源/tool→工具/fun→创意） */
-function zoneOfCard(c: FeedCard): string | null {
-  if (c.zone) return c.zone;
-  switch (c.category) {
-    case "ai":
-      return "AI";
-    case "learning":
-      return "资源";
-    case "tool":
-      return "工具";
-    case "fun":
-      return "创意";
-    default:
-      return null;
-  }
-}
+// 频道价值函数 v3（2026-09-14）：**全部实现搬到 src/feed/channel-policy.ts**（前后端共用一份）。
+// 这里只留薄别名，函数名沿用旧写法，避免全文件改名；新增代码请直接用 import 进来的本体。
 
-/** 规模平滑：min(1, log10(stars)/4)——防小库日均涨星虚高，也防大库只靠存量 */
-function scaleSmooth(stars: number): number {
-  if (stars <= 0) return 0;
-  return Math.min(1, Math.log10(stars) / 4);
-}
-
-/** 热门动量分：starGrowth × 规模平滑（30 天日均口径） */
-function hotMomentum(c: FeedCard): number {
-  return (c.starGrowth ?? 0) * scaleSmooth(c.stars ?? 0);
-}
+/** 卡的内容分区（服务端 zone 中文四区；回退旧 category 映射；唯一实现在 channel-policy） */
+const zoneOfCard = zoneOfPolicy;
 
 /**
- * 热门/每日增速段配额：AI 硬席 30%，其余三区共享 70% 按各自卡量加权。
- * 与后端 channels.ts aiCapQuota 同构（标签分区定稿 §3.2）。
+ * 频道取卡：**全部委托给 src/feed/channel-policy.ts**（容量/配额/价值函数的唯一实现）。
+ * 本函数只剩「频道 key → 该用哪个价值函数」这一层路由 + 会话洗牌后的配额复检。
+ *
+ * v2.2 的四处硬编码 `60` 在这里被删除：频道容量 = CHANNEL_CAP（无限，栗子 2026-09-14 拍板），
+ * 每批只决定「一次渲染多少张」（CHANNEL_PAGE_SIZE），由虚拟列表负责。
  */
-function aiCapQuota(cards: FeedCard[], limit: number): FeedCard[] {
-  if (limit <= 0 || cards.length === 0) return [];
-  const zoned = cards.filter((c) => zoneOfCard(c) !== null);
-  const ai = zoned.filter((c) => zoneOfCard(c) === "AI");
-  const rest = zoned.filter((c) => zoneOfCard(c) !== "AI");
-  const aiSeats = Math.min(ai.length, Math.floor(limit * 0.3));
-  const restSeats = limit - aiSeats;
-  const picks: FeedCard[] = [...ai.slice(0, aiSeats)];
-  if (restSeats > 0 && rest.length > 0) {
-    const byZone = new Map<string, FeedCard[]>();
-    for (const c of rest) {
-      const z = zoneOfCard(c)!;
-      if (!byZone.has(z)) byZone.set(z, []);
-      byZone.get(z)!.push(c);
-    }
-    const zones = [...byZone.keys()].sort(
-      (a, b) => byZone.get(b)!.length - byZone.get(a)!.length || a.localeCompare(b),
-    );
-    const totalW = zones.reduce((s, z) => s + byZone.get(z)!.length, 0);
-    const seats = new Map(zones.map((z) => [z, Math.floor(restSeats * (byZone.get(z)!.length / totalW))]));
-    let allocated = 0;
-    for (const z of zones) {
-      const k = Math.min(byZone.get(z)!.length, seats.get(z)!);
-      picks.push(...byZone.get(z)!.slice(0, k));
-      allocated += k;
-    }
-    let remaining = restSeats - allocated;
-    for (const z of zones) {
-      if (remaining <= 0) break;
-      const from = seats.get(z)!;
-      const take = Math.min(remaining, byZone.get(z)!.length - from);
-      if (take > 0) picks.push(...byZone.get(z)!.slice(from, from + take));
-      remaining -= take;
-    }
-  }
-  const order = new Map(cards.map((c, i) => [c.repo, i] as const));
-  return picks.sort((a, b) => order.get(a.repo)! - order.get(b.repo)! || 0);
-}
-
-/** 当日新入库（createdAt 当天）→ 每日频道段 1 保底席 */
-function isTodayNew(c: FeedCard, now: Date): boolean {
-  if (!c.createdAt) return false;
-  const d = new Date(c.createdAt);
-  return (
-    d.getUTCFullYear() === now.getUTCFullYear() &&
-    d.getUTCMonth() === now.getUTCMonth() &&
-    d.getUTCDate() === now.getUTCDate()
-  );
-}
-
-/** 乐趣分：fun_score × (1 + 增长动量)；fun_score 缺失 = 0（无独立信号不开） */
-function funScoreOf(c: FeedCard): number {
-  if (c.funScore === undefined || !Number.isFinite(c.funScore)) return 0;
-  return c.funScore * (1 + Math.min((c.starGrowth ?? 0) / 50, 1) * 0.35);
-}
-
-/** 乐趣频道配额：创意 40% / 其余三区各 20% */
-function funQuota(cards: FeedCard[], limit: number): FeedCard[] {
-  if (limit <= 0 || cards.length === 0) return [];
-  const n = Math.min(limit, cards.length);
-  const byZone = new Map<string, FeedCard[]>();
-  for (const c of cards) {
-    const z = zoneOfCard(c) ?? "工具"; // 无 zone 兜底工具（不丢卡）
-    if (!byZone.has(z)) byZone.set(z, []);
-    byZone.get(z)!.push(c);
-  }
-  const weights: Record<string, number> = { AI: 0.2, 资源: 0.2, 工具: 0.2, 创意: 0.4 };
-  const picks: FeedCard[] = [];
-  for (const [z, list] of byZone) {
-    picks.push(...list.slice(0, Math.min(list.length, Math.floor(n * (weights[z] ?? 0.2)))));
-  }
-  const order = new Map(cards.map((c, i) => [c.repo, i] as const));
-  return picks.sort((a, b) => order.get(a.repo)! - order.get(b.repo)! || 0).slice(0, n);
-}
-
 function getSectionCards(
   cards: FeedCard[],
   sectionKey: string,
   followingSet: Set<string> = new Set(),
   seen: Record<string, number> = {},
   now = Date.now(),
+  interactions: Record<string, InteractionRecord> = {},
 ): FeedCard[] {
   switch (sectionKey) {
     case "hot":
-      // 热门（大众验证）：动量分降序（starGrowth × 规模平滑）+ AI 30% 硬席配额
-      return aiCapQuota(
-        cards
-          .filter((c) => (c.starGrowth ?? 0) > 0)
-          .sort((a, b) => hotMomentum(b) - hotMomentum(a) || (b.stars ?? 0) - (a.stars ?? 0)),
-        60,
-      );
-    case "daily": {
-      // 每日（时效，两段）：段 1=当日新入库（createdAt 降序）；段 2=heatScore × 已读降权 + AI 30% 配额
-      const nowD = new Date(now);
-      const newToday = cards
-        .filter((c) => isTodayNew(c, nowD))
-        .sort((a, b) => (b.createdAt ?? "").localeCompare(a.createdAt ?? ""));
-      const rest = cards.filter((c) => !isTodayNew(c, nowD) && (c.heatScore ?? 0) > 0);
-      const speed = aiCapQuota(
-        rest.sort(
-          (a, b) =>
-            (b.heatScore ?? 0) * seenPenaltyOf(b, seen, now) -
-            (a.heatScore ?? 0) * seenPenaltyOf(a, seen, now),
-        ),
-        Math.max(0, 60 - newToday.length),
-      );
-      return [...newToday, ...speed].slice(0, 60);
-    }
+      // 热门（大众验证）：动量分降序 + AI ≤30% 前缀配额；容量无限
+      return hotChannel(cards);
+    case "daily":
+      // 每日（时效，两段）：段 1=当日新入库；段 2=heatScore × 已读降权（同一份配额）
+      return dailyChannel(cards, { now: new Date(now), seenPenalty: (c) => seenPenaltyOf(c, seen, now) });
     case "fun":
-      // 乐趣（体验轴）：fun_score × (1+增长动量) 降序 + 创意 40% 配额；fun_score 缺失不进
-      return funQuota(
-        cards
-          .filter((c) => c.funScore !== undefined && Number.isFinite(c.funScore))
-          .sort((a, b) => funScoreOf(b) - funScoreOf(a)),
-        60,
-      );
+      // 乐趣（体验轴）：fun_score × 增长动量降序 + 创意 ≤40% 前缀配额；fun_score=0 不进（无信号不开）
+      // 反馈闭环（G-B2①）：点赞/收藏加、点踩减——排序前先把互动回写进 funScore，
+      // 乐趣轴因此能跟着栗子的口味走（此前互动只进推荐权重，funScore 永不修正）。
+      return funChannel(applyFeedbackToFun(cards, interactions));
     case "following":
-      // 关注（关系视图）：repo 发布时间降序（createdAt），不掺降权
-      return cards
-        .filter((c) => followingSet.has(c.owner))
-        .sort((a, b) => (b.createdAt ?? b.ts).localeCompare(a.createdAt ?? a.ts));
-    default: // 固有分类频道（分区轴，key = `cat:xxx`）：按 aiScore 策展排序，同分看涨星势头。
-    // 数据侧双兼容：有 zone 按四区判（新卡），只有旧 category 的按 category 判（存量卡）。
-    {
+      // 关注（关系视图）：repo 发布时间降序，不掺降权、不掺配额（关系流=全量看到）
+      return followingChannel(cards.filter((c) => followingSet.has(c.owner)));
+    default: {
+      // 分区 tab（cat:xxx）：按 zone 取该区全部卡，按 aiScore 策展排序；容量无限
+      // 数据侧双兼容：有 zone 按四区判（新卡），只有旧 category 的按 category 判（存量卡）。
       const cat = categoryOfKey(sectionKey);
       const zone = sectionZoneOf(sectionKey);
-      return cards
-        .filter((c) => (c.zone ? zoneOfCard(c) === (zone ?? "\u0000") : c.category === cat))
-        .sort((a, b) => (b.aiScore ?? 0.5) - (a.aiScore ?? 0.5) || (b.starGrowth ?? 0) - (a.starGrowth ?? 0));
+      const pool = cards.filter((c) =>
+        c.zone ? zoneOfCard(c) === (zone ?? "") : c.category === cat,
+      );
+      return categoryChannel(pool, zone ?? "");
     }
   }
+}
+
+/** 洗牌后复检配额：applyJitter 按位次打分会把配额压到队尾的卡重新抖回前排，
+ *  所以洗牌完再跑一次前缀配额，保证「任意前缀都满足配额」这条性质不被洗牌破坏。 */
+function recapped(cards: FeedCard[], sectionKey: string): FeedCard[] {
+  if (sectionKey === "fun") {
+    return interleaveByCap<FeedCard>(cards, (c) => zoneOfCard(c) ?? "工具", funCaps([]));
+  }
+  if (sectionKey === "hot" || sectionKey === "daily") {
+    return interleaveByCap<FeedCard>(cards, (c) => zoneOfCard(c), aiCapCaps([]));
+  }
+  return cards;
 }
 
 // ---------------------------------------------------------------------------
@@ -749,23 +663,24 @@ function buildRecommended(
     ? (categoryOfZone(preferences.preferredZone) ?? preferences.preferredZone)
     : null;
   const quota = prefCat ? (PREF_QUOTA[prefCat] ?? DEFAULT_QUOTA) : DEFAULT_QUOTA;
-  const total = Math.min(RECOMMEND_SIZE, pool.length);
+  // 容量无限（栗子 2026-09-14）：席位模型改成**分页配额合并**——每页按偏好配比分配席位，
+  // 一页填满开下一页，直到池子见底。**不丢任何一张卡**，所以推荐频道也能一直滚到底，
+  // 且每一页都保持偏好配比（旧写法 slice(0, 60) 把尾巴整段砍掉了）。
   const cats = ["ai", "fun", "tool", "learning"];
-  const picked: FeedCard[] = [];
+  const quotaMap: Record<string, number> = {};
   cats.forEach((cat, i) => {
-    const list = (byCat.get(cat) ?? []).sort((a, b) => scoreOf(b) - scoreOf(a));
-    const k = Math.min(list.length, Math.floor(total * quota[i]!));
-    picked.push(...list.slice(0, k));
+    quotaMap[cat] = quota[i]!;
   });
-  // 剩余席位按综合分补（配额未满时不浪费）
-  const have = new Set(picked.map((c) => c.repo));
-  const remaining = total - picked.length;
-  if (remaining > 0) {
-    const rest = pool.filter((c) => !have.has(c.repo)).sort((a, b) => scoreOf(b) - scoreOf(a));
-    picked.push(...rest.slice(0, remaining));
-  }
-  // 合并后按综合分排序（推荐流开头最相关）
-  return picked.sort((a, b) => scoreOf(b) - scoreOf(a)).slice(0, total);
+  const sources = cats.map((cat) => ({
+    key: cat,
+    list: (byCat.get(cat) ?? []).sort((a, b) => scoreOf(b) - scoreOf(a)),
+    scoreOf,
+  }));
+  const merged = pagedQuotaMerge(sources, quotaMap, RECOMMEND_PAGE_SIZE);
+  // E1 接线（2026-09-14）：相似度降权排序——近重复的后来者降权后移，**不排除任何卡**。
+  // 之前 similarity.ts 只是检查器、推荐流看不见相似度，连刷三张「AI 宠物」毫无抵抗力。
+  // 窗口 80 + 短文本词袋 → 2.5k 张池子是毫秒级。
+  return diversifyRank(merged, { scoreOf, penalty: 0.3, window: 80 }).cards;
 }
 
 // ---------------------------------------------------------------------------
@@ -1447,8 +1362,17 @@ export default function App() {
               0.2,
             )
           : s.key === "daily" || s.key === "following"
-            ? getSectionCards(visibleCards, s.key, followingSet, seen, now)
-            : applyJitter(getSectionCards(visibleCards, s.key, followingSet), seed, seen, now, 0.18),
+            ? getSectionCards(visibleCards, s.key, followingSet, seen, now, interactions)
+            : recapped(
+                applyJitter(
+                  getSectionCards(visibleCards, s.key, followingSet, seen, now, interactions),
+                  seed,
+                  seen,
+                  now,
+                  0.18,
+                ),
+                s.key,
+              ),
     })).filter((s) => s.key === "following" || s.cards.length > 0);
     return all;
   }, [visibleCards, preferences, seen, interactions, followingSet]);
@@ -1662,17 +1586,18 @@ export default function App() {
                     )}
                     {activeSection && (
                       <>
-                        {feedChannel !== "recommended" && (
-                          <div className="channel-head">
-                            <span className="ch-icon">
-                              <SectionIcon icon={activeSection.icon} size={18} />
-                            </span>
-                            <span className="ch-title">{activeSection.title}</span>
-                            <span className="ch-count">
-                              {activeSection.cards.length} 个项目 · {activeSection.desc}
-                            </span>
-                          </div>
-                        )}
+                        {/* 频道头：**每个频道都显示**（含推荐）。张数 = 这个频道里真实可看的张数
+                            （池子长度），不是本批渲染数——栗子 2026-09-14：「现在都写 60 张会让
+                            用户觉得这个频道只有六十张，这是欺骗」。无限滚动 + 真实张数缺一不可。 */}
+                        <div className="channel-head">
+                          <span className="ch-icon">
+                            <SectionIcon icon={activeSection.icon} size={18} />
+                          </span>
+                          <span className="ch-title">{activeSection.title}</span>
+                          <span className="ch-count">
+                            共 {activeSection.cards.length} 张 · {activeSection.desc}
+                          </span>
+                        </div>
                         <FeedVirtualList
                           cards={activeSection.cards}
                           likedSet={likedSet}

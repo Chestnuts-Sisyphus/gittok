@@ -15,7 +15,7 @@
  *
  * 阈值：先验 0.35（与基线同源）；实测直方图切谷底后由调用方覆盖（`threshold` 参数）。
  *
- * 证明等级：本模块为【已实测】单元测试覆盖；「生产端接线到推荐流排序」为【未验】
+ * 证明等级：词袋/相似度口径为【已实测】单元测试覆盖；「接进推荐流排序」= `diversifyRank`（2026-09-14 晚接线，E1 闭合）——**已接线**：由前端推荐流排序消费
  * （需千人千面阶段落地后回填，任务书已列为该阶段前置）。
  */
 
@@ -185,6 +185,71 @@ export interface DedupResult<T> {
   cards: T[];
   /** repo → 被判定为近重复的次数（诊断用） */
   duplicates: Map<string, number>;
+}
+
+/**
+ * 相似度降权排序（E1：**接进推荐流排序**，2026-09-14 晚接线）。
+ *
+ * 为什么需要：`similarityReport` / `dedupPenalty` 之前只是**检查器**（能算出「库里有多少近重复」
+ * 并给弱的那张乘系数），但没有任何生产路径消费它的结论——推荐流排序里完全看不见相似度，
+ * 于是连着刷到三张「AI 宠物」或三张「像素游戏复刻」时毫无抵抗力。
+ *
+ * 算法（MMR-lite，确定性、单趟插入）：
+ *  1. 按传入顺序（调用方已排好序）逐张处理；每张先算它与**已接受的前 K 张**的最大 Jaccard；
+ *  2. 相似度 ≥ threshold → 这张的**有效分**乘 (1 − penalty)，插到对应的位置（不改成员、只改顺序）；
+ *  3. K 窗口 + 短文本词袋把复杂度从 O(n²) 压到 O(n·K)（推荐池 2.5k 张 × K=80 = 毫秒级）。
+ *
+ * 纪律：策展流理念——**不排除任何一张卡**，只改出现顺序（栗子 09-05 拍板：沉底被否）。
+ */
+export interface DiversifyOptions<T extends GsimCard = GsimCard> extends GsimOptions {
+  /** 降权系数（0-1）：近重复的后来者乘 (1-penalty)；0 = 只标记不降权 */
+  penalty?: number;
+  /** 比对窗口：只与已接受的前 K 张比（默认 80）——性能与效果折中 */
+  window?: number;
+  /** 卡的原分值（用于插回顺序），默认用 score/stars */
+  scoreOf?: (c: T) => number;
+}
+
+export interface DiversifyResult<T> {
+  cards: T[];
+  /** 因近重复被降权的张数（诊断/验收用） */
+  demoted: number;
+}
+
+export function diversifyRank<T extends GsimCard>(
+  cards: T[],
+  opts: DiversifyOptions<T> = {},
+): DiversifyResult<T> {
+  const threshold = opts.threshold ?? GSIM_DEFAULT_THRESHOLD;
+  const penalty = opts.penalty ?? 0.3;
+  const windowSize = Math.max(1, opts.window ?? 80);
+  const scoreOf =
+    opts.scoreOf ?? ((c: T): number => (typeof c.score === "number" ? c.score : (c.stars ?? 0)));
+  if (cards.length < 2 || penalty <= 0) return { cards: [...cards], demoted: 0 };
+
+  const out: T[] = [];
+  const effScores: number[] = [];
+  const bags: Set<string>[] = [];
+  let demoted = 0;
+  for (const c of cards) {
+    const bag = bagOf(textOf(c));
+    let maxSim = 0;
+    const from = Math.max(0, bags.length - windowSize);
+    for (let i = from; i < bags.length; i++) {
+      const sim = jaccard(bag, bags[i]!);
+      if (sim > maxSim) maxSim = sim;
+    }
+    const dup = maxSim >= threshold && bag.size > 0;
+    if (dup) demoted++;
+    const eff = dup ? scoreOf(c) * (1 - penalty) : scoreOf(c);
+    // 插到「有效分不小于自己」的最后一张之后（同分保持原相对顺序）
+    let pos = out.length;
+    while (pos > 0 && effScores[pos - 1]! < eff) pos--;
+    out.splice(pos, 0, c);
+    effScores.splice(pos, 0, eff);
+    bags.splice(pos, 0, bag);
+  }
+  return { cards: out, demoted };
 }
 
 /**

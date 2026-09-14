@@ -99,9 +99,7 @@ function main(): void {
     `  补标 model ${markedModel}｜derived 补 zone ${filledDerived}｜仍缺 ${stillMissing}｜补 domainKey ${filledDomainKey}`,
   );
   console.log(`  → 覆盖率 ${withZone}/${cards.length}（${((withZone / cards.length) * 100).toFixed(1)}%）`);
-  console.log(
-    `  domainKey ${withKey}/${cards.length}（${((withKey / cards.length) * 100).toFixed(1)}%）`,
-  );
+  console.log(`  domainKey ${withKey}/${cards.length}（${((withKey / cards.length) * 100).toFixed(1)}%）`);
   console.log(`  zoneSource 分布 ${JSON.stringify(src)}`);
 
   if (!write) {
