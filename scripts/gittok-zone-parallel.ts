@@ -206,7 +206,13 @@ async function main(): Promise<void> {
   const batchSize = Math.max(1, numArg("batch", 20));
   const derivedOnly = argv.includes("--derived-only");
   const dryRun = argv.includes("--dry-run");
-  const limit = numArg("limit", Number.POSITIVE_INFINITY);
+  /**
+   * limit 哨兵（2026-09-14 实测踩坑）：**≤0 一律视为「不限」**。
+   * CI 壳用 `ZONE_LIMIT=0` 表达「不限」，早先实现把它当字面 0 → `slice(0,0)` = 空队列
+   * → 工作流每次都「待办 0」空转退出（排查花了 4 轮：日志里 limit=0 与待办 0 同现才锁定）。
+   */
+  const rawLimit = numArg("limit", Number.POSITIVE_INFINITY);
+  const limit = rawLimit > 0 ? rawLimit : Number.POSITIVE_INFINITY;
   // derived 兜底默认开；但**带 --limit 的试跑不许触发全库兜底**（否则试跑一次就把全库标成 derived）
   const deriveOk = argv.includes("--derived") || (!Number.isFinite(limit) && !argv.includes("--no-derive"));
 
