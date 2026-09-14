@@ -72,8 +72,13 @@ export interface ScoringResult {
   aiScore: number;
   /** 内容分区（AI/资源/工具/创意，判定链四问输出；v6 新增） */
   zone?: string;
+  /** zone 来源（`model`=模型判定；`derived`=由 category 确定性映射回填）。
+   *  2026-09-14：加这条是因为**缓存命中卡会丢判定字段**——见 loadExistingScores。 */
+  zoneSource?: "model" | "derived";
   /** 乐趣强度 0-1（体验轴信号：让人想点开玩的冲动；标签分区 v2.2 新增） */
   funScore?: number;
+  /** funScore 来源（同 zoneSource 口径） */
+  funScoreSource?: "model" | "derived";
   /** 领域标签 3-6 个（LLM 自由出的领域词，面向人可读；替代 topics 噪音） */
   tags?: string[];
   /** 千人千面独有事实（claim/source 两阶段输出） */

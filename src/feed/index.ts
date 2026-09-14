@@ -584,9 +584,12 @@ export function summaryFromDetailFirstPara(detailCn: string): string {
 // 加载已有评分缓存（避免重复 LLM 调用）
 // ---------------------------------------------------------------------------
 
-function loadExistingScores(): { scores: Map<string, ScoringResult>; detailMap: Map<string, string> } {
+export function loadExistingScores(feedPath: string = FEED_PATH): {
+  scores: Map<string, ScoringResult>;
+  detailMap: Map<string, string>;
+} {
   try {
-    if (!fs.existsSync(FEED_PATH)) {
+    if (!fs.existsSync(feedPath)) {
       // 无 baseline（首次/被杀轮次）时增量缓存仍有效——已评部分不能丢
       const partial = loadPartialScores();
       if (partial.size > 0) {
@@ -595,7 +598,7 @@ function loadExistingScores(): { scores: Map<string, ScoringResult>; detailMap: 
       }
       return { scores: new Map(), detailMap: new Map() };
     }
-    const raw = fs.readFileSync(FEED_PATH, "utf-8");
+    const raw = fs.readFileSync(feedPath, "utf-8");
     const cards = JSON.parse(raw) as FeedCard[];
     const map = new Map<string, ScoringResult>();
     // baseline 每卡的 detailCn（P0a detail 兜底数据源：重评失败 + 有历史 detail → 第二段截取）
@@ -608,13 +611,22 @@ function loadExistingScores(): { scores: Map<string, ScoringResult>; detailMap: 
           aiDims: c.aiDims || (c.aiDim ? [c.aiDim] : []),
           aiDim: c.aiDim || c.aiDims?.[0] || "其他",
           aiScore: c.aiScore,
+          // 判定字段必须带回来（2026-09-14 事故）：漏了 zone/funScore/tags 这三行，
+          // 缓存命中卡在重建时会**整片丢掉分区数据**——实测线上 zone 覆盖率 100% → 0.2%
+          // （tier-drip 跑一轮即抹平回填成果）。这是「历史卡零重评」铁律的必然推论：
+          // **不进 cache 的字段，下一轮重建就没了**。
+          zone: c.zone,
+          zoneSource: c.zoneSource ?? (c.zone ? "model" : undefined),
+          funScore: c.funScore,
+          funScoreSource: c.funScoreSource,
+          tags: c.domainTags,
           summaryCn: c.summaryCn,
           reasonCn: c.reasonCn,
           detailCn: c.detailCn || "",
         });
       }
     }
-    console.log(`  [feed/cache] loaded ${map.size} existing scores from ${FEED_PATH}`);
+    console.log(`  [feed/cache] loaded ${map.size} existing scores from ${feedPath}`);
     // 合并评分增量缓存（partial 优先：它是最近一轮可能未完整落盘的新评分）
     const partial = loadPartialScores();
     if (partial.size > 0) {
@@ -1458,6 +1470,9 @@ export async function generateFeed(
         ...sc,
         aiScore: aiNorm.normalize(modelKey, sc.aiScore),
         funScore: sc.funScore !== undefined ? funNorm.normalize(modelKey, sc.funScore) : sc.funScore,
+        // 本轮新产出的判定 = 模型判定（覆盖任何历史 provenance 标）
+        zoneSource: sc.zone ? "model" : undefined,
+        funScoreSource: sc.funScore !== undefined ? "model" : undefined,
       };
     }
     const [owner = "", ...nameParts] = m.repo.split("/");
@@ -1480,7 +1495,9 @@ export async function generateFeed(
       aiDims: sc.aiDims,
       aiDim: sc.aiDim,
       zone: sc.zone,
+      zoneSource: sc.zoneSource,
       funScore: sc.funScore,
+      funScoreSource: sc.funScoreSource,
       domainTags: sc.tags,
       domainKey:
         sc.zone && sc.tags && sc.tags.length > 0 ? (domainKeyOf(sc.zone, sc.tags) ?? undefined) : undefined,
