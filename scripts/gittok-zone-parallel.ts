@@ -224,6 +224,23 @@ async function main(): Promise<void> {
   // 实测与 derived 一致率仅 67.8%——derived 只是「先让站点自洽」，不该是终点）。
   const upgradeDerived =
     argv.includes("--upgrade-derived") || (process.env["ZONE_UPGRADE"] ?? "").toLowerCase() === "true";
+  // 诊断：过滤前后逐条件计数——「待办 0 但无 zone 2428」这种反常必须能在日志里一眼定位
+  let dbgStateBlocked = 0;
+  let dbgNoZone = 0;
+  let dbgDerived = 0;
+  for (const c of cards) {
+    if (state.done[c.repo] === "model") {
+      dbgStateBlocked++;
+      continue;
+    }
+    if (!c.zone) dbgNoZone++;
+    else if (upgradeDerived && c.zoneSource === "derived") dbgDerived++;
+  }
+  console.log(
+    `[zone-par] 过滤分解：state 拦截 ${dbgStateBlocked}｜无 zone ${dbgNoZone}｜derived 可升级 ${dbgDerived}｜limit=${String(
+      limit,
+    )}`,
+  );
   const todo = cards
     .filter((c) => {
       if (state.done[c.repo] === "model") return false;
