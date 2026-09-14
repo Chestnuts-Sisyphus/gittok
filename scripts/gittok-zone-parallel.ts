@@ -26,8 +26,14 @@ import { buildPlan } from "./gittok-fullbuild-lib.ts";
 import { ScheduledLlmExecutor } from "../src/feed/executor.ts";
 import { domainKeyOf } from "../src/feed/prompts.ts";
 
-const FEED = path.join("data", "feed.json");
-const STATE = path.join("data", "zone-backfill-state.json");
+/**
+ * 路径可用环境变量覆盖（2026-09-14：多会话同改 data/feed.json 是常态——本地跑单文件副本、
+ * 结果走 MERGE 提交，避免与 bot/其它会话的提交互相覆盖）。
+ *   ZONE_FEED=path  默认 data/feed.json
+ *   ZONE_STATE=path 默认 data/zone-backfill-state.json
+ */
+const FEED = process.env["ZONE_FEED"] ?? path.join("data", "feed.json");
+const STATE = process.env["ZONE_STATE"] ?? path.join("data", "zone-backfill-state.json");
 
 /** 判定链（与 src/feed/prompts.ts 生产措辞一致；不另造判据） */
 const ZONE_RULES =
@@ -38,7 +44,7 @@ const ZONE_RULES =
 const ZONES = ["AI", "资源", "工具", "创意"];
 
 /** 存量 category → zone（旧词表→新四区；`derived` 兜底档用，实测与模型一致率 65%） */
-const CATEGORY_TO_ZONE: Record<string, string> = {
+export const CATEGORY_TO_ZONE: Record<string, string> = {
   ai: "AI",
   learning: "资源",
   tool: "工具",
@@ -49,7 +55,7 @@ const CATEGORY_TO_ZONE: Record<string, string> = {
  * aiDims → funScore 兜底（`derived` 档用；诚实标注为规则映射非模型判定）。
  * 口径：游戏/非AI-好玩/创意工具 = 高乐趣信号；正经工程类 = 低。
  */
-const FUN_ECHO_DIMS: Array<[RegExp, number]> = [
+export const FUN_ECHO_DIMS: Array<[RegExp, number]> = [
   [/^游戏$|非AI-游戏|游戏开发/, 0.7],
   [/非AI-好玩/, 0.65],
   [/创意工具/, 0.6],
@@ -57,7 +63,7 @@ const FUN_ECHO_DIMS: Array<[RegExp, number]> = [
   [/非AI-实用|效率工具|开发者工具|安全工具/, 0.1],
 ];
 
-interface Card {
+export interface Card {
   repo: string;
   owner?: string;
   name?: string;
@@ -164,7 +170,7 @@ function applyVerdicts(cards: Card[], byRepo: Map<string, Card>, verdicts: Verdi
   return n;
 }
 
-function funScoreFromDims(card: Card): number | undefined {
+export function funScoreFromDims(card: Card): number | undefined {
   const dims = card.aiDims ?? (card.aiDim ? [card.aiDim] : []);
   if (dims.length === 0) return undefined;
   for (const [re, score] of FUN_ECHO_DIMS) {
@@ -174,7 +180,7 @@ function funScoreFromDims(card: Card): number | undefined {
 }
 
 /** domainTags 兜底：用 aiDims 里非气质词 + language 组 3 个（`derived` 档） */
-function domainTagsFrom(card: Card): string[] | undefined {
+export function domainTagsFrom(card: Card): string[] | undefined {
   const out: string[] = [];
   for (const d of card.aiDims ?? []) {
     if (["非AI-实用", "非AI-好玩", "非AI-工具", "其他"].includes(d)) continue;
