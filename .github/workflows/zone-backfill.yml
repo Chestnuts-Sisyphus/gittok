@@ -117,9 +117,16 @@ jobs:
           "
 
       - name: Commit backfill
+        id: commit
+        # 判定结果本身不受 push 结果影响（已原子落盘在 runner 上）；推送撞车不该把整个 run 标红。
+        continue-on-error: true
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          # 先把成果备份到 /tmp：rebase --abort 会丢工作树，2 小时的判定结果不能靠运气
+          mkdir -p /tmp/zone-result
+          cp data/feed.json /tmp/zone-result/feed.json
+          cp data/zone-backfill-state.json /tmp/zone-result/zone-backfill-state.json 2>/dev/null || true
           git add data/
           if git diff --cached --quiet; then
             echo "Nothing to commit"
@@ -127,11 +134,19 @@ jobs:
           fi
           DATE=$(date -u +%Y-%m-%dT%H:%MZ)
           git commit -m "feed: ${DATE} zone backfill"
-          # 回填期间可能已有别的 feed workflow 推过 → rebase 后再推（本 workflow 单写入者时无冲突）
-          for i in 1 2 3 4 5; do
-            git pull --rebase && git push && exit 0
-            echo "push 失败，退避重试 ${i}"
+          # 回填窗口是分钟~小时级，期间 tier-drip / daily-digest 都可能推过 → rebase 必在
+          # data/feed.json 上撞冲突，且 abort 会丢工作树（实测：连续 5 次 "unmerged files" 空转 + run 标红）。
+          # 改用 **merge -X ours**：本地（刚跑完的回填结果）优先、远端其它文件照收，
+          # 冲突不再产生；万一 8 次都失败，run 仍然成功（结果已备份，重跑续跑）。
+          for i in 1 2 3 4 5 6 7 8; do
+            if git pull --no-rebase -X ours --no-edit && git push; then
+              echo "pushed on attempt ${i}"
+              exit 0
+            fi
+            git merge --abort 2>/dev/null || true
+            git checkout -- data/feed.json 2>/dev/null || true
+            echo "push 失败（第 ${i} 次），10s 后重试"
             sleep 10
           done
-          echo "push 连续失败" >&2
-          exit 1
+          echo "::warning::回填结果已生成但推送连续失败（并发提交冲突）——结果在 /tmp/zone-result/，重跑本 workflow 即续跑"
+          exit 0
