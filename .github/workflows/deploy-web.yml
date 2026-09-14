@@ -9,8 +9,14 @@ on:
       - "data/**"
   # daily-digest / feed-drip 跑完后自动部署（drip 的 GITHUB_TOKEN push 不触发 on:push，
   # 滴灌新卡要靠这条 workflow_run 才能上线——GT-0906-01 验收实证 40 轮更新全被 skipped）
+  # 2026-09-14 补：新增的两个 feed workflow 也必须在此列——否则它们产出的卡/进度
+  # 只在仓库里、永远上不了站（分档轮首跑即撞此坑：数据 push 成功但站点仍是旧数据）。
   workflow_run:
-    workflows: ["Daily Agents Radar", "Feed Drip（少量多次滴灌）"]
+    workflows:
+      - "Daily Agents Radar"
+      - "Feed Drip（少量多次滴灌）"
+      - "Feed Tier Drip（分档 24h 运转）"
+      - "Feed Full Build（全量建库·点火就绪）"
     types:
       - completed
   # 手动触发
