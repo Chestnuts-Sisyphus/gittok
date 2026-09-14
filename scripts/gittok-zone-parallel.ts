@@ -363,6 +363,13 @@ async function main(): Promise<void> {
     const lane = alive[laneIdx]!;
     const queue = perLane[laneIdx]!;
     let idleRounds = 0;
+    /**
+     * 通道级熔断计数（2026-09-14 实测教训）：配额饱和时把失败批次无限放回队首 =
+     * 把整个墙钟预算烧在无产出的重试上（首跑 2h05m 里 888 张、44 批全在打水漂）。
+     * 连败 N 次即认输退出，把批次留给「下一轮的通道」或 derived 兜底。
+     */
+    let consecutiveFail = 0;
+    const maxFailures = Math.max(1, numArg("max-failures", 4));
     for (;;) {
       const myBatch = queue.shift();
       if (!myBatch) return;
@@ -384,6 +391,7 @@ async function main(): Promise<void> {
         console.warn(`  [zone-par] ${lane.key} 批失败: ${String(err).slice(0, 90)}`);
       }
       if (n > 0) {
+        consecutiveFail = 0;
         doneModel += n;
         for (const c of myBatch) {
           if (c.zone) {
@@ -397,6 +405,17 @@ async function main(): Promise<void> {
         }
       } else {
         failed += myBatch.length;
+        consecutiveFail++;
+        if (consecutiveFail >= maxFailures) {
+          console.warn(
+            `  [zone-par] ${lane.key} 连败 ${consecutiveFail} 批（配额饱和）→ 本通道退出；` +
+              `${queue.length} 批留给下一轮/兜底`,
+          );
+          return;
+        }
+        // 短暂退避再试（不把批次立刻放回队首造成热循环）
+        await new Promise((r) => setTimeout(r, 15_000));
+        queue.unshift(myBatch);
       }
     }
   };
