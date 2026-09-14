@@ -7,18 +7,18 @@
         "model": "zhipu:glm-4.7-flash",
         "tier": "tail",
         "quotaTokens": 1000000,
-        "usedTokens": 873643,
-        "calls": 175,
-        "cardsOk": 250,
-        "exhausted": false
+        "usedTokens": 1058193,
+        "calls": 209,
+        "cardsOk": 553,
+        "exhausted": true
       },
       {
         "model": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
         "tier": "tail",
         "quotaTokens": 250000,
-        "usedTokens": 0,
-        "calls": 0,
-        "cardsOk": 0,
+        "usedTokens": 120336,
+        "calls": 17,
+        "cardsOk": 16,
         "exhausted": false
       },
       {
@@ -33,5 +33,5 @@
     ],
     "fallbackCount": 588
   },
-  "updatedAt": "2026-09-14T13:56:43.144Z"
+  "updatedAt": "2026-09-14T19:14:22.594Z"
 }
