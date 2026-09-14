@@ -41,8 +41,19 @@ function main(): void {
   let markedModel = 0;
   let filledDerived = 0;
   let stillMissing = 0;
+  let filledDomainKey = 0;
 
   for (const c of cards) {
+    // domainKey 补齐（本会话新发现的缺口）：AI 区细分 tab 消费的是 domainKey，
+    // 但它**只由新管道产出**——旧卡全缺（线上只有 45 个值）。它是 zone+domainTags 的
+    // 确定性派生（domainKeyOf），所以对任何已有这两个字段的卡都能直接补，无需模型调用。
+    if (c.zone && c.domainTags && c.domainTags.length > 0 && !c.domainKey) {
+      const dk = domainKeyOf(c.zone, c.domainTags);
+      if (dk) {
+        c.domainKey = dk;
+        filledDomainKey++;
+      }
+    }
     if (c.zone) {
       // 已有 zone 但没盖来源标 → 这批是模型判定链产出的（见文件头论证）
       if (!c.zoneSource) {
@@ -77,14 +88,20 @@ function main(): void {
   }
 
   const withZone = cards.filter((c) => c.zone).length;
+  const withKey = cards.filter((c) => c.domainKey).length;
   const src: Record<string, number> = {};
   for (const c of cards) {
     const k = c.zoneSource ?? "(none)";
     src[k] = (src[k] ?? 0) + 1;
   }
   console.log(`[gapfill] file=${feedFile} 卡 ${cards.length}`);
-  console.log(`  补标 model ${markedModel}｜derived 补 zone ${filledDerived}｜仍缺 ${stillMissing}`);
+  console.log(
+    `  补标 model ${markedModel}｜derived 补 zone ${filledDerived}｜仍缺 ${stillMissing}｜补 domainKey ${filledDomainKey}`,
+  );
   console.log(`  → 覆盖率 ${withZone}/${cards.length}（${((withZone / cards.length) * 100).toFixed(1)}%）`);
+  console.log(
+    `  domainKey ${withKey}/${cards.length}（${((withKey / cards.length) * 100).toFixed(1)}%）`,
+  );
   console.log(`  zoneSource 分布 ${JSON.stringify(src)}`);
 
   if (!write) {
