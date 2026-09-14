@@ -7,9 +7,9 @@
         "model": "zhipu:glm-4.7-flash",
         "tier": "tail",
         "quotaTokens": 1000000,
-        "usedTokens": 85668,
-        "calls": 18,
-        "cardsOk": 23,
+        "usedTokens": 352714,
+        "calls": 71,
+        "cardsOk": 106,
         "exhausted": false
       },
       {
@@ -33,5 +33,5 @@
     ],
     "fallbackCount": 588
   },
-  "updatedAt": "2026-09-14T07:06:36.897Z"
+  "updatedAt": "2026-09-14T08:34:34.267Z"
 }
