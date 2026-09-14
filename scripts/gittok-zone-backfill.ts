@@ -73,7 +73,10 @@ const ZONES = ["AI", "资源", "工具", "创意"];
 
 /** 容错解析（复用管道同款思路：去代码块 + 摘数组） */
 function parseVerdicts(raw: string): Verdict[] {
-  let text = raw.trim().replace(/```(?:json)?/g, "").replace(/```/g, "");
+  let text = raw
+    .trim()
+    .replace(/```(?:json)?/g, "")
+    .replace(/```/g, "");
   const s = text.indexOf("[");
   const e = text.lastIndexOf("]");
   if (s === -1 || e === -1 || e <= s) return [];
@@ -93,7 +96,9 @@ async function main(): Promise<void> {
 
   const cards = JSON.parse(fs.readFileSync(FEED, "utf-8")) as Card[];
   const todo = cards.filter((c) => !c.zone).slice(0, Number.isFinite(limit) ? limit : undefined);
-  console.log(`[zone-backfill] 总卡 ${cards.length}，缺 zone ${cards.filter((c) => !c.zone).length}，本轮处理 ${todo.length}`);
+  console.log(
+    `[zone-backfill] 总卡 ${cards.length}，缺 zone ${cards.filter((c) => !c.zone).length}，本轮处理 ${todo.length}`,
+  );
   if (dryRun || todo.length === 0) return;
 
   // 执行层：与生产同构（免费矩阵优先）
@@ -117,43 +122,93 @@ async function main(): Promise<void> {
   const byRepo = new Map(cards.map((c) => [c.repo, c] as const));
   let done = 0;
   let failed = 0;
+  /** 落盘：**原子写**（临时文件 + rename）——避免中断/并发把主文件写成半截，
+   *  这是 09-14 实际踩过的坑（stash 冲突把 feed.json 写成 399 处冲突标记）。 */
   const persist = (): void => {
-    fs.writeFileSync(FEED, JSON.stringify(cards, null, 2), "utf-8");
+    const tmp = `${FEED}.tmp`;
+    fs.writeFileSync(tmp, JSON.stringify(cards, null, 2), "utf-8");
+    fs.renameSync(tmp, FEED);
   };
   const key = tail[0]?.entry.replace(/:\d+$/, "") ?? "";
+
+  /** 单批判定（可复用：整批失败时降级为逐张） */
+  const judgeBatch = async (
+    batch: Card[],
+    fn: (p: string, m: number) => Promise<string>,
+  ): Promise<number> => {
+    const raw = await fn(buildPrompt(batch), 4096);
+    const verdicts = parseVerdicts(raw);
+    for (const v of verdicts) {
+      const card = byRepo.get(v.repo);
+      if (!card) continue;
+      card.zone = v.zone;
+      if (typeof v.fun_score === "number") card.funScore = Math.max(0, Math.min(1, v.fun_score));
+      if (Array.isArray(v.tags) && v.tags.length >= 3) card.domainTags = v.tags.slice(0, 6);
+      done++;
+    }
+    return verdicts.length;
+  };
+
+  /** 通道熔断（全池冷却）计数器：连续多批都没通道 = 免费额度此刻全线饱和 →
+   *  优雅退出（已回填的已落盘），而不是空转烧时间。下次运行自动续跑。 */
+  let laneStarved = 0;
   for (let i = 0; i < todo.length; i += BATCH) {
     const batch = todo.slice(i, i + BATCH);
-    // 通道可能被限流熔断（免费档常态）：等到解冻再试，而不是直接退出（迁移要跑完）
     let caller = executor.callerFor(key);
-    for (let wait = 0; !caller && wait < 30; wait++) {
-      console.log(`  [zone-backfill] 通道 ${key} 冷却中——等 30s 重试（第 ${wait + 1} 次）`);
+    if (!caller) {
+      laneStarved++;
+      if (laneStarved >= 3) {
+        console.warn(
+          `[zone-backfill] 通道 ${key} 连续 ${laneStarved} 批不可用（免费额度饱和）→ 优雅退出；` +
+            `已回填 ${done} 张并落盘，稍后重跑本脚本即自动续跑`,
+        );
+        break;
+      }
+      // 等到解冻再试（免费档分钟级窗口）
+      await new Promise((r) => setTimeout(r, 45_000));
+      caller = executor.callerFor(key);
+      if (!caller) continue;
+    }
+    laneStarved = 0;
+    try {
+      const n = await judgeBatch(batch, caller);
+      failed += batch.length - n;
+      console.log(
+        `  [zone-backfill] ${Math.min(i + BATCH, todo.length)}/${todo.length}：本批 ${n}/${batch.length} 判定成功（累计 ${done}）`,
+      );
+    } catch (err) {
+      // 批级失败（内容安全拦截/解析崩/网络）→ 等一个窗口后整批重试一次，
+      // 仍失败再逐张（把毒样本隔离出来，而不是整批丢弃）。
+      let recovered = 0;
+      console.warn(`  [zone-backfill] 批失败，等 30s 整批重试: ${String(err).slice(0, 100)}`);
       await new Promise((r) => setTimeout(r, 30_000));
       caller = executor.callerFor(key);
-    }
-    if (!caller) {
-      console.error(`[zone-backfill] 通道长时间不可用（${key}）→ 停止（已回填 ${done}）`);
-      break;
-    }
-    try {
-      const raw = await caller(buildPrompt(batch), 4096);
-      const verdicts = parseVerdicts(raw);
-      for (const v of verdicts) {
-        const card = byRepo.get(v.repo);
-        if (!card) continue;
-        card.zone = v.zone;
-        if (typeof v.fun_score === "number") card.funScore = Math.max(0, Math.min(1, v.fun_score));
-        if (Array.isArray(v.tags) && v.tags.length >= 3) card.domainTags = v.tags.slice(0, 6);
-        done++;
+      if (caller) {
+        try {
+          recovered = await judgeBatch(batch, caller);
+        } catch {
+          recovered = 0;
+        }
       }
-      failed += batch.length - verdicts.length;
-      console.log(
-        `  [zone-backfill] ${Math.min(i + BATCH, todo.length)}/${todo.length}：本批 ${verdicts.length}/${batch.length} 判定成功（累计 ${done}）`,
-      );
-      if (done % (BATCH * 10) === 0) persist(); // 每 ~200 张落盘一次（中断不丢已回填）
-    } catch (err) {
-      failed += batch.length;
-      console.error(`  [zone-backfill] 批失败（${batch.length} 张跳过，不写盘）: ${String(err).slice(0, 120)}`);
+      if (recovered === 0) {
+        for (const one of batch) {
+          const c = executor.callerFor(key);
+          if (!c) {
+            failed++;
+            continue;
+          }
+          try {
+            recovered += await judgeBatch([one], c);
+          } catch (e) {
+            failed++;
+            console.warn(`    ✗ ${one.repo} 跳过: ${String(e).slice(0, 80)}`);
+          }
+        }
+      }
+      failed += batch.length - recovered;
+      console.log(`  [zone-backfill] 重试后本批得 ${recovered}/${batch.length}（累计 ${done}）`);
     }
+    if ((i / BATCH) % 5 === 4) persist(); // 每 5 批（~100 张）落盘一次：中断不丢已回填
   }
 
   if (done > 0) {
