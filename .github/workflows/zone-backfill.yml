@@ -1,0 +1,135 @@
+name: Zone Backfill（存量卡内容分区补齐）
+
+# 存量卡 zone/funScore/domainTags 回填（2026-09-14 G2 主线）。
+#
+# 为什么放在 CI 跑（而不是开发机）：
+#  1. **IM 多机器人协同的 write-after-write 竞争**——开发机上 feed.json 属于「多写入者共享文档」，
+#     任何 bot workflow（Daily Agents Radar / Feed Drip / Weekly Radar）跑完都会
+#     `git add data/ && git commit && git push`，把开发机未提交的本地回填**整份覆盖**掉
+#     （实测：本地回填 888 张后 7 分钟内被 Weekly Agents Radar 的提交打回 164 张）。
+#     CI 里跑 = 只有本 workflow 一个写入者，push 上去的就是最终态，没有覆盖窗口。
+#  2. 免费模型编队（LLM_FALLBACKS 37 个 worker）在 CI 上的 key 更全，并行度高于开发机。
+#
+# 与 scripts/gittok-zone-parallel.ts 的关系：本 workflow 只是它的 CI 壳——判定链、参数纪律、
+# 抗饱和、原子落盘、断点续跑全在脚本里（脚本本地亦可跑，用法见其文件头注释）。
+
+on:
+  workflow_dispatch:
+    inputs:
+      workers:
+        description: "并行通道数"
+        required: false
+        default: "4"
+        type: string
+      batch:
+        description: "每批卡数"
+        required: false
+        default: "20"
+        type: string
+      upgrade_derived:
+        description: "把 derived 兜底的卡也升级为模型真判（true/false）"
+        required: false
+        default: "false"
+        type: string
+      limit:
+        description: "本轮上限（0 = 不限）"
+        required: false
+        default: "0"
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  # 与自身串行（不互相打断）；不和其它 feed workflow 同组（各写各的时段不重叠）
+  group: zone-backfill
+  cancel-in-progress: false
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          version: 9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run zone backfill（并行回填）
+        env:
+          ZONE_WORKERS: ${{ github.event.inputs.workers || '4' }}
+          ZONE_BATCH: ${{ github.event.inputs.batch || '20' }}
+          ZONE_UPGRADE: ${{ github.event.inputs.upgrade_derived || 'false' }}
+          ZONE_LIMIT: ${{ github.event.inputs.limit || '0' }}
+          # 免费矩阵（执行层按模型直连；与 feed-tier-drip 同款注入）
+          ZHIPU_API_KEY: ${{ secrets.ZHIPU_API_KEY }}
+          MODELSCOPE_API_KEY: ${{ secrets.MODELSCOPE_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          BAILIAN_API_KEY: ${{ secrets.BAILIAN_API_KEY }}
+          LLM_FALLBACKS: agnes,agnes,zhipu,zhipu,zhipu,zhipu,groq,groq,groq,groq,groq,groq,groq@openai/gpt-oss-20b,groq@openai/gpt-oss-20b,groq@qwen/qwen3.8-27b,groq@qwen/qwen3.8-27b,gemini,gemini,gemini,gemini@gemini-2.5-flash-lite,gemini@gemini-2.5-flash-lite,gemini@gemini-3.5-flash-lite,gemini@gemini-3.5-flash-lite,gemini@gemini-3.1-flash-lite,cerebras,cerebras,openrouter@google/gemma-4-31b-it:free,custom:modelscope,custom:spark
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          SILICONFLOW_API_KEY: ${{ secrets.SILICONFLOW_API_KEY }}
+          HF_API_KEY: ${{ secrets.HF_API_KEY }}
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+          AGNES_MODEL: ${{ secrets.AGNES_MODEL || 'agnes-2.0-flash' }}
+          CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+          MODELSCOPE_BASE_URL: https://api-inference.modelscope.cn/v1
+          MODELSCOPE_MODEL: deepseek-ai/DeepSeek-V4-Flash-0731
+          MODELSCOPE_EXTRA_PARAMS: '{"enable_thinking":false}'
+          SPARK_API_KEY: ${{ secrets.SPARK_API_KEY }}
+          SPARK_BASE_URL: https://spark-api-open.xf-yun.com/v1
+          SPARK_MODEL: lite
+        run: |
+          ARGS="--workers=${ZONE_WORKERS} --batch=${ZONE_BATCH} --no-derive"
+          if [ "${ZONE_UPGRADE}" = "true" ]; then ARGS="$ARGS --upgrade-derived"; fi
+          if [ "${ZONE_LIMIT}" != "0" ]; then ARGS="$ARGS --limit=${ZONE_LIMIT}"; fi
+          echo "[zone-backfill] npx tsx scripts/gittok-zone-parallel.ts $ARGS"
+          npx tsx scripts/gittok-zone-parallel.ts $ARGS
+
+      - name: Report coverage
+        run: |
+          node -e "
+          const c=JSON.parse(require('fs').readFileSync('data/feed.json','utf8'));
+          const by={}; for(const x of c){const k=x.zoneSource||'(none)';by[k]=(by[k]||0)+1;}
+          const withZone=c.filter(x=>x.zone).length;
+          console.log('cards',c.length,'| zone',withZone,(withZone/c.length*100).toFixed(1)+'%');
+          console.log('zoneSource',JSON.stringify(by));
+          console.log('funScore',c.filter(x=>typeof x.funScore==='number').length);
+          console.log('domainTags',c.filter(x=>x.domainTags&&x.domainTags.length).length);
+          "
+
+      - name: Commit backfill
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/
+          if git diff --cached --quiet; then
+            echo "Nothing to commit"
+            exit 0
+          fi
+          DATE=$(date -u +%Y-%m-%dT%H:%MZ)
+          git commit -m "feed: ${DATE} zone backfill"
+          # 回填期间可能已有别的 feed workflow 推过 → rebase 后再推（本 workflow 单写入者时无冲突）
+          for i in 1 2 3 4 5; do
+            git pull --rebase && git push && exit 0
+            echo "push 失败，退避重试 ${i}"
+            sleep 10
+          done
+          echo "push 连续失败" >&2
+          exit 1

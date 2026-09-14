@@ -125,8 +125,13 @@ export interface FeedCard {
   aiDim: string;
   /** 内容分区（AI/资源/工具/创意，LLM 判定链输出；前端只读不猜，废止正则推导 category） */
   zone?: string;
+  /** zone 来源（不冒充：`model`=模型判定链真判；`derived`=由存量 category 确定性映射回填，
+   *  两者不等价——实测 40 张随机样本一致率 65%，`derived` 仅作兜底与诚实标注） */
+  zoneSource?: "model" | "derived";
   /** 乐趣强度 0-1（乐趣频道信号；体验轴，与 zone 题材轴正交） */
   funScore?: number;
+  /** funScore 来源（同 zoneSource 口径；`derived`=由 aiDims 气质标签确定性映射） */
+  funScoreSource?: "model" | "derived";
   /** 领域标签（LLM 自由领域词 3-6 个，展示/搜索/千人千面素材；计算侧走 domainKey） */
   domainTags?: string[];
   /** 确定性领域键（从 zone+domainTags 派生，聚合计算/打包同键/配额统计用） */
