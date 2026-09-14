@@ -22,5 +22,8 @@ PROGRESS.md
 BLOCKED.md
 .impeccable/
 
+# 本地验证临时目录（不发布）
+.tmp-verify/
+
 # 拆 job 刀（2026-09-05）：trending 快照只在 CI artifact 传递，几 MB/天不入仓
 data/trending-snapshot.json

@@ -51,7 +51,9 @@ jobs:
           ref: ${{ github.ref_name }}
 
       - name: Setup pnpm
-        uses: actions/setup-pnpm@v6
+        # 2026-09-14 修：原 `actions/setup-pnpm@v6` **不存在**（正确动作是 `pnpm/action-setup`）→
+        # workflow 在 Set up job 阶段即失败 → 全量建库点火从未真正跑过。
+        uses: pnpm/action-setup@v6
         with:
           version: 9
 
