@@ -9,82 +9,468 @@
   },
   "hard_note": "hard=true 的锚点是**故意挑的难例**：它们要么看起来很好玩其实不是（负锚点里的引擎/清单/框架），要么看起来像正经工具其实很妙（正锚点里的稀奇古怪小件）。普通锚点猜对不算本事，难例才对得上才说明判据拆到了本质。",
   "anchors": [
-    { "repo": "lichess-org/lila", "label": "pos", "hard": false, "why": "点开就能下棋，可玩性满格" },
-    { "repo": "NetHack/NetHack", "label": "pos", "hard": false, "why": "1987 年活到今天的 roguelike，荒诞+稀缺" },
-    { "repo": "plbrault/youre-the-os", "label": "pos", "hard": true, "why": "让你亲自当操作系统——把课本里最无聊的调度算法变成动手玩的游戏，意外感+可玩性" },
-    { "repo": "The-Powder-Toy/The-Powder-Toy", "label": "pos", "hard": false, "why": "落沙物理玩具，点一下就停不下来" },
-    { "repo": "Azgaar/Fantasy-Map-Generator", "label": "pos", "hard": false, "why": "拖滑块生成奇幻地图，奇观+可玩" },
-    { "repo": "OpenTTD/OpenTTD", "label": "pos", "hard": false, "why": "开源运输大亨，经营游戏本体" },
-    { "repo": "CorsixTH/CorsixTH", "label": "pos", "hard": false, "why": "主题医院复刻，荒诞幽默的代表" },
-    { "repo": "diasurgical/DevilutionX", "label": "pos", "hard": false, "why": "用开源代码让 1996 年的暗黑在新系统上跑起来，稀缺" },
-    { "repo": "ppy/osu", "label": "pos", "hard": false, "why": "节奏音游本体" },
-    { "repo": "0xDE57/SpaceProject", "label": "pos", "hard": false, "why": "开飞船躲小行星挖矿，物理反冲玩起来" },
-    { "repo": "pshenok/server-survival", "label": "pos", "hard": true, "why": "边打塔防边学云架构——把架构知识塞进游戏，意外感+可玩性" },
-    { "repo": "space-wizards/space-station-14", "label": "pos", "hard": false, "why": "太空狼人杀沙盒，整活空间极大" },
-    { "repo": "louis-e/arnis", "label": "pos", "hard": false, "why": "把真实地球搬进 Minecraft——居然有人做了这个" },
-    { "repo": "yairm210/Unciv", "label": "pos", "hard": false, "why": "文明 5 重制版，策略游戏本体" },
-    { "repo": "666ghj/MiroFish", "label": "pos", "hard": true, "why": "一群小鱼游来游去预测房价股价——荒诞到想笑" },
-    { "repo": "markel1974/Symphony", "label": "pos", "hard": true, "why": "把上世纪的硬件装进可点即用的虚拟实验室，稀缺+奇观" },
-    { "repo": "ruvnet/RuView", "label": "pos", "hard": true, "why": "不用摄像头，用 WiFi 信号感知房间里有没有人——意外感" },
-    { "repo": "jcubic/ascii-globe", "label": "pos", "hard": true, "why": "终端里转动的 ASCII 球，零依赖随手玩——小众但一眼就想试" },
-    { "repo": "lhh010/dsh-ui-whale", "label": "pos", "hard": true, "why": "网页标题栏常驻一只会眨眼偷懒的像素鲸鱼——纯表达欲，没用但可爱" },
-    { "repo": "rullerzhou-afk/clawd-on-desk", "label": "pos", "hard": true, "why": "AI 写代码时陪你犯傻的像素宠物——表达欲" },
-    { "repo": "KbWen/agent-virtual-office", "label": "pos", "hard": true, "why": "看 AI 同事在虚拟办公室里摸鱼，荒诞+奇观" },
-    { "repo": "chenxin-dlut/codex-anime-pets", "label": "pos", "hard": true, "why": "屏幕角落陪你熬夜改 Bug 的像素小猫，表达欲" },
-    { "repo": "liebaojun/MakoCode", "label": "pos", "hard": false, "why": "把 AI 对话做成 Galgame，意外感+表达欲" },
-    { "repo": "ruiwuniu/Aivatar-Demo", "label": "pos", "hard": true, "why": "让 AI 编程助手变成像素房间里的小精灵，表达欲" },
-    { "repo": "mr-highball/wfc", "label": "pos", "hard": true, "why": "波函数坍缩画出梦幻像素图案，奇观" },
-    { "repo": "noisefactorllc/noisemaker", "label": "pos", "hard": true, "why": "写 Shader 生成迷幻画作，奇观+表达欲" },
-    { "repo": "bilawalsidhu/gods-eye-view", "label": "pos", "hard": false, "why": "浏览器里看真实卫星 3D 地图，像玩间谍游戏，奇观" },
-    { "repo": "originalankur/maptoposter", "label": "pos", "hard": true, "why": "把城市变成极简艺术海报，奇观+稀缺" },
-    { "repo": "4thfever/cultivation-world-simulator", "label": "pos", "hard": true, "why": "让 AI 在修仙世界里自动打怪升级——荒诞脑洞" },
-    { "repo": "Sudharsanselvaraj/Token-Print", "label": "pos", "hard": true, "why": "像玩 3D 积木一样拆解大模型，把抽象东西变成可玩的东西，意外感" },
-    { "repo": "AniMathIO/AniMathIO", "label": "pos", "hard": true, "why": "把枯燥数学公式变成动画——意外感+奇观" },
-    { "repo": "lissy93/web-check", "label": "pos", "hard": true, "why": "一键扒开任意网站的底细，像侦探工具，意外感" },
-    { "repo": "Attnam/ivan", "label": "pos", "hard": false, "why": "像素重演经典 Roguelike，稀缺" },
-    { "repo": "LingASDJ/Magic_Ling_Pixel_Dungeon", "label": "pos", "hard": false, "why": "打磨五年的硬核像素地下城，可玩性" },
-    { "repo": "vcmi/vcmi", "label": "pos", "hard": false, "why": "英雄无敌 3 开源重制，怀旧可玩" },
-
-    { "repo": "kubernetes/kubernetes", "label": "neg", "hard": false, "why": "容器编排，纯干活" },
-    { "repo": "tensorflow/tensorflow", "label": "neg", "hard": false, "why": "工业级 ML 框架，纯干活" },
-    { "repo": "pytorch/pytorch", "label": "neg", "hard": false, "why": "同上" },
-    { "repo": "matplotlib/matplotlib", "label": "neg", "hard": false, "why": "画图库，纯干活" },
-    { "repo": "plotly/plotly.js", "label": "neg", "hard": true, "why": "炫酷图表库——描述里全是「炫酷」，但它是给开发者干活的库，六维应全 0" },
-    { "repo": "qdrant/qdrant", "label": "neg", "hard": false, "why": "向量数据库，纯干活" },
-    { "repo": "milvus-io/milvus", "label": "neg", "hard": true, "why": "「给 AI 装上记忆库」听起来很酷，本质是数据库基础设施" },
-    { "repo": "VictoriaMetrics/VictoriaMetrics", "label": "neg", "hard": false, "why": "时序数据库" },
-    { "repo": "semantic-release/semantic-release", "label": "neg", "hard": false, "why": "发版自动化" },
-    { "repo": "authelia/authelia", "label": "neg", "hard": false, "why": "认证网关" },
-    { "repo": "rqlite/rqlite", "label": "neg", "hard": false, "why": "分布式 SQLite" },
-    { "repo": "aquasecurity/trivy", "label": "neg", "hard": false, "why": "漏洞扫描" },
-    { "repo": "gogs/gogs", "label": "neg", "hard": false, "why": "自托管 Git 服务" },
-    { "repo": "plausible/analytics", "label": "neg", "hard": false, "why": "访问分析" },
-    { "repo": "matomo-org/matomo", "label": "neg", "hard": false, "why": "访问分析" },
-    { "repo": "BerriAI/litellm", "label": "neg", "hard": true, "why": "统一调用 100+ 模型的网关——题材是 AI，但它是给开发者干活的基础设施，题材不加分" },
-    { "repo": "langchain-ai/langgraph", "label": "neg", "hard": true, "why": "Agent 编排框架——AI 题材不加分，框架本身不产生想点开玩的冲动" },
-    { "repo": "deepset-ai/haystack", "label": "neg", "hard": true, "why": "生产级 RAG 框架——同上" },
-    { "repo": "browser-use/browser-use", "label": "neg", "hard": true, "why": "浏览器自动化框架，话题很热但它是开发者基础设施" },
-    { "repo": "langgenius/dify", "label": "neg", "hard": true, "why": "可视化搭 AI 应用——「拖拉拽就能造产品」像玩具，实际是生产力平台" },
-    { "repo": "huggingface/diffusers", "label": "neg", "hard": true, "why": "生成模型库，描述里全是「惊艳」但客体是库不是作品" },
-    { "repo": "google-gemini/gemini-cli", "label": "neg", "hard": true, "why": "官方 CLI 工具" },
-    { "repo": "elizaOS/eliza", "label": "neg", "hard": true, "why": "Agent 操作系统框架" },
-    { "repo": "lobehub/lobehub", "label": "neg", "hard": false, "why": "AI 助理工作台" },
-    { "repo": "avelino/awesome-go", "label": "neg", "hard": false, "why": "清单，读物不是作品" },
-    { "repo": "drduh/macOS-Security-and-Privacy-Guide", "label": "neg", "hard": false, "why": "指南" },
-    { "repo": "bojieli/ai-agent-book", "label": "neg", "hard": false, "why": "书/教程" },
-    { "repo": "trekhleb/javascript-algorithms", "label": "neg", "hard": false, "why": "算法示例集，读物" },
-    { "repo": "bikini/exploitarium", "label": "neg", "hard": true, "why": "漏洞 PoC 合集——「黑客」题材很带感，本质是资料汇编" },
-    { "repo": "x1xhlol/system-prompts-and-models-of-ai-tools", "label": "neg", "hard": true, "why": "「扒光了各大 AI 工具的底裤」措辞很抓人，实际是提示词资料汇编（当前误判 0.8）" },
-    { "repo": "asgeirtj/system_prompts_leaks", "label": "neg", "hard": true, "why": "提示词泄漏合集（当前误判 0.9）" },
-    { "repo": "ellisonleao/magictools", "label": "neg", "hard": true, "why": "游戏开发资源清单——游戏题材但它是读物（当前误判 0.9）" },
-    { "repo": "bobeff/open-source-games", "label": "neg", "hard": true, "why": "开源游戏宝库=清单（当前误判 1.0）" },
-    { "repo": "layabox/LayaAir", "label": "neg", "hard": true, "why": "HTML5 游戏引擎——「游戏」题材但它是给开发者干活的框架（当前误判 0.9）" },
-    { "repo": "Facepunch/sbox-public", "label": "neg", "hard": true, "why": "Source 2 游戏引擎（当前误判 0.9）" },
-    { "repo": "Mugen87/yuka", "label": "neg", "hard": true, "why": "游戏 AI 库（当前误判 0.9）" },
-    { "repo": "gregorik/InstantOrganicCaves", "label": "neg", "hard": true, "why": "UE5 洞穴生成插件——美术工具，给开发者用（当前误判 0.9）" },
-    { "repo": "antvis/L7", "label": "neg", "hard": true, "why": "WebGL 地理可视化库——「炫酷地图」但客体是库（当前误判 0.9）" },
-    { "repo": "Flow-Launcher/Flow.Launcher", "label": "neg", "hard": false, "why": "启动器，纯干活" },
-    { "repo": "localsend/localsend", "label": "neg", "hard": true, "why": "「不用网也能像 AirDrop 一样」体验不错，但它是文件传输工具，六维全 0" },
-    { "repo": "dailydotdev/daily", "label": "neg", "hard": true, "why": "技术资讯聚合流——信息流本身不是作品，也不是玩法（当前 0.5）" }
-  ]
+    {
+      "repo": "lichess-org/lila",
+      "label": "pos",
+      "hard": false,
+      "why": "点开就能下棋，可玩性满格"
+    },
+    {
+      "repo": "NetHack/NetHack",
+      "label": "pos",
+      "hard": false,
+      "why": "1987 年活到今天的 roguelike，荒诞+稀缺"
+    },
+    {
+      "repo": "plbrault/youre-the-os",
+      "label": "pos",
+      "hard": true,
+      "why": "让你亲自当操作系统——把课本里最无聊的调度算法变成动手玩的游戏，意外感+可玩性"
+    },
+    {
+      "repo": "The-Powder-Toy/The-Powder-Toy",
+      "label": "pos",
+      "hard": false,
+      "why": "落沙物理玩具，点一下就停不下来"
+    },
+    {
+      "repo": "Azgaar/Fantasy-Map-Generator",
+      "label": "pos",
+      "hard": false,
+      "why": "拖滑块生成奇幻地图，奇观+可玩"
+    },
+    {
+      "repo": "OpenTTD/OpenTTD",
+      "label": "pos",
+      "hard": false,
+      "why": "开源运输大亨，经营游戏本体"
+    },
+    {
+      "repo": "CorsixTH/CorsixTH",
+      "label": "pos",
+      "hard": false,
+      "why": "主题医院复刻，荒诞幽默的代表"
+    },
+    {
+      "repo": "diasurgical/DevilutionX",
+      "label": "pos",
+      "hard": false,
+      "why": "用开源代码让 1996 年的暗黑在新系统上跑起来，稀缺"
+    },
+    {
+      "repo": "ppy/osu",
+      "label": "pos",
+      "hard": false,
+      "why": "节奏音游本体"
+    },
+    {
+      "repo": "0xDE57/SpaceProject",
+      "label": "pos",
+      "hard": false,
+      "why": "开飞船躲小行星挖矿，物理反冲玩起来"
+    },
+    {
+      "repo": "pshenok/server-survival",
+      "label": "pos",
+      "hard": true,
+      "why": "边打塔防边学云架构——把架构知识塞进游戏，意外感+可玩性"
+    },
+    {
+      "repo": "space-wizards/space-station-14",
+      "label": "pos",
+      "hard": false,
+      "why": "太空狼人杀沙盒，整活空间极大"
+    },
+    {
+      "repo": "louis-e/arnis",
+      "label": "pos",
+      "hard": false,
+      "why": "把真实地球搬进 Minecraft——居然有人做了这个"
+    },
+    {
+      "repo": "yairm210/Unciv",
+      "label": "pos",
+      "hard": false,
+      "why": "文明 5 重制版，策略游戏本体"
+    },
+    {
+      "repo": "666ghj/MiroFish",
+      "label": "pos",
+      "hard": true,
+      "why": "一群小鱼游来游去预测房价股价——荒诞到想笑",
+      "disputed": true,
+      "dispute": "复核结论=**锚点存疑**（判据说它是群体智能优化算法库，那个「小鱼预测房价」是 demo；若仓库主体是算法库则 fun=0 合理，若主体是模拟器则应≥0.5）→ 需栗子按他自己看到的东西裁"
+    },
+    {
+      "repo": "markel1974/Symphony",
+      "label": "pos",
+      "hard": true,
+      "why": "把上世纪的硬件装进可点即用的虚拟实验室，稀缺+奇观"
+    },
+    {
+      "repo": "ruvnet/RuView",
+      "label": "pos",
+      "hard": true,
+      "why": "不用摄像头，用 WiFi 信号感知房间里有没有人——意外感"
+    },
+    {
+      "repo": "jcubic/ascii-globe",
+      "label": "pos",
+      "hard": true,
+      "why": "终端里转动的 ASCII 球，零依赖随手玩——小众但一眼就想试"
+    },
+    {
+      "repo": "lhh010/dsh-ui-whale",
+      "label": "pos",
+      "hard": true,
+      "why": "网页标题栏常驻一只会眨眼偷懒的像素鲸鱼——纯表达欲，没用但可爱"
+    },
+    {
+      "repo": "rullerzhou-afk/clawd-on-desk",
+      "label": "pos",
+      "hard": true,
+      "why": "AI 写代码时陪你犯傻的像素宠物——表达欲"
+    },
+    {
+      "repo": "KbWen/agent-virtual-office",
+      "label": "pos",
+      "hard": true,
+      "why": "看 AI 同事在虚拟办公室里摸鱼，荒诞+奇观"
+    },
+    {
+      "repo": "chenxin-dlut/codex-anime-pets",
+      "label": "pos",
+      "hard": true,
+      "why": "屏幕角落陪你熬夜改 Bug 的像素小猫，表达欲"
+    },
+    {
+      "repo": "liebaojun/MakoCode",
+      "label": "pos",
+      "hard": false,
+      "why": "把 AI 对话做成 Galgame，意外感+表达欲"
+    },
+    {
+      "repo": "ruiwuniu/Aivatar-Demo",
+      "label": "pos",
+      "hard": true,
+      "why": "让 AI 编程助手变成像素房间里的小精灵，表达欲"
+    },
+    {
+      "repo": "mr-highball/wfc",
+      "label": "pos",
+      "hard": true,
+      "why": "波函数坍缩画出梦幻像素图案，奇观"
+    },
+    {
+      "repo": "noisefactorllc/noisemaker",
+      "label": "pos",
+      "hard": true,
+      "why": "写 Shader 生成迷幻画作，奇观+表达欲"
+    },
+    {
+      "repo": "bilawalsidhu/gods-eye-view",
+      "label": "pos",
+      "hard": false,
+      "why": "浏览器里看真实卫星 3D 地图，像玩间谍游戏，奇观"
+    },
+    {
+      "repo": "originalankur/maptoposter",
+      "label": "pos",
+      "hard": true,
+      "why": "把城市变成极简艺术海报，奇观+稀缺"
+    },
+    {
+      "repo": "4thfever/cultivation-world-simulator",
+      "label": "pos",
+      "hard": true,
+      "why": "让 AI 在修仙世界里自动打怪升级——荒诞脑洞"
+    },
+    {
+      "repo": "Sudharsanselvaraj/Token-Print",
+      "label": "pos",
+      "hard": true,
+      "why": "像玩 3D 积木一样拆解大模型，把抽象东西变成可玩的东西，意外感"
+    },
+    {
+      "repo": "AniMathIO/AniMathIO",
+      "label": "pos",
+      "hard": true,
+      "why": "把枯燥数学公式变成动画——意外感+奇观"
+    },
+    {
+      "repo": "lissy93/web-check",
+      "label": "pos",
+      "hard": true,
+      "why": "一键扒开任意网站的底细，像侦探工具，意外感",
+      "disputed": true,
+      "dispute": "复核结论=**锚点选错了**（我提案时被「一键扒开任意网站底裤」的措辞带偏，实际读仓库它是一个网站分析/安全面板，判 fun=0 合理）→ 建议栗子把它改到 neg 或直接删"
+    },
+    {
+      "repo": "Attnam/ivan",
+      "label": "pos",
+      "hard": false,
+      "why": "像素重演经典 Roguelike，稀缺"
+    },
+    {
+      "repo": "LingASDJ/Magic_Ling_Pixel_Dungeon",
+      "label": "pos",
+      "hard": false,
+      "why": "打磨五年的硬核像素地下城，可玩性"
+    },
+    {
+      "repo": "vcmi/vcmi",
+      "label": "pos",
+      "hard": false,
+      "why": "英雄无敌 3 开源重制，怀旧可玩"
+    },
+    {
+      "repo": "kubernetes/kubernetes",
+      "label": "neg",
+      "hard": false,
+      "why": "容器编排，纯干活"
+    },
+    {
+      "repo": "tensorflow/tensorflow",
+      "label": "neg",
+      "hard": false,
+      "why": "工业级 ML 框架，纯干活"
+    },
+    {
+      "repo": "pytorch/pytorch",
+      "label": "neg",
+      "hard": false,
+      "why": "同上"
+    },
+    {
+      "repo": "matplotlib/matplotlib",
+      "label": "neg",
+      "hard": false,
+      "why": "画图库，纯干活"
+    },
+    {
+      "repo": "plotly/plotly.js",
+      "label": "neg",
+      "hard": true,
+      "why": "炫酷图表库——描述里全是「炫酷」，但它是给开发者干活的库，六维应全 0"
+    },
+    {
+      "repo": "qdrant/qdrant",
+      "label": "neg",
+      "hard": false,
+      "why": "向量数据库，纯干活"
+    },
+    {
+      "repo": "milvus-io/milvus",
+      "label": "neg",
+      "hard": true,
+      "why": "「给 AI 装上记忆库」听起来很酷，本质是数据库基础设施"
+    },
+    {
+      "repo": "VictoriaMetrics/VictoriaMetrics",
+      "label": "neg",
+      "hard": false,
+      "why": "时序数据库"
+    },
+    {
+      "repo": "semantic-release/semantic-release",
+      "label": "neg",
+      "hard": false,
+      "why": "发版自动化"
+    },
+    {
+      "repo": "authelia/authelia",
+      "label": "neg",
+      "hard": false,
+      "why": "认证网关"
+    },
+    {
+      "repo": "rqlite/rqlite",
+      "label": "neg",
+      "hard": false,
+      "why": "分布式 SQLite"
+    },
+    {
+      "repo": "aquasecurity/trivy",
+      "label": "neg",
+      "hard": false,
+      "why": "漏洞扫描"
+    },
+    {
+      "repo": "gogs/gogs",
+      "label": "neg",
+      "hard": false,
+      "why": "自托管 Git 服务"
+    },
+    {
+      "repo": "plausible/analytics",
+      "label": "neg",
+      "hard": false,
+      "why": "访问分析"
+    },
+    {
+      "repo": "matomo-org/matomo",
+      "label": "neg",
+      "hard": false,
+      "why": "访问分析"
+    },
+    {
+      "repo": "BerriAI/litellm",
+      "label": "neg",
+      "hard": true,
+      "why": "统一调用 100+ 模型的网关——题材是 AI，但它是给开发者干活的基础设施，题材不加分"
+    },
+    {
+      "repo": "langchain-ai/langgraph",
+      "label": "neg",
+      "hard": true,
+      "why": "Agent 编排框架——AI 题材不加分，框架本身不产生想点开玩的冲动"
+    },
+    {
+      "repo": "deepset-ai/haystack",
+      "label": "neg",
+      "hard": true,
+      "why": "生产级 RAG 框架——同上"
+    },
+    {
+      "repo": "browser-use/browser-use",
+      "label": "neg",
+      "hard": true,
+      "why": "浏览器自动化框架，话题很热但它是开发者基础设施"
+    },
+    {
+      "repo": "langgenius/dify",
+      "label": "neg",
+      "hard": true,
+      "why": "可视化搭 AI 应用——「拖拉拽就能造产品」像玩具，实际是生产力平台",
+      "disputed": true,
+      "dispute": "复核结论=**判据偏松**（判据给 0.80，理由是「可视化 AI 应用构建器」——拖拉拽确实像玩具，但它是生产力平台；我倾向锚点对、判据过宽）→ 建议栗子裁，若认可锚点则需要收紧『可玩性』维度对生产力平台的判定"
+    },
+    {
+      "repo": "huggingface/diffusers",
+      "label": "neg",
+      "hard": true,
+      "why": "生成模型库，描述里全是「惊艳」但客体是库不是作品"
+    },
+    {
+      "repo": "google-gemini/gemini-cli",
+      "label": "neg",
+      "hard": true,
+      "why": "官方 CLI 工具"
+    },
+    {
+      "repo": "elizaOS/eliza",
+      "label": "neg",
+      "hard": true,
+      "why": "Agent 操作系统框架"
+    },
+    {
+      "repo": "lobehub/lobehub",
+      "label": "neg",
+      "hard": false,
+      "why": "AI 助理工作台"
+    },
+    {
+      "repo": "avelino/awesome-go",
+      "label": "neg",
+      "hard": false,
+      "why": "清单，读物不是作品"
+    },
+    {
+      "repo": "drduh/macOS-Security-and-Privacy-Guide",
+      "label": "neg",
+      "hard": false,
+      "why": "指南"
+    },
+    {
+      "repo": "bojieli/ai-agent-book",
+      "label": "neg",
+      "hard": false,
+      "why": "书/教程"
+    },
+    {
+      "repo": "trekhleb/javascript-algorithms",
+      "label": "neg",
+      "hard": false,
+      "why": "算法示例集，读物"
+    },
+    {
+      "repo": "bikini/exploitarium",
+      "label": "neg",
+      "hard": true,
+      "why": "漏洞 PoC 合集——「黑客」题材很带感，本质是资料汇编"
+    },
+    {
+      "repo": "x1xhlol/system-prompts-and-models-of-ai-tools",
+      "label": "neg",
+      "hard": true,
+      "why": "「扒光了各大 AI 工具的底裤」措辞很抓人，实际是提示词资料汇编（当前误判 0.8）"
+    },
+    {
+      "repo": "asgeirtj/system_prompts_leaks",
+      "label": "neg",
+      "hard": true,
+      "why": "提示词泄漏合集（当前误判 0.9）"
+    },
+    {
+      "repo": "ellisonleao/magictools",
+      "label": "neg",
+      "hard": true,
+      "why": "游戏开发资源清单——游戏题材但它是读物（当前误判 0.9）"
+    },
+    {
+      "repo": "bobeff/open-source-games",
+      "label": "neg",
+      "hard": true,
+      "why": "开源游戏宝库=清单（当前误判 1.0）"
+    },
+    {
+      "repo": "layabox/LayaAir",
+      "label": "neg",
+      "hard": true,
+      "why": "HTML5 游戏引擎——「游戏」题材但它是给开发者干活的框架（当前误判 0.9）"
+    },
+    {
+      "repo": "Facepunch/sbox-public",
+      "label": "neg",
+      "hard": true,
+      "why": "Source 2 游戏引擎（当前误判 0.9）"
+    },
+    {
+      "repo": "Mugen87/yuka",
+      "label": "neg",
+      "hard": true,
+      "why": "游戏 AI 库（当前误判 0.9）"
+    },
+    {
+      "repo": "gregorik/InstantOrganicCaves",
+      "label": "neg",
+      "hard": true,
+      "why": "UE5 洞穴生成插件——美术工具，给开发者用（当前误判 0.9）"
+    },
+    {
+      "repo": "antvis/L7",
+      "label": "neg",
+      "hard": true,
+      "why": "WebGL 地理可视化库——「炫酷地图」但客体是库（当前误判 0.9）"
+    },
+    {
+      "repo": "Flow-Launcher/Flow.Launcher",
+      "label": "neg",
+      "hard": false,
+      "why": "启动器，纯干活"
+    },
+    {
+      "repo": "localsend/localsend",
+      "label": "neg",
+      "hard": true,
+      "why": "「不用网也能像 AirDrop 一样」体验不错，但它是文件传输工具，六维全 0"
+    },
+    {
+      "repo": "dailydotdev/daily",
+      "label": "neg",
+      "hard": true,
+      "why": "技术资讯聚合流——信息流本身不是作品，也不是玩法（当前 0.5）"
+    }
+  ],
+  "dispute_note": "disputed=true 的锚点是「判据与锚点给出相反结论」的条目：**原样保留在文件里等栗子裁**，复现率同时报全量与剔除争议的两个口径（不偷偷删除来凑指标）。"
 }

@@ -24,6 +24,9 @@ interface Anchor {
   label: "pos" | "neg";
   hard?: boolean;
   why: string;
+  /** 判据与锚点结论相反、原样保留等栗子裁的条目（不计入「剔除争议」口径） */
+  disputed?: boolean;
+  dispute?: string;
 }
 
 interface AnchorFile {
@@ -58,6 +61,10 @@ function main(): boolean {
   let hit = 0;
   let mid = 0;
   let miss = 0;
+  // 争议锚点（disputed=true）单独统计：同时报「全量」与「剔除争议」两个口径，
+  // 不靠删除锚点来凑指标（任务书：锚点集是提案，栗子删改增补后才定稿）。
+  let dTotal = 0;
+  let dHit = 0;
   let hardHit = 0;
   let hardTotal = 0;
   const misses: string[] = [];
@@ -70,12 +77,14 @@ function main(): boolean {
       continue;
     }
     if (a.hard) hardTotal++;
+    if (a.disputed) dTotal++;
     const fun = typeof card.funScore === "number" ? card.funScore : NaN;
     const ok = a.label === "pos" ? fun >= bands.pos : fun <= bands.neg;
     const midBand = a.label === "pos" ? fun >= bands.neg : fun <= bands.pos;
     if (ok) {
       hit++;
       if (a.hard) hardHit++;
+      if (a.disputed) dHit++;
     } else if (midBand) {
       // 落在中间地带：判据没有明确表态，不计入复现率分子，也不当失败
       mid++;
@@ -103,6 +112,13 @@ function main(): boolean {
   );
   if (hardTotal > 0) {
     console.log(`  难例复现 ${hardHit}/${hardTotal}（${((hardHit / hardTotal) * 100).toFixed(1)}%）`);
+  }
+  if (dTotal > 0) {
+    const kept = judged - dTotal;
+    const keptHit = hit - dHit;
+    console.log(
+      `  争议锚点 ${dTotal} 条（判据与锚点结论相反，原样保留等栗子裁）｜剔除争议口径：${keptHit}/${kept} = ${((keptHit / kept) * 100).toFixed(1)}%`,
+    );
   }
   console.log("");
   console.log(`  六维：${FUN_DIMS.map((d) => d.cn).join(" / ")}`);
