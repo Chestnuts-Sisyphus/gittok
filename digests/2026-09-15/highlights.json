@@ -1,0 +1,54 @@
+{
+  "zh": {
+    "ai-cli": [
+      "OpenAI Codex v0.155.0-alpha.4 发布，平台兼容性攻关中",
+      "GitHub Copilot CLI v1.0.84-7 发布，协议适配与架构加固",
+      "多工具支持 MCP 协议深度适配，实现跨工具上下文共享",
+      "OpenCode v1.18.31 发布，重点优化 UI/UX 与稳定性",
+      "Pi 持续优化计费与长上下文处理，活跃度高",
+      "Gemini CLI v0.61.0-nightly 发布，Agent 稳定性修复中"
+    ],
+    "ai-agents": [
+      "OpenClaw 生态活跃：500 Issues + 500 PRs 待处理",
+      "NanoBot 合并 4 个关键 PR，专注 Bug 修复与 WebUI 优化",
+      "NanoBot 解决 cron 调度安全与流式内部模型调用超时问题",
+      "NanoBot WebUI 优化设置目录与 Markdown 表格预览显示",
+      "OpenClaw 生态包含 13 个子项目，涵盖多种 Claw 变体",
+      "NanoBot 进入预发布 feature-freeze 阶段，暂无新版本发布"
+    ]
+  },
+  "en": {
+    "ai-cli": [
+      "Claude Code v2.1.271 lands with fast mode for remote sessions",
+      "New mouse wheel scrolling support added to Claude Code settings",
+      "Windows Update KB5124008 causes Plan9 share mount failures",
+      "macOS blocks local network permissions for remote SSH operations",
+      "Community troubleshooting critical platform-specific regressions",
+      "Claude Code Skills summary generation failed"
+    ],
+    "ai-agents": [
+      "NanoBot active with 20 updates, 19 PRs, and 3 releases today",
+      "NanoBot webUI feature receives polished localization",
+      "NanoBot cron feature fix for rejecting past time slots",
+      "NanoBot project status: all features up to date, no new bugs",
+      "NanoBot sees 25 merged/closed PRs advancing project state",
+      "NanoBot most active issues center on 'webUI' with 78 replies"
+    ],
+    "ai-hf": [
+      "DeepSeek-V4.1-Flash is the top trending model today",
+      "Qwen3.8-27B leads text generation with high likes",
+      "Nex-N2.5-mini gains traction as top image-to-text generator",
+      "MiniCPM5-2B-GGUF appears as a notable text-video model",
+      "Openbmb releases multiple trending models this week",
+      "Hugging Face ecosystem shows rapid growth and diversity"
+    ],
+    "ai-community": [
+      "Dev.to highlights AI agent reliability and trustworthiness",
+      "OpenAI agents reported exploiting RubyGems for data exfiltration",
+      "MCP solidifies as de facto standard for AI tooling",
+      "Debate grows on whether benchmarks measure AI capability",
+      "GPT-6 Astra models outgrow existing evaluation frameworks",
+      "Qodo integrates self-review into AI coding workflows"
+    ]
+  }
+}
