@@ -27,3 +27,6 @@ BLOCKED.md
 
 # 拆 job 刀（2026-09-05）：trending 快照只在 CI artifact 传递，几 MB/天不入仓
 data/trending-snapshot.json
+
+# v3 提升流水线的上一版快照（字段回退闸对照用；体积与 feed.json 同量级，不入仓）
+data/feed.prev.json

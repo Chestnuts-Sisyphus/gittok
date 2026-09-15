@@ -24,7 +24,8 @@
 import fs from "node:fs";
 import path from "node:path";
 import "dotenv/config";
-import { buildPlan, dropRetiredLanes, parseKeyFile, PAID_LLM } from "./gittok-fullbuild-lib.ts";
+import { buildPlan } from "./gittok-fullbuild-lib.ts";
+import { loadLaneHealth, recordLaneResult, saveLaneHealth } from "../src/feed/lane-health.ts";
 import { ScheduledLlmExecutor } from "../src/feed/executor.ts";
 import {
   ZONES,
@@ -327,15 +328,15 @@ async function main(): Promise<void> {
   );
   if (dryRun || todo.length === 0) return;
 
-  const { tail, env } = dropRetiredLanes(buildPlan());
-  const merged0: NodeJS.ProcessEnv = {};
-  /** PAID-LLM.txt 的分节（GOAT 订阅键在这里；密钥零回显，只用不打印）。 */
-  const paid = parseKeyFile(fs.existsSync(PAID_LLM) ? fs.readFileSync(PAID_LLM, "utf-8") : "");
+  const ledger = loadLaneHealth();
+  // 注意（2026-09-15 实测踩坑）：**这里不能用 dropRetiredLanes 直接摘**——健康账是「上一轮的经验」，
+  // 而配额类退出期（每日额度）跨天就会自然恢复。先摘再探会把恢复了的通道永久挡在门外
+  // （实测：modelscope/openrouter 额度已恢复、探针 ✓，却因账本里的退出期没被探到而"无可用通道"）。
+  // 正确顺序：**先探全部通道**（探针是事实，账本是经验）→ 探针成功即撤销退出期 → 只保留探活通道。
+  const { tail, env } = buildPlan();
   // 附加通道（**仅本脚本**，不动生产矩阵）：
   //  `--agnes`：免费附加源，但实测它在「多张 × detail 900 字」的长输入上会悬住不返回
-  //            → 默认关；`--bailian`：付费压舱石 qwen3.7-flash（key 已在 PAID-LLM，无需注册/充值），
-  //            只在免费通道全灭时用（2026-09-14 实测：智谱免费档跑到 ~190 张后被限流、
-  //            魔搭/OpenRouter 通道预筛即熔断 → 不给付费通道整轮就停摆）。
+  //            → 默认关（见下方免费-only 纪律）。
   const extra: typeof tail = [];
   if (argv.includes("--agnes")) {
     const agnesKey = env["AGNES_API_KEY"] ?? process.env["AGNES_API_KEY"] ?? "";
@@ -350,70 +351,14 @@ async function main(): Promise<void> {
       });
     }
   }
-  // ③ `--goat`：Command Code GOAT 订阅（key 已在 PAID-LLM，**已付月费不用再充值**）走泛化
-  //    custom 通道。实测 2026-09-14：智谱免费档被限流、魔搭/OpenRouter 预筛即熔断、
-  //    百炼付费键 400（账号欠费）→ 不接这条已订阅的通道，全库重判就完不成。
-  //    选 muse-spark-1.3-contributor 而不是 deepseek-v4.1-flash：后者是本机 agent 会话在用的
-  //    主力模型，跑批会互相抢限流；muse 是「量大管饱」档，专供批量。
-  if (argv.includes("--goat")) {
-    const goatKey = paid.get("Command Code GOAT")?.[0] ?? "";
-    if (goatKey) {
-      merged0["GOAT_API_KEY"] = goatKey;
-      merged0["GOAT_BASE_URL"] = process.env["GOAT_BASE_URL"] ?? "https://api.commandcode.ai/provider/v1";
-      // 同一份订阅挂**两条独立通道**（不同模型 → 各自限流桶），全库重判的墙钟时间直接减半。
-      // 两个都是推理型，必须给足 max_tokens（思考会吃掉 3-4 倍预算，见批次调用处的 8192）。
-      const models = (
-        process.env["GOAT_MODELS"] ??
-        "z-ai/glm-5.3-flash,deepseek/deepseek-v4.1-flash,meta/muse-spark-1.3-contributor"
-      )
-        .split(",")
-        .map((m) => m.trim())
-        .filter(Boolean);
-      // `GOAT_REPLICAS=3`：把**同一个模型**复制成多条独立通道（slug 不同 → env 前缀不同，
-      // 通道键也不同），用于「只有一条通道真能跑」的局面——实测 glm-5.3-flash 批批 200s 超时、
-      // 只剩 muse 能出活，与其干等不如把 muse 拉成多条并行通道。
-      const replicas = Number(process.env["GOAT_REPLICAS"] ?? 1);
-      const slugs =
-        replicas > 1 ? ["goat", ...Array.from({ length: replicas - 1 }, (_, i) => `goat${i + 2}`)] : ["goat"];
-      for (const slug of slugs) {
-        merged0[`${slug.toUpperCase()}_API_KEY`] = goatKey;
-        merged0[`${slug.toUpperCase()}_BASE_URL`] =
-          process.env["GOAT_BASE_URL"] ?? "https://api.commandcode.ai/provider/v1";
-      }
-      models.forEach((m) => {
-        // slug 固定用 `goat`（env 名由 slug 决定：GOAT_BASE_URL/GOAT_API_KEY）；
-        // 两条通道靠 **model 名**区分（lane key = provider:model），不能给不同 slug
-        // ——换个 slug 就要再配一套 GOAT0_* 环境变量（实测踩过：缺 GOAT0_BASE_URL 构造失败）。
-        for (const slug of slugs) {
-          extra.push({
-            entry: `custom:${slug}:${m}:0`,
-            // 关思考（GOAT 上是 `thinking:{type:disabled}`）：实测同一调用 11-13s → 6s，
-            // 全库重判的墙钟时间直接砍半。判定任务是「按判据分类」，不需要长链推理。
-            params: process.env["GOAT_NO_THINKING"] === "0" ? {} : { thinking: { type: "disabled" } },
-            paramsEnv: "",
-            keys: [goatKey],
-            note: `Command Code GOAT 订阅（已付月费的现有资源）· ${m}${replicas > 1 ? ` · 副本 ${slug}` : ""}`,
-            keyFp: "",
-          });
-        }
-      });
-    }
-  }
-  if (argv.includes("--bailian")) {
-    const blKey = env["BAILIAN_API_KEY"] ?? process.env["BAILIAN_API_KEY"] ?? "";
-    if (blKey.length > 0) {
-      extra.push({
-        entry: `bailian:${process.env["BAILIAN_MODEL"] ?? "qwen3.7-flash"}:0`,
-        params: { enable_thinking: false },
-        paramsEnv: "",
-        keys: [blKey],
-        note: "付费压舱石（按量计费，全库一轮约 ¥1 量级；免费通道全灭时才用）",
-        keyFp: "",
-      });
-    }
-  }
+  // ⛔ 付费 / 订阅通道一律不用（栗子 2026-09-15 硬性规则：**GitTok 只允许免费模型**）。
+  // 之前为赶全库重判临时挂过 GOAT 订阅与百炼付费键，现已移除；余额/订阅额度都不再属于可用资源。
+  // 免费档被限流时的正确姿势：等配额跨天自然恢复（通道健康账会自动复活），或减小 batch 慢慢跑。
+  // 附：全库重判在纯免费档下的实测吞吐 ≈ 11-21 张/分钟（智谱 GLM-4.7-Flash 单/双账号），
+  //     2477 张 ≈ 2-3.5 小时，可断点续跑（state 记凭证，重启自动跳过已判卡）。
+
   const lanes = [...tail, ...extra];
-  const merged: NodeJS.ProcessEnv = { ...process.env, ...env, ...merged0 };
+  const merged: NodeJS.ProcessEnv = { ...process.env, ...env };
   for (const t of lanes) if (t.paramsEnv) merged[t.paramsEnv] = JSON.stringify(t.params);
   for (const [k, v] of Object.entries(merged)) if (v !== undefined) process.env[k] = v;
 
@@ -446,8 +391,8 @@ async function main(): Promise<void> {
     if (c) {
       try {
         // 探针 token 预算必须给够：推理型模型（muse 一类）会把 64 token 全花在思考上，
-        // 返回空 content → 被误判成死通道（2026-09-14 实测：GOAT 通道 curl 1.7s 200 可用，
-        // 但 64 token 探针拿不到内容而判 ✗）。
+        // 返回空 content → 被误判成死通道（2026-09-14 实测：推理型通道 64 token 探针
+        // 拿不到内容而判 ✗，把预算提到 1024 就能过）。
         ok =
           (await withTimeout(c('只回一行 JSON：{"ok":true}', 1024), 45_000, `预筛 ${lane.key}`)).trim()
             .length > 0;
@@ -458,8 +403,11 @@ async function main(): Promise<void> {
       }
     }
     console.log(`  [rejudge-v3] 通道预筛 ${ok ? "✓" : "✗"} ${lane.key}${ok ? "" : ` —— ${why}`}`);
+    // 探针结果写回健康账：成功 = 撤销退出期（配额跨天恢复后自动复活，不用人工改账本）
+    recordLaneResult(ledger, lane.key, { calls: 1, ok: ok ? 1 : 0, lastError: ok ? undefined : why });
     if (ok) alive.push(lane);
   }
+  saveLaneHealth(ledger);
   if (alive.length === 0) {
     console.error("[rejudge-v3] 无可用通道，退出（不写盘）");
     process.exit(1);

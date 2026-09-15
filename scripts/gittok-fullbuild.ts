@@ -41,7 +41,8 @@ function main(): void {
     }
   }
   // 锁死免费纪律：主源显式指向付费压舱石（矩阵外的编队通道），杜绝误用未知主源。
-  if (env["BAILIAN_API_KEY"]) {
+  // ⛔ 付费兜底仅在显式 opt-in 下可用（栗子 2026-09-15：GitTok 只允许免费模型）
+  if (env["BAILIAN_API_KEY"] && (process.env["GITTOK_ALLOW_PAID"] ?? "") === "1") {
     env["LLM_PROVIDER"] = "bailian";
     env["BAILIAN_MODEL"] = "qwen3.7-flash";
   }

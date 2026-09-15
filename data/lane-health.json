@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-09-14T17:09:34.786Z",
+  "updatedAt": "2026-09-15T04:01:58.329Z",
   "lanes": {
     "zhipu": {
       "key": "zhipu",
-      "calls": 374,
-      "ok": 172,
-      "lastError": "Error: 401 令牌已过期或验证不正确",
+      "calls": 376,
+      "ok": 173,
+      "lastError": "Error: 预筛 zhipu:glm-4.7-flash 超时 45000ms",
       "lastClass": "ok",
-      "updatedAt": "2026-09-14T17:09:34.785Z"
+      "updatedAt": "2026-09-15T04:01:36.623Z"
     },
     "agnes": {
       "key": "agnes",
@@ -52,12 +52,12 @@
     },
     "openrouter": {
       "key": "openrouter",
-      "calls": 80,
+      "calls": 81,
       "ok": 0,
-      "lastError": "Error: 429 Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day",
-      "lastClass": "quota-daily",
-      "updatedAt": "2026-09-14T17:09:34.785Z",
-      "retiredUntil": "2026-09-15T05:09:34.785Z"
+      "lastError": "TypeError: Cannot read properties of undefined (reading '0')",
+      "lastClass": "network",
+      "updatedAt": "2026-09-15T04:01:58.329Z",
+      "retiredUntil": "2026-09-15T04:31:58.329Z"
     },
     "custom-modelscope": {
       "key": "custom-modelscope",
@@ -77,12 +77,12 @@
     },
     "modelscope": {
       "key": "modelscope",
-      "calls": 76,
+      "calls": 77,
       "ok": 0,
-      "lastError": "Error: 429 insufficient balance",
-      "lastClass": "quota-exhausted",
-      "updatedAt": "2026-09-14T17:09:34.785Z",
-      "retiredUntil": "2026-09-15T17:09:34.785Z"
+      "lastError": "TypeError: Cannot read properties of null (reading '0')",
+      "lastClass": "network",
+      "updatedAt": "2026-09-15T04:01:36.766Z",
+      "retiredUntil": "2026-09-15T04:31:36.766Z"
     },
     "spark": {
       "key": "spark",

@@ -189,13 +189,18 @@ export function buildPlan(env: NodeJS.ProcessEnv = process.env): PlanResult {
     missing.push("OpenRouter key（OPENROUTER_API_KEY 或 FREE-FLEET.txt）");
   }
 
-  // ④ 付费兜底压舱石：百炼 qwen3.7-flash（Batch 半价 ¥22.5 全站）——作编队主源用，
-  //    不进矩阵（quota=0 语义为不限额，不该给付费源挂 unlimited）。
-  const wsKeys = resolveKeys("BAILIAN_API_KEY", collectKeys(paid, "百炼", "bailian", "DashScope"));
-  if (wsKeys.length > 0) {
-    outEnv["BAILIAN_API_KEY"] = wsKeys[0]!;
-  } else {
-    missing.push("百炼 qwen3.7-flash key（BAILIAN_API_KEY 或 PAID-LLM.txt）——付费兜底通道");
+  // ④ 付费兜底压舱石：百炼 qwen3.7-flash——**默认不注入**。
+  //    ⛔ 栗子 2026-09-15 硬性规则：**GitTok 只允许免费模型**（含"已订阅"的第三方订阅通道）。
+  //    因此这里改为显式 opt-in：只有 `GITTOK_ALLOW_PAID=1` 时才把付费 key 放进环境。
+  //    免费档全灭时的正确姿势是等配额跨天恢复（通道健康账会自动复活），而不是切付费。
+  if ((env["GITTOK_ALLOW_PAID"] ?? process.env["GITTOK_ALLOW_PAID"] ?? "") === "1") {
+    const wsKeys = resolveKeys("BAILIAN_API_KEY", collectKeys(paid, "百炼", "bailian", "DashScope"));
+    if (wsKeys.length > 0) {
+      outEnv["BAILIAN_API_KEY"] = wsKeys[0]!;
+    } else {
+      missing.push("百炼 qwen3.7-flash key（BAILIAN_API_KEY 或 PAID-LLM.txt）——付费兜底通道");
+    }
+    console.log("[matrix] ⚠️ GITTOK_ALLOW_PAID=1：本次允许付费兜底通道（默认禁用，栗子规则=只用免费模型）");
   }
 
   // ⑤ 编队其它通道（env 优先；本地从 FREE-FLEET 补）

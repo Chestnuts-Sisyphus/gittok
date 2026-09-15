@@ -14,7 +14,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import "dotenv/config";
-import { buildPlan, dropRetiredLanes, parseKeyFile, PAID_LLM } from "./gittok-fullbuild-lib.ts";
+import { buildPlan, dropRetiredLanes } from "./gittok-fullbuild-lib.ts";
 import { ScheduledLlmExecutor } from "../src/feed/executor.ts";
 
 interface Card {
@@ -82,20 +82,8 @@ function pickLane(): { executor: ScheduledLlmExecutor; key: string } {
     const model = t.entry.slice(first + 1, /^\d+$/.test(tailPart) ? last : undefined);
     return { provider, model, keys: t.keys, extraParams: t.params, key: `${provider}:${model}` };
   });
-  // GOAT 订阅通道兜底（免费档被限流时仍能补完这 3 张）
-  const paid = parseKeyFile(fs.existsSync(PAID_LLM) ? fs.readFileSync(PAID_LLM, "utf-8") : "");
-  const goatKey = paid.get("Command Code GOAT")?.[0] ?? "";
-  if (goatKey) {
-    process.env["GOAT_API_KEY"] = goatKey;
-    process.env["GOAT_BASE_URL"] = process.env["GOAT_BASE_URL"] ?? "https://api.commandcode.ai/provider/v1";
-    specs.push({
-      provider: "custom",
-      model: `goat:${process.env["GOAT_MODEL"] ?? "meta/muse-spark-1.3-contributor"}`,
-      keys: [goatKey],
-      extraParams: {},
-      key: "custom:goat:meta/muse-spark-1.3-contributor",
-    });
-  }
+  // ⛔ 不再挂订阅/付费通道（栗子 2026-09-15：GitTok 只允许免费模型）。
+  // 免费档被限流时，本脚本会失败并把未补的卡列出来——等配额恢复再跑，不绕道付费。
   return { executor: new ScheduledLlmExecutor(specs), key: specs[0]?.key ?? "" };
 }
 
@@ -109,7 +97,7 @@ async function main(): Promise<void> {
   let done = 0;
   for (const card of todo) {
     let filled = false;
-    for (const laneKey of [firstKey, "custom:goat:meta/muse-spark-1.3-contributor"]) {
+    for (const laneKey of [firstKey]) {
       const caller = executor.callerFor(laneKey);
       if (!caller) continue;
       try {
