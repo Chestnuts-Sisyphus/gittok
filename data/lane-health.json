@@ -1,29 +1,30 @@
 {
-  "updatedAt": "2026-09-16T15:42:17.412Z",
+  "updatedAt": "2026-09-16T15:49:27.260Z",
   "lanes": {
     "zhipu": {
       "key": "zhipu",
-      "calls": 835,
-      "ok": 371,
+      "calls": 836,
+      "ok": 372,
       "lastError": "Error: 401 令牌已过期或验证不正确",
       "lastClass": "ok",
-      "updatedAt": "2026-09-16T15:42:17.411Z"
+      "updatedAt": "2026-09-16T15:48:39.405Z"
     },
     "agnes": {
       "key": "agnes",
-      "calls": 436,
-      "ok": 183,
+      "calls": 437,
+      "ok": 184,
       "lastError": "Error: 预筛 agnes:agnes-2.0-flash 超时 45000ms",
       "lastClass": "ok",
-      "updatedAt": "2026-09-16T15:42:17.411Z"
+      "updatedAt": "2026-09-16T15:49:26.941Z"
     },
     "groq": {
       "key": "groq",
-      "calls": 1701,
+      "calls": 1702,
       "ok": 414,
-      "lastError": "Error: 429 Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 194843, Requested 82",
-      "lastClass": "ok",
-      "updatedAt": "2026-09-16T15:42:17.411Z"
+      "lastError": "Error: 403 Forbidden",
+      "lastClass": "auth",
+      "updatedAt": "2026-09-16T15:49:27.260Z",
+      "retiredUntil": "2026-10-16T15:49:27.260Z"
     },
     "gemini": {
       "key": "gemini",
@@ -53,12 +54,12 @@
     },
     "openrouter": {
       "key": "openrouter",
-      "calls": 218,
+      "calls": 219,
       "ok": 10,
-      "lastError": "Error: 429 Provider returned error",
-      "lastClass": "quota-daily",
-      "updatedAt": "2026-09-16T15:42:17.411Z",
-      "retiredUntil": "2026-09-17T03:42:17.411Z"
+      "lastError": "Error: 预筛 openrouter:nvidia/nemotron-3-ultra-550b-a55b:free 超时 45000ms",
+      "lastClass": "network",
+      "updatedAt": "2026-09-16T15:49:25.638Z",
+      "retiredUntil": "2026-09-16T16:19:25.638Z"
     },
     "custom-modelscope": {
       "key": "custom-modelscope",
@@ -78,11 +79,11 @@
     },
     "modelscope": {
       "key": "modelscope",
-      "calls": 286,
-      "ok": 28,
+      "calls": 287,
+      "ok": 29,
       "lastError": "Error: 429 insufficient balance",
       "lastClass": "ok",
-      "updatedAt": "2026-09-16T15:42:17.411Z"
+      "updatedAt": "2026-09-16T15:48:40.637Z"
     },
     "spark": {
       "key": "spark",
