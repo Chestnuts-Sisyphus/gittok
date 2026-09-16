@@ -1108,7 +1108,10 @@ export async function generateFeed(
           language: c.language,
           topics: c.topics,
           source: c.source,
-          starGrowth: 0, // 跨轮不保留旧增长值：starGrowth=「今日增长」每轮从 0 重算（防历史虚高固化）
+          starGrowth: c.starGrowth ?? 0, // 跨轮保留旧增长值（2026-09-16 修复）：滴灌轮只刷新游标窗口
+          // 内约 screen_cap 张卡，其余卡若每轮强制归 0，热门/每日频道会在两轮完整刷新之间被
+          // 一轮轮抽干（实测线上热门 403→57、V-C 不通过）。刷新到的卡仍由 refresh 用真实差值
+          // 覆盖（max 语义保留）；未刷新卡沿用上轮值，直到下一轮刷新或 04:00 完整轮更新。
           createdAt: c.createdAt,
           silentRounds: c.silentRounds ?? 0,
           bigbros: c.bigbros,
