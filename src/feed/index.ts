@@ -386,6 +386,9 @@ interface MergedRepo {
   topics: string[];
   source: FeedSource;
   starGrowth: number;
+  /** 跨轮保留的旧增长值（2026-09-16）：滴灌轮只刷新游标窗口内部分卡，未刷新卡沿用
+   *  上轮值防热门/每日频道被抽干；刷新成功的卡清掉本字段（真实差值覆盖，防虚高固化） */
+  lastStarGrowth?: number;
   /** 仓库创建时间 ISO（rising 判定；search API/轮转刷新携带，trending HTML 无） */
   createdAt?: string;
   /** 原始 README markdown（精评拉取后回写；组装循环 G-source 校验用） */
@@ -481,6 +484,8 @@ async function refreshStarsRoundRobin(
         const m = repoMap.get(item.repo);
         if (m) {
           m.stars = newStars;
+          // 本轮拿到真实数据 → 增长值以本轮为准（清除跨轮旧值回退，防虚高固化——既有测试锁定）
+          m.lastStarGrowth = undefined;
           if (d.created_at) m.createdAt = d.created_at;
           // 只对「有增长基准」的 repo 计算日均涨星（真实增速信号）：
           // 基准缺失 = 当天新入库的卡，newStars-0 会把总 star 当增长（虚高，见 starGrowth 研讨稿）
@@ -1108,10 +1113,11 @@ export async function generateFeed(
           language: c.language,
           topics: c.topics,
           source: c.source,
-          starGrowth: c.starGrowth ?? 0, // 跨轮保留旧增长值（2026-09-16 修复）：滴灌轮只刷新游标窗口
+          starGrowth: 0, // 本轮真实值入口：trending 代理值/refresh 差值会覆盖；未刷新卡组装时回退 lastStarGrowth
+          lastStarGrowth: c.starGrowth ?? 0, // 跨轮保留旧增长值（2026-09-16 修复）：滴灌轮只刷新游标窗口
           // 内约 screen_cap 张卡，其余卡若每轮强制归 0，热门/每日频道会在两轮完整刷新之间被
-          // 一轮轮抽干（实测线上热门 403→57、V-C 不通过）。刷新到的卡仍由 refresh 用真实差值
-          // 覆盖（max 语义保留）；未刷新卡沿用上轮值，直到下一轮刷新或 04:00 完整轮更新。
+          // 一轮轮抽干（实测线上热门 403→57、V-C 不通过）。刷新成功的卡由 refresh 清除本字段、
+          // 用真实差值覆盖（既有「虚高自愈」测试锁定）；未刷新卡沿用上轮值，直到下一轮刷新。
           createdAt: c.createdAt,
           silentRounds: c.silentRounds ?? 0,
           bigbros: c.bigbros,
@@ -1140,6 +1146,7 @@ export async function generateFeed(
         topics: pe.topics,
         source: pe.source,
         starGrowth: 0, // 快照值可能已虚高，从 0 重算（refresh 用真实差值覆盖）
+        lastStarGrowth: pe.starGrowth ?? 0, // 恢复待补评卡也保留旧增长值（未刷新时回退，防热门塌缩）
         createdAt: pe.createdAt,
         silentRounds: pe.silentRounds ?? 0,
         bigbros: pe.bigbros,
@@ -1319,7 +1326,7 @@ export async function generateFeed(
       screened.push({
         repo: r.repo,
         aiScore: p1.aiScore,
-        starGrowth: m?.starGrowth ?? 0,
+        starGrowth: (m?.starGrowth || m?.lastStarGrowth) ?? 0,
         stars: m?.stars ?? 0,
       });
     }
@@ -1498,7 +1505,7 @@ export async function generateFeed(
       reasonCn: sc.reasonCn,
       detailCn: sc.detailCn,
       stars: m.stars,
-      starGrowth: m.starGrowth,
+      starGrowth: m.starGrowth || (m.lastStarGrowth ?? 0), // 未刷新卡回退上轮增长值（热门/每日频道不塌缩）
       createdAt: m.createdAt,
       silentRounds: m.silentRounds,
       language: m.language,
@@ -1560,7 +1567,7 @@ export async function generateFeed(
         language: m.language,
         topics: m.topics,
         source: m.source,
-        starGrowth: m.starGrowth,
+        starGrowth: m.starGrowth || (m.lastStarGrowth ?? 0),
         createdAt: m.createdAt,
         silentRounds: m.silentRounds ?? 0,
         bigbros: m.bigbros,

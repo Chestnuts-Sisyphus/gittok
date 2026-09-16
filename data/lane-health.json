@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-16T15:49:27.260Z",
+  "updatedAt": "2026-09-16T19:12:36.525Z",
   "lanes": {
     "zhipu": {
       "key": "zhipu",
@@ -11,11 +11,11 @@
     },
     "agnes": {
       "key": "agnes",
-      "calls": 437,
-      "ok": 184,
+      "calls": 438,
+      "ok": 185,
       "lastError": "Error: 预筛 agnes:agnes-2.0-flash 超时 45000ms",
       "lastClass": "ok",
-      "updatedAt": "2026-09-16T15:49:26.941Z"
+      "updatedAt": "2026-09-16T19:12:36.525Z"
     },
     "groq": {
       "key": "groq",
