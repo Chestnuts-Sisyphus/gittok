@@ -24,7 +24,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import "dotenv/config";
-import { buildPlan } from "./gittok-fullbuild-lib.ts";
+import { buildPlan, parseKeyFile, collectKeys, FREE_FLEET } from "./gittok-fullbuild-lib.ts";
 import { loadLaneHealth, recordLaneResult, saveLaneHealth } from "../src/feed/lane-health.ts";
 import { ScheduledLlmExecutor } from "../src/feed/executor.ts";
 import {
@@ -346,6 +346,23 @@ async function main(): Promise<void> {
         params: {},
         paramsEnv: "",
         keys: [agnesKey],
+        note: "免费附加通道（仅回填脚本）",
+        keyFp: "",
+      });
+    }
+  }
+  //  `--groq`：免费附加源（Groq 免费档，gpt-oss-120b）。2026-09-16 全库 v3.1.1 重判提速用：
+  //  主矩阵（智谱/魔搭/OpenRouter）当日全挂或限流，账本里 groq 有 362 次成功在案；
+  //  它有 429 风暴史（GT-0906-01 空转 83min 之鉴）——靠执行层硬超时 + 连败 4 次退场兜底，
+  //  加了只会更快，不会拖慢。
+  if (argv.includes("--groq")) {
+    const groqKeys = collectKeys(parseKeyFile(fs.readFileSync(FREE_FLEET, "utf-8")), "Groq");
+    if (groqKeys.length > 0) {
+      extra.push({
+        entry: "groq:openai/gpt-oss-120b:0",
+        params: {},
+        paramsEnv: "",
+        keys: groqKeys,
         note: "免费附加通道（仅回填脚本）",
         keyFp: "",
       });

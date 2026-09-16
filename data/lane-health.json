@@ -1,63 +1,64 @@
 {
-  "updatedAt": "2026-09-15T04:01:58.329Z",
+  "updatedAt": "2026-09-16T15:42:17.412Z",
   "lanes": {
     "zhipu": {
       "key": "zhipu",
-      "calls": 376,
-      "ok": 173,
-      "lastError": "Error: 预筛 zhipu:glm-4.7-flash 超时 45000ms",
+      "calls": 835,
+      "ok": 371,
+      "lastError": "Error: 401 令牌已过期或验证不正确",
       "lastClass": "ok",
-      "updatedAt": "2026-09-15T04:01:36.623Z"
+      "updatedAt": "2026-09-16T15:42:17.411Z"
     },
     "agnes": {
       "key": "agnes",
-      "calls": 190,
-      "ok": 80,
+      "calls": 436,
+      "ok": 183,
+      "lastError": "Error: 预筛 agnes:agnes-2.0-flash 超时 45000ms",
       "lastClass": "ok",
-      "updatedAt": "2026-09-14T17:09:34.785Z"
+      "updatedAt": "2026-09-16T15:42:17.411Z"
     },
     "groq": {
       "key": "groq",
-      "calls": 660,
-      "ok": 258,
-      "lastError": "Error: 413 Request too large for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Requested 13695, please r",
+      "calls": 1701,
+      "ok": 414,
+      "lastError": "Error: 429 Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 194843, Requested 82",
       "lastClass": "ok",
-      "updatedAt": "2026-09-14T17:09:34.785Z"
+      "updatedAt": "2026-09-16T15:42:17.411Z"
     },
     "gemini": {
       "key": "gemini",
-      "calls": 420,
-      "ok": 164,
+      "calls": 1002,
+      "ok": 320,
       "lastError": "Error: 404 status code (no body)",
       "lastClass": "ok",
-      "updatedAt": "2026-09-14T17:09:34.785Z"
+      "updatedAt": "2026-09-16T15:42:17.411Z"
     },
     "mistral": {
       "key": "mistral",
-      "calls": 168,
+      "calls": 372,
       "ok": 0,
       "lastError": "Error: 401 status code (no body)",
       "lastClass": "auth",
-      "updatedAt": "2026-09-14T17:09:34.785Z",
-      "retiredUntil": "2026-10-14T17:09:34.785Z"
+      "updatedAt": "2026-09-16T15:42:17.411Z",
+      "retiredUntil": "2026-10-16T15:42:17.411Z"
     },
     "hf": {
       "key": "hf",
-      "calls": 84,
+      "calls": 186,
       "ok": 0,
       "lastError": "Error: 402 \"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"",
       "lastClass": "quota-exhausted",
-      "updatedAt": "2026-09-14T17:09:34.785Z",
-      "retiredUntil": "2026-09-15T17:09:34.785Z"
+      "updatedAt": "2026-09-16T15:42:17.411Z",
+      "retiredUntil": "2026-09-17T15:42:17.411Z"
     },
     "openrouter": {
       "key": "openrouter",
-      "calls": 81,
-      "ok": 0,
-      "lastError": "TypeError: Cannot read properties of undefined (reading '0')",
-      "lastClass": "network",
-      "updatedAt": "2026-09-15T04:01:58.329Z",
-      "retiredUntil": "2026-09-15T04:31:58.329Z"
+      "calls": 218,
+      "ok": 10,
+      "lastError": "Error: 429 Provider returned error",
+      "lastClass": "quota-daily",
+      "updatedAt": "2026-09-16T15:42:17.411Z",
+      "retiredUntil": "2026-09-17T03:42:17.411Z"
     },
     "custom-modelscope": {
       "key": "custom-modelscope",
@@ -77,19 +78,18 @@
     },
     "modelscope": {
       "key": "modelscope",
-      "calls": 77,
-      "ok": 0,
-      "lastError": "TypeError: Cannot read properties of null (reading '0')",
-      "lastClass": "network",
-      "updatedAt": "2026-09-15T04:01:36.766Z",
-      "retiredUntil": "2026-09-15T04:31:36.766Z"
+      "calls": 286,
+      "ok": 28,
+      "lastError": "Error: 429 insufficient balance",
+      "lastClass": "ok",
+      "updatedAt": "2026-09-16T15:42:17.411Z"
     },
     "spark": {
       "key": "spark",
-      "calls": 21,
-      "ok": 21,
+      "calls": 72,
+      "ok": 72,
       "lastClass": "ok",
-      "updatedAt": "2026-09-14T17:09:34.785Z"
+      "updatedAt": "2026-09-16T15:42:17.411Z"
     }
   }
 }
