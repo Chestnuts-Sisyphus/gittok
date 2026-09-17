@@ -83,6 +83,49 @@ cd web && pnpm install && pnpm dev
 | [Lobste.rs](https://lobste.rs) | JSON API | AI/ML 内容 |
 | [Anthropic](https://anthropic.com) + [OpenAI](https://openai.com) | Sitemap | 新文章（增量抓取） |
 
+## 🤖 Agent 接口（匿名只读，无需 API Key）
+
+GitTok 不只给人看，也直接对 agent 开放——下面每个接口都公开、只读、不用 key、不用登录。
+
+| 接口 | 地址 | 格式 | 说明 |
+|---|---|---|---|
+| 卡片列表 | `https://chestnuts-sisyphus.github.io/gittok/data/feed.json` | JSON | 首屏轻量列表（不含 `detailCn`），约 3.4MB，每天更新数次 |
+| 卡片详情表 | `https://chestnuts-sisyphus.github.io/gittok/data/feed-details.json` | JSON | `{ "owner/name": detailCn }` 映射，取中文长文 |
+| 卡片列表（全量单文件） | `https://cdn.jsdelivr.net/gh/Chestnuts-Sisyphus/gittok@master/data/feed.json` | JSON | 仓库源文件：自带 `detailCn`、字段最全；大陆直连更快 |
+| RSS | `https://chestnuts-sisyphus.github.io/gittok/feed.xml` | RSS 2.0 | 日报条目流 |
+| 日报索引 | `https://chestnuts-sisyphus.github.io/gittok/manifest.json` | JSON | `dates[] → reports[]` |
+| 日报正文 | `https://cdn.jsdelivr.net/gh/Chestnuts-Sisyphus/gittok@master/digests/<YYYY-MM-DD>/<名称>.md` | Markdown | 日报随仓库发布（站点上是网页渲染） |
+| 发现文件 | `https://chestnuts-sisyphus.github.io/gittok/llms.txt` | text/plain | 给 agent 的入口索引（llmstxt.org 规范） |
+
+```bash
+# 今天新收录的卡，按站点自己的时效热度排序
+curl -s https://chestnuts-sisyphus.github.io/gittok/data/feed.json -o feed.json
+python -c "
+import json,datetime
+c=json.load(open('feed.json',encoding='utf-8'))
+t=datetime.datetime.now(datetime.timezone.utc).date().isoformat()
+f=[x for x in c if (x.get('pushedAt') or '')[:10]==t]
+f.sort(key=lambda x:x.get('heatScore') or 0,reverse=True)
+print(len(f),'张今日入库；最热：',[x['repo'] for x in f[:5]])"
+```
+
+**MCP server** —— 工具 `search` / `top` / `detail`，单文件零安装，Claude Desktop / Claude Code /
+Cursor 的接入配置见 [`mcp-gittok/README.md`](./mcp-gittok/README.md)。
+
+```bash
+curl -fsSL -o ~/gittok-mcp.mjs \
+  https://cdn.jsdelivr.net/gh/Chestnuts-Sisyphus/gittok@master/mcp-gittok/dist/index.js
+node ~/gittok-mcp.mjs --selftest
+```
+
+**Agent Skill** —— 「读 GitTok 今日热点并讲解」（`skills/gittok/`，Agent Skills 格式）：
+
+```bash
+node skills/gittok/scripts/hotspots.mjs --limit 12    # 克隆仓库后直接跑
+```
+
+字段参考、排序语义与使用边界：[`docs/API.md`](./docs/API.md)。
+
 ## 🎯 「Tok」是什么意思？
 
 GitTok 不是全屏沉浸的 TikTok 复制品——**「Tok」是那种感觉**：刷 GitHub 项目应该像刷短视频一样上瘾有趣。GitTok 用算法驱动的卡片流实现这种感觉：个性化推荐、每个项目的中文解读、每天都有新精选。刷 GitHub 像刷短视频一样上头，但保留信息流的密度。

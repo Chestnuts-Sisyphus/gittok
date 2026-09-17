@@ -1,0 +1,37 @@
+# GitTok
+
+> GitTok 是一个中文开源信息流：每天自动聚合 GitHub Trending / GitHub Search、Hacker News、Product Hunt、ArXiv、Hugging Face、Dev.to、Lobste.rs 与 Anthropic / OpenAI 官方站等 10+ 个信源，由 LLM 生成中文摘要与长文，热度加权、沉寂判定、排序与搜索全部由代码固化并有测试锁定；2600+ 张开源项目卡片每日更新，匿名可读、无需登录。
+
+数据形态：每张卡片含仓库名、原始英文描述、中文一句话概括（summaryCn）、中文简介（reasonCn）、
+中文长文（detailCn）、stars 与近期涨星（starGrowth）、分区（zone：AI / 资源 / 工具 / 创意）、
+乐趣分（funScore）、时效热度（heatScore）、入库时间（pushedAt）等字段。所有接口匿名只读、无需 API Key；
+站点每天更新数次，请缓存 ≥10 分钟，不要高频全量拉取。
+
+## 数据接口
+
+- [卡片列表（站点，轻量）](https://chestnuts-sisyphus.github.io/gittok/data/feed.json): JSON 数组，站点首屏用的列表（不含 detailCn），约 3.4MB
+- [卡片列表（全量单文件）](https://cdn.jsdelivr.net/gh/Chestnuts-Sisyphus/gittok@master/data/feed.json): 仓库源文件，自带 detailCn 长文、字段最全；大陆直连比站点快（实测 1.8MB/s vs 121KB/s）
+- [卡片详情表](https://chestnuts-sisyphus.github.io/gittok/data/feed-details.json): JSON 对象 `{ "owner/name": detailCn }`，按需取某项目的中文长文
+- [RSS](https://chestnuts-sisyphus.github.io/gittok/feed.xml): RSS 2.0，日报条目流
+- [日报索引](https://chestnuts-sisyphus.github.io/gittok/manifest.json): JSON，`dates[] → reports[]`，日报文件清单（按它取日期）
+- [日报正文（最近一天）](https://chestnuts-sisyphus.github.io/gittok/digests/latest/ai-cli.md): Markdown，`/digests/latest/` 恒指最近一天；历史与其它主题（ai-agents / ai-trending / ai-arxiv / ai-hn-en …）按 `/digests/<YYYY-MM-DD>/<名称>.md` 取（站点保留最近 7 天，全量在仓库 digest 目录）
+
+## Agent 工具
+
+- [MCP server（search / top / detail）](https://chestnuts-sisyphus.github.io/gittok/agent/MCP.md): stdio 型 MCP server，单文件零依赖；search=全库关键词搜索（中文可用）、top=按热度/乐趣/时效取榜、detail=取完整卡片；排序与搜索复用站点同一套代码（有 parity 测试锁定）
+- [MCP 单文件下载](https://cdn.jsdelivr.net/gh/Chestnuts-Sisyphus/gittok@master/mcp-gittok/dist/index.js): `curl -fsSL -o gittok-mcp.mjs <此地址>` 后 `node gittok-mcp.mjs --selftest`
+- [Agent Skill（读今日热点并讲解）](https://chestnuts-sisyphus.github.io/gittok/agent/SKILL.md): Agent Skills 格式，含取数脚本 scripts/hotspots.mjs；装上后 agent 可实时读当天热点并中文讲解
+- [接口文档（字段表 / 示例 / 排序语义）](https://chestnuts-sisyphus.github.io/gittok/agent/API.md): 面向人与 agent 的完整说明，示例命令逐条可跑
+
+## 站点页面
+
+- [GitTok 首页](https://chestnuts-sisyphus.github.io/gittok/): 卡片流应用（人用）
+- [GitHub 仓库](https://github.com/Chestnuts-Sisyphus/gittok): 源码、数据管线与日报都在这里（MIT）
+
+## 使用建议
+
+- 先读本文件，再按需取数：只想要今天的动态 → 读 `manifest.json` 找当天日报，或在 feed 里筛 `pushedAt` 为今天的卡；想搜具体主题 → 用 MCP `search`（中文关键词直接可用，仓库名命中优先）；想知道「现在什么在涨」→ 用 MCP `top(sort="hot")`。
+- 排序口径与站点一致：热门按 `starGrowth × min(1, log10(stars)/4)`，每日按 `heatScore`，乐趣按 `funScore`；完整公式与字段含义见接口文档。
+- 卡片文案由 LLM 生成，可能过时或不准确；引用数据前回原仓库核对。数字请用返回值原样引用。
+- 日报 markdown 站点镜像最近 7 天（`/digests/<日期>/<名称>.md`，另设 `/digests/latest/` 指最近一天）；更早的日期只能从仓库取（jsDelivr 会 301 跳到 raw.githubusercontent，跟随重定向即可）。
+- 数据为公开信息聚合，仓库代码 MIT；被收录项目本身的版权归各自作者。

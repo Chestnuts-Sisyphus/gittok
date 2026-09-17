@@ -29,6 +29,11 @@ BLOCKED.md
 # 本地验证临时目录（不发布）
 .tmp-verify/
 
+# 部署期镜像目录（由 deploy-web.yml 在 CI 里生成：站点版 agent 文档与最近 7 天日报；
+# 单一源是仓库里的 docs/API.md、skills/gittok/SKILL.md、mcp-gittok/README.md、digests/）
+web/public/agent/
+web/public/digests/
+
 # 拆 job 刀（2026-09-05）：trending 快照只在 CI artifact 传递，几 MB/天不入仓
 data/trending-snapshot.json
 

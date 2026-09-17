@@ -83,6 +83,49 @@ cd web && pnpm install && pnpm dev
 | [Lobste.rs](https://lobste.rs) | JSON API | AI/ML content |
 | [Anthropic](https://anthropic.com) + [OpenAI](https://openai.com) | Sitemap | New articles (incremental crawl) |
 
+## 🤖 Agent interface (anonymous, no API key)
+
+GitTok speaks to agents as well as humans — every endpoint below is public, read-only, no key, no login.
+
+| Endpoint | URL | Format | Notes |
+|---|---|---|---|
+| Card list | `https://chestnuts-sisyphus.github.io/gittok/data/feed.json` | JSON | Lightweight list (no `detailCn`), ~3.4MB, updated several times a day |
+| Card details | `https://chestnuts-sisyphus.github.io/gittok/data/feed-details.json` | JSON | `{ "owner/name": detailCn }` map for the long Chinese write-up |
+| Card list (full, single file) | `https://cdn.jsdelivr.net/gh/Chestnuts-Sisyphus/gittok@master/data/feed.json` | JSON | Repo source file: includes `detailCn`, all fields; faster from mainland China |
+| RSS | `https://chestnuts-sisyphus.github.io/gittok/feed.xml` | RSS 2.0 | Digest entries |
+| Digest index | `https://chestnuts-sisyphus.github.io/gittok/manifest.json` | JSON | `dates[] → reports[]` |
+| Digest markdown | `https://cdn.jsdelivr.net/gh/Chestnuts-Sisyphus/gittok@master/digests/<YYYY-MM-DD>/<name>.md` | Markdown | Digests ship with the repo (the site renders them as pages) |
+| Discovery file | `https://chestnuts-sisyphus.github.io/gittok/llms.txt` | text/plain | Index for agents (llmstxt.org) |
+
+```bash
+# today's arrivals, ranked by the site's own heat score
+curl -s https://chestnuts-sisyphus.github.io/gittok/data/feed.json -o feed.json
+python -c "
+import json,datetime
+c=json.load(open('feed.json',encoding='utf-8'))
+t=datetime.datetime.now(datetime.timezone.utc).date().isoformat()
+f=[x for x in c if (x.get('pushedAt') or '')[:10]==t]
+f.sort(key=lambda x:x.get('heatScore') or 0,reverse=True)
+print(len(f),'new today; top:',[x['repo'] for x in f[:5]])"
+```
+
+**MCP server** — tools `search` / `top` / `detail`, zero-install single file, config for Claude Desktop /
+Claude Code / Cursor: see [`mcp-gittok/README.md`](./mcp-gittok/README.md).
+
+```bash
+curl -fsSL -o ~/gittok-mcp.mjs \
+  https://cdn.jsdelivr.net/gh/Chestnuts-Sisyphus/gittok@master/mcp-gittok/dist/index.js
+node ~/gittok-mcp.mjs --selftest
+```
+
+**Agent Skill** — "read today's GitTok highlights and explain them" (`skills/gittok/`, Agent Skills format):
+
+```bash
+node skills/gittok/scripts/hotspots.mjs --limit 12    # from a clone
+```
+
+Full field reference, ranking semantics and etiquette: [`docs/API.md`](./docs/API.md).
+
 ## 🎯 What does "Tok" mean?
 
 GitTok is not a fullscreen clone of TikTok. **"Tok" is the feeling**: browsing GitHub projects should be as fun and addictive as scrolling short videos. GitTok delivers that with an algorithm-driven card feed — personalized recommendations, Chinese summaries for every project, and fresh picks every day. Swipe through GitHub like short videos, with the density of a real feed.

@@ -73,6 +73,29 @@ jobs:
           cp manifest.json web/public/manifest.json
           ls -la web/public/feed.xml web/public/manifest.json
 
+      # agent 可读文档镜像（2026-09-17）：API 文档 / Agent Skill / MCP 说明在仓库里是 .md，
+      # 而 raw.githubusercontent 大陆不可达、jsDelivr 对 .md 会 301 跳回 raw——
+      # 故按同一条「接口统一到站点」纪律，随构建镜像一份到站点域名（单一源仍是仓库文件）。
+      - name: Copy agent docs (API.md / SKILL.md / MCP.md)
+        run: |
+          mkdir -p web/public/agent
+          cp docs/API.md web/public/agent/API.md
+          cp skills/gittok/SKILL.md web/public/agent/SKILL.md
+          cp mcp-gittok/README.md web/public/agent/MCP.md
+          ls -la web/public/agent/
+
+      # 日报 markdown 站点镜像（2026-09-17）：digests/*.md 原先只在仓库里（raw 大陆不可达）。
+      # 全量 85MB 不宜每次部署，故镜像**最近 7 天**；再复制一份为 digests/latest/，
+      # 让 llms.txt 能给出一个不会随日期腐化的稳定链接。
+      - name: Copy recent digests (last 7 days + latest)
+        run: |
+          mkdir -p web/public/digests
+          days=$(ls -1 digests | grep -E '^[0-9]{4}-[0-9]{2}-[0-9]{2}$' | sort | tail -7)
+          for d in $days; do cp -r "digests/$d" "web/public/digests/$d"; done
+          latest=$(echo "$days" | tail -1)
+          if [ -n "$latest" ]; then cp -r "digests/$latest" web/public/digests/latest; fi
+          echo "mirrored: $days (latest=$latest)"; ls -1 web/public/digests
+
       - name: Build frontend
         working-directory: web
         run: npm run build
