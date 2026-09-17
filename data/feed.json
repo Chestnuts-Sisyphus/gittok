@@ -246,9 +246,9 @@
     "owner": "coollabsio",
     "name": "coolify",
     "desc": "An open-source, self-hostable PaaS alternative to Vercel, Heroku & Netlify that lets you easily deploy static sites, databases, full-stack applications and 280+ one-click services on your own servers.",
-    "summaryCn": "自己搭个云服务器，一键部署280多种应用，从此告别云厂商绑架",
-    "reasonCn": "开源自托管 PaaS 平台，对标 Vercel、Heroku、Netlify，支持一键部署静态站点、数据库、全栈应用，内置 280 多种服务模板。基于 Docker 容器化架构，提供 Web 管理面板，可视化监控 CPU 内存使用，支持 Git 推送自动部署，兼容 Docker Compose，可管理多台服务器，自动签发 Let's Encrypt SSL 证书，降低云服务成本的同时掌握数据主权。",
-    "detailCn": "你有没有被云厂商割过韭菜？每月账单看不懂，迁移费用天价，数据还锁在人家服务器里。Coolify 就是来干这件事的——把 Vercel、Heroku、Netlify 这些商业 PaaS 平台的体验，原封不动搬到你自己的服务器上，而且完全免费。\n\n技术上，Coolify 基于 Docker 容器化架构，所有服务都以容器形式运行，隔离性好且易于管理。它内置了 280 多种一键部署模板，涵盖数据库、缓存、消息队列、CI/CD、监控等，无需手动编写复杂的 Docker Compose 配置。核心亮点包括：可视化资源监控面板，实时查看每台服务器的 CPU、内存、磁盘使用情况；Git 推送自动部署，代码一提交就自动构建上线；自动 SSL 证书签发，告别 HTTP 明文传输；支持多服务器集群管理，一台面板管多台机器。\n\n安装极其简单。准备一台 Linux 服务器（推荐 Ubuntu 20.04+），执行一行命令：curl -fsSL https://coollabs.io/coolify/install.sh | bash，等待几分钟访问服务器 IP 即可进入 Web 管理界面完成初始化。之后就可以通过面板创建应用、导入 Docker Compose 项目，或者从 GitHub 仓库一键部署现成应用。\n\n适合个人开发者、独立黑客、小团队，以及想要建立私有技术栈的创业者。如果你担心数据隐私、不想被单一云厂商锁定、或者只是单纯想折腾一下自己的服务器，这个项目都能满足你。尤其适合有技术背景但预算有限的人群，一台几百块一年的 VPS 就能搭建完整的基础设施。\n\n社区方面，Coolify 自 2022 年开源以来热度持续攀升，GitHub Star 已突破 6 万，star 数量稳定增长说明社区活跃度高、用户粘性更强。项目由 coollabs 团队维护，迭代节奏快，每月都有新版本发布。同类竞品包括 CapRover、Portainer、Rancher 等，但 Coolify 在开箱即用体验和 280 多种服务生态上优势明显，是目前自托管 PaaS 赛道公认的第一梯队选择。",
+    "summaryCn": "开源自托管PaaS，像用Heroku一样管理自己的服务器",
+    "reasonCn": "Coolify让你把闲置VPS或树莓派变成私有云平台，通过SSH接管服务器后，即可像用Heroku一样一键部署应用、数据库和静态站点，自动申请SSL证书并配置反向代理。所有配置数据仅存本地，即使卸载面板，运行中的容器仍保持原样可正常访问，彻底避免厂商锁定。支持Docker Compose、Node.js、Python、Go等多种应用类型，内置PostgreSQL、Redis、MySQL等一键数据库服务，适合想完全掌控数据与成本的开发者和小团队。",
+    "detailCn": "只需一条SSH连接，Coolify就能把一台裸金属服务器、廉价VPS甚至树莓派变成专属的应用托管平台。这句来自官网的描述直击痛点：不用装Agent、不用开复杂端口、不用学Kubernetes，只要能SSH上去，几分钟内就能拥有类Heroku的部署体验。\n\n核心亮点在于“去中心化”的设计哲学：所有部署配置、环境变量、SSL证书都以文件形式留在你的服务器上，Coolify本身只是个管理界面。官网明确承诺，即使你彻底卸载Coolify，正在跑的容器、数据库、反向代理规则全都不受影响，依然能用docker compose或标准工具继续维护。这对担心厂商锁定、预算有限又想要生产级可靠性的独立开发者极具吸引力。\n\n上手极其简单：在目标机器上执行官网提供的单行安装脚本（curl -fsSL https://cdn.coollabs.io/coolify/install.sh | bash），几分钟自动拉起Web面板。登录后添加服务器（支持多台），点击“新建资源”即可从模板部署WordPress、Ghost、NocoDB等百余种应用，或直接粘贴Git仓库地址自动构建Docker镜像。数据库、Redis、MinIO等基础设施也提供一键启动，自动注入内网连接信息到应用环境变量。\n\n适合人群很明确：想省下Vercel/Heroku高昂费用的全栈开发者、需要在内网或边缘节点跑服务的运维、以及想把闲置硬盘、闲置算力利用起来的极客。不适合追求Serverless自动弹性扩缩容的大流量业务，也不适合完全不懂Linux基础命令的新手——虽然有图形界面，但排查容器日志、调整防火墙、处理磁盘空间等运维常识仍是必备。\n\n社区活跃度高，Discord与GitHub Issue响应及时，文档覆盖从零开始到生产环境最佳实践。若你手头有闲置服务器、渴望数据主权、又想保留现代CI/CD体验，Coolify是当前自托管赛道最平滑的入场券。",
     "stars": 61868,
     "starGrowth": 160,
     "createdAt": "2021-01-25T20:54:01Z",
@@ -344,7 +344,17 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.30775845348160596
+    "heatScore": 0.30775845348160596,
+    "facts": [
+      {
+        "claim": "仅需SSH连接即可接管任意服务器",
+        "source": "You only need an SSH connection."
+      },
+      {
+        "claim": "停用Coolify后资源仍可运行且可管理",
+        "source": "If you stop using Coolify, your running resources continue to work and remain manageable."
+      }
+    ]
   },
   {
     "repo": "fleetbase/fleetbase",

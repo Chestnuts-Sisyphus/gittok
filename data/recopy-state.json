@@ -1,0 +1,42 @@
+{
+  "version": "recopy:v6-copy+facts:1",
+  "createdAt": "2026-09-17T12:12:22.618Z",
+  "updatedAt": "2026-09-17T12:44:00.046Z",
+  "done": {
+    "coollabsio/coolify": {
+      "at": "2026-09-17T12:38:24.902Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free"
+    }
+  },
+  "failed": {
+    "Sudharsanselvaraj/Token-Print": {
+      "at": "2026-09-17T12:37:07.917Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "fails": [
+        "facts[1] source 不在参考文档：不在参考文档"
+      ]
+    },
+    "trailhq/Graft": {
+      "at": "2026-09-17T12:37:44.603Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "fails": [
+        "含推广词「推广」（禁止）",
+        "facts[1] source 不在参考文档：不在参考文档"
+      ]
+    },
+    "fleetbase/fleetbase": {
+      "at": "2026-09-17T12:40:16.323Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "fails": [
+        "一句话描述 38 字（硬性要求 20-35 汉字）"
+      ]
+    },
+    "dsh-tauri-desk/deepseek-harness-desktop": {
+      "at": "2026-09-17T12:44:00.045Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "fails": [
+        "到墙钟上限（未及完成本卡）"
+      ]
+    }
+  }
+}
