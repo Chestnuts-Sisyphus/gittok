@@ -4,9 +4,9 @@
     "owner": "Sudharsanselvaraj",
     "name": "Token-Print",
     "desc": "Interactive 3D visualization platform for exploring transformer architectures, tensors, and real-time LLM inference.",
-    "summaryCn": "像玩3D积木一样拆解大模型，直观看懂它是怎么思考的。",
-    "reasonCn": "这是一个基于WebGL技术的交互式3D可视化平台，旨在把黑盒的大语言模型内部运作机制可视化。项目利用TypeScript构建，通过动态渲染张量数据流，实时展示Transformer架构中的注意力头、层归一化等关键组件。它不仅能展示静态结构，还支持在推理过程中实时追踪Token生成过程，帮助开发者理解模型内部的计算逻辑。",
-    "detailCn": "想象一下，你正盯着一个复杂的电路板发呆，不知道电流是怎么流动的。Token-Print 就是那个能让你把电流变成流动的彩色光带，并让你亲手拨弄开关的人。对于大多数开发者来说，大模型就像个黑盒，你喂进去文字，它吐出答案，但中间到底发生了什么？Token-Print 就是为了打破这个黑盒，把Transformer这个复杂的神经网络结构“拆开”给你看。\n\n这个项目的核心技术亮点在于它把高维的张量计算变成了直观的3D几何体。它不是简单地画个图，而是用动态的3D图形来表现数据在模型层与层之间的流动。你可以看到注意力权重是如何在不同Token之间传递的，就像看交通流一样。它采用了模块化的设计，将Embedding层、Encoder、Decoder等核心单元抽象成可交互的组件。在交互层面，它支持用户暂停、拖拽、缩放视角，甚至可以在推理过程中实时插入断点，观察模型在处理特定词时的内部状态变化。这种“上帝视角”的观察方式，是传统的控制台日志无法比拟的。\n\n上手体验非常丝滑。你只需要克隆仓库，确保本地有Node.js环境，然后运行 `npm install && npm run dev`。项目加载后，在浏览器里打开 `http://localhost:3000`。界面左侧是模型架构选择器，你可以快速切换不同的预训练模型（如GPT-2、BERT等）来观察结构差异。中间是巨大的3D视图区，默认会展示模型的全貌。你可以点击任何一个节点（比如某个注意力层），右侧面板就会弹出该节点的详细参数和当前数值。如果你想看推理过程，在输入框输入一句话，点击运行，就能看到Token一个个蹦出来，同时3D视图中会有光束连接各个节点，直观展示信息是如何被“聚焦”的。\n\n这个工具特别适合两类人：一是刚入行做NLP的研究生或工程师，想通过可视化的方式快速理解Transformer架构的底层逻辑；二是AI产品经理或决策者，想通过直观的演示向非技术人员解释大模型是如何工作的。对于开发者来说，它是一个绝佳的学习资源，能帮助建立对模型内部状态变化的直觉；对于非技术背景的决策者，它能极大地降低沟通成本。\n\n目前这个项目在GitHub上已经有113个Star，虽然热度不算爆炸，但在可视化领域属于非常精品的Demo。它的作者持续在维护和更新，偶尔会加入新的模型支持。相比一些静态的架构图网站，Token-Print的实时交互性更强，而且完全开源免费。在同类竞品中，像TensorBoard虽然也能看，但它是面向训练过程的，而Token-Print专门针对推理和架构探索，更加聚焦。如果你对大模型感到好奇，或者想给团队做个技术分享，这绝对是一个能惊艳全场的工具。",
+    "summaryCn": "实时 3D 可视化大模型真实前向推理全过程。",
+    "reasonCn": "TokenPrint 不是静态架构图，而是把 Qwen2.5-0.5B 等模型真实前向传播接入 3D 场景，注意力头、RoPE 旋转、残差流每一帧数值均来自真实 named_parameters 或 GGUF 二进制头，构建脚本更会拦截任何伪造张量。研究者可直观看到每层注意力如何聚焦、位置编码如何旋转，调试推理异常不再盲猜。",
+    "detailCn": "TokenPrint 把大语言模型的推理过程变成了可交互的 3D 实时演示。不同于常见的静态架构图或离线绘图，它直接挂载到真实的前向传播上：加载 Qwen2.5-0.5B-Instruct 或任意本地 GGUF 文件，注意力头的权重分布、RoPE 位置编码的旋转动画、残差流的数值变化，全部在三维空间里逐帧呈现，每一个像素背后的数字都能追溯到模型的 named_parameters 或 GGUF 二进制头部。\n\n核心亮点在于“零伪造”保证。项目在构建阶段植入严格的 CI 检查脚本，一旦发现应用代码里混入 Math.random 或占位张量，构建直接失败。这意味着你看到的每一帧动画、每一条曲线，都是模型真实计算出来的中间激活值，而非事后描摹的示意图。\n\n上手极其简单：无需搭建复杂环境，打开网页演示即可加载内置模型；想看自己的模型，拖入本地 .gguf 文件即可。交互上支持按层、按头拆解注意力，暂停、拖拽时间轴观察残差流演化，甚至能把某一头的查询/键向量导出做离线分析。\n\n适合模型压缩研究员、提示工程师、教学演示者，以及任何想“看见”大模型怎么思考的人。它把原本隐藏在张量里的几何动态翻译成直观几何，帮助快速定位注意力塌缩、位置外推失效等疑难问题，也能作为直观教具让非专业受众理解 Transformer 内部机制。\n\n项目仍在快速迭代，路线图包含多模态模型支持、更细粒度的梯度回溯视图、以及与主流推理引擎的深度集成。想体验“看模型思考”的魔法，直接访问在线演示或克隆仓库自建即可。",
     "stars": 175,
     "starGrowth": 52,
     "createdAt": "2026-07-17T13:17:04Z",
@@ -85,7 +85,17 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 1.5711428571428572
+    "heatScore": 1.5711428571428572,
+    "facts": [
+      {
+        "claim": "实时渲染真实前向传播的注意力头与 RoPE 旋转",
+        "source": "watch attention heads, RoPE rotations, and the residual stream move in real 3D"
+      },
+      {
+        "claim": "构建时脚本强制杜绝任何伪造张量",
+        "source": "a build-time script fails CI outright if one sneaks into app code"
+      }
+    ]
   },
   {
     "repo": "trailhq/Graft",
@@ -1126,9 +1136,9 @@
     "owner": "henrygd",
     "name": "beszel",
     "desc": "Lightweight server monitoring with historical data, docker stats, and alerts.",
-    "summaryCn": "自己托管的服务器监控神器，Docker状态历史数据全掌握",
-    "reasonCn": "这是一个Go语言编写的轻量级服务器监控面板，支持Docker容器运行统计、历史数据查询和自定义告警功能。部署极简，一条Docker命令即可启动，无需数据库依赖，内置Prometheus和Grafana集成。能实时监控CPU、内存、网络、磁盘等核心指标，支持设置阈值告警，让运维人员及时发现异常。",
-    "detailCn": "想象一下，你买了一台NAS或者在家里搭了个服务器，跑了不少Docker容器。用着用着你就开始担心：它会不会突然崩了？CPU是不是又飙到100%了？内存有没有悄悄泄漏？这时候，Beszel就是你需要的贴身管家。\n\n这个项目用Go语言写成，没有花里胡哨的依赖，单二进制文件就能跑。它的核心逻辑是定期调用Docker的Stats API采集容器指标，数据存到内置的时序数据库里，不做任何外部依赖。界面简洁直观，还能配置告警规则，达到阈值就发邮件或Webhook通知。相比Netdata或CAdvisor，它的优势在于部署极其简单，没有复杂的配置。\n\n安装只需要一行命令：docker run -d --name beszel -p 8080:8080 -v /var/run/docker.sock:/var/run/docker.sock henrygd/beszel:latest。启动后浏览器访问http://localhost:8080就能看到监控面板。支持自定义告警接收地址，可以对接企业微信、钉钉或Telegram机器人推送通知。\n\n适合个人开发者、小型运维团队以及自托管爱好者。如果你有一两台服务器或大量Docker容器需要轻量级监控，又不想折腾Prometheus加Grafana那套重型方案，Beszel是很好的选择。\n\n项目GitHub Star超过2.4万，社区活跃度不错，作者持续维护更新。同类竞品有Netdata（功能更强但资源占用高）、CAdvisor（更偏容器底层）、Uptime Kuma（偏可用性而非资源监控）。Beszel的定位是中间地带——够用、轻量、部署快。",
+    "summaryCn": "极简自托管服务器监控平台，内置Docker与ZFS深度统计",
+    "reasonCn": "Beszel 是一款用 Go 编写的轻量级自托管监控平台，二进制仅十兆级别，无需数据库即可开箱即用。它原生集成 Docker 容器的 CPU、内存、网络历史曲线，并能采集 ZFS 存储池容量、健康度、I/O 与数据集级用量。支持多用户隔离、OAuth 登录与自动备份，告警覆盖 CPU、内存、磁盘、带宽、温度、风扇转速、负载等十余项指标，提供 Web 界面与 API 双通道。",
+    "detailCn": "Beszel 采用单二进制分发，无需外置数据库，启动即可通过 Web 界面添加被监控节点。Agent 端同样仅单文件，通过 TLS 证书自动协商加密通讯，部署命令可从项目仓库获取安装方式。\n\n核心亮点在于原生理解容器与存储拓扑：它不把容器当普通进程采集，而是直接读取 Docker Engine API 输出每容器的资源历史曲线；对 ZFS 则解析 zpool 与 zfs 命令输出，直观展示池健康度、压缩比、去重率及每个数据集的实时占用。\n\n告警引擎支持阈值、持续时长、趋势三种判定模式，可对接 Email、Webhook、Gotify、Telegram 等十余种通知渠道，并提供静默窗口与分级升级策略，避免风暴通知。\n\n多租户设计让团队成员仅看到授权的系统与告警，配合 OAuth2/OIDC 对接现有身份系统，满足合规审计需求。自动备份功能将 SQLite 元数据按周期打包至本地或 S3 兼容存储，灾难恢复只需替换单文件。\n\n适合运维个人服务器、家庭实验室、中小团队 Kubernetes 节点或 ZFS 存储集群的开发者与运维人员，尤其适合追求极简部署、资源占用极低且需要容器与存储深度可视化的场景。",
     "stars": 25430,
     "starGrowth": 100,
     "createdAt": "2024-07-07T21:36:28Z",
@@ -1218,7 +1228,17 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.3117970900511207
+    "heatScore": 0.3117970900511207,
+    "facts": [
+      {
+        "claim": "集成Docker容器CPU内存网络历史统计",
+        "source": "Tracks CPU, memory, and network usage history for each container."
+      },
+      {
+        "claim": "支持ZFS存储池容量健康IO及数据集用量",
+        "source": "Tracks pool capacity, health, and I/O, plus per-dataset usage."
+      }
+    ]
   },
   {
     "repo": "ast-grep/ast-grep",
@@ -1392,9 +1412,9 @@
     "owner": "jamiepine",
     "name": "voicebox",
     "desc": "The open-source AI voice studio. Clone, dictate, create.",
-    "summaryCn": "你有没有想过，如果能拥有钢铁侠贾维斯那样的声音会怎样？",
-    "reasonCn": "核心技术上，它依托于当前前沿的TTS（语音合成）与SVC（语音转换）模型，通过极少的样本数据就能完成高质量的声音建模。与市面上碎片化的语音工具不同，它把采集、模型训练、推理生成整合到了同一个工作流中，极大降低了技术难度，且推理速度非常快。",
-    "detailCn": "你有没有想过，如果能拥有钢铁侠贾维斯那样的声音会怎样？Voicebox就是一个能让你把文字变成真声的超级实验室。它不仅能克隆你的声音，还能让它说任何语言，并且保持原有的说话习惯和语气，真正实现了“让文字开口说话”。\n\n核心技术上，它依托于当前前沿的TTS（语音合成）与SVC（语音转换）模型，通过极少的样本数据就能完成高质量的声音建模。与市面上碎片化的语音工具不同，它把采集、模型训练、推理生成整合到了同一个工作流中，极大降低了技术难度，且推理速度非常快。\n\n使用时只需克隆仓库并安装相关依赖，界面会引导你完成声音采样和配置。你可以直接输入文字生成音频，或者上传自己的录音文件作为基底，通过简单的滑块调节语速和情感强度，几分钟内即可输出高精度的音频文件。\n\n它适合视频博主配音、游戏开发者制作NPC对话、甚至是想给自己写的小说制作有声版的用户。无论你是为了生产力，还是仅仅想听听AI说出你自己声音的各种搞怪段子，它都能带给你极大的乐趣。\n\n项目在GitHub上热度极高，社区资源丰富，包括各种高质量的预训练音色库。相比收费的云端服务，Voicebox完全开源且支持本地运行，这意味着你可以随时随地创作，不用担心隐私泄露，是目前语音AI生态中最值得关注的宝藏项目之一。",
+    "summaryCn": "本地优先的AI语音工作室，克隆声音、语音输入、给Agent配声。",
+    "reasonCn": "Voicebox 是一个完全本地运行的开源 AI 语音工作室，旨在替代 ElevenLabs 与 WisprFlow 等云服务。它仅需几秒参考音频即可克隆声音，支持 23 种语言及 7 大 TTS 引擎合成语音。用户可通过全局热键在任意输入框语音输入，并通过 MCP 协议为 AI 智能体赋予专属声音，实现语音交互闭环。",
+    "detailCn": "Voicebox 定位为全语音输入输出栈在本地的完整落地，核心卖点是彻底摆脱云端依赖。项目文档明确指出其运行在用户自己的机器上，这意味着语音克隆、合成、识别全流程数据不出本地，隐私与延迟均得到极致保障，直接对标商业闭源的 ElevenLabs 与 WisprFlow。\n\n其声纹克隆能力极具实用性，仅需几秒钟参考音频即可复刻目标音色，配合 7 种内置 TTS 引擎与 23 语言覆盖，能满足从有声书制作到多语言对话的多样化需求。这种“几秒克隆+多引擎兜底”的组合，在开源本地方案中属于罕见的开箱即用水平。\n\n交互层面，它提供系统级全局热键语音输入，可直接向任意文本字段写入识别结果，体验接近原生系统输入法。更关键的是，它实现了对 MCP（Model Context Protocol）协议的原生支持，允许用户将克隆或合成的声音直接挂载给任意兼容 MCP 的 AI 智能体，让 Agent 能“开口说话”，补全了当前本地 AI 智能体多为纯文本交互的短板。\n\n上手方式为从官网 voicebox.sh 下载对应系统安装包（macOS/Windows/Linux）直接运行，无需配置 Python 环境或 Docker，界面引导完成模型下载后即可使用。适合追求数据主权的内容创作者、需要离线语音输入的办公人群、以及希望为本地 LLM Agent 快速增加语音交互能力的开发者。",
     "stars": 54711,
     "starGrowth": 417,
     "language": "TypeScript",
@@ -1464,7 +1484,25 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.32286560289521304
+    "heatScore": 0.32286560289521304,
+    "facts": [
+      {
+        "claim": "全本地运行的语音输入输出全栈方案",
+        "source": "The full voice I/O stack, running locally on your machine."
+      },
+      {
+        "claim": "仅需几秒音频即可克隆任意声音",
+        "source": "Clone voices from a few seconds of audio"
+      },
+      {
+        "claim": "支持23种语言和7种TTS引擎",
+        "source": "generate speech in 23 languages across 7 TTS engines"
+      },
+      {
+        "claim": "通过MCP协议为AI智能体赋予语音能力",
+        "source": "give any MCP-aware AI agent a voice of your choosing"
+      }
+    ]
   },
   {
     "repo": "tinyhumansai/openhuman",
@@ -1850,9 +1888,9 @@
     "owner": "projectdiscovery",
     "name": "nuclei",
     "desc": "Nuclei is a fast, customizable vulnerability scanner powered by the global security community and built on a simple YAML-based DSL, enabling collaboration to tackle trending vulnerabilities on the internet. It helps you find vulnerabilities in your applications, APIs, networks, DNS, and cloud configurations.",
-    "summaryCn": "用YAML写扫描规则的开源漏洞扫描神器，社区驱动更新超快",
-    "reasonCn": "基于YAML DSL的可定制漏洞扫描框架，内置数千条检测规则，支持HTTP、DNS、密码等多种协议。由社区驱动持续更新，发现新漏洞时能快速部署扫描模板，适合红队测试、日常安全巡检，Star数超过3万，是OWASP推荐项目之一。",
-    "detailCn": "想象一下，你是一个网站的安全守门员，需要24小时盯着成千上万个可能的攻击入口。以前你得手动一个个检查，现在有了Nuclei，写几条规则就能自动扫描全部资产。\n\n这个项目由ProjectDiscovery团队开发，核心理念是让安全扫描变得可共享、可协作。它使用YAML格式的模板来描述漏洞检测逻辑，任何安全研究人员都可以编写模板并提交到社区仓库。模板覆盖了CVE、错误配置、弱密码、信息泄露等各类场景，目前已有超过8000个预置模板。技术架构上，它支持多线程并发扫描，内置重试、速率限制、错误处理机制，输出结果可以是JSON、HTML或CSV格式，方便集成到CI/CD流水线中。\n\n安装方式很简单。使用Go语言开发，一行命令搞定：go install -v github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest。然后运行nuclei -l targets.txt扫描目标列表，或者用nuclei -t templates/ -u https://example.com针对特定目标扫描。它还提供了Docker版本和API版本，适合不同场景。配合subfinder、httpx等工具可以构建完整的安全扫描工作流。\n\n这个项目适合安全研究人员、渗透测试工程师、DevSecOps团队使用。如果你是运维人员想定期自查网站安全，也可以用。不适合普通用户，毕竟安全扫描工具需要一定的技术基础才能正确配置和使用。\n\n社区活跃度极高，GitHub star超过3万，每周都有新模板贡献。它是OWASP的推荐项目，被多家安全公司集成到产品中。相比Nessus、OpenVAS等传统商业扫描器，Nuclei更轻量、更灵活，适合快速迭代和自动化场景。竞品还有Gobuster、ffuf等，但定位不同，Nuclei专注漏洞检测而非目录爆破。",
+    "summaryCn": "基于YAML模板的高性能漏洞扫描器，支持多协议并行检测。",
+    "reasonCn": "Nuclei 是一款现代化漏洞扫描器，采用简洁的 YAML 模板定义检测逻辑，由全球安全专家贡献数千个模板覆盖热门漏洞。它通过模拟真实攻击步骤验证漏洞，实现零误报，并支持超高速并行扫描与请求聚类。可无缝集成至 CI/CD 流水线，支持 HTTP、DNS、TCP、SSL、JavaScript 等多种协议，适合安全团队与开发者进行自动化安全测试与回归验证。",
+    "detailCn": "Nuclei 的核心设计围绕 YAML 模板展开，安全研究员只需编写声明式模板即可描述复杂的漏洞检测流程，无需编写代码。项目自述明确指出支持 TCP、DNS、HTTP、SSL、WHOIS、JavaScript、Code 等多种协议，这意味着它能覆盖从网络层到应用层的广泛攻击面。成千上万的安全专业人员持续贡献模板，使其能在漏洞披露后极快速度跟进检测能力。\n\n其显著特点是通过模拟真实攻击步骤来验证漏洞，大幅降低了传统扫描器常见的误报问题。扫描引擎采用超高速并行处理与请求聚类技术，能在大规模资产上快速完成扫描任务。这种架构使其非常适合集成到 CI/CD 流水线中，作为代码合并前的安全门禁或定期回归测试工具。\n\n上手使用非常简单，通常只需下载对应操作系统的预编译二进制文件即可直接运行，无需配置复杂的运行时环境。基本扫描命令如 `nuclei -u target.com -t cves/` 即可调用社区模板对目标发起检测。模板库按漏洞类型、CVE 编号、厂商等分类组织，用户可按需选择或编写自定义模板应对特定业务逻辑漏洞。\n\n该工具最适合渗透测试人员、红队成员、DevSecOps 工程师以及需要自动化资产安全监测的企业安全团队。对于开发者而言，它提供了一种将安全测试左移、在开发早期发现已知漏洞的标准化方式。社区活跃度高、文档完善且更新频繁，是当前开源安全扫描领域的事实标准之一。",
     "stars": 31305,
     "starGrowth": 33,
     "silentRounds": 0,
@@ -1922,16 +1960,22 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.10216243411595592
+    "heatScore": 0.10216243411595592,
+    "facts": [
+      {
+        "claim": "支持TCP、DNS、HTTP、SSL、WHOIS、JavaScript、Code等多种协议",
+        "source": "Supports multiple protocols like TCP, DNS, HTTP, SSL, WHOIS, JavaScript, Code and more."
+      }
+    ]
   },
   {
     "repo": "n8n-io/n8n",
     "owner": "n8n-io",
     "name": "n8n",
     "desc": "Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.",
-    "summaryCn": "可视化AI自动化神器，无代码整合400+应用构建智能工作流",
-    "reasonCn": "n8n是一个强大的工作流自动化工具，拥有400多个集成，支持AI节点，可通过拖拽界面连接各类APP和服务。它既能做传统的办公自动化，也能构建复杂的AI Agent，实现数据抓取、处理、调用的全自动闭环。是企业和个人提升效率的瑞士军刀。",
-    "detailCn": "简单来说，如果你经常需要在不同软件之间倒腾数据，比如从邮件提取附件存到Notion，或者定时抓取网站数据喂给AI总结，n8n就是为你而生的。它不用写代码，就像搭积木一样，把各种“节点”连起来，工作就自动跑了。现在它还支持AI，你可以直接调用GPT或本地模型，让它参与工作流决策。\n\n技术上是典型的低代码平台架构，后端支持Node.js，前端采用可视化画布。它的核心优势是“公平代码”模式，允许企业自建，数据完全自控。相比Zapier，n8n更灵活，支持复杂逻辑分支和循环。相比传统编程，它大幅降低了自动化门槛。它预置了Telegram、Slack、Database、Webhook等数百个连接器，并内置了LLM节点，可以直接处理文本生成、分类等任务。\n\n安装推荐使用Docker，一行命令即可启动：docker run -it --rm -p 5678:5678 n8nio/n8n。访问localhost:5678即可进入界面。你会看到一个画布，左侧是节点库，拖拽连线即可。新手可以从官方模板库复制一个现成的工作流开始尝试。\n\n适合中小企业、独立开发者、以及任何被重复性数字劳动折磨的人。无论是市场营销人员自动化社媒发布，还是开发者自动部署测试，都能找到应用场景。对于想探索AI落地但不懂技术的业务人员，n8n是最佳入口。\n\n社区非常活跃，GitHub star近20万，是自动化领域的头部项目。版本迭代快，每月都有新功能。与Make、Zapier相比，n8n在服务端自托管和AI原生支持上更有优势。它正在从单纯的工作流工具演变为AI应用的开发平台，前景广阔。",
+    "summaryCn": "面向AI Agent的工作流自动化平台，支持可视化编排与代码混合开发。",
+    "reasonCn": "n8n 是一个面向 AI Agent 的工作流自动化平台，提供可视化画布与代码混合编程能力。它内置 1500 多个集成节点，支持主流大模型与开源模型无缝切换，用户可在画布上拖拽构建包含逻辑判断、工具调用、人工审批的多步骤 AI 工作流。平台支持自托管部署与云端托管两种模式，数据与执行过程完全可控，适合从原型验证到生产环境的完整生命周期管理。",
+    "detailCn": "n8n 提供了一个可视化画布，用户无需编写大量胶水代码即可将大语言模型、向量数据库、业务系统 API 串联成可执行的 AI Agent 工作流。平台内置超过 1500 个预置集成节点，覆盖数据库、云服务、SaaS 应用等主流系统，同时支持通过自定义代码节点扩展任意能力，实现了低代码开发与高代码灵活性的平衡。\n\n在模型适配上，n8n 不绑定特定厂商，原生支持 OpenAI、Anthropic、Google 等商业模型，也能接入本地部署的开源模型，用户可在不改变工作流架构的前提下自由切换模型供应商。这种模型无锁定特性配合完整的执行观测、版本管理与回滚机制，使得 AI 应用从原型走向生产更加可控。\n\n部署层面，项目提供 Docker、npm、桌面客户端等多种安装方式，支持完全离线的自托管部署，满足数据敏感场景的合规需求；同时也提供托管云服务降低运维门槛。安装仅需一条 Docker 命令即可启动，访问本地端口即可进入可视化编辑器开始构建工作流。\n\n核心优势在于将 AI 能力封装为可复用的工作流节点，支持条件分支、循环、错误处理、人工介入等复杂控制流，并提供完整的执行日志与调试界面。这使得开发者能像搭积木一样构建具备规划、推理、工具使用能力的多步骤 Agent，而非编写一次性的脚本。\n\n适合需要快速落地 AI 自动化场景的开发团队、运维人员及业务分析师，特别是已有存量系统需接入 AI 能力、或需构建复杂多模型协作流程的企业级应用场景。",
     "stars": 204759,
     "starGrowth": 225,
     "createdAt": "2019-06-22T09:24:21Z",
@@ -2009,7 +2053,21 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.30329655839303765
+    "heatScore": 0.30329655839303765,
+    "facts": [
+      {
+        "claim": "内置1500+预置集成节点",
+        "source": "connect to 1500+ integrations"
+      },
+      {
+        "claim": "支持自托管与云端双模式运行",
+        "source": "run it self-hosted or in the cloud"
+      },
+      {
+        "claim": "可视化画布与自定义代码混合开发",
+        "source": "Combine a visual canvas with custom code"
+      }
+    ]
   },
   {
     "repo": "frappe/frappe",
@@ -2208,9 +2266,9 @@
     "owner": "usebruno",
     "name": "bruno",
     "desc": "Opensource IDE For Exploring and Testing API's (lightweight alternative to Postman/Insomnia)",
-    "summaryCn": "轻量级API测试神器，告别Postman臃肿，文档即代码超省事",
-    "reasonCn": "Bruno 是一款开源的 API 测试工具，定位为 Postman 和 Insomnia 的现代替代品。它最大的特色是把所有请求、集合和测试都存成本地 Markdown 文件，版本控制友好，团队协作无需云端同步。支持 GraphQL、REST 等多种协议，界面简洁清爽，启动速度极快，占用资源少。",
-    "detailCn": "你可能用过 Postman，那个软件功能确实强大，但打开就像在等一艘航母起航。Bruno 解决的就是这个痛点——它是一个轻量级的 API 开发和测试工具，但玩法完全不同。它的核心设计理念是\"文档即代码\"：你所有的 API 请求、集合、环境变量全部存成本地的 Markdown 文件，直接放进你的项目仓库里。这意味着你用 Git 就能追踪每一次请求的变更，团队成员 clone 项目就自动同步所有 API 定义，再也不用担心 Postman 云端同步那个让人抓狂的登录流程了。\n\n技术上，Bruno 基于 Electron 构建，但做了大量优化，启动速度和内存占用都远优于传统 Postman。它原生支持 REST 和 GraphQL，请求测试用类似 Gherkin 的语法写，可读性很强。文件直接存盘、随时版本回退，这种\"本地优先\"的设计在 API 工具领域很少见。和 Insomnia 相比，Bruno 更强调文件的版本可追溯性；和 Postman 相比，它更轻量、没有账号强制绑定。它还有一个独特的特性叫 Bruno CLI，可以在 CI/CD 流程中自动运行 API 测试，不需要 GUI。\n\n安装非常简单，访问 bruno.dev 下载对应操作系统的安装包即可，支持 Windows、macOS 和 Linux。打开后新建 Collection，右键添加请求，填写 URL、方法和参数就能发送。所有数据自动保存为本地的 .bruno 文件夹，里面全是 Markdown 文件。团队协作只需要共享这个文件夹就行，或者集成到 Git 仓库里。命令行用户可以安装 Bruno CLI，在项目里直接运行测试。\n\n特别适合这几类人：厌倦了 Postman 臃肿和云端同步的开发者；需要把 API 定义纳入版本控制的团队；希望 API 测试能像代码一样 review 的工程师；个人开发者或者小团队想要一个干净、快速的 API 调试工具。如果你的项目用 Git 管理，Bruno 的文件存盘方式会让你觉得特别自然。\n\n社区方面，Bruno 在 GitHub 上已经有超过 4.6 万 star，说明用户基数非常大且活跃。项目由社区驱动，迭代节奏稳定，发布频率较高。目前它是 Postman 和 Insomnia 之外最主流的开源 API 测试工具之一，竞品对比来看：Postman 功能最全但越来越重且强制云端；Insomnia 轻量但文件管理不如 Bruno 直观；Bruno 在这三者中找到了一个独特定位——本地优先、Git 友好、轻量快速。如果你在寻找一个不用账号、不依赖云端、能在项目仓库里直接管理的 API 测试工具，Bruno 非常值得尝试。",
+    "summaryCn": "离线优先的API客户端，用Git管理集合，数据永不上云。",
+    "reasonCn": "Bruno 是一款开源 API 客户端，主打离线优先与数据隐私。它摒弃了 Postman 等工具依赖云同步的模式，将请求集合以纯文本 Bru 格式直接存储在本地文件夹中。这意味着你可以像管理代码一样用 Git 进行版本控制、团队协作与代码审查，彻底避免敏感数据离开设备。核心功能完全免费开源，适合重视数据主权与开发体验的工程师。",
+    "detailCn": "Bruno 最本质的区别在于它拒绝云同步：官方明确承诺永不引入云端同步功能，所有 API 请求集合都以 Bru 纯文本格式静默躺在你的本地文件夹里。这个决定直接把数据主权还给了开发者，敏感的 Header、Token、环境变量再也不用担心被上传到第三方服务器。\n\n存储方式的改变带来了协作范式的转移。因为集合就是普通文件，你可以直接用 Git 管理历史版本、分支合并与 Pull Request 审查，不再需要团队成员共享一个云账号或处理冲突的云端锁。CI/CD 流水线里也能像跑测试用例一样直接调用这些文件，实现真正的 API 测试即代码。\n\n上手极其简单，官网提供 Windows、macOS、Linux 安装包及便携版，下载即用无需注册登录。界面沿用经典三栏布局：左侧集合树、中间请求构建器、右侧响应预览，支持环境变量、脚本预请求、自动化测试等核心功能，从 Postman 迁移几乎零学习成本。\n\n它特别适合金融、医疗、政府等合规要求严格的场景，也适合厌倦了强制登录、同步缓慢、订阅制收费的工程师团队。作为一个 2022 年末才建仓的年轻项目，核心功能已相当稳健，社区活跃度高，是目前最值得尝试的 Postman 替代品之一。",
     "stars": 46994,
     "starGrowth": 79,
     "createdAt": "2022-09-27T20:51:45Z",
@@ -2299,16 +2357,26 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.24204319700387283
+    "heatScore": 0.24204319700387283,
+    "facts": [
+      {
+        "claim": "集合以纯文本Bru格式存本地文件夹",
+        "source": "Bruno stores your collections directly in a folder on your filesystem. We use a plain text markup language, Bru"
+      },
+      {
+        "claim": "承诺永不增加云同步功能",
+        "source": "There are no plans to add cloud-sync to Bruno, ever. We value your data privacy"
+      }
+    ]
   },
   {
     "repo": "openclaw/openclaw",
     "owner": "openclaw",
     "name": "openclaw",
     "desc": "The AI that really does things. Any OS. Any Platform. The lobster way. 🦞",
-    "summaryCn": "你的私人AI管家，装在任何设备上，随时帮你处理各种事儿",
-    "reasonCn": "这是一个跨平台的个人AI助手项目，用TypeScript开发，支持任意操作系统和硬件平台。它像一个可以定制、可本地部署的智能助手，能帮你完成日常任务、管理日程、回答问题，甚至充当你的第二大脑。38万多的star说明它非常受欢迎。",
-    "detailCn": "想象一下，如果你能拥有一个完全属于自己的AI助手，它不受任何平台限制，装在你的电脑上、服务器上、甚至树莓派上都能跑，而且所有数据都在本地，隐私完全由你掌控。openclaw就是这样一个项目，它想做的就是把AI能力以助手的形式带到每个人的日常中，而不是让你依赖某个大厂的服务。\n\n技术上，openclaw采用TypeScript构建，这意味着它天然支持跨平台运行，可以在Windows、macOS、Linux甚至Docker环境中部署。它的设计哲学是\"lobster way\"，强调开放、灵活、可定制，不像某些封闭的AI产品。作为个人AI助手，它通常具备任务管理、信息查询、日程提醒、代码辅助等多种能力，并且可以通过插件或配置扩展功能。它的核心优势在于本地部署，数据不会上传到云端，这对于注重隐私的用户来说非常重要。\n\n安装使用非常简单。如果你用npm生态，直接通过npm或pnpm即可安装，或者从GitHub下载源码自行编译。启动后，你可以通过命令行或Web界面与它交互。具体的命令格式通常类似./openclaw命令参数，支持多种交互模式。开发者可以根据自己的需求配置助手的行为和权限，甚至接入本地的大语言模型来降低成本。\n\n这个项目特别适合这几类人群：注重隐私不想把数据传给云端的用户；喜欢折腾AI技术的极客；想要搭建个人AI工作流的内容创作者和开发者；以及所有想用AI提升效率但又不想被绑定的普通人。它不像ChatGPT那样需要联网订阅，而是真正属于你的本地助手。\n\n从社区和生态来看，openclaw已经获得了38万多的GitHub star，这是一个非常惊人的数字，说明它的受欢迎程度极高。它属于AI助手赛道中比较新的玩家，与Claude Desktop、Cursor等竞品相比，openclaw更强调跨平台和开源自由。目前项目迭代活跃，社区贡献者众多，是一个值得长期关注的项目。如果你想在本地搭建一个私有的AI助手，这个项目非常值得一试。",
+    "summaryCn": "自托管AI助手，统管二十余聊天平台，模型插件化可随意切换。",
+    "reasonCn": "OpenClaw 是一个自托管的 AI 助手网关，运行在你自己的设备上，将 Discord、Slack、iMessage、微信等二十多个聊天平台统一接入。它把模型能力（如 Claude、Codex 或本地模型）和 Agent 编排框架做成可热插拔的插件，换模型无需改动业务逻辑。同一套网关仅靠配置差异，既能作为个人助手跑在笔记本上，也能扩展为团队共享部署。所有状态、记忆与凭证均留在本地硬件，实现数据完全自主。",
+    "detailCn": "OpenClaw 以单一网关进程为核心，解决了「一个 AI 助手同时陪伴在所有聊天软件里」的工程难题。它内置了 20 多个即时通讯平台的适配器，用户只需在配置文件中填入凭证，即可让同一个智能体同时出现在 Discord 频道、Slack 工作区、Telegram 群组甚至 iMessage 对话框中，消息路由与上下文隔离完全由网关自动处理。\n\n项目最显著的架构特点是「模型与编排即插件」。无论是 Anthropic 的 Claude、OpenAI 的 Codex，还是 Ollama、llama.cpp 跑在本地的开源模型，都被封装为统一的 Provider 插件；Agent 的推理循环、工具调用、记忆管理等编排逻辑同样抽象为 Harness 插件。更换模型或调整 Agent 行为，只需替换插件配置，核心网关代码零修改，极大降低了实验新模型的门槛。\n\n部署模式上，同一二进制文件既支持个人单用户模式，也支持多租户团队模式。个人模式下，网关直接监听本地端口，数据库用 SQLite 落盘；团队模式下，改用 PostgreSQL 并启用认证中间件，配置文件里切换一下数据库连接串与启用标志即可完成扩容。这种「仅配置不同」的设计，让从个人实验到团队落地的迁移几乎零成本。\n\n数据主权方面，项目承诺所有对话历史、向量索引、API 密钥等敏感资产永不离开用户控制的硬件。网关不上报遥测、不强制云端同步，甚至不要求外网连通即可在纯内网环境运行，适合对隐私敏感的个人用户、合规要求高的企业团队，以及希望在离线环境下使用 AI 助手的开发者。\n\n上手路径：在 macOS、Linux、Windows 或 Docker 中下载预编译二进制（或从仓库构建），按向导生成配置模板，填入想接入的聊天平台凭证与首选模型插件，运行网关进程，随后在对应聊天软件中 @ 机器人即可对话。文档提供了各平台凭证申请的分步截图，首次部署通常在 15 分钟内完成。",
     "stars": 389852,
     "starGrowth": 332,
     "createdAt": "2025-11-24T10:16:47Z",
@@ -2387,7 +2455,21 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.36306577880836827
+    "heatScore": 0.36306577880836827,
+    "facts": [
+      {
+        "claim": "同一网关同时连接20+即时通讯平台",
+        "source": "Discord, iMessage, Slack, Teams, Telegram, WhatsApp, and 20+ more"
+      },
+      {
+        "claim": "个人部署与团队部署仅配置不同",
+        "source": "One Gateway runs it as a personal assistant on a laptop or as a shared team deployment; configuration is the only difference"
+      },
+      {
+        "claim": "模型与Agent框架作为可热插拔插件",
+        "source": "Models and agent harnesses (Claude, Codex, local models) are plugins you can swap without changing anything else"
+      }
+    ]
   },
   {
     "repo": "apache/superset",
@@ -2489,9 +2571,9 @@
     "owner": "BerriAI",
     "name": "litellm",
     "desc": "The fastest, litest AI Gateway. Rust core with Python SDK. Call 100+ LLM APIs in OpenAI (or native) format with cost tracking, guardrails, load balancing, and logging [Bedrock, Azure, OpenAI, Anthropic, OpenAI, VertexAI, vLLM, Nvidia NIM]",
-    "summaryCn": "统一调用100多个大模型API，省钱省力还能防滥用",
-    "reasonCn": "这是一个LLM网关项目，能用统一的OpenAI格式调用超过100个供应商的大模型API，包含成本追踪、负载均衡、错误重试和日志记录。底层用Rust实现，性能极高，Python SDK用起来很方便，还能自动路由请求到最合适的模型，对生产环境很实用。",
-    "detailCn": "想象一下，你正在开发一个AI应用，想用GPT-4做核心对话，用Claude做写作，用通义千问做中文理解，用Gemini做多模态。问题来了——每个模型的API格式、认证方式、计费系统都不一样，你得写十几套调用代码，成本还不好追踪，一旦哪个供应商涨价或限流，你的应用就瘫痪了。\n\nlitellm就是来解决这个问题的。它是一个LLM网关，让你用统一的OpenAI格式（其实还支持Anthropic、Azure等原生格式）调用全球超过100个LLM供应商。核心功能包括：成本追踪——你知道每次调用花了多少钱；负载均衡——自动把请求分流到多个模型；错误重试和熔断——某个模型挂了自动切备用；日志记录——完整追踪每次调用。底层用Rust写的，性能比纯Python方案快很多。\n\n安装很简单：pip install litellm[proxy]，然后litellm --model openai/gpt-4启动网关。代码里直接调litellm.completion()，传model=openai/gpt-4或者model=anthropic/claude-3-opus就行。它也提供Web UI让你可视化查看调用量和成本。\n\n适合这几类人：需要接入多个大模型的应用开发者；想控制AI API成本的产品团队；做AI代理或自动化工作流的技术负责人；企业里需要做API治理和安全管控的工程师。它也可以作为一个本地代理层，帮你统一管控模型访问权限。\n\n这个项目由Berri AI团队维护，Star数超过5.5万，社区非常活跃。它是目前开源LLM网关领域最流行的项目之一，和OpenAI官方的ChatGPT插件生态形成了很好的互补。相比LangChain等其他方案，litellm更轻量、更专注，不引入多余的抽象层，适合追求简洁高效的开发者。",
+    "summaryCn": "开源AI网关，统一100+大模型接口，支持自托管部署。",
+    "reasonCn": "LiteLLM 是一个开源 AI 网关，解决了调用百余家大模型厂商接口不统一、难管理的问题。它把 OpenAI、Anthropic、Gemini 等模型全都封装成 OpenAI 格式，开发者只需改一行代码或配置代理地址，即可无缝切换模型。它既可作为 Python SDK 直接集成，也可部署为代理服务器供团队统一使用，内置负载均衡、降级重试、预算控制与详细日志审计，满足企业级生产环境对稳定性与成本管控的严苛要求。",
+    "detailCn": "LiteLLM 的核心价值在于把碎片化的大模型市场抹平成一个标准接口。它原生支持 OpenAI、Azure、Bedrock、Vertex AI、Anthropic、Cohere、Replicate 以及本地 Ollama 等 100 多个供商，开发者无需为每家厂商编写适配代码，直接用熟悉的 OpenAI SDK 即可调用任意模型。\n\n作为 Python SDK 使用时，只需安装库并设置模型名如 `gpt-4` 或 `claude-3-opus`，即可透明路由到对应后端；部署为代理服务器后，团队所有应用指向同一地址，通过配置文件即可实现模型回退、权重路由、关键词过滤与请求限流。\n\n企业级功能是其亮点：内置基于令牌的精细预算控制、按团队或项目隔离的虚拟密钥、自动重试与语义缓存降低成本、完整的请求响应日志用于审计与微调数据收集。它还支持将自定义函数注册为工具供模型调用，配合 LangChain、LlamaIndex 等框架快速构建 Agent 应用。\n\n安装极简：`pip install litellm` 即可作为 SDK 使用；启动网关只需一条命令 `litellm --config config.yaml`，配置文件定义模型列表、路由策略与认证信息。文档提供 Docker、Kubernetes、Helm 等多种部署方式，适配从开发测试到生产集群的全生命周期。\n\n适合需要同时接入多家模型、追求厂商中立、或要求统一治理与成本可视化的 AI 应用团队、平台工程师与 MLOps 从业者。",
     "stars": 58903,
     "starGrowth": 314,
     "createdAt": "2023-07-27T00:09:52Z",
@@ -2581,7 +2663,13 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.315992394275334
+    "heatScore": 0.315992394275334,
+    "facts": [
+      {
+        "claim": "支持100多家LLM供应商统一调用",
+        "source": "Open Source AI Gateway for 100+ LLMs"
+      }
+    ]
   },
   {
     "repo": "semantica-agi/semantica",
@@ -2759,9 +2847,9 @@
     "owner": "infiniflow",
     "name": "ragflow",
     "desc": "RAGFlow is a leading open-source Retrieval-Augmented Generation (RAG) engine that fuses cutting-edge RAG with Agent capabilities to create a superior context layer for LLMs",
-    "summaryCn": "企业级RAG开源引擎，深度解析文档并智能生成精准答案",
-    "reasonCn": "这是一个强大的开源RAG引擎，支持文档深度解析、知识图谱结合和Agent自主规划能力。它不仅能检索文档，还能通过视觉模型理解复杂图表，生成结构化知识库。对于希望构建企业级知识库问答、自动化报告生成等高级AI应用的团队来说，它是目前最成熟、功能最全面的落地选择之一。",
-    "detailCn": "简单来说，这个项目是用来给AI装上“大脑记忆库”的。很多公司想让AI读懂自己的文档、回答内部问题，但直接用大模型效果很差，因为它不知道你们公司的私密数据。RAGFlow就是解决这个问题的，它能把你扔进去的PDF、Word、表格全部读懂、拆细、存好，然后让AI基于这些准确内容回答，而不是瞎编。\n\n技术上，RAGFlow的核心亮点在于“深度文档理解”。不同于普通的文本切分，它引入了视觉大模型来解析表格、图表和复杂排版，能够保留文档的逻辑结构。它还结合了知识图谱技术，让知识检索不只是关键词匹配，而是语义关联。此外，它内置了Agent能力，意味着它可以自主规划任务，比如先去检索文档，再根据结果决定是否需要调用工具计算，最后生成综合报告。这套架构比简单的向量检索更智能、更准确。\n\n安装和使用方面，项目提供了Docker Compose一键部署方案，非常适合快速搭建测试环境。你只需要下载项目代码，修改一下配置文件（主要是LLM API Key和向量数据库连接），然后运行启动脚本，整个服务就运行起来了。Web界面非常直观，你可以直接上传文件，系统会自动处理解析和索引。处理完成后，你可以在界面上直接提问，或者通过API接入你自己的应用中。它对主流大模型和向量数据库都有良好支持，扩展性强。\n\n这个项目主要面向需要构建企业级知识助手、智能客服、自动化研报分析团队的开发者和技术决策者。如果你正在寻找一个可落地的RAG框架，不想从零开始造轮子，或者需要处理包含复杂表格和图片的专业文档，RAGFlow是目前开源界的顶级选择。它也适合研究RAG技术演进的学生和研究人员。\n\n在社区和竞品方面，RAGFlow由InfiniFlow团队开发，Star数接近8.7万，是目前最活跃的开源RAG项目之一。与LangChain、LlamaIndex等通用框架不同，RAGFlow更侧重于“开箱即用”的企业级应用，尤其在文档解析精度和Agent规划方面具有明显优势。竞品包括Dify、Coze等低代码平台，但RAGFlow在底层技术深度和可定制性上更为强大。随着AI应用向垂直领域深入，高质量的知识处理将成为核心竞争力，该项目正处于这个趋势的风口。",
+    "summaryCn": "融合Agent能力的开源RAG引擎，提供企业级文档理解与知识检索方案",
+    "reasonCn": "RAGFlow是一款开源RAG引擎，深度融合Agent技术解决复杂文档理解难题。它能自动处理PDF、表格等非结构化数据，构建高质量知识库，支持多路检索与混合排序，显著提升大模型回答准确性。项目提供Docker一键部署，适配任意规模企业场景，是构建企业级AI知识助手的核心基础设施。",
+    "detailCn": "RAGFlow的核心定位是解决大模型在企业私有知识场景下的\"幻觉\"与\"不懂业务\"问题。它不仅是一个向量检索工具，更是一个融合了Agent推理能力的完整RAG编排引擎。当大模型面对复杂的财报表格、扫描件合同或多级标题文档时，传统RAG往往因切分粗糙导致语义断裂，RAGFlow通过深度文档解析技术，能精准还原文档版面结构，将表格识别为结构化数据，保留章节层级关系，为下游检索提供高保真的语义单元。\n\n项目最大的技术亮点在于\"文档理解\"与\"Agent编排\"的双重保障。在文档侧，它内置了版面分析、表格识别、公式解析等模块，能将非结构化文件转化为LLM友好的Markdown或JSON格式；在检索侧，它支持稀疏向量与稠密向量混合检索、重排序模型、知识图谱增强等多种策略，并引入Agent自动规划检索路径，针对复杂问题自动分解子查询、多跳推理。这种架构使得它在处理\"对比两份合同的违约条款差异\"这类复杂任务时，表现远超普通向量数据库方案。\n\n部署上手极其简单，官方提供标准化Docker Compose编排，一条命令即可拉起包含Elasticsearch、MinIO、Redis、MySQL在内的全套栈，无需手动配置向量数据库连接参数。Web控制台提供可视化的知识库管理、解析效果预览、检索测试、Prompt调试全链路界面，非技术人员也能完成从上传文档到对话问答的闭环。对于开发者，提供完整的RESTful API与Python SDK，便于集成到现有业务系统。\n\n适用人群覆盖企业IT团队、AI应用开发者、知识管理负责人。法务部门可用它构建合同智能审查助手，研发团队可接入技术文档问答机器人，客服中心可搭建基于历史工单的智能派单系统。对于追求数据私有化、需处理复杂非结构化文档、且希望快速落地RAG应用的组织，RAGFlow是目前开源生态中最接近生产级可用的选择之一。",
     "stars": 90823,
     "starGrowth": 238,
     "createdAt": "2023-12-12T06:13:13Z",
@@ -2846,7 +2934,17 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.3078614447882144
+    "heatScore": 0.3078614447882144,
+    "facts": [
+      {
+        "claim": "融合Agent能力的RAG引擎",
+        "source": "fuses cutting-edge RAG with Agent capabilities to create a superior context layer for LLMs"
+      },
+      {
+        "claim": "面向任意规模企业的RAG工作流",
+        "source": "offers a streamlined RAG workflow adaptable to enterprises of any scale"
+      }
+    ]
   },
   {
     "repo": "comet-ml/opik",

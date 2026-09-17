@@ -27,7 +27,7 @@ Mimosa 完整扫描跑完（49 条 findings 已分类给判词）；
 | T4 | 官方 Agent Skill | ✅ | 格式校验 PASS（0 error/0 warn）；免费模型真实加载跑通并留证 |
 | T5 | 接口域名统一 + README 分区修正 | ✅ | 站点 feed.xml/manifest.json 200 且与 raw 内容一致（sha256 相同） |
 | T6 | bot 热度修复实测 | ✅ | 修复前 826 → 五轮 1809/1858/1858/1861/1862；线上热门池 1861（≥300） |
-| T7 | E8+E5 全库文案重跑 | 🟡 已开工 | 执行器+state 交付（`scripts/gittok-recopy.ts`+`data/recopy-state.json`）；首批写回 1/5（coolify 过闸实锤）；全库 1/1868；续跑命令见 T7 节 |
+| T7 | E8+E5 全库文案重跑 | 🟡 续跑中 | 执行器+state 交付（`scripts/gittok-recopy.ts`+`data/recopy-state.json`）；**累计过闸写回 23 张**；全库 23/1868；已 push 部分**线上逐字段反查一致**；续跑命令见 T7 节 |
 | T8 | Mimosa 完整审计 + 存量 findings 判词 | ✅ | 扫描完成（seal `sha256:5df7c637…`），49 条分四类给判词 |
 | T9 | V-B1 决策包 | ✅ | `docs/请栗子过目-V-B1与乐趣口径-2026-09-17.md`，每条一句话可勾选 |
 
@@ -149,9 +149,9 @@ Mimosa 完整扫描跑完（49 条 findings 已分类给判词）；
 - **结论**：修复生效——五轮滴灌后不再塌缩（个位数 → 千级），热门频道池长期 ≥300。
 - **复跑**：`for c in 45c1d29 8807265 d593f0e acfac7c 1903da4 707dba3; do git show $c:data/feed.json | python -c "import sys,json;d=json.load(sys.stdin);print(len(d),sum(1 for c in d if (c.get('starGrowth') or 0)>0))"; done`。
 
-### T7 E8+E5 全库文案重跑 —— **已开工（执行器+首批实跑，打破 0%）**
+### T7 E8+E5 全库文案重跑 —— **续跑中（23/1868 过闸写回，已 push 部分线上逐字段反查一致）**
 
-- **现状量化（本机实测）**：全库 2653 张；`reasonCn < 80 字` 短卡 **21 张**（任务书口径一致）；
+- **现状量化（本机实测）**：全库 2653 张；`reasonCn < 80 字` 短卡 **26 张**（本轮 dry-run 实测；随写回逐轮收敛）；
   `detailCn` 空卡 **0 张**；按生产全闸（`cardChecks`）判全库 **1868 张不过闸**
   （多数是 facts 缺失与旧文案套话/推广词——这就是 E8+E5 的真实待跑面）。
 - **执行器已交付（commit `fb89761`）**：`scripts/gittok-recopy.ts`（按 `gittok-rejudge-v3.ts` 的 state 模式）——
@@ -159,18 +159,78 @@ Mimosa 完整扫描跑完（49 条 findings 已分类给判词）；
   写回严格限定 `summaryCn / reasonCn / detailCn / facts`（zone/funScore/tags 一律不动）；
   state 落 `data/recopy-state.json`（指纹版失效、每卡落盘即写、失败留因）；
   多免费通道轮转 + 冷却等待 + 墙钟上限硬停；只用免费模型。
-- **首批实跑（免费通道恢复后，openrouter nemotron-3-ultra-550b:free lane）**：
-  - 写回 **1 张**：`coollabsio/coolify`（旧文案"开头套话"闸不过 → 新文案 summary 28 / reason 224 /
-    detail 808 / facts 2 条，**独立复核过生产全闸**；zone=工具/topics/funScore 保持原样），已进 `data/feed.json`。
-  - 4 张未过闸（失败原因与闸名记入 state，可复查勿重复试）：Token-Print（reason effLen 93 + facts source 溯源）、
-    trailhq/Graft（G8 推广词 + facts source 溯源）、fleetbase（summary 38 字超上限 35）。
-  - 当前比例：**写回 1 / 尝试 5（20% 首批成功率）；全库完成 1 / 1868（0.05%）**——如实记录。
+- **轮次台账（每轮 `--limit=30 --max-minutes=60`，过闸才写回，如实记数）**：
+
+| 轮 | 时段 | 写回 | 未过闸 | 累计已写回 | 线上反查 |
+|---|---|---|---|---|---|
+| 首轮 | 09-17 20:38 | 1 | 4 | 1 | 站点域名已查（coolify） |
+| 续跑 1 | 09-17 22:14–22:37 | 13 | 17 | 14 | **14/14 逐字段一致**（summary/reason/detail/facts 全等） |
+| 续跑 2 | 09-17 22:40–23:40 | 9 | 7 | 23 | 待 push 后回查 |
+
+- **续跑 1 实跑**：写回 13 张（`trailhq/Graft`、`fleetbase/fleetbase`、`dsh-tauri-desk/deepseek-harness-desktop`、
+  `gethomepage/homepage`、`tinyhumansai/openhuman`、`huggingface/transformers`、`bojieli/ai-agent-book`、
+  `semantica-agi/semantica`、`p1neappleXpress/OpenFlux`、`comet-ml/opik`、`omnigent-ai/omnigent`、
+  `agentscope-ai/agentscope`、`aquasecurity/trivy`）；17 张未过闸（主因：一句话描述超 35 字上限、
+  深度解读超/欠字数区间、JSON 截断解析失败、facts source 不在参考文档；全部记入 state 供下轮重试）。
+- **独立复核（不依赖脚本自述）**：用**空 state** 重跑 `--dry-run`（`RECOPY_STATE=<临时空文件>`），
+  生产闸对全库 2653 张从零判一遍 → 不过闸 1854 张 = 1868 − 14，**证明 14 张写回卡确由生产闸判过**，
+  而非脚本自记。
+- **续跑 2 实跑**：写回 9 张（`Sudharsanselvaraj/Token-Print`——连败两轮后过闸、`henrygd/beszel`、
+  `jamiepine/voicebox`、`projectdiscovery/nuclei`、`n8n-io/n8n`、`usebruno/bruno`、`openclaw/openclaw`、
+  `BerriAI/litellm`、`infiniflow/ragflow`）；7 张未过闸。**本批撞 60 分钟墙钟停**——途中
+  `openrouter` 免费额度打满（`429 free-models-per-day`，需 UTC 零点=本地 08:00 重置）、
+  `modelscope` 单账号反复 60s 熔断，两通道交替冷却，故实际产出低于续跑 1。
+- **当前比例**：**写回 23 / 不过闸 1868（1.23%）**；仍剩约 1845 张待跑。
+- **线上反查（截至续跑 1，commit `ee0fa10`）**：`Deploy Web` 对 `ee0fa10` **success**；
+  站点 `https://chestnuts-sisyphus.github.io/gittok/data/feed.json`（200，4,428,290 B）与
+  `/data/feed-details.json`（200，4,757,759 B）下载后与本地 `data/feed.json` **逐字段比对**：
+  `summaryCn`/`reasonCn`/`facts`（feed.json）与 `detailCn`（feed-details.json）**14 张全部一致**。
+  复跑：`python - <<'PY' …PY` 比对脚本（见本节末），或直接 `curl` 站点域名（**新鲜**，jsDelivr 有 CDN 缓存滞后）。
 - **续跑入口（state 位置）**：`data/recopy-state.json`（指纹 `recopy:v6-copy+facts:1`，
   `done`/`failed` 各记 repo→时间/lane/闸名）。续跑命令（同一行反复跑即可，完事自动跳过）：
   `npx tsx scripts/gittok-recopy.ts --limit=30 --max-minutes=60`
   调试：`--repo=owner/name`（单卡）、`--dry-run`（只统计）、`--all`（含已过闸全重跑）。
-- **诚实结论**：执行器可用、首批验证链路（免费通道→全闸→写回→不变量闸抽查）；
-  但免费通道吞吐仍低（首批 5 卡耗时约十余分钟，多轮冷却等待），全量仍需跨时段长跑。
+- **队列机制（实测）**：待跑队列按 feed 顺序取，**上轮未过闸的卡排在下轮队首**（state.done 才跳过）→
+  同一张卡会被反复重试直到过闸；观测量级：续跑 1 的 17 张失败卡占据了续跑 2 的队首 17 位，
+  但失败卡会因带反馈重试而逐步收敛（如 `Sudharsanselvaraj/Token-Print` 连败两轮后于续跑 2 过闸）。
+- **通道侧实测（本机，解释吞吐为何低）**：本轮只有 2 条免费通道在岗
+  （`custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731`、`openrouter:nvidia/nemotron-3-ultra-550b-a55b:free`）；
+  第 3 条免费主力 `zhipu:glm-4.7-flash` 被共享通道账（`data/lane-health.json`，与生产管线同一本）
+  按 `quota-daily` 退到 **2026-09-18T00:18Z（本地 08:18）**。**直接探测**（一次最小真实调用，
+  `POST https://open.bigmodel.cn/api/paas/v4/chat/completions`，模型 `glm-4.7-flash`）：
+  **HTTP 429 / code 1305「该模型当前访问量过大」，0.3s 返回** —— 属智谱服务端过载而非我方额度，
+  故**不强行纳回**（`SCHED_IGNORE_LANE_HEALTH=1` 只会换来快速 429，纯浪费）；等其自然恢复。
+- **诚实结论**：链路已被两轮实跑+线上反查证明可用（免费通道→生产全闸→过闸写回→push→线上一致）；
+  但**免费额度仍是唯一瓶颈**——续跑 1 耗时 23 分钟写回 13 张（≈0.56 张/分钟），
+  且含多次通道冷却等待；全量 1854 张按当前速率需跨时段长期续跑（凌晨/清晨额度更好）。
+- **线上反查复跑脚本**（本机 Python，逐字段比对；站点域名=新鲜，勿用 jsDelivr 判新鲜度）：
+
+```python
+# 用法：在 D:/AI/QODER/1/os-feed 下 python vercmp.py
+import json, urllib.request
+B = "https://chestnuts-sisyphus.github.io/gittok/data/"
+def get(p):
+    r = urllib.request.Request(B + p, headers={"User-Agent": "recopy-verify"})
+    return json.loads(urllib.request.urlopen(r, timeout=120).read())
+site = {c["repo"]: c for c in get("feed.json")}          # summaryCn / reasonCn / facts
+det  = get("feed-details.json")                          # repo -> detailCn（字符串字典）
+local = {c["repo"]: c for c in json.load(open("data/feed.json", encoding="utf-8"))}
+state = json.load(open("data/recopy-state.json", encoding="utf-8"))
+ok = 0
+for repo in state["done"]:
+    s, l = site[repo], local[repo]
+    same = (s.get("summaryCn") == l.get("summaryCn")
+            and s.get("reasonCn") == l.get("reasonCn")
+            and det.get(repo) == l.get("detailCn")
+            and json.dumps(s.get("facts"), ensure_ascii=False, sort_keys=True)
+                == json.dumps(l.get("facts"), ensure_ascii=False, sort_keys=True))
+    ok += same
+    print(("OK  " if same else "DIFF"), repo)
+print(f"线上逐字段一致 {ok}/{len(state['done'])}")
+```
+
+  注：`feed-details.json` 是 `repo → detailCn 字符串` 的字典（不是数组），首次写比对脚本易踩。
+  未 push 的新写回卡会显示 DIFF（属正常，push + Deploy Web 成功后再查）。
 
 ### T8 E4 / Mimosa 完整审计（G9）
 
@@ -225,9 +285,12 @@ Mimosa 完整扫描跑完（49 条 findings 已分类给判词）；
 
 ## 四、未完成项与原因
 
-1. **T7（E8+E5 全库文案重跑）：0%**。原因见上（免费通道当日限流 59%、文案重跑脚本需另写、订阅通道被硬约束禁用）。
-   缺口量化：21 张 `<80 字` 短卡仍在线上。**建议**：单独排一个免费额度充足的窗口（跨天恢复后），
-   按 `gittok-rejudge-v3.ts` 的 state 模式补 `scripts/gittok-recopy.ts` 再跑。
+1. **T7（E8+E5 全库文案重跑）：续跑中，23/1868（1.23%）**。执行器与 state 已交付并**两轮实跑验证**；
+   剩余的约 1845 张不是"没做"，而是**免费额度不够**（实测：智谱 429/1305 服务端过载、
+   OpenRouter 免费日额打满、ModelScope 单账号高频熔断），只能跨时段续跑：
+   `npx tsx scripts/gittok-recopy.ts --limit=30 --max-minutes=60`（反复跑，完事自动跳过）。
+   **建议**：本地 08:00 后开跑（OpenRouter 免费额按 UTC 日重置；智谱通道账 08:18 复活），
+   届时可用通道从 2 条恢复到 3 条；不虚报进度。
 2. **两条 commit message 出现「简历承诺兑现」字样**（`bf7311d`、`2d2061d`，已进公开历史）：
    与「求职上下文不进公开仓库」的约束相抵；文件与文档内容均为纯工程。如需清除需 force-push 改史
    （仓库有 bot 持续推送，改史风险自担），**建议不改**，后续提交起改用中性措辞（本次已改）。

@@ -1,7 +1,7 @@
 {
   "version": "recopy:v6-copy+facts:1",
   "createdAt": "2026-09-17T12:12:22.618Z",
-  "updatedAt": "2026-09-17T14:37:13.689Z",
+  "updatedAt": "2026-09-17T15:42:20.448Z",
   "done": {
     "coollabsio/coolify": {
       "at": "2026-09-17T12:38:24.902Z",
@@ -58,140 +58,98 @@
     "aquasecurity/trivy": {
       "at": "2026-09-17T14:37:13.689Z",
       "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731"
+    },
+    "Sudharsanselvaraj/Token-Print": {
+      "at": "2026-09-17T14:40:35.165Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free"
+    },
+    "henrygd/beszel": {
+      "at": "2026-09-17T14:48:02.173Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free"
+    },
+    "jamiepine/voicebox": {
+      "at": "2026-09-17T14:50:54.451Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free"
+    },
+    "projectdiscovery/nuclei": {
+      "at": "2026-09-17T15:00:06.808Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free"
+    },
+    "n8n-io/n8n": {
+      "at": "2026-09-17T15:03:07.665Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free"
+    },
+    "usebruno/bruno": {
+      "at": "2026-09-17T15:06:29.590Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free"
+    },
+    "openclaw/openclaw": {
+      "at": "2026-09-17T15:09:22.431Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free"
+    },
+    "BerriAI/litellm": {
+      "at": "2026-09-17T15:09:51.156Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free"
+    },
+    "infiniflow/ragflow": {
+      "at": "2026-09-17T15:16:49.379Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free"
     }
   },
   "failed": {
-    "Sudharsanselvaraj/Token-Print": {
-      "at": "2026-09-17T14:13:57.262Z",
-      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
-      "fails": [
-        "facts[3] source 不在参考文档：不在参考文档",
-        "facts[4] source 不在参考文档：不在参考文档"
-      ]
-    },
     "xmanrui/dsh-im": {
-      "at": "2026-09-17T14:15:34.377Z",
+      "at": "2026-09-17T14:43:14.142Z",
       "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
       "fails": [
-        "一句话描述 36 字（硬性要求 20-35 汉字）",
+        "一句话描述 54 字（硬性要求 20-35 汉字）",
+        "一句话描述与深度解读开头重复（最长重复片段过长）",
         "含推广词「扫码」（禁止）",
-        "facts[1] source 不在参考文档：不在参考文档",
-        "facts[2] source 不在参考文档：不在参考文档"
+        "facts[1] source 不在参考文档：不在参考文档"
       ]
     },
     "justcallmekoko/ESP32Marauder": {
-      "at": "2026-09-17T14:19:42.922Z",
+      "at": "2026-09-17T14:45:27.029Z",
       "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
       "fails": [
-        "一句话描述 39 字（硬性要求 20-35 汉字）",
-        "深度解读 155 字（硬性要求 500-800 字）",
-        "深度解读 1 段（要求 3-5 段）"
+        "输出解析失败（无合法 JSON）"
       ]
     },
     "anywhere-labs/dsh-desktop": {
-      "at": "2026-09-17T14:21:43.776Z",
-      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
-      "fails": [
-        "深度解读 919 字（超过 800 字上限，收一收）"
-      ]
-    },
-    "henrygd/beszel": {
-      "at": "2026-09-17T14:22:28.472Z",
-      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
-      "fails": [
-        "facts[1] source 不在参考文档：不在参考文档",
-        "facts[2] source 不在参考文档：不在参考文档",
-        "facts[3] source 不在参考文档：不在参考文档",
-        "facts[4] source 不在参考文档：不在参考文档"
-      ]
-    },
-    "jamiepine/voicebox": {
-      "at": "2026-09-17T14:23:33.998Z",
+      "at": "2026-09-17T14:46:53.431Z",
       "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
       "fails": [
-        "一句话描述 36 字（硬性要求 20-35 汉字）",
-        "facts[2] source 不在参考文档：不在参考文档",
-        "facts[3] source 不在参考文档：不在参考文档"
+        "通道失败：TypeError: Cannot read properties of undefined (reading '0')"
       ]
     },
     "qdrant/qdrant": {
-      "at": "2026-09-17T14:25:28.004Z",
-      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "at": "2026-09-17T14:54:44.783Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
       "fails": [
-        "一句话描述 41 字（硬性要求 20-35 汉字）",
+        "深度解读 455 字（硬性要求 500-800 字）",
+        "facts[1] source 不在参考文档：不在参考文档",
         "facts[3] source 不在参考文档：不在参考文档"
       ]
     },
     "go-gitea/gitea": {
-      "at": "2026-09-17T14:26:49.058Z",
-      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "at": "2026-09-17T14:58:48.159Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
       "fails": [
-        "一句话描述 48 字（硬性要求 20-35 汉字）",
+        "一句话描述 17 字（硬性要求 20-35 汉字）",
         "facts[1] source 不在参考文档：不在参考文档"
       ]
     },
-    "projectdiscovery/nuclei": {
-      "at": "2026-09-17T14:27:41.378Z",
-      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
-      "fails": [
-        "深度解读 1 段（要求 3-5 段）"
-      ]
-    },
-    "n8n-io/n8n": {
-      "at": "2026-09-17T14:28:11.371Z",
-      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
-      "fails": [
-        "深度解读 1042 字（超过 800 字上限，收一收）",
-        "facts[1] source 不在参考文档：不在参考文档",
-        "facts[2] source 不在参考文档：不在参考文档",
-        "facts[3] source 不在参考文档：不在参考文档"
-      ]
-    },
-    "usebruno/bruno": {
-      "at": "2026-09-17T14:28:49.948Z",
-      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
-      "fails": [
-        "一句话描述 45 字（硬性要求 20-35 汉字）",
-        "深度解读 420 字（硬性要求 500-800 字）",
-        "深度解读 1 段（要求 3-5 段）"
-      ]
-    },
-    "openclaw/openclaw": {
-      "at": "2026-09-17T14:29:24.511Z",
-      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
-      "fails": [
-        "深度解读 969 字（超过 800 字上限，收一收）"
-      ]
-    },
-    "BerriAI/litellm": {
-      "at": "2026-09-17T14:30:00.469Z",
-      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
-      "fails": [
-        "一句话描述 38 字（硬性要求 20-35 汉字）",
-        "深度解读 1 段（要求 3-5 段）",
-        "facts[2] source 不在参考文档：不在参考文档"
-      ]
-    },
-    "infiniflow/ragflow": {
-      "at": "2026-09-17T14:31:32.112Z",
-      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
-      "fails": [
-        "未见安装/上手内容（必须覆盖怎么上手）"
-      ]
-    },
     "AlkaidLab/foundation-sunshine": {
-      "at": "2026-09-17T14:33:32.397Z",
-      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "at": "2026-09-17T15:28:55.999Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
       "fails": [
-        "一句话描述 47 字（硬性要求 20-35 汉字）"
+        "通道失败：Error: 429 Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day"
       ]
     },
     "sharkdp/fd": {
-      "at": "2026-09-17T14:35:02.780Z",
+      "at": "2026-09-17T15:42:20.448Z",
       "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
       "fails": [
-        "深度解读 351 字（硬性要求 500-800 字）",
-        "深度解读 1 段（要求 3-5 段）"
+        "通道失败：Error: 429 Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day"
       ]
     },
     "yt-dlp/yt-dlp": {
