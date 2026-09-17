@@ -11,7 +11,7 @@
 
 四件 agent 接口——**llms.txt、MCP server（search/top/detail）、API 文档、官方 Agent Skill**——
 全部建成、上线并逐项线上反查通过（含 CDN 下载即用实测与自检）；
-bot 热度修复**实测生效**（starGrowth>0 从 826 → 连续四轮 1809/1858/1858/1861）；
+bot 热度修复**实测生效**（starGrowth>0 从 826 → 连续五轮 1809/1858/1858/1861/1862）；
 Mimosa 完整扫描跑完（49 条 findings 已分类给判词）；
 **E8/E5 全库文案重跑未开工（0%）**——当日免费通道全线限流（实测 321/546 次 429），如实报告不虚报。
 
@@ -26,7 +26,7 @@ Mimosa 完整扫描跑完（49 条 findings 已分类给判词）；
 | T3 | API 文档页 + README 接口章节 | ✅ | docs/API.md + 中英 README 章节；4 条示例逐条实测通过 |
 | T4 | 官方 Agent Skill | ✅ | 格式校验 PASS（0 error/0 warn）；免费模型真实加载跑通并留证 |
 | T5 | 接口域名统一 + README 分区修正 | ✅ | 站点 feed.xml/manifest.json 200 且与 raw 内容一致（sha256 相同） |
-| T6 | bot 热度修复实测 | ✅ | 修复前 826 → 四轮 1809/1858/1858/1861；线上热门池 1861（≥300） |
+| T6 | bot 热度修复实测 | ✅ | 修复前 826 → 五轮 1809/1858/1858/1861/1862；线上热门池 1861（≥300） |
 | T7 | E8+E5 全库文案重跑 | ❌ 未开工 | 免费通道当日全线限流（见 §四.1）；缺口已量化：21/2649 张短卡 |
 | T8 | Mimosa 完整审计 + 存量 findings 判词 | ✅ | 扫描完成（seal `sha256:5df7c637…`），49 条分四类给判词 |
 | T9 | V-B1 决策包 | ✅ | `docs/请栗子过目-V-B1与乐趣口径-2026-09-17.md`，每条一句话可勾选 |
@@ -135,10 +135,11 @@ Mimosa 完整扫描跑完（49 条 findings 已分类给判词）；
   d593f0e  2026-09-17T00:08Z    2637 卡  starGrowth>0 = 1858
   acfac7c  2026-09-17T00:53Z    2642 卡  starGrowth>0 = 1858
   1903da4  2026-09-17T04:55Z    2649 卡  starGrowth>0 = 1861
+  707dba3  2026-09-17T12:02Z    2653 卡  starGrowth>0 = 1862
   线上反查（MCP top(hot) pool，2026-09-17T11:35Z）  = 1861（≥300 ✅）
   ```
-- **结论**：修复生效——四轮滴灌后不再塌缩（个位数 → 千级），热门频道池长期 ≥300。
-- **复跑**：`for c in 45c1d29 8807265 d593f0e acfac7c 1903da4; do git show $c:data/feed.json | python -c "import sys,json;d=json.load(sys.stdin);print(len(d),sum(1 for c in d if (c.get('starGrowth') or 0)>0))"; done`。
+- **结论**：修复生效——五轮滴灌后不再塌缩（个位数 → 千级），热门频道池长期 ≥300。
+- **复跑**：`for c in 45c1d29 8807265 d593f0e acfac7c 1903da4 707dba3; do git show $c:data/feed.json | python -c "import sys,json;d=json.load(sys.stdin);print(len(d),sum(1 for c in d if (c.get('starGrowth') or 0)>0))"; done`。
 
 ### T7 E8+E5 全库文案重跑 —— **未开工（0%）**
 
@@ -235,7 +236,7 @@ node skills/gittok/scripts/validate.mjs && node skills/gittok/scripts/hotspots.m
 # T5 接口统一
 curl -s https://chestnuts-sisyphus.github.io/gittok/manifest.json > /dev/null && echo OK
 # T6 bot 验证
-for c in 45c1d29 8807265 d593f0e acfac7c 1903da4; do git show $c:data/feed.json | python -c "import sys,json;d=json.load(sys.stdin);print(len(d),sum(1 for c in d if (c.get('starGrowth') or 0)>0))"; done
+for c in 45c1d29 8807265 d593f0e acfac7c 1903da4 707dba3; do git show $c:data/feed.json | python -c "import sys,json;d=json.load(sys.stdin);print(len(d),sum(1 for c in d if (c.get('starGrowth') or 0)>0))"; done
 # T7 缺口量化
 python -c "import json;d=json.load(open('data/feed.json',encoding='utf-8'));print('short:',sum(1 for c in d if len(c.get('reasonCn') or '')<80))"
 # T8 Mimosa：见 §二 T8 复跑（MCP 工具调用）
