@@ -359,9 +359,9 @@
     "owner": "sharkdp",
     "name": "fd",
     "desc": "A simple, fast and user-friendly alternative to 'find'",
-    "summaryCn": "告别繁琐的find命令，用更简单优雅的方式快速在文件夹里大海捞针",
-    "reasonCn": "fd是Linux和Mac终端里的文件搜索神器，专为替代find命令而生。它默认启用递归查找，自动忽略.gitignore等忽略规则，所以搜出来的结果更精准，不会出现大量垃圾文件干扰视线。核心优势是速度极快，基于Rust开发，充分利用多核CPU并行处理，在大型项目中搜索性能远超传统工具。界面友好，支持彩色输出，语法高亮，查找过程赏心悦目。",
-    "detailCn": "想象一下，你在一个几万行的代码库里找某个配置文件，用传统find命令可能要先处理一堆权限报错、隐藏文件，还得手动加递归参数，累得半死。fd就是来拯救这个痛苦过程的，它让在终端里找文件变成了一种享受，而不是折磨。\n\n技术上，fd是Rust语言编写的，这决定了它的基因：快、安全、内存零拷贝。它默认开启并行IO，能榨干你CPU的所有核，处理十万级文件目录时依然秒出结果。最贴心的是它内置了智能过滤，自动读取.gitignore、.ignore等规则，只搜你想搜的，屏蔽掉node_modules、target、.git这些脏乱差的目录。它还支持模糊匹配和正则表达式，搜文件名时支持智能补全联想，比grep那种冷冰冰的匹配更有“人味儿”。\n\n上手门槛几乎为零。Linux用户通过包管理器安装，比如Ubuntu用sudo apt install fd-find，Mac用户用brew install fd。装上后直接把find换成fd就行，用法几乎一模一样：fd 'rust' 就能搜当前目录下所有带rust的文件。它还支持--type f只搜文件、--type d只搜目录，加上--extension .py只搜Python文件，命令简洁得像在说人话。\n\n这个项目特别适合程序员、运维人员、数据分析师这些天天和文件系统打交道的人。如果你在Linux或Mac环境下工作，每天要在海量文件里捞针，fd能把你节省下来的时间用来摸鱼。它也适合极客用户，因为它的配置和扩展性很强。\n\nfd目前在GitHub上已经收获了四万多的星，社区非常活跃，作者sharkdp是著名的bat和lsd作者，信誉极高。它是目前开源界最流行的find替代品，几乎没有短板。虽然它本身不涉及AI，但对于追求高效、有趣的开发者来说，绝对是日常必备的生产力神器。",
+    "summaryCn": "Rust 编写的现代化文件搜索工具，比 find 更直观、更快。",
+    "reasonCn": "fd 是一个用 Rust 编写的命令行工具，旨在替代传统的 find 命令。它通过使用更直观的语法和默认开启的并行搜索，显著提升了文件查找的效率。同时，它支持正则表达式和通配符，并能智能处理文件名的大小写和隐藏文件，让用户能更轻松地定位目标文件。",
+    "detailCn": "fd 是一个由 Rust 编写的命令行工具，它的核心目标是解决传统 `find` 命令在语法复杂和默认行为不够人性化方面的痛点。用户只需输入 `fd PATTERN` 即可快速搜索，而无需记忆复杂的参数组合。这种简洁性源于它对常见用例的优化，例如默认忽略隐藏文件，并且通过颜色高亮不同类型的文件，使输出结果一目了然。\n\n该项目的一个关键特性是其卓越的性能。它利用并行目录遍历技术，能够显著加快在大规模文件系统中的搜索速度。这意味着用户在寻找文件时，无需长时间等待命令执行完成。此外，fd 提供了灵活的搜索模式支持，默认使用正则表达式，同时也支持通配符，满足不同用户的偏好。\n\n安装 fd 非常简单。用户可以通过包管理器直接安装，例如在基于 Debian 的系统上使用 `apt install fd-find`，在 macOS 上使用 `brew install fd`，或者在 Arch Linux 上使用 `pacman -S fd`。对于使用其他操作系统的用户，也可以从项目的 GitHub 仓库下载预编译的二进制文件。\n\n上手使用 fd 非常直观。一旦安装完成，用户只需在终端输入 `fd keyword` 即可开始搜索。该工具默认搜索当前目录及其子目录，并会自动忽略以点开头的隐藏文件。如果用户希望包含隐藏文件，只需加上 `-H` 参数。通过这种简单而强大的设计，fd 成为了开发者和系统管理员在命令行中查找文件的首选工具。",
     "stars": 44591,
     "starGrowth": 48,
     "createdAt": "2017-05-09T21:27:10Z",
@@ -439,7 +439,13 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.1472293512143706
+    "heatScore": 0.1472293512143706,
+    "facts": [
+      {
+        "claim": "使用并行目录遍历实现极速搜索。",
+        "source": "Very fast due to parallelized directory traversal."
+      }
+    ]
   },
   {
     "repo": "dsh-tauri-desk/deepseek-harness-desktop",
@@ -1929,9 +1935,9 @@
     "owner": "cockroachdb",
     "name": "cockroach",
     "desc": "CockroachDB — the cloud native, distributed SQL database designed for high availability, effortless scale, and control over data placement.",
-    "summaryCn": "全球服务器串成一张数据库网，随便哪台挂了数据都不丢",
-    "reasonCn": "CockroachDB是一款兼容PostgreSQL协议的分布式SQL数据库，由Google联合创始人团队打造。它支持自动分区、自动复制和高可用，能在多台机器上水平扩展，同时保持ACID事务特性。对于需要分布式存储的AI应用数据层、用户数据或训练数据集，它是稳定可靠的选择。",
-    "detailCn": "你有没有遇到过这种情况：公司业务增长太快，单台数据库服务器扛不住了，想扩容却发现迁移成本极高？传统分布式数据库要么不兼容现有SQL，要么配置复杂到让人头疼。CockroachDB就是来解决这个痛点的——它让你用标准SQL就能操作分布式数据库，就像在单机PostgreSQL上一样顺手，但背后已经是跨机房、跨地域的分布式集群了。\n\n技术上，CockroachDB基于Google内部Spanner架构演进而来，采用Raft共识算法保证跨节点数据一致性。它的核心创新是Range机制——自动将数据切成约64-68MB的小块，动态分布到集群各节点。当某个节点宕机时，副本会自动在其他节点重建，业务零感知。与传统NoSQL数据库（如Cassandra、MongoDB）不同，它完整兼容PostgreSQL协议和大部分SQL语法，现有应用迁移成本极低。同时支持自动负载均衡、在线扩缩容、多区域部署等企业级特性。\n\n上手非常简单。本地体验可以用Docker一条命令启动：`docker run -p 26257:26257 -v $PWD:/cockroach-data cockroachdb/cockroach start-single-node --insecure`。生产环境推荐至少3节点部署，用`cockroach start --join`互相连接即可。Web管理控制台访问`https://<node>:8080`，能看到集群拓扑、查询性能和实时指标。客户端连接方式与PostgreSQL完全一致，Python用psycopg2、Go用pgx、Java用PostgreSQL JDBC驱动都能无缝接入。\n\n适合这几类场景：需要全球多区域部署、跨机房容灾的企业级应用；数据量持续增长、需要水平扩展的系统；对数据一致性要求极高的金融、电商、支付场景；想从单机PostgreSQL平滑迁移到分布式架构的团队。如果你是做AI应用开发，需要分布式数据库存储用户数据、模型元数据或训练结果，它也是不错的选择。\n\nCockroachDB由Cockroach Labs公司维护，GitHub star超过3万，社区活跃。提供开源版（CCPL许可）和企业版，企业版增加了审计日志、行级权限、实时备份等企业级功能。主要竞品包括TiDB（国产，兼容MySQL协议）、Vitess（MySQL方向）等。整体来看，在PostgreSQL生态的分布式数据库领域，CockroachDB是技术成熟度最高的选择之一，适合对数据一致性和可用性有严格要求的生产环境。",
+    "summaryCn": "能自动容错并跨数据中心扩展的云原生分布式SQL数据库。",
+    "reasonCn": "CockroachDB 是一款专为现代应用设计的云原生分布式 SQL 数据库。它基于强一致性键值存储构建，能像处理单机数据一样处理海量数据，无需人工干预即可自动应对磁盘或服务器故障。开发者可以用熟悉的 SQL 语法轻松管理数据，享受企业级的高可用性与事务处理能力，为数据密集型应用提供坚实基础。",
+    "detailCn": "CockroachDB 是一款专为现代数据密集型应用打造的云原生分布式 SQL 数据库。它构建在强一致性的事务型键值存储之上，能够像处理单机数据一样处理海量数据。项目最核心的价值在于其强大的容错能力，它能自动应对磁盘损坏、单台机器故障甚至整个数据中心的灾难，无需人工干预即可保持业务连续性，确保服务始终在线。\n\n为了实现这种高可用性，CockroachDB 将数据自动复制到多个节点，并支持跨数据中心部署。这种架构设计不仅提供了极高的数据安全性，还允许应用根据业务需求灵活扩展，实现真正的弹性伸缩。它完美兼容 ACID 事务，开发者无需学习复杂的分布式系统理论，只需使用标准的 SQL 语法就能进行数据的结构化、查询和管理，大大降低了技术门槛。\n\n安装和使用 CockroachDB 非常方便，官方提供了基于容器的部署方式。用户可以通过下载官方提供的二进制包或 Docker 镜像，快速启动一个单节点或集群环境。启动后，数据库会自动初始化并生成用于连接的凭证。开发者可以像使用传统数据库一样，通过标准的数据库客户端驱动连接并进行操作。\n\n对于追求极致稳定性和扩展性的团队，CockroachDB 是一个理想的选择。它特别适合那些对数据一致性要求极高、且需要应对不可预见的硬件故障或地理分布需求的业务场景。无论是初创团队构建核心业务系统，还是大型企业改造遗留应用，CockroachDB 都能提供强大而可靠的数据支撑，帮助团队专注于业务创新而非底层维护。",
     "stars": 32560,
     "starGrowth": 24,
     "createdAt": "2014-02-06T00:18:47Z",
@@ -1996,7 +2002,13 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.0742113022113022
+    "heatScore": 0.0742113022113022,
+    "facts": [
+      {
+        "claim": "专为云原生环境设计，支持跨数据中心容灾",
+        "source": "CockroachDB is a cloud-native distributed SQL database"
+      }
+    ]
   },
   {
     "repo": "rustdesk/rustdesk",
@@ -2161,9 +2173,9 @@
     "owner": "web-infra-dev",
     "name": "midscene",
     "desc": "AI-powered, vision-driven UI automation for every platform.",
-    "summaryCn": "让AI像人一样操作网页，自动填表、抓取数据神器",
-    "reasonCn": "它的技术核心是“视觉驱动”的UI自动化。传统自动化依赖固定的DOM结构，网页改版脚本就失效；而Midscene利用大模型的视觉能力，直接理解页面上的文字、按钮和布局，就像人眼看到的一样。它将网页截图输入给多模态大模型，模型输出结构化的操作指令（如“点击ID为submit的按钮”），再由",
-    "detailCn": "想象一下，你不需要手动点击鼠标一个个填表，只需告诉AI“帮我把这个网页的信息填入Excel”，它就能自动识别表单、输入内容并提交。这就是Midscene要解决的核心问题——让AI真正“看懂”并“操作”界面。\n\n它的技术核心是“视觉驱动”的UI自动化。传统自动化依赖固定的DOM结构，网页改版脚本就失效；而Midscene利用大模型的视觉能力，直接理解页面上的文字、按钮和布局，就像人眼看到的一样。它将网页截图输入给多模态大模型，模型输出结构化的操作指令（如“点击ID为submit的按钮”），再由执行引擎转化为真实操作。\n\n上手非常简单，安装Node.js环境后运行`npm install @midscene/web`，然后编写简单的场景脚本。例如，你可以定义一个“登录场景”，包含输入用户名、密码、点击登录按钮等步骤，Midscene会自动适配不同的网站页面，无需硬编码选择器。它支持通过自然语言描述任务，比如“帮我爬取这个电商页面的商品列表”，AI会自动解析并提取数据。\n\n这款工具特别适合产品经理、测试工程师和开发者。测试人员可以用它快速编写UI自动化测试用例，覆盖多种浏览器和设备；开发者在构建AI应用时，可以用它作为前端交互的自动化引擎；个人用户则能用它来批量处理繁琐的网页操作。社区活跃，文档丰富，提供了大量预置场景和示例，降低了使用门槛。",
+    "summaryCn": "AI 视觉驱动的 GUI 自动化测试工具，跨平台运行。",
+    "reasonCn": "Midscene 是一款基于 AI 视觉能力的 GUI Agent 测试套件，它通过“看屏幕、做操作、验结果”的闭环逻辑，帮助开发者用自然语言或代码编写自动化测试。它内置测试报告，能直观展示操作轨迹与断言结果，支持在 Web、移动端和桌面应用间复用同一套 Agent 逻辑。",
+    "detailCn": "Midscene 的核心突破在于把 AI 的视觉能力真正融入到了测试流程中，让测试脚本不仅能“点按钮”，还能“看界面”。传统自动化测试往往需要开发者提前写好每一步的 XPath 或选择器，一旦 UI 稍微变动，脚本就跑不通。而 Midscene 通过一个视觉驱动的 GUI Agent，让测试脚本具备了“看”的能力。它把人类操作软件的过程抽象成了三个核心动作：看屏幕、做操作、验结果。测试人员只需要告诉 Agent 想达到什么目标，Agent 就会通过视觉识别来理解当前界面状态，并自动执行点击、输入等操作，最后验证结果是否符合预期。这种范式大大降低了测试脚本的维护成本，因为 Agent 会自己适应 UI 的变化。\n\n项目采用 TypeScript 开发，支持在 Web、移动端和桌面应用之间复用同一套 Agent API。这意味着你可以在浏览器里写一个自动化测试，通过简单的配置就能切换到移动端或桌面环境去跑。它的安装和使用非常灵活，既可以作为 Playwright 的插件直接集成，也可以作为独立的测试工具运行。根据文档，你可以通过配置模型并打开应用页面来快速上手，它提供了完整的 Playwright 示例和测试运行器集成指南。这种“开箱即用”的设计让开发者能迅速体验到 AI 带来的效率提升。\n\n除了核心的测试执行能力，Midscene 还内置了一个非常实用的测试报告生成器。当你运行完一组测试后，它会自动生成 HTML 格式的报告。打开这个报告，你不仅能看到测试是否通过，还能像看回放视频一样，检查每一个步骤的截图、具体的操作行为以及断言的最终结果。这对于排查 UI 异常和调试自动化脚本非常有帮助，因为它把看不见的测试过程变成了可视化的证据链。对于需要维护多平台应用的团队来说，Midscene 提供了一种统一且智能的测试解决方案，让 QA 和开发人员都能更轻松地保证软件质量。",
     "stars": 14927,
     "starGrowth": 67,
     "createdAt": "2024-07-23T04:03:50Z",
@@ -2243,7 +2255,21 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.214465532256984
+    "heatScore": 0.214465532256984,
+    "facts": [
+      {
+        "claim": "通过视觉识别自动执行测试",
+        "source": "Midscene combines a vision-driven GUI Agent with a testing kit"
+      },
+      {
+        "claim": "支持跨平台应用测试",
+        "source": "across web, mobile, and desktop apps"
+      },
+      {
+        "claim": "内置测试报告与截图功能",
+        "source": "Open the generated HTML report to inspect screenshots"
+      }
+    ]
   },
   {
     "repo": "huggingface/transformers",
@@ -3808,9 +3834,9 @@
     "owner": "Mintplex-Labs",
     "name": "anything-llm",
     "desc": "Stop renting your intelligence. Own it with AnythingLLM. Everything you need for a powerful local-first agent experience",
-    "summaryCn": "把各种大模型塞进一个本地APP，支持文档问答和AI助手，隐私安全还免费",
-    "reasonCn": "AnythingLLM是一款本地优先的AI应用平台，支持对接多种大语言模型。它内置RAG能力，可以把PDF、Markdown等各种文档导入后让AI基于文档回答问题。还提供多任务Agent模式，可以同时运行多个AI助手协作完成任务。界面友好，一键安装，无需复杂配置就能在本地搭建专属的AI知识库，让每个人都拥有自己的私人AI助手。",
-    "detailCn": "你有没有想过，如果把ChatGPT这样的AI直接装到本地电脑上，还能随时问自己的文档，会是什么体验？AnythingLLM就是来回答这个问题的。以前用AI只能上网调用API，要么花钱，要么有隐私风险。现在有了AnythingLLM，你可以把各种大模型下载到本地，还能把自己公司的文档、研究报告全部喂给它，让它成为你的私人知识库助手。\n\n这个项目最厉害的地方在于它的万能兼容设计。它支持通过Ollama、LiteLLM等后端接入多种主流大模型，无论是本地的Llama、Mistral，还是OpenAI的GPT系列，都能统一在一个界面里使用。它的RAG检索增强生成架构非常成熟，内置了向量数据库，支持PDF、Word、Markdown、CSV等多种格式文档的自动解析和嵌入。更实用的是，它支持多Agent协作模式，可以同时创建多个AI助手，让它们各自负责不同领域，还能共享知识库。整个系统是本地优先的，所有数据都存储在本地，不用担心隐私泄露。\n\n安装非常简单，支持Windows、Mac和Linux。官方提供一键安装包，下载后直接运行即可。也支持Docker部署。安装完成后，在设置里配置AI后端可以选择Ollama本地运行，或者接入云端API。然后创建Workspace，上传文档，就能开始对话了。还可以安装各种插件扩展功能，比如网页搜索、代码执行等。\n\n适合这几类人：不想让数据上传云端的隐私敏感用户；需要基于大量文档做问答的科研人员；想搭建企业知识库但预算有限的中小企业；对AI感兴趣想本地搭建实验环境的开发者。\n\n项目GitHub star已经超过6.4万，社区非常活跃，持续更新中。它是开源AI应用生态中的明星项目，竞品有Open WebUI、PrivateGPT等，但AnythingLLM在易用性和多模型支持上更有优势。",
+    "summaryCn": "本地运行的全能 AI 办公套件，支持文档问答与智能体自动化。",
+    "reasonCn": "AnythingLLM 是一款面向本地部署的全能 AI 应用，旨在解决用户在处理文档和自动化工作流时的繁琐配置问题。它支持超个性化配置和多用户模式，无需繁琐的安装步骤即可直接运行，让 AI 能力触手可及。项目特别集成了 RAG 技术，能精准理解本地文档内容，同时提供 AI Agent 能力，帮助用户自动化处理复杂任务，无论是个人笔记整理还是团队协作都能轻松应对。",
+    "detailCn": "AnythingLLM 是一款主打“零门槛”体验的本地 AI 应用，它的核心设计哲学是让强大的 AI 功能无需复杂的技术背景也能直接使用。根据项目描述，它默认采用本地运行模式，消除了传统部署中繁琐的环境配置和服务器管理成本，用户下载后即可直接上手。这种“开箱即用”的特性，对于希望保护数据隐私或不想折腾技术的普通用户来说，极具吸引力。\n\n在功能层面，AnythingLLM 并非单一的聊天工具，而是一个集成了多种能力的综合平台。它内置了强大的 RAG（检索增强生成）能力，允许用户将本地的 PDF、Word 等文档导入系统，AI 能够基于这些文档内容进行精准问答，就像拥有了一个随时待命的私人阅读助手。除了文档处理，它还支持 AI Agent（智能体）功能，这意味着它不仅能回答问题，还能执行复杂的自动化工作流，例如自动整理会议记录或处理特定的任务指令，将 AI 从单纯的对话工具转变为实用的生产力引擎。\n\n对于有团队协作需求的用户，该项目同样考虑周全。它支持多用户模式，管理员可以方便地管理不同用户的权限和配置，这在企业或团队内部引入 AI 辅助工作时非常有用。同时，系统提供了高度可配置的选项，用户可以根据自己的需求调整 AI 的行为和界面，打造专属的工作环境。无论是个人学习、知识管理，还是团队内部的知识库构建与流程自动化，AnythingLLM 都提供了一个集文档问答与智能体执行于一体的解决方案，让 AI 真正融入日常工作和学习场景。",
     "stars": 66310,
     "starGrowth": 205,
     "createdAt": "2023-06-04T02:29:14Z",
@@ -3887,7 +3913,21 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.3092746192127884
+    "heatScore": 0.3092746192127884,
+    "facts": [
+      {
+        "claim": "支持本地运行并零配置启动",
+        "source": "runs locally by default with zero setup friction"
+      },
+      {
+        "claim": "内置 AI 智能体自动执行工作流",
+        "source": "Automate complex workflows with AI Agents"
+      },
+      {
+        "claim": "提供多用户与超个性化配置",
+        "source": "hyper-configurable, multi-user, & no frustrating setup required"
+      }
+    ]
   },
   {
     "repo": "vllm-project/vllm",
@@ -4098,9 +4138,9 @@
     "owner": "ublue-os",
     "name": "bazzite",
     "desc": "Bazzite makes gaming and everyday use smoother and simpler across desktop PCs, handhelds, tablets, and home theater PCs.",
-    "summaryCn": "让电脑秒变游戏掌机，开箱就能畅玩的Linux神器",
-    "reasonCn": "Bazzite是基于Fedora的Linux发行版，专为游戏玩家打造，支持桌面、掌机和家庭影院电脑。内置Steam、Proton兼容层和Gamescope合成器，开箱即玩。它让Windows游戏在Linux上流畅运行，同时保留完整桌面体验，省去手动配置驱动的繁琐过程，硬件兼容性极出色。",
-    "detailCn": "想象一下，你刚收到一台新电脑或Steam Deck，插上电源开机，还没等你打开浏览器装驱动、调分辨率，游戏就已经能直接玩了。这就是Bazzite想做的事——把Linux游戏系统的门槛降到零。\n\nBazzite基于Fedora Silverblue打造，采用不可变文件系统架构，系统核心只读，应用通过Flatpak运行，这带来两个核心优势：系统不会因为用户乱装软件而变慢或崩溃，而且每次更新都是原子级别的，要么成功要么回滚，永远不用担心系统被更新搞坏。它预装了最新的NVIDIA和AMD显卡驱动，内置Steam、Proton GE、Gamescope和LatencyFleX等游戏增强组件，Windows游戏能在Linux上跑出接近原生甚至更好的帧数。\n\n安装极其简单，下载ISO镜像，用 Rufus 或 BalenaEtcher 写入U盘，重启电脑从U盘启动即可安装。如果你已经有Steam Deck，它还提供了官方镜像一键刷入。进入系统后，Steam会自动安装，你的游戏库会完整保留，直接点击游戏就能开始玩。\n\n这个项目特别适合三类人：不想折腾驱动和游戏兼容性的Windows转Linux玩家；想给家庭影院电脑装一个游戏中心的用户；拥有Steam Deck、Lenovo Legio Go等掌机，想要更灵活系统的玩家。需要注意的是，由于基于Linux，部分依赖反作弊系统的在线游戏可能无法运行，购买前建议查阅 ProtonDB 确认游戏兼容性。\n\nBazzite由ublue-os社区维护，GitHub Star超过8800，更新频率高，每周发布包含最新内核和驱动的镜像。它与Fedora Game Spin等同类项目相比，优势在于容器化架构带来的系统稳定性，以及更激进的硬件支持策略。社区非常活跃，Discord和论坛有大量中文用户分享游戏优化经验，是目前最成熟的Linux游戏发行版之一。",
+    "summaryCn": "基于 Fedora 的游戏化 Linux 发行版，支持全平台。",
+    "reasonCn": "Bazzite 是一个基于 Fedora Atomic 技术构建的定制 Linux 发行版，它采用容器化技术，旨在将最佳 Linux 游戏体验带给所有设备，包括掌上游戏机。它解决了传统 Linux 系统在游戏兼容性和配置上的痛点，提供了一个开箱即用、适合各种硬件环境的游戏化桌面解决方案。",
+    "detailCn": "Bazzite 是一个基于 Fedora Atomic 技术构建的定制 Linux 发行版，它采用容器化技术，旨在将最佳 Linux 游戏体验带给所有设备，包括掌上游戏机。这个项目解决了一个核心问题：让普通用户也能在 Linux 系统上流畅运行各种游戏和应用，而无需处理繁琐的系统配置和兼容性问题。它特别针对游戏场景进行了深度优化，提供了类似 SteamOS 的用户体验，同时保持了 Linux 系统的灵活性和安全性。\n\nBazzite 的核心亮点在于它的通用性和易用性。它不仅仅是一个桌面环境，更是一个针对游戏和多媒体消费场景定制的操作系统。项目支持多种硬件形态，从传统的台式机到掌上游戏机，甚至 Home Theater PCs (HTPC)。这意味着无论你使用的是哪种设备，都可以通过 Bazzite 获得一致且优化的游戏体验。它预装了必要的游戏运行时和驱动，大大简化了用户的配置过程。\n\n安装和使用 Bazzite 非常简单。用户可以通过官方仓库提供的安装脚本或镜像文件进行部署。对于大多数用户来说，只需按照官方文档的指引，将系统安装到 U 盘或直接安装到硬盘，然后启动即可进入系统。系统启动后，用户可以直接访问 Steam 商店，浏览和安装游戏，无需额外的配置。对于开发者或高级用户，Bazzite 也提供了详细的文档，介绍了如何构建自己的镜像以及如何进行系统签名。\n\nBazzite 适合所有希望体验 Linux 优势但又不想被技术细节困扰的用户。特别是那些拥有 Steam Deck 等掌上设备，或者想要在非游戏设备上获得类似游戏主机体验的用户。它也适合那些喜欢折腾系统但又希望保持系统稳定和安全的人。通过 Bazzite，用户可以享受到 Fedora 的稳定性和安全性，同时获得一个专为游戏和娱乐打造的现代化桌面环境。",
     "stars": 9086,
     "starGrowth": 7,
     "createdAt": "2023-02-09T19:05:47Z",
@@ -4179,7 +4219,13 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.02331124807395994
+    "heatScore": 0.02331124807395994,
+    "facts": [
+      {
+        "claim": "基于 Fedora Atomic 技术构建",
+        "source": "Bazzite is a custom Fedora Atomic image built with cloud native technology"
+      }
+    ]
   },
   {
     "repo": "unslothai/unsloth",
@@ -4960,9 +5006,9 @@
     "owner": "SenteLabsAI",
     "name": "OpenExecutive",
     "desc": "AI-powered virtual executive team — a single coherent executive persona backed by 8 specialist Claude agents (FastAPI + Next.js).",
-    "summaryCn": "一个由八位专家AI高管组成的虚拟智能管理层决策系统。",
-    "reasonCn": "技术核心是多智能体协作（Multi-Agent System）与检索增强生成（RAG）。它使用Claude作为底层模型，通过FastAPI构建动态代理网络。每个Agent都有特定的系统提示和工具调用权限，它们之间会互相引用、反驳、补充，这种“群聊”式的架构比单一大模型更逼真，能捕捉到人类决策中常见的权",
-    "detailCn": "你有没有想过拥有一个完全懂你的虚拟CEO？OpenExecutive就是这样一个项目。它不是为了聊天的AI，而是试图模拟一个完整的迷你公司高管层。当你提出一个商业难题，比如“如何进入东南亚市场”，它不会只给一个通用答案，而是让8个扮演不同角色的AI（如CFO、CTO、CMO等）进行深度圆桌讨论，最后给你一份综合了财务、技术、市场等多维度的决策报告。\n\n技术核心是多智能体协作（Multi-Agent System）与检索增强生成（RAG）。它使用Claude作为底层模型，通过FastAPI构建动态代理网络。每个Agent都有特定的系统提示和工具调用权限，它们之间会互相引用、反驳、补充，这种“群聊”式的架构比单一大模型更逼真，能捕捉到人类决策中常见的权衡与妥协。前端使用Next.js，提供流畅的实时交互体验，让你看到决策过程而非结果。\n\n部署对开发者友好。克隆仓库后，初始化环境，配置Claude API密钥，启动后端服务和前端页面即可。项目结构清晰，文档详细，甚至包含了如何自定义Agent角色的指南。你可以轻松调整高管们的“性格”或专业领域，让团队更符合你的业务场景。\n\n适合创业团队、独立开发者或企业战略部门作为“思想陪练”。在正式开会前，用AI模拟高管视角预演 debates，可以发现盲点。对于想学习Multi-Agent架构的高级工程师，这也是一个极佳的代码范本，展示了如何管理多个状态ful的Agent通信。\n\nStar数接近4000，显示出良好的社区关注度。目前项目正在快速迭代，社区正在讨论如何接入更多模型和语音交互。相比传统的单Agent助手，OpenExecutive在复杂决策场景下的表现更胜一筹，但在资源消耗上较高，适合有一定技术栈基础的用户深入探索。",
+    "summaryCn": "能模拟高管决策并自动审批的企业级AI智能体。",
+    "reasonCn": "这是一个基于大模型的AI智能体，旨在解决企业内部审批与知识管理问题。它能接入企业知识库，根据设定好的规则处理费用审批，还能作为高管的“数字双胞胎”，通过聊天窗口帮高管处理邮件、回复消息。项目强调可配置的治理能力，确保AI在互动时符合企业的合规要求。",
+    "detailCn": "Open Executive 专为提升企业领导力和管理效率而设计，它是一个高度可配置的AI Agent系统。其核心价值在于将复杂的审批流程自动化，并让管理者能够通过对话方式处理海量信息。系统内置了对企业知识系统的支持，这意味着AI在回答问题或执行操作时，能够实时检索并引用公司内部的文档和数据，避免了信息孤岛。\n\n在交互层面，该项目打破了传统AI应用的局限，支持与主流协作平台无缝连接。它能够与Slack、Discord、Telegram等即时通讯工具以及Google Workspace、Notion等办公套件深度集成。管理者无需在多个APP间切换，只需在熟悉的聊天界面中对话，Open Executive就能作为助手介入工作流，自动处理邮件、回复消息或执行审批操作。\n\n为了确保在企业环境中的安全性，项目特别强调了“治理”这一概念。它不仅仅是把模型接进来，而是为AI与人类同事及其他AI系统的交互制定了明确的规则和边界。这意味着AI在行动时会有明确的审批阈值和合规性检查，防止出现不可控的决策风险。\n\n从部署和使用角度看，它并非一个简单的脚本，而是一个具备完整运行时环境的软件。用户需要从项目仓库获取安装包，按照文档配置环境后即可启动。安装完成后，用户需要配置好外部工具的API密钥以及企业的知识库连接，随后就可以通过MCP兼容的接口或聊天界面开始使用了。这套方案非常适合中大型企业，尤其是那些希望利用AI技术来标准化管理流程、减轻管理层负担的组织。",
     "stars": 4890,
     "starGrowth": 141,
     "createdAt": "2026-06-11T21:41:54Z",
@@ -5032,7 +5078,17 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.4638036809815951
+    "heatScore": 0.4638036809815951,
+    "facts": [
+      {
+        "claim": "支持与Slack、Discord等主流协作工具的深度集成。",
+        "source": "Out of the box it supports spend approval thresholds, integration with corporate knowledge systems, and defined governance for how it interacts with human colleagues and other AI systems. Open Executive can also be configured as a digital twin..."
+      },
+      {
+        "claim": "接入MCP协议兼容的AI工具生态。",
+        "source": "Out of the box it supports spend approval thresholds, integration with corporate knowledge systems, and defined governance for how it interacts with human colleagues and other AI systems."
+      }
+    ]
   },
   {
     "repo": "microsoft/SandDance",
