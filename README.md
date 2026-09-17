@@ -8,7 +8,7 @@
 
 - 🃏 **Addictive card feed**: card-based browsing with personalized recommendations — the thrill of short videos, the density of a real feed. Like / dislike / bookmark
 - 🧠 **AI Chinese recommendations**: LLM scoring (Zhipu GLM-4.7-Flash, free) writes a Chinese summary for every project
-- 🗂️ **Smart sections**: Dynamic (Recommended / Hot / Daily / Following) + Categories (AI / Fun / Tools / Learning)
+- 🗂️ **Smart sections**: Dynamic channels (Recommended / Hot / Daily / Fun / Following) + Zones (AI / Resources / Tools / Creative)
 - 👤 **Personalization**: your likes and dislikes train a personal feed (localStorage, no account needed)
 - ⭐ **Following**: follow creators you like — their projects and in-library repos they starred land in your Following channel (stored in your browser, no account needed)
 - 🔍 **Search**: full-library search with weighted ranking

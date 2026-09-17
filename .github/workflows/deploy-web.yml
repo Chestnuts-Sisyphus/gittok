@@ -64,6 +64,15 @@ jobs:
           fi
           # feed.json 由 vite prepare-feed 插件从 data/feed.json 剥离 detailCn 后写入 public/data
 
+      # 接口域名统一（2026-09-17）：feed.xml / manifest.json 原先只在 raw.githubusercontent
+      # 域名可达、站点 404——统一到站点域名，agent 与人类从同一入口拿全部接口（G5）。
+      # vite 会把 public/ 原样拷进 dist/。
+      - name: Copy feed interfaces (feed.xml / manifest.json)
+        run: |
+          cp feed.xml web/public/feed.xml
+          cp manifest.json web/public/manifest.json
+          ls -la web/public/feed.xml web/public/manifest.json
+
       - name: Build frontend
         working-directory: web
         run: npm run build
