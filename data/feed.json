@@ -3597,9 +3597,9 @@
     "owner": "chatwoot",
     "name": "chatwoot",
     "desc": "Open-source live-chat, email support, omni-channel desk. An alternative to Intercom, Zendesk, Salesforce Service Cloud etc. 🔥💬",
-    "summaryCn": "帮你把微信、邮件、网页聊天全拢到一个后台，客服效率翻倍的神器",
-    "reasonCn": "开源的多渠道客户支持平台，完美替代Intercom和Zendesk。支持Live Chat、Facebook、WhatsApp等20+渠道集成，内置AI助手自动回复、工单系统、知识库管理。自部署数据完全掌控，适合中小团队快速搭建专业客服体系，省下的SaaS订阅费够吃好几顿火锅。",
-    "detailCn": "你有没有遇到过这种情况：客户一会儿在微信问，一会儿在邮箱喊，还有人在官网右下角敲键盘，你得切三个窗口应付，累得半死还容易漏回消息？Chatwoot就是来解决这个痛点的。它像个超级中转站，把散落在各处的客户咨询全汇聚到一个后台，让你坐在一个屏幕前就能搞定所有沟通，再也不用当“消息流浪汉”了。\n\n技术上，Chatwoot基于Ruby on Rails和Vue.js构建，采用PostgreSQL数据库，架构清晰且易于二次开发。它的核心亮点是“全渠道统一收件箱”设计——无论是网页插件、移动端SDK，还是Facebook Messenger、WhatsApp Business API、邮件、SMS、Telegram、Slack等20多种渠道，都能接入同一个对话流。内置功能包括：实时聊天、工单流转、SLA超时预警、Canned Responses（快捷回复模板）、客户标签与分组、知识库文档管理、以及最近加入的Chatwoot AI（基于LLM的自动摘要和回复建议）。对于有开发能力的团队，它提供完整的REST API和Webhook支持，方便和企业内部的CRM、ERP系统打通。\n\n安装上手相当友好。推荐方式是官方Docker Compose一键部署：先克隆仓库，修改.env配置文件（填入数据库密码、SMTP邮件服务等），然后执行docker-compose up -d，几分钟内就能在本地或服务器跑起来。如果你用Heroku、Railway等云平台，也有1-Click部署按钮。社区版完全免费，核心功能无限制。升级商业版只需购买授权，解锁高级AI功能和更多渠道连接器。\n\n这个项目特别适合这几类人：中小企业的客服团队，想摆脱杂乱的多窗口操作；SaaS创业公司，需要给用户提供专业的在线帮助但预算有限；开发者，想基于它做定制化行业解决方案（如医疗、教育垂直客服）；注重数据隐私的企业，不愿意把客户聊天记录托管给Intercom这类国外SaaS。\n\n从社区生态来看，Chatwoot在GitHub上拥有35,000+ stars，是开源客服领域最活跃的项目之一。它由印度的Wati.io公司发起，但完全开源核心代码，商业模式是靠企业版高级功能盈利。相比竞品，它比Zoho Desk更轻量现代，比Zendesk便宜太多，比LiveChat更灵活可自部署。目前版本迭代迅速，每月都有新功能发布，尤其是AI能力的集成让它紧跟大模型趋势。如果你正在寻找一个既能立刻用、又能深度定制的客服中台，它绝对是首选。",
+    "summaryCn": "企业级开源客服平台，支持多渠道对话与 AI 自动化。",
+    "reasonCn": "Chatwoot 是一款现代化的开源客户支持平台，旨在替代 Intercom、Zendesk 等商业软件。它让企业能够自托管，完全掌控客户数据，同时提供强大的跨渠道对话管理工具。项目引入了名为 Captain 的 AI 代理，能自动处理常见问题并减轻人工负担。",
+    "detailCn": "Chatwoot 是一款现代化的开源客户支持平台，旨在替代 Intercom、Zendesk 等商业软件。它让企业能够自托管，完全掌控客户数据，同时提供强大的跨渠道对话管理工具。项目引入了名为 Captain 的 AI 代理，能自动处理常见问题并减轻人工负担。\n\n该平台的核心亮点在于其灵活性和控制力。不同于 SaaS 商业软件，Chatwoot 采用 Ruby 开发，允许用户通过 Docker 快速部署，实现私有化部署，保障敏感数据安全。其界面设计现代且易用，支持通过 Web、WhatsApp、Facebook Messenger、Twitter 等多种渠道管理客户咨询，将分散的沟通集中到一个工作台。\n\n在智能化方面，Chatwoot 集成了 Captain AI 代理。这个功能能够自动化回复常见问题，处理标准查询，从而显著减少人工客服的工作量，确保客户获得即时、准确的回答。这让团队可以将精力集中在处理复杂的对话上，而常规事务则由 AI 接手。\n\n安装和使用 Chatwoot 相对简单。用户可以通过 Docker 快速启动服务，这大大降低了部署门槛。部署完成后，系统会引导用户完成基础配置，即可开始搭建属于自己的客服系统。无论是初创公司还是需要独立数据管理的团队，都能通过它构建高效、可控的客户服务体系。",
     "stars": 36909,
     "starGrowth": 41,
     "createdAt": "2019-08-14T06:50:51Z",
@@ -3684,7 +3684,17 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.12633252052344954
+    "heatScore": 0.12633252052344954,
+    "facts": [
+      {
+        "claim": "内置名为 Captain 的 AI 助手",
+        "source": "Captain helps automate responses, handle common queries, and reduce agent workload"
+      },
+      {
+        "claim": "对标 Intercom 等商业平台",
+        "source": "an open-source alternative to Intercom, Zendesk, Salesforce Service Cloud etc."
+      }
+    ]
   },
   {
     "repo": "4ian/GDevelop",
@@ -4445,9 +4455,9 @@
     "owner": "debpalash",
     "name": "VoiceStudio",
     "desc": "VoiceStudio is the open-source, fully-local ElevenLabs alternative — voice cloning, voice design, video dubbing, dictation, transcription &amp; audiobook creation in 646 languages.",
-    "summaryCn": "本地替代 ElevenLabs，六百多种语言一键克隆和配音",
-    "reasonCn": "这是一个完全本地化的语音处理套件，支持语音克隆、语音设计、视频配音、语音转文字和有声书制作。它打破了网络依赖，能在本地实现类似 ElevenLabs 的专业级语音能力，覆盖全球 646 种语言，非常适合需要隐私保护或离线工作的场景。",
-    "detailCn": "想象一下，你完全不需要联网，就能在自家电脑上做出和 ElevenLabs 一样逼真的 AI 配音，还能把你的声音克隆出来，甚至把老电影翻译成中文，全程在本地完成，数据绝对安全。这就是 VoiceStudio 带给你的体验，它把原本需要云端算力的语音技术全部搬到了本地，让你的隐私不再泄露。\n\n在技术架构上，VoiceStudio 采用了模块化的设计，集成了语音克隆、语音合成、视频处理和转录等多种能力。它利用了先进的深度学习模型，能够在本地进行高精度的语音特征提取和合成，支持多种采样率和音频格式。与需要云端 API 调用的 ElevenLabs 不同，VoiceStudio 完全运行在你的机器上，这意味着你可以处理任何音频数据，而不需要担心上传到服务器后的隐私问题。\n\n安装和使用非常简单。项目提供了基于 Python 的安装脚本，你只需要克隆仓库并运行相应的命令即可。它支持多种操作系统，包括 Windows、macOS 和 Linux。对于视频配音，你可以直接导入视频文件，选择克隆的声音或预设的语音设计，然后一键生成配音视频，甚至可以自动生成字幕。\n\n这款工具非常适合内容创作者、视频制作者、翻译人员以及任何需要大量语音处理的开发者。如果你需要为视频配音、制作有声书、或者需要处理客户录音，VoiceStudio 都能大大提高你的效率。它也适合那些对数据隐私有极高要求的企业用户，可以安全地处理内部语音数据。\n\n目前项目在 GitHub 上已经获得了超过 1.7 万的 Star，社区活跃度很高，持续有新的功能更新和 bug 修复。虽然它还在快速迭代中，但已经展现出了强大的潜力。相比于 ElevenLabs，它的本地化优势非常明显，尤其是在处理敏感数据时，它是更安全、更可靠的选择。",
+    "summaryCn": "本地语音克隆与工作流引擎，支持视频配音与模型设计。",
+    "reasonCn": "VoiceStudio 是一款开源的语音克隆与工作流引擎，默认基于 k2-fsa/OmniVoice 构建。它允许用户在本地硬件上运行工作流，同时支持视频配音、语音克隆、语音设计及模型管理。项目提供跨平台下载，安装后即可通过图形界面快速生成语音或设计专属模型。",
+    "detailCn": "VoiceStudio 是一款开源的语音克隆与工作流引擎，默认基于 k2-fsa/OmniVoice 构建。它允许用户在本地硬件上运行工作流，同时支持视频配音、语音克隆、语音设计及模型管理。项目提供跨平台下载，安装后即可通过图形界面快速生成语音或设计专属模型。\n\n项目最大的亮点在于其“本地化”与“模块化”的结合。本地运行意味着用户的语音数据不会上传到云端，隐私安全得到保障。而模块化的设计则让用户可以自由组合功能，例如先进行语音克隆，再进行视频配音，甚至可以接入不同的推理引擎进行性能调优。\n\n安装和使用非常直观。用户可以从 Releases 页面下载对应平台的安装包（支持 macOS、Windows、Linux 和 Docker），按照平台指南安装后，打开“Voice cloning”功能，选择一个语音或添加一段干净的参考录音，输入想要生成的文本，系统会自动安装所需的模型。整个过程对硬件的要求取决于所选引擎，性能需求各异。\n\n除了基础的语音生成，VoiceStudio 还提供了“Voice design”和“工作流”功能，这对于想要深入探索声音技术或构建自动化音频处理流程的用户来说非常有吸引力。无论是个人娱乐、内容创作，还是技术探索，这款工具都能提供强大的支持。",
     "stars": 32463,
     "starGrowth": 330,
     "createdAt": "2026-04-09T21:40:26Z",
@@ -4526,7 +4536,21 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.3965955087330191
+    "heatScore": 0.3965955087330191,
+    "facts": [
+      {
+        "claim": "支持视频配音与语音克隆",
+        "source": "Explore the workspaces · Clone, dub, design & models"
+      },
+      {
+        "claim": "本地运行且可选远程服务",
+        "source": "Local workflows run on your hardware. Remote services are optional"
+      },
+      {
+        "claim": "提供跨平台下载指南",
+        "source": "macOS · Windows · Linux · Docker"
+      }
+    ]
   },
   {
     "repo": "lichess-org/lila",
@@ -4622,9 +4646,9 @@
     "owner": "vercel-labs",
     "name": "agent-browser",
     "desc": "Browser automation CLI for AI agents",
-    "summaryCn": "让AI Agent像人一样操控浏览器的自动化利器",
-    "reasonCn": "这个项目由Vercel Labs出品，核心架构基于Playwright浏览器自动化引擎，但针对AI Agent的使用场景做了深度优化。它提供了一个简洁的CLI命令行界面，AI Agent可以通过自然语言指令或直接调用API来驱动浏览器行为。技术上支持无头模式（headless）和可视化模式两种运行方式，可以通过",
-    "detailCn": "想象一下，你的AI助手不仅能查资料、写代码，还能打开浏览器帮你操作网页——填表单、点按钮、抓数据，就像真人一样。以前AI Agent只能处理结构化API数据，遇到需要浏览器交互的任务就束手无策。agent-browser正是为了解决这个gap而生的。\n\n这个项目由Vercel Labs出品，核心架构基于Playwright浏览器自动化引擎，但针对AI Agent的使用场景做了深度优化。它提供了一个简洁的CLI命令行界面，AI Agent可以通过自然语言指令或直接调用API来驱动浏览器行为。技术上支持无头模式（headless）和可视化模式两种运行方式，可以通过插件系统扩展更多能力，也能与主流Agent框架无缝集成。\n\n上手非常简单，安装后通过命令行启动，Agent可以直接调用浏览器操作接口。基本用法包括导航到指定URL、等待元素出现、点击按钮、填写表单、截图保存等操作。代码示例也很直观，几行就能让Agent完成一个复杂的网页交互任务。官方文档提供了与各类Agent框架的集成指南。\n\n这个项目特别适合AI应用开发者、自动化测试工程师、以及需要让Agent处理网页任务的场景。比如你需要让Agent自动登录某个网站爬取数据、批量提交表单、或者测试Web应用的用户流程，它都能派上用场。也适合想做\"浏览器版Copilot\"类产品的人参考实现。\n\n作为Vercel Labs的产物，项目信誉和持续维护有保障，star数已超4万。浏览器自动化领域竞品有Playwright本身、Selenium等，但agent-browser的独特之处在于专门为AI Agent设计，解决了Agent与浏览器交互的最后一公里问题，是目前这个方向上最受关注的项目之一。",
+    "summaryCn": "为 AI 代理提供浏览器操作能力的命令行工具。",
+    "reasonCn": "这是一个用 Rust 编写的命令行工具，专门设计给 AI 智能体使用。它能帮助 AI 代理像人类一样在浏览器中执行操作，比如点击按钮、填写表单或抓取网页内容。通过原生 Rust 的性能优势，它比传统的自动化脚本更快、更可靠，非常适合集成到各种 AI 应用中，让 AI 能够真正“操作”互联网。",
+    "detailCn": "Vercel Labs 推出的 agent-browser 是一款基于 Rust 开发的原生命令行工具，旨在为 AI 智能体提供强大的浏览器自动化能力。它的核心目标是将 AI 从“阅读信息”提升到“执行操作”的层面。传统上，AI 处理网页信息需要依赖繁琐的文本解析或截图识别，而 agent-browser 让 AI 能够直接控制浏览器，执行真实的交互动作，这为构建更智能、更自主的 AI 应用打开了新的可能。\n\n该项目的最大亮点在于其“原生”的性能和简洁的接口。它不是基于 Python 的 Selenium 或 Puppeteer 等通用框架，而是直接用 Rust 重写了底层逻辑，保证了极高的执行效率和稳定性。对于开发者来说，这意味着在处理复杂任务时，AI 代理的响应会更快，且不易出现资源占用过高或进程卡死的问题。同时，它提供了非常简单的安装和使用方式，无论是作为全局命令行工具，还是作为本地依赖引入到 Node.js 项目中，都能快速集成。\n\n安装和使用过程非常直观。在支持 Homebrew 的 macOS 系统上，用户只需一条命令即可安装。对于开发者，最推荐的方式是通过 npm 安装为本地依赖，这样可以在 package.json 中锁定版本，方便团队协作和项目部署。安装完成后，开发者可以直接在 package.json 的 scripts 中配置任务，或者直接在终端调用 `agent-browser` 命令。虽然目前文档主要集中在安装和依赖说明上，但其设计思路非常清晰，就是要把浏览器自动化变成 AI Agent 的标准组件，让它们能像人一样在网上自由探索和操作。",
     "stars": 42811,
     "starGrowth": 88,
     "language": "Rust",
@@ -4692,7 +4716,17 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.2701666394151036
+    "heatScore": 0.2701666394151036,
+    "facts": [
+      {
+        "claim": "使用 Rust 编写的原生浏览器自动化 CLI",
+        "source": "Fast native Rust CLI."
+      },
+      {
+        "claim": "支持从 npm 脚本或直接调用",
+        "source": "use via `package.json` scripts or by invoking `agent-browser` directly."
+      }
+    ]
   },
   {
     "repo": "agentscope-ai/agentscope",
@@ -4961,9 +4995,9 @@
     "owner": "microsoft",
     "name": "SandDance",
     "desc": "Visually explore, understand, and present your data.",
-    "summaryCn": "微软开源的数据可视化神器，让数据跳舞给你看",
-    "reasonCn": "SandDance由微软研究院开发，底层基于React和D3.js，但做了大量定制化优化。它的核心亮点是\"视图编排\"——当你切换不同视图时（比如从表格到柱状图再到散点图），数据会以平滑的动画过渡，帮你建立视觉记忆，理解数据在不同维度下的表现。",
-    "detailCn": "想象一下，数据不再是静态的表格和枯燥的柱状图，而是像在屏幕上跳舞一样，用流畅的动画、色彩和3D效果展示数据之间的关系。这就是SandDance想做的事情——让数据可视化不再是为了\"看\"，而是为了\"感受\"数据。\n\nSandDance由微软研究院开发，底层基于React和D3.js，但做了大量定制化优化。它的核心亮点是\"视图编排\"——当你切换不同视图时（比如从表格到柱状图再到散点图），数据会以平滑的动画过渡，帮你建立视觉记忆，理解数据在不同维度下的表现。这种动态过渡体验是普通静态图表工具做不到的。\n\n使用SandDance非常简单。它提供了一个npm包：npm install @ms/sanddance，然后在React项目中引入组件即可。它也提供了独立的可部署版本，你可以把CSV或JSON数据导入，直接在浏览器里探索。官方文档和社区示例非常丰富，上手几乎没有门槛。\n\n这个项目适合：数据分析师想做出让人眼前一亮的可视化报表；前端开发者想学习高级数据可视化技术；产品经理需要快速原型展示数据洞察；以及任何觉得图表太无聊想玩点花活的人。微软内部的一些数据产品也在用它。\n\nStar超过7000，由微软官方维护，质量有保障。在数据可视化这个领域，它有独特的位置——不追求最复杂的图表类型，而是专注于\"动态叙事\"和\"视觉体验\"。相比D3.js的灵活但复杂、ECharts的功能丰富但偏静态，SandDance走的是\"让数据自己讲故事\"的路线，非常适合需要向非技术受众展示数据的场景。",
+    "summaryCn": "微软出品的数据可视化神器，让枯燥表格瞬间变成可交互的 3D 魔法。",
+    "reasonCn": "这是一款基于 Web 的数据可视化探索工具，它能帮你把成千上万行的表格数据，瞬间转化为直观的 3D 视图。用户可以通过拖拽滑块、点击按钮，自由切换不同的视觉风格，比如按数值大小改变方块大小、用颜色标记类别、甚至让方块悬浮在空中旋转。这种交互方式能让你在几秒钟内发现数据中的异常点和隐藏规律，从而更轻松地讲好数据故事。它不仅是看数据的工具，更是支持决策、测试假设的利器。",
+    "detailCn": "SandDance 是微软开源的一款数据可视化探索工具，旨在帮助用户更直观地理解和呈现数据。传统的数据报表往往枯燥乏味，而 SandDance 通过引入“单元可视化”的概念，将数据库中的每一行数据都映射为一个独立的视觉标记，无论是立方体、平面还是粒子，都能在屏幕上找到自己的位置。这种 1 对 1 的映射关系，让你在调整筛选条件时，能清晰地看到数据在空间中的变化，从而保持对数据的上下文感知。\n\n它的核心亮点在于丰富的视图切换和流畅的动画过渡。当你从一个维度切换到另一个维度时，数据不会生硬地跳变，而是平滑地变形，这种体验就像是在玩一个高精度的数据魔方。你可以利用颜色、大小、位置等视觉通道来编码不同的属性，比如用暖色调表示高数值，用立方体的堆叠高度表示数量。这种多维度的探索方式，能让你从单一图表中跳脱出来，从不同角度审视数据，发现那些在二维表格中容易被忽略的细微差异。\n\n安装和使用非常简单，无需复杂的编程环境。你可以直接在浏览器中打开它的在线演示页面，或者将其作为插件嵌入到你的 Web 应用中。对于开发者来说，它提供了 TypeScript SDK，方便你在自己的项目中快速集成。安装方式通常是从项目仓库获取最新版本，然后按照官方文档进行引入。上手后，你只需要上传 CSV 或 JSON 文件，就能立即开始探索，无需编写任何代码。这种即插即用的设计，使得它非常适合数据分析师、产品经理以及任何需要向他人展示数据洞察的人使用。",
     "stars": 7146,
     "starGrowth": 0,
     "createdAt": "2018-11-05T22:45:31Z",
@@ -5037,7 +5071,21 @@
     "category": "tool",
     "momentum": [],
     "fromOfficial": true,
-    "heatScore": 0
+    "heatScore": 0,
+    "facts": [
+      {
+        "claim": "通过 1 对 1 映射实现数据与视觉标记对应",
+        "source": "SandDance uses unit visualizations, which apply a one-to-one mapping between rows in your database and marks on the screen."
+      },
+      {
+        "claim": "提供流畅的视图间动画过渡",
+        "source": "Smooth animated transitions between views help you to maintain context as you interact with your data."
+      },
+      {
+        "claim": "新版采用模块化设计，支持嵌入应用",
+        "source": "This new version of SandDance has been rebuilt from scratch with the goal of being modular, extensible, and embeddable into your custom applications."
+      }
+    ]
   },
   {
     "repo": "ast-grep/ast-grep",
@@ -5306,9 +5354,9 @@
     "owner": "LLMQuant",
     "name": "quant-mind",
     "desc": "QuantMind is an open source agent-native knowledge extraction and retrieval framework for quantitative finance.",
-    "summaryCn": "专为量化金融打造的大脑，把财报变成智能助手。",
-    "reasonCn": "QuantMind 是一个面向量化金融领域的原生Agent框架，专注于知识提取与检索。它通过RAG技术和向量数据库，能够自动解析海量金融文档，将非结构化数据转化为结构化知识图谱。作为金融领域的垂直Agent基础设施，它解决了传统金融分析中信息处理效率低、知识利用难的痛点，为量化研究员提供了智能化的知识增强与分析工具。",
-    "detailCn": "想象一下，量化分析师每天面对成百上千份行业研报和财报，手动提取数据不仅枯燥还容易出错。QuantMind 就像是为量化金融量身定制的一个超级大脑，它能帮你自动读懂这些枯燥的文件，并从中提取出关键的投资线索。\n\n在技术架构上，QuantMind 独特的 Agent Native 设计让它不像传统工具那样被动执行指令，而是能主动理解上下文、进行推理和调用工具。它结合了检索增强生成（RAG）与知识图谱技术，把零散的文档信息编织成一张紧密的知识网。这让它不仅能“看懂”文本，还能“记住”并关联复杂的金融逻辑，这是纯文本检索做不到的。\n\n上手非常简单。首先需要安装 Python 环境，然后通过 pip 安装 QuantMind 的核心库。接着，你可以加载预训练的金融模型，并配置好向量数据库（如 ChromaDB）来存储文档索引。只需要编写几行配置代码，就能让 Agent 自动读取本地或在线的 PDF/Excel 财报文件，进行智能问答和数据提取。\n\n这玩意儿特别适合量化研究员、金融数据分析师，以及那些正在构建金融垂类 AI 应用的开发者。如果你需要处理大量非结构化金融数据，想要构建一个能聊能算的金融助手，它绝对是个好帮手。目前该项目在 GitHub 上已经有两千多星，社区正在快速成长，在垂直领域的 AI Agent 方面很有潜力。",
+    "summaryCn": "量化金融知识处理器，将非结构化信息转化为可信结构化知识。",
+    "reasonCn": "QuantMind是一款面向量化金融领域的知识处理工具，旨在解决金融信息繁杂且非结构化的问题。它通过将论文、新闻和财报等原始资料，转化为带有类型、引用和时间戳的结构化知识，为下游的检索和推理提供可靠数据基础。项目强调知识的持久性和独立性，确保每条知识都能在特定时间点被独立查询和分析。",
+    "detailCn": "QuantMind本质上是一个信息处理器，专注于量化金融领域。它通过复杂的管道将原始的金融数据——包括学术论文、市场新闻和官方文件——转化为高质量的结构化知识。这种处理不仅仅是简单的文本清洗，而是为每一条知识赋予了明确的类型、来源引用以及精确的时间戳。这些属性使得知识在时间维度上具有可追溯性，并在独立查询时保持其完整性和可信度。\n\n项目的设计理念反映了当前构建流程的新趋势，即越来越多地由智能体来执行这些繁琐的知识工程任务。这意味着QuantMind不仅是一个静态的工具，更是一个支持自动化和智能化的系统，能够配合代码代理和人类操作员，持续地优化和完善金融知识库。对于需要处理大量金融资讯的专业人士来说，它提供了一种将信息转化为可执行情报的有效途径。\n\n安装和使用该项目的第一步是获取源码，用户可以从项目的官方仓库下载。项目提供了详细的文档来指导开发者如何搭建环境以及如何配置数据流。由于这是一个复杂的系统，建议用户按照官方文档进行配置，这通常涉及设置必要的依赖项和API接口。一旦配置完成，用户就可以将金融文档输入系统，系统将自动处理并输出结构化的知识结果。\n\n该工具非常适合量化分析师、金融研究人员以及需要构建金融情报系统的开发者。如果你面临大量非结构化金融数据难以快速提取核心价值的挑战，QuantMind提供了一个强有力的解决方案。它通过将杂乱的信息转化为有序的知识资产，极大地降低了后续分析和决策的门槛，让机器和人类都能更高效地处理和理解金融信息。",
     "stars": 2977,
     "starGrowth": 94,
     "language": "Python",
@@ -5377,7 +5425,21 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.3767262344642257
+    "heatScore": 0.3767262344642257,
+    "facts": [
+      {
+        "claim": "将金融信息转化为可检索推理的结构化知识",
+        "source": "refines raw financial information — papers, news, filings — into structured financial knowledge"
+      },
+      {
+        "claim": "每条知识保留引用和时间戳",
+        "source": "Every piece of knowledge is typed, keeps its citation, and knows its timestamp"
+      },
+      {
+        "claim": "支持时间查询",
+        "source": "time-queries standalone"
+      }
+    ]
   },
   {
     "repo": "readysettech/readyset",
