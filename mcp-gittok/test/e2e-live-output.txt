@@ -1,0 +1,41 @@
+# GitTok MCP 线上 e2e 留证
+# 时间：2026-09-17T11:35:50.697Z
+# 入口：node mcp-gittok\dist\index.js
+
+## tools/list → search, top, detail
+
+PASS  tools/list 恰好三个工具且名为 search/top/detail
+## search(query="绘图", limit=5)
+{"ok":true,"query":"绘图","results":[{"repo":"Comfy-Org/ComfyUI","url":"https://github.com/Comfy-Org/ComfyUI","owner":"Comfy-Org","name":"ComfyUI","desc":"The most powerful and modular diffusion model GUI, api and backend with a graph/nodes interface.","summaryCn":"AI绘图的'乐高工厂'，可视化搭积木画出来","reasonCn":"ComfyUI 以节点式可视化界面著称，通过拖拽连接功能模块构建图像生成工作流，支持 Stable Diffusion、SDXL、Flux 等多种模型，可自由组合采样器、高清修复、ControlNet 等插件，实现高度定制化的创作流程，是 Stable Diffusion 生态中最灵活的 GUI 之一。","stars":133516,"starGrowth":748,"language":"Python","zone":"创意","funScore":1,"heatScore":0.3168069744450103,"createdAt":"2023-01-17T03:15:56Z","topics":["ai"],"rank":1},{"repo":"tt-a1i/archify","url":"https://github.com/tt-a1i/archify","owner":"tt
+
+PASS  search 中文命中非空且全库张数 ≥2000
+## search(query="vector database", limit=3) → zilliztech/VectorDBBench, likeslines-maker/VectorRAG.Net, meilisearch/meilisearch
+
+## top(sort=hot, limit=5)  pool=1861
+[{"rank":1,"repo":"alibaba/open-code-review","starGrowth":3231,"zone":"工具"},{"rank":2,"repo":"firecrawl/firecrawl","starGrowth":1642,"zone":"AI"},{"rank":3,"repo":"bilawalsidhu/gods-eye-view","starGrowth":979,"zone":"创意"},{"rank":4,"repo":"tonhowtf/omniget","starGrowth":869,"zone":"工具"},{"rank":5,"repo":"ever-co/ever-gauzy","starGrowth":778,"zone":"工具"}]
+
+PASS  top(hot) 热门池 ≥300 且返回 5 条带 rank
+## top(sort=fun, limit=3)  pool=930 → Sudharsanselvaraj/Token-Print, anywhere-labs/dsh-desktop, Stirling-Tools/Stirling-PDF
+
+## top(sort=daily, limit=3)  pool=1203 → Sudharsanselvaraj/Token-Print, jplenio/ComfyUI-MiniMax-Music-Production-Toolkit, DuarteSantos8/openGym
+
+## top(sort=hot, zone=创意, limit=3)  pool=225 → bilawalsidhu/gods-eye-view, Comfy-Org/ComfyUI, vivizzz007/vivi-music
+
+PASS  top(zone=创意) 结果全为该分区
+## detail(repo="huggingface/transformers")
+{"ok":true,"found":true,"detailSource":"inline","detailCnLen":514,"summaryCn":"AI界的瑞士军刀，一行代码调用数百种预训练模型，从文字到图像无所不能。","stars":166251,"zone":"AI"}
+
+PASS  detail 命中完整卡片且含 detailCn 长文
+## detail(repo="not/a-real-repo-xyz") → found=false, suggestions=0
+
+PASS  detail 不存在 → found:false 且不报错
+## search(query="  ") → isError=true reason=empty_query
+
+PASS  空查询 → isError + empty_query
+## search(no-hit) → ok=true results=0 note=有
+
+PASS  无结果 → ok:true + 空列表 + note
+
+# 结论：ALL PASS
+# 数据来源：https://cdn.jsdelivr.net/gh/Chestnuts-Sisyphus/gittok@master/data/feed.json
+# 全库张数：2649（拉取于 2026-09-17T11:35:50.702Z）

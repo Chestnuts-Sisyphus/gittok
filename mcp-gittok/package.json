@@ -1,0 +1,40 @@
+{
+  "name": "gittok-mcp",
+  "version": "1.0.0",
+  "description": "GitTok MCP server — search / top / detail over the public GitTok feed (Chinese open-source feed; anonymous, no API key)",
+  "type": "module",
+  "license": "MIT",
+  "bin": {
+    "gittok-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "mcp",
+    "modelcontextprotocol",
+    "gittok",
+    "github",
+    "feed"
+  ],
+  "scripts": {
+    "build": "node build.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test test/parity.test.mjs",
+    "test:live": "node test/e2e-live.mjs",
+    "selftest": "node dist/index.js --selftest"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "^25.3.5",
+    "esbuild": "^0.25.0",
+    "typescript": "^5.7.0"
+  }
+}

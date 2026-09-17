@@ -2,6 +2,10 @@
 .DS_Store
 node_modules/
 dist/
+# mcp-gittok 的单文件分发产物**有意入仓**（零安装：克隆后 node mcp-gittok/dist/index.js 即可跑，
+# 也是 README / llms.txt 给 agent 的下载入口）；下面两条把它从上一行的 dist/ 规则里放行。
+!mcp-gittok/dist/
+!mcp-gittok/dist/**
 social/
 *.tsbuildinfo
 web/dist/

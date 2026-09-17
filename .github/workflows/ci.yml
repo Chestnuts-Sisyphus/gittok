@@ -47,3 +47,34 @@ jobs:
       # 显示张数 = 实际张数、前缀配额合规。
       - name: Channel capacity check（V-C）
         run: npx tsx scripts/gittok-channel-capacity.ts
+
+  # GitTok MCP server（2026-09-17）：search / top / detail 三 tool 的打包与测试。
+  # 关键一步是 parity 测试——把打包产物与站点源码（web/src/search.ts、
+  # src/feed/channel-policy.ts）直跑结果逐条比对，防止 MCP 侧长出第二套排序逻辑。
+  mcp-gittok:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        working-directory: mcp-gittok
+        run: npm ci
+
+      - name: Typecheck
+        working-directory: mcp-gittok
+        run: npm run typecheck
+
+      - name: Build bundle
+        working-directory: mcp-gittok
+        run: npm run build
+
+      - name: Test（parity + 边界）
+        working-directory: mcp-gittok
+        run: npm test
