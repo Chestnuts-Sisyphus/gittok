@@ -3,6 +3,7 @@ import type { ChangeEvent } from "react";
 import type { FeedCard, Collection } from "./types.ts";
 import { FeedCardMemo, CardDetail, GithubAvatar } from "./FeedCard.tsx";
 import { CreatorPage } from "./CreatorPage.tsx";
+import { AgentPage } from "./AgentPage.tsx";
 import { weightedSearch } from "./search.ts";
 import { loadSafe, saveDual, migrateLegacyKeys } from "./storage.ts";
 import { mergeDetail, prefetchFeedDetails, warmFeedDetails, getFeedDetailsIfReady } from "./feed-payload.ts";
@@ -130,7 +131,7 @@ function exportBackup(): void {
   URL.revokeObjectURL(url);
 }
 
-type Tab = "feed" | "search" | "me";
+type Tab = "feed" | "search" | "agent" | "me";
 
 interface Feedback {
   likes: string[];
@@ -832,7 +833,18 @@ function FeedVirtualList({
 // ---------------------------------------------------------------------------
 
 export default function App() {
-  const [tab, setTab] = useState<Tab>("feed");
+  // 初始 tab 支持 #agent 深链（Agent 接入页可被 llms.txt / 文档指到）
+  const [tab, setTabState] = useState<Tab>(() =>
+    typeof window !== "undefined" && window.location.hash === "#agent" ? "agent" : "feed",
+  );
+  const setTab = useCallback((t: Tab) => {
+    setTabState(t);
+    try {
+      history.replaceState(null, "", t === "feed" ? "#" : `#${t}`);
+    } catch {
+      // 非浏览器/受限环境不报错，仅状态切换
+    }
+  }, []);
   // 我的页子视图（喜欢/收藏/关注；关注体系在任务书 B）
   const [meView, setMeView] = useState<"liked" | "collections" | "following">("liked");
   const [cards, setCards] = useState<FeedCard[]>([]);
@@ -1486,6 +1498,10 @@ export default function App() {
               <Search size={16} />
               搜索
             </button>
+            <button className={`tab${tab === "agent" ? " active" : ""}`} onClick={() => setTab("agent")}>
+              <Bot size={16} />
+              Agent
+            </button>
             <button className={`tab${tab === "me" ? " active" : ""}`} onClick={() => setTab("me")}>
               <User size={16} />
               我的
@@ -1520,6 +1536,9 @@ export default function App() {
             />
           ) : (
             <>
+              {/* === Agent 接入 tab（四条路径 / 服务自检 / 三步接入） === */}
+              {tab === "agent" && <AgentPage />}
+
               {/* === 首页 tab === */}
               {tab === "feed" && loading && (
                 <div className="status">
