@@ -165,7 +165,8 @@ Mimosa 完整扫描跑完（49 条 findings 已分类给判词）；
 |---|---|---|---|---|---|
 | 首轮 | 09-17 20:38 | 1 | 4 | 1 | 站点域名已查（coolify） |
 | 续跑 1 | 09-17 22:14–22:37 | 13 | 17 | 14 | **14/14 逐字段一致**（summary/reason/detail/facts 全等） |
-| 续跑 2 | 09-17 22:40–23:40 | 9 | 7 | 23 | 待 push 后回查 |
+| 续跑 2 | 09-17 22:40–23:40 | 9 | 7 | 23 | **23/23 逐字段一致**（summary/reason/detail/facts 全等） |
+| 续跑 3 | 09-17 23:48 | 0 | 0 | 23 | 三通道全退场 → 脚本 **1 秒内退出**（`无可用 lane…state 未变`，不空转） |
 
 - **续跑 1 实跑**：写回 13 张（`trailhq/Graft`、`fleetbase/fleetbase`、`dsh-tauri-desk/deepseek-harness-desktop`、
   `gethomepage/homepage`、`tinyhumansai/openhuman`、`huggingface/transformers`、`bojieli/ai-agent-book`、
@@ -181,11 +182,13 @@ Mimosa 完整扫描跑完（49 条 findings 已分类给判词）；
   `openrouter` 免费额度打满（`429 free-models-per-day`，需 UTC 零点=本地 08:00 重置）、
   `modelscope` 单账号反复 60s 熔断，两通道交替冷却，故实际产出低于续跑 1。
 - **当前比例**：**写回 23 / 不过闸 1868（1.23%）**；仍剩约 1845 张待跑。
-- **线上反查（截至续跑 1，commit `ee0fa10`）**：`Deploy Web` 对 `ee0fa10` **success**；
-  站点 `https://chestnuts-sisyphus.github.io/gittok/data/feed.json`（200，4,428,290 B）与
-  `/data/feed-details.json`（200，4,757,759 B）下载后与本地 `data/feed.json` **逐字段比对**：
-  `summaryCn`/`reasonCn`/`facts`（feed.json）与 `detailCn`（feed-details.json）**14 张全部一致**。
-  复跑：`python - <<'PY' …PY` 比对脚本（见本节末），或直接 `curl` 站点域名（**新鲜**，jsDelivr 有 CDN 缓存滞后）。
+- **线上反查（截至续跑 2，commit `a40d49c`）**：`CI` 与 `Deploy Web` 对 `ee0fa10`、`a40d49c` 均 **success**；
+  站点 `https://chestnuts-sisyphus.github.io/gittok/data/feed.json`（200，4,431,979 B）与
+  `/data/feed-details.json`（200，4,753,859 B）下载后与本地 `data/feed.json` **逐字段比对**：
+  `summaryCn`/`reasonCn`/`facts`（feed.json）与 `detailCn`（feed-details.json）
+  **23 张全部一致（23/23，DIFF 0）**。
+  复跑：本节末 Python 比对脚本（直接整段贴进 `python -` 执行），或 `curl` 站点域名
+  （**新鲜**，jsDelivr 有 CDN 缓存滞后，勿用 jsDelivr 判新鲜度）。
 - **续跑入口（state 位置）**：`data/recopy-state.json`（指纹 `recopy:v6-copy+facts:1`，
   `done`/`failed` 各记 repo→时间/lane/闸名）。续跑命令（同一行反复跑即可，完事自动跳过）：
   `npx tsx scripts/gittok-recopy.ts --limit=30 --max-minutes=60`
@@ -200,13 +203,24 @@ Mimosa 完整扫描跑完（49 条 findings 已分类给判词）；
   `POST https://open.bigmodel.cn/api/paas/v4/chat/completions`，模型 `glm-4.7-flash`）：
   **HTTP 429 / code 1305「该模型当前访问量过大」，0.3s 返回** —— 属智谱服务端过载而非我方额度，
   故**不强行纳回**（`SCHED_IGNORE_LANE_HEALTH=1` 只会换来快速 429，纯浪费）；等其自然恢复。
+- **23:48 状态：三条免费通道全部退场，批次循环被阻塞**（脚本快速退出，不空转）。各通道账面复活时间：
+
+  | 通道 | 退场类别 | 账面复活（本地） | 实际额度重置（推定） |
+  |---|---|---|---|
+  | `zhipu:glm-4.7-flash` | quota-daily | **09-18 08:18** | 服务端过载，随流量缓解 |
+  | `openrouter:nemotron:free` | quota-daily | **09-18 11:42** | 免费日额按 **UTC 日** → 本地 08:00 |
+  | `custom:modelscope:DeepSeek-V4-Flash` | quota-exhausted | **09-18 23:39** | 免费日额（本地日）→ 可能 00:00 已重置 |
+
+  → 账面退场期是**保守定时器**（`RETIRE_MS`：daily 12h / exhausted 24h），**晚于**真实额度重置；
+  故次日恢复跑时应**先用一次最小真实调用探测**，再用 `SCHED_IGNORE_LANE_HEALTH=1` 把已重置的通道
+  纳回矩阵（该开关只放行这 3 条免费通道，付费仍被 `GITTOK_ALLOW_PAID` 双保险挡住）。
 - **诚实结论**：链路已被两轮实跑+线上反查证明可用（免费通道→生产全闸→过闸写回→push→线上一致）；
   但**免费额度仍是唯一瓶颈**——续跑 1 耗时 23 分钟写回 13 张（≈0.56 张/分钟），
   且含多次通道冷却等待；全量 1854 张按当前速率需跨时段长期续跑（凌晨/清晨额度更好）。
 - **线上反查复跑脚本**（本机 Python，逐字段比对；站点域名=新鲜，勿用 jsDelivr 判新鲜度）：
 
 ```python
-# 用法：在 D:/AI/QODER/1/os-feed 下 python vercmp.py
+# 用法：在 D:/AI/QODER/1/os-feed 下执行（整段贴进 python - 或存为 vercmp.py 后 python vercmp.py）
 import json, urllib.request
 B = "https://chestnuts-sisyphus.github.io/gittok/data/"
 def get(p):
