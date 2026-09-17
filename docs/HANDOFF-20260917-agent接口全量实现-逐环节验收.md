@@ -180,6 +180,7 @@ Agent 接入页上线（T10）后经 **09-18 V2 设计打磨（S1）**：代码�
 | **续跑 5** | **09-18 03:15–03:43**（夜循环 iter 25） | **3** | 8 | **31** | **31/31 逐字段一致**（summary/reason/detail/facts 全等，commit `43a0353`） |
 | **续跑 6** | **09-18 03:53–04:41**（夜循环 iter 26） | **2** | 30 | **33** | **33/33 逐字段一致**（summary/reason/detail/facts 全等，commit `9113b67`） |
 | **续跑 7** | **09-18 04:47–05:47**（夜循环 iter 27） | **6** | 23 | **39** | **39/39 逐字段一致**（summary/reason/detail/facts 全等，commit `7e86b18`） |
+| **续跑 8** | **09-18 05:52–进行中**（夜循环 iter 28） | **2（至 06:50）** | — | **41** | 待本轮结束后统一反查 |
 
 - **续跑 1 实跑**：写回 13 张（`trailhq/Graft`、`fleetbase/fleetbase`、`dsh-tauri-desk/deepseek-harness-desktop`、
   `gethomepage/homepage`、`tinyhumansai/openhuman`、`huggingface/transformers`、`bojieli/ai-agent-book`、
@@ -344,12 +345,18 @@ print(f"线上逐字段一致 {ok}/{len(state['done'])}")
 - **产出**：写回 **6 张（迄今单轮最高）**，累计 **33 → 39**：`sharkdp/fd`、`cockroachdb/cockroach`、
   `web-infra-dev/midscene`、`Mintplex-Labs/anything-llm`、`ublue-os/bazzite`、
   `SenteLabsAI/OpenExecutive`；未过闸 23 张。
-- **关键结论修正（对 S5 清单）**：这 6 张里 **5 张正是 S5「连续 2 轮不过闸」那 8 张的成员**
-  （`sharkdp/fd`、`cockroachdb/cockroach`、`midscene`、`anything-llm`、`bazzite`）。
-  连同续跑 5 的 `anywhere-labs/dsh-desktop`，**S5 清单里的 8 张已过 6 张**。
-  → **S5 那份清单必须整体降级为"观察名单"**：它当时记录的"连续 2 轮不过闸"完全不构成恒不过闸，
-  真正需要的是「连续 N 轮（N≥3）+ 原因为内容类而非通道类」双条件，且必须等队列收敛后再判。
-  这条修正已同步回 `docs/T7-不过闸卡清单与判定-20260918.md` 的判定口径。
+- **⚠️ 本节曾错报，06:55 已更正**：初版写「这 6 张里 5 张是 S5 那 8 张的成员，8 张已过 6 张」——
+  **错误**。`cockroachdb/cockroach`、`midscene`、`anything-llm`、`bazzite` **不在** S5 的 8 张里
+  （它们属续跑 4/5 的失败面），当时把两批失败集合混了。**以 `data/recopy-state.json` 逐条核对后的准确数**：
+  本节 6 张里只有 `sharkdp/fd` 是 S5 成员。
+- **S5 那 8 张的准确去向（截至 09-18 06:50）**：**已过闸 3 张**
+  （`anywhere-labs/dsh-desktop` 续跑 5、`sharkdp/fd` 续跑 7、`justcallmekoko/ESP32Marauder` 续跑 8）；
+  **仍不过闸 5 张** —— 4 张内容类（`xmanrui/dsh-im`、`qdrant/qdrant`、`go-gitea/gitea`、`yt-dlp/yt-dlp`）
+  + 1 张**通道类**（`AlkaidLab/foundation-sunshine`，仍是 OpenRouter `429 free-models-per-day`，等 08:00 重置）。
+  → **S5 清单应降级为"观察名单"**：实测 3/8 自愈，说明"连续 2 轮不过闸"不构成恒不过闸；
+  判定需「连续 N 轮（N≥3）+ 内容类原因 + 队列已收敛」三条件同时成立。
+  按此口径**目前 8 张里没有一张够格进"恒不过闸"**。口径与逐条去向已同步到
+  `docs/T7-不过闸卡清单与判定-20260918.md` 顶部。
 - **通道侧**：zhipu 本轮节流缓解（前一轮的 `通道熔断 60s` 频次明显下降），故单轮产出回升到 6 张 ——
   也印证"吞吐由通道节流决定，不由卡本身难度决定"。
 - **机器校验**：`校验通过：卡数 2655，写回累计 39 张，判据字段零改动`。
