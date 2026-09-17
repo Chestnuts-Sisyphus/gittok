@@ -2292,11 +2292,15 @@ button {
 /* --- Agent 接入页（第四 tab：让 Agent 直接使用 GitTok） --- */
 
 .agent-page {
-  max-width: 1080px;
+  /* 与 .creator-page / .detail-card 同为 1200px，全站内容区宽度一致 */
+  max-width: 1200px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  /* 文字用强调色：--accent(#6366f1) 在深底上仅 4.12:1，不过 WCAG AA；
+     #818cf8 在玻璃卡上 6.07:1，仅本页生效，不动全站 token */
+  --agent-accent-text: #818cf8;
 }
 
 .agent-hero {
@@ -2307,6 +2311,7 @@ button {
   font-size: 1.7rem;
   font-weight: 800;
   margin: 0 0 8px;
+  text-wrap: balance;
   background: var(--accent-gradient);
   -webkit-background-clip: text;
   background-clip: text;
@@ -2429,9 +2434,12 @@ button {
   cursor: default;
 }
 
+/* 10 项 × 2 列 = 5 行整（此前 4 列会把末行剩 2 格空白，且 253px 单元格装不下
+   「MCP 单文件（CDN）200 782KB，零依赖」，实测名称被截成「MCP 单文...」） */
 .agent-status-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  /* min(420px, 100%)：窄屏（容器 < 420px）时轨道跟着容器收，不然会横向溢出 */
+  grid-template-columns: repeat(auto-fill, minmax(min(420px, 100%), 1fr));
   gap: 8px;
 }
 .agent-status-item {
@@ -2461,22 +2469,35 @@ button {
   background: var(--danger);
 }
 .agent-status-name {
-  flex: 1;
+  flex: 1 1 auto;
+  /* 名称是这一行的标识，任何宽度下都不许截断（此前 4 列布局实测截成「MCP 单文...」） */
+  min-width: max-content;
   color: var(--text-secondary);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
+/* 状态码收在行尾：所有行的 200 / ✗ 贴同一条右边线 */
+.agent-status-code {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+}
 .agent-status-note {
   font-size: 0.76rem;
+  color: var(--text-secondary);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  min-width: 0;
+  text-align: right;
 }
 
+/* 2×2：4 张卡此前 3 列排成 3+1，第 4 张独占一行留 2/3 空白；
+   同时把卡片从 340px 放宽到 580px，代码块少折行 */
 .agent-paths {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(460px, 100%), 1fr));
   gap: 14px;
 }
 .agent-path {
@@ -2513,7 +2534,7 @@ button {
   display: inline-block;
   margin-top: 2px;
   font-size: 0.76rem;
-  color: var(--accent);
+  color: var(--agent-accent-text);
   font-weight: 600;
 }
 .agent-desc {
@@ -2526,6 +2547,7 @@ button {
   color: var(--text-secondary);
   font-size: 0.88rem;
   line-height: 1.55;
+  text-wrap: pretty;
 }
 .agent-example {
   background: rgba(0, 0, 0, 0.3);
@@ -2534,15 +2556,18 @@ button {
   padding: 10px 12px;
   overflow-x: auto;
 }
+/* 换行不截断：示例里有整条 URL（最长一行 88 字符 ≈ 677px），
+   原 white-space:pre 在 311px 的卡里静默藏掉大半行（实测最坏 510px 不可见） */
 .agent-example code {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 0.8rem;
   line-height: 1.7;
   color: var(--text);
-  white-space: pre;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 .agent-cmd {
-  color: var(--text-muted);
+  color: var(--text-secondary);
   font-style: normal;
 }
 .agent-links {
@@ -2557,7 +2582,7 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  color: var(--accent);
+  color: var(--agent-accent-text);
   font-size: 0.84rem;
   font-weight: 600;
   text-decoration: none;
@@ -2567,9 +2592,10 @@ button {
   text-decoration: underline;
 }
 
+/* 2×2：同为 4 项，避免 3 列排成 3+1 的残缺行（与 .agent-paths 同节奏） */
 .agent-resources {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(460px, 100%), 1fr));
   gap: 10px;
 }
 .agent-resource {
@@ -2598,12 +2624,11 @@ button {
 .agent-resource b {
   font-size: 0.92rem;
 }
+/* 允许折行：AI 日报说明最长 560px，窄屏只给 283px 时原先直接切掉一半 */
 .agent-resource small {
-  color: var(--text-muted);
+  color: var(--text-secondary);
   font-size: 0.78rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  line-height: 1.45;
 }
 
 .agent-steps {
@@ -2638,6 +2663,7 @@ button {
   color: var(--text-secondary);
   font-size: 0.84rem;
   line-height: 1.55;
+  text-wrap: pretty;
 }
 .agent-verify {
   display: flex;
@@ -2661,8 +2687,16 @@ button {
 }
 
 .agent-foot {
-  color: var(--text-muted);
+  color: var(--text-secondary);
   font-size: 0.8rem;
   text-align: center;
   margin: 4px 0 8px;
+}
+
+/* 键盘 focus 统一可见（此前只有浏览器默认 ring，与页面强调色不一致） */
+.agent-links a:focus-visible,
+.agent-resource:focus-visible,
+.agent-retry:focus-visible {
+  outline: 2px solid var(--agent-accent-text);
+  outline-offset: 2px;
 }

@@ -22,6 +22,11 @@ import {
 
 const SITE = "https://chestnuts-sisyphus.github.io/gittok";
 
+/** feed.json 体积（KB；2026-09-18 线上实测 4424078 B）。状态板备注与 REST 示例
+    共用这一个来源——此前两处各写各的，同页出现「4.3MB」与「4.4MB」两个数字 */
+const FEED_JSON_KB = 4320;
+const FEED_JSON_MB = `${(FEED_JSON_KB / 1024).toFixed(1)}MB`;
+
 /** 状态自检的端点（相对路径走站点域名；jsDelivr 为 CDN 镜像） */
 const STATUS_ENDPOINTS: { name: string; url: string; note?: string }[] = [
   { name: "llms.txt", url: "./llms.txt", note: "面向 Agent 的入口文件" },
@@ -30,7 +35,7 @@ const STATUS_ENDPOINTS: { name: string; url: string; note?: string }[] = [
   { name: "API 文档", url: "./agent/API.md" },
   { name: "RSS", url: "./feed.xml" },
   { name: "日报索引", url: "./manifest.json" },
-  { name: "卡片列表", url: "./data/feed.json", note: `约 ${(4428 / 1024).toFixed(1)}MB` },
+  { name: "卡片列表", url: "./data/feed.json", note: `约 ${FEED_JSON_MB}` },
   { name: "卡片详情表", url: "./data/feed-details.json" },
   { name: "今日日报", url: "./digests/latest/ai-cli.md" },
   { name: "MCP 单文件（CDN）", url: "https://cdn.jsdelivr.net/gh/Chestnuts-Sisyphus/gittok@master/mcp-gittok/dist/index.js", note: "782KB，零依赖" },
@@ -107,16 +112,19 @@ function StatusBoard() {
           <div key={it.url} className={`agent-status-item${it.ok === false ? " down" : ""}`}>
             <span className="agent-status-dot" aria-hidden />
             <span className="agent-status-name">{it.name}</span>
-            {it.ok === null ? (
-              <span className="agent-muted">…</span>
-            ) : it.ok ? (
-              <span className="agent-ok">{it.status ?? 200}</span>
-            ) : (
-              <span className="agent-bad" title={it.err}>
-                ✗
-              </span>
-            )}
-            {it.note && <span className="agent-muted agent-status-note">{it.note}</span>}
+            {it.note && <span className="agent-status-note">{it.note}</span>}
+            {/* 状态码排在最后：所有行的数字贴同一条右边线，此前备注长短会让数字左右乱跳 */}
+            <span className="agent-status-code">
+              {it.ok === null ? (
+                <span className="agent-muted">…</span>
+              ) : it.ok ? (
+                <span className="agent-ok">{it.status ?? 200}</span>
+              ) : (
+                <span className="agent-bad" title={it.err}>
+                  ✗
+                </span>
+              )}
+            </span>
           </div>
         ))}
       </div>
@@ -206,10 +214,11 @@ export function AgentPage() {
             example={
               <code>
                 <span className="agent-cmd"># 下载说明文档</span>
+                {"\n"}
                 curl -fsSL -o gittok-skill.md {SITE}/agent/SKILL.md
-                {"\n"}
+                {"\n\n"}
                 <span className="agent-cmd"># Skill 完整包（脚本 + 校验）在仓库 skills/gittok/</span>
-                {"\n"}
+                {"\n\n"}
                 <span className="agent-cmd"># 新会话里直接问：</span>
                 「GitTok 今天有什么值得关注的开源项目？」
               </code>
@@ -231,11 +240,12 @@ export function AgentPage() {
             example={
               <code>
                 <span className="agent-cmd"># 下载单文件（782KB，零依赖）</span>
+                {"\n"}
                 curl -fsSL -o gittok-mcp.mjs \
                 {"\n  "}https://cdn.jsdelivr.net/gh/Chestnuts-Sisyphus/gittok@master/mcp-gittok/dist/index.js
-                {"\n"}
+                {"\n\n"}
                 node gittok-mcp.mjs --selftest
-                {"\n"}
+                {"\n\n"}
                 <span className="agent-cmd"># 客户端里这样配置：</span>
                 {"\n"}
                 {"{"}"mcpServers": {"{"}"gittok": {"{"}"command": "node",
@@ -259,10 +269,13 @@ export function AgentPage() {
             example={
               <code>
                 <span className="agent-cmd"># 订阅地址</span>
-                {SITE}/feed.xml
                 {"\n"}
-                <span className="agent-cmd"># 命令行预览</span>
-                curl -fsSL {SITE}/feed.xml | head -c 2000
+                {SITE}/feed.xml
+                {"\n\n"}
+                <span className="agent-cmd"># 命令行预览（只取前 2000 字节）</span>
+                {"\n"}
+                curl -fsSL {SITE}/feed.xml \
+                {"\n  "}| head -c 2000
               </code>
             }
             links={[{ label: "feed.xml", href: `${SITE}/feed.xml` }]}
@@ -278,13 +291,16 @@ export function AgentPage() {
             ]}
             example={
               <code>
-                <span className="agent-cmd"># 卡片列表（中文摘要，约 4.4MB）</span>
+                <span className="agent-cmd"># 卡片列表（中文摘要，约 {FEED_JSON_MB}）</span>
+                {"\n"}
                 curl -fsSL {SITE}/data/feed.json
-                {"\n"}
+                {"\n\n"}
                 <span className="agent-cmd"># 卡片详情表（repo → 中文长文）</span>
-                curl -fsSL {SITE}/data/feed-details.json
                 {"\n"}
+                curl -fsSL {SITE}/data/feed-details.json
+                {"\n\n"}
                 <span className="agent-cmd"># 日报索引（dates[] → reports[]）</span>
+                {"\n"}
                 curl -fsSL {SITE}/manifest.json
               </code>
             }
@@ -323,7 +339,7 @@ export function AgentPage() {
             <Bot size={16} />
             <span>
               <b>AI 日报</b>
-              <small>digests/latest 恒指最近一天；主题 ai-cli / ai-agents / ai-trending / ai-arxiv / ai-hn-en …</small>
+              <small>digests/latest 恒指最近一天；主题 ai-cli / ai-agents / ai-trending …</small>
             </span>
             <ChevronRight size={15} />
           </a>
