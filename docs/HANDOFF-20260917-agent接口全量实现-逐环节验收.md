@@ -30,6 +30,7 @@ Mimosa 完整扫描跑完（49 条 findings 已分类给判词）；
 | T7 | E8+E5 全库文案重跑 | 🟡 续跑中 | 执行器+state 交付（`scripts/gittok-recopy.ts`+`data/recopy-state.json`）；**累计过闸写回 23 张**；全库 23/1868；已 push 部分**线上逐字段反查一致**；续跑命令见 T7 节 |
 | T8 | Mimosa 完整审计 + 存量 findings 判词 | ✅ | 扫描完成（seal `sha256:5df7c637…`），49 条分四类给判词 |
 | T9 | V-B1 决策包 | ✅ | `docs/请栗子过目-V-B1与乐趣口径-2026-09-17.md`，每条一句话可勾选 |
+| T10 | Agent 接入页（前端呈现） | ✅ | 第四 tab 上线（commit `7f1147e`，CI/Deploy 双绿）；线上 bundle 反查含页面；`#agent` 深链 + llms.txt 入口 |
 
 ---
 
@@ -282,6 +283,25 @@ print(f"线上逐字段一致 {ok}/{len(state['done'])}")
   工具区 48.4% 口径说明。**未擅自改任何判据**，等栗子勾选。
 - **复跑**：`npx tsx scripts/gittok-fun-anchor-check.ts`（81.6% 复现率口径）。
 
+### T10 Agent 接入页（前端呈现「接口已上线」，2026-09-18 追加）
+
+- **背景**：T1–T5 的接口件全部落在后端/文件/仓库，站点前端没有任何体现；对照 AIHOT 的
+  「让 Agent 直接使用」页，站点补第四 tab「Agent」——把四条接入路径在站内直接呈现。
+- **交付**（commit `7f1147e`）：`web/src/AgentPage.tsx`（新增）+ `App.tsx` 第四 tab + `styles.css` 页面样式 + `llms.txt` 新增 `#agent` 入口链接。
+  - 页面内容：头部（匿名只读 / 无需 API Key / 每日更新 / 中文优先）→ **在线可用性自检**（10 个线上端点
+    HEAD 实测，含 jsDelivr MCP 单文件，失败标红、可手动重测）→ 四条路径卡片（Agent Skill / MCP server /
+    RSS / REST API，各带真实命令示例与链接）→ 资源与镜像（llms.txt / API 文档 / AI 日报 / GitHub 镜像）→
+    三步接入 + 示例提问。
+  - `#agent` hash 深链：Agent 页可被 llms.txt / 文档直接指到（`web/src/App.tsx` 初始 tab 读 hash）。
+- **本地验证**：`tsc -b && vite build` 通过（1814 modules）；root vitest **47 文件 / 510 用例全绿**；
+  构建产物包含页面字符串（bundle 内查得「让 Agent 直接使用 GitTok」/「mcpServers」/「四条接入路径」）。
+- **线上反查（2026-09-18 01:20 实测）**：`CI` 与 `Deploy Web` 对 `7f1147e` 均 **success**；
+  站点 `index.html` 200，`assets/index-Bl0UeoEf.js`（233,704 B）**含 Agent 页全部关键串**；
+  `llms.txt` 200（4,378 B）含 `#agent` 链接；`data/feed.json`（4,424,078 B）/ `feed.xml` / `manifest.json` /
+  `agent/{SKILL,API,MCP}.md` / `digests/latest/ai-cli.md` **全部 200**（接口件无回归）。
+- **同批顺收（commit `69aa61c`）**：删除上游遗留 `mcp/` 目录（agents-radar 残留、指向他人网站、Mimosa 4 条
+  findings 的源）。删除前全仓引用检查：仅验收报告文字提及，无任何代码依赖；git 历史可恢复。
+
 ---
 
 ## 三、关键假设（已标注）
@@ -308,7 +328,7 @@ print(f"线上逐字段一致 {ok}/{len(state['done'])}")
 2. **两条 commit message 出现「简历承诺兑现」字样**（`bf7311d`、`2d2061d`，已进公开历史）：
    与「求职上下文不进公开仓库」的约束相抵；文件与文档内容均为纯工程。如需清除需 force-push 改史
    （仓库有 bot 持续推送，改史风险自担），**建议不改**，后续提交起改用中性措辞（本次已改）。
-3. **上游遗留 `mcp/` 目录仍在**（4 条安全 findings 全在此目录）：建议删除，但按"只增不删"约定需栗子点头。
+3. **上游遗留 `mcp/` 目录**：已删除（commit `69aa61c`，2026-09-18；删除前全仓无代码依赖，git 历史可恢复）。
 4. **T9 等待栗子勾选**：判据/锚点改动未执行（这是任务书要求的"等勾"状态，不算缺陷）。
 5. **`digests/2026-09-17/ai-trending.md` 当天生成失败**（正文为失败空壳）：属内容管线当日故障，
    根因与免费通道限流一致（fleet-health 同日 429 密集）；非本任务范围，已记录。
@@ -343,6 +363,10 @@ npx tsx scripts/gittok-fun-anchor-check.ts
 | `bf7311d` | T2：`mcp-gittok/`（三 tool + parity/e2e 测试 + 单文件产物 + CI job + README 接入） |
 | `2d2061d` | T4：`skills/gittok/`（SKILL.md + 取数与校验脚本 + 运行留证） |
 | `09b5da1` | T1+T3：`web/public/llms.txt` + `docs/API.md` + README 补「Agent 接口」章节 + 站点镜像 agent 文档与近 7 天日报 |
+| `ee0fa10` / `a40d49c` | T7：续跑批次 1（+13）/ 批次 2（+9），全库文案过闸写回累计 23 + 报告回填 |
+| `06a9c77` | 报告：线上逐字段反查 23/23 一致 + 三通道实测退场/复活记录 |
+| `7f1147e` | T10：Agent 接入页（第四 tab + `#agent` 深链 + llms.txt 入口；CI/Deploy 双绿，线上 bundle 反查含页面） |
+| `69aa61c` | 顺收：删除上游遗留 `mcp/` 目录（无代码依赖，git 可恢复） |
 | 本次 | T4 收紧版 SKILL.md + T9 决策包 + 本验收报告 |
 
 **新增/改动的线上入口（全部 200）**：`/llms.txt`、`/agent/{API,SKILL,MCP}.md`、`/digests/latest/`、
