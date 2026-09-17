@@ -15,7 +15,7 @@ bot 热度修复**实测生效**（starGrowth>0 从 826 → 连续五轮 1809/18
 Mimosa 完整扫描跑完（49 条 findings 已分类给判词）；
 Agent 接入页上线（T10）后经 **09-18 V2 设计打磨（S1）**：代码块溢出与状态码对齐等 10 项按实测修掉，
 对比度全部过 WCAG AA；
-**E8/E5 全库文案重跑仍续跑中（33/1868，09-18 04:41 续跑 6 后）**——当日免费通道全线限流（实测 321/546 次 429），如实报告不虚报。
+**E8/E5 全库文案重跑仍续跑中（39/1868，09-18 05:47 续跑 7 后）**——当日免费通道全线限流（实测 321/546 次 429），如实报告不虚报。
 
 ---
 
@@ -29,7 +29,7 @@ Agent 接入页上线（T10）后经 **09-18 V2 设计打磨（S1）**：代码�
 | T4 | 官方 Agent Skill | ✅ | 格式校验 PASS（0 error/0 warn）；免费模型真实加载跑通并留证 |
 | T5 | 接口域名统一 + README 分区修正 | ✅ | 站点 feed.xml/manifest.json 200 且与 raw 内容一致（sha256 相同） |
 | T6 | bot 热度修复实测 | ✅ | 修复前 826 → 五轮 1809/1858/1858/1861/1862；线上热门池 1861（≥300） |
-| T7 | E8+E5 全库文案重跑 | 🟡 续跑中 | 执行器+state 交付（`scripts/gittok-recopy.ts`+`data/recopy-state.json`）；**累计过闸写回 33 张**；全库 33/1868（09-18 04:41 续跑 6 后）；已 push 部分**线上逐字段反查一致**；续跑命令见 T7 节 |
+| T7 | E8+E5 全库文案重跑 | 🟡 续跑中 | 执行器+state 交付（`scripts/gittok-recopy.ts`+`data/recopy-state.json`）；**累计过闸写回 39 张**；全库 39/1868（09-18 05:47 续跑 7 后）；已 push 部分**线上逐字段反查一致**；续跑命令见 T7 节 |
 | T8 | Mimosa 完整审计 + 存量 findings 判词 | ✅ | 扫描完成（seal `sha256:5df7c637…`），49 条分四类给判词 |
 | T9 | V-B1 决策包 | ✅ | `docs/请栗子过目-V-B1与乐趣口径-2026-09-17.md`，每条一句话可勾选 |
 | T10 | Agent 接入页（前端呈现） | ✅ | 第四 tab 上线（commit `7f1147e`，CI/Deploy 双绿）；线上 bundle 反查含页面；`#agent` 深链 + llms.txt 入口 |
@@ -158,7 +158,7 @@ Agent 接入页上线（T10）后经 **09-18 V2 设计打磨（S1）**：代码�
 - **结论**：修复生效——五轮滴灌后不再塌缩（个位数 → 千级），热门频道池长期 ≥300。
 - **复跑**：`for c in 45c1d29 8807265 d593f0e acfac7c 1903da4 707dba3; do git show $c:data/feed.json | python -c "import sys,json;d=json.load(sys.stdin);print(len(d),sum(1 for c in d if (c.get('starGrowth') or 0)>0))"; done`。
 
-### T7 E8+E5 全库文案重跑 —— **续跑中（33/1868 过闸写回，已 push 部分线上逐字段反查一致）**
+### T7 E8+E5 全库文案重跑 —— **续跑中（39/1868 过闸写回，已 push 部分线上逐字段反查一致）**
 
 - **现状量化（本机实测）**：全库 2653 张；`reasonCn < 80 字` 短卡 **26 张**（本轮 dry-run 实测；随写回逐轮收敛）；
   `detailCn` 空卡 **0 张**；按生产全闸（`cardChecks`）判全库 **1868 张不过闸**
@@ -179,6 +179,7 @@ Agent 接入页上线（T10）后经 **09-18 V2 设计打磨（S1）**：代码�
 | **续跑 4** | **09-18 02:20–03:10**（夜循环 iter 24） | **5** | 23 | **28** | **28/28 逐字段一致**（summary/reason/detail/facts 全等，commit `99fa0fa`） |
 | **续跑 5** | **09-18 03:15–03:43**（夜循环 iter 25） | **3** | 8 | **31** | **31/31 逐字段一致**（summary/reason/detail/facts 全等，commit `43a0353`） |
 | **续跑 6** | **09-18 03:53–04:41**（夜循环 iter 26） | **2** | 30 | **33** | **33/33 逐字段一致**（summary/reason/detail/facts 全等，commit `9113b67`） |
+| **续跑 7** | **09-18 04:47–05:47**（夜循环 iter 27） | **6** | 23 | **39** | **39/39 逐字段一致**（summary/reason/detail/facts 全等，commit `7e86b18`） |
 
 - **续跑 1 实跑**：写回 13 张（`trailhq/Graft`、`fleetbase/fleetbase`、`dsh-tauri-desk/deepseek-harness-desktop`、
   `gethomepage/homepage`、`tinyhumansai/openhuman`、`huggingface/transformers`、`bojieli/ai-agent-book`、
@@ -193,7 +194,7 @@ Agent 接入页上线（T10）后经 **09-18 V2 设计打磨（S1）**：代码�
   `BerriAI/litellm`、`infiniflow/ragflow`）；7 张未过闸。**本批撞 60 分钟墙钟停**——途中
   `openrouter` 免费额度打满（`429 free-models-per-day`，需 UTC 零点=本地 08:00 重置）、
   `modelscope` 单账号反复 60s 熔断，两通道交替冷却，故实际产出低于续跑 1。
-- **当前比例（截至续跑 6，09-18 04:41）**：**写回 33 / 不过闸 1868（1.77%）**；仍剩约 1835 张待跑。
+- **当前比例（截至续跑 7，09-18 05:47）**：**写回 39 / 不过闸 1868（2.09%）**；仍剩约 1829 张待跑。
 - **线上反查（截至续跑 2，commit `a40d49c`）**：`CI` 与 `Deploy Web` 对 `ee0fa10`、`a40d49c` 均 **success**；
   站点 `https://chestnuts-sisyphus.github.io/gittok/data/feed.json`（200，4,431,979 B）与
   `/data/feed-details.json`（200，4,753,859 B）下载后与本地 `data/feed.json` **逐字段比对**：
@@ -337,6 +338,24 @@ print(f"线上逐字段一致 {ok}/{len(state['done'])}")
 - **state 位置**：`data/recopy-state.json`，本次读数 `done=33`、`failed=30`。
   （注：线上比对脚本偶发 `IncompleteRead` —— 4.4MB 的 feed.json 被中途断流，属瞬时错，
   按已知坑"keep-alive 断连须重试"重跑一次即通过。）
+
+#### T7 · 续跑 7（09-18 04:47–05:47，夜循环 iter 27）——单轮最高产，且**批量验证了 S5 的判定口径**
+
+- **产出**：写回 **6 张（迄今单轮最高）**，累计 **33 → 39**：`sharkdp/fd`、`cockroachdb/cockroach`、
+  `web-infra-dev/midscene`、`Mintplex-Labs/anything-llm`、`ublue-os/bazzite`、
+  `SenteLabsAI/OpenExecutive`；未过闸 23 张。
+- **关键结论修正（对 S5 清单）**：这 6 张里 **5 张正是 S5「连续 2 轮不过闸」那 8 张的成员**
+  （`sharkdp/fd`、`cockroachdb/cockroach`、`midscene`、`anything-llm`、`bazzite`）。
+  连同续跑 5 的 `anywhere-labs/dsh-desktop`，**S5 清单里的 8 张已过 6 张**。
+  → **S5 那份清单必须整体降级为"观察名单"**：它当时记录的"连续 2 轮不过闸"完全不构成恒不过闸，
+  真正需要的是「连续 N 轮（N≥3）+ 原因为内容类而非通道类」双条件，且必须等队列收敛后再判。
+  这条修正已同步回 `docs/T7-不过闸卡清单与判定-20260918.md` 的判定口径。
+- **通道侧**：zhipu 本轮节流缓解（前一轮的 `通道熔断 60s` 频次明显下降），故单轮产出回升到 6 张 ——
+  也印证"吞吐由通道节流决定，不由卡本身难度决定"。
+- **机器校验**：`校验通过：卡数 2655，写回累计 39 张，判据字段零改动`。
+- **push 与线上反查**：夜循环自动 push **`7e86b18`**；`CI` 与 `Deploy Web` 对 `7e86b18` 均 **success**；
+  站点域名逐字段比对 **39/39 一致、不一致 0、查不到 0**。
+- **state 位置**：`data/recopy-state.json`，本次读数 `done=39`、`failed=24`。
 
 ### T8 E4 / Mimosa 完整审计（G9）
 
@@ -513,7 +532,7 @@ print(f"线上逐字段一致 {ok}/{len(state['done'])}")
 
 ## 四、未完成项与原因
 
-1. **T7（E8+E5 全库文案重跑）：续跑中，33/1868（1.77%）**。执行器与 state 已交付并**七轮实跑验证**；
+1. **T7（E8+E5 全库文案重跑）：续跑中，39/1868（2.09%）**。执行器与 state 已交付并**八轮实跑验证**；
    剩余的约 1845 张不是"没做"，而是**免费额度不够**（实测：智谱 429/1305 服务端过载、
    OpenRouter 免费日额打满、ModelScope 单账号高频熔断），只能跨时段续跑：
    `npx tsx scripts/gittok-recopy.ts --limit=30 --max-minutes=60`（反复跑，完事自动跳过）。
