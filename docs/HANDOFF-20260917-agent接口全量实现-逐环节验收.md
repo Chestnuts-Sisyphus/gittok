@@ -35,6 +35,8 @@ Agent 接入页上线（T10）后经 **09-18 V2 设计打磨（S1）**：代码�
 | T10 | Agent 接入页（前端呈现） | ✅ | 第四 tab 上线（commit `7f1147e`，CI/Deploy 双绿）；线上 bundle 反查含页面；`#agent` 深链 + llms.txt 入口 |
 | S1 | Agent 接入页 V2 设计打磨（09-18 栗子最新意图） | ✅ | commit `40aec7c`，CI/Deploy 双绿；修复前 4/4 代码块溢出（最坏 510px 不可见）→ 修复后 `codeHiddenMax=0`；6 处对比度 3.65–4.12 → 6.17–8.03 全过 AA |
 | S7 | README 中英补 `#agent` 入口 | ✅ | commit `8257ec2`；顺带修 feed.json 体积口径（3.4MB → 实测 4.2MB） |
+| S5 | T7 不过闸卡清单与「恒不过闸」判定 | 🟡 预版 | `docs/T7-不过闸卡清单与判定-20260918.md`；实测 failed 是重试队列（上轮 17 张里 9 张本轮过闸），当前 8 张连续 2 轮不过闸 |
+| S6 | Mimosa 对当前 master 重跑 | ✅ 已出数 | 新 seal `…eba39801…`；findings **49 → 34**（gone 19 / new 4 / kept 30）；删 mcp/ 直接消 4 条；**仍不宣称安全**（自述 inconclusive，28 条 high 仍在） |
 | S8 | `web/public/data/feed.json` 跟踪卫生 | ⏸ 评估=不改 | `git rm --cached` 会破坏全新 clone 的 `npm run dev`（插件只在 build 阶段生成）；维持现跟踪 |
 | S9 | digest 09-17 故障复查 | ✅ 已定性 | **`ai-trending` 连续 8 天（09-10→09-17）全败**，非当日一次性；根因=该主题 prompt 超免费编队上限（智谱 400 超长 / Groq 413 TPM 8000 / HF 402 余额），线上未补、无保障机制 |
 
@@ -377,6 +379,33 @@ print(f"线上逐字段一致 {ok}/{len(state['done'])}")
 - **判断**：`ai-cli` / `ai-agents` / `ai-arxiv` 等其它主题同日正常产出（09-17 均 7–55KB），
   所以是**该主题 prompt 体量**问题，不是全局额度问题；不自行造轮子（任务书口径），
   处置建议留栗子：压缩 trending prompt（截断搜索仓、降 `LLM_TOKENS_TRENDING=6144`）或给该主题单独挂大上下文通道。
+
+### S6 Mimosa 对当前 master 重跑（2026-09-18 追加）
+
+- **新 seal**：`sha256:eba39801c1ce2629beb2ec9178fbaa9233622c1d61c2501ab9665a4aa5489a48`
+  （scanId `scan-2026-09-17T18-05-11.417Z-b767b5c460eb`，depth=deep，上轮 seal 为 `…5df7c637…`）。
+- **findings：49 → 34（−15）**，其中 high 37→28、medium 12→6、low/info 均 0。
+  逐 occurrenceId 对拍（不是标题比对）：**gone 19 / new 4 / kept 30**（30+4=34、30+19=49 自洽）。
+
+  | 变化 | 条数 | 位置与标题 | 说明 |
+  |---|---|---|---|
+  | **删掉的** | 4 | `mcp/src/index.ts:55/84/92/118`（`fetch`/`fetchReport 是 ssrf 入口`） | 目录已删（commit `69aa61c`）→ **与任务书预期一致** |
+  | **删掉的** | 15 | `src/github.ts:158/255/275`、`src/notify.ts:33`、`src/notify-feed.ts:193/241`、`src/ph.ts:120`、`scripts/regen-highlights.ts:104` | 全部是「`fetch 是 ssrf 入口`(high) + `疑似跨文件污点`(medium) **同点成对**」；整类「疑似跨文件污点」8 条**全数消失** |
+  | **新增的** | 2 | `scripts/gittok-recopy.ts:100/402` `atomicWrite 是 path-traversal 入口` | 上轮扫描后新增的 T7 执行器代码 |
+  | **新增的** | 2 | `web/src/App.tsx:1377/1380` `getSectionCards 经 1 跳到达 mongo-sort-injection` | 上轮扫描后新增的前端代码 |
+
+- **对「15 条 src/ 消失」的归因（假设，非结论）**：上轮扫描 169 文件、本轮 170 文件，
+  文件面几乎没变，所以不能只说"扫得少了"。最贴证据的解释是**跨文件污点链的另一端在 `mcp/`**：
+  消失的 src/scripts 条目全部与「疑似跨文件污点」同点成对，而 mcp/ 正是被删掉的那一半；
+  删掉后污点链不成立，entry 与 taint 一起消失。**标注为假设**——未做进一步溯源证明。
+- **同点仍在的（说明没被"修好"，只是换了归类）**：`src/github.ts:158/255/275`、
+  `scripts/regen-highlights.ts:104` 现在仍报 high，标题由 `fetch 是 ssrf 入口` 变为
+  `SSRF 服务端请求伪造`。**这 4 处不是已修复，只是判词换了名字**。
+- **⚠️ 不宣称项目安全**：扫描器自述 `runStatus: inconclusive`、`completeness: partial`、
+  `verdictEffect: none`，且**仍有 28 条 high**（SSRF 在 `src/github.ts`，路径穿越在
+  `src/config.ts:151` / `src/report.ts:336` / `src/social.ts:23` / `src/index.ts:458`）。
+  本轮只做「数变化说明」，不做安全结论。
+- 依赖面：250 个包扫描完成，离线公告库命中 2 包 / 3 条公告。
 
 ### S8 `web/public/data/feed.json` 跟踪卫生（2026-09-18 评估，未改动）
 
