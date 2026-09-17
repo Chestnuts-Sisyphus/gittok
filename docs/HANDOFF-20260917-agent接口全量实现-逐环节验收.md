@@ -27,7 +27,7 @@ Mimosa 完整扫描跑完（49 条 findings 已分类给判词）；
 | T4 | 官方 Agent Skill | ✅ | 格式校验 PASS（0 error/0 warn）；免费模型真实加载跑通并留证 |
 | T5 | 接口域名统一 + README 分区修正 | ✅ | 站点 feed.xml/manifest.json 200 且与 raw 内容一致（sha256 相同） |
 | T6 | bot 热度修复实测 | ✅ | 修复前 826 → 五轮 1809/1858/1858/1861/1862；线上热门池 1861（≥300） |
-| T7 | E8+E5 全库文案重跑 | ❌ 未开工 | 免费通道当日全线限流（见 §四.1）；缺口已量化：21/2649 张短卡 |
+| T7 | E8+E5 全库文案重跑 | 🟡 已开工 | 执行器+state 交付（`scripts/gittok-recopy.ts`+`data/recopy-state.json`）；首批写回 1/5（coolify 过闸实锤）；全库 1/1868；续跑命令见 T7 节 |
 | T8 | Mimosa 完整审计 + 存量 findings 判词 | ✅ | 扫描完成（seal `sha256:5df7c637…`），49 条分四类给判词 |
 | T9 | V-B1 决策包 | ✅ | `docs/请栗子过目-V-B1与乐趣口径-2026-09-17.md`，每条一句话可勾选 |
 
@@ -149,22 +149,28 @@ Mimosa 完整扫描跑完（49 条 findings 已分类给判词）；
 - **结论**：修复生效——五轮滴灌后不再塌缩（个位数 → 千级），热门频道池长期 ≥300。
 - **复跑**：`for c in 45c1d29 8807265 d593f0e acfac7c 1903da4 707dba3; do git show $c:data/feed.json | python -c "import sys,json;d=json.load(sys.stdin);print(len(d),sum(1 for c in d if (c.get('starGrowth') or 0)>0))"; done`。
 
-### T7 E8+E5 全库文案重跑 —— **未开工（0%）**
+### T7 E8+E5 全库文案重跑 —— **已开工（执行器+首批实跑，打破 0%）**
 
-- **现状量化（本机实测）**：全库 2649 张；`reasonCn < 80 字` 短卡 **21 张**（与任务书口径一致）；
-  `detailCn` 空卡 **0 张**；`reasonCn` 长度 p1=100 / p5=109 / 中位 132。
-- **未开工原因（实测，不是推测）**：
-  1. 免费通道当日全线限流——通道健康账 `data/fleet-health.json`：feed 轮 546 次调用仅 134 成功、
-     **321 次 429**；digest 轮 106 次调用仅 29 成功、51 次 429。本会话另行实测：智谱三把免费 key
-     全部 1305/1302、SiliconFlow 余额不足、ModelScope 模型无 provider、Cerebras 被 CF 拦、Groq 403。
-     （同日 `digests/2026-09-17/ai-trending.md` 正文即「⚠️ 趋势报告生成失败」，同一根因的旁证。）
-  2. E8 时间账（6–10h）是按**订阅通道** GOAT 估的；本会话硬约束「付费/订阅通道零使用」，不可用。
-  3. 全库**文案**重跑（summary/reason/detail + 千人千面段）目前没有现成批处理脚本——
-     仓库里带 state 机制的是判据重判（`scripts/gittok-rejudge-v3.ts`），文案重跑需按其模式另写。
-- **续跑入口**：沿用 `gittok-rejudge-v3.ts` 的 `REJUDGE_STATE` 断点续跑模式；state 落点约定
-  `data/recopy-state.json`（当前**不存在**，即 0%）。参考复跑命令（待脚本补齐后）：
-  `npx tsx scripts/gittok-recopy.ts --limit=50 --workers=2`（脚本未创建：T7 未开工）。
-- **诚实结论**：0% 完成，不虚报。
+- **现状量化（本机实测）**：全库 2653 张；`reasonCn < 80 字` 短卡 **21 张**（任务书口径一致）；
+  `detailCn` 空卡 **0 张**；按生产全闸（`cardChecks`）判全库 **1868 张不过闸**
+  （多数是 facts 缺失与旧文案套话/推广词——这就是 E8+E5 的真实待跑面）。
+- **执行器已交付（commit `fb89761`）**：`scripts/gittok-recopy.ts`（按 `gittok-rejudge-v3.ts` 的 state 模式）——
+  单卡生成（prompt 复用 `buildFeedScoringPrompt`）→ 生产全闸 → **过闸才写回**；
+  写回严格限定 `summaryCn / reasonCn / detailCn / facts`（zone/funScore/tags 一律不动）；
+  state 落 `data/recopy-state.json`（指纹版失效、每卡落盘即写、失败留因）；
+  多免费通道轮转 + 冷却等待 + 墙钟上限硬停；只用免费模型。
+- **首批实跑（免费通道恢复后，openrouter nemotron-3-ultra-550b:free lane）**：
+  - 写回 **1 张**：`coollabsio/coolify`（旧文案"开头套话"闸不过 → 新文案 summary 28 / reason 224 /
+    detail 808 / facts 2 条，**独立复核过生产全闸**；zone=工具/topics/funScore 保持原样），已进 `data/feed.json`。
+  - 4 张未过闸（失败原因与闸名记入 state，可复查勿重复试）：Token-Print（reason effLen 93 + facts source 溯源）、
+    trailhq/Graft（G8 推广词 + facts source 溯源）、fleetbase（summary 38 字超上限 35）。
+  - 当前比例：**写回 1 / 尝试 5（20% 首批成功率）；全库完成 1 / 1868（0.05%）**——如实记录。
+- **续跑入口（state 位置）**：`data/recopy-state.json`（指纹 `recopy:v6-copy+facts:1`，
+  `done`/`failed` 各记 repo→时间/lane/闸名）。续跑命令（同一行反复跑即可，完事自动跳过）：
+  `npx tsx scripts/gittok-recopy.ts --limit=30 --max-minutes=60`
+  调试：`--repo=owner/name`（单卡）、`--dry-run`（只统计）、`--all`（含已过闸全重跑）。
+- **诚实结论**：执行器可用、首批验证链路（免费通道→全闸→写回→不变量闸抽查）；
+  但免费通道吞吐仍低（首批 5 卡耗时约十余分钟，多轮冷却等待），全量仍需跨时段长跑。
 
 ### T8 E4 / Mimosa 完整审计（G9）
 

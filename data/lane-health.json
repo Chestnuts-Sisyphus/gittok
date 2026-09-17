@@ -1,13 +1,14 @@
 {
-  "updatedAt": "2026-09-16T19:18:54.887Z",
+  "updatedAt": "2026-09-17T12:44:00.026Z",
   "lanes": {
     "zhipu": {
       "key": "zhipu",
-      "calls": 836,
+      "calls": 838,
       "ok": 372,
-      "lastError": "Error: 401 令牌已过期或验证不正确",
-      "lastClass": "ok",
-      "updatedAt": "2026-09-16T15:48:39.405Z"
+      "lastError": "Error: 429 该模型当前访问量过大，请您稍后再试",
+      "lastClass": "quota-daily",
+      "updatedAt": "2026-09-17T12:18:30.196Z",
+      "retiredUntil": "2026-09-18T00:18:30.196Z"
     },
     "agnes": {
       "key": "agnes",
@@ -54,12 +55,11 @@
     },
     "openrouter": {
       "key": "openrouter",
-      "calls": 219,
-      "ok": 10,
-      "lastError": "Error: 预筛 openrouter:nvidia/nemotron-3-ultra-550b-a55b:free 超时 45000ms",
-      "lastClass": "network",
-      "updatedAt": "2026-09-16T15:49:25.638Z",
-      "retiredUntil": "2026-09-16T16:19:25.638Z"
+      "calls": 233,
+      "ok": 22,
+      "lastError": "TypeError: Cannot read properties of undefined (reading '0')",
+      "lastClass": "ok",
+      "updatedAt": "2026-09-17T12:44:00.022Z"
     },
     "custom-modelscope": {
       "key": "custom-modelscope",
@@ -79,11 +79,12 @@
     },
     "modelscope": {
       "key": "modelscope",
-      "calls": 287,
-      "ok": 29,
-      "lastError": "Error: 429 insufficient balance",
-      "lastClass": "ok",
-      "updatedAt": "2026-09-16T15:48:40.637Z"
+      "calls": 290,
+      "ok": 30,
+      "lastError": "TypeError: Cannot read properties of null (reading '0')",
+      "lastClass": "network",
+      "updatedAt": "2026-09-17T12:22:47.819Z",
+      "retiredUntil": "2026-09-17T12:52:47.819Z"
     },
     "spark": {
       "key": "spark",
