@@ -86,10 +86,12 @@ cd web && pnpm install && pnpm dev
 ## 🤖 Agent 接口（匿名只读，无需 API Key）
 
 GitTok 不只给人看，也直接对 agent 开放——下面每个接口都公开、只读、不用 key、不用登录。
+四条路径（Agent Skill / MCP server / RSS / REST API）的总览与在线可用性自检在
+[Agent 接入页](https://chestnuts-sisyphus.github.io/gittok/#agent)。
 
 | 接口 | 地址 | 格式 | 说明 |
 |---|---|---|---|
-| 卡片列表 | `https://chestnuts-sisyphus.github.io/gittok/data/feed.json` | JSON | 首屏轻量列表（不含 `detailCn`），约 3.4MB，每天更新数次 |
+| 卡片列表 | `https://chestnuts-sisyphus.github.io/gittok/data/feed.json` | JSON | 首屏轻量列表（不含 `detailCn`），约 4.2MB，每天更新数次 |
 | 卡片详情表 | `https://chestnuts-sisyphus.github.io/gittok/data/feed-details.json` | JSON | `{ "owner/name": detailCn }` 映射，取中文长文 |
 | 卡片列表（全量单文件） | `https://cdn.jsdelivr.net/gh/Chestnuts-Sisyphus/gittok@master/data/feed.json` | JSON | 仓库源文件：自带 `detailCn`、字段最全；大陆直连更快 |
 | RSS | `https://chestnuts-sisyphus.github.io/gittok/feed.xml` | RSS 2.0 | 日报条目流 |

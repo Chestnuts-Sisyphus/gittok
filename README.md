@@ -86,10 +86,12 @@ cd web && pnpm install && pnpm dev
 ## 🤖 Agent interface (anonymous, no API key)
 
 GitTok speaks to agents as well as humans — every endpoint below is public, read-only, no key, no login.
+The four access paths (Agent Skill / MCP server / RSS / REST API) are laid out, with a live
+availability self-check, on the [Agent page](https://chestnuts-sisyphus.github.io/gittok/#agent).
 
 | Endpoint | URL | Format | Notes |
 |---|---|---|---|
-| Card list | `https://chestnuts-sisyphus.github.io/gittok/data/feed.json` | JSON | Lightweight list (no `detailCn`), ~3.4MB, updated several times a day |
+| Card list | `https://chestnuts-sisyphus.github.io/gittok/data/feed.json` | JSON | Lightweight list (no `detailCn`), ~4.2MB, updated several times a day |
 | Card details | `https://chestnuts-sisyphus.github.io/gittok/data/feed-details.json` | JSON | `{ "owner/name": detailCn }` map for the long Chinese write-up |
 | Card list (full, single file) | `https://cdn.jsdelivr.net/gh/Chestnuts-Sisyphus/gittok@master/data/feed.json` | JSON | Repo source file: includes `detailCn`, all fields; faster from mainland China |
 | RSS | `https://chestnuts-sisyphus.github.io/gittok/feed.xml` | RSS 2.0 | Digest entries |
