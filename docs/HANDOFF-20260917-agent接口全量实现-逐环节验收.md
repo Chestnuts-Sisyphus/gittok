@@ -62,6 +62,14 @@ Mimosa 完整扫描跑完（49 条 findings 已分类给判词）；
     `web/src/payload-split.ts`（详情表合并协议）；构建时内联进单文件产物，**没有第二套排序**。
   - `test/parity.test.mjs`：17 项测试把**打包产物**与**站点源码直跑**结果逐条比对（离线、确定性）。
   - `test/e2e-live.mjs`：真实 MCP 客户端（官方 SDK）打线上 feed，留证 `test/e2e-live-output.txt`。
+- **研究项对照（实测）**：
+  - **协议版本**：用官方 `@modelcontextprotocol/sdk` **1.30.0**（npm dist-tags 的 latest，核实于 2026-09-17）；
+    该版本支持并首选协议版本 `2025-11-25`（兼容回退 `2025-06-18 / 2025-03-26 / 2024-11-05 / 2024-10-07`），
+    stdio 传输按 SDK 实现（换行分隔 JSON-RPC），schema 用 zod 声明并由 SDK 导出 JSON Schema。
+  - **AIHOT MCP 形态对照**：AIHOT 走**远程 Streamable HTTP**（`/api/mcp`，5 个只读工具，工具名带 `aihot_` 前缀）。
+    GitTok 取**本地 stdio + 单文件**形态（零安装、无服务器依赖、匿名直连公开 feed），
+    工具名按本任务书要求精确为 `search` / `top` / `detail`（不加前缀）——两者定位不同：
+    AIHOT 靠自家服务端承载检索，GitTok 让客户端直取公开 CDN 数据。
 - **证据（实测）**：
   ```
   node --test test/parity.test.mjs      → tests 17 / pass 17 / fail 0
