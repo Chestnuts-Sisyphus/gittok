@@ -71,7 +71,25 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.5241492537313432
+    "heatScore": 0.5241492537313432,
+    "facts": [
+      {
+        "claim": "最高可让编码成本降为四分之一、速度提升三倍，且正确性不降反升",
+        "source": "Up to **4× cheaper** and **3× faster**, with better or no loss of correctness."
+      },
+      {
+        "claim": "它维护一份能随团队使用不断进化的技能文件",
+        "source": "A living skill file that learns from every task and gets sharper the more your team works."
+      },
+      {
+        "claim": "能同时加速Claude Code、Cursor等五种主流编码代理",
+        "source": "Turbocharge Claude Code, Cursor, Codex, Gemini & every coding agent"
+      },
+      {
+        "claim": "利用代码库图谱为代理提供深层上下文理解",
+        "source": "with contextual understanding specific to your codebase."
+      }
+    ]
   },
   {
     "repo": "dsh-tauri-desk/deepseek-harness-desktop",
@@ -159,7 +177,25 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.33988235294117647
+    "heatScore": 0.33988235294117647,
+    "facts": [
+      {
+        "claim": "安装包内置插件分发渠道，并预留了未来扩充高质量内置插件的通道。",
+        "source": "🎁 **内置插件** — 随安装包内置插件，以及将来引入更多高质量的内置插件。"
+      },
+      {
+        "claim": "安装完成后自动在终端注册 dsh 命令，且不修改用户的现有 shell 配置。",
+        "source": "⌨️ **命令行集成** — 安装自动注册 `dsh` 命令，新开终端即用；不覆盖你已有 shell 配置。"
+      },
+      {
+        "claim": "预置插件面板可对出现异常的插件进行升级或卸载操作。",
+        "source": "🧩 **插件管理** — 插件面板管理已安装插件，出现异常时提供升级 / 卸载入口，错误详情。"
+      },
+      {
+        "claim": "桌宠支持从 Pets 和 Codex 两种来源获取，并且可以直接导入 Codex 的 zip 资源包。",
+        "source": "🐾 **桌宠** — 提供 Pets / Codex 双来源桌宠管理，预设宠物开箱即用（直连远端素材，无需下载）、可导入 Codex `.zip` 资源包。"
+      }
+    ]
   },
   {
     "repo": "coollabsio/coolify",
@@ -264,7 +300,17 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.1829066012143134
+    "heatScore": 0.1829066012143134,
+    "facts": [
+      {
+        "claim": "仅需SSH连接即可接管任意服务器",
+        "source": "You only need an SSH connection."
+      },
+      {
+        "claim": "停用Coolify后资源仍可运行且可管理",
+        "source": "If you stop using Coolify, your running resources continue to work and remain manageable."
+      }
+    ]
   },
   {
     "repo": "fleetbase/fleetbase",
@@ -341,7 +387,21 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.5361563517915309
+    "heatScore": 0.5361563517915309,
+    "facts": [
+      {
+        "claim": "一个平台同时覆盖调度、车队、仓储与财务等全链路环节。",
+        "source": "It covers dispatch, fleet management, live tracking, commerce, warehousing, and finance in one platform"
+      },
+      {
+        "claim": "提供扩展机制，可按需接入官方未内置的功能。",
+        "source": "with a REST API, webhooks, and an extension system for everything else"
+      },
+      {
+        "claim": "支持自托管部署，也可使用官方云服务。",
+        "source": "Run it on your own infrastructure or use Fleetbase Cloud."
+      }
+    ]
   },
   {
     "repo": "sharkdp/fd",
@@ -428,7 +488,13 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.1472293512143706
+    "heatScore": 0.1472293512143706,
+    "facts": [
+      {
+        "claim": "使用并行目录遍历实现极速搜索。",
+        "source": "Very fast due to parallelized directory traversal."
+      }
+    ]
   },
   {
     "repo": "anywhere-labs/dsh-desktop",
@@ -517,7 +583,17 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.49544456641053786
+    "heatScore": 0.49544456641053786,
+    "facts": [
+      {
+        "claim": "支持手机远程控制桌面端AI任务",
+        "source": "通过 iOS 和 Android 远程连接 Desktop，在手机上发起任务、查看 Agent 进度"
+      },
+      {
+        "claim": "将Web UI原生化，免配置",
+        "source": "把上游 DeepSeek Harness 的本地 Web UI 带到原生桌面。应用自动启动和管理本地 Harness 服务"
+      }
+    ]
   },
   {
     "repo": "dataelement/dsh-desktop",
@@ -685,7 +761,25 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.31857258214795947
+    "heatScore": 0.31857258214795947,
+    "facts": [
+      {
+        "claim": "全书包含109个配套实验，强调动手实践而非纯理论",
+        "source": "全书正文、配图、**109 个配套实验**全部开源，欢迎亲手把实验跑一遍。"
+      },
+      {
+        "claim": "2.0版重组了异步交互与多模态Agent为独立新章节",
+        "source": "2.0 版将原第四章中的“异步交互”部分与原第九章中关于“多模态 Agent”的内容合并，重组为新的第六章"
+      },
+      {
+        "claim": "提供PDF/EPUB离线阅读，支持多语言切换",
+        "source": "推荐使用 PDF / EPUB 离线阅读，排版最佳；也可在线阅读（支持多语言切换、章节折叠、高亮与笔记）"
+      },
+      {
+        "claim": "作者有姊妹篇专门讲AI基础设施，形成配套知识体系",
+        "source": "姊妹篇《深入理解 AI Infra：量化分析与系统设计》已开源发布"
+      }
+    ]
   },
   {
     "repo": "nautechsystems/nautilus_trader",
@@ -920,7 +1014,25 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.33636264515073866
+    "heatScore": 0.33636264515073866,
+    "facts": [
+      {
+        "claim": "全本地运行的语音输入输出全栈方案",
+        "source": "The full voice I/O stack, running locally on your machine."
+      },
+      {
+        "claim": "仅需几秒音频即可克隆任意声音",
+        "source": "Clone voices from a few seconds of audio"
+      },
+      {
+        "claim": "支持23种语言和7种TTS引擎",
+        "source": "generate speech in 23 languages across 7 TTS engines"
+      },
+      {
+        "claim": "通过MCP协议为AI智能体赋予语音能力",
+        "source": "give any MCP-aware AI agent a voice of your choosing"
+      }
+    ]
   },
   {
     "repo": "n8n-io/n8n",
@@ -1007,7 +1119,21 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.30410806701558435
+    "heatScore": 0.30410806701558435,
+    "facts": [
+      {
+        "claim": "内置1500+预置集成节点",
+        "source": "connect to 1500+ integrations"
+      },
+      {
+        "claim": "支持自托管与云端双模式运行",
+        "source": "run it self-hosted or in the cloud"
+      },
+      {
+        "claim": "可视化画布与自定义代码混合开发",
+        "source": "Combine a visual canvas with custom code"
+      }
+    ]
   },
   {
     "repo": "qdrant/qdrant",
@@ -1277,7 +1403,21 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.3132290122985257
+    "heatScore": 0.3132290122985257,
+    "facts": [
+      {
+        "claim": "将企业数据转化为上下文图谱并内置决策溯源能力",
+        "source": "Ingest your enterprise data, extract what matters, build a Context Graph and knowledge graph (KG), and run graph analytics and causal reasoning over all of it, with full decision provenance baked in."
+      },
+      {
+        "claim": "面向开发者优先，定位替代昂贵的企业级平台",
+        "source": "Developer-first, knowledge infrastructure for AI, alternative to expensive enterprise platforms."
+      },
+      {
+        "claim": "系统设计上天然具备可解释、可追踪、可信赖特性",
+        "source": "Explainable, traceable, and trustworthy by design."
+      }
+    ]
   },
   {
     "repo": "openclaw/openclaw",
@@ -1365,7 +1505,21 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.361098543225009
+    "heatScore": 0.361098543225009,
+    "facts": [
+      {
+        "claim": "同一网关同时连接20+即时通讯平台",
+        "source": "Discord, iMessage, Slack, Teams, Telegram, WhatsApp, and 20+ more"
+      },
+      {
+        "claim": "个人部署与团队部署仅配置不同",
+        "source": "One Gateway runs it as a personal assistant on a laptop or as a shared team deployment; configuration is the only difference"
+      },
+      {
+        "claim": "模型与Agent框架作为可热插拔插件",
+        "source": "Models and agent harnesses (Claude, Codex, local models) are plugins you can swap without changing anything else"
+      }
+    ]
   },
   {
     "repo": "BerriAI/litellm",
@@ -1464,7 +1618,13 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.2867799040629184
+    "heatScore": 0.2867799040629184,
+    "facts": [
+      {
+        "claim": "支持100多家LLM供应商统一调用",
+        "source": "Open Source AI Gateway for 100+ LLMs"
+      }
+    ]
   },
   {
     "repo": "gethomepage/homepage",
@@ -1562,7 +1722,25 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.06801841034894034
+    "heatScore": 0.06801841034894034,
+    "facts": [
+      {
+        "claim": "支持超过100种服务集成与多语言切换",
+        "source": "integrations for over 100 services and translations into multiple languages"
+      },
+      {
+        "claim": "所有API请求经代理转发以隐藏密钥",
+        "source": "All API requests to backend services are proxied, keeping your API keys hidden"
+      },
+      {
+        "claim": "站点构建时静态生成，加载即时完成",
+        "source": "The site is statically generated at build time for instant load times"
+      },
+      {
+        "claim": "支持ARM64与AMD64双架构镜像",
+        "source": "Images built for AMD64, ARM64"
+      }
+    ]
   },
   {
     "repo": "projectdiscovery/nuclei",
@@ -1649,7 +1827,13 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.1145415736073001
+    "heatScore": 0.1145415736073001,
+    "facts": [
+      {
+        "claim": "支持TCP、DNS、HTTP、SSL、WHOIS、JavaScript、Code等多种协议",
+        "source": "Supports multiple protocols like TCP, DNS, HTTP, SSL, WHOIS, JavaScript, Code and more."
+      }
+    ]
   },
   {
     "repo": "henrygd/beszel",
@@ -1748,7 +1932,17 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.08729955220362952
+    "heatScore": 0.08729955220362952,
+    "facts": [
+      {
+        "claim": "集成Docker容器CPU内存网络历史统计",
+        "source": "Tracks CPU, memory, and network usage history for each container."
+      },
+      {
+        "claim": "支持ZFS存储池容量健康IO及数据集用量",
+        "source": "Tracks pool capacity, health, and I/O, plus per-dataset usage."
+      }
+    ]
   },
   {
     "repo": "infiniflow/ragflow",
@@ -1842,7 +2036,17 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.19107952820016283
+    "heatScore": 0.19107952820016283,
+    "facts": [
+      {
+        "claim": "融合Agent能力的RAG引擎",
+        "source": "fuses cutting-edge RAG with Agent capabilities to create a superior context layer for LLMs"
+      },
+      {
+        "claim": "面向任意规模企业的RAG工作流",
+        "source": "offers a streamlined RAG workflow adaptable to enterprises of any scale"
+      }
+    ]
   },
   {
     "repo": "jingyaogong/minimind",
@@ -2267,7 +2471,21 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.2372187512895638
+    "heatScore": 0.2372187512895638,
+    "facts": [
+      {
+        "claim": "提供100+专业化智能体与协调蜂群。",
+        "source": "adds 100+ specialized agents, coordinated swarms"
+      },
+      {
+        "claim": "实现跨机器的联邦通信。",
+        "source": "federated comms across machines"
+      },
+      {
+        "claim": "内置自我学习记忆机制。",
+        "source": "self-learning memory"
+      }
+    ]
   },
   {
     "repo": "huggingface/transformers",
@@ -2361,7 +2579,17 @@
       "daily"
     ],
     "fromOfficial": true,
-    "heatScore": 0.14184787550060732
+    "heatScore": 0.14184787550060732,
+    "facts": [
+      {
+        "claim": "覆盖文本、视觉、音频、视频与多模态，横跨推理与训练两大环节",
+        "source": "State-of-the-art pretrained models for inference and training"
+      },
+      {
+        "claim": "统一模型定义，兼容多数生态框架",
+        "source": "it will be compatible with the majority of training frameworks (Axolotl, Unsloth, DeepSpeed, FSDP, PyTorch-Lightning, ...)"
+      }
+    ]
   },
   {
     "repo": "BurntSushi/ripgrep",
@@ -2717,7 +2945,17 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.1918354771914413
+    "heatScore": 0.1918354771914413,
+    "facts": [
+      {
+        "claim": "AgentScope 2.0 强调充分利用模型的推理与工具使用能力，而非依赖严格提示词约束。",
+        "source": "Our approach leverages the models' reasoning and tool use abilities rather than constraining them with strict prompts and opinionated orchestrations."
+      },
+      {
+        "claim": "已支持多厂商实时语音接口及A2A开放协议。",
+        "source": "Support DashScope, OpenAI, Gemini and xAI realtime APIs in `RealtimeAgent`."
+      }
+    ]
   },
   {
     "repo": "alphaXiv/OpenResearch",
@@ -2955,7 +3193,13 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.0742113022113022
+    "heatScore": 0.0742113022113022,
+    "facts": [
+      {
+        "claim": "专为云原生环境设计，支持跨数据中心容灾",
+        "source": "CockroachDB is a cloud-native distributed SQL database"
+      }
+    ]
   },
   {
     "repo": "apache/superset",
@@ -3674,7 +3918,13 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.4261965300628178
+    "heatScore": 0.4261965300628178,
+    "facts": [
+      {
+        "claim": "基于RAG、智能体与自动Wiki构建企业级知识框架。",
+        "source": "Turn Documents into Living Knowledge with RAG, Agents and Auto-Wiki"
+      }
+    ]
   },
   {
     "repo": "p1neappleXpress/OpenFlux",
@@ -3749,7 +3999,17 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.27236336692353286
+    "heatScore": 0.27236336692353286,
+    "facts": [
+      {
+        "claim": "采用分批+zstd编解码传输",
+        "source": "TCP tunnel with pluggable transports, batched+zstd codec"
+      },
+      {
+        "claim": "提供L3原始转发与L4 gVisor代理双出口",
+        "source": "two exit-node backends (L3 raw forward / L4 gVisor proxy)"
+      }
+    ]
   },
   {
     "repo": "usebruno/bruno",
@@ -3847,7 +4107,17 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.06433999787301925
+    "heatScore": 0.06433999787301925,
+    "facts": [
+      {
+        "claim": "集合以纯文本Bru格式存本地文件夹",
+        "source": "Bruno stores your collections directly in a folder on your filesystem. We use a plain text markup language, Bru"
+      },
+      {
+        "claim": "承诺永不增加云同步功能",
+        "source": "There are no plans to add cloud-sync to Bruno, ever. We value your data privacy"
+      }
+    ]
   },
   {
     "repo": "dani-garcia/vaultwarden",
@@ -3928,7 +4198,17 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.2222221993349616
+    "heatScore": 0.2222221993349616,
+    "facts": [
+      {
+        "claim": "Rust 实现的轻量级 Bitwarden 服务器",
+        "source": "written in Rust and compatible with official Bitwarden clients"
+      },
+      {
+        "claim": "官方服务资源占用大，此项目更省资源",
+        "source": "running the official resource-heavy service might not be ideal"
+      }
+    ]
   },
   {
     "repo": "Mintplex-Labs/anything-llm",
@@ -4014,7 +4294,21 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.309294101645736
+    "heatScore": 0.309294101645736,
+    "facts": [
+      {
+        "claim": "支持本地运行并零配置启动",
+        "source": "runs locally by default with zero setup friction"
+      },
+      {
+        "claim": "内置 AI 智能体自动执行工作流",
+        "source": "Automate complex workflows with AI Agents"
+      },
+      {
+        "claim": "提供多用户与超个性化配置",
+        "source": "hyper-configurable, multi-user, & no frustrating setup required"
+      }
+    ]
   },
   {
     "repo": "vllm-project/vllm",
@@ -4113,7 +4407,17 @@
       "daily"
     ],
     "fromOfficial": true,
-    "heatScore": 0.2729342404120978
+    "heatScore": 0.2729342404120978,
+    "facts": [
+      {
+        "claim": "源自加州大学伯克利分校 Sky Computing 实验室。",
+        "source": "Originally developed in the Sky Computing Lab at UC Berkeley"
+      },
+      {
+        "claim": "拥有来自 2000 多位贡献者的多元化社区。",
+        "source": "many dozens of academic institutions and companies from over 2000 contributors"
+      }
+    ]
   },
   {
     "repo": "frappe/frappe",
@@ -4301,7 +4605,17 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.12633252052344954
+    "heatScore": 0.12633252052344954,
+    "facts": [
+      {
+        "claim": "内置名为 Captain 的 AI 助手",
+        "source": "Captain helps automate responses, handle common queries, and reduce agent workload"
+      },
+      {
+        "claim": "对标 Intercom 等商业平台",
+        "source": "an open-source alternative to Intercom, Zendesk, Salesforce Service Cloud etc."
+      }
+    ]
   },
   {
     "repo": "cloudnative-pg/cloudnative-pg",
@@ -4574,7 +4888,17 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.3081988274041718
+    "heatScore": 0.3081988274041718,
+    "facts": [
+      {
+        "claim": "使用 Rust 编写的原生浏览器自动化 CLI",
+        "source": "Fast native Rust CLI."
+      },
+      {
+        "claim": "支持从 npm 脚本或直接调用",
+        "source": "use via `package.json` scripts or by invoking `agent-browser` directly."
+      }
+    ]
   },
   {
     "repo": "ublue-os/bazzite",
@@ -4662,7 +4986,13 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.02331124807395994
+    "heatScore": 0.02331124807395994,
+    "facts": [
+      {
+        "claim": "基于 Fedora Atomic 技术构建",
+        "source": "Bazzite is a custom Fedora Atomic image built with cloud native technology"
+      }
+    ]
   },
   {
     "repo": "vercel/next.js",
@@ -4846,7 +5176,21 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.018763423530409704
+    "heatScore": 0.018763423530409704,
+    "facts": [
+      {
+        "claim": "支持跨平台，覆盖 Linux、macOS 和 Windows。",
+        "source": "Available for Linux, macOS, and Windows."
+      },
+      {
+        "claim": "通过 SQL 查询操作系统数据，无需编写代码。",
+        "source": "write SQL-based queries to explore operating system data."
+      },
+      {
+        "claim": "将抽象概念映射为 SQL 表格。",
+        "source": "SQL tables represent abstract concepts such as running processes, loaded kernel modules, open network connections, browser plugins, hardware events or file hashes."
+      }
+    ]
   },
   {
     "repo": "debpalash/VoiceStudio",
@@ -4934,7 +5278,21 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.3965955087330191
+    "heatScore": 0.3965955087330191,
+    "facts": [
+      {
+        "claim": "支持视频配音与语音克隆",
+        "source": "Explore the workspaces · Clone, dub, design & models"
+      },
+      {
+        "claim": "本地运行且可选远程服务",
+        "source": "Local workflows run on your hardware. Remote services are optional"
+      },
+      {
+        "claim": "提供跨平台下载指南",
+        "source": "macOS · Windows · Linux · Docker"
+      }
+    ]
   },
   {
     "repo": "CherryHQ/cherry-studio",
@@ -5482,7 +5840,21 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.3241894420314066
+    "heatScore": 0.3241894420314066,
+    "facts": [
+      {
+        "claim": "将金融信息转化为可检索推理的结构化知识",
+        "source": "refines raw financial information — papers, news, filings — into structured financial knowledge"
+      },
+      {
+        "claim": "每条知识保留引用和时间戳",
+        "source": "Every piece of knowledge is typed, keeps its citation, and knows its timestamp"
+      },
+      {
+        "claim": "支持时间查询",
+        "source": "time-queries standalone"
+      }
+    ]
   },
   {
     "repo": "microsoft/SandDance",
@@ -5565,7 +5937,21 @@
     "category": "tool",
     "momentum": [],
     "fromOfficial": true,
-    "heatScore": 0
+    "heatScore": 0,
+    "facts": [
+      {
+        "claim": "通过 1 对 1 映射实现数据与视觉标记对应",
+        "source": "SandDance uses unit visualizations, which apply a one-to-one mapping between rows in your database and marks on the screen."
+      },
+      {
+        "claim": "提供流畅的视图间动画过渡",
+        "source": "Smooth animated transitions between views help you to maintain context as you interact with your data."
+      },
+      {
+        "claim": "新版采用模块化设计，支持嵌入应用",
+        "source": "This new version of SandDance has been rebuilt from scratch with the goal of being modular, extensible, and embeddable into your custom applications."
+      }
+    ]
   },
   {
     "repo": "arendst/Tasmota",
@@ -7024,7 +7410,17 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.0431063986723216
+    "heatScore": 0.0431063986723216,
+    "facts": [
+      {
+        "claim": "Trivy 支持多种扫描器类型和多种扫描目标，覆盖镜像到代码库。",
+        "source": "Trivy has *scanners* that look for security issues, and *targets* where it can find those issues."
+      },
+      {
+        "claim": "项目在 GitHub 上极受欢迎，下载量巨大。",
+        "source": "![Docker Pulls][docker-pulls]"
+      }
+    ]
   },
   {
     "repo": "microsoft/Data-Science-For-Beginners",
@@ -8250,7 +8646,17 @@
     "category": "fun",
     "momentum": [],
     "fromOfficial": false,
-    "heatScore": 0
+    "heatScore": 0,
+    "facts": [
+      {
+        "claim": "专为 ESP32 开发的 WiFi/蓝牙攻防套件",
+        "source": "A suite of WiFi/Bluetooth offensive and defensive tools for the ESP32"
+      },
+      {
+        "claim": "开源固件可直接烧录到开发板",
+        "source": "Download the latest release of the firmware."
+      }
+    ]
   },
   {
     "repo": "appsmithorg/appsmith",
@@ -11290,7 +11696,21 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.214465532256984
+    "heatScore": 0.214465532256984,
+    "facts": [
+      {
+        "claim": "通过视觉识别自动执行测试",
+        "source": "Midscene combines a vision-driven GUI Agent with a testing kit"
+      },
+      {
+        "claim": "支持跨平台应用测试",
+        "source": "across web, mobile, and desktop apps"
+      },
+      {
+        "claim": "内置测试报告与截图功能",
+        "source": "Open the generated HTML report to inspect screenshots"
+      }
+    ]
   },
   {
     "repo": "rari-build/rari",
@@ -11618,7 +12038,17 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.4638036809815951
+    "heatScore": 0.4638036809815951,
+    "facts": [
+      {
+        "claim": "支持与Slack、Discord等主流协作工具的深度集成。",
+        "source": "Out of the box it supports spend approval thresholds, integration with corporate knowledge systems, and defined governance for how it interacts with human colleagues and other AI systems. Open Executive can also be configured as a digital twin..."
+      },
+      {
+        "claim": "接入MCP协议兼容的AI工具生态。",
+        "source": "Out of the box it supports spend approval thresholds, integration with corporate knowledge systems, and defined governance for how it interacts with human colleagues and other AI systems."
+      }
+    ]
   },
   {
     "repo": "obra/superpowers",
@@ -15192,7 +15622,21 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.13459123505976095
+    "heatScore": 0.13459123505976095,
+    "facts": [
+      {
+        "claim": "可聚合多个主流AI编码助手，统一管理。",
+        "source": "gives you a common orchestration layer over Claude Code, Codex, Cursor, OpenCode, Hermes, Pi, and the agents you write yourself"
+      },
+      {
+        "claim": "会话支持跨设备无缝同步，手机也能接着操作。",
+        "source": "start in your terminal, continue in the browser, pick it up on your phone. Messages, sub-agents, terminals, and files stay in sync."
+      },
+      {
+        "claim": "提供原生macOS桌面应用可供下载。",
+        "source": "⬇️ Download the macOS desktop app\n"
+      }
+    ]
   },
   {
     "repo": "ImranR98/Obtainium",
@@ -15551,7 +15995,21 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.21638000721761097
+    "heatScore": 0.21638000721761097,
+    "facts": [
+      {
+        "claim": "响应式引擎随专辑封面动态匹配色调",
+        "source": "Powered by a responsive design engine that dynamically matches your album art's color palette"
+      },
+      {
+        "claim": "流畅物理动效提升交互质感",
+        "source": "fluid physics-based micro-animations"
+      },
+      {
+        "claim": "本地数据库实现完全隐私",
+        "source": "100% Privacy-FirstCompletely local database."
+      }
+    ]
   },
   {
     "repo": "HKUDS/Vibe-Trading",
@@ -17689,7 +18147,21 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.09720852565843063
+    "heatScore": 0.09720852565843063,
+    "facts": [
+      {
+        "claim": "Apache-2.0许可，可免费自托管完整平台",
+        "source": "Apache-2.0 licensed, free to self-host the full platform"
+      },
+      {
+        "claim": "由Comet公司构建，获得超过两万颗星标",
+        "source": "Built by Comet. Apache-2.0 licensed, free to self-host the full platform, with 20,000+ GitHub stars."
+      },
+      {
+        "claim": "支持LLM作为裁判的评估机制",
+        "source": "🧑‍⚖️ LLM as a Judge"
+      }
+    ]
   },
   {
     "repo": "HKUDS/nanobot",
@@ -59549,7 +60021,21 @@
       "hot"
     ],
     "fromOfficial": false,
-    "heatScore": 0
+    "heatScore": 0,
+    "facts": [
+      {
+        "claim": "本地优先架构保障数据隐私",
+        "source": "Local-first, simple, powerful."
+      },
+      {
+        "claim": "核心定位为具备长期记忆的个人超级智能",
+        "source": "a brain that remembers everything, a fantastic orchestrator, a deep researcher."
+      },
+      {
+        "claim": "发布首周连续九天登顶 GitHub Trending 榜首",
+        "source": "Within one week of launch, OpenHuman became the number one trending repository on GitHub for nine days in a row."
+      }
+    ]
   },
   {
     "repo": "rgeometry/rgeometry",
@@ -75709,7 +76195,17 @@
     "category": "fun",
     "momentum": [],
     "fromOfficial": false,
-    "heatScore": 0
+    "heatScore": 0,
+    "facts": [
+      {
+        "claim": "实时渲染真实前向传播的注意力头与 RoPE 旋转",
+        "source": "watch attention heads, RoPE rotations, and the residual stream move in real 3D"
+      },
+      {
+        "claim": "构建时脚本强制杜绝任何伪造张量",
+        "source": "a build-time script fails CI outright if one sneaks into app code"
+      }
+    ]
   },
   {
     "repo": "originalankur/maptoposter",
