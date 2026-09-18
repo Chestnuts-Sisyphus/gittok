@@ -441,9 +441,11 @@ print(f"线上逐字段一致 {ok}/{len(state['done'])}")
   **47/47 一致、不一致 0、查不到 0**；站点 feed **2669 张**（drip 新增的 14 张也保住了）、详情表 2669 条。
 - **⚠️ 未解决的风险（留栗子拍板）**：这次修复**没能拦住后续的 `facts` 抹除**——12:30 复测，
   我修好的 `sharkdp/fd`/`chatwoot/chatwoot` 等又被抹成空，全库 44/56 已失。建议二选一：
-  ① **让数据管线保留 `facts` 字段**（改 `src/feed/index.ts` 的卡片合并逻辑，把 `facts` 带过）；
-  ② 让 recopy 与 drip **串行**（互斥锁/同一 workflow 内排队），避免管线用旧卡片模型覆盖。
-  属数据管线改动，按"最小改动/不擅自扩范围"只上报，未动代码。
+  ① **让数据管线保留 `facts` 字段** ← **已实施并端到端验证，见下节**；
+  ② 让 recopy 与 drip **串行** —— **已查明 CI 侧本就有**：`feed-tier-drip.yml` 的
+     `concurrency.group = feed-data-writer`（注释写明"所有数据写入者共用同一个 group，
+     任一时刻只跑一个"）。**缺口是本地夜循环不在这个 group 里**（它是本机进程不是 workflow），
+     所以"本地 recopy vs CI drip"仍是两个写者。若还要更稳，可让夜循环也走同一把锁。
 - **state 位置**：`data/recopy-state.json`，读数 `done=56`、`failed=25`（截至 12:30）。
 
 #### T7 · ⚠️ 我自己造成的一次线上故障（12:29–12:33，已修复，如实上报）
@@ -475,6 +477,30 @@ print(f"线上逐字段一致 {ok}/{len(state['done'])}")
   （`coolify` / `Graft` / `fleetbase` / `huggingface/transformers` / `sharkdp/fd` / `chatwoot` /
   `vaultwarden` / `osquery` 8/8 全没了）。→ **在管线修好之前，不再做手工恢复**（做了也会被抹掉），
   这条留作 §「待栗子拍板」的直接依据：**`facts` 能不能站住，取决于管线改不改，不取决于跑多少轮 recopy**。
+
+#### T7 · ✅ `facts` 抹除问题已根治并端到端验证（2026-09-18 18:45）
+
+- **根因（三处，缺一处照样丢）**——都属仓库自己记过的同一纪律
+  「**不进 cache 的字段，下一轮重建就没了**」（`src/feed/index.ts:619` 注释，2026-09-14
+  zone/funScore/tags 事故的原话）：
+  1. **`FeedCard` 类型根本没声明 `facts`**（只声明在 `ScoringResult` 上）→ 管线按 FeedCard
+     重建时 facts 天然不在模型里；
+  2. `loadExistingScores` 的「缓存重建必须带回」白名单漏了 facts（该处注释已要求"任何新增字段
+     都必须同时加在这里"）；
+  3. 卡片组装 `partialCard` 也没带 `sc.facts` —— assembly 是最后一环。
+- **修复**：`d03a9aa`（补类型 + 补白名单 + 按注释要求同步扩 `feed-cache-zone.test.ts`）
+  + `6b26176`（补 `partialCard`）。`tsc --noEmit` 干净；vitest **47 文件 / 512 用例全绿**（+2）。
+- **端到端验证（真实管线跑，非模拟）**：手动派一班 `Feed Tier Drip`
+  （run `35334300959`，18m18s，**success**）→ 它整份重建并推送了 `6f90ede` →
+  比对跑前快照：**跑前有 facts 的 25 张，跑完 25/25 全保留、0 被抹**。
+  对照修复前：每跑一轮管线必抹一批，我 12:33 手工恢复的 42 张曾 **8/8 全被抹**。
+- **恢复重做（这次能站住了）**：`add33c5` —— 从历史写回批次按「文案必须与当前完全一致」
+  取回 42 张 facts。**线上实测：`state.done` 69 张里 67 张有 facts**（修复前 25 张）。
+  余 2 张历史里无对得上的正本，保持为空。
+- **线上终态反查**：`[prepare-feed] 2669 cards: list 4361KB, details 4660KB`；
+  站点 `feed.json` 200 / 4,465,662 B / **2669 张数组**；首页与 Agent 页正常。
+- **附带结论（给栗子的第 ② 条建议据此收敛）**：CI 侧已有 `feed-data-writer` 串行组，
+  真正的缺口是**本地夜循环不在锁内**。
 
 ### T8 E4 / Mimosa 完整审计（G9）
 
