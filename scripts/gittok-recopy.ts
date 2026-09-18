@@ -184,6 +184,12 @@ function assertGithubApiUrl(u: string): void {
 
 function assertRepoName(repo: string): void {
   if (!/^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/.test(repo)) throw new Error(`repo 名不合法：${repo}`);
+  // 正则挡不住相对路径段：字符类含 `.`，所以 "a/.." 与 "../x" 都能通过。
+  const [owner, ...rest] = repo.split("/");
+  if (rest.length !== 1) throw new Error(`repo 名不合法（段数≠2）：${repo}`);
+  for (const seg of [owner, rest[0]]) {
+    if (seg === "." || seg === "..") throw new Error(`repo 名含相对路径段：${repo}`);
+  }
 }
 
 async function fetchReadme(repo: string): Promise<string | undefined> {
