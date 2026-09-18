@@ -1,7 +1,7 @@
 {
   "version": "recopy:v6-copy+facts:1",
   "createdAt": "2026-09-17T12:12:22.618Z",
-  "updatedAt": "2026-09-18T06:29:04.916Z",
+  "updatedAt": "2026-09-18T07:34:14.629Z",
   "done": {
     "coollabsio/coolify": {
       "at": "2026-09-17T12:38:24.902Z",
@@ -258,6 +258,18 @@
     "thedotmack/claude-mem": {
       "at": "2026-09-18T06:19:59.803Z",
       "lane": "zhipu:glm-4.7-flash"
+    },
+    "tw93/Mole": {
+      "at": "2026-09-18T06:48:33.744Z",
+      "lane": "zhipu:glm-4.7-flash"
+    },
+    "dembrandt/dembrandt": {
+      "at": "2026-09-18T07:12:48.914Z",
+      "lane": "zhipu:glm-4.7-flash"
+    },
+    "semaphoreui/semaphore": {
+      "at": "2026-09-18T07:14:21.890Z",
+      "lane": "zhipu:glm-4.7-flash"
     }
   },
   "failed": {
@@ -279,94 +291,73 @@
       ]
     },
     "yt-dlp/yt-dlp": {
-      "at": "2026-09-18T05:40:01.199Z",
+      "at": "2026-09-18T06:46:59.797Z",
       "lane": "zhipu:glm-4.7-flash",
       "fails": [
-        "深度解读 1 段（要求 3-5 段）",
-        "含推广词「赞助」（禁止）"
+        "一句话描述 18 字（硬性要求 20-35 汉字）",
+        "facts[1] source 不在参考文档：不在参考文档"
       ]
     },
     "Stirling-Tools/Stirling-PDF": {
-      "at": "2026-09-18T05:31:49.060Z",
+      "at": "2026-09-18T06:39:50.903Z",
       "lane": "zhipu:glm-4.7-flash",
       "fails": [
-        "简要介绍等效长度 95（要求约 3 行，effLen≥100）",
-        "深度解读 327 字（硬性要求 500-800 字）",
+        "深度解读 383 字（硬性要求 500-800 字）",
         "深度解读 1 段（要求 3-5 段）",
-        "facts[1] source 不在参考文档：不在参考文档"
-      ]
-    },
-    "tw93/Mole": {
-      "at": "2026-09-18T05:42:36.123Z",
-      "lane": "zhipu:glm-4.7-flash",
-      "fails": [
-        "深度解读 285 字（硬性要求 500-800 字）",
-        "深度解读 1 段（要求 3-5 段）",
-        "facts[1] source 不在参考文档：不在参考文档"
-      ]
-    },
-    "hundredrabbits/Orca": {
-      "at": "2026-09-18T05:56:38.679Z",
-      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
-      "fails": [
-        "通道失败：Error: 429 Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day"
-      ]
-    },
-    "NousResearch/hermes-agent": {
-      "at": "2026-09-18T05:45:10.075Z",
-      "lane": "zhipu:glm-4.7-flash",
-      "fails": [
-        "深度解读 1 段（要求 3-5 段）",
+        "facts[1] source 不在参考文档：不在参考文档",
         "facts[3] source 不在参考文档：不在参考文档"
       ]
     },
-    "langchain-ai/langchain": {
-      "at": "2026-09-18T05:47:35.373Z",
+    "hundredrabbits/Orca": {
+      "at": "2026-09-18T06:59:32.839Z",
       "lane": "zhipu:glm-4.7-flash",
       "fails": [
-        "简要介绍等效长度 91（要求约 3 行，effLen≥100）",
-        "深度解读 228 字（硬性要求 500-800 字）",
+        "通道失败：Error: 500 网络错误，错误id 202609181456402a6a709c2f1e4f45 ，请稍后重试。"
+      ]
+    },
+    "NousResearch/hermes-agent": {
+      "at": "2026-09-18T06:51:49.434Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "fails": [
+        "深度解读 492 字（硬性要求 500-800 字）",
+        "深度解读 1 段（要求 3-5 段）",
+        "facts[1] source 不在参考文档：不在参考文档"
+      ]
+    },
+    "langchain-ai/langchain": {
+      "at": "2026-09-18T06:55:05.621Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "fails": [
+        "一句话描述 46 字（硬性要求 20-35 汉字）",
+        "深度解读 296 字（硬性要求 500-800 字）",
         "深度解读 1 段（要求 3-5 段）",
         "未见安装/上手内容（必须覆盖怎么上手）"
       ]
     },
     "appsmithorg/appsmith": {
-      "at": "2026-09-18T06:16:22.433Z",
-      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "at": "2026-09-18T07:06:27.572Z",
+      "lane": "zhipu:glm-4.7-flash",
       "fails": [
-        "通道失败：Error: 429 Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day"
+        "深度解读 283 字（硬性要求 500-800 字）",
+        "深度解读 1 段（要求 3-5 段）",
+        "facts[2] source 不在参考文档：不在参考文档"
       ]
     },
     "pshenok/server-survival": {
-      "at": "2026-09-18T06:19:16.247Z",
+      "at": "2026-09-18T07:12:20.227Z",
       "lane": "zhipu:glm-4.7-flash",
       "fails": [
-        "深度解读 377 字（硬性要求 500-800 字）",
+        "简要介绍等效长度 87（要求约 3 行，effLen≥100）",
+        "深度解读 295 字（硬性要求 500-800 字）",
         "深度解读 1 段（要求 3-5 段）",
-        "facts[1] source 不在参考文档：不在参考文档"
-      ]
-    },
-    "dembrandt/dembrandt": {
-      "at": "2026-09-18T06:26:11.142Z",
-      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
-      "fails": [
-        "通道失败：Error: 429 Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day"
-      ]
-    },
-    "semaphoreui/semaphore": {
-      "at": "2026-09-18T06:27:24.357Z",
-      "lane": "zhipu:glm-4.7-flash",
-      "fails": [
-        "深度解读 496 字（硬性要求 500-800 字）",
-        "深度解读 1 段（要求 3-5 段）"
+        "未见安装/上手内容（必须覆盖怎么上手）"
       ]
     },
     "OuterTune/OuterTune": {
-      "at": "2026-09-18T05:12:22.839Z",
-      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "at": "2026-09-18T07:19:15.854Z",
+      "lane": "zhipu:glm-4.7-flash",
       "fails": [
-        "一句话描述与深度解读开头重复（最长重复片段过长）",
-        "facts[3] source 不在参考文档：不在参考文档"
+        "输出解析失败（无合法 JSON）"
       ]
     },
     "TencentCloud/TencentDB-Agent-Memory": {
@@ -386,42 +377,52 @@
       ]
     },
     "flet-dev/flet": {
-      "at": "2026-09-18T05:22:29.027Z",
+      "at": "2026-09-18T07:28:46.394Z",
       "lane": "zhipu:glm-4.7-flash",
       "fails": [
-        "简要介绍等效长度 93（要求约 3 行，effLen≥100）",
-        "深度解读 406 字（硬性要求 500-800 字）",
+        "深度解读 209 字（硬性要求 500-800 字）",
         "深度解读 1 段（要求 3-5 段）"
       ]
     },
     "o2sh/onefetch": {
-      "at": "2026-09-18T05:19:00.878Z",
+      "at": "2026-09-18T07:24:37.490Z",
       "lane": "zhipu:glm-4.7-flash",
       "fails": [
-        "简要介绍等效长度 98（要求约 3 行，effLen≥100）",
-        "深度解读 381 字（硬性要求 500-800 字）",
+        "简要介绍等效长度 83（要求约 3 行，effLen≥100）",
+        "深度解读 243 字（硬性要求 500-800 字）",
         "深度解读 1 段（要求 3-5 段）"
       ]
     },
     "JustVugg/colibri": {
-      "at": "2026-09-18T06:29:04.916Z",
+      "at": "2026-09-18T07:15:54.623Z",
       "lane": "zhipu:glm-4.7-flash",
       "fails": [
-        "到墙钟上限（未及完成本卡）"
+        "深度解读 463 字（硬性要求 500-800 字）",
+        "深度解读 1 段（要求 3-5 段）",
+        "facts[1] source 不在参考文档：不在参考文档",
+        "facts[3] source 不在参考文档：不在参考文档"
       ]
     },
     "can1357/oh-my-pi": {
-      "at": "2026-09-18T05:16:11.340Z",
+      "at": "2026-09-18T07:19:49.968Z",
       "lane": "zhipu:glm-4.7-flash",
       "fails": [
-        "一句话描述 38 字（硬性要求 20-35 汉字）",
-        "深度解读 412 字（硬性要求 500-800 字）",
-        "深度解读 1 段（要求 3-5 段）",
-        "facts[1] source 不在参考文档：不在参考文档"
+        "一句话描述 19 字（硬性要求 20-35 汉字）",
+        "facts[1] source 不在参考文档：不在参考文档",
+        "facts[2] source 不在参考文档：不在参考文档"
       ]
     },
     "cakephp/cakephp": {
-      "at": "2026-09-18T05:23:40.316Z",
+      "at": "2026-09-18T07:31:59.084Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "fails": [
+        "简要介绍等效长度 92（要求约 3 行，effLen≥100）",
+        "深度解读 400 字（硬性要求 500-800 字）",
+        "深度解读 1 段（要求 3-5 段）"
+      ]
+    },
+    "affaan-m/ECC": {
+      "at": "2026-09-18T07:34:14.629Z",
       "lane": "zhipu:glm-4.7-flash",
       "fails": [
         "到墙钟上限（未及完成本卡）"
