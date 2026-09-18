@@ -1035,9 +1035,9 @@
     "owner": "qdrant",
     "name": "qdrant",
     "desc": "Qdrant - High-performance, massive-scale Vector Database and Vector Search Engine for the next generation of AI. Also available in the cloud https://cloud.qdrant.io/",
-    "summaryCn": "简单来说，当你给AI大脑接入海量知识（比如几万篇文档）时，传统的数据库搜",
-    "reasonCn": "核心技术亮点在于它是用Rust写的，这意味着它在内存管理和并发处理上极其高效，速度远超Python或Java实现的同类竞品。它原生支持丰富的过滤条件（比如“只搜最近一年的文档”），并且提供了非常友好的REST和gRPC API。",
-    "detailCn": "简单来说，当你给AI大脑接入海量知识（比如几万篇文档）时，传统的数据库搜不动，就得靠它。Qdrant是一个专门存“向量”的数据库。AI把文字变成数字向量存在里面，当你提问时，它能以极快的速度找出最相关的几条，然后再交给大模型回答。这就是现在最火的RAG技术的底座。\n\n核心技术亮点在于它是用Rust写的，这意味着它在内存管理和并发处理上极其高效，速度远超Python或Java实现的同类竞品。它原生支持丰富的过滤条件（比如“只搜最近一年的文档”），并且提供了非常友好的REST和gRPC API。它的量化技术和索引算法（如HNSW）经过深度优化，能在保证准确率的同时，把查询速度推到极限。相比PgVector，它更纯粹、更快；相比Milvus，它部署更轻量、架构更清晰。\n\n上手非常容易。官方提供了Docker镜像，一条命令就能启动服务：`docker run -p 6333:6333 qdrant/qdrant`。启动后，你可以直接访问localhost:6333打开Dashboard，通过网页界面导入数据、创建集合、执行搜索。如果你用Python，安装`qdrant-client`库后，几行代码就能连接并写入向量。它还完美集成了LangChain和LlamaIndex，主流AI框架开箱即用。\n\n这个项目特别适合正在搭建企业知识库、推荐系统或搜索增强应用的开发者。无论是个人开发者做个小Demo，还是大厂做高并发的生产环境，它都能扛得住。如果你发现现有的向量搜索太慢，或者需要复杂的过滤逻辑，Qdrant是最佳升级方案。\n\n社区活跃度极高，拥有3万多个Star，维护者响应迅速。它已经有完整的云版本（Qdrant Cloud），也有自托管方案。在向量数据库这个赛道上，它与Milvus、Weaviate并称三巨头，但以Rust的性能优势和优雅的设计著称。目前版本迭代很快，功能稳定，是构建现代AI应用基础设施的首选之一。",
+    "summaryCn": "高性能向量数据库，专为 AI 应用提供存储与检索服务",
+    "reasonCn": "Qdrant 是一款用 Rust 编写的向量相似度搜索引擎，专门为 AI 应用设计。它能高效存储和搜索带有额外信息的向量数据，支持复杂的过滤条件，非常适合做语义检索、推荐系统或 RAG（检索增强生成）应用。它还提供免费托管的云服务。",
+    "detailCn": "Qdrant 是一款用 Rust 编写的向量相似度搜索引擎，专门为 AI 应用设计。它能高效存储和搜索带有额外信息的向量数据，支持复杂的过滤条件，非常适合做语义检索、推荐系统或 RAG（检索增强生成）应用。它还提供免费托管的云服务。\n\nQdrant 的核心优势在于其高性能和可靠性。它采用 Rust 语言编写，这意味着在处理海量数据和高并发请求时，它能保持极快的速度和稳定性。文档中提到，Qdrant 是为“下一代 AI 应用”量身定制的，旨在解决传统数据库在处理非结构化数据时的瓶颈问题。对于开发者来说，这意味着可以用它来构建更智能的搜索和推荐功能，而不必担心性能瓶颈。\n\n安装和使用方面，Qdrant 提供了多种方式。你可以直接从项目仓库获取安装方式，也可以选择它提供的完全托管的 Qdrant Cloud 服务，后者还包含免费层级。对于本地部署，你可以通过 Docker 快速启动一个向量数据库实例，这对于需要快速原型验证的开发者来说非常友好。一旦启动，你就可以通过其提供的 API 来管理你的向量数据，进行搜索和过滤。\n\nQdrant 适用的场景非常广泛。除了基础的向量搜索，它还能很好地处理带有附加属性的过滤需求，这在构建多维度的推荐系统或需要结合语义和精确匹配的应用中非常有用。无论是构建一个智能客服系统、做文档的语义检索，还是开发一个基于内容的推荐功能，Qdrant 都能作为一个坚实的数据层支撑起你的应用。",
     "stars": 34635,
     "starGrowth": 41,
     "createdAt": "2020-05-30T21:37:01Z",
@@ -1107,7 +1107,13 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.12655132091814636
+    "heatScore": 0.12655132091814636,
+    "facts": [
+      {
+        "claim": "支持丰富的 Payload 过滤条件",
+        "source": "Qdrant is tailored for extended filtering support"
+      }
+    ]
   },
   {
     "repo": "henrygd/beszel",
@@ -1213,9 +1219,9 @@
     "owner": "Dokploy",
     "name": "dokploy",
     "desc": "Open Source Alternative to Vercel, Netlify and Heroku.",
-    "summaryCn": "自己搭个云端部署平台，应用像搭积木一样一键发布",
-    "reasonCn": "Dokploy 是一个自托管的 PaaS 平台，基于 Docker 容器技术，支持一键部署 Web 应用、静态站点和数据库服务。它提供图形化 Web 界面，自动处理反向代理和 HTTPS 证书申请，内置 Traefik 作为网关。支持 Node.js、Python、Go、Rust 等多种运行时环境，也能直接部署 Docker 镜像。相比 Heroku 或 Vercel，它的优势是完全免费、数据掌控在自己手里，且支持私有化部署。",
-    "detailCn": "想象一下，你有几台云服务器闲置着，上面空空如也。以前要部署一个网站，得自己装 Nginx、配置 SSL 证书、处理反向代理，折腾一天还未必能跑起来。Dokploy 的出现就是为了解决这个痛点——它让你用最低的学习成本，在自有服务器上搭建一个属于自己的\"小 Vercel\"。\n\n技术上，Dokploy 的核心是 Docker Compose 编排，所有应用都以容器方式运行。内置 Traefik 反向代理，自动为每个应用生成 HTTPS 证书，无需手动配置。支持多种应用类型：静态站点可以直接上传或连 GitHub 仓库自动构建；动态应用支持 Node.js、Python、Go、Rust 等主流语言；数据库服务提供 PostgreSQL、MySQL、MongoDB、Redis 等一键部署。管理界面非常直观，部署、重启、监控日志全流程可视化。\n\n安装极为简单。只需一台 Linux 服务器，执行一条命令：curl -sSL https://dokploy.com/install.sh | sh。安装完成后访问服务器 IP 的 3000 端口，创建管理员账号即可进入控制台。添加应用只需填写基本信息、选择模板、绑定域名，几分钟内应用即可上线。支持 GitHub 集成，代码推送后自动触发构建和部署。\n\n适合这几类人群：想摆脱 Vercel/Heroku 每月费用限制的独立开发者；有云服务器资源想物尽其用的技术团队；对数据隐私敏感、需要私有化部署的企业；希望通过图形界面简化 DevOps 流程的产品经理或创业者。如果你嫌 Heroku 太贵、K8s 太重，Dokploy 正好站在中间地带。\n\n该项目 GitHub Star 数超过 36000，社区活跃，迭代频繁，每周都有新功能发布。作为开源 PaaS 赛道的有力竞争者，它与 Coolify、CapRover 等自托管方案形成直接竞争，但 Dokploy 在界面美观度和开箱体验上口碑较好。竞品中 Vercel/Netlify 功能更强但数据不在自己手里，Kubernetes 生态强大但运维成本极高，Dokploy 填补了\"轻量可控\"这个空白。",
+    "summaryCn": "开源自托管 PaaS，一键部署应用与数据库，支持多节点集群。",
+    "reasonCn": "Dokploy 是一款开源自托管 PaaS 平台，旨在简化应用与数据库的部署运维。它支持 Node.js、Python、Go 等多语言应用一键部署，内置 MySQL、PostgreSQL、MongoDB 等数据库管理，并提供自动化备份至外部存储功能。原生兼容 Docker Compose 编排复杂服务，更支持基于 Docker Swarm 的多节点集群扩展，适合追求数据主权、不想依赖云厂商的开发者或中小团队自建类 Heroku 环境。",
+    "detailCn": "Dokploy 将 Docker 容器编排能力封装成可视化控制面板，让开发者无需编写复杂的 YAML 即可完成应用上线。它支持主流编程语言运行时，创建应用时自动识别构建配置，数据库实例可在界面中一键启用并配置定时备份至 S3 兼容存储。\n\n核心亮点在于原生支持 Docker Compose，用户可直接粘贴或上传 compose 文件部署微服务架构，保留了 Docker 生态的灵活性。同时内置 Docker Swarm 模式，只需在界面添加节点 IP 即可组建集群，实现跨主机容器调度与负载均衡，降低了集群运维门槛。\n\n安装方式极其简化，官方提供一键安装脚本，在干净的 Linux 服务器上执行即可自动拉取镜像、配置 Traefik 反向代理与 SSL 证书，几分钟内获得一个可用的 PaaS 入口。无需额外配置数据库或消息队列，核心组件均运行在容器中。\n\n适合希望完全掌控数据与基础设施的独立开发者、初创团队，或需在私有网络、边缘节点部署应用的场景。相比 Vercel、Heroku 等公有云，它消除了厂商锁定与流量成本；相比 Kubernetes，它大幅降低了学习曲线与资源占用，是轻量级自托管部署的务实之选。",
     "stars": 37350,
     "starGrowth": 23,
     "createdAt": "2024-04-19T07:49:30Z",
@@ -1305,7 +1311,21 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.07084738955823294
+    "heatScore": 0.07084738955823294,
+    "facts": [
+      {
+        "claim": "支持 Docker Swarm 多节点集群管理",
+        "source": "Scale applications to multiple nodes using Docker Swarm to manage the cluster"
+      },
+      {
+        "claim": "原生支持 Docker Compose 编排复杂应用",
+        "source": "Native support for Docker Compose to manage complex applications"
+      },
+      {
+        "claim": "自动化数据库备份至外部存储目标",
+        "source": "Automate backups for databases to an external storage destination"
+      }
+    ]
   },
   {
     "repo": "openclaw/openclaw",
@@ -2082,9 +2102,9 @@
     "owner": "freeCodeCamp",
     "name": "freeCodeCamp",
     "desc": "freeCodeCamp.org's open-source codebase and curriculum. Learn math, programming, and computer science for free.",
-    "summaryCn": "GitHub star 四十五万的编程学习宝库，免费搞定全栈技能",
-    "reasonCn": "这是全球最大的免费编程学习平台，拥有四十多万星的极高人气。内容涵盖前端、后端、算法乃至数据科学，课程由社区贡献且持续更新。虽然它不涉及 AI 开发或大模型训练，但作为编程基石，熟练掌握这些技能是进入 AI 行业的必经之路。适合零基础小白系统入门，也可用于复习巩固计算机基础知识。",
-    "detailCn": "简单来说，这个项目就是编程界的“维基百科”加上“互动课堂”。你想学写代码，但报班太贵、看书太枯燥？这里提供了一套完整的、免费的、从入门到精通的学习路径。它不只是一个网站，而是一个拥有庞大社区支持的开源课程体系，涵盖 HTML、CSS、JavaScript、Python、数据库、甚至机器学习基础。它的核心理念是“边学边练”，每个知识点都配有在线代码编辑器，你不需要在本地配置任何环境，打开浏览器就能写代码、跑测试，即时看到反馈。\n\n技术上，它的代码库本身就是一个现代全栈应用的典范。前端使用 React 框架，后端基于 Node.js 和 Express，数据库采用 MongoDB。整个平台遵循严格的开源规范，课程内容由全球开发者协作维护。它的独特之处在于“证书机制”：完成特定板块的项目挑战后，你会获得经过验证的证书，这在一定程度上被行业内认可。与 Codecademy 等商业平台相比，它完全免费且开源，没有任何付费墙阻碍学习。\n\n上手非常简单。直接访问 freeCodeCamp.org，注册账号即可开始。你可以选择“Responsive Web Design”作为起点，系统会引导你一步步完成五个项目，最终获得证书。如果你想挑战更难的，可以进入“Python for Everybody”或“Data Analysis with Python”路径。所有课程都是交互式的，左侧是教程，右侧是代码编辑器，底部有测试用例。你只需要点击“Run Tests”就能验证自己的代码是否正确。整个过程就像玩游戏升级一样，非常有成就感。\n\n这个项目特别适合以下几类人群：完全零基础的编程小白，想要系统建立知识体系；转行 IT 的职场人士，需要补齐计算机基础；准备技术面试的求职者，可以通过刷题和做项目来巩固知识；以及对 AI 感兴趣但还没入门，需要先掌握 Python 和数据处理技能的学习者。虽然它不直接教 AI 模型训练，但其中的 Python 和数据科学课程是进入 AI 领域的坚实台阶。\n\n从社区和生态来看，freeCodeCamp 是 GitHub 上 star 数最高的教育类项目之一，拥有超过四十万颗星，全球注册学习者超过一千万。它由 Quincy Larson 创立，早已形成一个庞大的志愿者贡献者网络。课程版本迭代迅速，紧跟技术潮流，最近还新增了机器学习、自然语言处理等与 AI 相关的初级课程。对于想进入 AI 行业的人来说，这里是最靠谱的“打地基”之地。竞品如 LeetCode 更侧重算法刷题，而 freeCodeCamp 更侧重项目实战和完整技能树构建，两者互补。",
+    "summaryCn": "免费开源编程学习平台，含全栈与机器学习认证课程。",
+    "reasonCn": "freeCodeCamp 是一个非营利开源社区，提供全栈 Web 开发与机器学习的完整自学课程。平台包含数千道交互式编程挑战，涵盖从基础语法到实战项目的全链路，已助力超过十万名学员成功转行拿到第一份开发工作。所有内容完全免费、自主进度，适合零基础入门与技能进阶。",
+    "detailCn": "这个开源社区已帮助超过十万名成年人成功转行拿到第一份开发者工作，这个具体数字直接证明了其课程体系的实战有效性。它不只是堆砌教程，而是构建了一套从零基础到就业级的完整学习路径，解决了自学者\"学什么、怎么练、如何证明\"的核心难题。\n\n平台提供全栈 Web 开发与机器学习两大核心认证方向，课程完全免费且自主进度，打破了传统昂贵训练营的门槛。数千道交互式编程挑战贯穿始终，学员在浏览器中即时编写代码、运行测试、获得反馈，这种\"边学边练\"的闭环设计，让抽象概念转化为可验证的肌肉记忆，避免了只看不练的假性掌握。\n\n上手极其简单：访问 freeCodeCamp.org 注册账号即可开始学习，无需配置本地环境、安装依赖或搭建服务器。所有挑战均在云端 IDE 中完成，进度自动云端同步，随时换设备接着学。对于想自建平台或贡献代码的开发者，项目采用 TypeScript 构建，可从 GitHub 仓库获取安装部署文档进行本地化部署或二次开发。\n\n它最适合三类人：想零成本转行入行的职场新人、需要系统补齐计算机基础的在职开发者、以及寻找结构化教学资源的教育工作者。非营利性质与捐赠驱动模式保证了内容长期免费开放，活跃的社区论坛与开源共建机制让课程持续迭代贴近行业前沿。",
     "stars": 455691,
     "starGrowth": 135,
     "language": "TypeScript",
@@ -2154,7 +2174,21 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.3008887601466783
+    "heatScore": 0.3008887601466783,
+    "facts": [
+      {
+        "claim": "已助10万+人获首份开发工作",
+        "source": "Our community has already helped more than 100,000 people get their first developer job."
+      },
+      {
+        "claim": "提供全栈与机器学习完整认证体系",
+        "source": "Our full-stack web development and machine learning curriculum is completely free and self-paced."
+      },
+      {
+        "claim": "包含数千道交互式编程挑战题",
+        "source": "We have thousands of interactive coding challenges to help you expand your skills."
+      }
+    ]
   },
   {
     "repo": "alphaXiv/OpenResearch",
@@ -4089,9 +4123,9 @@
     "owner": "cloudnative-pg",
     "name": "cloudnative-pg",
     "desc": "The most popular Kubernetes Operator for PostgreSQL.",
-    "summaryCn": "PostgreSQL的Kubernetes管家，自动化管理数据库集群",
-    "reasonCn": "CloudNative-PG 是目前最受欢迎的 Kubernetes PostgreSQL Operator，由 EnterpriseDB 主导开发。它让你能用声明式方式在 K8s 上运行 PostgreSQL 集群，支持自动备份、故障恢复、版本升级等企业级功能。相比手动部署 PostgreSQL，它解决了容器环境下数据库状态管理的核心难题。",
-    "detailCn": "在 Kubernetes 上运行数据库一直是个技术挑战。传统的数据库是状态密集型应用，而 K8s 原生设计面向无状态服务，两者结合需要解决很多特殊问题。CloudNative-PG 就是专为解决这些问题而生的 PostgreSQL Operator。\n\n技术架构上，它遵循 Kubernetes Operator 模式，通过自定义资源 CRD 来声明你想要的数据库状态，然后控制器自动维护实际状态与期望状态一致。核心能力包括：自动初始化 PostgreSQL 集群；管理主从复制和故障切换；执行基于 WAL 的连续备份；支持在线升级 PostgreSQL 版本；自动重建失败的 Pod 并保持数据一致。相比 Crunchy Data 的 PostgreSQL Operator，它在开源生态和社区贡献上更有优势。\n\n使用首先需要安装 operator，一行 kubectl apply 就能完成。然后创建一个 Cluster 资源定义你的数据库配置，比如副本数、存储大小、备份策略等。它会自己拉起 Postgres Pod、配置 Patroni 做高可用、建立 pgBackRest 做备份。日常运维像升级版本只需修改 Cluster 的 image 字段，operator 会自动滚动更新。\n\n适合需要 K8s 上运行 PostgreSQL 的团队；追求数据库自动化运维的企业；对数据安全和高可用有要求的业务场景；以及不想维护复杂 PostgreSQL 部署配置的开发团队。特别适合那些已经在使用 Kubernetes 但又需要关系型数据库的项目。\n\n这个项目 Stars 超过 9000，是 CNCF 沙箱项目，社区活跃度很高。EnterpriseDB 作为 PostgreSQL 的商业支持公司主导开发，专业性有保障。竞品包括 Crunchy Postgres for Kubernetes、Zalando的 PostgreSQL Operator 等，但 CloudNative-PG 在备份恢复、版本升级等企业功能上做得更完整。如果你的 K8s 集群需要 PostgreSQL，这个项目值得一看。",
+    "summaryCn": "Kubernetes 上的 PostgreSQL 全自动运维平台",
+    "reasonCn": "CloudNativePG 是专为 Kubernetes 设计的 PostgreSQL 运维平台，通过 Operator 模式将部署、备份、高可用、滚动升级等全生命周期操作自动化。它原生支持声明式配置与 GitOps 工作流，让数据库像无状态应用一样纳入 CI/CD 管道，解决了有状态服务在 K8s 上运维困难、手工介入多的痛点，已成为 CNCF 毕业项目。",
+    "detailCn": "CloudNativePG 以 Kubernetes Operator 形式运行，内置控制器持续协调集群实际状态与用户声明的目标状态。用户只需编写一个 Cluster 自定义资源，指定实例数、存储类、PostgreSQL 版本与参数，Operator 便会自动创建主从架构、配置流复制、管理 WAL 归档并对接 S3 兼容对象存储完成备份恢复。\n\n项目原生支持主库故障自动切换、只读副本水平扩展、滚动升级不停机等生产级能力，并提供 declarative 备份策略、Point-in-Time Recovery 等数据安全特性。监控指标通过 Prometheus 暴露，集成 Grafana 仪表板开箱即用，日志与事件遵循 K8s 规范便于统一观测。\n\n安装方式极简：通过 Helm Chart 或 kubectl apply 官方发布的 CRD 与 Operator Deployment 即可在几分钟内完成部署，随后像管理 Deployment 一样用 kubectl 管理数据库集群。文档提供从单节点开发环境到多可用区生产环境的完整范例，降低上手门槛。\n\n适合在 Kubernetes 上运行 PostgreSQL 的团队，特别是追求 GitOps、基础设施即代码、需要自动化备份恢复与高可用的中大型应用。CNCF 毕业项目身份意味着其 API 稳定、社区治理成熟、生产案例丰富，可放心用于核心业务。",
     "stars": 9404,
     "starGrowth": 32,
     "createdAt": "2022-03-10T11:21:32Z",
@@ -4163,7 +4197,17 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.10620842194810719
+    "heatScore": 0.10620842194810719,
+    "facts": [
+      {
+        "claim": "CNCF 毕业项目，标志生产级成熟度最高",
+        "source": "[][cncf-landscape]"
+      },
+      {
+        "claim": "以 Operator 模式覆盖 PostgreSQL 全生命周期",
+        "source": "It covers the entire operational lifecycle—from deployment to ongoing maintenance—through its core component, the CloudNativePG operator."
+      }
+    ]
   },
   {
     "repo": "4ian/GDevelop",
@@ -4345,9 +4389,9 @@
     "owner": "open-webui",
     "name": "open-webui",
     "desc": "User-friendly AI Interface (Supports Ollama, OpenAI API, ...)",
-    "summaryCn": "把ChatGPT装进自己服务器的开源方案，支持多种AI后端随意切换，好用又省心",
-    "reasonCn": "技术上看，它基于FastAPI后端加Vue.js前端，架构清晰。核心亮点是统一接口管理——一个界面能对接Ollama本地模型、OpenAI、Claude等多种AI服务，切换只需点几下。还支持文件上传做RAG问答，上传PDF文档后直接和它对话。",
-    "detailCn": "你可能用过ChatGPT，但每次都要联网、依赖第三方服务，隐私是个问题。这个项目就是让你把自己的AI聊天平台搭起来，数据完全自己掌握。\n\n技术上看，它基于FastAPI后端加Vue.js前端，架构清晰。核心亮点是统一接口管理——一个界面能对接Ollama本地模型、OpenAI、Claude等多种AI服务，切换只需点几下。还支持文件上传做RAG问答，上传PDF文档后直接和它对话。多用户权限管理也很完善，适合团队协作。\n\n安装用Docker最快：拉取镜像后运行docker compose up即可启动。也可以pip安装，用pip install open-webui然后open-webui命令启动。支持NVIDIA GPU加速，本地Ollama模型无缝衔接。\n\n适合这几类人：个人用户想在本地搭建AI助手，保护隐私数据；企业团队需要私有化部署AI聊天平台；开发者想用统一界面管理多个AI服务，避免来回切换API文档。\n\n社区非常活跃，GitHub Star超过14万，持续迭代中。相比Dify、FastGPT等国产平台，它更轻量、部署更简单；相比官方界面，它支持更多模型后端，灵活度更高。",
+    "summaryCn": "本地开源 AI 平台，支持多种模型接入。",
+    "reasonCn": "Open WebUI 是一款自托管的 AI 平台，它将多种大模型能力整合到一个界面中，让用户既能用本地的 Ollama 模型，也能调用云端 OpenAI 的接口。它专为离线运行设计，通过友好的 Web 界面让复杂的模型交互变得简单直观。",
+    "detailCn": "Open WebUI 是一个致力于将 AI 能力带回家的开源项目。它的核心亮点在于“极致的兼容性”与“完全的自主性”。项目支持 **Ollama** 和 **OpenAI 兼容 API**，这意味着用户既可以运行轻量级的本地模型，也能无缝对接云端服务。对于注重隐私或网络受限的用户来说，它能**entirely offline**（完全离线）运行，所有数据都掌握在自己手中，无需担心上传到第三方平台。\n\n安装过程非常友好，项目提供了 pip、uv、Docker 以及 Kubernetes 一整套方案。对于不想折腾命令行的用户，直接使用 Docker 镜像是最简单的方式，官方甚至提供了 `:ollama` 和 `:cuda` 的标签，分别针对不同的运行环境做了优化，大大降低了上手门槛。\n\n这个平台不仅是一个聊天窗口，更是一个功能丰富的 AI 应用中心。它内置了强大的 **RAG（检索增强生成）** 功能，支持用户上传自己的知识库文档，让 AI 能够基于私有数据回答问题。除此之外，它还集成了多模态能力，支持图片上传与识别，以及智能体工作流等高级功能，让 AI 不仅仅是聊天的工具，更是工作的助手。无论是个人开发者想要搭建专属的 AI 助手，还是团队需要内部的知识库系统，Open WebUI 都能提供一个灵活且强大的解决方案。",
     "stars": 152381,
     "starGrowth": 94,
     "createdAt": "2023-10-06T22:08:27Z",
@@ -4447,7 +4491,13 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.28385062442167985
+    "heatScore": 0.28385062442167985,
+    "facts": [
+      {
+        "claim": "支持 Ollama 与 OpenAI 兼容 API。",
+        "source": "With support for **Ollama** and **OpenAI-compatible APIs**"
+      }
+    ]
   },
   {
     "repo": "SenteLabsAI/OpenExecutive",
