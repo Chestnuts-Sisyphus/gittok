@@ -446,6 +446,25 @@ print(f"线上逐字段一致 {ok}/{len(state['done'])}")
   属数据管线改动，按"最小改动/不擅自扩范围"只上报，未动代码。
 - **state 位置**：`data/recopy-state.json`，读数 `done=56`、`failed=25`（截至 12:30）。
 
+#### T7 · ⚠️ 我自己造成的一次线上故障（12:29–12:33，已修复，如实上报）
+
+- **事故**：修复 `facts` 的脚本（`b4a589f`）里我把底数据建成了 `{repo: card}` 字典、
+  又把**字典**直接 dump 回 `data/feed.json` → 该文件**顶层由数组变成对象**。
+  vite 的 `prepare-feed` 插件 `Array.isArray(parsed)` 判定失败 →
+  `[prepare-feed] 0 cards: list 0KB, details 0KB (source 10742KB)` →
+  线上 `data/feed.json` 变成 **`[]`**，**站点 feed 空了约 4 分钟**。
+- **影响面**：仅 `data/feed.json`（站点刷卡数据）。`data/recopy-state.json`、判据字段、
+  Agent 接入页、其它 data 文件均未受影响。
+- **发现方式**：修完 `facts` 后做线上反查时，脚本报「站点 feed 卡数: 0」→ 立刻 `curl` 确认
+  `bytes=2` 且内容为 `[]` → 拉 deploy 日志看到 `0 cards` 定位到形态问题。
+- **修复**：`c9d79bc`——把顶层还原为**数组**（2669 张、插入序不变），并保留该次恢复的 42 张 `facts`。
+  部署后 `[prepare-feed] 2669 cards: list 4358KB, details 4664KB` ✓；线上 `feed.json` 200 /
+  4,462,436 B / 2669 张数组 ✓；首页正常渲染、Agent 页 `codeHiddenMax=0` / 状态板 `10/10 正常` ✓。
+- **防复发**：恢复脚本已改成**同时兼容数组与对象输入**，且输出恒为数组；
+  并在脚本里写明「feed.json 顶层必须是数组，写成对象会让 prepare-feed 解析出 0 张卡」。
+- **`facts` 恢复的最终结果（12:40 线上实测）**：`state.done` 58 张里 **56 张站点上 `facts` 非空**
+  （恢复前 44 张为空）；余 2 张历史里没有「文案对得上」的 `facts` 正本，保持为空（不硬凑）。
+
 ### T8 E4 / Mimosa 完整审计（G9）
 
 - **扫描（实测）**：
