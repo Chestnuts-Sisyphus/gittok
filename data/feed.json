@@ -11260,9 +11260,9 @@
     "owner": "arendst",
     "name": "Tasmota",
     "desc": "Alternative firmware for ESP8266 and ESP32 based devices with easy configuration using webUI, OTA updates, automation using timers or rules, expandability and entirely local control over MQTT, HTTP, Serial or KNX. Full documentation at",
-    "summaryCn": "把普通电器变成智能家居，手机网页就能远程遥控开关",
-    "reasonCn": "Tasmota 是一款专为 ESP8266 和 ESP32 芯片设计的开源固件，替换原厂固件后即可实现对各类电子设备的远程控制。内置丰富的 Web 配置界面，支持 MQTT、HTTP 等协议，兼容 Home Assistant、OpenHAB 等主流智能家居平台，且规则引擎允许用户自定义自动化逻辑。",
-    "detailCn": "你有没有想过，把家里那些不会联网的普通开关、插座、灯泡，花几十块钱变成智能设备？Tasmota 就是干这个的。它是一款开源固件，刷进 ESP8266 或 ESP32 芯片后，原本只能手动控制的设备就能通过手机、网页或语音助手远程控制。家里那盏关了开关就找不到的灯，从此再也不会消失。\n\n技术上，Tasmota 的核心优势在于高度本地化和可扩展。它完全离线运行，数据不经过任何云端服务器，保护隐私的同时也避免了网络中断导致设备瘫痪。内置规则引擎，用户可以编写类似 \"如果温度超过30度，自动打开风扇\" 的自动化逻辑。支持 MQTT、HTTP、Home Assistant、Zigbee 等多种协议和平台接入。内置数十种传感器驱动，温湿度、光照、人体感应、门锁状态都能接。Web 界面友好，手机电脑都能配置，不需要写一行代码。\n\n上手非常简单。ESP8266 开发板十几块钱一个，刷入 Tasmota 固件后，连接 WiFi，浏览器访问设备 IP 就能进入配置页面。首次配置只需填写 WiFi 名称和密码，设备自动连接。接入 Home Assistant 只需在配置页面填入 Home Assistant 的 IP 和 MQTT 信息，设备会自动被发现。进阶用户可以用规则引擎编写复杂逻辑，比如在 Home Assistant 界面上点击按钮触发灯光场景。\n\n这个项目特别适合以下几类人：家里有老式电器想低成本智能改造的DIY爱好者；注重隐私不想数据上云的家庭用户；喜欢折腾智能家居的极客；需要本地化部署的物联网开发者。它不需要任何付费服务，所有功能免费使用，硬件成本极低。\n\nTasmota 由 Andreas 发起，已从最初的 Sonoff 固件分支发展而来，现在是 ESPHome 之外最流行的智能家居固件之一。GitHub star 超过 24000，社区活跃，文档完善，持续迭代中。它和 ESPHome、Home Assistant 等生态深度融合，是开源智能家居领域不可或缺的基础设施。",
+    "summaryCn": "给智能设备刷入的固件，支持多种协议本地控制。",
+    "reasonCn": "Tasmota 是专为 ESP8266 和 ESP32 开发的替代固件。它解决了原厂固件功能受限、配置繁琐的问题，通过网页界面即可轻松管理。项目支持 MQTT、HTTP、串口和 KNX 等多种通信协议，实现完全本地化的设备控制，非常适合想要 DIY 智能家居或改造旧设备的用户。",
+    "detailCn": "Tasmota 固件让开发者能够将廉价的 ESP8266 或 ESP32 开发板变成功能强大的智能家居中枢。与原厂固件相比，它最大的优势在于配置极其简单，用户只需通过内置的网页界面即可完成所有设置，无需编写代码。这意味着你可以轻松地把废弃的路由器、插排或灯泡改造成可远程控制的智能设备。\n\n该项目的核心亮点在于其强大的协议支持能力。它不仅支持常见的 MQTT 协议进行自动化控制，还支持 HTTP、串口通信以及 KNX 总线。这种多协议兼容性使其能够无缝接入现有的智能家居系统，无论是通过 Home Assistant 还是其他第三方平台。此外，固件内置了 OTA 远程升级功能，无需物理接触设备即可更新系统，大大降低了维护难度。\n\n安装和使用过程非常直观。官方提供了 Tasmota WebInstaller 工具，用户只需按照网页上的步骤操作，即可一键烧录固件。安装完成后，设备会自动进入配置模式，通过浏览器访问其 IP 地址即可看到配置界面。在这里，你可以设置 Wi-Fi 连接、配置 MQTT 服务器、设置自动化规则等。整个流程对新手非常友好，是家庭自动化入门的绝佳选择。\n\nTasmota 采用了 PlatformIO 进行开发，保证了代码的质量和兼容性。它不仅适用于新手 DIY，也深受专业开发者的喜爱，拥有活跃的社区支持。对于那些希望摆脱云服务、拥有完全私有化控制权的用户来说，Tasmota 是一个功能全面、稳定可靠且完全开源的解决方案。",
     "stars": 24762,
     "starGrowth": 1,
     "createdAt": "2017-01-28T13:37:08Z",
@@ -11344,7 +11344,17 @@
     "category": "tool",
     "momentum": [],
     "fromOfficial": false,
-    "heatScore": 0
+    "heatScore": 0,
+    "facts": [
+      {
+        "claim": "支持多种通信协议实现本地控制。",
+        "source": "entirely local control over MQTT, HTTP, Serial or KNX"
+      },
+      {
+        "claim": "可通过网页界面轻松配置。",
+        "source": "easy configuration using webUI"
+      }
+    ]
   },
   {
     "repo": "TheAlgorithms/Python",

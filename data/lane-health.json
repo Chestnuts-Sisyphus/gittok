@@ -1,14 +1,13 @@
 {
-  "updatedAt": "2026-09-17T12:44:00.026Z",
+  "updatedAt": "2026-09-18T17:04:58.567Z",
   "lanes": {
     "zhipu": {
       "key": "zhipu",
-      "calls": 838,
-      "ok": 372,
-      "lastError": "Error: 429 该模型当前访问量过大，请您稍后再试",
-      "lastClass": "quota-daily",
-      "updatedAt": "2026-09-17T12:18:30.196Z",
-      "retiredUntil": "2026-09-18T00:18:30.196Z"
+      "calls": 1991,
+      "ok": 1439,
+      "lastError": "Error: 429 您的账户已达到速率限制，请您控制请求频率",
+      "lastClass": "ok",
+      "updatedAt": "2026-09-18T17:04:58.567Z"
     },
     "agnes": {
       "key": "agnes",
@@ -55,11 +54,12 @@
     },
     "openrouter": {
       "key": "openrouter",
-      "calls": 233,
-      "ok": 22,
-      "lastError": "TypeError: Cannot read properties of undefined (reading '0')",
-      "lastClass": "ok",
-      "updatedAt": "2026-09-17T12:44:00.022Z"
+      "calls": 333,
+      "ok": 110,
+      "lastError": "Error: 429 Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day",
+      "lastClass": "quota-daily",
+      "updatedAt": "2026-09-18T06:26:11.141Z",
+      "retiredUntil": "2026-09-18T18:26:11.141Z"
     },
     "custom-modelscope": {
       "key": "custom-modelscope",
@@ -79,12 +79,11 @@
     },
     "modelscope": {
       "key": "modelscope",
-      "calls": 290,
-      "ok": 30,
+      "calls": 410,
+      "ok": 105,
       "lastError": "TypeError: Cannot read properties of null (reading '0')",
-      "lastClass": "network",
-      "updatedAt": "2026-09-17T12:22:47.819Z",
-      "retiredUntil": "2026-09-17T12:52:47.819Z"
+      "lastClass": "ok",
+      "updatedAt": "2026-09-18T16:49:02.420Z"
     },
     "spark": {
       "key": "spark",
