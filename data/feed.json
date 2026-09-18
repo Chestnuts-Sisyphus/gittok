@@ -71,25 +71,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.5241492537313432,
-    "facts": [
-      {
-        "claim": "最高可让编码成本降为四分之一、速度提升三倍，且正确性不降反升",
-        "source": "Up to **4× cheaper** and **3× faster**, with better or no loss of correctness."
-      },
-      {
-        "claim": "它维护一份能随团队使用不断进化的技能文件",
-        "source": "A living skill file that learns from every task and gets sharper the more your team works."
-      },
-      {
-        "claim": "能同时加速Claude Code、Cursor等五种主流编码代理",
-        "source": "Turbocharge Claude Code, Cursor, Codex, Gemini & every coding agent"
-      },
-      {
-        "claim": "利用代码库图谱为代理提供深层上下文理解",
-        "source": "with contextual understanding specific to your codebase."
-      }
-    ]
+    "heatScore": 0.5241492537313432
   },
   {
     "repo": "anywhere-labs/dsh-desktop",
@@ -178,17 +160,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.49544456641053786,
-    "facts": [
-      {
-        "claim": "支持手机远程控制桌面端AI任务",
-        "source": "通过 iOS 和 Android 远程连接 Desktop，在手机上发起任务、查看 Agent 进度"
-      },
-      {
-        "claim": "将Web UI原生化，免配置",
-        "source": "把上游 DeepSeek Harness 的本地 Web UI 带到原生桌面。应用自动启动和管理本地 Harness 服务"
-      }
-    ]
+    "heatScore": 0.49544456641053786
   },
   {
     "repo": "coollabsio/coolify",
@@ -293,17 +265,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.1829066012143134,
-    "facts": [
-      {
-        "claim": "仅需SSH连接即可接管任意服务器",
-        "source": "You only need an SSH connection."
-      },
-      {
-        "claim": "停用Coolify后资源仍可运行且可管理",
-        "source": "If you stop using Coolify, your running resources continue to work and remain manageable."
-      }
-    ]
+    "heatScore": 0.1829066012143134
   },
   {
     "repo": "fleetbase/fleetbase",
@@ -380,21 +342,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.5377049180327869,
-    "facts": [
-      {
-        "claim": "一个平台同时覆盖调度、车队、仓储与财务等全链路环节。",
-        "source": "It covers dispatch, fleet management, live tracking, commerce, warehousing, and finance in one platform"
-      },
-      {
-        "claim": "提供扩展机制，可按需接入官方未内置的功能。",
-        "source": "with a REST API, webhooks, and an extension system for everything else"
-      },
-      {
-        "claim": "支持自托管部署，也可使用官方云服务。",
-        "source": "Run it on your own infrastructure or use Fleetbase Cloud."
-      }
-    ]
+    "heatScore": 0.5377049180327869
   },
   {
     "repo": "sharkdp/fd",
@@ -481,13 +429,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.1472293512143706,
-    "facts": [
-      {
-        "claim": "使用并行目录遍历实现极速搜索。",
-        "source": "Very fast due to parallelized directory traversal."
-      }
-    ]
+    "heatScore": 0.1472293512143706
   },
   {
     "repo": "dsh-tauri-desk/deepseek-harness-desktop",
@@ -575,25 +517,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.33988235294117647,
-    "facts": [
-      {
-        "claim": "安装包内置插件分发渠道，并预留了未来扩充高质量内置插件的通道。",
-        "source": "🎁 **内置插件** — 随安装包内置插件，以及将来引入更多高质量的内置插件。"
-      },
-      {
-        "claim": "安装完成后自动在终端注册 dsh 命令，且不修改用户的现有 shell 配置。",
-        "source": "⌨️ **命令行集成** — 安装自动注册 `dsh` 命令，新开终端即用；不覆盖你已有 shell 配置。"
-      },
-      {
-        "claim": "预置插件面板可对出现异常的插件进行升级或卸载操作。",
-        "source": "🧩 **插件管理** — 插件面板管理已安装插件，出现异常时提供升级 / 卸载入口，错误详情。"
-      },
-      {
-        "claim": "桌宠支持从 Pets 和 Codex 两种来源获取，并且可以直接导入 Codex 的 zip 资源包。",
-        "source": "🐾 **桌宠** — 提供 Pets / Codex 双来源桌宠管理，预设宠物开箱即用（直连远端素材，无需下载）、可导入 Codex `.zip` 资源包。"
-      }
-    ]
+    "heatScore": 0.33988235294117647
   },
   {
     "repo": "dataelement/dsh-desktop",
@@ -753,21 +677,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.3132290122985257,
-    "facts": [
-      {
-        "claim": "将企业数据转化为上下文图谱并内置决策溯源能力",
-        "source": "Ingest your enterprise data, extract what matters, build a Context Graph and knowledge graph (KG), and run graph analytics and causal reasoning over all of it, with full decision provenance baked in."
-      },
-      {
-        "claim": "面向开发者优先，定位替代昂贵的企业级平台",
-        "source": "Developer-first, knowledge infrastructure for AI, alternative to expensive enterprise platforms."
-      },
-      {
-        "claim": "系统设计上天然具备可解释、可追踪、可信赖特性",
-        "source": "Explainable, traceable, and trustworthy by design."
-      }
-    ]
+    "heatScore": 0.3132290122985257
   },
   {
     "repo": "gethomepage/homepage",
@@ -865,25 +775,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.06801841034894034,
-    "facts": [
-      {
-        "claim": "支持超过100种服务集成与多语言切换",
-        "source": "integrations for over 100 services and translations into multiple languages"
-      },
-      {
-        "claim": "所有API请求经代理转发以隐藏密钥",
-        "source": "All API requests to backend services are proxied, keeping your API keys hidden"
-      },
-      {
-        "claim": "站点构建时静态生成，加载即时完成",
-        "source": "The site is statically generated at build time for instant load times"
-      },
-      {
-        "claim": "支持ARM64与AMD64双架构镜像",
-        "source": "Images built for AMD64, ARM64"
-      }
-    ]
+    "heatScore": 0.06801841034894034
   },
   {
     "repo": "projectdiscovery/nuclei",
@@ -970,13 +862,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.1145415736073001,
-    "facts": [
-      {
-        "claim": "支持TCP、DNS、HTTP、SSL、WHOIS、JavaScript、Code等多种协议",
-        "source": "Supports multiple protocols like TCP, DNS, HTTP, SSL, WHOIS, JavaScript, Code and more."
-      }
-    ]
+    "heatScore": 0.1145415736073001
   },
   {
     "repo": "jamiepine/voicebox",
@@ -1055,25 +941,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.3363838634374088,
-    "facts": [
-      {
-        "claim": "全本地运行的语音输入输出全栈方案",
-        "source": "The full voice I/O stack, running locally on your machine."
-      },
-      {
-        "claim": "仅需几秒音频即可克隆任意声音",
-        "source": "Clone voices from a few seconds of audio"
-      },
-      {
-        "claim": "支持23种语言和7种TTS引擎",
-        "source": "generate speech in 23 languages across 7 TTS engines"
-      },
-      {
-        "claim": "通过MCP协议为AI智能体赋予语音能力",
-        "source": "give any MCP-aware AI agent a voice of your choosing"
-      }
-    ]
+    "heatScore": 0.3363838634374088
   },
   {
     "repo": "n8n-io/n8n",
@@ -1160,21 +1028,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.304669021505796,
-    "facts": [
-      {
-        "claim": "内置1500+预置集成节点",
-        "source": "connect to 1500+ integrations"
-      },
-      {
-        "claim": "支持自托管与云端双模式运行",
-        "source": "run it self-hosted or in the cloud"
-      },
-      {
-        "claim": "可视化画布与自定义代码混合开发",
-        "source": "Combine a visual canvas with custom code"
-      }
-    ]
+    "heatScore": 0.304669021505796
   },
   {
     "repo": "qdrant/qdrant",
@@ -1358,17 +1212,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.08729955220362952,
-    "facts": [
-      {
-        "claim": "集成Docker容器CPU内存网络历史统计",
-        "source": "Tracks CPU, memory, and network usage history for each container."
-      },
-      {
-        "claim": "支持ZFS存储池容量健康IO及数据集用量",
-        "source": "Tracks pool capacity, health, and I/O, plus per-dataset usage."
-      }
-    ]
+    "heatScore": 0.08729955220362952
   },
   {
     "repo": "Dokploy/dokploy",
@@ -1569,21 +1413,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.361098543225009,
-    "facts": [
-      {
-        "claim": "同一网关同时连接20+即时通讯平台",
-        "source": "Discord, iMessage, Slack, Teams, Telegram, WhatsApp, and 20+ more"
-      },
-      {
-        "claim": "个人部署与团队部署仅配置不同",
-        "source": "One Gateway runs it as a personal assistant on a laptop or as a shared team deployment; configuration is the only difference"
-      },
-      {
-        "claim": "模型与Agent框架作为可热插拔插件",
-        "source": "Models and agent harnesses (Claude, Codex, local models) are plugins you can swap without changing anything else"
-      }
-    ]
+    "heatScore": 0.361098543225009
   },
   {
     "repo": "BerriAI/litellm",
@@ -1682,13 +1512,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.2867799040629184,
-    "facts": [
-      {
-        "claim": "支持100多家LLM供应商统一调用",
-        "source": "Open Source AI Gateway for 100+ LLMs"
-      }
-    ]
+    "heatScore": 0.2867799040629184
   },
   {
     "repo": "nautechsystems/nautilus_trader",
@@ -1848,25 +1672,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.31857258214795947,
-    "facts": [
-      {
-        "claim": "全书包含109个配套实验，强调动手实践而非纯理论",
-        "source": "全书正文、配图、**109 个配套实验**全部开源，欢迎亲手把实验跑一遍。"
-      },
-      {
-        "claim": "2.0版重组了异步交互与多模态Agent为独立新章节",
-        "source": "2.0 版将原第四章中的“异步交互”部分与原第九章中关于“多模态 Agent”的内容合并，重组为新的第六章"
-      },
-      {
-        "claim": "提供PDF/EPUB离线阅读，支持多语言切换",
-        "source": "推荐使用 PDF / EPUB 离线阅读，排版最佳；也可在线阅读（支持多语言切换、章节折叠、高亮与笔记）"
-      },
-      {
-        "claim": "作者有姊妹篇专门讲AI基础设施，形成配套知识体系",
-        "source": "姊妹篇《深入理解 AI Infra：量化分析与系统设计》已开源发布"
-      }
-    ]
+    "heatScore": 0.31857258214795947
   },
   {
     "repo": "dgtlmoon/changedetection.io",
@@ -2040,21 +1846,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.2372187512895638,
-    "facts": [
-      {
-        "claim": "提供100+专业化智能体与协调蜂群。",
-        "source": "adds 100+ specialized agents, coordinated swarms"
-      },
-      {
-        "claim": "实现跨机器的联邦通信。",
-        "source": "federated comms across machines"
-      },
-      {
-        "claim": "内置自我学习记忆机制。",
-        "source": "self-learning memory"
-      }
-    ]
+    "heatScore": 0.2372187512895638
   },
   {
     "repo": "huggingface/transformers",
@@ -2148,17 +1940,7 @@
       "daily"
     ],
     "fromOfficial": true,
-    "heatScore": 0.14184787550060732,
-    "facts": [
-      {
-        "claim": "覆盖文本、视觉、音频、视频与多模态，横跨推理与训练两大环节",
-        "source": "State-of-the-art pretrained models for inference and training"
-      },
-      {
-        "claim": "统一模型定义，兼容多数生态框架",
-        "source": "it will be compatible with the majority of training frameworks (Axolotl, Unsloth, DeepSpeed, FSDP, PyTorch-Lightning, ...)"
-      }
-    ]
+    "heatScore": 0.14184787550060732
   },
   {
     "repo": "slint-ui/slint",
@@ -2727,13 +2509,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.0742113022113022,
-    "facts": [
-      {
-        "claim": "专为云原生环境设计，支持跨数据中心容灾",
-        "source": "CockroachDB is a cloud-native distributed SQL database"
-      }
-    ]
+    "heatScore": 0.0742113022113022
   },
   {
     "repo": "yt-dlp/yt-dlp",
@@ -3342,13 +3118,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.42874011234666976,
-    "facts": [
-      {
-        "claim": "基于RAG、智能体与自动Wiki构建企业级知识框架。",
-        "source": "Turn Documents into Living Knowledge with RAG, Agents and Auto-Wiki"
-      }
-    ]
+    "heatScore": 0.42874011234666976
   },
   {
     "repo": "Mintplex-Labs/anything-llm",
@@ -3434,21 +3204,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.3092980360733562,
-    "facts": [
-      {
-        "claim": "支持本地运行并零配置启动",
-        "source": "runs locally by default with zero setup friction"
-      },
-      {
-        "claim": "内置 AI 智能体自动执行工作流",
-        "source": "Automate complex workflows with AI Agents"
-      },
-      {
-        "claim": "提供多用户与超个性化配置",
-        "source": "hyper-configurable, multi-user, & no frustrating setup required"
-      }
-    ]
+    "heatScore": 0.3092980360733562
   },
   {
     "repo": "p1neappleXpress/OpenFlux",
@@ -3523,17 +3279,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.27236336692353286,
-    "facts": [
-      {
-        "claim": "采用分批+zstd编解码传输",
-        "source": "TCP tunnel with pluggable transports, batched+zstd codec"
-      },
-      {
-        "claim": "提供L3原始转发与L4 gVisor代理双出口",
-        "source": "two exit-node backends (L3 raw forward / L4 gVisor proxy)"
-      }
-    ]
+    "heatScore": 0.27236336692353286
   },
   {
     "repo": "apache/superset",
@@ -3726,17 +3472,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.06433999787301925,
-    "facts": [
-      {
-        "claim": "集合以纯文本Bru格式存本地文件夹",
-        "source": "Bruno stores your collections directly in a folder on your filesystem. We use a plain text markup language, Bru"
-      },
-      {
-        "claim": "承诺永不增加云同步功能",
-        "source": "There are no plans to add cloud-sync to Bruno, ever. We value your data privacy"
-      }
-    ]
+    "heatScore": 0.06433999787301925
   },
   {
     "repo": "vllm-project/vllm",
@@ -3835,17 +3571,7 @@
       "daily"
     ],
     "fromOfficial": true,
-    "heatScore": 0.2729342404120978,
-    "facts": [
-      {
-        "claim": "源自加州大学伯克利分校 Sky Computing 实验室。",
-        "source": "Originally developed in the Sky Computing Lab at UC Berkeley"
-      },
-      {
-        "claim": "拥有来自 2000 多位贡献者的多元化社区。",
-        "source": "many dozens of academic institutions and companies from over 2000 contributors"
-      }
-    ]
+    "heatScore": 0.2729342404120978
   },
   {
     "repo": "vercel-labs/agent-browser",
@@ -3922,17 +3648,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.2701718293395675,
-    "facts": [
-      {
-        "claim": "使用 Rust 编写的原生浏览器自动化 CLI",
-        "source": "Fast native Rust CLI."
-      },
-      {
-        "claim": "支持从 npm 脚本或直接调用",
-        "source": "use via `package.json` scripts or by invoking `agent-browser` directly."
-      }
-    ]
+    "heatScore": 0.2701718293395675
   },
   {
     "repo": "dani-garcia/vaultwarden",
@@ -4013,17 +3729,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.2222221993349616,
-    "facts": [
-      {
-        "claim": "Rust 实现的轻量级 Bitwarden 服务器",
-        "source": "written in Rust and compatible with official Bitwarden clients"
-      },
-      {
-        "claim": "官方服务资源占用大，此项目更省资源",
-        "source": "running the official resource-heavy service might not be ideal"
-      }
-    ]
+    "heatScore": 0.2222221993349616
   },
   {
     "repo": "frappe/frappe",
@@ -4211,17 +3917,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.12633252052344954,
-    "facts": [
-      {
-        "claim": "内置名为 Captain 的 AI 助手",
-        "source": "Captain helps automate responses, handle common queries, and reduce agent workload"
-      },
-      {
-        "claim": "对标 Intercom 等商业平台",
-        "source": "an open-source alternative to Intercom, Zendesk, Salesforce Service Cloud etc."
-      }
-    ]
+    "heatScore": 0.12633252052344954
   },
   {
     "repo": "infiniflow/ragflow",
@@ -4315,17 +4011,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.19107952820016283,
-    "facts": [
-      {
-        "claim": "融合Agent能力的RAG引擎",
-        "source": "fuses cutting-edge RAG with Agent capabilities to create a superior context layer for LLMs"
-      },
-      {
-        "claim": "面向任意规模企业的RAG工作流",
-        "source": "offers a streamlined RAG workflow adaptable to enterprises of any scale"
-      }
-    ]
+    "heatScore": 0.19107952820016283
   },
   {
     "repo": "unslothai/unsloth",
@@ -4696,13 +4382,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.02331124807395994,
-    "facts": [
-      {
-        "claim": "基于 Fedora Atomic 技术构建",
-        "source": "Bazzite is a custom Fedora Atomic image built with cloud native technology"
-      }
-    ]
+    "heatScore": 0.02331124807395994
   },
   {
     "repo": "open-webui/open-webui",
@@ -4896,17 +4576,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.4638036809815951,
-    "facts": [
-      {
-        "claim": "支持与Slack、Discord等主流协作工具的深度集成。",
-        "source": "Out of the box it supports spend approval thresholds, integration with corporate knowledge systems, and defined governance for how it interacts with human colleagues and other AI systems. Open Executive can also be configured as a digital twin..."
-      },
-      {
-        "claim": "接入MCP协议兼容的AI工具生态。",
-        "source": "Out of the box it supports spend approval thresholds, integration with corporate knowledge systems, and defined governance for how it interacts with human colleagues and other AI systems."
-      }
-    ]
+    "heatScore": 0.4638036809815951
   },
   {
     "repo": "osquery/osquery",
@@ -5002,21 +4672,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.018763423530409704,
-    "facts": [
-      {
-        "claim": "支持跨平台，覆盖 Linux、macOS 和 Windows。",
-        "source": "Available for Linux, macOS, and Windows."
-      },
-      {
-        "claim": "通过 SQL 查询操作系统数据，无需编写代码。",
-        "source": "write SQL-based queries to explore operating system data."
-      },
-      {
-        "claim": "将抽象概念映射为 SQL 表格。",
-        "source": "SQL tables represent abstract concepts such as running processes, loaded kernel modules, open network connections, browser plugins, hardware events or file hashes."
-      }
-    ]
+    "heatScore": 0.018763423530409704
   },
   {
     "repo": "floci-io/floci",
@@ -5648,21 +5304,7 @@
     "category": "tool",
     "momentum": [],
     "fromOfficial": true,
-    "heatScore": 0,
-    "facts": [
-      {
-        "claim": "通过 1 对 1 映射实现数据与视觉标记对应",
-        "source": "SandDance uses unit visualizations, which apply a one-to-one mapping between rows in your database and marks on the screen."
-      },
-      {
-        "claim": "提供流畅的视图间动画过渡",
-        "source": "Smooth animated transitions between views help you to maintain context as you interact with your data."
-      },
-      {
-        "claim": "新版采用模块化设计，支持嵌入应用",
-        "source": "This new version of SandDance has been rebuilt from scratch with the goal of being modular, extensible, and embeddable into your custom applications."
-      }
-    ]
+    "heatScore": 0
   },
   {
     "repo": "TauricResearch/TradingAgents",
@@ -5853,21 +5495,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.214465532256984,
-    "facts": [
-      {
-        "claim": "通过视觉识别自动执行测试",
-        "source": "Midscene combines a vision-driven GUI Agent with a testing kit"
-      },
-      {
-        "claim": "支持跨平台应用测试",
-        "source": "across web, mobile, and desktop apps"
-      },
-      {
-        "claim": "内置测试报告与截图功能",
-        "source": "Open the generated HTML report to inspect screenshots"
-      }
-    ]
+    "heatScore": 0.214465532256984
   },
   {
     "repo": "vercel/next.js",
@@ -6208,21 +5836,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.37663087248322147,
-    "facts": [
-      {
-        "claim": "将金融信息转化为可检索推理的结构化知识",
-        "source": "refines raw financial information — papers, news, filings — into structured financial knowledge"
-      },
-      {
-        "claim": "每条知识保留引用和时间戳",
-        "source": "Every piece of knowledge is typed, keeps its citation, and knows its timestamp"
-      },
-      {
-        "claim": "支持时间查询",
-        "source": "time-queries standalone"
-      }
-    ]
+    "heatScore": 0.37663087248322147
   },
   {
     "repo": "headroomlabs-ai/headroom",
@@ -6949,17 +6563,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.0431063986723216,
-    "facts": [
-      {
-        "claim": "Trivy 支持多种扫描器类型和多种扫描目标，覆盖镜像到代码库。",
-        "source": "Trivy has *scanners* that look for security issues, and *targets* where it can find those issues."
-      },
-      {
-        "claim": "项目在 GitHub 上极受欢迎，下载量巨大。",
-        "source": "![Docker Pulls][docker-pulls]"
-      }
-    ]
+    "heatScore": 0.0431063986723216
   },
   {
     "repo": "twpayne/chezmoi",
@@ -7666,21 +7270,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.3965955087330191,
-    "facts": [
-      {
-        "claim": "支持视频配音与语音克隆",
-        "source": "Explore the workspaces · Clone, dub, design & models"
-      },
-      {
-        "claim": "本地运行且可选远程服务",
-        "source": "Local workflows run on your hardware. Remote services are optional"
-      },
-      {
-        "claim": "提供跨平台下载指南",
-        "source": "macOS · Windows · Linux · Docker"
-      }
-    ]
+    "heatScore": 0.3965955087330191
   },
   {
     "repo": "processing/p5.js",
@@ -7950,17 +7540,7 @@
     "category": "fun",
     "momentum": [],
     "fromOfficial": false,
-    "heatScore": 0,
-    "facts": [
-      {
-        "claim": "专为 ESP32 开发的 WiFi/蓝牙攻防套件",
-        "source": "A suite of WiFi/Bluetooth offensive and defensive tools for the ESP32"
-      },
-      {
-        "claim": "开源固件可直接烧录到开发板",
-        "source": "Download the latest release of the firmware."
-      }
-    ]
+    "heatScore": 0
   },
   {
     "repo": "career-ops-hq/career-ops",
@@ -8632,17 +8212,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.1918354771914413,
-    "facts": [
-      {
-        "claim": "AgentScope 2.0 强调充分利用模型的推理与工具使用能力，而非依赖严格提示词约束。",
-        "source": "Our approach leverages the models' reasoning and tool use abilities rather than constraining them with strict prompts and opinionated orchestrations."
-      },
-      {
-        "claim": "已支持多厂商实时语音接口及A2A开放协议。",
-        "source": "Support DashScope, OpenAI, Gemini and xAI realtime APIs in `RealtimeAgent`."
-      }
-    ]
+    "heatScore": 0.1918354771914413
   },
   {
     "repo": "dembrandt/dembrandt",
@@ -8721,9 +8291,9 @@
     "owner": "hajimehoshi",
     "name": "ebiten",
     "desc": "A dead simple 2D game engine for Go",
-    "summaryCn": "用Go写2D游戏的极简神器，零依赖上手超快",
-    "reasonCn": "这是一个专为Go语言打造的2D游戏引擎，设计极其简约，没有复杂的依赖地狱。它利用Go原生特性，一次编译就能在Windows、Mac、Linux、网页甚至手机上运行。对于喜欢编程又想通过游戏来实践Go语言的开发者来说，是绝佳的练手工具，代码量少且易于理解。",
-    "detailCn": "简单来说，这个项目解决了一个痛点：很多游戏引擎要么体积臃肿，要么依赖一堆乱七八糟的库，安装环境就能折腾半天。Ebitengine（原名Ebiten）让你只靠一个Go程序，就能写出能在各种设备上跑起来的2D游戏，彻底告别配置地狱。\n\n从技术上看，它的核心亮点是“极简”和“跨平台”。它基于OpenGL，但封装得非常干净，你不需要懂底层图形学。它最大的优势是Go原生的并发模型与游戏循环完美结合，你可以像写普通Go程序一样组织代码，而不是被引擎的逻辑束缚。与Unity或Godot这类重型引擎相比，它轻量级得多；与Pico-8等像素工具相比，它又拥有完整的编程语言能力。最关键的是，它支持导出为WebAssembly，这意味着你的游戏可以直接在浏览器里跑，无需安装任何东西。\n\n上手非常容易。首先确保你安装了Go语言环境，然后运行go get获取库。你可以直接克隆官方示例仓库，里面有很多分类清晰的小游戏教程，比如简单的碰撞检测、动画、输入处理等。核心代码通常只需几十行，比如调用engine.Update()和engine.Draw()这两个主要循环函数，就能构建出一个完整的游戏框架。\n\n这个项目特别适合Go语言初学者，想通过游戏开发来巩固编程基础；也适合想要快速制作独立小游戏、Demo或网页游戏的独立开发者；此外，对于教师和学生，它是讲解游戏逻辑和并发编程的绝佳案例库。如果你厌倦了配置CUDA或巨大安装包，只想专注写逻辑，那它就是你的菜。\n\n社区虽然不如商业引擎庞大，但非常活跃且友好。该项目在GitHub上拥有过万的Star，维护者活跃度很高，文档清晰完整，涵盖了从入门到进阶的各个方面。虽然它不涉及AI，但在纯游戏开发领域，它是Go生态中事实上的标准选择，长期来看非常值得投入学习。",
+    "summaryCn": "一款极简的Go语言2D游戏引擎，支持十多平台开发。",
+    "reasonCn": "Ebitengine 是一款专为 Go 语言设计的 2D 游戏引擎，旨在提供简单易用的 API。它解决了传统游戏引擎学习曲线陡峭、跨平台部署复杂的问题，让开发者能够用同一段代码快速开发出可在电脑、手机甚至游戏主机上运行的游戏。该引擎通过简化开发流程，降低了游戏创作的门槛。",
+    "detailCn": "Ebitengine（原 Ebiten）诞生于 2013 年，是一款专注于 2D 游戏开发的 Go 语言开源引擎。它最核心的优势在于“极简”，开发者无需处理复杂的图形管线，就能专注于游戏逻辑与创意本身。这种设计让它在众多游戏引擎中显得格外轻量，非常适合个人开发者或小团队快速构建原型与成品。项目文档中明确指出，其简单的 API 能够让你快速且容易地开发出可在多个平台部署的 2D 游戏，这直接降低了跨平台开发的难度。\n\n对于希望尝试新语言或追求极致轻量的开发者来说，Ebitengine 是一个极佳的选择。它不仅支持 Windows、macOS、Linux 等桌面端，还覆盖了 Android、iOS 以及 WebAssembly。这意味着你可以用 Go 语言编写一次游戏，就能轻松分发到手机浏览器甚至游戏主机上。虽然 Switch 和 Xbox 等主机平台需要额外配置 Cgo，但这为专业级开发提供了可能。对于移动端开发，Android 和 iOS 也需要 Cgo 环境，但一旦配置完成，即可享受跨平台部署的便利。\n\n上手使用方面，Ebitengine 的安装流程相对直接。在桌面端，你可以参考安装说明进行配置。对于想要立即体验的用户，文档中提到了“Cheat Sheet”和“Awesome Ebitengine”等资源，这些通常是社区整理好的速查表和精选项目列表，能帮助你快速上手。虽然项目提供了安装指令，但核心体验在于运行示例代码，感受其响应速度和渲染效果。它并不强制要求复杂的依赖，这让新手能够更专注于游戏创意的实现。\n\n这个项目特别适合那些想用 Go 语言开发游戏、或者厌倦了复杂引擎配置的开发者。如果你是一个独立游戏开发者，或者正在寻找一个轻量级、性能良好的 2D 游戏解决方案，Ebitengine 是一个非常实用的工具。它让“写一个游戏”这件事变得不再遥不可及，让更多有趣的想法能够快速落地。通过其极简的接口，你可以更自由地探索游戏开发的乐趣，而不会被繁琐的技术细节所束缚。",
     "stars": 13490,
     "starGrowth": 2,
     "createdAt": "2013-06-16T15:13:01Z",
@@ -8802,7 +8372,17 @@
     "category": "tool",
     "momentum": [],
     "fromOfficial": false,
-    "heatScore": 0
+    "heatScore": 0,
+    "facts": [
+      {
+        "claim": "支持跨十多个平台，包含主流与游戏主机",
+        "source": "Platforms * Windows * macOS * Linux * FreeBSD * Android (Cgo required) * iOS (Cgo required) * WebAssembly * Nintendo Switch (Cgo required) * Xbox (Cgo required)"
+      },
+      {
+        "claim": "提供极简API，让开发者能快速开发跨平台2D游戏",
+        "source": "Ebitengine's simple API allows you to quickly and easily develop 2D games that can be deployed across multiple platforms."
+      }
+    ]
   },
   {
     "repo": "semaphoreui/semaphore",
@@ -8973,9 +8553,9 @@
     "owner": "addyosmani",
     "name": "agent-skills",
     "desc": "Production-grade engineering skills for AI coding agents.",
-    "summaryCn": "给AI编程助手准备的实战技能包，让coding agent秒变老司机",
-    "reasonCn": "为AI编程助手准备的工程技能集合，涵盖代码审查、重构、测试生成、调试等实战能力。每个技能都是独立模块，基于工具调用链组合实现复杂任务。可直接接入Claude Code、Cursor等主流AI编程工具，开箱即用，让coding agent像资深开发者一样干活。",
-    "detailCn": "agent-skills解决的核心问题很简单：现在的AI编程助手虽然能写代码，但缺乏真正的\"工程经验\"。你让GPT-4写个函数它会写，但让它做代码重构、处理依赖冲突、写单元测试、调试复杂bug——这些活儿它往往不够专业。这个项目就是给AI coding agents（比如Claude Code、Cursor的agent模式）准备的\"实战技能包\"，把资深工程师的工作方法论打包成标准化的技能，让AI agent能像人一样系统地处理软件工程任务。\n\n技术上，它采用模块化架构，每个技能都是独立的JavaScript模块，封装了特定的工程能力。比如代码审查技能会调用AST分析、模式匹配、依赖追踪等工具。它支持工具调用链——一个高层技能可以组合多个底层工具来完成复杂任务。与通用AI skill库不同，它专门为coding agent设计，所有技能都经过生产环境验证，不是理论上的能力集合。\n\n安装很简单。通过npm安装：npm install -g agent-skills。然后配置到你的AI编程工具中，比如在Claude Code的config里指定skills路径。大部分技能开箱即用，你也可以根据项目需求自定义或扩展技能，比如添加针对特定技术栈的代码规范技能。\n\n适合这几类人：想用AI agent提升代码质量的个人开发者；希望统一团队代码规范和工程实践的开发者团队；研究AI辅助编程的学者；以及想为自家AI编程工具添加skills能力的小团队。对于需要频繁重构、测试的复杂项目尤其有用。\n\n社区非常活跃，star数超过8万，持续迭代。它是开源AI编程生态的重要组成部分，与Cursor、Claude Code等工具形成互补。竞品包括Continue的skill系统、Aider的tools生态等，但agent-skills在coding专用技能方面更为专注和深入，是目前规模最大的coding agent技能库之一。",
+    "summaryCn": "为AI编程助手提供生产级工程技能包，标准化高质量开发流程。",
+    "reasonCn": "该项目将资深工程师的最佳实践封装为技能包，包含9个覆盖全生命周期的Slash命令。核心功能/build auto支持一次审批后自主完成规划与实现，每个任务仍独立测试驱动并提交，遇风险自动暂停。它解决了AI编程助手流程混乱、质量不可控的问题，让AI按统一标准交付生产级代码。",
+    "detailCn": "Agent Skills 并非普通提示词集合，而是将资深工程师的隐性知识显性化为可执行的技能包。项目自述明确指出包含 9 个映射开发生命周期的 Slash 命令，每个命令会自动激活对应阶段所需的工作流、质量门禁与最佳实践，覆盖从需求分析到交付的全过程。\n\n最引人注目的是 `/build auto` 命令：生成计划后仅需一次人工审批，随后即可自主执行全部任务。这并非完全放手不管，而是保留了关键约束——每个任务仍采用测试驱动开发并独立提交，遇到失败或高风险步骤会自动暂停等待介入。这种设计在自主性与可控性之间找到了平衡。\n\n技能包的核心价值在于消除「任务间的人工踩点」，而非消除验证。传统 AI 编程往往需要人类在每步之间确认、修正上下文，Agent Skills 通过预置工程规范让 AI 自行衔接上下文、运行测试、处理依赖，仅在真正需要判断时介入。\n\n适用场景包括：团队希望统一 AI 编程标准、减少低级错误、加速从规格到交付的周期。安装方式请从项目仓库获取，通常以扩展或配置形式集成到支持 Slash 命令的 AI 编程助手中。对于追求生产级交付质量的工程团队，这套技能包提供了可复用、可演进的基础设施。",
     "stars": 95834,
     "starGrowth": 680,
     "language": "JavaScript",
@@ -9045,16 +8625,26 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.32128680843959345
+    "heatScore": 0.32128680843959345,
+    "facts": [
+      {
+        "claim": "提供9个覆盖全生命周期的Slash命令",
+        "source": "9 slash commands that map to the development lifecycle"
+      },
+      {
+        "claim": "/build auto实现单次审批后自主完成全流程",
+        "source": "Want fewer manual steps once the spec exists? **`/build auto`** generates the plan and implements every task in a single approved pass"
+      }
+    ]
   },
   {
     "repo": "dagger/dagger",
     "owner": "dagger",
     "name": "dagger",
     "desc": "Automation engine to build, test and ship any codebase. Runs locally, in CI, or directly in the cloud",
-    "summaryCn": "CI流水线像搭积木，代码改一行流水线跟着变",
-    "reasonCn": "Dagger是一个声明式的自动化引擎，用Go语言编写，能把构建、测试、部署流程定义成可复用的模块。它支持本地运行、CI集成和云端执行，环境一致性极好。相比传统CI工具需要写YAML配置文件，Dagger用代码定义流水线更灵活可测试。适合追求构建可重现性的工程团队，是DevOps领域的实用工具。",
-    "detailCn": "你是不是也受够了CI配置？每次改一行流水线就要推送到远端跑，等几分钟看结果，出了问题还要在日志里大海捞针。Dagger的诞生就是为了终结这种痛苦——它让你用代码来定义构建流程，而不是写配置文件，而且本地跑和CI跑的结果完全一致。\n\nDagger的核心设计理念是\"基础设施即代码\"的极致延伸。传统CI工具用YAML描述流水线，YAML表达能力有限，调试困难，而且本地环境和CI环境经常不一致导致\"在我机器上是好的\"这类问题。Dagger用Go语言编写pipeline定义，利用Go的类型系统和测试框架，让流水线本身成为可测试、可版本管理、可复用的代码。它的架构基于沙箱容器，每个步骤都在隔离环境中执行，确保环境纯净可重现。更独特的是，它可以把流水线打包成分布式缓存的模块，团队内不同项目可以共享构建逻辑，避免重复造轮子。\n\n从技术角度看，Dagger采用微服务架构，核心引擎用Go编写，客户端SDK支持Go、Python、TypeScript等语言。它的执行引擎会将pipeline转换为容器操作序列，在本地或远程执行。与CircleCI、GitHub Actions相比，Dagger的最大优势是环境一致性——你的本地开发环境和生产CI环境使用相同的执行引擎。与Terraform相比，Dagger更专注CI/CD场景而非基础设施部署。与Drone CI相比，Dagger的pipeline定义用代码而非YAML，类型安全和可测试性更强。\n\n安装和使用很简单。通过官方脚本一行命令安装：curl get.dagger.io | sh，然后初始化项目目录。基本用法是用Go代码定义pipeline，比如构建Docker镜像、运行测试套件、部署到服务器。本地可以直接执行dagger call，CI环境中集成也只需添加几步配置。调试时可以用dagger --trace查看执行细节，定位问题非常快。\n\nDagger适合以下人群：对现有CI配置效率不满意的工程团队；追求构建可重现性的DevOps工程师；正在寻找替代Jenkins/GitHub Actions的中小型团队；以及关注云成本优化的公司——因为本地运行流水线可以复用缓存，减少云端计算资源消耗。项目GitHub star超过16000，社区活跃，官方文档完善。版本迭代速度快，每两周发布一次更新，是DevOps领域值得关注的现代化工具。",
+    "summaryCn": "用代码而非 YAML 编写、本地即可运行的可编程 CI/CD 引擎。",
+    "reasonCn": "Dagger 将软件交付流程变为可编程的代码，支持 Go、Python、TypeScript 等 8 种语言 SDK。它以容器为运行时，让管道在本地、CI、云端任意环境一致运行，并提供交互式 REPL 与丰富模块生态，彻底替代易错难调试的 YAML 脚本。",
+    "detailCn": "Dagger 的核心理念是把 CI/CD 流水线当作普通代码来写、当作普通函数来跑。它提供完整的执行引擎和系统 API，开发者可以用 Go、Python、TypeScript 等 8 种主流语言编写 Dagger Functions，这些函数在容器中运行，天然具备隔离性和可移植性。\n\n区别于传统 CI 只能在服务器跑、本地难以复现的痛点，Dagger 采用“Local-first”架构：同一套管道代码，在笔记本、CI 跑道、甚至 AI 沙箱里行为完全一致。内置的交互式 REPL 让你像调试普通代码一样单步执行、查看中间产物，大幅缩短“推到 CI 才发现报错”的反馈回路。\n\n生态层面，Dagger 建立了可复用模块机制，常见的构建、测试、部署、安全扫描等能力都能作为模块引入，避免重复造轮子。模块之间通过标准接口组合，形成类似函数库的组合方式，降低维护成本。\n\n上手方面，安装单一 CLI 即可开始，无需额外守护进程。编写首个管道只需初始化项目、引入 SDK、定义函数，随后在终端运行 `dagger call` 即可在本地容器中执行。文档提供了从零到生产级示例的完整指引。\n\n适合厌倦 YAML 拼接、追求本地可复现、希望用熟悉语言和工具链管理交付流程的工程团队；也适合需要在 AI Agent 沙箱中执行确定性构建任务的场景。",
     "stars": 16260,
     "starGrowth": 4,
     "createdAt": "2019-11-20T01:31:51Z",
@@ -9131,16 +8721,34 @@
     "category": "tool",
     "momentum": [],
     "fromOfficial": false,
-    "heatScore": 0
+    "heatScore": 0,
+    "facts": [
+      {
+        "claim": "提供 8 种语言 SDK 编写管道",
+        "source": "SDKs for 8 languages"
+      },
+      {
+        "claim": "管道即普通函数可本地直接运行",
+        "source": "it will reliably run on any supported system: your laptop, AI sandbox, CI server"
+      },
+      {
+        "claim": "内置交互式 REPL 调试管道",
+        "source": "an interactive REPL"
+      },
+      {
+        "claim": "拥有可复用模块生态系统",
+        "source": "a rich ecosystem of reusable modules"
+      }
+    ]
   },
   {
     "repo": "authelia/authelia",
     "owner": "authelia",
     "name": "authelia",
     "desc": "The Single Sign-On Multi-Factor portal for web apps. OpenID Certified™ and Post-Quantum Cryptography Ready.",
-    "summaryCn": "一个登录解决所有系统的安全门卫，支持手机验证码和生物识别",
-    "reasonCn": "技术层面，它作为一个中间认证层运行，支持多种认证后端：LDAP用于企业目录，OAuth 2.0用于现代应用，TOTP用于手机验证。它的规则引擎非常灵活，可以根据用户、IP地址、设备类型等不同条件动态调整认证强度。与Cloudflare Access或Auth0相比，Authelia完全自托管，数据不离开你的服",
-    "detailCn": "想象一下你公司有十个内部系统，每个都要单独登录，密码还不一样，管理起来头疼得要命。Authelia就是来解决这个痛点的——它让你只登录一次，就能访问所有授权的应用，不用再重复输入密码了。\n\n技术层面，它作为一个中间认证层运行，支持多种认证后端：LDAP用于企业目录，OAuth 2.0用于现代应用，TOTP用于手机验证。它的规则引擎非常灵活，可以根据用户、IP地址、设备类型等不同条件动态调整认证强度。与Cloudflare Access或Auth0相比，Authelia完全自托管，数据不离开你的服务器，这对重视隐私的企业来说是个巨大优势。\n\n上手非常简单。核心项目提供了一个Docker Compose模板，配置好PostgreSQL数据库和Redis，修改yaml配置文件就能跑起来。与反向代理集成时，只需在代理配置中把认证请求转发给Authelia，认证通过后自动添加HTTP头传递给后端服务。整个流程配置起来不超过一小时。\n\n适合需要集中管理身份认证的开发团队、想要搭建家庭实验室安全防护的极客，以及关心数据隐私不想把用户信息交给第三方云服务的中小企业。如果你正在用Portainer、Gitea、Nextcloud等服务，Authelia能让它们统一纳入安全管理体系。\n\n这个项目自2017年发布以来持续活跃，GitHub超过2.8万star，拥有完整的文档和活跃的Discord社区。定期发布安全更新，被多家企业用于生产环境。虽然不算热门新项目，但在自托管认证领域几乎是首选方案。",
+    "summaryCn": "开源身份认证服务器，为应用提供 SSO 与 2FA",
+    "reasonCn": "Authelia 是一款开源的认证授权服务器，专为反向代理场景设计。它提供统一的 Web 门户，为后端应用添加单点登录和双因子认证能力，支持 TOTP、WebAuthn 等多种 2FA 方式。通过与 Nginx、Traefik、HAProxy 等主流反向代理集成，它能在请求到达应用前完成身份验证与授权决策，允许、拒绝或重定向请求。支持 OpenID Connect 1.0 协议，可作为身份提供者对接现代应用生态。",
+    "detailCn": "Authelia 定位于为现有基础设施补齐统一身份认证这一拼图。它不托管业务应用，而是作为独立的认证网关，通过前置代理模式拦截流量。用户首次访问受保护资源时会被重定向至 Authelia 门户完成登录与 2FA 验证，后续请求凭借签发的会话凭证或 OIDC Token 即可无感通过。这种架构让老旧无认证能力的内部系统、自建服务乃至商业软件都能零改造接入企业级身份安全体系。\n\n核心亮点在于协议兼容与部署灵活性。除传统的基于 Header 的代理认证模式外，完整实现 OpenID Connect 1.0 规范，支持 Authorization Code、PKCE、Refresh Token 等标准流程，能直接对接 Grafana、Nextcloud、GitLab 等主流应用。双因子认证覆盖 TOTP（Google Authenticator 兼容）、WebAuthn（FIDO2 硬件密钥/生物识别）、Duo Push、YubiKey 等主流方案，满足合规与安全策略的多样化需求。配置采用单一 YAML 文件，涵盖存储后端、会话策略、访问控制规则、通知渠道等全维度设置。\n\n部署方式极为多元：提供 Docker 镜像、静态二进制、.deb 包、Helm Chart（Beta）、AUR/APT/FreeBSD Ports 等原生包管理渠道，适配裸金属、容器、Kubernetes 等各类环境。官方文档给出生产级参考架构，包含 Redis 作为会话存储、PostgreSQL/MySQL 作为持久化后端、SMTP 通知、TLS 终止等最佳实践。安装上手只需拉取 Docker 镜像、准备配置文件与数据卷即可启动，几分钟内即可建立可用的认证入口。\n\n适合自建服务爱好者、中小团队运维、需要统一身份治理的组织。对于已有反向代理层、希望以最低侵入性为异构应用群添加 SSO 与强认证的场景，Authelia 是成熟可靠的选择。活跃社区与持续迭代保障了长期可用性，文档站点提供完整的配置手册、迁移指南与故障排查资料。",
     "stars": 28999,
     "starGrowth": 10,
     "createdAt": "2016-12-07T00:56:57Z",
@@ -9207,7 +8815,13 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.031034518431670058
+    "heatScore": 0.031034518431670058,
+    "facts": [
+      {
+        "claim": "支持 OpenID Connect 1.0 标准协议",
+        "source": "OpenID Connect 1."
+      }
+    ]
   },
   {
     "repo": "OuterTune/OuterTune",
@@ -9279,9 +8893,9 @@
     "owner": "multica-ai",
     "name": "multica",
     "desc": "Make humans and AI agents work as one team — open-source and self-hostable.",
-    "summaryCn": "你的代码任务不再是一个人在战斗，把活儿分配给多个AI编程助手同时开干。",
-    "reasonCn": "这是一个开源可自托管的AI编程任务分配器。它能把GitHub Issue拆分成子任务，自动分发给Claude Code、Codex、Cursor等17种代码智能体。就像给团队配了个智能项目经理，让各个AI Agent像同事一样协作写代码，彻底解放双手。",
-    "detailCn": "简单来说，以前写代码遇到复杂需求，你只能一个一个调用AI助手，或者自己埋头苦写。现在有了Multica，它就像你的私人技术总监，能把一个大需求拆解成几十个小任务，然后同时派发给十几个不同的AI编程助手去干，最后把结果汇总，让你坐等代码产出。这感觉就像是拥有了一个全副武装的虚拟开发团队。\n\n技术上看，它的核心架构是一个任务分发中枢。支持集成市面上几乎所有主流代码AI，包括Anthropic的Claude Code、OpenAI的Codex、以及Cursor等编辑器内置智能体。它会解析GitHub Issue或任务描述，智能拆分依赖关系，调度不同的Agent并行执行。比如前端任务派给Cursor，后端API派给Claude，测试用例派给Codex，互不干扰又协同工作。\n\n安装和使用非常方便。因为是Go语言开发，支持Docker一键部署。部署后连接你的GitHub仓库，配置好各个AI Agent的API密钥，然后在项目里创建Issue，它会自动识别并启动智能体集群。你不需要改代码，直接在GitHub界面就能看到每个Agent的执行进度和提交记录。\n\n特别适合那些管理复杂软件项目的开发者、技术负责人，或者想要研究多智能体协作模式的AI爱好者。如果你平时被重复性的代码任务淹没，或者想看看不同AI编程助手协作能产生什么化学反应，这个项目绝对能让你玩很久。\n\n目前项目热度相当高，GitHub Star数已突破4.4万，社区非常活跃。在AI编程助手井喷的时代，如何让多个Agent高效协作是个热门研究方向。相比单纯的单点代码助手，Multica提供的是系统工程视角的解决方案，代表了AI编程从单打独斗向团队协作演进的趋势，值得关注。",
+    "summaryCn": "多AI编程代理协作工作区，像管理团队一样分配任务。",
+    "reasonCn": "Multica 是一个自托管的 AI 编程代理协作平台，解决了开发者需同时操作多个终端、反复解释上下文的痛点。它把 GitHub Issue 变成任务看板，支持 26 种主流 CLI 代理（如 Claude Code、Codex）像队友一样自主认领任务、汇报进度、提交代码供审查。会话上下文持久化，避免重复沟通，让人类从繁琐的“保姆式”监管中解脱出来。",
+    "detailCn": "把 GitHub Issue 变成任务看板，Claude Code、Codex 等 26 种主流 AI 编程 CLI 能像真人队友一样自主认领、汇报进度、提交 PR。这解决了开发者在多终端间切换、反复喂上下文、像保姆一样盯着 Agent 改 Bug 的核心痛点。\n\n平台内置会话持久化机制，Agent 重启后仍保留完整上下文，不再需要人类第四次重述需求。自托管部署保证代码不出私有环境，且无厂商锁定，随时可切换或增减 Agent 类型。\n\n上手只需在服务器运行单二进制文件，配置 GitHub Token 与模型密钥，几分钟即可把现有仓库接入看板。适合同时并行多个特性分支、希望把重复性编码任务交给 AI 编队的中大型团队，也适合想尝试“AI 团队”协作模式的独立开发者。\n\n核心亮点在于“Issue 驱动”的协作范式：人类只需写好需求单，Agent 自动分工、协作、遇阻求助，最终交出可直接合并的代码。这把 AI 编程从“对话式辅助”升级为“流程式交付”，显著降低了人类的认知负荷与沟通成本。\n\n项目处于活跃开发期，文档与社区支持完善，Discord 频道可直接对话核心维护者。对于追求工程级 AI 协作、拒绝重复造轮子的团队，Multica 提供了目前最贴近真实研发流程的开源落地方案。",
     "stars": 50314,
     "starGrowth": 213,
     "language": "Go",
@@ -9349,7 +8963,17 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.31270024247724293
+    "heatScore": 0.31270024247724293,
+    "facts": [
+      {
+        "claim": "支持26种主流AI编程CLI工具",
+        "source": "works with 26 agent CLIs"
+      },
+      {
+        "claim": "Agent可自主认领Issue并汇报进度",
+        "source": "they pick up the issue, report progress, raise blockers, and hand it back for review"
+      }
+    ]
   },
   {
     "repo": "can1357/oh-my-pi",
@@ -12358,21 +11982,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.21638000721761097,
-    "facts": [
-      {
-        "claim": "响应式引擎随专辑封面动态匹配色调",
-        "source": "Powered by a responsive design engine that dynamically matches your album art's color palette"
-      },
-      {
-        "claim": "流畅物理动效提升交互质感",
-        "source": "fluid physics-based micro-animations"
-      },
-      {
-        "claim": "本地数据库实现完全隐私",
-        "source": "100% Privacy-FirstCompletely local database."
-      }
-    ]
+    "heatScore": 0.21638000721761097
   },
   {
     "repo": "dramaclaw/dramaclaw",
@@ -16883,21 +16493,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.13459123505976095,
-    "facts": [
-      {
-        "claim": "可聚合多个主流AI编码助手，统一管理。",
-        "source": "gives you a common orchestration layer over Claude Code, Codex, Cursor, OpenCode, Hermes, Pi, and the agents you write yourself"
-      },
-      {
-        "claim": "会话支持跨设备无缝同步，手机也能接着操作。",
-        "source": "start in your terminal, continue in the browser, pick it up on your phone. Messages, sub-agents, terminals, and files stay in sync."
-      },
-      {
-        "claim": "提供原生macOS桌面应用可供下载。",
-        "source": "⬇️ Download the macOS desktop app\n"
-      }
-    ]
+    "heatScore": 0.13459123505976095
   },
   {
     "repo": "louis-e/arnis",
@@ -22490,21 +22086,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.09720852565843063,
-    "facts": [
-      {
-        "claim": "Apache-2.0许可，可免费自托管完整平台",
-        "source": "Apache-2.0 licensed, free to self-host the full platform"
-      },
-      {
-        "claim": "由Comet公司构建，获得超过两万颗星标",
-        "source": "Built by Comet. Apache-2.0 licensed, free to self-host the full platform, with 20,000+ GitHub stars."
-      },
-      {
-        "claim": "支持LLM作为裁判的评估机制",
-        "source": "🧑‍⚖️ LLM as a Judge"
-      }
-    ]
+    "heatScore": 0.09720852565843063
   },
   {
     "repo": "AlexsJones/llmfit",
@@ -50605,21 +50187,7 @@
       "hot"
     ],
     "fromOfficial": false,
-    "heatScore": 0,
-    "facts": [
-      {
-        "claim": "本地优先架构保障数据隐私",
-        "source": "Local-first, simple, powerful."
-      },
-      {
-        "claim": "核心定位为具备长期记忆的个人超级智能",
-        "source": "a brain that remembers everything, a fantastic orchestrator, a deep researcher."
-      },
-      {
-        "claim": "发布首周连续九天登顶 GitHub Trending 榜首",
-        "source": "Within one week of launch, OpenHuman became the number one trending repository on GitHub for nine days in a row."
-      }
-    ]
+    "heatScore": 0
   },
   {
     "repo": "daveebbelaar/ai-cookbook",
@@ -68031,17 +67599,7 @@
     "category": "fun",
     "momentum": [],
     "fromOfficial": false,
-    "heatScore": 0,
-    "facts": [
-      {
-        "claim": "实时渲染真实前向传播的注意力头与 RoPE 旋转",
-        "source": "watch attention heads, RoPE rotations, and the residual stream move in real 3D"
-      },
-      {
-        "claim": "构建时脚本强制杜绝任何伪造张量",
-        "source": "a build-time script fails CI outright if one sneaks into app code"
-      }
-    ]
+    "heatScore": 0
   },
   {
     "repo": "NanmiCoder/MediaCrawler",
