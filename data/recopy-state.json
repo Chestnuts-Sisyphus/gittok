@@ -1,7 +1,7 @@
 {
   "version": "recopy:v6-copy+facts:1",
   "createdAt": "2026-09-17T12:12:22.618Z",
-  "updatedAt": "2026-09-18T17:30:47.388Z",
+  "updatedAt": "2026-09-18T17:56:30.517Z",
   "done": {
     "coollabsio/coolify": {
       "at": "2026-09-17T12:38:24.902Z",
@@ -311,6 +311,11 @@
       "at": "2026-09-18T17:16:11.193Z",
       "lane": "zhipu:glm-4.7-flash",
       "tries": 1
+    },
+    "bytebase/bytebase": {
+      "at": "2026-09-18T17:53:43.244Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "tries": 1
     }
   },
   "failed": {
@@ -325,12 +330,14 @@
       ]
     },
     "AlkaidLab/foundation-sunshine": {
-      "at": "2026-09-18T16:34:08.838Z",
+      "at": "2026-09-18T17:32:54.381Z",
       "lane": "zhipu:glm-4.7-flash",
       "fails": [
-        "深度解读 311 字（硬性要求 500-800 字）",
-        "深度解读 1 段（要求 3-5 段）"
-      ]
+        "深度解读 388 字（硬性要求 500-800 字）",
+        "深度解读 1 段（要求 3-5 段）",
+        "facts[1] source 不在参考文档：不在参考文档"
+      ],
+      "tries": 1
     },
     "Stirling-Tools/Stirling-PDF": {
       "at": "2026-09-18T17:11:46.738Z",
@@ -382,13 +389,12 @@
       ]
     },
     "flet-dev/flet": {
-      "at": "2026-09-18T16:29:45.723Z",
+      "at": "2026-09-18T17:31:18.293Z",
       "lane": "zhipu:glm-4.7-flash",
       "fails": [
-        "简要介绍等效长度 100（要求约 3 行，effLen≥100）",
-        "深度解读 127 字（硬性要求 500-800 字）",
         "深度解读 1 段（要求 3-5 段）"
-      ]
+      ],
+      "tries": 1
     },
     "JustVugg/colibri": {
       "at": "2026-09-18T17:30:47.388Z",
@@ -399,39 +405,54 @@
       "tries": 1
     },
     "can1357/oh-my-pi": {
-      "at": "2026-09-18T16:47:37.417Z",
-      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "at": "2026-09-18T17:35:37.681Z",
+      "lane": "zhipu:glm-4.7-flash",
       "fails": [
-        "一句话描述 43 字（硬性要求 20-35 汉字）"
-      ]
+        "深度解读 1 段（要求 3-5 段）",
+        "facts[1] source 不在参考文档：不在参考文档",
+        "facts[2] source 不在参考文档：不在参考文档"
+      ],
+      "tries": 1
     },
     "cakephp/cakephp": {
-      "at": "2026-09-18T16:47:50.725Z",
-      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "at": "2026-09-18T17:39:17.905Z",
+      "lane": "zhipu:glm-4.7-flash",
       "fails": [
-        "通道失败：TypeError: Cannot read properties of null (reading '0')"
-      ]
+        "一句话描述 13 字（硬性要求 20-35 汉字）",
+        "简要介绍等效长度 85（要求约 3 行，effLen≥100）",
+        "深度解读 250 字（硬性要求 500-800 字）",
+        "深度解读 1 段（要求 3-5 段）"
+      ],
+      "tries": 1
     },
     "DietrichGebert/ponytail": {
-      "at": "2026-09-18T11:58:24.378Z",
+      "at": "2026-09-18T17:50:45.063Z",
       "lane": "zhipu:glm-4.7-flash",
       "fails": [
-        "深度解读 1 段（要求 3-5 段）"
-      ]
+        "深度解读 403 字（硬性要求 500-800 字）",
+        "深度解读 1 段（要求 3-5 段）",
+        "facts[1] source 不在参考文档：不在参考文档"
+      ],
+      "tries": 1
     },
     "kellyjonbrazil/jc": {
-      "at": "2026-09-18T16:47:49.829Z",
-      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
-      "fails": [
-        "通道失败：TypeError: Cannot read properties of null (reading '0')"
-      ]
-    },
-    "dgraph-io/dgraph": {
-      "at": "2026-09-18T10:53:18.889Z",
+      "at": "2026-09-18T17:37:57.307Z",
       "lane": "zhipu:glm-4.7-flash",
       "fails": [
-        "到墙钟上限（未及完成本卡）"
-      ]
+        "facts[1] source 不在参考文档：不在参考文档",
+        "facts[2] source 不在参考文档：不在参考文档"
+      ],
+      "tries": 1
+    },
+    "dgraph-io/dgraph": {
+      "at": "2026-09-18T17:47:10.074Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "fails": [
+        "深度解读 188 字（硬性要求 500-800 字）",
+        "深度解读 1 段（要求 3-5 段）",
+        "未见安装/上手内容（必须覆盖怎么上手）"
+      ],
+      "tries": 1
     },
     "rtk-ai/rtk": {
       "at": "2026-09-18T09:46:58.440Z",
@@ -465,19 +486,21 @@
       "tries": 1
     },
     "e2b-dev/E2B": {
-      "at": "2026-09-18T16:39:19.841Z",
+      "at": "2026-09-18T17:34:29.159Z",
       "lane": "zhipu:glm-4.7-flash",
       "fails": [
-        "深度解读 401 字（硬性要求 500-800 字）",
-        "深度解读 1 段（要求 3-5 段）"
-      ]
+        "facts[1] source 不在参考文档：不在参考文档",
+        "facts[2] source 不在参考文档：不在参考文档"
+      ],
+      "tries": 1
     },
     "firecrawl/firecrawl": {
-      "at": "2026-09-18T11:59:20.173Z",
+      "at": "2026-09-18T17:53:04.128Z",
       "lane": "zhipu:glm-4.7-flash",
       "fails": [
-        "到墙钟上限（未及完成本卡）"
-      ]
+        "深度解读 932 字（超过 800 字上限，收一收）"
+      ],
+      "tries": 1
     },
     "tashfeenahmed/freellmapi": {
       "at": "2026-09-18T17:13:42.859Z",
@@ -539,12 +562,32 @@
       "tries": 1
     },
     "WebKit/WebKit": {
-      "at": "2026-09-18T16:50:26.837Z",
+      "at": "2026-09-18T17:40:39.259Z",
       "lane": "zhipu:glm-4.7-flash",
       "fails": [
-        "深度解读 352 字（硬性要求 500-800 字）",
         "深度解读 1 段（要求 3-5 段）"
-      ]
+      ],
+      "tries": 1
+    },
+    "bee-san/RustScan": {
+      "at": "2026-09-18T17:49:02.610Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "fails": [
+        "一句话描述 15 字（硬性要求 20-35 汉字）",
+        "深度解读 366 字（硬性要求 500-800 字）",
+        "深度解读 1 段（要求 3-5 段）",
+        "facts[1] source 不在参考文档：不在参考文档"
+      ],
+      "tries": 1
+    },
+    "sherlock-project/sherlock": {
+      "at": "2026-09-18T17:56:30.517Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "fails": [
+        "一句话描述 15 字（硬性要求 20-35 汉字）",
+        "深度解读 440 字（硬性要求 500-800 字）"
+      ],
+      "tries": 1
     }
   }
 }
