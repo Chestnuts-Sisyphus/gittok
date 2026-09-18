@@ -160,17 +160,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.49544456641053786,
-    "facts": [
-      {
-        "claim": "支持手机远程控制桌面端AI任务",
-        "source": "通过 iOS 和 Android 远程连接 Desktop，在手机上发起任务、查看 Agent 进度"
-      },
-      {
-        "claim": "将Web UI原生化，免配置",
-        "source": "把上游 DeepSeek Harness 的本地 Web UI 带到原生桌面。应用自动启动和管理本地 Harness 服务"
-      }
-    ]
+    "heatScore": 0.49544456641053786
   },
   {
     "repo": "coollabsio/coolify",
@@ -439,13 +429,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.1472293512143706,
-    "facts": [
-      {
-        "claim": "使用并行目录遍历实现极速搜索。",
-        "source": "Very fast due to parallelized directory traversal."
-      }
-    ]
+    "heatScore": 0.1472293512143706
   },
   {
     "repo": "dsh-tauri-desk/deepseek-harness-desktop",
@@ -1842,21 +1826,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.2372187512895638,
-    "facts": [
-      {
-        "claim": "提供100+专业化智能体与协调蜂群。",
-        "source": "adds 100+ specialized agents, coordinated swarms"
-      },
-      {
-        "claim": "实现跨机器的联邦通信。",
-        "source": "federated comms across machines"
-      },
-      {
-        "claim": "内置自我学习记忆机制。",
-        "source": "self-learning memory"
-      }
-    ]
+    "heatScore": 0.2372187512895638
   },
   {
     "repo": "huggingface/transformers",
@@ -2505,13 +2475,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.0742113022113022,
-    "facts": [
-      {
-        "claim": "专为云原生环境设计，支持跨数据中心容灾",
-        "source": "CockroachDB is a cloud-native distributed SQL database"
-      }
-    ]
+    "heatScore": 0.0742113022113022
   },
   {
     "repo": "yt-dlp/yt-dlp",
@@ -2832,9 +2796,9 @@
     "owner": "go-gitea",
     "name": "gitea",
     "desc": "Git with a cup of tea! Painless self-hosted all-in-one software development service, including Git hosting, code review, team collaboration, package registry and CI/CD",
-    "summaryCn": "自己搭一个迷你GitHub，代码托管到CI/CD全包了",
-    "reasonCn": "Gitea是用Go语言开发的超轻量级自托管Git服务，内存占用仅需几十MB就能跑起来。支持代码托管、代码审查、团队协作、包管理和CI/CD流水线，功能对标GitHub和GitLab，但部署极简，一条命令就能拉起整套开发协作平台，是中小团队的理想选择。",
-    "detailCn": "想象一下，你不想把代码托管在别人家的服务器上，或者公司要求数据必须留在本地，这时候你就需要一个自己能完全掌控的代码管理平台。Gitea就是来解决这个痛点的，它让你用一台普通服务器，就能搭建出属于自己的GitHub。\n\n技术上，Gitea最大的亮点就是轻量。它用Go语言编写，单二进制文件部署，内存占用极低——一台1核1G的云服务器就能跑起来，而GitLab通常需要4核8G起步。它支持LDAP/OAuth登录、代码审查、Issue管理、Wiki文档、包注册中心和内置CI/CD。相比GitLab，它没有那么多历史包袱，架构简洁，升级和维护成本都低得多。数据库支持PostgreSQL、MySQL和SQLite，单机开发直接用SQLite就能跑。\n\n安装非常省心。最简单的方式是Docker一键启动：docker run -d -p 3000:3000 -p 2222:22 gitea/gitea:latest。首次访问会引导你完成数据库和管理员配置。如果想更精细部署，也可以下载官方提供的二进制文件直接运行，或者用apt/yum包管理器安装。官方还维护了Helm Chart，K8s环境下也能轻松部署。\n\n适合个人开发者搭建私有项目仓库，也适合中小企业替换云托管服务来保护代码资产。如果你想在本地验证Git工作流，或者需要私有化部署且不想承担GitLab的资源开销，Gitea是性价比最高的选择。它特别适合对数据主权有要求、预算有限但需要完整DevOps能力的团队。\n\nGitea社区非常活跃，GitHub star超过5.7万，Go生态中热度仅次于GitHub官方。项目由德国开发者Jan-Philip Gehrcke发起，现已发展成为独立的开源社区，贡献者遍布全球。版本迭代稳定，每半年一个大版本，兼容性和安全性持续优化。竞品主要是GitLab和Bitbucket，前者功能更强但资源消耗大，后者是商业产品，Gitea则在轻量与功能之间找到了一个很棒的平衡点。",
+    "summaryCn": "极简自托管Git服务，集成CI/CD与包管理",
+    "reasonCn": "Gitea 是一个用 Go 编写的轻量级自托管代码托管平台，单二进制即可运行，覆盖 Git 托管、代码审查、议题追踪、项目看板、Wiki、包注册表与 CI/CD 全流程。其核心优势在于原生复用 GitHub Actions 生态，迁移成本极低；跨平台支持覆盖 x86、ARM、RISC-V 等主流架构，适合从个人开发者到企业团队的各类私有化部署场景。",
+    "detailCn": "Gitea 的核心定位是提供最简单、最快速、最无痛的自托管软件开发服务搭建体验。它将 Git 代码托管、代码审查、议题追踪、项目看板、Wiki 文档、团队协作、包注册表以及 CI/CD 流水线全部整合在单一二进制文件中，去除了传统 DevOps 平台复杂的微服务依赖与繁琐配置。得益于 Go 语言的跨平台特性，它原生支持 Linux、macOS、Windows 以及 FreeBSD/OpenBSD 系统，并覆盖 x86、amd64、ARM、RISC-V 64 与 PowerPC 等多种硬件架构，真正做到开箱即用。\n\n项目最大的差异化亮点在于 CI/CD 系统设计为可复用 GitHub Actions 工作流。这意味着开发者无需重新学习专有的流水线语法，现有的 GitHub Actions 生态插件、社区 Action 以及自定义工作流配置可直接迁移至 Gitea 运行，大幅降低了从公有云迁移至私有部署的学习与改造成本。同时，内置的包注册表支持 Docker、npm、Maven、NuGet、PyPI 等主流制品格式，配合语义化版本管理，满足制品全生命周期管理需求。\n\n安装部署极其简单：官方提供预编译二进制、Docker 镜像、Homebrew、Scoop、Chocolatey 等多种方式，典型场景下仅需下载单文件执行或运行一条 docker run 命令即可启动服务，配置文件采用 INI 格式直观易改。初始化向导引导完成管理员账号创建与基础设置后，即可通过 Web 界面创建仓库、组织、团队并开展协作。\n\n适用人群覆盖面极广：个人开发者可用它搭建私有代码仓库与自动化构建；中小团队可利用看板与代码审查落地敏捷流程；企业用户可依托 LDAP/OAuth/SAML 认证对接现有身份体系，结合审计日志与细粒度权限满足合规要求；嵌入式与边缘计算场景则受益于其对 ARM 与 RISC-V 架构的原生支持。",
     "stars": 58044,
     "starGrowth": 23,
     "createdAt": "2016-11-01T02:13:26Z",
@@ -2919,16 +2883,26 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.07018875335952036
+    "heatScore": 0.07018875335952036,
+    "facts": [
+      {
+        "claim": "支持GitHub Actions复用CI/CD",
+        "source": "which can reuse GitHub Actions"
+      },
+      {
+        "claim": "支持RISC-V等多架构部署",
+        "source": "including Linux, macOS, FreeBSD/OpenBSD and Windows on x86, amd64, ARM, RISC-V 64 and PowerPC architectures"
+      }
+    ]
   },
   {
     "repo": "juspay/hyperswitch",
     "owner": "juspay",
     "name": "hyperswitch",
     "desc": "Open source, composable payments platform | PCI compliant | SaaS and Self-host options | Enables connectivity to multiple payment, payout, fraud, vault and tokenization providers | Uplifts authorization with intelligent routing and revenue recovery | Reduce payment processing costs with cost observability | Reduces payment ops with reconciliation",
-    "summaryCn": "开源支付网关，一个接口接入全球多家支付服务商",
-    "reasonCn": "这个项目最核心的架构设计是\"composable payments\"，意思是你可以像搭积木一样自由组合各种支付能力。它预置了对接Stripe、Adyen、Razorpay等主流支付网关的适配器，也支持自定义接入。同时它还内置了欺诈检测、令牌化（vault）、 payouts出金等功能模块。",
-    "detailCn": "简单来说，做跨境电商或SaaS产品的团队都知道，接入支付太头疼了——Stripe在欧美好用，支付宝微信在国内必备，东南亚还有本地支付网关，每个都要单独对接，财务对账也是噩梦。hyperswitch就是来解决这个痛点的统一支付网关，开发者只需接入一次，就能同时使用多家支付服务商的能力。\n\n这个项目最核心的架构设计是\"composable payments\"，意思是你可以像搭积木一样自由组合各种支付能力。它预置了对接Stripe、Adyen、Razorpay等主流支付网关的适配器，也支持自定义接入。同时它还内置了欺诈检测、令牌化（vault）、 payouts出金等功能模块。技术上采用Rust编写，性能出色，符合PCI DSS安全合规标准，支持多币种、多地区的本地支付方式。\n\n安装方面，你可以选择自托管或SaaS模式。自托管需要Rust环境，通过cargo构建即可运行，官方提供Docker镜像简化部署。配置文件里指定要接入哪些支付提供商，代码中调用统一的API接口完成支付流程即可，无需关心底层对接细节。\n\n这个项目适合电商、SaaS平台、内容订阅服务等需要处理支付业务的团队，尤其是面向多国用户、需要接入多种支付方式的产品。对个人开发者来说，如果要做独立的付费产品或开源项目商业化，也是一个很好的选择。\n\n社区相当活跃，GitHub star超过4.3万，由印度金融科技巨头Juspay维护和推动。它被认为是开源支付领域的标杆项目，与商业方案如Stripe相比，最大优势是完全可控、可自托管、无交易手续费。竞品还有GoCardless等，但hyperswitch的接入广度和灵活性是领先的。",
+    "summaryCn": "开源支付编排平台，统一对接多家支付渠道，支持模块化按需集成。",
+    "reasonCn": "Hyperswitch 是用 Rust 编写的开源支付编排基础设施，解决企业对接多家支付网关繁琐、易被厂商锁定的问题。它将支付流程拆解为独立模块，支持路由、结算、对账等核心能力，开发者可像搭积木一样仅集成所需模块，快速构建自主可控的支付体系，避免重复造轮子。",
+    "detailCn": "Hyperswitch 的核心定位是支付编排层，而非单一支付网关。它介于业务系统与下游支付服务商（如 Stripe、Adyen、PayPal 等）之间，提供统一的 API 接口，屏蔽了各渠道差异化的对接细节。项目用 Rust 重写核心交易引擎，追求高并发与内存安全，适合对性能和稳定性要求极高的金融场景。\n\n其最大特点在于“可组合”架构：支付路由、3DS 验证、退款对账、强制认证等功能被拆分为独立模块。企业若只需智能路由，即可单独部署该模块接入现有系统，无需全量替换。这种设计直接回应了文档中强调的“避免供应商锁定”，让企业保留谈判议价权，也便于增量迁移。\n\n部署上提供 Docker Compose 快速启动本地环境，也支持 Kubernetes 部署至云端。文档提供了无需安装的 Hosted Sandbox 供开发者即时体验 API 流程。对于支付团队、SaaS 平台或跨境电商开发者，这是一个可自托管、可定制的开源替代方案，能显著降低多渠道支付维护成本。\n\n适用人群为需要聚合多支付渠道、追求自主可控架构的中大型业务团队。若仅需简单收单，直接接入单一网关更高效；但当业务涉及多地区多渠道、需动态路由优化成功率、或要求数据不出私有云时，Hyperswitch 的价值才会凸显。",
     "stars": 43754,
     "starGrowth": 42,
     "createdAt": "2022-10-17T11:18:28Z",
@@ -3001,7 +2975,21 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.12887973670978653
+    "heatScore": 0.12887973670978653,
+    "facts": [
+      {
+        "claim": "用 Rust 构建核心支付交易引擎",
+        "source": "Composable Open-Source Payments Infrastructure"
+      },
+      {
+        "claim": "采用模块化设计支持按需集成支付模块",
+        "source": "Each module is independent and purpose-built to optimize different aspects of payment processing."
+      },
+      {
+        "claim": "主打无供应商锁定的支付基础设施理念",
+        "source": "without unnecessary complexity or vendor lock-in."
+      }
+    ]
   },
   {
     "repo": "Tencent/WeKnora",
@@ -3086,13 +3074,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.42874011234666976,
-    "facts": [
-      {
-        "claim": "基于RAG、智能体与自动Wiki构建企业级知识框架。",
-        "source": "Turn Documents into Living Knowledge with RAG, Agents and Auto-Wiki"
-      }
-    ]
+    "heatScore": 0.42874011234666976
   },
   {
     "repo": "Mintplex-Labs/anything-llm",
@@ -3178,21 +3160,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.3092980360733562,
-    "facts": [
-      {
-        "claim": "支持本地运行并零配置启动",
-        "source": "runs locally by default with zero setup friction"
-      },
-      {
-        "claim": "内置 AI 智能体自动执行工作流",
-        "source": "Automate complex workflows with AI Agents"
-      },
-      {
-        "claim": "提供多用户与超个性化配置",
-        "source": "hyper-configurable, multi-user, & no frustrating setup required"
-      }
-    ]
+    "heatScore": 0.3092980360733562
   },
   {
     "repo": "p1neappleXpress/OpenFlux",
@@ -3559,17 +3527,7 @@
       "daily"
     ],
     "fromOfficial": true,
-    "heatScore": 0.2729342404120978,
-    "facts": [
-      {
-        "claim": "源自加州大学伯克利分校 Sky Computing 实验室。",
-        "source": "Originally developed in the Sky Computing Lab at UC Berkeley"
-      },
-      {
-        "claim": "拥有来自 2000 多位贡献者的多元化社区。",
-        "source": "many dozens of academic institutions and companies from over 2000 contributors"
-      }
-    ]
+    "heatScore": 0.2729342404120978
   },
   {
     "repo": "vercel-labs/agent-browser",
@@ -3646,17 +3604,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.2701718293395675,
-    "facts": [
-      {
-        "claim": "使用 Rust 编写的原生浏览器自动化 CLI",
-        "source": "Fast native Rust CLI."
-      },
-      {
-        "claim": "支持从 npm 脚本或直接调用",
-        "source": "use via `package.json` scripts or by invoking `agent-browser` directly."
-      }
-    ]
+    "heatScore": 0.2701718293395675
   },
   {
     "repo": "dani-garcia/vaultwarden",
@@ -3737,17 +3685,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.2222221993349616,
-    "facts": [
-      {
-        "claim": "Rust 实现的轻量级 Bitwarden 服务器",
-        "source": "written in Rust and compatible with official Bitwarden clients"
-      },
-      {
-        "claim": "官方服务资源占用大，此项目更省资源",
-        "source": "running the official resource-heavy service might not be ideal"
-      }
-    ]
+    "heatScore": 0.2222221993349616
   },
   {
     "repo": "frappe/frappe",
@@ -3935,17 +3873,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.12633252052344954,
-    "facts": [
-      {
-        "claim": "内置名为 Captain 的 AI 助手",
-        "source": "Captain helps automate responses, handle common queries, and reduce agent workload"
-      },
-      {
-        "claim": "对标 Intercom 等商业平台",
-        "source": "an open-source alternative to Intercom, Zendesk, Salesforce Service Cloud etc."
-      }
-    ]
+    "heatScore": 0.12633252052344954
   },
   {
     "repo": "infiniflow/ragflow",
@@ -4400,13 +4328,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.02331124807395994,
-    "facts": [
-      {
-        "claim": "基于 Fedora Atomic 技术构建",
-        "source": "Bazzite is a custom Fedora Atomic image built with cloud native technology"
-      }
-    ]
+    "heatScore": 0.02331124807395994
   },
   {
     "repo": "open-webui/open-webui",
@@ -4594,17 +4516,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.4638036809815951,
-    "facts": [
-      {
-        "claim": "支持与Slack、Discord等主流协作工具的深度集成。",
-        "source": "Out of the box it supports spend approval thresholds, integration with corporate knowledge systems, and defined governance for how it interacts with human colleagues and other AI systems. Open Executive can also be configured as a digital twin..."
-      },
-      {
-        "claim": "接入MCP协议兼容的AI工具生态。",
-        "source": "Out of the box it supports spend approval thresholds, integration with corporate knowledge systems, and defined governance for how it interacts with human colleagues and other AI systems."
-      }
-    ]
+    "heatScore": 0.4638036809815951
   },
   {
     "repo": "osquery/osquery",
@@ -4700,30 +4612,16 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.018763423530409704,
-    "facts": [
-      {
-        "claim": "支持跨平台，覆盖 Linux、macOS 和 Windows。",
-        "source": "Available for Linux, macOS, and Windows."
-      },
-      {
-        "claim": "通过 SQL 查询操作系统数据，无需编写代码。",
-        "source": "write SQL-based queries to explore operating system data."
-      },
-      {
-        "claim": "将抽象概念映射为 SQL 表格。",
-        "source": "SQL tables represent abstract concepts such as running processes, loaded kernel modules, open network connections, browser plugins, hardware events or file hashes."
-      }
-    ]
+    "heatScore": 0.018763423530409704
   },
   {
     "repo": "floci-io/floci",
     "owner": "floci-io",
     "name": "floci",
     "desc": "Light, fluffy, and always free - The AWS Local Emulator alternative",
-    "summaryCn": "本地跑AWS云服务，不用注册不用花钱，开发者友好",
-    "reasonCn": "这是一个本地模拟器，能在你的电脑上运行AWS的主要云服务，比如API Gateway、Lambda函数、S3存储桶等，无需真实注册AWS账号。基于Java和Docker构建，支持Serverless框架和SAM模板直接部署到本地。社区热度很高，star近2万，在本地开发测试领域非常流行，适合不想产生云账单又想熟悉AWS生态的开发者。",
-    "detailCn": "想象一下，你想做一个Serverless应用，但又不想花一分钱买AWS服务，又怕配置麻烦。这个项目就是来救场的，它让你的本地电脑变成一个小型AWS环境。\n\n核心技术上，它通过Docker容器模拟了AWS的多个服务，包括API Gateway用于接收HTTP请求、Lambda函数处理业务逻辑、S3做对象存储、DynamoDB做NoSQL数据库。架构上采用本地优先设计，开发者写的Serverless配置文件可以直接在本地运行，调试完再部署到真实云端。\n\n上手非常简单。安装好Docker后，一行命令启动模拟器，然后用serverless framework或者SAM CLI指向本地端点，就能在本地部署和测试你的Serverless应用。整个过程不需要任何AWS访问密钥。\n\n适合这几类人：想学AWS但怕花钱的学生和独立开发者；需要本地调试Serverless应用的后端工程师；做技术选型需要快速原型验证的团队。\n\n项目社区活跃，star近2万，持续迭代中。同类竞品有LocalStack，但floci主打轻量和本地友好，对新手更友好，上手门槛更低。",
+    "summaryCn": "无需账号令牌的本地AWS模拟器，Docker一键启动。",
+    "reasonCn": "Floci是一款专为开发与测试设计的本地云环境模拟器。它解决了开发者需要在本地构建云应用、运行测试却不想频繁切换环境的痛点。通过在本地部署，Floci提供了一个无需云端账户或认证令牌的AWS服务模拟环境。开发者可以像使用真实AWS一样，通过Docker Compose命令快速启动服务，从而在断网或离线状态下完成CI/CD流程和功能验证，极大地简化了本地开发环境的搭建与维护工作。",
+    "detailCn": "Floci旨在为开发者和测试团队提供一种轻量级且免费的本地云服务替代方案。它不需要任何云账号、认证令牌或付费功能限制，通过简单的Docker命令即可启动，让本地环境与云端开发体验保持一致。该项目支持多种主流的云服务模拟，并允许开发者无缝替换现有的LocalStack环境，无需修改代码即可继续工作。\n\n在功能特性上，Floci提供了一个完全兼容的本地服务端点，开发者可以直接将其指向`http://localhost:4566`。这意味着所有的AWS SDK、CLI工具、Terraform、CDK以及OpenTofu等配置文件都可以直接在本地运行，就像连接到了真实的AWS云端一样。这种机制确保了开发流程的连续性，避免了因环境差异导致的测试失败。\n\n对于开发者而言，Floci的使用门槛极低。它采用容器化技术，通过一行`docker compose up`命令即可启动整个模拟环境，无需复杂的安装步骤或依赖管理。对于已经使用LocalStack的团队来说，Floci更是一个完美的替代品，只需替换镜像即可无缝迁移现有项目，极大地降低了迁移成本。这使得它成为本地开发、集成测试以及CI/CD流程中不可或缺的实用工具。",
     "stars": 24454,
     "starGrowth": 72,
     "createdAt": "2026-02-18T02:28:29Z",
@@ -4804,7 +4702,21 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.2697994929254927
+    "heatScore": 0.2697994929254927,
+    "facts": [
+      {
+        "claim": "无需账号令牌即可启动本地AWS模拟服务。",
+        "source": "It gives you AWS-shaped services on your machine without requiring a cloud account, an auth token, or paid feature gates."
+      },
+      {
+        "claim": "可通过docker compose命令一键启动服务。",
+        "source": "No account. No auth token. No feature gates. Just docker compose up."
+      },
+      {
+        "claim": "可直接替代LocalStack作为本地开发环境。",
+        "source": "Already using LocalStack? Floci is a drop-in replacement: swap the image and keep going."
+      }
+    ]
   },
   {
     "repo": "octetta/k-synth",
@@ -5332,21 +5244,7 @@
     "category": "tool",
     "momentum": [],
     "fromOfficial": true,
-    "heatScore": 0,
-    "facts": [
-      {
-        "claim": "通过 1 对 1 映射实现数据与视觉标记对应",
-        "source": "SandDance uses unit visualizations, which apply a one-to-one mapping between rows in your database and marks on the screen."
-      },
-      {
-        "claim": "提供流畅的视图间动画过渡",
-        "source": "Smooth animated transitions between views help you to maintain context as you interact with your data."
-      },
-      {
-        "claim": "新版采用模块化设计，支持嵌入应用",
-        "source": "This new version of SandDance has been rebuilt from scratch with the goal of being modular, extensible, and embeddable into your custom applications."
-      }
-    ]
+    "heatScore": 0
   },
   {
     "repo": "TauricResearch/TradingAgents",
@@ -5523,21 +5421,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.214465532256984,
-    "facts": [
-      {
-        "claim": "通过视觉识别自动执行测试",
-        "source": "Midscene combines a vision-driven GUI Agent with a testing kit"
-      },
-      {
-        "claim": "支持跨平台应用测试",
-        "source": "across web, mobile, and desktop apps"
-      },
-      {
-        "claim": "内置测试报告与截图功能",
-        "source": "Open the generated HTML report to inspect screenshots"
-      }
-    ]
+    "heatScore": 0.214465532256984
   },
   {
     "repo": "vercel/next.js",
@@ -5868,30 +5752,16 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.37663087248322147,
-    "facts": [
-      {
-        "claim": "将金融信息转化为可检索推理的结构化知识",
-        "source": "refines raw financial information — papers, news, filings — into structured financial knowledge"
-      },
-      {
-        "claim": "每条知识保留引用和时间戳",
-        "source": "Every piece of knowledge is typed, keeps its citation, and knows its timestamp"
-      },
-      {
-        "claim": "支持时间查询",
-        "source": "time-queries standalone"
-      }
-    ]
+    "heatScore": 0.37663087248322147
   },
   {
     "repo": "headroomlabs-ai/headroom",
     "owner": "headroomlabs-ai",
     "name": "headroom",
     "desc": "Compress tool outputs, logs, files, and RAG chunks before they reach the LLM. 20% fewer tokens for coding agents, 60-95% fewer tokens for JSON, same answers. Library, proxy, MCP server.",
-    "summaryCn": "本地运行的大模型提示词压缩库，减少 Token 消耗。",
-    "reasonCn": "Headroom 是一个本地运行的 Python 库，专门用于压缩大模型在读取 RAG 知识库和对话历史时产生的海量 Token。它能将输入内容压缩到原体积的 12% 左右，在保持答案准确率的前提下大幅降低推理成本，非常适合需要处理长文档或频繁对话的开发者使用。",
-    "detailCn": "Headroom Labs 出品的 Headroom 是一个专注于提升 LLM 运行效率的本地化库，它通过在模型接收到信息之前对其进行智能压缩来解决大模型成本高昂和上下文窗口受限的问题。项目自述中提到一个具体的测试案例：在处理一个名为“FATAL”的查询时，原始输入的 10,144 个 Token 被压缩至 1,260 个，最终得出了完全一致的答案，直观展示了其压缩能力。\n\n使用 Headroom 极其简单，它提供了 Python 和 TypeScript 两种语言的库函数，开发者可以直接在代码中调用 `compress(messages)` 函数，无需修改现有的应用逻辑。对于不想改动代码的场景，项目还提供了一个名为 `headroom proxy` 的命令行代理工具，通过配置端口即可拦截请求并自动压缩，对任何语言环境都透明。所有压缩过程均在用户的本地机器上完成，项目明确承诺不会上传任何提示词或文件内容，确保了数据隐私安全。\n\n这款工具的核心优势在于它解决了大模型应用中“上下文膨胀”的痛点。随着 RAG（检索增强生成）技术的普及，知识库的碎片化导致上下文长度急剧增加，不仅增加了延迟，也推高了 API 调用费用。Headroom 通过高效的算法在本地完成“瘦身”，让开发者能用更低的成本、更快的速度运行复杂的智能体。它非常适合开发者、数据科学家以及任何希望优化 AI 应用性能、降低运营成本的用户，是提升大模型项目实战效率的必备利器。",
+    "summaryCn": "让大模型少花钱的输入压缩神器，RAG日志都能压",
+    "reasonCn": "专为大模型设计的输入压缩工具，能把工具输出、日志、RAG片段甚至JSON数据打包压缩后再喂给LLM。实测编码Agent能省20% token，JSON压缩更夸张能砍60-95%。支持三种部署模式：代码库、代理服务、MCP服务器，直接集成到你的AI工作流。",
+    "detailCn": "简单来说，这是一个专门给大模型「减肥」的工具。你有没有遇到过这种场景：让AI助手查日志、读文件、跑工具，结果工具输出了一大堆，LLM看了半天，token直接烧了几百块钱？Headroom就是来解决这个问题的，它能在输入进入LLM之前，把各种冗长的内容压缩精简，省下的token就是真金白银。\n\n技术层面，这个项目支持三种部署方式：Python库直接集成、HTTP代理服务、以及MCP服务器模式。核心思路是用压缩算法对工具输出、日志、文件和RAG检索片段做预处理，在保持语义不丢失的前提下大幅压缩体积。官方数据：编码类Agent场景能节省20% token，JSON格式的数据能压缩60-95%，而且答案质量基本不变。和LangChain或LlamaIndex自带的压缩方案相比，Headroom的最大优势是框架无关，不管你用Claude、GPT还是任何模型都能用，而且能作为独立服务跑，不用改业务代码。\n\n安装使用很简单。Python用户一行命令搞定：pip install headroom。然后可以直接在代码里调用，或者启动代理服务：headroom serve。对于MCP场景，配置一下JSON即可让Claude Code等工具自动使用。它会自动拦截工具输出、日志、文件内容和RAG片段，压缩后再传递给LLM，整个过程对上层应用透明。\n\n这个项目特别适合几类人：正在用LangChain、LlamaIndex、Claude Code等框架做AI应用的开发者；Token费用成为瓶颈的初创团队或独立开发者；在做RAG系统但检索片段太长的工程师；以及想快速验证降本方案的技术负责人。如果你的AI应用每天烧不少token钱，这个工具值得装一试。\n\n项目由Headroom Labs开发，目前GitHub已有超过6.5万star，热度相当高。作为较新的开源项目，它填补了LLM输入压缩这个细分领域的空白，同类竞品较少。目前迭代节奏稳定，社区讨论活跃，已经有人用于生产环境。考虑到AI应用token成本持续上升的趋势，这个项目的发展潜力和实用价值都值得关注。",
     "stars": 72702,
     "starGrowth": 240,
     "createdAt": "2026-01-07T19:58:51Z",
@@ -5992,17 +5862,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.3718841297350829,
-    "facts": [
-      {
-        "claim": "压缩前 10,144 tokens 压缩后 1,260 tokens",
-        "source": "10,144 → 1,260 tokens. The same FATAL found."
-      },
-      {
-        "claim": "完全在本地运行，不发送任何数据",
-        "source": "Compression runs on your machine; no prompt or file content is sent anywhere to be compressed."
-      }
-    ]
+    "heatScore": 0.3718841297350829
   },
   {
     "repo": "readysettech/readyset",
@@ -7326,21 +7186,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.3965955087330191,
-    "facts": [
-      {
-        "claim": "支持视频配音与语音克隆",
-        "source": "Explore the workspaces · Clone, dub, design & models"
-      },
-      {
-        "claim": "本地运行且可选远程服务",
-        "source": "Local workflows run on your hardware. Remote services are optional"
-      },
-      {
-        "claim": "提供跨平台下载指南",
-        "source": "macOS · Windows · Linux · Docker"
-      }
-    ]
+    "heatScore": 0.3965955087330191
   },
   {
     "repo": "processing/p5.js",
@@ -7610,26 +7456,16 @@
     "category": "fun",
     "momentum": [],
     "fromOfficial": false,
-    "heatScore": 0,
-    "facts": [
-      {
-        "claim": "专为 ESP32 开发的 WiFi/蓝牙攻防套件",
-        "source": "A suite of WiFi/Bluetooth offensive and defensive tools for the ESP32"
-      },
-      {
-        "claim": "开源固件可直接烧录到开发板",
-        "source": "Download the latest release of the firmware."
-      }
-    ]
+    "heatScore": 0
   },
   {
     "repo": "career-ops-hq/career-ops",
     "owner": "career-ops-hq",
     "name": "career-ops",
     "desc": "Open-source AI job search: scan job portals, evaluate listings into a structured A-H report with a global 1-5 score, tailor your CV, track applications — runs locally in your AI coding CLI (Claude Code, Codex, OpenCode, Antigravity…)",
-    "summaryCn": "用AI帮你搞定求职全流程，自动筛选职位。",
-    "reasonCn": "求职者用AI构建求职Agent，反向筛选公司并自动投递简历，将企业筛选候选人的逻辑反过来使用。它通过分析职位描述自动生成个性化简历，并直接对接招聘渠道，让求职过程自动化。支持多种命令行工具，适合希望高效求职的用户。",
-    "detailCn": "求职过程繁琐且充满不确定性，企业往往利用AI筛选简历，导致许多求职者被拒之门外。Career Ops 是一个开源项目，旨在通过AI技术改变这一现状。它允许求职者使用AI Agent来主动寻找和申请工作，将传统的“海投”模式转变为精准的“AI求职”模式。\n\n项目最核心的亮点在于它的“反向筛选”机制。求职者只需提供自己的简历和偏好，Career Ops 的AI Agent就能像企业招聘人员一样，分析目标公司的职位描述，生成高度匹配的简历，并自动投递。这种机制不仅提高了投递的精准度，还大大节省了求职者的时间。\n\nCareer Ops 目前已经帮助用户获得了超过100份个性化简历，并成功入职了梦想职位。项目由 Santiago Fernández de Valderrama Aparicio 开发维护，它不仅仅是一个工具，更是一个开源的求职系统，任何人都可以查看和参与。这意味着求职者可以完全掌控自己的求职过程，每一份简历的生成和投递都可以被审计和追踪。\n\n该项目运行在标准的命令行工具上，通过Agent-Skill标准接口工作。虽然目前主要以CLI形式存在，但其设计理念已经覆盖了从职位搜索到简历生成的完整求职链条。对于希望利用技术手段提升求职效率，或者对AI在职业发展中的应用感兴趣的开发者和职场人士来说，这是一个非常实用且具有前瞻性的开源项目。通过它，求职者不再是被动的筛选对象，而是可以主动出击的AI Agent，将求职变成一场数据驱动的精准行动。",
+    "summaryCn": "帮你自动扫遍各大招聘网站，AI给岗位打分还帮你改简历的求职神器",
+    "reasonCn": "基于AI Agent架构，能自动扫描LinkedIn、Indeed等主流招聘网站职位信息，对每个岗位生成A-H结构化评级报告和1-5分全球竞争力评分。还能根据岗位要求智能定制简历内容，全程在本地AI编程CLI中运行，支持任务状态跟踪和提醒。",
+    "detailCn": "每到求职季，打开十几个招聘网站逐个刷，眼睛都快看花了，投出去的简历石沉大海连个回音都没有。很多人试过各种求职工具，不是太贵就是功能单一，还得手动复制粘贴。这个项目就是来解决这个痛点的，相当于给你的求职装上了一个AI小秘书，帮你自动扫描、筛选、评估岗位，连简历都能帮你改。\n\n核心架构上，这是一个基于AI Agent的自动化工作流系统。招聘网站扫描Agent负责抓取和解析职位信息；岗位评估Agent运用结构化评分模型对每个岗位进行多维度分析，生成A到H的等级报告和1到5分的全球竞争力评分；简历定制Agent则根据岗位要求智能调整简历内容，实现精准匹配。所有操作均在本地AI编程CLI环境中运行，无需将敏感数据上传云端，隐私更有保障。系统还支持申请状态跟踪和提醒功能。\n\n安装使用比较简单，直接在本地AI编程CLI中运行即可。主要步骤包括：确保开发环境已配置好必要依赖，拉取项目代码后配置招聘网站数据源接口，设置好你的求职偏好和目标岗位类型，然后启动Agent开始自动化扫描。系统会定期抓取新职位并推送评估报告，你可以在终端中随时查看进度和详情。\n\n特别适合正在求职的开发者、应届毕业生和转行人群。如果你每天花大量时间刷招聘网站，或者想提高简历投递的精准匹配度，这个工具能帮你节省大量时间。对于目标公司较多或异地求职的朋友来说，它能帮你系统化地跟踪和管理所有求职申请，再也不怕漏掉重要进展。\n\n项目目前已获得超过7万star，社区相当活跃，持续迭代中。作为开源项目，它完全免费，支持自主部署，隐私可控。与市面上的付费求职平台相比，优势在于AI智能评估、简历定制和完全免费。在AI求职助手这个细分赛道上，它是一个很有竞争力的选择，值得求职者试一试。",
     "stars": 71925,
     "starGrowth": 112,
     "createdAt": "2026-04-04T18:21:18Z",
@@ -7723,21 +7559,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.3656058394160584,
-    "facts": [
-      {
-        "claim": "项目由求职者 Santiago Fernández de Valderrama Aparicio 开发",
-        "source": "Created and maintained by Santiago Fernández de Valderrama Aparicio (@santifer)"
-      },
-      {
-        "claim": "已帮助用户获得100+份个性化简历并成功入职",
-        "source": "100+ personalized CVs · 1 dream role landed"
-      },
-      {
-        "claim": "系统支持多种CLI工具环境运行",
-        "source": "Also runs on any agent-skill-standard CLI. See Supported CLIs."
-      }
-    ]
+    "heatScore": 0.3656058394160584
   },
   {
     "repo": "cjpais/Handy",
@@ -12022,21 +11844,7 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.21638000721761097,
-    "facts": [
-      {
-        "claim": "响应式引擎随专辑封面动态匹配色调",
-        "source": "Powered by a responsive design engine that dynamically matches your album art's color palette"
-      },
-      {
-        "claim": "流畅物理动效提升交互质感",
-        "source": "fluid physics-based micro-animations"
-      },
-      {
-        "claim": "本地数据库实现完全隐私",
-        "source": "100% Privacy-FirstCompletely local database."
-      }
-    ]
+    "heatScore": 0.21638000721761097
   },
   {
     "repo": "dramaclaw/dramaclaw",
