@@ -39,3 +39,11 @@ data/trending-snapshot.json
 
 # v3 提升流水线的上一版快照（字段回退闸对照用；体积与 feed.json 同量级，不入仓）
 data/feed.prev.json
+
+# 安全加固（2026-09-18 P0）：锚点/重判/稳定性实验产物，部分内嵌真实样式 API key，
+# 一次 git add . 即入公开仓。只忽略，不删除本地文件。
+data/anchor-probe*.json
+data/rejudge-*.json
+data/stability-*.json
+data/zone-manual-check-*.json
+tmp/
