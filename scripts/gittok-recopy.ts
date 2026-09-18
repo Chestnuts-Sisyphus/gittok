@@ -64,6 +64,12 @@ interface StateEntry {
   lane?: string;
   fails?: string[];
   noReadme?: boolean;
+  /**
+   * 第几次尝试（含本次）。旧 state 无此字段 → 读时按 1 次算。
+   * 追加而非改指纹：`at` 每次覆盖，没有 tries 就分不出「失败 2 次」与「失败 20 次」，
+   * 「恒不过闸」因此不可判定。纯追加字段不动 VERSION，既有 done 凭证不作废。
+   */
+  tries?: number;
 }
 interface RecopyState {
   version: string;
@@ -403,6 +409,7 @@ async function main(): Promise<void> {
       state.done[card.repo] = {
         at: new Date().toISOString(),
         lane: out.lane,
+        tries: (state.failed[card.repo]?.tries ?? 0) + 1,
         ...(out.noReadme ? { noReadme: true } : {}),
       };
       delete state.failed[card.repo];
@@ -416,6 +423,7 @@ async function main(): Promise<void> {
         at: new Date().toISOString(),
         lane: out.lane,
         fails: out.fails.slice(0, 4),
+        tries: (state.failed[card.repo]?.tries ?? 0) + 1,
         ...(out.noReadme ? { noReadme: true } : {}),
       };
       saveState(state);
@@ -426,6 +434,21 @@ async function main(): Promise<void> {
   console.log(
     `[recopy] 本轮完成：写回 ${ok} 张 / 未过闸 ${fail} 张｜累计已写回 ${Object.keys(state.done).length} 张｜state：${STATE_FILE}`,
   );
+
+  // 恒不过闸候选：仅「内容类」原因才算数（通道类是额度/墙，不是卡的问题）。
+  // 纪律：连续 ≥3 轮 + 内容类 + 队列已收敛，三条同时满足才叫恒不过闸。
+  const stubborn = Object.entries(state.failed)
+    .filter(([, v]) => (v.tries ?? 1) >= 3)
+    .sort((a, b) => (b[1].tries ?? 1) - (a[1].tries ?? 1));
+  if (stubborn.length > 0) {
+    const CHANNELY = /通道|墙|超时|额度|429|40[124]|未拿到成品回包/;
+    console.log(`\n[recopy] 恒不过闸候选（tries≥3）${stubborn.length} 张：`);
+    for (const [repo, v] of stubborn.slice(0, 12)) {
+      const why = (v.fails ?? [])[0] ?? "（无原因记录）";
+      const kind = CHANNELY.test(why) ? "通道类·不计数" : "内容类·待人工判";
+      console.log(`  ${String(v.tries ?? 1).padStart(2)} 次 [${kind}] ${repo}：${why}`);
+    }
+  }
 }
 
 main().catch((err) => {
