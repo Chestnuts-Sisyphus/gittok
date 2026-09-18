@@ -8022,9 +8022,9 @@
     "owner": "thedotmack",
     "name": "claude-mem",
     "desc": "Persistent Context Across Sessions for Every Agent – Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Hermes, Copilot, OpenCode + More",
-    "summaryCn": "让AI记住每次对话内容，跨会话无缝衔接不再失忆",
-    "reasonCn": "针对Claude等Agent在会话结束后‘失忆’的痛点，该项目利用RAG技术实现持久化记忆。它会在后台持续捕获Agent的所有操作日志，通过AI自动摘要压缩，并将关键上下文存入向量库。下次启动时，智能检索并注入相关历史，使Agent具备长期任务跟进能力，大幅提升了复杂多步骤工作的连续性和效率。",
-    "detailCn": "简单来说，大家都用过Claude或ChatGPT吧？每次关掉窗口重新打开，AI就失忆了，你得重新把背景介绍一遍，特别烦。这个项目就是专门治这个“断片儿”病的。它让AI像人一样拥有长期记忆，不管你怎么重启，它都记得你上周干了什么、说过什么，真正实现跨会话的连贯工作。\n\n技术上，这是一个基于RAG（检索增强生成）架构的记忆系统。它的核心流程是：捕获Agent在会话中的所有输入输出日志，利用本地或云端AI模型对这些日志进行语义压缩和摘要，去除冗余噪音，然后将结构化后的记忆片段存入向量数据库。当新会话开始时，系统会根据当前任务动态检索最相关的历史记忆，并将其作为Context注入到Prompt中。这种架构避免了直接将海量历史堆砌进上下文窗口导致的Token爆炸和注意力分散问题，是Agent长期记忆领域的经典解决方案。\n\n上手指南方面，项目提供了详细的配置文档。首先你需要在本地部署好向量数据库（如Qdrant或Chroma），并配置好API Key。然后通过npm或pip安装claude-mem依赖，并在你的Claude Code配置文件中启用该插件。启动后，它会在后台静默运行，无需你手动干预。你只需要像往常一样工作，系统会自动记录和整理记忆。如果想查看或管理记忆，可以通过提供的CLI命令进行查询或删除。\n\n这个项目非常适合那些将AI作为日常主要生产力工具的深度用户。比如负责复杂代码重构、长篇文档写作、或需要多轮迭代调试的开发者。如果你经常进行跨天、跨会话的持续性项目，它能极大减少重复沟通成本。同时，它也适合那些希望构建具备记忆能力的定制Agent的工程师，可作为底层模块集成到自己的系统中。\n\n从社区热度来看，该项目Star数接近9万，说明“AI失忆”确实是普遍痛点，市场需求旺盛。它主要依赖于开源社区贡献的RAG组件和向量库支持。与Mem0、LangMem等同类项目相比，claude-mem更专注于Claude Code生态，集成度更高，配置更简单。随着AI Agent向自主化方向发展，持久化记忆是必经之路，该项目处于这个赛道的前沿，值得长期关注。",
+    "summaryCn": "给Claude的上下文记忆补丁，自动补全跨会话信息。",
+    "reasonCn": "大语言模型虽然聪明，但每次对话都是全新的，项目信息很容易丢失。这个开源项目就像给 Claude 配了一个记忆管家，它能自动记录你用工具做了什么，把零散的操作变成有意义的摘要。下次再聊同一个项目时，它就能快速回忆起之前的细节，不再需要你反复解释背景，特别适合深度开发或需要长期跟进的复杂任务。",
+    "detailCn": "在开发复杂项目时，开发者经常会遇到这样的问题：同一个项目在不同时间段聊过，AI 却忘了之前的上下文，导致重复提问或逻辑断层。claude-mem 专门解决这个问题，它通过监听 Claude 的工具调用（比如文件读取、代码生成等操作）来捕捉关键信息，然后自动生成语义化的摘要。这些摘要会被保存下来，在下一次会话开始时优先提供给 Claude，让它能快速恢复对项目的理解。\n\n项目最核心的价值在于它让 AI 的能力在单次对话之外延伸。普通的大模型在会话结束后就失去了所有上下文，而 claude-mem 通过压缩和存储工具使用的历史记录，实现了跨会话的记忆连续性。这意味着开发者可以在不同时间、不同会话中继续同一个任务，而不需要重复输入背景信息。对于需要长期维护代码库或处理复杂任务的开发者来说，这大大提升了工作效率。\n\n安装和使用过程相对简单，项目提供了清晰的文档和配置说明。开发者只需要按照官方指引在本地部署或集成到现有的开发环境中，就能让 Claude 拥有长期记忆的能力。配置完成后，Claude 会自动开始记录工具调用并生成摘要，无需人工干预。这种自动化的机制让开发者可以专注于核心任务，而不用担心上下文信息的丢失。\n\nclaude-mem 的设计理念是“无感增强”，它不改变 Claude 的原有交互方式，只是默默地补充记忆层的功能。这种设计使得它非常适合与现有的开发工作流无缝集成，不会给用户带来额外的学习负担。对于想要提升 AI 辅助开发效率的人来说，这是一个非常实用的工具，尤其是那些需要处理大量文档、频繁修改代码或进行复杂项目规划的场景。",
     "stars": 94037,
     "starGrowth": 69,
     "createdAt": "2025-08-31T20:50:03Z",
@@ -8119,7 +8119,17 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.20920126120569563
+    "heatScore": 0.20920126120569563,
+    "facts": [
+      {
+        "claim": "自动捕获工具调用生成语义摘要",
+        "source": "automatically capturing tool usage observations, generating semantic summaries"
+      },
+      {
+        "claim": "维持跨会话的项目知识连续性",
+        "source": "Claude to maintain continuity of knowledge about projects even after sessions end or reconnect"
+      }
+    ]
   },
   {
     "repo": "agentscope-ai/agentscope",
