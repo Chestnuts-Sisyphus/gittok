@@ -1,7 +1,7 @@
 {
   "version": "recopy:v6-copy+facts:1",
   "createdAt": "2026-09-17T12:12:22.618Z",
-  "updatedAt": "2026-09-18T17:04:58.570Z",
+  "updatedAt": "2026-09-18T17:27:58.243Z",
   "done": {
     "coollabsio/coolify": {
       "at": "2026-09-17T12:38:24.902Z",
@@ -306,6 +306,11 @@
     "marimo-team/marimo": {
       "at": "2026-09-18T16:52:11.740Z",
       "lane": "zhipu:glm-4.7-flash"
+    },
+    "yt-dlp/yt-dlp": {
+      "at": "2026-09-18T17:16:11.193Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "tries": 1
     }
   },
   "failed": {
@@ -327,51 +332,46 @@
         "深度解读 1 段（要求 3-5 段）"
       ]
     },
-    "yt-dlp/yt-dlp": {
-      "at": "2026-09-18T16:01:08.478Z",
-      "lane": "zhipu:glm-4.7-flash",
-      "fails": [
-        "简要介绍等效长度 91（要求约 3 行，effLen≥100）",
-        "深度解读 0 字（硬性要求 500-800 字）",
-        "深度解读 0 段（要求 3-5 段）",
-        "未见安装/上手内容（必须覆盖怎么上手）"
-      ]
-    },
     "Stirling-Tools/Stirling-PDF": {
-      "at": "2026-09-18T15:53:25.273Z",
+      "at": "2026-09-18T17:11:46.738Z",
       "lane": "zhipu:glm-4.7-flash",
       "fails": [
-        "深度解读 310 字（硬性要求 500-800 字）",
+        "深度解读 276 字（硬性要求 500-800 字）",
         "深度解读 1 段（要求 3-5 段）",
         "facts[1] source 不在参考文档：不在参考文档"
-      ]
+      ],
+      "tries": 1
     },
     "hundredrabbits/Orca": {
-      "at": "2026-09-18T16:12:41.597Z",
+      "at": "2026-09-18T17:24:07.806Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "fails": [
+        "深度解读 418 字（硬性要求 500-800 字）",
+        "深度解读 1 段（要求 3-5 段）",
+        "tags 含空项或超长词（≤20 字）",
+        "facts[2] source 不在参考文档：不在参考文档"
+      ],
+      "tries": 1
+    },
+    "langchain-ai/langchain": {
+      "at": "2026-09-18T17:27:58.243Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "fails": [
+        "一句话描述 17 字（硬性要求 20-35 汉字）",
+        "深度解读 441 字（硬性要求 500-800 字）",
+        "深度解读 1 段（要求 3-5 段）",
+        "facts[1] source 不在参考文档：不在参考文档"
+      ],
+      "tries": 1
+    },
+    "appsmithorg/appsmith": {
+      "at": "2026-09-18T17:26:17.563Z",
       "lane": "zhipu:glm-4.7-flash",
       "fails": [
         "深度解读 1 段（要求 3-5 段）",
-        "facts[1] source 不在参考文档：不在参考文档",
         "facts[2] source 不在参考文档：不在参考文档"
-      ]
-    },
-    "langchain-ai/langchain": {
-      "at": "2026-09-18T16:23:21.689Z",
-      "lane": "zhipu:glm-4.7-flash",
-      "fails": [
-        "简要介绍等效长度 93（要求约 3 行，effLen≥100）",
-        "深度解读 424 字（硬性要求 500-800 字）",
-        "未见安装/上手内容（必须覆盖怎么上手）"
-      ]
-    },
-    "appsmithorg/appsmith": {
-      "at": "2026-09-18T16:21:05.447Z",
-      "lane": "zhipu:glm-4.7-flash",
-      "fails": [
-        "一句话描述 18 字（硬性要求 20-35 汉字）",
-        "简要介绍等效长度 86（要求约 3 行，effLen≥100）",
-        "深度解读 1 段（要求 3-5 段）"
-      ]
+      ],
+      "tries": 1
     },
     "Panniantong/Agent-Reach": {
       "at": "2026-09-18T00:48:00.246Z",
@@ -442,22 +442,26 @@
       ]
     },
     "jingyaogong/minimind": {
-      "at": "2026-09-18T17:04:58.569Z",
+      "at": "2026-09-18T17:10:30.111Z",
       "lane": "zhipu:glm-4.7-flash",
       "fails": [
-        "一句话描述 19 字（硬性要求 20-35 汉字）",
-        "深度解读 1 段（要求 3-5 段）",
-        "facts[1] source 不在参考文档：不在参考文档",
-        "facts[2] source 不在参考文档：不在参考文档"
+        "一句话描述 18 字（硬性要求 20-35 汉字）",
+        "深度解读 393 字（硬性要求 500-800 字）",
+        "未见安装/上手内容（必须覆盖怎么上手）",
+        "facts[1] source 不在参考文档：不在参考文档"
       ],
-      "tries": 1
+      "tries": 2
     },
     "harry0703/MoneyPrinterTurbo": {
-      "at": "2026-09-18T16:09:42.881Z",
-      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "at": "2026-09-18T17:22:49.598Z",
+      "lane": "zhipu:glm-4.7-flash",
       "fails": [
-        "通道失败：TypeError: Cannot read properties of null (reading '0')"
-      ]
+        "简要介绍等效长度 94（要求约 3 行，effLen≥100）",
+        "深度解读 273 字（硬性要求 500-800 字）",
+        "深度解读 1 段（要求 3-5 段）",
+        "facts[1] source 不在参考文档：不在参考文档"
+      ],
+      "tries": 1
     },
     "e2b-dev/E2B": {
       "at": "2026-09-18T16:39:19.841Z",
@@ -475,47 +479,53 @@
       ]
     },
     "tashfeenahmed/freellmapi": {
-      "at": "2026-09-18T15:53:47.877Z",
+      "at": "2026-09-18T17:13:42.859Z",
       "lane": "zhipu:glm-4.7-flash",
       "fails": [
-        "深度解读 339 字（硬性要求 500-800 字）",
+        "简要介绍等效长度 94（要求约 3 行，effLen≥100）",
+        "深度解读 391 字（硬性要求 500-800 字）",
         "深度解读 1 段（要求 3-5 段）",
-        "未见安装/上手内容（必须覆盖怎么上手）",
-        "facts[4] source 不在参考文档：不在参考文档"
-      ]
+        "facts[1] source 不在参考文档：不在参考文档"
+      ],
+      "tries": 1
     },
     "kubernetes-sigs/kueue": {
-      "at": "2026-09-18T16:02:39.033Z",
+      "at": "2026-09-18T17:19:09.779Z",
       "lane": "zhipu:glm-4.7-flash",
       "fails": [
-        "深度解读 1 段（要求 3-5 段）",
-        "facts[2] source 不在参考文档：不在参考文档",
-        "facts[3] source 不在参考文档：不在参考文档"
-      ]
+        "含代码块或多行命令示例（禁止，用一句普通的话说明怎么用）",
+        "facts[1] source 不在参考文档：不在参考文档",
+        "facts[2] source 不在参考文档：不在参考文档"
+      ],
+      "tries": 1
     },
     "louislam/uptime-kuma": {
-      "at": "2026-09-18T16:06:34.825Z",
+      "at": "2026-09-18T17:20:11.558Z",
       "lane": "zhipu:glm-4.7-flash",
       "fails": [
-        "深度解读 400 字（硬性要求 500-800 字）",
+        "简要介绍等效长度 89（要求约 3 行，effLen≥100）",
+        "深度解读 370 字（硬性要求 500-800 字）",
         "深度解读 1 段（要求 3-5 段）"
-      ]
+      ],
+      "tries": 1
     },
     "bobeff/open-source-games": {
-      "at": "2026-09-18T16:09:41.694Z",
-      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
-      "fails": [
-        "含推广词「点击链接」（禁止）",
-        "facts[2] source 不在参考文档：不在参考文档"
-      ]
-    },
-    "tradesdontlie/tradingview-mcp": {
-      "at": "2026-09-18T16:14:24.492Z",
+      "at": "2026-09-18T17:21:59.902Z",
       "lane": "zhipu:glm-4.7-flash",
       "fails": [
-        "一句话描述 50 字（硬性要求 20-35 汉字）",
+        "深度解读 352 字（硬性要求 500-800 字）",
+        "深度解读 1 段（要求 3-5 段）",
+        "含推广词「点击链接」（禁止）"
+      ],
+      "tries": 1
+    },
+    "tradesdontlie/tradingview-mcp": {
+      "at": "2026-09-18T17:25:10.899Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "fails": [
         "一句话描述与深度解读开头重复（最长重复片段过长）"
-      ]
+      ],
+      "tries": 1
     },
     "shiyu-coder/Kronos": {
       "at": "2026-09-18T16:25:09.529Z",
