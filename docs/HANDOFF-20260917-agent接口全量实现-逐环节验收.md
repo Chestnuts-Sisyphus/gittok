@@ -15,7 +15,7 @@ bot 热度修复**实测生效**（starGrowth>0 从 826 → 连续五轮 1809/18
 Mimosa 完整扫描跑完（49 条 findings 已分类给判词）；
 Agent 接入页上线（T10）后经 **09-18 V2 设计打磨（S1）**：代码块溢出与状态码对齐等 10 项按实测修掉，
 对比度全部过 WCAG AA；
-**E8/E5 全库文案重跑仍续跑中（47/1868，09-18 09:05 续跑 9 后）**——当日免费通道全线限流（实测 321/546 次 429），如实报告不虚报。
+**E8/E5 全库文案重跑仍续跑中（56/1868，09-18 12:17 续跑 12 后）**——当日免费通道全线限流（实测 321/546 次 429），如实报告不虚报。
 
 ---
 
@@ -29,7 +29,7 @@ Agent 接入页上线（T10）后经 **09-18 V2 设计打磨（S1）**：代码�
 | T4 | 官方 Agent Skill | ✅ | 格式校验 PASS（0 error/0 warn）；免费模型真实加载跑通并留证 |
 | T5 | 接口域名统一 + README 分区修正 | ✅ | 站点 feed.xml/manifest.json 200 且与 raw 内容一致（sha256 相同） |
 | T6 | bot 热度修复实测 | ✅ | 修复前 826 → 五轮 1809/1858/1858/1861/1862；线上热门池 1861（≥300） |
-| T7 | E8+E5 全库文案重跑 | 🟡 续跑中 | 执行器+state 交付（`scripts/gittok-recopy.ts`+`data/recopy-state.json`）；**累计过闸写回 47 张**；全库 47/1868（09-18 09:05 续跑 9 后）；已 push 部分**线上逐字段反查一致**；续跑命令见 T7 节 |
+| T7 | E8+E5 全库文案重跑 | 🟡 续跑中 | 执行器+state 交付（`scripts/gittok-recopy.ts`+`data/recopy-state.json`）；**累计过闸写回 56 张**；全库 56/1868（09-18 12:17 续跑 12 后）；已 push 部分**线上逐字段反查一致**；续跑命令见 T7 节 |
 | T8 | Mimosa 完整审计 + 存量 findings 判词 | ✅ | 扫描完成（seal `sha256:5df7c637…`），49 条分四类给判词 |
 | T9 | V-B1 决策包 | ✅ | `docs/请栗子过目-V-B1与乐趣口径-2026-09-17.md`，每条一句话可勾选 |
 | T10 | Agent 接入页（前端呈现） | ✅ | 第四 tab 上线（commit `7f1147e`，CI/Deploy 双绿）；线上 bundle 反查含页面；`#agent` 深链 + llms.txt 入口 |
@@ -158,7 +158,7 @@ Agent 接入页上线（T10）后经 **09-18 V2 设计打磨（S1）**：代码�
 - **结论**：修复生效——五轮滴灌后不再塌缩（个位数 → 千级），热门频道池长期 ≥300。
 - **复跑**：`for c in 45c1d29 8807265 d593f0e acfac7c 1903da4 707dba3; do git show $c:data/feed.json | python -c "import sys,json;d=json.load(sys.stdin);print(len(d),sum(1 for c in d if (c.get('starGrowth') or 0)>0))"; done`。
 
-### T7 E8+E5 全库文案重跑 —— **续跑中（47/1868 过闸写回，已 push 部分线上逐字段反查一致）**
+### T7 E8+E5 全库文案重跑 —— **续跑中（56/1868 过闸写回，文案已线上逐字段反查一致；`facts` 被管线抹除见下节）**
 
 - **现状量化（本机实测）**：全库 2653 张；`reasonCn < 80 字` 短卡 **26 张**（本轮 dry-run 实测；随写回逐轮收敛）；
   `detailCn` 空卡 **0 张**；按生产全闸（`cardChecks`）判全库 **1868 张不过闸**
@@ -181,7 +181,10 @@ Agent 接入页上线（T10）后经 **09-18 V2 设计打磨（S1）**：代码�
 | **续跑 6** | **09-18 03:53–04:41**（夜循环 iter 26） | **2** | 30 | **33** | **33/33 逐字段一致**（summary/reason/detail/facts 全等，commit `9113b67`） |
 | **续跑 7** | **09-18 04:47–05:47**（夜循环 iter 27） | **6** | 23 | **39** | **39/39 逐字段一致**（summary/reason/detail/facts 全等，commit `7e86b18`） |
 | **续跑 8** | **09-18 05:52–06:52**（夜循环 iter 28） | **2** | 28 | **41** | **41/41 逐字段一致**（summary/reason/detail/facts 全等；见下方 push 故障说明） |
-| **续跑 9** | **09-18 08:05–09:05**（夜循环 iter 30，**双通道**） | **6** | 23 | **47** | **47/47 逐字段一致**（含 drip 覆盖事故的修复，见下节） |
+| **续跑 9** | **09-18 08:05–09:05**（夜循环 iter 30，**双通道**） | **6** | 23 | **47** | **47/47 逐字段一致**（含 `facts` 抹除事故的修复，见下节） |
+| **续跑 10** | **09-18 09:05–10:06**（夜循环 iter 31+） | **3** | — | **50** | 文案线上一致；`facts` 见下节（被管线抹除） |
+| **续跑 11** | **09-18 10:06–11:11** | **1** | — | **51** | 同上 |
+| **续跑 12** | **09-18 11:11–12:17** | **5** | — | **56** | 同上 |
 
 - **续跑 1 实跑**：写回 13 张（`trailhq/Graft`、`fleetbase/fleetbase`、`dsh-tauri-desk/deepseek-harness-desktop`、
   `gethomepage/homepage`、`tinyhumansai/openhuman`、`huggingface/transformers`、`bojieli/ai-agent-book`、
@@ -196,7 +199,7 @@ Agent 接入页上线（T10）后经 **09-18 V2 设计打磨（S1）**：代码�
   `BerriAI/litellm`、`infiniflow/ragflow`）；7 张未过闸。**本批撞 60 分钟墙钟停**——途中
   `openrouter` 免费额度打满（`429 free-models-per-day`，需 UTC 零点=本地 08:00 重置）、
   `modelscope` 单账号反复 60s 熔断，两通道交替冷却，故实际产出低于续跑 1。
-- **当前比例（截至续跑 9，09-18 09:05）**：**写回 47 / 不过闸 1868（2.52%）**；仍剩约 1821 张待跑。
+- **当前比例（截至续跑 12，09-18 12:17）**：**写回 56 / 不过闸 1868（3.00%）**；仍剩约 1812 张待跑。
 - **线上反查（截至续跑 2，commit `a40d49c`）**：`CI` 与 `Deploy Web` 对 `ee0fa10`、`a40d49c` 均 **success**；
   站点 `https://chestnuts-sisyphus.github.io/gittok/data/feed.json`（200，4,431,979 B）与
   `/data/feed-details.json`（200，4,753,859 B）下载后与本地 `data/feed.json` **逐字段比对**：
@@ -405,20 +408,28 @@ print(f"线上逐字段一致 {ok}/{len(state['done'])}")
   `headroomlabs-ai/headroom`、`hoppscotch/hoppscotch`、`dramaclaw/dramaclaw` + 上一轮的 `Tencent/WeKnora`），
   累计 **41 → 47**。**双通道后吞吐明显高于单通道**（单通道轮 ~2–5 张 / 40 分钟，双通道 6 张 / 60 分钟）。
 
-#### T7 · ⚠️ 重大发现：**Feed Tier Drip 会覆盖 recopy 的写回**（本轮实测 + 已修复 + 复现条件）
+#### T7 · ⚠️ 重大发现：**`facts` 字段会被数据管线抹掉**（本轮实测 + 已修复 + 复现条件）
 
-这是本轮最重要的发现，直接决定 T7 的写回能不能"站得住"。
+> **⚠️ 本节 12:40 已更正**：初版（commit `d18256c`）写的是「drip 把 24 张卡的
+> `summaryCn`/`reasonCn`/`detailCn`/`facts` 覆盖回旧文案」——**这个说法是错的**。
+> 当时用的是四字段合并指纹，没有逐字段拆开看，把「`facts` 被抹掉」误判成「整卡文案被回退」。
+> 逐字段复核后的**准确事实**如下（结论方向不变，但严重性与机制都不同）。
 
-- **现象（实测）**：drip 的提交 `2b301e4`（`feed: 2026-09-18T00:45Z tier drip update`）整份重写
-  `data/feed.json`（19.5 万行），把 recopy 已写回的 **24 张卡的 `summaryCn`/`reasonCn`/`detailCn`/`facts`
-  覆盖回旧文案**。当时这 24 张**早已 push 到 origin**（续跑 4–8 的成果），却被回退了。
-- **机制**：`src/feed/index.ts` 是**增量**管线（`baseline = 上次 feed.json`，只增不减），
-  但 **Feed Tier Drip 是长跑工作流**——它在启动时 checkout 一份 feed.json 当 baseline，
-  跑几十分钟后才 `writeFileSync(FEED_PATH, …)` 整份落盘。**期间 recopy 推的新写回不在它的 baseline 里，
-  落盘时就被覆盖掉**。即仓库已知的"多写入者覆盖"（feed.json 两坑之一）在 recopy 与 drip 之间复现了。
-- **git 侧无法自动解**：`-X theirs` 丢写回（实测：夜循环 iter 31 的 `merge -X theirs` 真把 **21 张**打回旧文案，
-  `state.done` 仍写 47 → **状态与数据不一致，而 recopy 跳过 done 卡，永远补不回来**）；
-  `-X ours` 则丢掉 drip 新增的 14 张卡。两者都会丢东西。
+- **准确现象（逐字段实测）**：drip 提交 `2b301e4` 相对其**自己的基线** `26219b6`：
+  - **文案（`summaryCn`/`reasonCn`/`detailCn`）被改的张数 = 0** —— 文案根本没被回退；
+  - **`facts` 被置为 `null` 的张数 = 19**。
+  夜循环 iter 31 的 `merge -X theirs`（`024b4fc`）同样：**文案被改 2 张**（`career-ops-hq/career-ops`、
+  `headroomlabs-ai/headroom`，即不在 drip 基线里的新卡）、**`facts` 被抹 21 张**。
+- **即：真正的机制是「`facts` 被丢」，不是「写回被回退」。**
+  合理推断：`facts` 不在数据管线的卡片 schema 里，管线重写卡片时把它丢掉了
+  （drip 的 `writeFileSync(FEED_PATH, JSON.stringify(final))` 写的是它自己的卡片模型）。
+  **文案字段稳，`facts` 字段不稳。**
+- **影响面（12:30 实测，比初报更广）**：`state.done` 56 张里 **44 张 `facts` 已为空**，只有 12 张还留着；
+  且**老的先丢、新的还在**（`coollabsio/coolify`/`trailhq/Graft` 最后一次非空在 `a40d49c`，
+  `sharkdp/fd`/`chatwoot/chatwoot` 在我 09:08 修好后又被抹，而 `lissy93/dashy`/`dramaclaw/dramaclaw` 仍在）
+  → 与"管线按游标逐卡处理、处理到谁就抹谁的 `facts`"一致。**不修的话会继续蔓延到全部卡片。**
+- **git 侧无法自动解**：`-X theirs` 会跟着取 `facts: null`；`-X ours` 则丢掉 drip 新增的卡。两者都会丢东西。
+  这也是我当初改用**语义合并**的原因（按字段级正本重建，而不是二选一）。
 - **已做的修复（语义合并，非 git 策略）**：
   1. 以 **drip 版为底**（它带最新卡片集合 2669 张，含 drip 新增的 14 张）；
   2. 把 `state.done` 里 47 张卡的 **4 个文案字段**换成 recopy 版（其余字段一律以 drip 版为准）；
@@ -428,12 +439,12 @@ print(f"线上逐字段一致 {ok}/{len(state['done'])}")
      全程**不经过 Python 写工作区文件**（避开与夜循环的写竞争，也避开 Mimosa 对动态路径写盘的拦截）。
 - **线上反查（09:08 push 后）**：`CI` 与 `Deploy Web` 均 **success**；站点域名逐字段比对
   **47/47 一致、不一致 0、查不到 0**；站点 feed **2669 张**（drip 新增的 14 张也保住了）、详情表 2669 条。
-- **⚠️ 未解决的风险（留栗子拍板）**：本次只是**修好了这一次覆盖**。只要 recopy 与 drip 并发写
-  `data/feed.json`，**下一次 drip 长跑还会再覆盖一次**。建议二选一：
-  ① drip 落盘前**重读一次最新 feed.json** 再合并（改 `src/feed/index.ts` 的 baseline 获取时机）；
-  ② 让 recopy 与 drip **串行**（互斥锁/同一 workflow 内排队）。
+- **⚠️ 未解决的风险（留栗子拍板）**：这次修复**没能拦住后续的 `facts` 抹除**——12:30 复测，
+  我修好的 `sharkdp/fd`/`chatwoot/chatwoot` 等又被抹成空，全库 44/56 已失。建议二选一：
+  ① **让数据管线保留 `facts` 字段**（改 `src/feed/index.ts` 的卡片合并逻辑，把 `facts` 带过）；
+  ② 让 recopy 与 drip **串行**（互斥锁/同一 workflow 内排队），避免管线用旧卡片模型覆盖。
   属数据管线改动，按"最小改动/不擅自扩范围"只上报，未动代码。
-- **state 位置**：`data/recopy-state.json`，读数 `done=47`、`failed=23`。
+- **state 位置**：`data/recopy-state.json`，读数 `done=56`、`failed=25`（截至 12:30）。
 
 ### T8 E4 / Mimosa 完整审计（G9）
 
@@ -610,7 +621,7 @@ print(f"线上逐字段一致 {ok}/{len(state['done'])}")
 
 ## 四、未完成项与原因
 
-1. **T7（E8+E5 全库文案重跑）：续跑中，47/1868（2.52%）**。执行器与 state 已交付并**十轮实跑验证**；
+1. **T7（E8+E5 全库文案重跑）：续跑中，56/1868（3.00%）**。执行器与 state 已交付并**十三轮实跑验证**；
    剩余的约 1845 张不是"没做"，而是**免费额度不够**（实测：智谱 429/1305 服务端过载、
    OpenRouter 免费日额打满、ModelScope 单账号高频熔断），只能跨时段续跑：
    `npx tsx scripts/gittok-recopy.ts --limit=30 --max-minutes=60`（反复跑，完事自动跳过）。
