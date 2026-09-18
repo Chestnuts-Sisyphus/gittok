@@ -9394,9 +9394,9 @@
     "owner": "affaan-m",
     "name": "ECC",
     "desc": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
-    "summaryCn": "让 AI 编程助手跑得更快更稳的加速神器",
-    "reasonCn": "ECC 是一个专为 Claude Code、Cursor 等主流 AI 编程助手打造的性能优化框架，支持技能扩展、记忆管理和安全控制。它采用模块化架构，让智能体在处理复杂任务时调用工具更高效、记忆更精准、交互更稳定，适合高频使用 AI 编程工具的开发者和效率派用户。",
-    "detailCn": "你有没有用过 Claude Code 或者 Cursor，觉得 AI 助手有时候反应慢、记不住上下文，或者工具调用不太顺手？ECC 就是来解决这些痛点的。\n\n这个项目本质上是一个 AI Agent 的性能优化框架，专门为 Claude Code、Codex、Opencode、Cursor 等流行 AI 编程工具设计。它的核心能力包括：技能系统（让 AI 掌握更多专业工具）、本能机制（优化响应速度和决策逻辑）、记忆模块（跨会话保持上下文）、安全沙箱（隔离敏感操作）。技术架构采用模块化设计，可以通过插件方式扩展，比同类框架更灵活。\n\n上手方式：先克隆仓库，npm install 安装依赖，然后按照 README 配置你使用的 AI 编程工具。核心命令是 ecc init 初始化环境，ecc run 启动智能体。它支持 TypeScript/JavaScript 开发，代码简洁，文档齐全。\n\n适合人群：每天重度使用 AI 编程助手的开发者、希望自定义 AI 行为的进阶用户、研究 Agent 架构的技术爱好者。特别适合需要在复杂项目中让 AI 记住上下文、调用多个工具协同工作的场景。\n\n这个项目才刚起步但已获 23 万+ star，说明社区需求巨大。它和 Continue、Aider 等项目同属 AI 编程助手生态，但 ECC 更侧重底层性能优化和架构可扩展性，在智能体调优领域有独特定位。",
+    "summaryCn": "Claude 编程助手的官方插件，增强交互与功能。",
+    "reasonCn": "这是给 Claude 编程助手使用的官方插件，能显著提升使用体验。通过它，你可以获得更强大的代码补全、调试和交互能力。它支持简体中文界面，并提供了多种官方安装途径，确保安全与稳定。安装后，插件会无缝集成到你的工作流中，帮你更高效地完成开发任务。",
+    "detailCn": "ECC (Enhanced Claude Code) 是为 Claude 编程助手量身打造的官方插件，旨在为开发者提供更流畅、更强大的编程辅助体验。这个项目解决的是传统编程助手功能单一、交互生硬的问题，它将多种实用能力集成到一个插件中，让开发者在与 AI 对话时能获得更自然的协作体验。\n\n官方渠道非常明确，项目强调了只能通过 GitHub 仓库、特定的 npm 包、GitHub App 以及官网 ecc.tools 进行安装。这种严格的渠道控制是为了避免用户下载到可能包含恶意软件的第三方版本，确保了插件的安全性和可靠性。对于经常使用 Claude 的开发者来说，从官方渠道安装是最佳选择。\n\n安装过程非常简便，支持通过 Claude Code 的引导设置或原生插件命令来完成。这两种方式本质上是安装同一个 `ecc@ecc` 插件，用户只需要选择一种自己习惯的方式即可。不需要手动配置复杂的参数，插件会自动完成初始化，极大地降低了上手门槛。\n\n该插件的核心亮点在于它提供了丰富的工具调用能力。开发者可以通过简单的指令，让 Claude 执行文件操作、运行测试、生成文档等任务，而无需反复切换窗口。这种深度的集成让 AI 真正成为了开发者的“副驾驶”，能够自动处理繁琐的重复性工作，从而专注于更有创造性的编码任务。\n\n适合人群主要是频繁使用 Claude 进行代码开发的工程师和开发者。无论是初学者还是资深专家，都能从中受益。如果你厌倦了传统的 IDE 插件，或者希望获得一种更智能、更互动的编程体验，ECC 会是一个值得尝试的工具。它不仅提升了效率，更让编程过程变得更加有趣和直观。",
     "stars": 261486,
     "starGrowth": 1171,
     "createdAt": "2026-01-18T00:51:51Z",
@@ -9472,7 +9472,17 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.3761217044124733
+    "heatScore": 0.3761217044124733,
+    "facts": [
+      {
+        "claim": "官方渠道仅限 GitHub 仓库、npm 包和官网",
+        "source": "Install ECC only from verified channels: the GitHub repository github.com/affaan-m/ECC, the npm packages `ecc-universal` and `ecc-agentshield`, the GitHub App, the plugin slug `ecc@ecc`, and the project website ecc.tools."
+      },
+      {
+        "claim": "支持多种语言，包含简体中文",
+        "source": "Language: English | Português (Brasil) | 简体中文 | 繁體中文 | 日本語 | Deutsch | Español"
+      }
+    ]
   },
   {
     "repo": "semaphoreui/semaphore",
