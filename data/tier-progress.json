@@ -1,23 +1,23 @@
 {
-  "updatedAt": "2026-09-17T18:11:45.996Z",
+  "updatedAt": "2026-09-18T00:45:52.832Z",
   "tiers": {
     "t1": {
       "total": 5553,
-      "done": 1173,
-      "coverage": 0.211,
-      "lastRunDelta": 0
+      "done": 1175,
+      "coverage": 0.212,
+      "lastRunDelta": 2
     },
     "t2": {
       "total": 6988,
-      "done": 428,
-      "coverage": 0.061,
-      "lastRunDelta": 1
+      "done": 435,
+      "coverage": 0.062,
+      "lastRunDelta": 7
     },
     "t3": {
       "total": 52284,
-      "done": 587,
+      "done": 592,
       "coverage": 0.011,
-      "lastRunDelta": 0
+      "lastRunDelta": 5
     }
   },
   "activeTier": "t1"
