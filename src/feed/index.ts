@@ -1508,6 +1508,9 @@ export async function generateFeed(
       summaryCn: sc.summaryCn,
       reasonCn: sc.reasonCn,
       detailCn: sc.detailCn,
+      // 卡片组装同样必须带上 facts（2026-09-18 三处补齐之一）：只补 cache 白名单不够，
+      // 这里漏了照样丢——assembly 是「重建即丢」链上的最后一环。
+      facts: sc.facts,
       stars: m.stars,
       starGrowth: m.starGrowth || (m.lastStarGrowth ?? 0), // 未刷新卡回退上轮增长值（热门/每日频道不塌缩）
       createdAt: m.createdAt,
