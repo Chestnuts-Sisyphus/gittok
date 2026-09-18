@@ -7362,9 +7362,9 @@
     "owner": "TencentCloud",
     "name": "TencentDB-Agent-Memory",
     "desc": "TencentDB Agent Memory is a team-level memory hub for AI Agents — turning conversations, docs, and code into four reusable memory assets (Chat Memory, Skill, LLM-Wiki, Code-Graph) that are governed, shared, and equipped across agents and frameworks.",
-    "summaryCn": "让AI Agent记住一切的团队记忆中心",
-    "reasonCn": "技术上它把记忆分为四类：Chat Memory保存对话历史，Skill存储可复用技能，LLM-Wiki管理知识库，Code-Graph构建代码关系图谱。支持权限管控、版本控制和团队协作，企业可以放心在内部部署。相比LangChain Memory等方案，它的优势在于企业级治理能力和多Agent协同。",
-    "detailCn": "想象一下你的AI Agent每次对话都失忆，换个人就问不上话，同一个问题问十遍还是不知道。这个项目就是来解决这个问题的。TencentDB Agent Memory是腾讯云推出的团队级记忆中心，专门让AI Agent拥有持久化记忆能力。\n\n技术上它把记忆分为四类：Chat Memory保存对话历史，Skill存储可复用技能，LLM-Wiki管理知识库，Code-Graph构建代码关系图谱。支持权限管控、版本控制和团队协作，企业可以放心在内部部署。相比LangChain Memory等方案，它的优势在于企业级治理能力和多Agent协同。\n\n安装需要Node.js环境，npm install即可。核心配置通过YAML文件定义记忆策略，接入Claude或GPT等主流模型。项目提供REST API，方便集成到现有Agent框架中。\n\n适合有企业级Agent部署需求的团队，特别是金融、医疗等需要严格知识管理和权限控制的行业。个人开发者如果想深入理解Agent记忆架构也值得研究。\n\n项目星标18700+，腾讯官方维护，迭代稳定。目前企业级Agent记忆方案竞争格局未定，该项目凭借腾讯云背书和完整功能栈有望成为主流选择之一。",
+    "summaryCn": "让多个AI Agent记住彼此的腾讯云智能协作记忆中枢",
+    "reasonCn": "这个项目专为解决AI智能体协作中的记忆断层问题而设计。它通过引入记忆核心、记忆中心和代理三层架构，让不同的AI Agent能够共享上下文信息，实现更连贯的对话和任务执行。无论你是开发多智能体应用，还是需要让AI助手记住复杂的历史信息，它都能提供可靠的记忆解决方案。",
+    "detailCn": "在AI应用开发中，让多个智能体保持一致的记忆和上下文是最大的挑战之一。TencentDB-Agent-Memory 项目正是为了解决这个问题而生，它提供了一套完整的记忆管理解决方案。项目支持三大核心服务的一键启动：记忆核心负责存储和检索，记忆中心负责协调和管理，代理服务负责与智能体交互。这种架构设计让多个AI Agent能够像一个团队一样协同工作，而不是各自为战。\n\n项目最吸引人的地方在于它的实用性和可扩展性。通过 memory-hub 中心，不同的Agent可以方便地共享记忆，避免了重复对话和上下文丢失的问题。同时，它支持多种存储后端，其中 MongoDB 存储后端处于实验阶段，为未来的数据持久化和扩展提供了更多可能性。安装过程也非常简单，只需一行命令就能启动所有服务，大大降低了使用门槛。\n\n对于开发者来说，这个项目特别适合构建复杂的AI应用场景。比如在客服系统中，不同角色的Agent可以共享客户信息；在开发辅助工具中，多个AI助手可以协同完成代码编写和审查任务。项目还提供了详细的安装文档和代理使用指南，让你能快速上手。虽然目前记忆核心和代理服务是默认启用的，但你可以根据需要选择关闭特定服务，灵活配置系统资源。",
     "stars": 26851,
     "starGrowth": 177,
     "createdAt": "2026-04-07T06:34:26Z",
@@ -7447,7 +7447,13 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.38373095974079174
+    "heatScore": 0.38373095974079174,
+    "facts": [
+      {
+        "claim": "支持三大服务一键启动",
+        "source": "Start all three services in one go (`memory-core` + `memory-hub` + `proxy`):"
+      }
+    ]
   },
   {
     "repo": "aquasecurity/trivy",
