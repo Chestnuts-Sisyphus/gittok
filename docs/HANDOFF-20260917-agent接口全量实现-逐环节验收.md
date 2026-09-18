@@ -453,8 +453,14 @@ print(f"线上逐字段一致 {ok}/{len(state['done'])}")
   vite 的 `prepare-feed` 插件 `Array.isArray(parsed)` 判定失败 →
   `[prepare-feed] 0 cards: list 0KB, details 0KB (source 10742KB)` →
   线上 `data/feed.json` 变成 **`[]`**，**站点 feed 空了约 4 分钟**。
-- **影响面**：仅 `data/feed.json`（站点刷卡数据）。`data/recopy-state.json`、判据字段、
-  Agent 接入页、其它 data 文件均未受影响。
+- **影响面（更正后，比初报更大）**：
+  ① 站点刷卡数据 `data/feed.json` 变 `[]`（约 4 分钟）；
+  ② **另外打坏了一班生产管线**：`Feed Tier Drip` 于 12:32:12 启动的那次 run（`35307337768`）
+     日志明确记录 `[feed] baseline load failed: TypeError: cards2 is not iterable, starting fresh`
+     —— 正是我的对象形态导致 `for (const c of cards)` 不可迭代，**该轮丢了 baseline 只能从零重建**
+     （该 run 最终结论也是 failure；其中还夹杂与本次无关的 LLM 401/404 报错，
+     故「run 失败」不能全部归我，但 **baseline 丢失这一条确定是我造成的**）。
+  ③ `data/recopy-state.json`、判据字段、Agent 接入页、其它 data 文件未受影响。
 - **发现方式**：修完 `facts` 后做线上反查时，脚本报「站点 feed 卡数: 0」→ 立刻 `curl` 确认
   `bytes=2` 且内容为 `[]` → 拉 deploy 日志看到 `0 cards` 定位到形态问题。
 - **修复**：`c9d79bc`——把顶层还原为**数组**（2669 张、插入序不变），并保留该次恢复的 42 张 `facts`。
