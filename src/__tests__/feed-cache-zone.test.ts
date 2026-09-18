@@ -114,4 +114,20 @@ describe("loadExistingScores 必须带回判定字段（防「重建即丢分区
     const { detailMap } = loadExistingScores(p);
     expect(detailMap.get("d/1")).toBe("很长的详情文本");
   });
+
+  it("facts 原样往返（2026-09-18 事故固化：v4 上线漏了这行，重建即被置空）", () => {
+    const facts = [
+      { claim: "内置名为 Captain 的 AI 助手", source: "Captain helps you" },
+      { claim: "支持多渠道接入", source: "WhatsApp, email, web" },
+    ];
+    const p = writeBaseline([baseCard({ repo: "e/1", facts })]);
+    const sc = loadExistingScores(p).scores.get("e/1")!;
+    expect(sc.facts).toEqual(facts);
+  });
+
+  it("无 facts 的卡不产生空数组（保持 undefined，避免假数据）", () => {
+    const p = writeBaseline([baseCard({ repo: "e/plain" })]);
+    const sc = loadExistingScores(p).scores.get("e/plain")!;
+    expect(sc.facts).toBeUndefined();
+  });
 });

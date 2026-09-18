@@ -636,6 +636,10 @@ export function loadExistingScores(feedPath: string = FEED_PATH): {
           summaryCn: c.summaryCn,
           reasonCn: c.reasonCn,
           detailCn: c.detailCn || "",
+          // 千人千面 v4 的 facts 同样必须带回（2026-09-18 实测事故：v4 上线时漏了这一行，
+          // 缓存命中卡重建后 facts 被置空——线上 done 卡 69 张里只剩 25 张有 facts，
+          // 且每跑一轮管线就再抹一批。同上方 zone/funScore/tags 事故，同一条纪律）。
+          facts: c.facts,
         });
       }
     }
