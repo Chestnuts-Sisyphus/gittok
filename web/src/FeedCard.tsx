@@ -486,7 +486,9 @@ export function CardDetail({
             {card.language}
           </span>
         )}
-        <span className="dim-badge">{card.aiDim}</span>
+        {(card.aiDim ?? card.aiDims?.[0]) && (
+          <span className="dim-badge">{card.aiDim ?? card.aiDims?.[0]}</span>
+        )}
       </div>
 
       {card.topics.length > 0 && (
