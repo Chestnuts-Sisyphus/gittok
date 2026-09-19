@@ -5671,9 +5671,9 @@
     "owner": "louis-e",
     "name": "arnis",
     "desc": "Generate any location from the real world in Minecraft with a high level of detail.",
-    "summaryCn": "把真实地球搬进MC，一键生成你家附近的高精地图",
-    "reasonCn": "技术栈用Rust编写，性能出色。核心流程是：获取指定经纬度范围的地理数据→处理高程模型→将地形体素化生成Minecraft区块文件→打包成可导入的世界。支持自定义生成分辨率、高度缩放、材质选项等参数。 安装需要Minecraft服务器、Docker和一定的命令行操作能力。",
-    "detailCn": "想象一下，你在Minecraft里建的家园，居然是你真实住的地方。Arnis就是干这个的——把OpenStreetMap的地理数据和DEM高程模型转换成Minecraft的世界文件。\n\n技术栈用Rust编写，性能出色。核心流程是：获取指定经纬度范围的地理数据→处理高程模型→将地形体素化生成Minecraft区块文件→打包成可导入的世界。支持自定义生成分辨率、高度缩放、材质选项等参数。\n\n安装需要Minecraft服务器、Docker和一定的命令行操作能力。详细文档在README里，从环境配置到生成命令都有说明。基本用法：运行脚本指定坐标和范围，等待生成完成后把文件放入Minecraft worlds目录即可。\n\n适合Minecraft玩家想重建家乡或旅行目的地；GIS爱好者想用游戏化方式展示地理数据；学校老师做地理教学的工具。\n\nGitHub star 17300+，在Minecraft Mod社区很有名。类似项目有WorldPainter、Chunker等，但Arnis的独特之处在于直接对接真实地理数据，精度更高，适合特定地点还原。",
+    "summaryCn": "用真实地理数据一键生成 Minecraft 世界。",
+    "reasonCn": "这款开源工具能把真实的城市地形和自然景观，精准地转化为 Minecraft 的游戏世界。它利用 OpenStreetMap 的地理数据和海拔信息，自动生成高精度的建筑与地形，让你轻松打造属于自己的家乡或宏伟的自然景观，无需复杂的绘图技巧。",
+    "detailCn": "Arnis 是一款专门为 Minecraft Java（1.17及以上版本）、Bedrock 版本以及 Luanti（Minetest）设计的开源地图生成工具。它的核心功能是利用真实的地理数据来构建虚拟世界，解决了传统地图生成器缺乏细节和准确性的痛点。用户不再需要手动绘制每一座建筑或每一块地形，而是通过处理来自 OpenStreetMap 的地理空间数据和海拔信息，让程序自动生成与真实世界高度一致的 Minecraft 地图。这意味着你可以把现实中的家乡、大都市甚至复杂的自然地貌，一键“搬运”到游戏中，所见即所得。\n\n为了实现这种高精度的转换，Arnis 采用了专门的算法来解析地理数据。它不仅能还原宏观的地形起伏，还能细致地模拟现实中的建筑风格和城市布局。这种基于真实数据的生成方式，极大地提升了游戏世界的代入感，让玩家在探索时仿佛置身于真实的地理环境中。对于喜欢沙盒游戏的玩家来说，这意味着拥有了无限的地图素材和创作灵感，不再受限于手绘的简陋地形。\n\n在使用上，Arnis 提供了相对便捷的操作流程。虽然项目支持命令行工具进行本地生成，但其文档中也提到了一个名为 MapSmith 的在线版本，支持在浏览器中直接生成世界，无需安装任何软件。对于追求极致定制和离线使用的开发者，本地版本的 Rust 代码也提供了灵活的扩展空间。无论是想快速生成一个自定义地图进行游玩，还是想深入研究地图生成算法，Arnis 都是一个值得一试的强大工具。",
     "stars": 17981,
     "starGrowth": 68,
     "createdAt": "2022-09-10T13:42:29Z",
@@ -5758,7 +5758,17 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.21534530893721152
+    "heatScore": 0.21534530893721152,
+    "facts": [
+      {
+        "claim": "同时支持 Java、Bedrock 与 Luanti 三大版本。",
+        "source": "Arnis creates complex and accurate Minecraft Java Edition (1.17+), Bedrock Edition, and Luanti (Minetest) worlds"
+      },
+      {
+        "claim": "利用真实地理数据生成建筑与地形。",
+        "source": "processes geospatial data from OpenStreetMap as well as elevation data to create an accurate Minecraft representation of terrain and architecture"
+      }
+    ]
   },
   {
     "repo": "Comfy-Org/ComfyUI",
@@ -10537,9 +10547,9 @@
     "owner": "langchain-ai",
     "name": "langgraph",
     "desc": "Build resilient agents.",
-    "summaryCn": "给AI装上手脚，让它自己思考、自己操作工具，搞定复杂任务",
-    "reasonCn": "LangGraph是LangChain官方推出的Agent编排框架，基于有向图结构构建可循环、可分支的智能体工作流。支持节点间状态流转、条件分支、并行执行和工具调用，特别适合需要多步推理和动态决策的场景。与LangChain的LCEL不同，它提供了更底层的图控制能力，允许开发者自定义Agent的每一步行为，实现更复杂的任务编排和状态管理。",
-    "detailCn": "LangGraph解决的核心问题是：如何让AI Agent真正具备\"自主思考、自主行动\"的能力。传统的AI对话模型只能被动回答问题，而LangGraph让开发者能够构建一个有循环、有分支、有记忆的Agent系统，让它像真人一样一步步分析问题、调用工具、做出判断，最终完成任务。\n\n技术架构上，LangGraph基于有向图（Directed Graph）设计，每个节点代表Agent的一个行为步骤，边代表状态转移。它的独特之处是支持循环节点，这意味着Agent可以\"反复思考\"——先收集信息、调用工具、分析结果，再决定下一步，循环往复直到任务完成。它还内置了多种高级特性：条件分支让Agent根据不同输入走不同路径、并行节点支持多任务并发执行、手动节点让人类介入审核、checkpoint机制实现状态持久化和断点续传。与同类Agent框架相比，LangGraph最大的差异化在于它不绑定特定LLM提供商，你可以自由切换OpenAI、Anthropic、Ollama等任意模型。\n\n上手非常简单。首先安装依赖：pip install langgraph langchain-community。然后定义一个图：import Graph from langgraph.graph import StateGraph，用add_node添加节点，用add_edge连接节点。下面是一个最小示例：agent节点调用LLM生成思考结果，tool节点执行具体操作，两个节点之间通过条件边连接。运行runnable.invoke()即可触发整个工作流执行。\n\n适合这几类人群：想构建复杂多步Agent应用的开发者；需要让AI具备工具调用和记忆能力的团队；研究Agent自主决策机制的AI爱好者；希望在自己项目中集成可循环推理智能体的产品经理。典型场景包括：自动化文档处理、代码生成与调试助手、多轮对话客服、数据分析管道、RAG增强搜索等。\n\n项目GitHub star数接近4万，属于LangChain生态的核心项目之一。社区活跃度高，文档完善，持续迭代中。与直接手写Agent代码相比，LangGraph提供了更规范的抽象；与AutoGen等竞品相比，它的图结构更轻量、更灵活、与LangChain其他组件集成更无缝。如果你已经在用LangChain做应用开发，LangGraph是升级Agent能力的最佳选择。",
+    "summaryCn": "面向大模型智能体的低级编排框架，支持状态管理与长流程控制。",
+    "reasonCn": "LangGraph 是构建复杂 AI 智能体的底层框架，专注于解决智能体状态管理和任务编排难题。它允许开发者设计长时运行的智能体，通过清晰的状态机模型来控制流程，让 AI 在多轮对话中记住上下文并自主规划下一步行动，特别适合构建需要持续交互的复杂应用场景。",
+    "detailCn": "LangGraph 是 LangChain 团队推出的低级编排框架，专为构建、管理和部署长运行状态智能体而设计。它的核心在于将智能体视为一个有状态的状态机，能够清晰地定义节点（Node）和边（Edge）的流转逻辑。这意味着开发者不仅可以编写简单的对话流程，还能构建包含条件分支、循环回调和记忆单元的复杂工作流，非常适合处理需要持续交互的任务。\n\nKlarna、Replit 和 Elastic 等行业领军企业已经信任并采用了 LangGraph，这证明了其架构在处理高并发、复杂逻辑场景下的可靠性。与传统脚本最大的不同在于，LangGraph 强调了“状态”这一概念。智能体在执行任务时，不再是零散的指令调用，而是携带上下文信息在各个节点间流转，确保每一次交互都基于历史信息，从而实现真正的智能协作。\n\n要开始使用 LangGraph，首先需要安装 Python 环境。你可以通过 pip 命令直接安装：`pip install langgraph`。安装完成后，开发者就可以在代码中定义状态图结构，定义节点函数和边（如条件路由），并利用 LangGraph 提供的运行时来执行这些流程。对于想要快速构建智能体的用户，项目也提供了 Deep Agents 等高层包作为辅助。\n",
     "stars": 41834,
     "starGrowth": 63,
     "createdAt": "2023-08-09T18:33:12Z",
@@ -10641,7 +10651,13 @@
       "daily"
     ],
     "fromOfficial": true,
-    "heatScore": 0.1935178562891428
+    "heatScore": 0.1935178562891428,
+    "facts": [
+      {
+        "claim": "已被 Klarna 等知名企业采纳",
+        "source": "Trusted by companies shaping the future of agents – including Klarna, Replit, Elastic, and more"
+      }
+    ]
   },
   {
     "repo": "tw93/Mole",
@@ -11393,9 +11409,9 @@
     "owner": "obra",
     "name": "superpowers",
     "desc": "An agentic skills framework &amp; software development methodology that works.",
-    "summaryCn": "让AI打工人的超能力技能包，27万人关注的开发框架",
-    "reasonCn": "obra/superpowers是一个AI Agent技能框架和软件开发方法论，帮开发者把复杂的AI应用拆成可复用的技能模块。支持多Agent协作、工具调用和工作流编排，用Shell脚本驱动，门槛低。27万Star说明社区认可度极高，是当下最火的AI Agent开发框架之一。",
-    "detailCn": "想象一下，你有一个AI助手团队，每个成员各司其职——有的负责查资料，有的负责写代码，有的负责测试。但它们各自为战，沟通靠吼，协作靠运气。superpowers就是来解决这个问题的，它给AI Agent们配备了统一的技能包和工作流引擎，让分工协作变得井井有条。\n\n从技术角度看，superpowers不是一个简单的LLM wrapper，而是一套完整的开发方法论。它的核心设计是\"技能（skills）\"——把AI的能力封装成可复用的模块，每个技能有明确的输入输出协议。多个技能可以组合成工作流，支持条件分支、循环、并行执行等复杂逻辑。它采用Shell脚本作为驱动层，这意味着不需要学新语言，用你熟悉的bash就能编排Agent行为。和AutoGPT、LangChain等框架相比，superpowers更强调工程化和可维护性，不是让Agent自由发挥，而是用结构化的方式控制其行为。\n\n安装和上手非常简单。项目提供Docker镜像，一键启动开发环境。你可以通过CLI工具创建新的技能，编辑YAML配置文件定义Agent的行为逻辑。核心命令包括：用`sps init`初始化项目，`sps skill create`创建新技能，`sps run`执行工作流。项目内置了多个示例工作流，包括代码审查、文档生成、Bug分析等， clone下来就能直接跑。\n\n这个项目特别适合以下几类人：AI应用开发者，想用结构化方式构建多Agent系统；技术创业者，需要快速原型化AI产品；研究AI Agent协作机制的学者；对AI工作流自动化感兴趣的所有人。无论你是想搭一个内部工具助手，还是构建一个多Agent协同的复杂系统，superpowers都能提供坚实的基础。\n\n从社区热度来看，27万Star意味着这是当前GitHub上最受欢迎的AI相关项目之一。项目由obra团队维护，持续迭代中，文档完善，示例丰富。相比LangChain那种\"什么都做但什么都重\"的路线，superpowers选择了一条更聚焦的路径——把Agent技能框架做深做透。竞品如AutoGPT、Aider等各有侧重，但superpowers在多Agent协作和工程化方法论上几乎没有直接对手。如果你关注AI Agent生态，这个项目值得持续关注。",
+    "summaryCn": "面向AI编程助手的技能包与开发方法论，让Agent更听话。",
+    "reasonCn": "Superpowers 是一套专为代码编写智能体设计的开发方法论。它通过提供一套可组合的技能和初始指令，确保 AI 助手能够正确调用这些技能。这解决了智能体在执行复杂任务时可能出现的指令混乱问题，让 AI 能更精准、高效地完成代码编写工作。",
+    "detailCn": "Superpowers 起步于你启动代码编写智能体的那一刻。它不仅仅是一个简单的工具集，更是一套完整的软件开发生态系统。这套系统建立在一系列可组合的技能之上，并辅以精心设计的初始指令，旨在确保智能体能够按照预期的方式使用这些技能。这意味着开发者不再需要手动编写繁琐的提示词，而是通过配置这些核心技能，让 AI 助手自动学会如何拆解任务、调用工具并生成代码。\n\n核心亮点在于其“方法论”属性。它为智能体提供了一套标准化的工作流程和技能调用规范。通过这种方式，开发者可以定义智能体的行为边界，使其在处理复杂工程时更加可靠。无论是编写新的技能包，还是调整现有的工作流，Superpowers 都提供了一套结构化的方法，帮助开发者从零开始构建一个强大的 AI 编程伙伴。\n\n想要上手使用 Superpowers，你可以从项目仓库获取具体的安装和配置方式。开发者需要先搭建好基础的 AI 编程环境，然后通过配置文件引入 Superpowers 提供的技能包和指令集。配置完成后，启动你的 AI 编程助手，它就能自动识别并加载这些技能，开始按照预设的方法论进行工作。这个过程适合有一定开发经验，希望将 AI 深度集成到日常开发流程中的工程师。",
     "stars": 288031,
     "starGrowth": 440,
     "createdAt": "2025-10-09T19:45:18Z",
@@ -11474,7 +11490,13 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.36549940804982795
+    "heatScore": 0.36549940804982795,
+    "facts": [
+      {
+        "claim": "构建在可组合技能之上，确保智能体按指令使用它们。",
+        "source": "built on top of a set of composable skills"
+      }
+    ]
   },
   {
     "repo": "debpalash/VoiceStudio",
@@ -12383,9 +12405,9 @@
     "owner": "rtk-ai",
     "name": "rtk",
     "desc": "CLI proxy that reduces LLM token consumption by 60-90% on common dev commands. Single Rust binary, zero dependencies",
-    "summaryCn": "一个命令让大模型API消耗减少六七成，程序员省钱利器，轻量又高效",
-    "reasonCn": "这是专为LLM API调用优化的CLI代理工具，能在请求传输过程中智能压缩和缓存token，大幅降低API调用成本。单文件Rust二进制，零依赖，开箱即用，对对话历史、重复查询等场景有显著节流效果，是AI应用开发者的省钱神器。",
-    "detailCn": "简单来说，用大模型API最怕什么？token烧钱太快。尤其做开发调试或者批量处理的时候，费用蹭蹭往上涨。rtk就是来解决这个问题的，它像一个智能中间人，帮你把不必要的token开销砍掉一大半。\n\n技术上，rtk的核心原理是对LLM API请求进行智能代理和压缩。它在CLI层面拦截请求，通过上下文去重、对话历史压缩、重复查询缓存等策略，减少实际发送到API的token数量。完全用Rust编写，编译为单一二进制文件，没有第三方依赖，性能极高且内存占用极小。它不改变API调用方式，用户只需把代理指向rtk，即可享受透明的token优化。\n\n安装使用非常简单，下载对应的Rust二进制文件后配置代理地址即可。支持主流大模型API格式，包括OpenAI兼容接口。配置文件简单明了，可以自定义压缩策略和缓存规则。对于长期使用LLM API的开发者，只需一行命令就能接入，零学习成本。\n\n这个项目特别适合几类用户：频繁调用LLM API的AI应用开发者；需要大量token的批量处理场景；预算有限但需要高频使用的个人开发者；以及企业内降本增效的AI基础设施团队。它特别适合开发调试阶段和自动化任务中高频调用的场景。\n\n75543个star说明市场需求真实存在，用户反馈积极。项目由rtk-ai团队维护，迭代节奏稳定。与商业API压缩服务相比，rtk完全开源可自托管，数据不经过第三方，安全性更好。虽然功能相对专注，但在其细分领域几乎没有直接竞品，是目前降低LLM调用成本最有效的开源工具之一。",
+    "summaryCn": "CLI 代理压缩命令输出，减少 LLM 上下文占用。",
+    "reasonCn": "RTK 是一款专为 LLM Agent 设计的命令行代理工具，旨在解决命令输出过多导致 Token 消耗过大的问题。它通过拦截并压缩 Shell 命令的返回结果，将 Agent 需要读取的数据量削减最多达 90%，从而显著降低 API 调用成本并提升处理速度。作为单文件 Rust 程序，它兼容 100 多种常用命令，且仅带来小于 10 毫秒的系统开销，为开发者在本地或云端运行 AI 编程助手时提供了高效的输出优化方案。",
+    "detailCn": "RTK 的核心作用是在 Shell 命令执行完毕、Agent 准备读取输出之前介入，对返回的数据进行预处理。它不像传统的过滤工具那样简单地丢弃信息，而是对输出进行了智能压缩，保留了关键内容的同时大幅精简了冗余字符。这种机制直接作用于 LLM 的输入流，将原本可能占用数百 Token 的长文本，转化为几行精炼的摘要，让 Agent 能更专注于逻辑判断而非阅读文本。对于需要频繁调用系统指令的编程助手或自动化脚本来说，这种优化能带来非常可观的性能提升。\n\n安装和使用 RTK 非常简单，项目提供了官方的二进制文件下载链接，支持 Linux、macOS 和 Windows 等主流系统。用户只需将下载的可执行文件重命名为 rtk 并放置在 PATH 环境变量中，即可在终端中直接使用。使用时，用户无需修改现有的脚本或命令，只需将原本使用的 `bash` 或 `sh` 替换为 `rtk` 命令即可。例如，如果原命令是 `git status`，只需改为 `rtk git status`，RTK 就会自动拦截后续的输出并进行压缩处理。这种无侵入式的替换方式，使得它能够无缝集成到现有的工作流中，无需对开发习惯造成太大改变。\n\nRTK 的一大亮点在于其轻量级和跨平台能力。它由 Rust 编写，编译后是一个独立的可执行文件，不需要额外的依赖库或配置文件，这使得部署过程非常干净利落。同时，它对 100 多种常见的开发工具命令提供了内置支持，覆盖了从版本控制、文件操作到网络请求的各个方面。为了保证压缩后的信息不会丢失关键内容，RTK 内置了一套针对不同命令输出的智能压缩算法，确保 Agent 能够获取到足够上下文来进行决策。这种即插即用的设计，结合极低的处理延迟，让它成为了提升 LLM 在终端中工作效率的利器。",
     "stars": 80853,
     "starGrowth": 144,
     "createdAt": "2026-01-22T16:54:16Z",
@@ -12462,7 +12484,21 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.36641163593187637
+    "heatScore": 0.36641163593187637,
+    "facts": [
+      {
+        "claim": "Rust 编译为单一二进制文件，无需额外依赖。",
+        "source": "Single Rust binary"
+      },
+      {
+        "claim": "支持 100+ 常用命令的输出压缩。",
+        "source": "100+ supported commands"
+      },
+      {
+        "claim": "处理延迟控制在 10 毫秒以内。",
+        "source": "<10ms overhead"
+      }
+    ]
   },
   {
     "repo": "rqlite/rqlite",
@@ -14140,9 +14176,9 @@
     "owner": "sgl-project",
     "name": "sglang",
     "desc": "SGLang is a high-performance serving framework for large language models and multimodal models.",
-    "summaryCn": "超快的大模型推理框架，开源界的SOTA性能怪兽",
-    "reasonCn": "这是一个专门为大型语言模型设计的高性能推理服务框架。它采用先进的架构优化技术，能够显著提升模型的推理速度和吞吐量，支持单卡和多卡部署。相比传统的推理引擎，它在处理长文本和并发请求时表现更佳，是构建高性能AI应用的首选方案。",
-    "detailCn": "简单来说，以前你部署一个大模型（比如Llama 3或者Qwen），用默认的推理工具，可能跑得很慢，或者并发一高就卡死。这个项目就是来解决这个问题“加速器”的。它通过一系列底层优化，让模型在服务器上跑得飞快，能同时服务更多的人，而且成本更低。\n\n它的核心技术在于“连续批处理”和“显存优化”。普通的推理引擎是来一个请求处理一个请求，而SGLang可以同时处理多个请求，并且智能地分配显存资源。它还支持一种叫“FlashAttention”的技术，能大幅减少显存占用和计算时间。这就意味着，同样的显卡，你用它部署的模型能跑更多的用户，或者同样的用户，你能让它回复得更快。\n\n使用起来也很有特色。它支持Python风格的调用，非常方便开发者集成。你可以通过简单的命令行工具启动服务，然后通过HTTP接口调用。它还支持函数调用和多模态模型，功能非常全面。安装也很方便，主要依赖PyTorch和CUDA，只要你环境配置好，一行命令就能启动。\n\n它非常适合那些需要部署大模型的企业和应用开发者。比如，你需要做一个基于大模型的智能客服，或者一个企业知识库问答系统，用这个框架能保证服务的稳定性和响应速度。它目前是开源社区里性能最强的推理框架之一，Star数超过3万，社区非常活跃。\n\n它的设计理念是“简单、高效、强大”。相比vLLM，它在某些场景下性能更优；相比Transformers，它更适合生产环境部署。它是当前大模型应用开发的基础设施层的重要选择。",
+    "summaryCn": "专为 LLM 设计的极速推理与部署框架。",
+    "reasonCn": "SGLang 是一个高性能的大语言模型推理与部署框架，旨在解决当前模型部署速度慢、资源占用高的问题。它通过优化的调度和内存管理，显著提升推理吞吐量，支持多种模型格式与硬件加速，让开发者能更快地让大模型跑起来并投入实际应用。",
+    "detailCn": "SGLang 是一个专门为现代大语言模型（LLM）设计的推理与部署引擎，它针对生成式 AI 的典型工作负载进行了深度优化。不同于传统的通用推理框架，SGLang 专注于在保证输出质量的同时，大幅提升推理吞吐量和降低延迟，这对需要实时响应用户的 AI 应用至关重要。其核心亮点在于能够针对不同的场景（如聊天、Agent、代码生成）进行专门的性能调优，从而在资源受限的情况下榨干硬件性能。\n\n项目自述中提到，SGLang 在 NVIDIA 的高性能计算平台上表现尤为出色，能够实现惊人的性能提升。这意味着它不仅仅是一个软件库，更是连接先进模型与庞大算力之间的桥梁，通过精细的工程实现，让复杂的硬件潜能得到释放。对于开发者而言，这意味着可以在更短的时间内处理更多的请求，从而降低部署成本并提升用户体验。\n\n在安装和使用方面，SGLang 提供了清晰的文档和快速上手指南，支持通过命令行工具进行部署和管理。它兼容主流的 Python 环境，能够方便地集成到现有的开发流程中。无论你是需要构建一个实时的 AI 助手，还是需要处理大规模的批量推理任务，SGLang 都能提供一套稳定且高效的解决方案，帮助开发者专注于模型本身，而非繁琐的工程细节。适合需要高性能部署 LLM 的开发者与工程团队，特别是在追求极致吞吐量和资源利用率的技术场景下。",
     "stars": 36054,
     "starGrowth": 196,
     "createdAt": "2024-01-08T04:15:52Z",
@@ -14219,7 +14255,21 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.3163088700282909
+    "heatScore": 0.3163088700282909,
+    "facts": [
+      {
+        "claim": "在 NVIDIA GB300 NVL72 上解锁 25 倍性能提升。",
+        "source": "Unlocking 25x Inference Performance with SGLang on NVIDIA GB300 NVL72"
+      },
+      {
+        "claim": "支持 DeepSeek-V4 等前沿模型的即时推理与强化学习验证。",
+        "source": "DeepSeek-V4 on Day 0: From Fast Inference to Verified RL with SGLang and Miles"
+      },
+      {
+        "claim": "与 Miles 实现了两天内达到 500 TPS 的推理吞吐。",
+        "source": "Serving GLM5.2 NVFP4 agentic workloads with SGLang: Reaching 500 TPS in two weeks"
+      }
+    ]
   },
   {
     "repo": "HKUDS/Vibe-Trading",
@@ -30362,7 +30412,13 @@
     "starGrowth": 0,
     "silentRounds": 0,
     "language": "Vue",
-    "topics": [],
+    "topics": [
+      "vue3",
+      "vite",
+      "avatar",
+      "avatar-generator",
+      "avatar-maker"
+    ],
     "aiDims": [
       "创意工具",
       "非AI-好玩"
@@ -30770,7 +30826,24 @@
     "starGrowth": 0,
     "silentRounds": 0,
     "language": "Shell",
-    "topics": [],
+    "topics": [
+      "mitigation",
+      "meltdown",
+      "spectre",
+      "cve-2017-5753",
+      "cve-2017-5715",
+      "cve-2017-5754",
+      "cve-2018-3640",
+      "cve-2018-3639",
+      "foreshadow",
+      "cve-2018-3615",
+      "cve-2018-3620",
+      "cve-2018-3646",
+      "zombieload",
+      "cve-2019-11135",
+      "downfall",
+      "reptar"
+    ],
     "aiDims": [
       "安全工具",
       "非AI-实用"
@@ -46386,7 +46459,16 @@
     "starGrowth": 0,
     "silentRounds": 0,
     "language": "Rust",
-    "topics": [],
+    "topics": [
+      "rust",
+      "javascript",
+      "web",
+      "gui",
+      "asmjs",
+      "emscripten",
+      "webassembly",
+      "webasm"
+    ],
     "aiDims": [
       "开发者工具"
     ],
@@ -47760,7 +47842,11 @@
     "starGrowth": 0,
     "silentRounds": 0,
     "language": "D",
-    "topics": [],
+    "topics": [
+      "linux",
+      "onedrive",
+      "dlang"
+    ],
     "aiDims": [
       "非AI-实用",
       "开发者工具"
@@ -67237,7 +67323,10 @@
     "starGrowth": 0,
     "silentRounds": 0,
     "language": "PHP",
-    "topics": [],
+    "topics": [
+      "laravel",
+      "php"
+    ],
     "aiDims": [
       "教程",
       "学习资源"
@@ -67552,7 +67641,17 @@
     "starGrowth": 0,
     "silentRounds": 0,
     "language": "TypeScript",
-    "topics": [],
+    "topics": [
+      "prettier",
+      "prettierrc",
+      "typescript",
+      "import",
+      "sort",
+      "plugin",
+      "javascript",
+      "opensource",
+      "hacktoberfest"
+    ],
     "aiDims": [
       "开发者工具"
     ],
@@ -67609,7 +67708,13 @@
     "starGrowth": 0,
     "silentRounds": 0,
     "language": "JavaScript",
-    "topics": [],
+    "topics": [
+      "tailwindcss",
+      "tailwind-in-js",
+      "css-in-js",
+      "tailwind",
+      "css"
+    ],
     "aiDims": [
       "开发者工具"
     ],
@@ -80608,7 +80713,11 @@
     "createdAt": "2017-01-29T12:34:06Z",
     "silentRounds": 0,
     "language": "Python",
-    "topics": [],
+    "topics": [
+      "instagram",
+      "hack",
+      "bruteforce"
+    ],
     "aiDims": [
       "非AI-实用",
       "安全工具"
@@ -125396,7 +125505,19 @@
     "starGrowth": 0,
     "silentRounds": 0,
     "language": "Python",
-    "topics": [],
+    "topics": [
+      "agent",
+      "agentic-ai",
+      "agents",
+      "authentication",
+      "bedrock",
+      "core",
+      "gateway",
+      "identity-management",
+      "memory-management",
+      "production-code",
+      "runtime"
+    ],
     "aiDims": [
       "AI Agent",
       "模型部署",
@@ -127486,7 +127607,17 @@
     "createdAt": "2019-09-26T16:45:30Z",
     "silentRounds": 1,
     "language": "Python",
-    "topics": [],
+    "topics": [
+      "albert",
+      "bert",
+      "roberta",
+      "xlnet",
+      "tensorflow",
+      "pytorch",
+      "pre-trained-model",
+      "chinese-corpus",
+      "pre-trained"
+    ],
     "aiDims": [
       "大语言模型",
       "模型与训练",
@@ -129838,7 +129969,17 @@
     "starGrowth": 0,
     "silentRounds": 0,
     "language": "Python",
-    "topics": [],
+    "topics": [
+      "serving",
+      "ernie",
+      "llm",
+      "inference",
+      "llm-serving",
+      "openai",
+      "vllm",
+      "ernie-45",
+      "ernie-45-vl"
+    ],
     "aiDims": [
       "模型部署",
       "大语言模型"
@@ -129906,7 +130047,14 @@
     "starGrowth": 0,
     "silentRounds": 0,
     "language": "Lua",
-    "topics": [],
+    "topics": [
+      "copilot",
+      "copilot-chat",
+      "github",
+      "github-copilot",
+      "neovim-plugin",
+      "hacktoberfest"
+    ],
     "aiDims": [
       "代码助手",
       "AI Agent"
@@ -130201,7 +130349,12 @@
     "starGrowth": 0,
     "silentRounds": 0,
     "language": "Python",
-    "topics": [],
+    "topics": [
+      "semantic-segmentation",
+      "transformer",
+      "ade20k",
+      "cityscapes"
+    ],
     "aiDims": [
       "AI应用",
       "文档理解"
@@ -133527,7 +133680,13 @@
     "starGrowth": 0,
     "silentRounds": 0,
     "language": "TypeScript",
-    "topics": [],
+    "topics": [
+      "chatbot",
+      "chatgpt",
+      "chatgpt-api",
+      "chatpdf",
+      "chatfile"
+    ],
     "aiDims": [
       "RAG与知识",
       "文档理解",
@@ -134781,7 +134940,18 @@
     "starGrowth": 0,
     "silentRounds": 0,
     "language": "Go",
-    "topics": [],
+    "topics": [
+      "ai",
+      "anti-detect",
+      "golang",
+      "markdown",
+      "open-source",
+      "playwright",
+      "scraper",
+      "self-hosted",
+      "web-crawler",
+      "web-scraping"
+    ],
     "aiDims": [
       "AI应用",
       "RAG与知识"
@@ -143303,7 +143473,23 @@
     "createdAt": "2022-04-09T13:31:52Z",
     "silentRounds": 0,
     "language": "Python",
-    "topics": [],
+    "topics": [
+      "comics",
+      "computer-aided-translation",
+      "deep-learning",
+      "manga",
+      "ocr",
+      "scene-text-detection",
+      "inpainting",
+      "pytorch",
+      "computer-vision",
+      "auto-translation",
+      "chinese-translation",
+      "qt",
+      "qt6",
+      "pyqt",
+      "pyqt6"
+    ],
     "aiDims": [
       "AI应用",
       "文档理解",
@@ -145424,7 +145610,16 @@
     "starGrowth": 0,
     "silentRounds": 0,
     "language": "TypeScript",
-    "topics": [],
+    "topics": [
+      "artificial-intelligence",
+      "chatbot",
+      "chatgpt",
+      "openai",
+      "whatsapp",
+      "bot",
+      "whatsapp-web",
+      "dalle"
+    ],
     "aiDims": [
       "AI应用"
     ],
@@ -148059,7 +148254,11 @@
     "starGrowth": 0,
     "silentRounds": 0,
     "language": "Python",
-    "topics": [],
+    "topics": [
+      "vision-language-model",
+      "vision-language-pretraining",
+      "foundation-models"
+    ],
     "aiDims": [
       "多模态Agent",
       "模型与训练",
@@ -151418,7 +151617,15 @@
     "createdAt": "2024-09-01T13:42:47Z",
     "silentRounds": 1,
     "language": "TypeScript",
-    "topics": [],
+    "topics": [
+      "chatgpt",
+      "claude",
+      "coding-agents",
+      "llm",
+      "openai",
+      "vscode",
+      "vscode-extension"
+    ],
     "aiDims": [
       "AI Agent",
       "代码助手",
@@ -151691,7 +151898,18 @@
     "createdAt": "2023-06-14T10:57:51Z",
     "silentRounds": 2,
     "language": "Python",
-    "topics": [],
+    "topics": [
+      "artificial-intelligence",
+      "ceval",
+      "large-language-models",
+      "natural-language-processing",
+      "mmlu",
+      "chatgpt",
+      "gpt-4",
+      "huggingface",
+      "llama",
+      "chinese"
+    ],
     "aiDims": [
       "大语言模型",
       "模型与训练"
@@ -156999,7 +157217,14 @@
     "createdAt": "2023-02-26T16:05:11Z",
     "silentRounds": 2,
     "language": "TypeScript",
-    "topics": [],
+    "topics": [
+      "bilibili",
+      "gpt",
+      "gpt-3",
+      "chatgpt",
+      "openai",
+      "youtube"
+    ],
     "aiDims": [
       "AI应用",
       "文档理解",
@@ -159193,7 +159418,26 @@
     "starGrowth": 0,
     "silentRounds": 0,
     "language": "Python",
-    "topics": [],
+    "topics": [
+      "blender-pipeline",
+      "segmentation",
+      "depth-images",
+      "camera-positions",
+      "suncg-scene",
+      "camera-sampling",
+      "blender-installation",
+      "synthetic",
+      "blender",
+      "rendering",
+      "pose-estimation",
+      "synthetic-data",
+      "python",
+      "3d-graphics",
+      "computer-graphics",
+      "3d-reconstruction",
+      "3d-engines",
+      "3d-front-dataset"
+    ],
     "aiDims": [
       "AI基础设施",
       "模型与训练",
@@ -179180,7 +179424,13 @@
     "createdAt": "2018-10-25T22:57:34Z",
     "silentRounds": 5,
     "language": "Python",
-    "topics": [],
+    "topics": [
+      "nlp",
+      "google",
+      "natural-language-processing",
+      "natural-language-understanding",
+      "tensorflow"
+    ],
     "aiDims": [
       "模型与训练",
       "大语言模型",
