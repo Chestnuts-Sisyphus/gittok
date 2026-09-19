@@ -6232,9 +6232,9 @@
     "owner": "langchain-ai",
     "name": "langchain",
     "desc": "The agent engineering platform.",
-    "summaryCn": "让AI能记住东西还会用工具的万能开发框架",
-    "reasonCn": "LangChain是业界最流行的AI应用开发框架，核心解决开发者快速搭建智能体应用的难题，无需从零造轮子。它支持数十种主流LLM即插即用，内置丰富的记忆模块和工具调用能力，能轻松连接向量数据库实现RAG，还提供了Agent编排、链式调用等高级功能。GitHub上14万+star，社区极其活跃，版本迭代速度快。",
-    "detailCn": "LangChain解决的核心问题是：让开发者能快速搭建AI智能体应用，而不用从零开始写每个细节。以前想做一个能搜索网页、能查数据库、能记住上下文的AI助手，得自己写一堆代码拼接各个模块。现在有了LangChain，这些能力都变成现成的积木，拿来就能用。\n\n从技术架构来看，LangChain的核心设计非常优雅。它定义了Chain、Agent、Tool、Memory、Document、VectorStore等核心抽象，让开发者可以像搭积木一样组合不同能力。它不绑定任何特定LLM，支持OpenAI、Claude、Gemini、本地部署的LLaMA等数十种模型，实现真正的即插即用。工具调用能力是它的杀手锏，内置了数十种常用工具，同时支持自定义工具，让AI能真正\"动手做事\"。记忆模块支持多种策略，从简单的聊天记录到向量搜索记忆都有。RAG能力更是它的主场，配合LangChain Vectorstores可以一键构建完整的检索增强生成系统。\n\n上手非常简单。安装命令：pip install langchain langchain-openai。基本用法示例：\nfrom langchain_openai import ChatOpenAI\nfrom langchain.agents import create_openai_functions_agent\nllm = ChatOpenAI(model=\"gpt-4\")\n# 创建工具列表、定义Agent、开始运行\n非常简单直观，几行代码就能跑起一个有工具调用能力的Agent。\n\n这个项目适合几类人群：想做AI应用快速验证想法的独立开发者和创业团队；需要构建智能客服、知识问答等产品的企业技术团队；研究Agent和RAG的技术爱好者。如果你有多个LLM要切换测试，或者需要快速原型一个带工具调用的AI应用，LangChain是最合适的选择。不过需要注意的是，对于简单的对话场景来说它可能有点重，而且需要理解Agent、Chain等概念才能用好。\n\n社区生态非常繁荣，GitHub上143000+star，是AI应用开发领域star最高的项目之一。从2022年发布至今快速迭代到0.3.x版本，已经形成了完整的LangChain生态，包括LangGraph（Agent工作流编排）、LangSmith（调试监控平台）、LangServe（部署服务）等子项目。主要竞品包括OpenAI官方的LangGraph、微软的AutoGen、Google的Langroid等，但LangChain在工具链完整度和社区规模上优势明显。",
+    "summaryCn": "构建大模型应用的 Agent 开发框架，集成了丰富的工具和模块。",
+    "reasonCn": "LangChain 是当前最流行的大模型应用开发框架，它帮你把大语言模型和各种工具、数据源连接起来，快速构建像聊天机器人、文档问答这类 AI 应用。有了它，你不需要从零开始写底层逻辑，可以把精力放在业务功能上。它支持 Python，有大量现成组件可用。",
+    "detailCn": "LangChain 的核心是让开发者能像搭积木一样构建大模型应用。它提供了标准化的接口，可以把不同的语言模型、外部数据和工具链无缝组合。从它的官方定义 'The agent engineering platform' 可以看出，它已经超越了一个简单库的范畴，成为了一个完整的工程平台，目标是支撑起从原型到生产级的 AI Agent 应用。这种设计让它能灵活应对各种复杂的业务场景。\n\nLangChain 最著名的能力是它解决了大模型落地时的两大痛点。第一个是'记忆'问题，它通过对话缓冲区和记忆模块，让模型能记住多轮对话的上下文。第二个是'连接'问题，它有数百个集成器，能轻松连接搜索引擎、数据库、API 等各种外部工具。这意味着你可以让 AI 不只是'聊天'，而是真正去执行查询天气、预订机票、分析报表这样的具体任务。\n\n对于想要尝试的开发者，安装过程非常简单。在命令行执行 pip install langchain 就能完成基础安装。如果你想直接体验，可以使用 pip install langchain-cli 命令安装命令行工具，通过 langchain app new 命令就能快速创建一个新项目模板，几分钟之内就能跑起一个带界面的应用。对于不熟悉命令行的新手，直接访问其官方文档，上面有非常详细的入门教程。\n\n如果你是 AI 应用开发者、架构师或者对智能体应用好奇的技术爱好者，LangChain 是现阶段不可错过的选择。它不仅适合用于快速原型验证，也提供了 LangSmith 这类工具用于生产环境的监控和调试。需要注意的是，学习曲线相对陡峭，建议先通过其官网的入门教程走一遍基础流程，再逐步探索更高级的 Agent、Memory 等功能。这能帮你更快理解目前大模型应用开发的主流范式和方法论。",
     "stars": 146528,
     "starGrowth": 77,
     "createdAt": "2022-10-17T02:58:36Z",
@@ -6342,16 +6342,34 @@
       "daily"
     ],
     "fromOfficial": true,
-    "heatScore": 0.23257649050010917
+    "heatScore": 0.23257649050010917,
+    "facts": [
+      {
+        "claim": "LangChain 是业界最流行的 Agent 工程平台，拥有超过 14 万颗星",
+        "source": "The agent engineering platform. | ⭐146528"
+      },
+      {
+        "claim": "官方将其定位为 Agent 工程平台，而非单纯的开发库",
+        "source": "The agent engineering platform."
+      },
+      {
+        "claim": "项目主要使用 Python 编写，聚焦大语言模型应用开发",
+        "source": "语言: Python"
+      },
+      {
+        "claim": "项目核心关注领域包括 RAG、LLM、AI 和 Agent",
+        "source": "topics: rag, llm, ai, agents"
+      }
+    ]
   },
   {
     "repo": "DeusData/codebase-memory-mcp",
     "owner": "DeusData",
     "name": "codebase-memory-mcp",
     "desc": "High-performance code intelligence MCP server. Indexes codebases into a persistent knowledge graph — average repo in milliseconds. 158 languages, sub-ms queries, 99% fewer tokens. Single static binary, zero dependencies.",
-    "summaryCn": "给AI装上一份代码库的超级大脑，查代码快如闪电",
-    "reasonCn": "这是一个基于MCP协议的高性能代码智能服务器，能把任意代码仓库在毫秒级索引进知识图谱，支持158种编程语言。它用纯C编写，打包成单个静态二进制文件，查询延迟低于毫秒级，Token消耗减少99%。AI助手接入后能像理解自己代码一样理解别人的代码库，是构建代码理解Agent的核心基础设施。GitHub星标超3.8万，是MCP生态中最热门的代码智能项目。",
-    "detailCn": "每个程序员都经历过这种绝望：接手一个新项目，代码几千个文件，看了半天还是不知道某个函数在哪里、哪个模块在干什么。如果你有用AI辅助编程，可能也发现过AI经常胡说八道——因为它根本没看过你的代码库。codebase-memory-mcp就是来解决这个问题的，它让AI真正\"读懂\"你的代码，而不是靠猜。\n\n这个项目的核心创新在于它把代码智能从\"文本搜索\"提升到了\"知识图谱\"层面。传统方案比如GitHub搜索或RAG工具，只是简单地检索代码片段，丢失了代码之间的结构关系和语义连接。而codebase-memory-mcp在索引阶段就会解析AST抽象语法树，提取函数、类、模块之间的依赖关系，构建出一个结构化的知识图谱。查询时不是返回代码片段，而是返回上下文完整的理解结果。它的MCP协议实现让任何支持MCP的AI助手（Cursor、Claude、Continue等）都能直接调用这个能力，相当于给AI装上了一个代码记忆系统。\n\n技术架构上，项目用纯C语言编写，编译成单个静态二进制文件，零依赖部署，这在AI工具生态中非常罕见。它支持158种编程语言，意味着无论是Python、Rust、Go还是小众语言都能被理解。核心性能指标非常惊人：平均仓库索引时间在毫秒级别，查询延迟亚毫秒，Token消耗比传统RAG方案减少99%——这是因为知识图谱的压缩表示比原始代码文本高效得多。项目采用MCP（Model Context Protocol）协议，这是 Anthropic 推动的标准协议，让AI工具与外部数据源之间的交互变得标准化。\n\n安装极其简单：下载对应平台的二进制文件，运行codebase-memory-mcp，然后通过MCP客户端配置连接即可。对于开发者来说，只需在Claude Desktop、Cursor或VS Code的MCP配置中添加这个项目，你的AI助手就能立即获得代码库的全局理解能力。无需训练模型、无需配置向量数据库，开箱即用。\n\n这个项目最适合：依赖AI辅助编程但经常遇到AI胡说八道的开发者；需要快速理解大型开源代码库的研究人员；想要构建代码智能Agent的AI工程师。如果你每天用Cursor写代码，或者在开发AI编程助手，这个项目几乎是必装的。社区方面，虽然项目较新但增长极快，38000+ star证明市场需求旺盛。与Sourcegraph、Tabnine等竞品相比，codebase-memory-mcp的独特定位是MCP生态中的基础设施层，不是替代品而是增强层，可以和任何AI工具配合使用。",
+    "summaryCn": "专为 AI 编程助手打造的超快代码智能引擎。",
+    "reasonCn": "它是一个把整个代码库变成持久知识图谱的工具，能瞬间理解项目结构。通过 Hybrid LSP 语义解析，它不仅索引函数和类，还能梳理调用链和跨服务链接。对于开发者来说，这是构建强大代码助手的基础设施，让 AI 能在毫秒级响应内精准回答复杂问题。",
+    "detailCn": "codebase-memory-mcp 是一款专为 AI 编程助手设计的代码智能引擎，它的核心价值在于“快”和“深”。它采用 Tree-sitter 进行全 162 种语言的 AST 分析，并叠加 Hybrid LSP 语义解析，能够构建包含函数、类、调用链、HTTP 路由和跨服务链接的持久知识图谱。这意味着当 AI 助手需要查询代码时，不需要每次都重新扫描整个仓库，而是直接从这张图谱中提取答案，响应速度极快。\n\n这个工具的最大亮点是它的性能表现和原生体验。它将索引一个平均规模的代码库的时间压缩到了毫秒级别，即使是像 Linux 内核这样拥有 2800 万行代码、7.5 万个文件的巨无霸项目，也能在 3 分钟内完成全量索引。更重要的是，它不需要用户安装任何编程语言环境，直接下载对应平台的原生可执行文件，运行 install 命令即可完成部署，对开发者极其友好。\n\n在功能层面，它提供了 15 个 MCP 工具，为 AI 编程助手提供了丰富的能力。无论是查找定义、追踪调用链，还是理解跨模块的数据流，它都能提供结构化的查询支持。这种设计让开发者能够摆脱繁琐的手动搜索，让 AI 助手真正成为理解代码、辅助开发的得力伙伴，极大地提升了编程效率。",
     "stars": 43650,
     "starGrowth": 123,
     "createdAt": "2026-02-24T22:01:00Z",
@@ -6441,7 +6459,21 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.3701443298969072
+    "heatScore": 0.3701443298969072,
+    "facts": [
+      {
+        "claim": "毫秒级全库索引",
+        "source": "Full-indexes an average repository in milliseconds, the Linux kernel (28M LOC, 75K files) in 3 minutes."
+      },
+      {
+        "claim": "原生可执行文件",
+        "source": "Ships as a native executable with a small verified runtime-asset set for macOS, Linux, and Windows"
+      },
+      {
+        "claim": "15 个 MCP 工具",
+        "source": "15 MCP tools."
+      }
+    ]
   },
   {
     "repo": "louislam/uptime-kuma",
@@ -7069,9 +7101,9 @@
     "owner": "mvt-project",
     "name": "mvt",
     "desc": "MVT (Mobile Verification Toolkit) helps with conducting forensics of mobile devices in order to find signs of a potential compromise.",
-    "summaryCn": "手机疑似被黑？用它扫一遍就能揪出间谍软件",
-    "reasonCn": "MVT是一款移动设备取证工具，专门用于检测手机是否被植入间谍软件或恶意应用。支持Android和iOS平台，可提取设备文件、SQLite数据库、TCC权限库等信息，并结合YARA规则进行扫描检测，可识别Pegasus、Flux、Cobalt Strike等知名间谍软件留下的痕迹。",
-    "detailCn": "想象一下，你的手机突然被黑客盯上了，对方悄无声息地植入了间谍软件，你能知道吗？MVT就是用来回答这个问题的——它像是一个专门给手机做CT扫描的医生，能揪出潜伏在设备里的间谍软件和恶意程序。\n\n这个项目的核心技术在于它的深度取证能力。MVT可以提取Android的SQLite数据库、iOS的TCC权限数据库（记录了你给哪些应用开了相机、麦克风权限）以及系统配置文件，然后结合社区维护的YARA规则签名库进行扫描。它能检测Pegasus、Flux、Cobra、CandyMushroom等顶级间谍软件，也能发现一般的恶意应用。相比同类产品，它最大的优势是支持离线分析，不需要连电脑，直接在设备上或备份文件上就能跑。\n\n安装非常快捷：pip install mvt，然后根据你的设备类型选择扫描命令。扫描Android可以直接给APK文件：mvt-android check-apk payload.apk；也可以给一个Android备份包：mvt-android check-backup backup.ab。扫描iOS给提取的目录：mvt-ios check-backup ~/ios_backup。它会输出清晰的检测报告，告诉你哪些文件可疑、哪些应用有问题。\n\n这个项目特别适合这几类人：关注隐私安全的普通用户，怀疑手机被监控想自己查一下的；安全研究员和渗透测试人员，做移动安全分析用；记者和人权工作者，经常需要检测设备是否被针对；想了解移动端取证技术的开发者。如果你用的手机比较贵、或者工作性质比较敏感，装一个MVT定期扫扫绝对不亏。\n\n项目由Amnesty International旗下安全实验室主导开发，GitHub Star数超过1.2万，维护非常活跃。它是开源移动取证领域最知名的工具之一，社区贡献了大量YARA规则签名，更新频繁，紧跟新型间谍软件的威胁。和商业取证工具相比，MVT完全免费开源，让普通用户也能拥有国家级水平的检测能力，这在安全工具领域相当难得。",
+    "summaryCn": "权威组织出品的手机取证检测工具，专查间谍软件入侵痕迹",
+    "reasonCn": "这是大赦国际安全实验室开发的开源手机取证工具，专门用来检测手机是否被飞马这类间谍软件入侵。它能自动提取分析安卓和iOS设备上的关键痕迹，帮记者、律师、人权活动家确认自己的手机是否被监控。技术上偏专业，非技术用户需谨慎使用。",
+    "detailCn": "2021年7月，大赦国际安全实验室在飞马计划调查期间推出了移动验证工具包，它聚焦于一个高度具体的问题——检测设备是否被类似飞马这样高度隐蔽的间谍软件入侵。这种恶意软件通常不会在手机桌面上留下任何明显痕迹，只能通过分析系统留下的深层数据来识别。与普通杀毒软件不同，MVT并非实时防护工具，而是面对已存储数据的取证分析仪器，其核心价值在于为特定人群提供一种技术上的自我保护与追踪能力，并推动了面向公众的取证方法论普及。\n\n它的工作方式是从设备备份或文件系统中提取关键数据，自动扫描并标记出可疑的痕迹。工具支持对iOS设备的备份分析，或直接通过检测工具获取系统数据，在安卓设备上则主要通过分析安装包列表、进程记录等关键文件进行排查，并对照已知的威胁指标进行比对。这需要一些命令行的操作，本质上更适合具备一定技术基础的研究记者、安全调查人员。MVT通过自动化这些排查步骤，大幅缩短了整个排查周期，为想要确认自身数字安全的人提供了专业级的参考结果。\n\n当前项目的主要文档和命令行输出，都面向专业人士设计，普通用户直接运行存在一定门槛。使用过程通常需要先安装Python环境，再通过命令行执行安装与提取等操作流程。详细的具体安装指令可以前往项目仓库了解。虽然流程有一定复杂度，但其明确的排查指引、结构化的输出结果，能让使用者找到分析方向，并自动生成可供二次核验的检测记录。\n\n开发团队也一直在迭代项目，近期在功能与数据输出格式上进行了重要调整，这提示使用者查阅最新的说明文档，以确保与当前接口的兼容性。这款工具不适合作为日常安全防护的基础设施，而是作为深度风险评估的辅助利器。如果你从事新闻调查、公民权益保障等工作，或者自己长期处于潜在监控风险下，它便是一份值得维护的技术资源，代表着国际上用于验证电子设备纯净度的前沿实践之一。",
     "stars": 13087,
     "starGrowth": 1,
     "createdAt": "2021-07-16T05:50:44Z",
@@ -7139,7 +7171,17 @@
     "category": "tool",
     "momentum": [],
     "fromOfficial": false,
-    "heatScore": 0
+    "heatScore": 0,
+    "facts": [
+      {
+        "claim": "由大赦国际安全实验室在调查飞马事件时开发，具有权威背景",
+        "source": "It has been developed and released by the Amnesty International Security Lab in July 2021 in the context of the Pegasus Project"
+      },
+      {
+        "claim": "专门检测手机是否被飞马这类间谍软件入侵",
+        "source": "helpful to identify a potential compromise of Android and iOS devices"
+      }
+    ]
   },
   {
     "repo": "infiniflow/ragflow",
