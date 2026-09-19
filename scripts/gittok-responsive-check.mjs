@@ -261,6 +261,7 @@ window.__gt = {
       const lineH=parseFloat(cs.lineHeight)||0;
       const padY=(parseFloat(cs.paddingTop)||0)+(parseFloat(cs.paddingBottom)||0);
       const range=document.createRange(); const tops=new Set(); const vtops=new Set();
+      let sliver=0; let sliverPx=0; let hOverflow=0;
       for(const node of window.__gt.textNodes(el)){
         for(let i=0;i<node.data.length;i++){
           if(/\\s/.test(node.data[i])) continue;
@@ -271,14 +272,22 @@ window.__gt = {
           tops.add(Math.round(q.top));
           if(q.top>=rect.top-1 && q.bottom<=rect.bottom+1 && q.left>=rect.left-1 && q.right<=rect.right+1){
             vtops.add(Math.round(q.top));
+          } else if(q.bottom>rect.bottom+1 && q.top>rect.top+1){
+            // 纵向被切：底边越过盒底、顶边还在盒内 = 半行字顶露在裁切线外（栗子 09-19 截图那种）
+            sliver++;
+            sliverPx=Math.max(sliverPx, +(q.bottom-rect.top).toFixed(1));
+          } else if(q.right>rect.right+1 || q.left<rect.left-1){
+            // 横向被裁：nowrap + 省略号的正常行为，只计信息量不判红
+            hOverflow++;
           }
         }
       }
       return { display: cs.display, clamp: String(cs.webkitLineClamp), overflow: cs.overflow,
+               whiteSpace: cs.whiteSpace, textOverflow: cs.textOverflow,
                maxH: cs.maxHeight==='none'? null : px(cs.maxHeight),
                minH: cs.minHeight==='none'? null : px(cs.minHeight),
                oneLine: +(lineH+padY).toFixed(1), boxH: +rect.height.toFixed(1),
-               visLines: vtops.size, lines: tops.size };
+               visLines: vtops.size, lines: tops.size, sliver, sliverPx, hOverflow };
     });
   },
   /** 一行容量：用隐藏探针（复制该元素字体相关计算样式 + 10 个全角字）量单字宽，
@@ -458,6 +467,8 @@ async function checkView(cdp, view) {
     "max≠min（钉死失效）": lk.filter((x) => x.maxH === null || x.minH === null || Math.abs(x.maxH - x.minH) > 0.6),
     "盒高越出一行": lk.filter((x) => x.boxH > x.oneLine + 1),
     "可见文本占了两行": lk.filter((x) => x.visLines > 1),
+    // 栗子 09-19 截图证实的形态：clamp 不生效时文本自然折行，max-height 只裁掉半行 → 字顶残留
+    "半行字顶外露（裁切线切在行中）": lk.filter((x) => x.sliver > 0),
   };
   const lkWhy = Object.entries(lkBad)
     .filter(([, v]) => v.length)
@@ -471,7 +482,9 @@ async function checkView(cdp, view) {
     `采样 ${lk.length} 张｜一行应有高 ${lk[0]?.oneLine ?? "?"}px（line-height+padding）` +
       `｜max/min ${lk[0]?.maxH}/${lk[0]?.minH}｜盒高 max ${Math.max(...lk.map((x) => x.boxH))}` +
       `｜可见行数 ${[...new Set(lk.map((x) => x.visLines))].join("/")}｜display ${lk[0]?.display} clamp ${lk[0]?.clamp}` +
-      (lkClipped ? `｜另有 ${lkClipped} 张的超长句被裁掉行仍占布局（clamp 内正常现象，盒内不可见）` : "") +
+      `｜white-space ${lk[0]?.whiteSpace} text-overflow ${lk[0]?.textOverflow}` +
+      `｜半行外露 ${lk.reduce((s, x) => s + (x.sliver ? 1 : 0), 0)} 张（最多露 ${Math.max(0, ...lk.map((x) => x.sliverPx || 0))}px）` +
+      (lkClipped ? `｜另有 ${lkClipped} 张超长句被裁掉的整行仍在布局（盒内不可见）` : "") +
       (lkWhy ? `｜❌ ${lkWhy}` : ""),
   );
 
