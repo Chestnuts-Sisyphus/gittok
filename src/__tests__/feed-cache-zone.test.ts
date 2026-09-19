@@ -130,4 +130,42 @@ describe("loadExistingScores 必须带回判定字段（防「重建即丢分区
     const sc = loadExistingScores(p).scores.get("e/plain")!;
     expect(sc.facts).toBeUndefined();
   });
+
+  it("topics / desc / language 原样带回（H-04：2026-09-19 补的白名单缺项，同一条纪律）", () => {
+    const p = writeBaseline([
+      baseCard({ repo: "f/1", topics: ["cli", "rust", "grep"], desc: "a line searcher", language: "Rust" }),
+    ]);
+    const sc = loadExistingScores(p).scores.get("f/1")!;
+    expect(sc.topics).toEqual(["cli", "rust", "grep"]);
+    expect(sc.desc).toBe("a line searcher");
+    expect(sc.language).toBe("Rust");
+  });
+
+  it("topics 非数组的脏数据不夹带（宁缺毋滥，回退由装配端处理）", () => {
+    const p = writeBaseline([baseCard({ repo: "f/2", topics: undefined })]);
+    const sc = loadExistingScores(p).scores.get("f/2")!;
+    expect(sc.topics ?? []).toEqual([]);
+  });
+
+  /**
+   * 装配端契约锁（源码字符串契约，同 chrome-layout / open-regression 的风格）。
+   *
+   * 为什么只测 loadExistingScores 不够：2026-09-18 的 facts 事故是**半修**——白名单补了、
+   * `partialCard` 那行没补，重建照样丢。topics 这一轮同时改两端，故把「装配端必须回退 cache」
+   * 也钉成可跑断言：将来有人把兜底改回 `m.topics` 单源，这里立刻红。
+   */
+  it("装配端 partialCard 对 desc/language/topics 三处都有 cache 兜底（防「只补白名单」的半修）", () => {
+    const src = fs.readFileSync(path.join(__dirname, "..", "feed", "index.ts"), "utf-8");
+    const assembly = src.slice(src.indexOf("const partialCard = {"), src.indexOf("cards.push({"));
+    const preamble = src.slice(src.indexOf("const [owner = "), src.indexOf("const partialCard = {"));
+    expect(preamble).toContain("m.desc || sc.desc");
+    expect(preamble).toContain("m.language || sc.language");
+    expect(preamble).toContain("m.topics?.length");
+    expect(preamble).toContain("sc.topics");
+    // 装配字段与 buildTags 都必须吃解析后的局部变量，不能再直读 m.*（否则兜底形同虚设）
+    expect(assembly).toMatch(/^\s*desc,\s*$/m);
+    expect(assembly).toMatch(/^\s*language,\s*$/m);
+    expect(assembly).toMatch(/^\s*topics,\s*$/m);
+    expect(assembly).toContain("buildTags(sc.aiDims, topics, language)");
+  });
 });

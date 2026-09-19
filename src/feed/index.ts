@@ -640,6 +640,13 @@ export function loadExistingScores(feedPath: string = FEED_PATH): {
           // 缓存命中卡重建后 facts 被置空——线上 done 卡 69 张里只剩 25 张有 facts，
           // 且每跑一轮管线就再抹一批。同上方 zone/funScore/tags 事故，同一条纪律）。
           facts: c.facts,
+          // GitHub 元数据三元组（2026-09-19 H-04）：同 zone/facts 那条纪律——**不进 cache 的字段，
+          // 下一轮重建就没了**。分档（tier）注入仓的 topics/desc 天生为空，历史卡零重评 → 每跑一轮
+          // 就把存量卡的 GitHub topics 抹平（线上实测 777 张空 / 1446 张只剩 1 条）。脏数据防御：
+          // topics 只认数组，desc/language 空串归一为 undefined（回退由装配端做，不在此造假）。
+          topics: Array.isArray(c.topics) ? c.topics : undefined,
+          desc: c.desc || undefined,
+          language: c.language || undefined,
         });
       }
     }
@@ -1501,11 +1508,16 @@ export async function generateFeed(
     const [owner = "", ...nameParts] = m.repo.split("/");
     const name = nameParts.join("/") || m.repo;
     llmCount++;
+    // H-04 装配端兜底（与 loadExistingScores 白名单成对，缺一即半修）：本轮窗口没抓到元数据
+    // （分档注入仓的 topics 恒为 []、desc 恒为 ""）→ 回退缓存卡上的原值，不再重建即丢。
+    const topics = m.topics?.length ? m.topics : (sc.topics ?? []);
+    const language = m.language || sc.language || "";
+    const desc = m.desc || sc.desc || "";
     const partialCard = {
       repo: m.repo,
       owner,
       name,
-      desc: m.desc,
+      desc,
       summaryCn: sc.summaryCn,
       reasonCn: sc.reasonCn,
       detailCn: sc.detailCn,
@@ -1516,8 +1528,8 @@ export async function generateFeed(
       starGrowth: m.starGrowth || (m.lastStarGrowth ?? 0), // 未刷新卡回退上轮增长值（热门/每日频道不塌缩）
       createdAt: m.createdAt,
       silentRounds: m.silentRounds,
-      language: m.language,
-      topics: m.topics,
+      language,
+      topics,
       aiDims: sc.aiDims,
       aiDim: sc.aiDim,
       zone: sc.zone,
@@ -1533,7 +1545,7 @@ export async function generateFeed(
       domainKey:
         sc.zone && sc.tags && sc.tags.length > 0 ? (domainKeyOf(sc.zone, sc.tags) ?? undefined) : undefined,
       pushedAt: m.pushedAt ?? m.ts, // 真实 pushed_at（fetchReadmes 同批抓）；缺失回退 ts
-      tags: buildTags(sc.aiDims, m.topics, m.language),
+      tags: buildTags(sc.aiDims, topics, language),
       aiScore: sc.aiScore,
       source: m.source,
       // bigbros 截断 10：防名单膨胀后数组体积失控（前端展示前 3 个是既有逻辑）

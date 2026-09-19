@@ -92,6 +92,15 @@ export interface ScoringResult {
   funReason?: string;
   /** 领域标签 3-6 个（LLM 自由出的领域词，面向人可读；替代 topics 噪音） */
   tags?: string[];
+  /** GitHub 元数据回灌位（**不是 LLM 输出**）：缓存命中卡重建时把原 `topics`/`desc`/`language` 带回来。
+   *  2026-09-19 H-04 补：这三个字段此前不在 `loadExistingScores` 白名单里，而分档（tier）注入仓的
+   *  元数据天生是 `topics: []`、`desc: ""`，于是「历史卡零重评 + 重建取新窗口元数据」两件事一叠加，
+   *  每跑一轮就把存量卡的 GitHub topics 抹成空——实测线上 777 张 topics 为空、1446 张只剩 1 条。
+   *  同 zone/facts 那条纪律：**不进 cache 的字段，下一轮重建就没了**；且**光进 cache 不够**，
+   *  装配端（`index.ts` 的 `partialCard`）必须做「新窗口没抓到 → 回退此处原值」的兜底，两处缺一即半修。 */
+  topics?: string[];
+  desc?: string;
+  language?: string;
   /** 千人千面独有事实（claim/source 两阶段输出） */
   facts?: Fact[];
   /** 一句话通俗概括 */
