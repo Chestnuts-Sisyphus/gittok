@@ -47,3 +47,7 @@ data/rejudge-*.json
 data/stability-*.json
 data/zone-manual-check-*.json
 tmp/
+
+# 用户级交接物：含个人目录与凭据存放点路径，本仓 visibility=PUBLIC，禁止入库（只忽略不删本地文件）
+AGENTS.md
+.qoder/
