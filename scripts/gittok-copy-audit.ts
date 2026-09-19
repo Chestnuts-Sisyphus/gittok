@@ -248,6 +248,65 @@ async function main(): Promise<void> {
   console.log(
     `  影响面量化：一旦落地，本机 ${total} 张里 ${factsMissing} 张立刻判不合格（占 ${pct(factsMissing, total)}）→ CI 口径需同步，故必须栗子裁。`,
   );
+  // ===== H-09（2026-09-19）：两口径并轨 + 合格池规模环比 =====
+  // 为什么要这段：G-17 收口时对账全靠人肉——批尾 recopy 自评说「-5」、G-01 全库复检说「-6」，
+  // 两个数都对（对照物不同），但并排看像有一边在撒谎。这里把两口径同时印出来并给出差因。
+  // 纪律：本段**只叙事不改判定**——判定本体仍是 `src/feed/checks.ts` 的 `cardChecks`。
+  const statePath = path.resolve(process.cwd(), "data", "recopy-state.json");
+  let doneSet = new Set<string>();
+  if (fs.existsSync(statePath)) {
+    try {
+      const st = JSON.parse(fs.readFileSync(statePath, "utf-8")) as { done?: Record<string, unknown> };
+      doneSet = new Set(Object.keys(st.done ?? {}));
+    } catch {
+      console.log("⚠ recopy-state.json 解析失败，自评池口径退化为与全库同值（不影响判定）");
+    }
+  }
+  const failRepos = [...perCard.keys()];
+  const failNotDone = failRepos.filter((r) => !doneSet.has(r));
+  const bothDoneAndFail = failRepos.filter((r) => doneSet.has(r));
+  console.log("");
+  console.log("—— 两口径并轨（H-09：同一事实的两个对照物，不是两边打架）——");
+  console.log(
+    `  recopy 自评池口径 ${failNotDone.length} 张（待跑队列只看未 done 的卡）｜G-01 全库复检口径 ${fail} 张（整库，含已 done 的卡）`,
+  );
+  console.log(
+    `  差因：两数之差 = 已进 done 集、按现行生产闸仍判不合格的 ${bothDoneAndFail.length} 张` +
+      (bothDoneAndFail.length ? `（例：${bothDoneAndFail.slice(0, 5).join("、")}）` : ""),
+  );
+  console.log(
+    `  done 集共 ${doneSet.size} 张｜其中复检已过闸 ${doneSet.size - bothDoneAndFail.length} 张——即「洗白」的真实进度以本行为准`,
+  );
+
+  // 合格池规模环比：COPY-08 呈现闸让合格池直接决定推荐池深度，池子一夜缩水无人预警是本轮新风险
+  // （块一 C 节第 1 条）。做法：每次跑批把读数追加进 gitignore 的 tmp/ 报表历史，环比上一次。
+  const pool = total - fail;
+  const histPath = path.resolve(process.cwd(), "tmp", "copy-audit-history.jsonl");
+  let prev: { at?: string; pool?: number } | null = null;
+  try {
+    if (fs.existsSync(histPath)) {
+      const lines = fs
+        .readFileSync(histPath, "utf-8")
+        .split(/\r?\n/)
+        .filter((l) => l.trim());
+      if (lines.length) prev = JSON.parse(lines[lines.length - 1]);
+    }
+    fs.mkdirSync(path.dirname(histPath), { recursive: true });
+    fs.appendFileSync(
+      histPath,
+      JSON.stringify({ at: new Date().toISOString(), source: feedTarget, total, fail, pool, done: doneSet.size }) +
+        "\n",
+      "utf-8",
+    );
+  } catch (e) {
+    console.log(`⚠ 池规模环比不可用（报表历史读写失败）：${(e as Error).message}`);
+  }
+  const delta = prev?.pool !== undefined ? pool - prev.pool : null;
+  console.log(
+    `  合格池规模环比 ${delta === null ? "（首跑无基准）" : `${delta >= 0 ? "+" : ""}${delta} 张`}｜本次合格 ${pool} 张` +
+      (prev?.pool !== undefined ? `｜上一跑 ${prev.pool} 张（${prev.at?.slice(0, 16).replace("T", " ")}）` : ""),
+  );
+
   console.log("");
   console.log("退出码 0：本脚本先做报表不做拦截（G-01 验收口径）。");
   console.log(`合计核对：不合格 ${fail} 张｜闸抛错 ${gateThrew} 张`);
