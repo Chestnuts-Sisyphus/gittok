@@ -40,6 +40,12 @@ jobs:
       - name: Test
         run: pnpm test
 
+      # K-08 leak gate: value-shaped credentials are zero-tolerance (exit 1 with no whitelist);
+      # key-store path pointers in outward-facing docs are listed and must stay sanitized.
+      # Comments here are English on purpose: Chinese comments break GitHub Actions YAML.
+      - name: Leak scan（K-08，值形态零容忍）
+        run: npx tsx scripts/gittok-leak-scan.ts
+
       # Baseline for the field-regression gate: data/feed.prev.json is gitignored by design
       # (it is a build artifact), so a fresh CI checkout never had it and the gate silently skipped.
       # Write to a temp path first and only move it into place on success, so a failed lookup can
@@ -94,3 +100,61 @@ jobs:
       - name: Test（parity + 边界）
         working-directory: mcp-gittok
         run: npm test
+
+  # K-06 (G-16 + E2): the responsive gate (192 assertions) and the visual acceptance gate
+  # used to live only on the developer machine, so a CSS regression reached production.
+  # Both run against the **build-time tagged** dist: vite stamps copyOk during build, and we
+  # deliberately do NOT overwrite dist/data/feed.json afterwards — that is what made
+  # COPY-08 ("unqualified cards never enter the recommendation pool") untestable locally.
+  presentation:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      - name: Install root dependencies (tsx for the gates)
+        run: npm install --no-audit --no-fund
+
+      - name: Build web (stamps copyOk into dist)
+        working-directory: web
+        run: |
+          npm ci || npm install
+          npm run build
+
+      # E2 guard: if this goes red, the gate is eating untagged data again — do not "fix" it
+      # by copying data/feed.json over dist; fix the build instead.
+      - name: Assert dist carries build-time copyOk tags
+        run: |
+          node -e '
+          const d = JSON.parse(require("fs").readFileSync("web/dist/data/feed.json", "utf8"));
+          const ok = d.filter((c) => c.copyOk === true).length;
+          const bad = d.filter((c) => c.copyOk === false).length;
+          console.log(`dist cards ${d.length} | copyOk true ${ok} false ${bad}`);
+          if (ok === 0) { console.error("no copyOk=true in dist: gate would not cover COPY-08"); process.exit(1); }
+          '
+
+      - name: Responsive check gate（G-16，192 项）
+        env:
+          CHROME_PATH: /usr/bin/google-chrome
+        run: node scripts/gittok-responsive-check.mjs
+
+      - name: Visual acceptance gate（六项审美断言 + 6 页截图；帧率在本 job 降为信息项）
+        run: |
+          pip install websocket-client
+          python3 -m http.server 19111 --bind 127.0.0.1 --directory web/dist &
+          SRV=$!
+          trap "kill $SRV 2>/dev/null" EXIT
+          sleep 3
+          CHROME_PATH=/usr/bin/google-chrome \
+          VISUAL_PORT=19111 \
+          VISUAL_STRICT=css \
+          VISUAL_TMP=/tmp \
+          VISUAL_OUT=/tmp/gittok_visual_shots \
+          VISUAL_EXTRA_FLAGS="--no-sandbox;--disable-dev-shm-usage" \
+          python3 scripts/gittok-visual-check.py
