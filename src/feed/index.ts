@@ -1171,7 +1171,8 @@ export async function generateFeed(
       desc: t.description,
       stars: t.totalStars,
       language: t.language,
-      topics: [],
+      // 止漏（09-19 栗子裁 A 案）：trending 源天生无 topics，整条 set 会抹掉 baseline 已有的真 topics
+      topics: repoMap.get(t.fullName)?.topics ?? [],
       source: "trending",
       starGrowth: t.todayStars,
       bigbros: [],
