@@ -63,11 +63,17 @@ describe("diffDetailKeys（G-04 详情表缺键可观测点）", () => {
     expect(diffDetailKeys([{ repo: "a/b", detailCn: "" }], { "a/b": "长文" })).toEqual([]);
   });
 
-  it("本仓构建产物列表与详情表键差为 0", () => {
-    const read = (f: string) => JSON.parse(readFileSync(resolve("web/public/data", f), "utf-8")) as unknown;
-    const list = read("feed.json") as { repo: string; detailCn?: string }[];
-    const details = read("feed-details.json") as Record<string, string>;
-    expect(list.length).toBeGreaterThan(1000);
-    expect(diffDetailKeys(list, details)).toEqual([]);
+  it("真实数据拆表后，凡有详情的卡都能从详情表取回（G-04）", () => {
+    // 不读 web/public/data/*：那是构建产物，其中 feed-details.json 并未入库，
+    // 拿它做断言等于把测试挂在「本机跑过 build」上，CI 直接 ENOENT。
+    const cards = JSON.parse(readFileSync(resolve("data/feed.json"), "utf-8")) as {
+      repo: string;
+      detailCn?: string;
+    }[];
+    expect(cards.length).toBeGreaterThan(1000);
+    const withDetail = cards.filter((c) => typeof c.detailCn === "string" && c.detailCn.length > 0);
+    const { details } = splitFeedPayload(cards);
+    expect(diffDetailKeys(withDetail, details)).toEqual([]);
+    expect(Object.keys(details).length).toBe(withDetail.length);
   });
 });
