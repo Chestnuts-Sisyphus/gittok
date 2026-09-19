@@ -1,7 +1,7 @@
 {
   "version": "recopy:v6-copy+facts:1",
   "createdAt": "2026-09-17T12:12:22.618Z",
-  "updatedAt": "2026-09-19T06:05:55.812Z",
+  "updatedAt": "2026-09-19T08:09:18.363Z",
   "done": {
     "coollabsio/coolify": {
       "at": "2026-09-17T12:38:24.902Z",
@@ -336,6 +336,36 @@
       "at": "2026-09-19T05:59:56.189Z",
       "lane": "zhipu:glm-4.7-flash",
       "tries": 2
+    },
+    "jingyaogong/minimind": {
+      "at": "2026-09-19T07:16:27.643Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "tries": 4
+    },
+    "DietrichGebert/ponytail": {
+      "at": "2026-09-19T08:03:17.913Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "tries": 2
+    },
+    "firecrawl/firecrawl": {
+      "at": "2026-09-19T08:03:26.870Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "tries": 2
+    },
+    "rari-build/rari": {
+      "at": "2026-09-19T08:04:03.899Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "tries": 2
+    },
+    "D4Vinci/Scrapling": {
+      "at": "2026-09-19T08:04:14.046Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "tries": 2
+    },
+    "Jakubantalik/Libraries.dev": {
+      "at": "2026-09-19T08:08:29.014Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "tries": 1
     }
   },
   "failed": {
@@ -350,55 +380,56 @@
       ]
     },
     "AlkaidLab/foundation-sunshine": {
-      "at": "2026-09-19T05:41:12.873Z",
+      "at": "2026-09-19T07:58:12.288Z",
       "lane": "zhipu:glm-4.7-flash",
       "fails": [
-        "一句话描述 39 字（硬性要求 20-35 汉字）",
-        "简要介绍等效长度 92（要求约 3 行，effLen≥100）",
-        "未见安装/上手内容（必须覆盖怎么上手）"
+        "一句话描述 38 字（硬性要求 20-35 汉字）",
+        "深度解读 395 字（硬性要求 500-800 字）",
+        "一句话描述与深度解读开头重复（最长重复片段过长）",
+        "深度解读 1 段（要求 3-5 段）"
       ],
-      "tries": 2
+      "tries": 3
     },
     "Stirling-Tools/Stirling-PDF": {
-      "at": "2026-09-19T05:10:13.773Z",
+      "at": "2026-09-19T07:18:45.024Z",
       "lane": "zhipu:glm-4.7-flash",
       "fails": [
-        "简要介绍等效长度 96（要求约 3 行，effLen≥100）",
+        "深度解读 454 字（硬性要求 500-800 字）",
+        "深度解读 1 段（要求 3-5 段）",
         "facts[1] source 不在参考文档：不在参考文档",
         "facts[2] source 不在参考文档：不在参考文档"
       ],
-      "tries": 2
+      "tries": 3
     },
     "hundredrabbits/Orca": {
-      "at": "2026-09-19T05:19:22.729Z",
-      "lane": "zhipu:glm-4.7-flash",
+      "at": "2026-09-19T07:35:43.878Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
       "fails": [
         "深度解读 1 段（要求 3-5 段）",
-        "facts[1] source 不在参考文档：不在参考文档"
+        "facts[2] source 不在参考文档：不在参考文档",
+        "facts[3] source 不在参考文档：不在参考文档"
       ],
-      "tries": 2
+      "tries": 3
     },
     "langchain-ai/langchain": {
-      "at": "2026-09-19T05:30:19.368Z",
+      "at": "2026-09-19T07:45:05.351Z",
       "lane": "zhipu:glm-4.7-flash",
       "fails": [
-        "深度解读 364 字（硬性要求 500-800 字）",
-        "深度解读 1 段（要求 3-5 段）",
-        "未见安装/上手内容（必须覆盖怎么上手）",
-        "facts[1] source 不在参考文档：不在参考文档"
+        "深度解读 260 字（硬性要求 500-800 字）",
+        "深度解读 1 段（要求 3-5 段）"
       ],
-      "tries": 2
+      "tries": 3
     },
     "appsmithorg/appsmith": {
-      "at": "2026-09-19T05:25:13.097Z",
+      "at": "2026-09-19T07:41:34.660Z",
       "lane": "zhipu:glm-4.7-flash",
       "fails": [
-        "简要介绍等效长度 80（要求约 3 行，effLen≥100）",
-        "深度解读 411 字（硬性要求 500-800 字）",
+        "简要介绍等效长度 96（要求约 3 行，effLen≥100）",
+        "深度解读 325 字（硬性要求 500-800 字）",
         "深度解读 1 段（要求 3-5 段）",
         "facts[2] source 不在参考文档：不在参考文档"
       ],
-      "tries": 2
+      "tries": 3
     },
     "Panniantong/Agent-Reach": {
       "at": "2026-09-18T00:48:00.246Z",
@@ -409,52 +440,45 @@
       ]
     },
     "flet-dev/flet": {
-      "at": "2026-09-19T05:40:10.777Z",
+      "at": "2026-09-19T07:57:53.292Z",
       "lane": "zhipu:glm-4.7-flash",
       "fails": [
-        "深度解读 490 字（硬性要求 500-800 字）"
+        "深度解读 970 字（超过 800 字上限，收一收）",
+        "facts[3] source 不在参考文档：不在参考文档"
       ],
-      "tries": 2
+      "tries": 3
     },
     "JustVugg/colibri": {
-      "at": "2026-09-19T05:39:14.700Z",
+      "at": "2026-09-19T07:53:33.311Z",
       "lane": "zhipu:glm-4.7-flash",
       "fails": [
-        "深度解读 436 字（硬性要求 500-800 字）",
+        "深度解读 331 字（硬性要求 500-800 字）",
         "深度解读 1 段（要求 3-5 段）",
-        "facts[1] source 不在参考文档：不在参考文档"
+        "facts[1] source 不在参考文档：不在参考文档",
+        "facts[3] source 不在参考文档：不在参考文档"
       ],
-      "tries": 2
+      "tries": 3
     },
     "can1357/oh-my-pi": {
-      "at": "2026-09-19T05:47:50.219Z",
+      "at": "2026-09-19T07:59:54.061Z",
       "lane": "zhipu:glm-4.7-flash",
       "fails": [
-        "简要介绍等效长度 71（要求约 3 行，effLen≥100）",
-        "深度解读 357 字（硬性要求 500-800 字）",
+        "深度解读 273 字（硬性要求 500-800 字）",
         "深度解读 1 段（要求 3-5 段）",
         "facts[1] source 不在参考文档：不在参考文档"
       ],
-      "tries": 2
-    },
-    "DietrichGebert/ponytail": {
-      "at": "2026-09-18T17:50:45.063Z",
-      "lane": "zhipu:glm-4.7-flash",
-      "fails": [
-        "深度解读 403 字（硬性要求 500-800 字）",
-        "深度解读 1 段（要求 3-5 段）",
-        "facts[1] source 不在参考文档：不在参考文档"
-      ],
-      "tries": 1
+      "tries": 3
     },
     "kellyjonbrazil/jc": {
-      "at": "2026-09-19T05:51:20.691Z",
+      "at": "2026-09-19T08:01:16.548Z",
       "lane": "zhipu:glm-4.7-flash",
       "fails": [
-        "facts[1] source 不在参考文档：不在参考文档",
-        "facts[2] source 不在参考文档：不在参考文档"
+        "简要介绍等效长度 92（要求约 3 行，effLen≥100）",
+        "深度解读 347 字（硬性要求 500-800 字）",
+        "深度解读 1 段（要求 3-5 段）",
+        "facts[1] source 不在参考文档：不在参考文档"
       ],
-      "tries": 2
+      "tries": 3
     },
     "rtk-ai/rtk": {
       "at": "2026-09-18T09:46:58.440Z",
@@ -465,141 +489,143 @@
         "深度解读 1 段（要求 3-5 段）"
       ]
     },
-    "jingyaogong/minimind": {
-      "at": "2026-09-19T05:07:12.292Z",
+    "e2b-dev/E2B": {
+      "at": "2026-09-19T07:59:31.949Z",
       "lane": "zhipu:glm-4.7-flash",
       "fails": [
-        "简要介绍等效长度 86（要求约 3 行，effLen≥100）",
+        "简要介绍等效长度 89（要求约 3 行，effLen≥100）",
+        "深度解读 210 字（硬性要求 500-800 字）",
         "深度解读 1 段（要求 3-5 段）",
         "facts[2] source 不在参考文档：不在参考文档"
       ],
       "tries": 3
     },
-    "e2b-dev/E2B": {
-      "at": "2026-09-19T05:45:32.944Z",
-      "lane": "zhipu:glm-4.7-flash",
-      "fails": [
-        "深度解读 378 字（硬性要求 500-800 字）",
-        "深度解读 1 段（要求 3-5 段）",
-        "facts[2] source 不在参考文档：不在参考文档"
-      ],
-      "tries": 2
-    },
-    "firecrawl/firecrawl": {
-      "at": "2026-09-18T17:53:04.128Z",
-      "lane": "zhipu:glm-4.7-flash",
-      "fails": [
-        "深度解读 932 字（超过 800 字上限，收一收）"
-      ],
-      "tries": 1
-    },
     "tashfeenahmed/freellmapi": {
-      "at": "2026-09-19T05:12:34.331Z",
-      "lane": "zhipu:glm-4.7-flash",
+      "at": "2026-09-19T07:27:05.652Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
       "fails": [
-        "一句话描述 38 字（硬性要求 20-35 汉字）",
-        "未见安装/上手内容（必须覆盖怎么上手）",
-        "facts[2] source 不在参考文档：不在参考文档"
+        "深度解读 494 字（硬性要求 500-800 字）"
       ],
-      "tries": 2
+      "tries": 3
     },
     "kubernetes-sigs/kueue": {
-      "at": "2026-09-19T05:13:44.462Z",
-      "lane": "zhipu:glm-4.7-flash",
+      "at": "2026-09-19T07:31:25.321Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
       "fails": [
-        "一句话描述 37 字（硬性要求 20-35 汉字）",
-        "一句话描述与深度解读开头重复（最长重复片段过长）",
-        "深度解读 1 段（要求 3-5 段）",
-        "facts[1] source 不在参考文档：不在参考文档"
-      ],
-      "tries": 2
-    },
-    "bobeff/open-source-games": {
-      "at": "2026-09-19T05:14:58.214Z",
-      "lane": "zhipu:glm-4.7-flash",
-      "fails": [
-        "一句话描述 17 字（硬性要求 20-35 汉字）",
-        "深度解读 323 字（硬性要求 500-800 字）",
-        "深度解读 1 段（要求 3-5 段）",
-        "含推广词「点击链接」（禁止）"
-      ],
-      "tries": 2
-    },
-    "tradesdontlie/tradingview-mcp": {
-      "at": "2026-09-19T05:23:46.032Z",
-      "lane": "zhipu:glm-4.7-flash",
-      "fails": [
-        "深度解读 329 字（硬性要求 500-800 字）",
-        "深度解读 1 段（要求 3-5 段）",
+        "facts[2] source 不在参考文档：不在参考文档",
         "facts[3] source 不在参考文档：不在参考文档"
       ],
-      "tries": 2
+      "tries": 3
+    },
+    "bobeff/open-source-games": {
+      "at": "2026-09-19T07:32:46.024Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "fails": [
+        "一句话描述 17 字（硬性要求 20-35 汉字）"
+      ],
+      "tries": 3
+    },
+    "tradesdontlie/tradingview-mcp": {
+      "at": "2026-09-19T07:36:26.570Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "fails": [
+        "一句话描述 43 字（硬性要求 20-35 汉字）",
+        "深度解读开头用了套路话「想象一下，你正在…」（禁止套话开头）",
+        "一句话描述与深度解读开头重复（最长重复片段过长）",
+        "tags 含空项或超长词（≤20 字）"
+      ],
+      "tries": 3
     },
     "shiyu-coder/Kronos": {
-      "at": "2026-09-19T05:35:44.204Z",
+      "at": "2026-09-19T07:47:27.707Z",
       "lane": "zhipu:glm-4.7-flash",
       "fails": [
-        "深度解读 252 字（硬性要求 500-800 字）",
+        "简要介绍等效长度 76（要求约 3 行，effLen≥100）",
+        "深度解读 206 字（硬性要求 500-800 字）",
         "深度解读 1 段（要求 3-5 段）",
-        "facts[1] source 不在参考文档：不在参考文档",
-        "facts[2] source 不在参考文档：不在参考文档"
+        "未见安装/上手内容（必须覆盖怎么上手）"
       ],
-      "tries": 2
+      "tries": 3
     },
     "WebKit/WebKit": {
-      "at": "2026-09-19T05:58:03.510Z",
+      "at": "2026-09-19T08:02:39.494Z",
       "lane": "zhipu:glm-4.7-flash",
       "fails": [
-        "深度解读 437 字（硬性要求 500-800 字）",
-        "深度解读 1 段（要求 3-5 段）"
+        "深度解读 436 字（硬性要求 500-800 字）",
+        "深度解读 1 段（要求 3-5 段）",
+        "未见安装/上手内容（必须覆盖怎么上手）",
+        "facts[1] source 不在参考文档：不在参考文档"
       ],
-      "tries": 2
+      "tries": 3
     },
     "bee-san/RustScan": {
-      "at": "2026-09-19T06:05:55.812Z",
+      "at": "2026-09-19T08:02:59.049Z",
       "lane": "zhipu:glm-4.7-flash",
       "fails": [
         "一句话描述 16 字（硬性要求 20-35 汉字）",
-        "深度解读 333 字（硬性要求 500-800 字）",
-        "深度解读 1 段（要求 3-5 段）",
-        "facts[1] source 不在参考文档：不在参考文档"
+        "深度解读 418 字（硬性要求 500-800 字）",
+        "深度解读 1 段（要求 3-5 段）"
+      ],
+      "tries": 3
+    },
+    "sherlock-project/sherlock": {
+      "at": "2026-09-19T08:03:45.312Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "fails": [
+        "深度解读 322 字（硬性要求 500-800 字）",
+        "深度解读 1 段（要求 3-5 段）"
       ],
       "tries": 2
     },
-    "sherlock-project/sherlock": {
-      "at": "2026-09-18T17:56:30.517Z",
-      "lane": "zhipu:glm-4.7-flash",
-      "fails": [
-        "一句话描述 15 字（硬性要求 20-35 汉字）",
-        "深度解读 440 字（硬性要求 500-800 字）"
-      ],
-      "tries": 1
-    },
-    "rari-build/rari": {
-      "at": "2026-09-18T17:58:42.448Z",
-      "lane": "zhipu:glm-4.7-flash",
-      "fails": [
-        "深度解读 445 字（硬性要求 500-800 字）",
-        "深度解读 1 段（要求 3-5 段）"
-      ],
-      "tries": 1
-    },
-    "D4Vinci/Scrapling": {
-      "at": "2026-09-18T18:01:10.451Z",
-      "lane": "zhipu:glm-4.7-flash",
-      "fails": [
-        "一句话描述 50 字（硬性要求 20-35 汉字）",
-        "深度解读 215 字（硬性要求 500-800 字）",
-        "一句话描述与深度解读开头重复（最长重复片段过长）",
-        "深度解读 1 段（要求 3-5 段）"
-      ],
-      "tries": 1
-    },
     "AstrBotDevs/AstrBot": {
-      "at": "2026-09-18T18:04:02.056Z",
+      "at": "2026-09-19T08:05:42.887Z",
       "lane": "zhipu:glm-4.7-flash",
       "fails": [
-        "一句话描述 19 字（硬性要求 20-35 汉字）",
+        "深度解读 1 段（要求 3-5 段）"
+      ],
+      "tries": 2
+    },
+    "FunkinCrew/Funkin": {
+      "at": "2026-09-19T08:06:24.119Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "fails": [
+        "深度解读 1 段（要求 3-5 段）"
+      ],
+      "tries": 1
+    },
+    "TheAlgorithms/Python": {
+      "at": "2026-09-19T08:06:45.005Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "fails": [
+        "facts[2] source 不在参考文档：不在参考文档"
+      ],
+      "tries": 1
+    },
+    "langchain-ai/langgraph": {
+      "at": "2026-09-19T08:08:10.199Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "fails": [
+        "一句话描述 19 字（硬性要求 20-35 汉字）"
+      ],
+      "tries": 1
+    },
+    "ever-co/ever-gauzy": {
+      "at": "2026-09-19T08:08:51.688Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "fails": [
+        "一句话描述 13 字（硬性要求 20-35 汉字）",
+        "深度解读 401 字（硬性要求 500-800 字）",
+        "深度解读 1 段（要求 3-5 段）",
+        "未见安装/上手内容（必须覆盖怎么上手）"
+      ],
+      "tries": 1
+    },
+    "penpot/penpot": {
+      "at": "2026-09-19T08:09:18.363Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "fails": [
+        "一句话描述 18 字（硬性要求 20-35 汉字）",
+        "深度解读 1 段（要求 3-5 段）",
         "facts[1] source 不在参考文档：不在参考文档",
         "facts[2] source 不在参考文档：不在参考文档"
       ],
