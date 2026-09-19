@@ -251,6 +251,36 @@ window.__gt = {
     return [...document.querySelectorAll(sel)].slice(0, limit ?? 8)
       .map((e)=>({ sw: e.scrollWidth, cw: e.clientWidth, sh: e.scrollHeight, ch: e.clientHeight }));
   },
+  /** H-01 防御锁量测：一句话盒的 clamp 本体三件 + 盒高是否被钉死在一行 + 文本实占几行。
+   *  删 max-height、改 display、动 line-clamp 都会在这里现形（配合 checkView 里的断言复红）。 */
+  summaryLock(sel, limit){
+    return [...document.querySelectorAll(sel)].slice(0, limit ?? 8).map((el)=>{
+      const cs=getComputedStyle(el);
+      const rect=el.getBoundingClientRect();
+      const px=(v)=>{const n=parseFloat(v); return Number.isFinite(n)? +n.toFixed(1) : null;};
+      const lineH=parseFloat(cs.lineHeight)||0;
+      const padY=(parseFloat(cs.paddingTop)||0)+(parseFloat(cs.paddingBottom)||0);
+      const range=document.createRange(); const tops=new Set(); const vtops=new Set();
+      for(const node of window.__gt.textNodes(el)){
+        for(let i=0;i<node.data.length;i++){
+          if(/\\s/.test(node.data[i])) continue;
+          range.setStart(node,i); range.setEnd(node,i+1);
+          const rs=[...range.getClientRects()].filter(q=>q.width>0||q.height>0);
+          if(!rs.length) continue;
+          const q=rs[0];
+          tops.add(Math.round(q.top));
+          if(q.top>=rect.top-1 && q.bottom<=rect.bottom+1 && q.left>=rect.left-1 && q.right<=rect.right+1){
+            vtops.add(Math.round(q.top));
+          }
+        }
+      }
+      return { display: cs.display, clamp: String(cs.webkitLineClamp), overflow: cs.overflow,
+               maxH: cs.maxHeight==='none'? null : px(cs.maxHeight),
+               minH: cs.minHeight==='none'? null : px(cs.minHeight),
+               oneLine: +(lineH+padY).toFixed(1), boxH: +rect.height.toFixed(1),
+               visLines: vtops.size, lines: tops.size };
+    });
+  },
   /** 一行容量：用隐藏探针（复制该元素字体相关计算样式 + 10 个全角字）量单字宽，
    *  再看内容宽能塞几个字。不拿卡上真实文本量——首串含拉丁词或标点会把单字宽算歪。 */
   capacity(sel, limit){
@@ -415,6 +445,34 @@ async function checkView(cdp, view) {
     tagsCut.length === 0,
     `采样 ${m.t.length} 张` +
       (tagsCut.length ? `｜被裁 ${tagsCut.map((x) => `${x.sw}>${x.cw}`).join(" ")}` : ""),
+  );
+
+  // 3.5 H-01：一句话单行防御锁回归断言（改坏 styles.css 的 max-height / clamp 必须复红）
+  // 口径注：display 不做 FAIL 条件——Chrome 把 computed `display:-webkit-box` 归一报成 "flow-root"
+  // （实测 12/12 张），拿它判红必假红；display 的源码契约由 web/src/__tests__/summary-single-line.test.ts 拦。
+  const lk = await cdp.eval(`return window.__gt.summaryLock('.summary', 12);`);
+  const lkBad = {
+    "clamp 失效（line-clamp≠1 或 overflow≠hidden）": lk.filter((x) => x.clamp !== "1" || x.overflow !== "hidden"),
+    "max-height 缺失或不等于一行高": lk.filter((x) => x.maxH === null || Math.abs(x.maxH - x.oneLine) > 1),
+    "min-height 缺失或不等于一行高": lk.filter((x) => x.minH === null || Math.abs(x.minH - x.oneLine) > 1),
+    "max≠min（钉死失效）": lk.filter((x) => x.maxH === null || x.minH === null || Math.abs(x.maxH - x.minH) > 0.6),
+    "盒高越出一行": lk.filter((x) => x.boxH > x.oneLine + 1),
+    "可见文本占了两行": lk.filter((x) => x.visLines > 1),
+  };
+  const lkWhy = Object.entries(lkBad)
+    .filter(([, v]) => v.length)
+    .map(([k, v]) => `${k} ${v.length} 张（如 ${JSON.stringify(v[0])}）`)
+    .join("｜");
+  const lkClipped = lk.filter((x) => x.lines > x.visLines).length;
+  report(
+    view.key,
+    "一句话单行防御锁（H-01：max==min==一行高、盒高不越行、可见文本不占两行）",
+    lk.length > 0 && lkWhy === "",
+    `采样 ${lk.length} 张｜一行应有高 ${lk[0]?.oneLine ?? "?"}px（line-height+padding）` +
+      `｜max/min ${lk[0]?.maxH}/${lk[0]?.minH}｜盒高 max ${Math.max(...lk.map((x) => x.boxH))}` +
+      `｜可见行数 ${[...new Set(lk.map((x) => x.visLines))].join("/")}｜display ${lk[0]?.display} clamp ${lk[0]?.clamp}` +
+      (lkClipped ? `｜另有 ${lkClipped} 张的超长句被裁掉行仍占布局（clamp 内正常现象，盒内不可见）` : "") +
+      (lkWhy ? `｜❌ ${lkWhy}` : ""),
   );
 
   // 4 侧栏/底栏/tabs 命中档
