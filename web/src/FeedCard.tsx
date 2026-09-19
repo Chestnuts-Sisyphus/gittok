@@ -194,7 +194,17 @@ function FeedCardComponent({
   return (
     <article
       className={`card${dismissing ? " dismissing" : ""}${ignored ? " ignored" : ""}`}
+      role="button"
+      tabIndex={0}
+      aria-label={`打开 ${card.repo} 详情`}
       onClick={(e) => onOpen(card, e.currentTarget)}
+      onKeyDown={(e) => {
+        // G-14：键盘也能刷卡（空格要挡住默认的页面滚动）
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onOpen(card, e.currentTarget);
+        }
+      }}
     >
       {liked && (
         <span className="card-liked" title="已点赞">
@@ -323,6 +333,37 @@ export function CardDetail({
 
   const overlayRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
+  // G-14：弹层焦点收拢 + 关闭后归还给来源卡片
+  useEffect(() => {
+    const panel = panelRef.current;
+    const opener = document.activeElement as HTMLElement | null;
+    panel?.querySelector<HTMLElement>(".detail-close")?.focus();
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Tab" || !panel) return;
+      const items = Array.from(
+        panel.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        ),
+      ).filter((el) => el.offsetParent !== null);
+      if (items.length === 0) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      const active = document.activeElement as HTMLElement | null;
+      const outside = !active || !panel.contains(active);
+      if (e.shiftKey && (outside || active === first)) {
+        e.preventDefault();
+        last?.focus();
+      } else if (!e.shiftKey && (outside || active === last)) {
+        e.preventDefault();
+        first?.focus();
+      }
+    };
+    document.addEventListener("keydown", onKey, true);
+    return () => {
+      document.removeEventListener("keydown", onKey, true);
+      opener?.focus?.();
+    };
+  }, [card.repo]);
   const fromCard = Boolean(sourceRect);
   const reduceMotion =
     typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -394,7 +435,7 @@ export function CardDetail({
   const content = (
     <>
       {likeFlashGen > 0 && <span key={likeFlashGen} className="like-flash-bar" aria-hidden="true" />}
-      <button className="detail-close" onClick={onClose}>
+      <button className="detail-close" onClick={onClose} aria-label="关闭详情">
         <X size={18} />
       </button>
 
@@ -544,7 +585,14 @@ export function CardDetail({
         className={`detail-mover${fromCard ? " is-from-card" : ""}`}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className={`detail-card${fromCard ? " is-from-card" : ""}`}>{content}</div>
+        <div
+          className={`detail-card${fromCard ? " is-from-card" : ""}`}
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${card.repo} 详情`}
+        >
+          {content}
+        </div>
       </div>
     </div>
   );

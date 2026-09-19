@@ -49,6 +49,10 @@
   --text-secondary: #a0a3b1;
   --text-muted: #6b6e7f;
   --accent: #6366f1;
+  /* G-15：文字专用强调色。--accent(#6366f1) 在玻璃卡上实测 4.1:1、在 #08060e 上 4.51:1，
+     前者不过 WCAG AA；#818cf8 同底实测 6.1:1（原只在 Agent 页绕过，现提升为全站 token）。
+     描边/背景仍用 --accent（非文字，走 3:1 那条）。 */
+  --accent-text: #818cf8;
   --accent-glow: rgba(99, 102, 241, 0.4);
   --accent-light: rgba(99, 102, 241, 0.12);
   --accent-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
@@ -647,7 +651,7 @@ button {
 }
 .repo-name {
   font-weight: 700;
-  color: var(--accent);
+  color: var(--accent-text);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -702,7 +706,7 @@ button {
   font-weight: 500;
   font-size: 0.7rem;
   background: var(--accent-light);
-  color: var(--accent);
+  color: var(--accent-text);
   white-space: nowrap;
   display: inline-flex;
   align-items: center;
@@ -779,7 +783,7 @@ button {
   padding: 2px 8px;
   border-radius: 8px;
   font-size: 0.7rem;
-  color: var(--accent);
+  color: var(--accent-text);
   font-weight: 500;
 }
 
@@ -948,7 +952,7 @@ button {
 }
 
 .detail-repo .repo-name {
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 .detail-subtitle {
@@ -1112,7 +1116,7 @@ button {
 .creator-btn:hover,
 .open-btn:hover {
   border-color: var(--accent);
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 /* Topic 标签 */
@@ -1135,7 +1139,7 @@ button {
 }
 .topic-tag:hover {
   border-color: var(--accent);
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 /* --- 卡片标签：固定单行高度（chip 实测 25.08px，含 border；26px 保险不裁切），保证全站卡片等高 --- */
@@ -1155,7 +1159,7 @@ button {
   white-space: nowrap;
   font-weight: 500;
   background: var(--accent-light);
-  color: var(--accent);
+  color: var(--accent-text);
   border: 1px solid transparent;
 }
 .tag-chip.tag-llm {
@@ -2036,7 +2040,7 @@ button {
   border-radius: 16px;
   background: var(--accent-light);
   border: 1px solid var(--border);
-  color: var(--accent);
+  color: var(--accent-text);
   font-size: 0.85rem;
   font-weight: 600;
   text-decoration: none;
@@ -2047,7 +2051,7 @@ button {
 }
 .creator-github:hover {
   border-color: var(--accent);
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 .creator-follow-btn {
@@ -2380,9 +2384,8 @@ button {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  /* 文字用强调色：--accent(#6366f1) 在深底上仅 4.12:1，不过 WCAG AA；
-     #818cf8 在玻璃卡上 6.07:1，仅本页生效，不动全站 token */
-  --agent-accent-text: #818cf8;
+  /* G-15：这里曾是「只在本页绕过 AA 问题」的局部补丁，现已提升为全站 token，故指向它 */
+  --agent-accent-text: var(--accent-text);
 }
 
 .agent-hero {
@@ -2780,6 +2783,14 @@ button {
 .agent-resource:focus-visible,
 .agent-retry:focus-visible {
   outline: 2px solid var(--agent-accent-text);
+  outline-offset: 2px;
+}
+
+/* --- G-14 / A11Y-04：全站键盘焦点环 ---
+   此前只有 Agent 页三条 :focus-visible，卡片/底栏/侧栏/tab/收藏全靠 UA 默认（深底上几乎看不见）。
+   只用既有 token，不引入新颜色。 */
+:focus-visible {
+  outline: 2px solid var(--accent-text);
   outline-offset: 2px;
 }
 

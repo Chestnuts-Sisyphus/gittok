@@ -17,12 +17,14 @@ import { loadCachedText, saveCachedText } from "./feed-cache.ts";
 import {
   FEED_CARD_HEIGHT,
   FEED_MOBILE_MAX_WIDTH,
+  FEED_ROW_HEIGHT,
   FEED_SHORT_MAX_HEIGHT,
   feedCardHeightForHeight,
   feedColsForContentWidth,
   feedGridFromMatch,
   feedViewportOf,
   feedWindow,
+  isScrollableOverflow,
   nearestScrollRoot,
   sameFeedWindow,
   type FeedWindow,
@@ -1019,6 +1021,34 @@ export default function App() {
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
   }, [detailCard, closeDetail]);
+
+  // G-14：键盘逐行刷（A11Y-01：此前全站只有 Escape 一个键能用）
+  useEffect(() => {
+    if (detailCard) return;
+    const STEP: Record<string, number> = {
+      ArrowDown: 1,
+      ArrowUp: -1,
+      PageDown: 3,
+      PageUp: -3,
+      " ": 1,
+    };
+    const handler = (e: KeyboardEvent) => {
+      const rows = STEP[e.key];
+      if (!rows || e.defaultPrevented || e.metaKey || e.ctrlKey || e.altKey) return;
+      const t = e.target as HTMLElement | null;
+      if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable)) return;
+      const body = document.querySelector<HTMLElement>(".app-body");
+      const scroller =
+        body && isScrollableOverflow(getComputedStyle(body).overflowY)
+          ? body
+          : (document.scrollingElement as HTMLElement | null);
+      if (!scroller) return;
+      e.preventDefault();
+      scroller.scrollBy({ top: rows * FEED_ROW_HEIGHT, behavior: "auto" });
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [detailCard]);
 
   // 反馈操作 — 更新标签权重（只写 localStorage + ref，不触发重渲染）
   const updateTagWeights = useCallback(

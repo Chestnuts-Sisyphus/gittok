@@ -279,6 +279,25 @@ window.__gt = {
 };
 `;
 
+const KEY_CODES = { Enter: 13, Escape: 27, ArrowDown: 40, ArrowUp: 38, PageDown: 34, PageUp: 33, " ": 32 };
+
+/** 发一次真实按键（CDP Input 域，不是 JS 合成事件）。 */
+async function key(cdp, k, code) {
+  const keyCode = KEY_CODES[k] ?? 0;
+  const text = k.length === 1 ? k : "";
+  for (const type of ["rawKeyDown", "keyUp"]) {
+    await cdp.call("Input.dispatchKeyEvent", {
+      type,
+      key: k,
+      code: code || k,
+      windowsKeyCode: keyCode,
+      nativeVirtualKeyCode: keyCode,
+      text,
+      unmodifiedText: text,
+    });
+  }
+}
+
 async function setView(cdp, view) {
   await cdp.call("Emulation.setDeviceMetricsOverride", {
     width: view.w,
@@ -425,6 +444,63 @@ async function checkView(cdp, view) {
     fit.band - fit.headerH >= fit.cardH,
     `可视带高 ${fit.band - fit.headerH}（顶栏 ${fit.headerH}→底栏上沿 ${fit.band}，视口 ${fit.inner}）｜卡高 ${fit.cardH}｜首卡 top ${fit.top}`,
   );
+
+  // 5.5 键盘与读屏（G-14）
+  const roles = await cdp.eval(`
+    const c=document.querySelector('.card');
+    return { role: c.getAttribute('role'), tabIndex: c.getAttribute('tabindex'),
+             ariaLabel: (c.getAttribute('aria-label')||'').slice(0,20) };
+  `);
+  report(
+    view.key,
+    "卡片可聚焦（role=button + tabIndex + aria-label）",
+    roles.role === "button" && roles.tabIndex === "0" && !!roles.ariaLabel,
+    `role=${roles.role} tabindex=${roles.tabIndex} aria-label="${roles.ariaLabel}…"`,
+  );
+  await cdp.eval(`document.querySelector('.card').focus(); return true;`);
+  await key(cdp, "Enter", "Enter");
+  await new Promise((r) => setTimeout(r, 700));
+  const dlg = await cdp.eval(`
+    const d=document.querySelector('.detail-card');
+    return { exists: !!d, role: d && d.getAttribute('role'), modal: d && d.getAttribute('aria-modal'),
+             focusIn: !!(document.activeElement && document.activeElement.closest && document.activeElement.closest('.detail-card')),
+             closeFocused: !!(document.activeElement && document.activeElement.classList.contains('detail-close')),
+             closeLabel: (()=>{const b=document.querySelector('.detail-close'); return b? b.getAttribute('aria-label'):null;})() };
+  `);
+  report(
+    view.key,
+    "Enter 打开弹层 + dialog 语义 + 焦点收拢",
+    !!dlg.exists && dlg.role === "dialog" && dlg.modal === "true" && dlg.focusIn && dlg.closeFocused,
+    `role=${dlg.role} aria-modal=${dlg.modal} 焦点在弹层=${dlg.focusIn}（落在关闭按钮=${dlg.closeFocused}，aria-label="${dlg.closeLabel}"）`,
+  );
+  await key(cdp, "Escape", "Escape");
+  await new Promise((r) => setTimeout(r, 600));
+  const back = await cdp.eval(`
+    return { gone: !document.querySelector('.detail-card'),
+             onCard: !!(document.activeElement && document.activeElement.classList.contains('card')) };
+  `);
+  report(
+    view.key,
+    "Escape 关闭后焦点归还卡片",
+    !!back.gone && !!back.onCard,
+    `弹层已关=${back.gone} 焦点回卡片=${back.onCard}`,
+  );
+  if (view.w > 768) {
+    const before = await cdp.eval(
+      `const b=document.querySelector('.app-body'); return b? b.scrollTop : window.scrollY;`,
+    );
+    await key(cdp, "ArrowDown", "ArrowDown");
+    await new Promise((r) => setTimeout(r, 400));
+    const after = await cdp.eval(
+      `const b=document.querySelector('.app-body'); return b? b.scrollTop : window.scrollY;`,
+    );
+    report(
+      view.key,
+      "方向键逐行刷（G-14）",
+      after > before,
+      `scrollTop ${before} → ${after}（增 ${after - before}px）`,
+    );
+  }
 
   // 6 详情弹层：动作区与弹层本体不破相
   await cdp.eval(`return window.__gt.clickText('.card');`);
