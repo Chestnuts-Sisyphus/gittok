@@ -10,8 +10,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # fetch-depth 2: the field-regression gate below needs HEAD~1 as its baseline.
       - name: Checkout
         uses: actions/checkout@v6
+        with:
+          fetch-depth: 2
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v6
@@ -36,6 +39,19 @@ jobs:
 
       - name: Test
         run: pnpm test
+
+      # Baseline for the field-regression gate: data/feed.prev.json is gitignored by design
+      # (it is a build artifact), so a fresh CI checkout never had it and the gate silently skipped.
+      # Write to a temp path first and only move it into place on success, so a failed lookup can
+      # never leave an empty file that would break JSON parsing downstream.
+      - name: Field regression baseline (HEAD~1 feed)
+        run: |
+          if git show HEAD~1:data/feed.json > data/feed.prev.tmp 2>/dev/null; then
+            mv data/feed.prev.tmp data/feed.prev.json
+            echo "regression baseline ready ($(wc -c < data/feed.prev.json) bytes)"
+          else
+            echo "no previous feed.json in history (first run or shallow edge); regression gate will skip as before"
+          fi
 
       # 卡片级不变量闸（D2，2026-09-14）：管道产物与人为改动都必须在提交前过这道闸——
       # 「字段无声消失」那次事故（zone 覆盖率 100% → 0.2%）靠人肉发现太晚，改成机器拦。
