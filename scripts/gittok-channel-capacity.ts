@@ -89,7 +89,10 @@ function rowOf(name: string, pool: number, out: CapCard[], viol = 0): Row {
 /** 逐频道实测（返回表格行；纯计算，无 IO 副作用）。 */
 export function capacityRows(cards: CapCard[]): Row[] {
   const now = new Date();
-  const allOwners = new Set(cards.map((c) => c.owner ?? "").filter(Boolean));
+  // 从 following.json 读取真实关注列表（避免 feed.json owner 字段缺失导致假行）
+  const followingData = JSON.parse(fs.readFileSync(path.join(process.cwd(), "data", "following.json"), "utf-8")) as any;
+  const followingUsers = followingData.users || {};
+  const allOwners = new Set(Object.keys(followingUsers).filter(Boolean));
 
   const hotPool = hotSorted(cards);
   const hot = hotChannel(cards);
@@ -128,7 +131,8 @@ export function capacityRows(cards: CapCard[]): Row[] {
 /** 结论行：返回问题清单（空 = 通过）。 */
 export function capacityProblems(rows: Row[]): string[] {
   const problems: string[] = [];
-  const core = ["热门", "乐趣", "分区·AI", "分区·工具"];
+  // 扩展 core 频道集合：分区·资源/创意也需满足≥300 约束（避免假行）
+  const core = ["热门", "乐趣", "分区·AI", "分区·工具", "分区·资源", "分区·创意"];
   for (const r of rows) {
     if (r.dup > 0) problems.push(`${r.name} 频道内有重复卡 ${r.dup} 张`);
     if (r.pool !== r.out) {
