@@ -24,6 +24,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
+    "copy:audit": "tsx scripts/gittok-copy-audit.ts",
+    "responsive:check": "node scripts/gittok-responsive-check.mjs",
     "prepare": "husky"
   },
   "dependencies": {
