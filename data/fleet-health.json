@@ -350,22 +350,22 @@
   },
   {
     "job": "feed",
-    "at": "2026-09-19T17:12:48.655Z",
+    "at": "2026-09-19T20:05:04.192Z",
     "workers": [
       {
         "name": "zhipu",
-        "calls": 1,
+        "calls": 2,
         "ok": 0,
         "err429": 0,
         "cooldowns": 0,
-        "otherErrors": 1,
+        "otherErrors": 2,
         "cooling": false,
         "lastError": "Error: 401 令牌已过期或验证不正确"
       },
       {
         "name": "agnes",
-        "calls": 1,
-        "ok": 1,
+        "calls": 2,
+        "ok": 2,
         "err429": 0,
         "cooldowns": 0,
         "otherErrors": 0,
@@ -373,28 +373,27 @@
       },
       {
         "name": "agnes#2",
-        "calls": 3,
+        "calls": 6,
         "ok": 1,
-        "err429": 2,
+        "err429": 4,
         "cooldowns": 0,
-        "otherErrors": 0,
+        "otherErrors": 1,
         "cooling": false,
-        "lastError": "Error: 429 You’ve reached the API rate limit for free users. Upgrade to a Token Plan to unlock higher limits and continue using the API without interruption. (request id: 20260919165452922434041WI1Pl7"
+        "lastError": "Error: 429 You’ve reached the API rate limit for free users. Upgrade to a Token Plan to unlock higher limits and continue using the API without interruption. (request id: 20260919195511792354327rMsN12"
       },
       {
         "name": "zhipu#2",
-        "calls": 3,
-        "ok": 1,
-        "err429": 2,
+        "calls": 2,
+        "ok": 2,
+        "err429": 0,
         "cooldowns": 0,
         "otherErrors": 0,
-        "cooling": false,
-        "lastError": "Error: 429 该模型当前访问量过大，请您稍后再试"
+        "cooling": false
       },
       {
         "name": "zhipu#3",
-        "calls": 1,
-        "ok": 1,
+        "calls": 2,
+        "ok": 2,
         "err429": 0,
         "cooldowns": 0,
         "otherErrors": 0,
@@ -403,40 +402,41 @@
       {
         "name": "zhipu#4",
         "calls": 2,
-        "ok": 1,
-        "err429": 1,
+        "ok": 2,
+        "err429": 0,
         "cooldowns": 0,
         "otherErrors": 0,
-        "cooling": false,
-        "lastError": "Error: 429 该模型当前访问量过大，请您稍后再试"
+        "cooling": false
       },
       {
         "name": "zhipu#5",
         "calls": 3,
-        "ok": 1,
-        "err429": 2,
+        "ok": 2,
+        "err429": 1,
         "cooldowns": 0,
         "otherErrors": 0,
         "cooling": false,
-        "lastError": "Error: 429 该模型当前访问量过大，请您稍后再试"
+        "lastError": "Error: 429 您的账户已达到速率限制，请您控制请求频率"
       },
       {
         "name": "groq",
-        "calls": 1,
+        "calls": 5,
         "ok": 1,
-        "err429": 0,
-        "cooldowns": 0,
+        "err429": 4,
+        "cooldowns": 1,
         "otherErrors": 0,
-        "cooling": false
+        "cooling": true,
+        "lastError": "Error: 429 Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 197512, Requested 46"
       },
       {
         "name": "groq#2",
-        "calls": 1,
+        "calls": 5,
         "ok": 1,
-        "err429": 0,
-        "cooldowns": 0,
+        "err429": 4,
+        "cooldowns": 1,
         "otherErrors": 0,
-        "cooling": false
+        "cooling": true,
+        "lastError": "Error: 429 Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 197024, Requested 46"
       },
       {
         "name": "groq#3",
@@ -512,10 +512,10 @@
       },
       {
         "name": "gemini",
-        "calls": 2,
-        "ok": 1,
-        "err429": 1,
-        "cooldowns": 0,
+        "calls": 4,
+        "ok": 0,
+        "err429": 4,
+        "cooldowns": 1,
         "otherErrors": 0,
         "cooling": false,
         "lastError": "Error: 429 status code (no body)"
@@ -532,13 +532,13 @@
       },
       {
         "name": "gemini#3",
-        "calls": 1,
+        "calls": 4,
         "ok": 0,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 1,
+        "err429": 4,
+        "cooldowns": 1,
+        "otherErrors": 0,
         "cooling": false,
-        "lastError": "Error: 503 status code (no body)"
+        "lastError": "Error: 429 status code (no body)"
       },
       {
         "name": "gemini#4",
@@ -669,13 +669,12 @@
       },
       {
         "name": "openrouter",
-        "calls": 4,
-        "ok": 0,
-        "err429": 4,
-        "cooldowns": 1,
+        "calls": 1,
+        "ok": 1,
+        "err429": 0,
+        "cooldowns": 0,
         "otherErrors": 0,
-        "cooling": false,
-        "lastError": "Error: 429 Provider returned error"
+        "cooling": false
       },
       {
         "name": "custom-modelscope",
@@ -688,8 +687,8 @@
       },
       {
         "name": "custom-modelscope#2",
-        "calls": 0,
-        "ok": 0,
+        "calls": 1,
+        "ok": 1,
         "err429": 0,
         "cooldowns": 0,
         "otherErrors": 0,
@@ -697,8 +696,8 @@
       },
       {
         "name": "custom-spark",
-        "calls": 0,
-        "ok": 0,
+        "calls": 1,
+        "ok": 1,
         "err429": 0,
         "cooldowns": 0,
         "otherErrors": 0,
