@@ -3269,9 +3269,9 @@
     "owner": "stablyai",
     "name": "orca",
     "desc": "Orca is the ADE for working with a fleet of parallel agents. Run any coding agent with your own subscription. Available on desktop, mobile and remote runtime.",
-    "summaryCn": "用你的订阅就能让AI团队干活，支持多端运行的神器",
-    "reasonCn": "Orca 是一个专为管理 AI 代理集群设计的编排平台，允许用户使用自己的订阅在桌面、手机或 VPS 上运行任何编程代理。它通过统一的 ADE（代理部署环境）抽象层，解决了多代理协作中的订阅管理、任务分配和跨设备调度难题，让开发者能轻松构建并管理复杂的 AI 工作流。",
-    "detailCn": "想象一下，你有一个由多个 AI 助手组成的虚拟团队，它们可以同时处理不同的任务，比如写代码、查资料、写报告，而且大家都能用你自己的账号和订阅，不用担心 API 额度不够用。Orca 就是这么个“团队管家”，它不是让你去写复杂的代码来管理这些 AI，而是提供一个现成的平台，让你能一键启动、调度和管理这支 AI 队伍。\n\n这个项目的核心在于它的 ADE（代理部署环境）架构。它把底层复杂的 API 调用、模型加载和任务分发逻辑都封装好了，你只需要关注“我要让哪个代理做什么事”。它支持在任何设备上运行，这意味着你可以在办公室的电脑上跑一个代理写代码，在手机上跑一个代理查资料，它们之间还能实时同步和协作。这对那些需要多步骤、多角色的复杂任务特别有用，比如写一个完整的产品功能，可以先由一个代理构思架构，再由另一个代理写具体代码，最后由第三个代理做测试。\n\n上手很简单，因为它主要面向的是开发者和团队。你不需要搭建复杂的本地环境，只要在支持的桌面或移动客户端上登录，就能创建和管理你的代理。它支持多种编程语言的代理，所以无论是写 Python 还是 JavaScript，都能找到对应的工具。对于企业用户来说，这意味着可以把 AI 能力更灵活地嵌入到现有的工作流中，而不是被绑定在某个特定的云端服务上。\n\nOrca 目前在 GitHub 上获得了超过 4 万星，社区活跃度很高。它定位的是一个基础设施层，所以生态正在快速扩张。虽然现在主要是针对编程场景，但它的架构设计足够通用，未来扩展到其他类型的 AI 任务（比如数据分析、内容创作）是顺理成章的。和那些只能单打独斗的 AI 工具相比，Orca 更像是一个“AI 操作系统”，帮你把零散的工具串联起来，真正发挥出团队协作的力量。",
+    "summaryCn": "让多个 AI 编码助手并行干活并合并结果的指挥平台",
+    "reasonCn": "Orca 是一个专为 AI 编程构建的指挥中心，能把 Claude Code、Codex 等多个助手并排放在独立工作区里。它能自动监控任务进度，甚至在手机上也能随时发号施令。核心亮点是把原本孤立的 AI 工具变成了一支协同作战的团队，帮你对比不同模型的输出结果，省去了反复切换窗口的麻烦。安装方式请访问项目仓库获取，上手后直接把你的编码需求扔进工作区，Orca 就会自动调度不同助手并行生成代码。",
+    "detailCn": "Orca 的核心设计理念是解决“单点作战”的效率瓶颈。传统开发模式下，你需要在不同的 AI 助手之间来回切换，或者只能用一种模型。Orca 通过“并行工作区”技术打破了这一限制。它允许你把一个提示词拆解，同时分发给五个不同的代理（例如一个用 Codex，一个用 Claude Code，一个用 OpenCode），每个代理都在自己独立的 Git 工作区里运行。这意味着你可以让它们同时修改同一个文件的多个部分，或者针对同一个需求生成多套方案。Orca 会自动跟踪这些变化，并在完成后帮你对比结果。当你确认哪个方案更好时，只需合并那个工作区即可。\n\n除了并行处理能力，Orca 还极其强调“掌控感”。它不仅仅是一个后台任务管理器，更是一个可视化的指挥台。它内置了一个基于 WebGL 的高性能终端，支持无限分割和跨重启的滚动回溯，这让多窗口操作变得极其流畅。更令人惊喜的是它的移动端支持。你可以通过 iOS App Store 或 Android APK 实时查看代理的运行状态。当任务完成时，你会收到通知，然后直接在手机上发送后续指令，或者查看生成的代码片段。这种“随时随地接管”的能力，让 AI 辅助编程真正变成了一种随时在线的伙伴。\n\n对于开发者来说，Orca 的价值在于降低了模型选择的试错成本。你不必再为了测试一个新模型而写完整的测试用例，只需在 Orca 里把同一个任务扔给它，看看它的输出质量。同时，它也提供了一个极佳的代码审查环境。你可以把不同助手生成的代码放在同一个视图下进行对比，清晰地看到差异。这种对比不仅限于代码逻辑，还包括代码风格、注释质量等细节。通过这种方式，你不仅能找到最合适的工具，还能从不同的视角学习编程技巧。",
     "stars": 72073,
     "starGrowth": 831,
     "language": "TypeScript",
@@ -3340,7 +3340,21 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.33458992965465567
+    "heatScore": 0.33458992965465567,
+    "facts": [
+      {
+        "claim": "可在手机上实时监控并引导 AI 代理",
+        "source": "Monitor and steer your agents from your phone — get notified when an agent finishes and send follow-ups from anywhere."
+      },
+      {
+        "claim": "支持将一个提示词同时分发给五个独立代理",
+        "source": "Fan one prompt across five agents, each in its own isolated git worktree — compare the results and merge the winner."
+      },
+      {
+        "claim": "终端支持无限分割和 Web 渲染",
+        "source": "Ghostty-class terminals with WebGL rendering, infinite splits, and scrollback that survives restarts."
+      }
+    ]
   },
   {
     "repo": "yikart/AiToEarn",
@@ -3599,9 +3613,9 @@
     "owner": "pshenok",
     "name": "server-survival",
     "desc": "Tower defense game that teaches cloud architecture. Build infrastructure, survive traffic, learn scaling.",
-    "summaryCn": "边打塔防游戏边学云架构，流量来了建筑扛得住才算赢",
-    "reasonCn": "这游戏把服务器架构设计变成塔防玩法。你建造的负载均衡器、数据库和缓存就像防御塔，用来抵御源源不断涌来的流量怪物。通过实际操作，你可以直观理解什么是水平扩展、什么是故障转移，让枯燥的云概念瞬间生动起来，非常适合开发新手练手。",
-    "detailCn": "简单来说，以前学云架构、学分布式系统，全靠啃那些让人头秃的枯燥文档和PPT，概念抽象得让人抓狂。现在有了这个游戏，你不用在椅子上坐一下午看文档，而是直接上手“造”一个系统，看着流量怪物一波波冲过来，你的架构能不能扛住一目了然。它把抽象的技术选型变成了看得见摸得着的游戏策略，让你在游戏失败的瞬间秒懂什么是单点故障。\n\n核心技术上，这是一个基于Web的塔防游戏，但它的“塔”可不是普通的炮台。你选择部署Redis、MySQL、Kubernetes集群还是Nginx负载均衡，每种组件都有不同的属性和克星。流量怪物的类型也对应着现实中的各种负载场景，比如读多写少、突发流量洪峰或者慢查询攻击。游戏机制强制你理解系统间的依赖关系，如果你只堆高并发的计算节点却忽略了数据库的连接池瓶颈，流量一来系统照样崩盘，非常考验对云原生架构全局观的理解。\n\n上手非常简单，不需要安装任何复杂的开发环境。你只需要打开浏览器，访问项目主页就能直接开玩。界面清爽，操作逻辑接近经典的塔防游戏，点击建设、选择升级、调整站位。如果你是前端开发者，想深入理解后端架构，或者是一名后端开发想补齐云计算的知识盲区，这都能在你的休闲娱乐中潜移默化地解决。\n\n这个项目特别适合计算机专业的学生、初入职场的前后端开发，以及任何对“我的网站为什么挂了”感到好奇的 curious mind。它不是一个严肃的模拟经营游戏，而是一个带着强烈教育目的的工具。当你为了守住最后一波流量而焦虑地调整缓存策略时，那些关于性能调优的知识点会深深印在你的脑子里，比死记硬背管用得多。\n\n目前项目在GitHub上拥有六千多个star，在技术教育游戏这个细分领域里算是相当成功的尝试了。JavaScript社区虽然庞大，但专门做云架构可视化的项目并不多。相比传统的学习平台如Udemy或Coursera，它提供了沉浸式的学习体验；相比复杂的云厂商控制台，它又足够轻量和安全。随着云原生概念的普及，这类寓教于乐的工具越来越受欢迎，是一个值得一试的“摸鱼”学习神器。",
+    "summaryCn": "在 3D 云架构模拟中生存，管理流量并抵御 DDoS 攻击。",
+    "reasonCn": "这款游戏把枯燥的云架构知识变成了生存挑战。玩家扮演云架构师，必须在不断攀升的流量和 DDoS 攻击夹击下，通过搭建弹性基础设施、合理分配预算来维持服务健康。核心玩法是动态资源调度与防御策略，让人在紧张刺激中掌握云运维逻辑。",
+    "detailCn": "Server Survival 是一款沉浸式的 3D 互动模拟游戏，它巧妙地将“云架构”这一硬核概念转化为可玩的游戏体验。玩家不再需要面对枯燥的文档，而是直接在 3D 场景中扮演一名云架构师，直面业务增长带来的生存压力。项目最大的亮点在于它不仅是娱乐，更是实战演练：你必须实时监控服务健康度，在流量激增时快速扩容，在遭遇 DDoS 攻击时部署防御策略，同时还要精打细算预算，避免因成本超支导致服务崩盘。这种“玩中学”的设计，让抽象的云技术概念变得具象且生动。\n\n游戏的核心体验被称为“生存模式”，玩家将置身于一个不断升级的挑战环境中。系统会随机触发各种事件，从突发的流量峰值到恶意的 DDoS 攻击，每一次决策都可能决定服务是延续还是崩溃。这种高强度的互动性极大地增强了代入感，让玩家在每一次决策中都能直观感受到运维工作的紧张与重要。\n\n除了主游戏，该项目还推出了姊妹作“Datacenter Survival”，进一步拓展了学习的维度。如果说 Server Survival 教授的是云的“逻辑层”，那么 Datacenter Survival 则专注于“物理层”。在这个游戏中，玩家需要管理数据中心的电力链路、散热系统、冷却效率以及 PUE（电源使用效率）指标。通过将物理层面的技术细节融入游戏机制，开发者构建了一个从宏观架构到微观硬件的完整知识体系，极大地丰富了学习的深度。\n\n对于开发者和技术爱好者来说，这是一个绝佳的实践机会。你不需要复杂的安装过程，通常直接从项目仓库获取安装方式即可运行。上手非常直观，项目旨在让用户在“玩”的过程中自然习得云架构知识，适合所有想通过寓教于乐方式提升云技能的读者，无论是初学者还是资深架构师都能从中获得独特的体验和启发。",
     "stars": 6423,
     "starGrowth": 6,
     "createdAt": "2025-11-21T02:36:29Z",
@@ -3681,7 +3695,17 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.024962914525922465
+    "heatScore": 0.024962914525922465,
+    "facts": [
+      {
+        "claim": "玩家扮演云架构师，在 3D 模拟中应对流量与 DDoS。",
+        "source": "Your mission is to build and scale a resilient cloud infrastructure to handle increasing traffic loads while fighting off DDoS attacks"
+      },
+      {
+        "claim": "姊妹游戏 Datacenter Survival 教授数据中心物理层知识。",
+        "source": "This one teaches the *logical* layer of the cloud; that one teaches the *physical* layer it runs on: power chains, heat, cooling, PUE"
+      }
+    ]
   },
   {
     "repo": "Tencent/WeKnora",
@@ -5664,9 +5688,9 @@
     "owner": "NousResearch",
     "name": "hermes-agent",
     "desc": "The agent that grows with you",
-    "summaryCn": "能自己学习的AI助手，越用越懂你，自动帮你搞定各种任务",
-    "reasonCn": "这个项目属于AI Agent（智能体）框架，核心能力在于让LLM不仅仅是对话模型，而是能够\"行动\"的智能体。它支持对话记忆，能够跨多轮对话保持上下文连贯；具备自我反思机制，可以在执行任务后自动评估结果并改进策略；还支持工具调用，可以接入各种外部API来完成实际工作，比如查天气",
-    "detailCn": "想象一下你有一个永远不嫌烦的私人助理，它不仅记得你喜欢什么，还能主动学习你的习惯，甚至在你说\"帮我把上个月的报告整理一下\"的时候，它知道该打开什么文件、用什么格式、发给谁。这就是Hermes Agent能做的事。\n\n这个项目属于AI Agent（智能体）框架，核心能力在于让LLM不仅仅是对话模型，而是能够\"行动\"的智能体。它支持对话记忆，能够跨多轮对话保持上下文连贯；具备自我反思机制，可以在执行任务后自动评估结果并改进策略；还支持工具调用，可以接入各种外部API来完成实际工作，比如查天气、写代码、发邮件等。架构设计上采用模块化设计，用户可以灵活替换底层的LLM引擎，同时支持多种记忆持久化方案。\n\n安装和使用相对简单。首先确保Python环境，然后通过pip安装：pip install hermes-agent。基本用法是在代码中初始化Agent实例，配置LLM提供商，然后开始对话。它支持OpenAI、Anthropic以及本地模型等多种后端，配置方式类似：hermes.init(model=\"gpt-4\", memory=\"sqlite\")即可开始使用。你也可以通过配置文件或环境变量来管理API密钥和参数。\n\n这个项目特别适合几类人群：一是想做AI应用开发的程序员，可以快速搭建智能体原型；二是希望用AI自动化日常工作的个人用户，比如整理文档、管理日程等；三是研究AI Agent方向的开发者，可以作为学习和二次开发的基座。如果你每天需要重复处理大量信息、或者想尝试把AI接入到实际工作流中，Hermes会是个不错的选择。\n\nNous Research是开源AI社区中非常活跃的机构，之前就推出了著名的Hermes系列模型。这个项目自开源以来发展迅猛，GitHub Star数已超过22万，社区非常活跃。它定位类似于AutoGPT和LangChain的Agent框架，但更注重易用性和记忆能力。项目迭代频繁，文档也在不断完善，是目前AI Agent领域值得关注的项目之一。",
+    "summaryCn": "会自我进化的云端AI助手，能记住你并不断变强。",
+    "reasonCn": "Hermes Agent 是 Nous Research 推出的自我改进型 AI 代理，它最特别的地方在于内置学习循环：能从与你的交互中总结经验、生成新技能，并在后续使用中不断优化。它可以在便宜的云服务器上运行，空闲时几乎不花钱，还能通过 Telegram 随时随地远程指挥。",
+    "detailCn": "Hermes Agent 的核心卖点是它的“自我改进”能力。它并不是一个静态的聊天机器人，而是一个具备成长性的智能体。它会从过往对话中提取知识，将其固化为可复用的技能，并在下次遇到类似问题时自动调用这些技能，让解决问题的能力越用越强。这种机制让它更像是贴身助理，而非简单的问答工具。\n\n除了学习能力，Hermes Agent 还非常注重“持久化记忆”。它有意识地引导和鼓励用户分享信息，并主动记录这些内容，从而构建一个跨会话、不断加深的关于你的用户画像。这意味着它能记住你的偏好、习惯和重要信息，提供更具个性化的服务。\n\n这个项目的另一个亮点是部署的灵活性。你可以在低至每月5美元的VPS上运行它，也可以部署到GPU集群或几乎零成本的Serverless环境。这种设计让它不局限于个人电脑，而是可以作为一个后台服务常驻云端。你甚至可以在它忙其他任务时，通过Telegram发消息与它沟通，实现真正的云端值守。\n\n在模型使用上，Hermes Agent 保持了极高的开放性。它支持Nous Portal、OpenRouter、OpenAI等多种模型提供商，也兼容用户自己的推理端点。通过简单的`hermes model`命令即可切换底层模型，无需修改任何代码，避免了被单一模型厂商锁定的风险。\n\n总的来说，这是一款面向追求效率和个性化体验的用户设计的智能代理。无论是个人开发者、研究者，还是希望自动化工作流的专业人士，都能从它的自适应能力和云端化部署中受益。安装和上手指引可从项目仓库获取。",
     "stars": 246448,
     "starGrowth": 330,
     "createdAt": "2025-07-22T22:22:28Z",
@@ -5751,7 +5775,25 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.3040170745958579
+    "heatScore": 0.3040170745958579,
+    "facts": [
+      {
+        "claim": "具备内置学习闭环，能从使用中生成技能并自我改进。",
+        "source": "it creates skills from experience, improves them during use"
+      },
+      {
+        "claim": "支持在低成本云服务器上运行，空闲时费用极低。",
+        "source": "Run it on a $5 VPS, a GPU cluster, or serverless infrastructure that costs nearly nothing when idle."
+      },
+      {
+        "claim": "不绑定特定模型，支持多家模型服务并可随时切换。",
+        "source": "Use any model you want — Nous Portal, OpenRouter, OpenAI, your own endpoint, and many others."
+      },
+      {
+        "claim": "可通过Telegram远程交互，实现云端值守。",
+        "source": "talk to it from Telegram while it works on a cloud VM."
+      }
+    ]
   },
   {
     "repo": "yt-dlp/yt-dlp",
@@ -6224,9 +6266,9 @@
     "owner": "louislam",
     "name": "uptime-kuma",
     "desc": "A fancy self-hosted monitoring tool",
-    "summaryCn": "颜值超高的自托管监控工具，谁宕机了一目了然",
-    "reasonCn": "技术上，它是一个基于Node.js的自托管监控平台，界面用的是Vue.js，颜值在整个监控工具圈里数一数二。支持HTTP/HTTPS、TCP、DNS、Ping、Port等多种监控方式，还能设置监控间隔、关键词检测、SSL证书到期提醒。告警推送方面支持微信、钉钉、企业微信、Telegram、Discord、Slack等十",
-    "detailCn": "你有没有遇到过网站半夜挂了，第二天早上才被发现的情况？uptime-kuma就是为了解决这个问题而生的——它像一个忠诚的守夜人，24小时盯着你的各种服务，一旦出问题立刻通知你。\n\n技术上，它是一个基于Node.js的自托管监控平台，界面用的是Vue.js，颜值在整个监控工具圈里数一数二。支持HTTP/HTTPS、TCP、DNS、Ping、Port等多种监控方式，还能设置监控间隔、关键词检测、SSL证书到期提醒。告警推送方面支持微信、钉钉、企业微信、Telegram、Discord、Slack等十几个渠道，告警规则可以按时间段屏蔽，避免半夜被吵醒。\n\n部署非常简单。推荐用Docker：docker run -d --restart=always -p 3001:3001 -v uptime-kuma:/app/data --name uptime-kuma louislam/uptime-kuma:1，然后浏览器访问http://你的IP:3001就能进入设置向导，全程可视化操作，几分钟就搞定。\n\n适合个人开发者、小团队站长、自托管爱好者使用。如果你有自己的网站、API服务、服务器，或者想监控家里NAS、智能家居的状态，这个工具非常合适。比UptimeRobot、Pingdom这些SaaS方案更隐私、更便宜。\n\n项目GitHub star超过9万，作者持续活跃更新，已稳定维护多年。与同类工具对比，Grafana + Prometheus组合更强大但上手门槛高，这个工具胜在开箱即用、界面友好、部署简单，是轻量级监控场景的最佳选择之一。",
+    "summaryCn": "自托管服务器监控工具，支持 90+ 通知服务与精美状态页。",
+    "reasonCn": "Uptime Kuma 是一款开源的自托管监控工具，旨在替代老旧的 Uptime Robot。它通过网页界面直观展示服务器的运行状态，并支持 HTTP、TCP、DNS 等多种监控类型。最核心的优势在于它能与 90 多种第三方服务（如 Telegram、Discord、邮件）联动，一旦服务宕机立即推送告警。此外，它还能生成美观的状态页，方便向访客展示服务健康度，完全替代了传统的监控面板。",
+    "detailCn": "Uptime Kuma 是一款现代、响应迅速且易于使用的自托管监控工具，旨在替代传统的监控服务。该项目不仅功能强大，而且拥有一个极具视觉吸引力的用户界面。用户可以轻松监控各种服务类型，包括 HTTP(S) 站点、TCP 端口、DNS 记录、WebSocket、Steam 游戏服务器以及 Docker 容器。项目支持 20 秒的监控间隔，确保对服务状态的感知尽可能实时。\n\n在通知方面，Uptime Kuma 提供了极高的灵活性，支持通过 Telegram、Discord、Gotify、Slack、Pushover、Email (SMTP) 以及 90 多种其他通知服务发送告警。这种广泛的集成能力意味着你可以将服务器的健康状态直接推送到你常用的沟通工具中，而无需在多个平台之间切换。对于需要展示服务状态的场景，它还支持多语言和多个状态页面，甚至可以将状态页映射到特定的域名下，让监控信息以更专业的方式对外发布。\n\n为了方便用户快速体验，项目官方提供了一个位于德国法兰克福的临时演示服务器。所有演示数据都会在 10 分钟后自动删除，这种设计既保护了用户隐私，又降低了上手门槛。项目支持多因素认证（2FA）和代理支持，确保了在自托管环境下的安全性。安装过程也非常简单，用户可以通过 Docker Compose 一键部署，无需复杂的配置，非常适合技术爱好者或需要管理多个自托管服务的用户。",
     "stars": 91543,
     "starGrowth": 61,
     "language": "JavaScript",
@@ -6288,7 +6330,21 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.18499906055077942
+    "heatScore": 0.18499906055077942,
+    "facts": [
+      {
+        "claim": "支持 90+ 种通知服务",
+        "source": "Notifications via Telegram, Discord, Gotify, Slack, Pushover, Email (SMTP), and 90+ notification services"
+      },
+      {
+        "claim": "提供临时在线演示服务器",
+        "source": "Demo Server (Location: Frankfurt - Germany): It is a temporary live demo, all data will be deleted after 10 minutes."
+      },
+      {
+        "claim": "监控间隔仅需 20 秒",
+        "source": "20-second intervals"
+      }
+    ]
   },
   {
     "repo": "p1neappleXpress/OpenFlux",
@@ -9991,9 +10047,9 @@
     "owner": "dgraph-io",
     "name": "dgraph",
     "desc": "high-performance graph database for real-time use cases",
-    "summaryCn": "在当今的AI应用中，数据不仅仅是文本，更充满了复杂的关联关系。",
-    "reasonCn": "它的核心技术亮点在于“原生图数据库”架构。不像其他数据库通过连接关系表来模拟图查询，Dgraph从底层就支持多向边关系，查询速度极快。同时，它对GraphQL提供了原生支持，让开发者能用声明式的方式轻松查询复杂的数据结构。",
-    "detailCn": "在当今的AI应用中，数据不仅仅是文本，更充满了复杂的关联关系。传统的数据库在处理这种关系图谱，或者需要结合向量相似度搜索时，往往显得力不从心。Dgraph就是一个为这种复杂场景而生的高性能分布式图数据库，它不仅能存数据，更能帮你理清数据之间的关系。\n\n它的核心技术亮点在于“原生图数据库”架构。不像其他数据库通过连接关系表来模拟图查询，Dgraph从底层就支持多向边关系，查询速度极快。同时，它对GraphQL提供了原生支持，让开发者能用声明式的方式轻松查询复杂的数据结构。更关键的是，它内置了对向量搜索的支持，可以直接存储和检索向量数据，这使得它在构建大规模RAG（检索增强生成）系统时具有天然优势。\n\n安装Dgraph有多种方式，最简单的是使用Docker Compose一键启动单机版进行测试。对于生产环境，它提供基于Distributed Hash Table (DHT) 的分布式部署方案，可以横向扩展以容纳十亿级的事务和实体。官方也提供了Go、Python、Node.js等多种语言的客户端SDK，方便集成。\n\nDgraph特别适合大型科技公司、金融机构以及需要构建复杂知识图谱和推荐系统的场景。比如，你可以用它来存储用户的行为关系、商品的知识图谱，结合向量检索实现语义级的智能搜索。如果你的应用数据量达到千万级以上，且对查询延迟有严格要求，Dgraph是一个非常值得考虑的选择。\n\nDgraph由LinkedIn等大厂的技术背景团队创建，在开源社区有着很高的地位，被认为是图数据库领域的顶级项目之一。与Neo4j相比，Dgraph在分布式扩展性和高性能事务处理上往往更具优势，尤其是在云原生环境下的表现更为出色。",
+    "summaryCn": "高性能分布式图数据库，专为 GraphQL 设计。",
+    "reasonCn": "Dgraph 是一款基于 Go 语言开发的分布式图数据库，旨在为海量结构化数据提供高性能的查询服务。它支持 ACID 事务、一致复制和线性化读取，能够处理 PB 级数据。作为原生 GraphQL 数据库，它在底层存储上做了深度优化，能显著减少磁盘寻道和网络调用，适合对数据关系查询要求高的应用场景。",
+    "detailCn": "Dgraph 的核心目标是提供类似 Google 生产环境级别的规模和吞吐量，同时保持极低的延迟。它不仅仅是一个数据库，更是一个专为图结构数据优化的存储引擎。通过使用 GraphQL 查询语法，开发者可以直观地定义数据关系，系统会自动处理复杂的图遍历。与传统数据库不同，Dgraph 从零开始设计，将数据在磁盘上的排列方式与查询模式紧密绑定，从而大幅提升查询效率。\n\n安装和上手非常直接，官方提供了详细的文档。你可以通过简单的命令行指令启动 Dgraph 集群，或者使用 Docker 容器快速搭建本地环境。对于开发者而言，最核心的体验是它的查询语言。你不需要编写复杂的 SQL 语句或 ORM 映射代码，只需在 GraphQL 查询中描述你想获取的数据及其关联关系，Dgraph 就能高效返回结果。这种设计让处理复杂的多表关联查询变得非常简单。\n\n该项目特别适合需要处理复杂关系数据的应用，例如社交网络分析、推荐系统、知识图谱构建以及金融风控等。如果你正在寻找一个高性能、可水平扩展且对图查询支持友好的数据库解决方案，Dgraph 是一个非常值得尝试的开源选择。它将图数据库的强大能力与 GraphQL 的灵活性结合在一起，为开发者提供了全新的数据交互体验。",
     "stars": 21800,
     "starGrowth": 5,
     "createdAt": "2015-08-25T07:15:56Z",
@@ -10051,7 +10107,17 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.015688073394495412
+    "heatScore": 0.015688073394495412,
+    "facts": [
+      {
+        "claim": "专为优化查询性能而设计",
+        "source": "Being a native GraphQL database, it tightly controls how the data is arranged on disk to optimize for query performance and throughput"
+      },
+      {
+        "claim": "支持 JSON 和 Protocol Buffers 响应",
+        "source": "Dgraph supports GraphQL query syntax, and responds in JSON and Protocol Buffers over GRPC and HTTP."
+      }
+    ]
   },
   {
     "repo": "octetta/k-synth",
@@ -10542,9 +10608,9 @@
     "owner": "bytebase",
     "name": "bytebase",
     "desc": "Database governance built for humans and agents — controlling changes and access across every major database.",
-    "summaryCn": "让数据库变更和权限管理变得像Git一样简单的治理神器",
-    "reasonCn": "Bytebase是数据库治理工具，提供可视化SQL审核、版本控制和权限管理。支持MySQL、PostgreSQL、MongoDB等主流数据库。基于Go开发，企业级功能，GitHub 1.4万星标。团队持续迭代，适合DBA和开发团队协作管理数据库变更。",
-    "detailCn": "数据库变更一直让开发团队头疼：谁改了什么、何时改的、能不能回滚？Bytebase让这些变得像用Git管理代码一样简单。它为数据库提供了完整的变更治理工作流。\n\n技术亮点在于它的可视化SQL审核——输入SQL语句就能看到效果预览，还能一键回滚到历史版本。权限管理系统精细到表级别，支持审批流。兼容MySQL、PostgreSQL、MongoDB等主流数据库，企业级部署稳定。\n\n安装方式：提供Docker一键部署，或官方云服务。Web界面直观，数据库连接配置后即可使用所有功能。\n\n适合DBA管理多环境数据库变更、开发团队需要协同修改数据库结构、以及重视数据安全的企业。它的审批流程和变更日志功能特别适合需要合规审计的团队。\n\n1.4万星标说明社区认可度高，团队持续迭代，版本更新频繁。与Flyway、Liquibase等传统数据库迁移工具相比，Bytebase的优势在于可视化和协作体验，对不懂SQL的团队成员更友好。",
+    "summaryCn": "统一管理多数据库变更与合规的DevOps平台。",
+    "reasonCn": "Bytebase是一个开源数据库治理平台，旨在解决开发与运维中数据库变更管理混乱、权限分散的问题。它将SQL客户端、迁移脚本和工单系统整合在一起，提供统一的变更控制与访问管理。平台支持PostgreSQL、MySQL等20多种主流数据库，帮助企业降低SQL误操作风险，确保数据库变更的可追溯与合规。",
+    "detailCn": "Bytebase是一个开源的数据库治理平台，旨在充当用户与数据库之间的单一控制平面。它通过整合分散的数据库操作工具，解决了传统开发运维中SQL变更管理、权限控制和合规审查的痛点。在数据库变更流程中，Bytebase提供了一个统一的中心化控制点，这大大降低了因多工具割裂导致的风险和效率损失。\n\n项目支持广泛的数据库类型，包括PostgreSQL、MySQL、SQL Server、Oracle、MongoDB、Redis、MariaDB、TiDB、Snowflake、ClickHouse、Spanner和OceanBase等。这种多数据库支持使其能够适应从传统关系型数据库到新兴分布式数据库的多种技术栈。除了数据库本身，它还集成了IaC（基础设施即代码）、身份提供商、协作工具、日志流和安全密钥管理等广泛的第三方集成，进一步增强了其作为企业级DevOps枢纽的能力。\n\n安装和使用方面，Bytebase提供了清晰的安装指引和文档支持。用户可以通过官方渠道获取安装包，启动服务后即可在Web界面进行操作。平台的设计重点在于简化数据库变更的审批与执行流程，将SQL变更操作置于受控环境中，确保每一次查询和变更都经过审查、记录和控制，从而满足企业对数据安全和合规性的严格要求。对于需要管理多数据库环境、追求变更流程标准化的团队来说，这是一个非常实用的自托管解决方案。",
     "stars": 14491,
     "starGrowth": 4,
     "createdAt": "2021-01-27T04:33:50Z",
@@ -10622,7 +10688,17 @@
     "category": "tool",
     "momentum": [],
     "fromOfficial": false,
-    "heatScore": 0
+    "heatScore": 0,
+    "facts": [
+      {
+        "claim": "统一数据库变更控制与访问管理",
+        "source": "acts as a single control plane between your users — humans and AI agents — and your databases, governing change management, access control, and compliance"
+      },
+      {
+        "claim": "支持20多种主流数据库",
+        "source": "supports PostgreSQL, MySQL, SQL Server, Oracle, MongoDB, Redis, MariaDB, TiDB, Snowflake, ClickHouse, Spanner, OceanBase, and more"
+      }
+    ]
   },
   {
     "repo": "promptfoo/promptfoo",
@@ -12458,9 +12534,9 @@
     "owner": "marimo-team",
     "name": "marimo",
     "desc": "A reactive notebook for Python — run reproducible experiments, query with SQL, execute as a script, deploy as an app, and version with git. Stored as pure Python. All in a modern, AI-native editor.",
-    "summaryCn": "自带AI加持的交互式笔记本，代码改完结果自动刷新，写报告搞科研神了",
-    "reasonCn": "传统Notebook改代码容易乱，这个工具让代码和结果绑定，改一处全更新。支持SQL查询、Git版本控制和Web部署，原生集成AI辅助。对数据科学家和AI开发者来说，极大提升了实验效率和协作体验，是Notebook进化方向的重要尝试。",
-    "detailCn": "写代码调试的时候，有没有遇到过这种崩溃瞬间：改了一个参数，结果没更新，或者忘了重新运行某行代码，导致展示的数据是旧的？对于做数据分析、AI实验或者写技术报告的人来说，这种“版本错位”是日常噩梦。这个项目就是为了彻底解决这个痛点而生的，它重新定义了“交互式笔记本”应该是什么样子。\n\n传统Jupyter Notebook本质上是命令式的，代码和执行结果解耦，容易产生“幽灵数据”。这个项目的核心创新在于“反应式编程”理念：每一个单元格都明确知道自己依赖哪些其他单元格。当你修改了上游代码，下游所有结果会自动、智能地重新计算。它的架构基于Pure Python，没有特殊的二进制格式，存储的就是标准Python文件，这意味着你可以用Git正常管理版本，也可以直接用VS Code等编辑器查看。同时，它内置了现代化的UI框架，支持在浏览器中实时部署为交互式App，甚至能直接连接数据库执行SQL。\n\n上手门槛极低。首先你需要安装Python环境，然后运行pip install marimo来安装。创建项目时，运行marimo edit .命令，它会自动在默认浏览器中打开一个漂亮的编辑器界面。你可以像写普通Python脚本一样写代码，但每次保存，界面右侧的预览窗口会自动刷新显示图表或输出。它还支持Markdown单元格，并且对AI非常友好，可以在单元格里直接调用AI辅助生成代码或解释逻辑。所有的配置和依赖都通过自动生成的config.toml管理，团队协作时直接把仓库拉下来就能跑。\n\n这个项目特别适合三类人群。第一类是数据科学家和AI研究者，需要频繁迭代实验、对比参数，反应式更新能帮他们省下大量重复运行的时间；第二类是数据分析师，需要将复杂的数据探索过程转化为可复现、可交互的报告展示给同事；第三类是教育者，用来制作教学演示，代码即文档，效果立竿见影。如果你受够了Jupyter那种“改完代码忘了跑”的尴尬，这个工具绝对能重塑你的工作流。\n\n目前社区热度非常高，GitHub Star数超过两万，活跃度和更新频率都在一线梯队。它由Yash Lashkari等人创立，得到了很好的资金支持和技术背书。与Jupyter相比，它更注重工程化和现代化体验；与Streamlit相比，它保留了完整的科学计算交互能力。虽然生态还处于成长期，插件不如Jupyter丰富，但作为Notebook的下一代形态，它展示了极佳的潜力，值得每一位Python开发者关注和使用。",
+    "summaryCn": "纯Python构建的交互式笔记本，可部署为脚本或Web应用。",
+    "reasonCn": "marimo 是一款响应式的 Python 笔记本工具，它将单元格和 UI 元素关联起来，用户交互时自动更新相关代码，保证代码与输出的一致性。其笔记以纯 Python 代码形式保存，具备 SQL 一等公民支持，既可作为脚本直接运行，也能部署为 Web 应用，解决了传统笔记本环境部署难、代码可复用性差的问题。",
+    "detailCn": "marimo 将传统的 Jupyter 风格交互体验与工程化的代码管理结合，旨在解决 Python 开发者在数据分析、原型验证及小规模应用开发中遇到的痛点。它摒弃了依赖环境文件（如 `.ipynb`）的封闭模式，将所有 notebook 内容转化为标准 Python 脚本。这种存储方式使得代码完全可版本控制，可以被 Git 追踪，也可以被其他 Python 程序直接导入或作为独立脚本执行，极大地提升了代码的可复用性和可移植性。\n\n除了存储格式的革新，marimo 的核心交互机制也很有特色。它采用“反应式”编程模型，当用户修改某个单元格或操作 UI 控件时，系统会自动识别并运行所有依赖此变更的单元格。这意味着开发者可以专注于编写逻辑，而不必手动管理运行顺序，系统会确保输出始终与最新代码同步。这种机制特别适合数据探索和迭代开发，能显著减少手动刷新和调试的繁琐步骤。\n\n在功能支持上，marimo 对原生 SQL 提供了深度集成。开发者可以直接在 notebook 中编写 SQL 查询，与 Python 代码无缝协作，无需额外的中间层转换。这种混合编程能力，使得 marimo 既能处理轻量级的数据探索，也能胜任需要复杂业务逻辑和数据库交互的工程任务。\n\n上手使用 marimo 非常简单。用户可以通过 pip 快速安装 `marimo`，安装完成后，只需在命令行输入 `marimo edit` 即可启动一个交互式的 notebook 编辑器。编辑器界面与 Jupyter 类似，支持在单元格中编写 Python 代码和交互式 UI 组件。写好的 notebook 可以直接点击运行，或者保存为 `.py` 文件分发。对于需要部署的场景，marimo 提供了命令行工具，能够将 notebook 编译并打包成独立的 Web 应用或脚本，让成果能够脱离开发环境直接运行。",
     "stars": 22800,
     "starGrowth": 69,
     "createdAt": "2023-08-14T18:56:20Z",
@@ -12542,7 +12618,21 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.21607894736842104
+    "heatScore": 0.21607894736842104,
+    "facts": [
+      {
+        "claim": "以纯Python代码存储并支持SQL",
+        "source": "marimo notebooks are stored as pure Python (with first-class SQL support)"
+      },
+      {
+        "claim": "交互时自动重新运行相关代码",
+        "source": "interact with a UI element, and marimo automatically runs dependent cells"
+      },
+      {
+        "claim": "可部署为脚本或Web应用",
+        "source": "deployable as scripts or apps"
+      }
+    ]
   },
   {
     "repo": "processing/p5.js",
@@ -13110,9 +13200,9 @@
     "owner": "cakephp",
     "name": "cakephp",
     "desc": "CakePHP: The Rapid Development Framework for PHP - Official Repository",
-    "summaryCn": "老牌PHP框架，让写网站像搭积木一样简单，不用从零开始造轮子",
-    "reasonCn": "CakePHP是PHP领域经典的MVC开发框架，内置ORM数据映射、表单验证、安全过滤、路由系统、会话管理等核心功能。自带代码生成器，一键创建CRUD基础代码，大幅减少重复开发。相比Laravel更轻量简洁，遵循约定优于配置原则，对传统PHP开发者友好。",
-    "detailCn": "简单来说，这个项目是写PHP网站的瑞士军刀。以前写网站，你得天从天开始搭，路由怎么配、数据库怎么连、表单怎么验证，每一项都得自己写，费时费力还容易出bug。CakePHP把这些都打包好了，你只需要把业务逻辑填进去就行，就像拿到了一套精装修的房子，拎包入住。\n\n核心技术上，它采用经典的MVC架构，模型、视图、控制器各司其职，代码结构清晰。内置的ORM让你用面向对象的方式操作数据库，不用写SQL也能完成复杂查询。路由系统支持RESTful风格，方便构建API。安全方面做了大量封装，CSRF防护、XSS过滤、SQL注入防御开箱即用。还有内置的验证码、密码哈希、会话管理等实用工具。和Laravel相比，CakePHP更贴近传统PHP开发者的习惯，代码更简洁，文档更规范，学习曲线更平缓。\n\n安装很简单。确保你的环境是PHP 8.1或更高版本，然后运行composer create-project --prefer-dist cakephp/app my_app，进入目录执行bin/cake server，浏览器打开http://localhost:8765就能看到欢迎页面了。内置了一个示例应用，你可以在此基础上修改，或者运行bin/cake bake all来自动生成完整的CRUD代码。\n\n适合这几类人：传统PHP开发者想快速搭建网站或后台管理系统；中小型创业项目需要快速上线MVP；个人开发者想做一个博客、商城或工具站；学校教学或企业培训，需要一套规范清晰的PHP框架作为入门。\n\nCakePHP社区已经运营超过20年，GitHub上8794个star，稳定更新至今，目前最新版本是5.x系列。它在中文社区里知名度不如Laravel，但在全球PHP开发者中口碑稳定，文档非常完善。适合追求稳定、不想频繁升级项目的开发者。如果你对技术迭代速度要求不高，想要一个成熟可靠、不折腾的框架，CakePHP是个不错的选择。",
+    "summaryCn": "基于PHP的Web开发框架，用MVC模式快速构建稳健应用。",
+    "reasonCn": "CakePHP是一款PHP快速开发框架，采用MVC（模型-视图-控制器）和关联数据映射等设计模式。它的目标是提供一套结构化的框架，让不同水平的PHP开发者都能快速构建健壮的Web应用，同时保持灵活性。它通过Composer进行安装，并支持使用App Skeleton作为新项目的起点。",
+    "detailCn": "CakePHP是一款PHP快速开发框架，其核心理念是帮助开发者高效构建Web应用。文档中明确指出，该项目使用了关联数据映射、前端控制器和MVC等广泛认知的设计模式。这意味着开发者在编写代码时，可以将业务逻辑、界面展示和数据存储分离开来，从而降低代码的耦合度，提高系统的可维护性和扩展性。对于开发者而言，这种结构化的开发方式能有效减少重复劳动，让他们更专注于核心业务逻辑的实现。\n\n通过Composer，开发者可以方便地将CakePHP集成到现有项目中，或者使用官方提供的App Skeleton作为新项目的起点。这大大简化了项目初始化的流程，使得搭建一个标准的Web应用结构变得非常容易。文档中还提到，对于新项目，推荐使用App Skeleton作为起点，而对于现有应用，则可以通过Composer进行安装，这种灵活的安装方式满足了不同场景下的开发需求。\n\n在测试方面，项目支持通过PHPUnit进行测试。只要按照文档说明，将`phpunit.xml.dist`文件复制为`phpunit.xml`，开发者就可以对CakePHP框架本身进行测试，确保代码的质量和稳定性。这种内置的测试支持，体现了框架在工程实践上的严谨性，帮助开发者在开发过程中及时发现和修复潜在的问题。对于需要构建稳健Web应用的PHP开发者来说，CakePHP提供了一个结构清晰、功能完善的解决方案。",
     "stars": 8792,
     "starGrowth": 0,
     "createdAt": "2010-05-08T14:38:22Z",
@@ -13181,7 +13271,17 @@
     "category": "tool",
     "momentum": [],
     "fromOfficial": false,
-    "heatScore": 0
+    "heatScore": 0,
+    "facts": [
+      {
+        "claim": "采用关联数据映射与MVC设计模式",
+        "source": "uses commonly known design patterns like Associative Data Mapping, Front Controller, and MVC."
+      },
+      {
+        "claim": "通过Composer快速安装",
+        "source": "You can install CakePHP into your project using Composer."
+      }
+    ]
   },
   {
     "repo": "hoppscotch/hoppscotch",
@@ -17761,9 +17861,9 @@
     "owner": "harry0703",
     "name": "MoneyPrinterTurbo",
     "desc": "利用 AI 大模型和自动化工作流，根据主题或关键词一键生成高清短视频。Generate HD short videos from a topic or keyword with an automated AI workflow.",
-    "summaryCn": "输入关键词就能一键生成短视频，AI帮你搞定所有内容",
-    "reasonCn": "这个项目能根据用户输入的主题或关键词，自动调用大语言模型生成视频脚本、智能配音、字幕，甚至自动抓取或生成匹配的画面素材，最终合成一条完整的短视频。用户无需任何剪辑经验，全程自动化完成制作，支持多种分辨率输出，真正做到了零门槛视频创作。",
-    "detailCn": "如果你平时刷短视频觉得制作门槛高，想自己做却不知道从哪下手，这个项目就是为你准备的。它本质上是一个AI视频生成工具，你只要输入一个主题或关键词，剩下的事情它全帮你搞定。从写脚本、配音、配字幕到找画面素材，全流程自动化，连剪辑都不用你做。\n\n技术架构上，它整合了多个AI能力。先用大语言模型生成视频脚本，再通过文字转语音（TTS）生成配音，接着自动匹配或生成画面素材，最后合成一条完整视频。它支持多种AI模型API，包括国内的智谱、通义千问，也支持OpenAI、Claude等，配音方面可以接入Azure、Fish Audio等语音服务。用户可以根据需要自由组合，也可以一键完成全部流程。和同类项目相比，它的优势在于开箱即用，不需要自己搭建复杂的环境，配置简单，支持多种分辨率和格式输出。\n\n安装很简单。确保你已经安装了Python 3.10+，然后克隆仓库：git clone https://github.com/harry0703/MoneyPrinterTurbo.git。进入项目目录后，按照README里的步骤配置好.env文件，填入你选择的AI模型API密钥和配音服务凭证。之后运行启动脚本，进入Web界面，输入主题或关键词，选择分辨率和配音风格，点一下生成就行。整个过程几分钟就能完成一条视频的剪辑。\n\n这个项目适合想做短视频内容的个人创作者、自媒体运营、教育培训从业者，以及任何想批量生产视频内容但没时间和技术的人。无论你是想做知识科普、产品介绍、故事解说，还是想做批量分发内容，它都能帮你快速出片。如果你有自己的API密钥，成本也很低，一条视频的生成费用可能只有几毛钱。\n\n这个项目在GitHub上已经获得了超过10万star，热度非常高。作者持续维护更新，社区活跃，issue和PR响应及时。与市面上其他视频生成工具相比，它的优势是开源免费、本地部署可控、支持自定义模型和配音，不会把内容数据上传到第三方平台。如果你担心隐私或者想自定义工作流，这个项目是非常好的选择。",
+    "summaryCn": "AI一键生成短视频脚本素材，自动合成带字幕配乐。",
+    "reasonCn": "MoneyPrinterTurbo 是一款一站式 AI 短视频生成工具，它解决了创作者找素材、写脚本、配字幕的繁琐流程。只需输入主题，它就能自动产出脚本、匹配画面、生成字幕并配上背景音乐，最后合成高清视频，极大降低了短视频制作门槛。",
+    "detailCn": "MoneyPrinterTurbo 是一款面向内容创作者的 AI 视频生成工具，旨在解决制作短视频时脚本撰写、素材搜集、字幕添加和音乐配对等多个环节耗时耗力的问题。它让用户只需提供主题，即可自动化完成视频创作的全流程，将复杂的后期制作简化为简单的输入与生成。\n\n项目特别感谢 Kimi（Moonshot AI）提供的技术支持。Kimi K3 是全球首个开源 3T 级模型，拥有原生视觉能力，在 MoneyPrinterTurbo 中直接驱动创作，不仅能撰写文案，还能提炼素材搜索关键词并决定成片画面，确保内容理解准确、素材贴题。\n\n该项目提供 WebUI 和 API 两种使用方式，方便不同需求的用户。安装方面，用户可以通过 `git clone` 仓库，使用 `pip install -r requirements.txt` 安装依赖，并运行 `python main.py` 启动界面。对于开发者，也可以通过 API 接口进行二次开发。\n\n使用时，用户在界面上输入视频主题或关键词，系统会自动生成脚本、搜索并匹配视频素材、添加字幕、选择背景音乐，最后合成完整的短视频。这种方式非常适合需要快速产出视频内容的人士，如自媒体运营者、营销人员或内容创作者。",
     "stars": 124444,
     "starGrowth": 211,
     "createdAt": "2024-03-11T02:57:34Z",
@@ -17835,7 +17935,17 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.3050866253093761
+    "heatScore": 0.3050866253093761,
+    "facts": [
+      {
+        "claim": "支持一键生成视频脚本、匹配素材、生成字幕和背景音乐。",
+        "source": "只需提供视频主题或关键词，即可自动生成视频脚本、匹配素材、生成字幕和背景音乐，并合成高清短视频。"
+      },
+      {
+        "claim": "Kimi K3 模型直接驱动视频创作，决定成片画面。",
+        "source": "在 MoneyPrinterTurbo 中，K3 能直接驱动视频创作，不仅撰写视频文案，还会提炼素材搜索关键词、决定成片画面。"
+      }
+    ]
   },
   {
     "repo": "imba/imba",
