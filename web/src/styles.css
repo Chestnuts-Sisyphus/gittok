@@ -730,6 +730,10 @@ button {
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  /* 防御锁（09-19 栗子三报「一句话变两行」）：不支持 line-clamp 的旧内核（双核浏览器 IE 模式等）
+     会让文本在单行 min-height 的空间内自然折行外溢成两行——max-height 把盒高钉死在一行，
+     任何内核最坏只出「半句无省略号」，绝不再叠进下一行。支持 clamp 的浏览器零视觉差。 */
+  max-height: calc(1 * 1.5em + 16px);
 }
 
 /* 专业描述（最多 3 行截断；min-height 固定 3 行高（3×1.7em），保证全站卡片等高） */
