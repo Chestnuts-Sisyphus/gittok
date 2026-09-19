@@ -85,6 +85,19 @@ function skip(view, name, detail) {
   console.log(`[SKIP] ${view} — ${name} ${detail}`);
 }
 
+// K-11 / E3：「.summary 一行容量 ≥28 字」是 **Windows 实测口径**（H-08 选 A：不上 webfont，
+// 中文靠系统 fallback）。同一份 CSS 在 mac/Android 上因字体度量不同，每行容量实测极差 **14.2%**
+// （8 字族 25.4→29.0 全角字），直接套 28 会在非 Windows 档假红、也可能因字号偏大而假绿。
+// 处置：Windows 档判定原样不动；非 Windows 档按漂移上界归一（28 / 1.142 向上取整）后再判，
+// 并把口径写进读数，避免被误读成"标准放宽了"。
+const RUN_PLATFORM = process.platform;
+const CROSS_PLATFORM_LINE_DRIFT = 1.142;
+const SUMMARY_CAPACITY_PASS_MIN =
+  RUN_PLATFORM === "win32" ? 28 : Math.ceil(28 / CROSS_PLATFORM_LINE_DRIFT);
+function summaryCapacityPass(capMin) {
+  return capMin >= SUMMARY_CAPACITY_PASS_MIN;
+}
+
 // ---------------------------------------------------------------------------
 // 无窗口静态服务器（只读 dist，端口不抢 19101/5173/4173）
 // ---------------------------------------------------------------------------
@@ -428,8 +441,9 @@ async function checkView(cdp, view) {
     report(
       view.key,
       ".summary 一行容量 ≥28 字（G-10）",
-      capMin >= 28,
-      `容量 min ${capMin} 字（单字宽 ${m.cap[0]?.charW}px / 内容宽 ${m.cap[0]?.width}px）｜采样整句可见 ${m.s.length - sClip}/${m.s.length}`,
+      summaryCapacityPass(capMin),
+      `容量 min ${capMin} 字（单字宽 ${m.cap[0]?.charW}px / 内容宽 ${m.cap[0]?.width}px）｜采样整句可见 ${m.s.length - sClip}/${m.s.length}` +
+        `｜口径：${RUN_PLATFORM === "win32" ? `Windows 基准 28 字（${SUMMARY_CAPACITY_PASS_MIN}）` : `非 Windows（${RUN_PLATFORM}）按 14.2% 跨平台漂移归一，下限 ${SUMMARY_CAPACITY_PASS_MIN} 字`}`,
     );
   } else {
     report(
