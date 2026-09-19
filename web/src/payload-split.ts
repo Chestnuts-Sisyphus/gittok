@@ -25,3 +25,17 @@ export function mergeDetail<T extends { repo: string; detailCn?: string }>(
   const detailCn = details?.[card.repo];
   return detailCn ? { ...card, detailCn } : card;
 }
+
+/**
+ * 详情表完整性核对：返回「卡上无有效 detailCn，且详情表里也没有该 repo 键」的清单。
+ * 背景（G-04）：详情表 404 或漏键时 UI 静默不渲染深度解读（连读代码的人都会被误导成
+ * 「线上字段丢了」），故先把缺键变成可观测项；是否给 UI 空态占位属审美拍板，此处不加。
+ */
+export function diffDetailKeys(
+  list: readonly { repo: string; detailCn?: string }[],
+  details: Record<string, string> | null | undefined,
+): string[] {
+  return list
+    .filter((c) => !(typeof c.detailCn === "string" && c.detailCn.length > 0) && !details?.[c.repo])
+    .map((c) => c.repo);
+}

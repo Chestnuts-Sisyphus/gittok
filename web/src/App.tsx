@@ -6,7 +6,13 @@ import { CreatorPage } from "./CreatorPage.tsx";
 import { AgentPage } from "./AgentPage.tsx";
 import { weightedSearch } from "./search.ts";
 import { loadSafe, saveDual, migrateLegacyKeys } from "./storage.ts";
-import { mergeDetail, prefetchFeedDetails, warmFeedDetails, getFeedDetailsIfReady } from "./feed-payload.ts";
+import {
+  mergeDetail,
+  prefetchFeedDetails,
+  warmFeedDetails,
+  getFeedDetailsIfReady,
+  diffDetailKeys,
+} from "./feed-payload.ts";
 import { loadCachedText, saveCachedText } from "./feed-cache.ts";
 import {
   FEED_MOBILE_MAX_WIDTH,
@@ -570,9 +576,7 @@ function getSectionCards(
       // 数据侧双兼容：有 zone 按四区判（新卡），只有旧 category 的按 category 判（存量卡）。
       const cat = categoryOfKey(sectionKey);
       const zone = sectionZoneOf(sectionKey);
-      const pool = cards.filter((c) =>
-        c.zone ? zoneOfCard(c) === (zone ?? "") : c.category === cat,
-      );
+      const pool = cards.filter((c) => (c.zone ? zoneOfCard(c) === (zone ?? "") : c.category === cat));
       return categoryChannel(pool, zone ?? "");
     }
   }
@@ -923,10 +927,17 @@ export default function App() {
       setCards((Array.isArray(data) ? data : []).map(normalizeCard));
       setLoading(false);
     };
-    const warmDetails = () => {
+    const warmDetails = (list: FeedCard[]) => {
       warmFeedDetails();
       idle(() => {
-        void prefetchFeedDetails();
+        void prefetchFeedDetails().then((details) => {
+          const missing = diffDetailKeys(list, details);
+          if (missing.length > 0) {
+            console.warn(
+              `[feed-details] ${missing.length} 张卡在详情表缺键（深度解读将静默缺失）：${missing.slice(0, 10).join("、")}`,
+            );
+          }
+        });
       });
     };
     (async () => {
@@ -934,8 +945,9 @@ export default function App() {
       if (cancelled) return;
       if (cachedText) {
         try {
-          applyData(JSON.parse(cachedText) as FeedCard[]);
-          warmDetails();
+          const list = JSON.parse(cachedText) as FeedCard[];
+          applyData(list);
+          warmDetails(list);
         } catch {
           /* 缓存损坏 → 落回网络路径 */
         }
@@ -947,8 +959,9 @@ export default function App() {
         if (cancelled) return;
         if (text !== cachedText) {
           void saveCachedText("feed", text);
-          applyData(JSON.parse(text) as FeedCard[]);
-          warmDetails();
+          const list = JSON.parse(text) as FeedCard[];
+          applyData(list);
+          warmDetails(list);
         }
       } catch (err: unknown) {
         // 缓存已渲染时后台刷新失败静默（旧数据可刷）；无缓存才报错
@@ -2084,6 +2097,10 @@ export default function App() {
         >
           <Search size={18} />
           <span>搜索</span>
+        </button>
+        <button className={`bottom-item${tab === "agent" ? " active" : ""}`} onClick={() => setTab("agent")}>
+          <Bot size={18} />
+          <span>Agent</span>
         </button>
         <button className={`bottom-item${tab === "me" ? " active" : ""}`} onClick={() => setTab("me")}>
           <User size={18} />

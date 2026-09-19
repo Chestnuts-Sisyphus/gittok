@@ -1,6 +1,8 @@
 // @ts-ignore —— 与 storage.test.ts 相同：根 vitest 跑 web 测试
 import { describe, it, expect } from "vitest";
-import { splitFeedPayload, mergeDetail } from "../feed-payload.ts";
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
+import { splitFeedPayload, mergeDetail, diffDetailKeys } from "../feed-payload.ts";
 
 describe("splitFeedPayload", () => {
   it("把 detailCn 从列表剥离并按 repo 建索引", () => {
@@ -44,5 +46,28 @@ describe("mergeDetail", () => {
     const card = { repo: "x/y" };
     expect(mergeDetail(card, {})).toBe(card);
     expect(mergeDetail(card, null)).toBe(card);
+  });
+});
+
+describe("diffDetailKeys（G-04 详情表缺键可观测点）", () => {
+  it("卡上无 detailCn 且详情表无该键 → 报缺", () => {
+    const miss = diffDetailKeys([{ repo: "a/b" }, { repo: "c/d", detailCn: "有" }], {});
+    expect(miss).toEqual(["a/b"]);
+  });
+
+  it("详情表整表拿不到（404 兜成空对象）→ 全列缺键", () => {
+    expect(diffDetailKeys([{ repo: "a/b" }, { repo: "c/d" }], null)).toEqual(["a/b", "c/d"]);
+  });
+
+  it("详情表补齐后不报缺", () => {
+    expect(diffDetailKeys([{ repo: "a/b", detailCn: "" }], { "a/b": "长文" })).toEqual([]);
+  });
+
+  it("本仓构建产物列表与详情表键差为 0", () => {
+    const read = (f: string) => JSON.parse(readFileSync(resolve("web/public/data", f), "utf-8")) as unknown;
+    const list = read("feed.json") as { repo: string; detailCn?: string }[];
+    const details = read("feed-details.json") as Record<string, string>;
+    expect(list.length).toBeGreaterThan(1000);
+    expect(diffDetailKeys(list, details)).toEqual([]);
   });
 });

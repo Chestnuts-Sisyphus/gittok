@@ -4,9 +4,9 @@
  */
 
 import { loadCachedText, saveCachedText } from "./feed-cache.ts";
-import { splitFeedPayload, mergeDetail } from "./payload-split.ts";
+import { splitFeedPayload, mergeDetail, diffDetailKeys } from "./payload-split.ts";
 
-export { splitFeedPayload, mergeDetail };
+export { splitFeedPayload, mergeDetail, diffDetailKeys };
 
 const DETAILS_URL = "./data/feed-details.json";
 

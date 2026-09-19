@@ -262,6 +262,9 @@ button {
   display: flex;
   align-items: stretch;
   min-height: calc(100vh - var(--header-h));
+  min-height: calc(
+    100dvh - var(--header-h)
+  ); /* G-06：iOS 地址栏收缩后 100vh 会虚高，dvh 跟手；上一行留作回退 */
 }
 
 /* 我的页布局（任务书 E：复用侧栏设计语言——左侧 喜欢/收藏/关注，右侧内容） */
@@ -269,6 +272,7 @@ button {
   display: flex;
   align-items: stretch;
   min-height: calc(100vh - var(--header-h));
+  min-height: calc(100dvh - var(--header-h)); /* G-06：同上，dvh 覆盖 vh 回退 */
 }
 
 /* 左侧边栏：目的地导航（YouTube/B站桌面端模式，非过滤器）。
@@ -280,6 +284,7 @@ button {
      sticky 元素高度=父容器高度时无滚动空间，吸不住（实测 top=-5086 滚走） */
   align-self: flex-start;
   height: calc(100vh - var(--header-h));
+  height: calc(100dvh - var(--header-h)); /* G-06：侧栏高度跟着可视高走，iOS 地址栏收缩不再错位 */
   margin-left: var(--sidebar-inset);
   padding: 20px 12px 32px;
   background: transparent;
@@ -775,7 +780,8 @@ button {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding: 5vh 20px;
+  padding: 5vh calc(20px + env(safe-area-inset-right)) calc(5vh + env(safe-area-inset-bottom))
+    calc(20px + env(safe-area-inset-left)); /* G-06：配 viewport-fit=cover，避开刘海与小白条 */
   overflow: visible;
   overscroll-behavior: none;
   background: transparent;
@@ -966,6 +972,7 @@ button {
   color: var(--text-secondary);
   margin-bottom: 20px;
   white-space: normal; /* P0a：详情 reason 去 pre-wrap（.detail-detail 的 pre-wrap 保留，勿动） */
+  overflow-wrap: anywhere; /* G-07：长 URL/长 token 在 390 档撑破弹层（同 Agent 页 pre-wrap 块的既有正解） */
 }
 
 .detail-label {
@@ -983,6 +990,7 @@ button {
   color: var(--text-secondary);
   margin-bottom: 20px;
   white-space: pre-wrap;
+  overflow-wrap: anywhere; /* G-07：长 token 不破窄弹层 */
   padding: 16px 20px;
   background: linear-gradient(135deg, var(--accent-light), transparent);
   border-radius: var(--radius-sm);
@@ -1013,6 +1021,7 @@ button {
 
 .detail-actions {
   display: flex;
+  flex-wrap: wrap; /* G-07：390 档动作区需 ~410px > 可用 310px，不换行就横向溢出（动作项一个不减） */
   gap: 10px;
   align-items: center;
 }
@@ -1419,6 +1428,19 @@ button {
   background: var(--danger);
   color: #fff;
 }
+/* G-05：触摸端没有 hover，上面两条显形规则永不触发 → 手机上收藏夹删不掉、卡片移不出。
+   只在「无悬停能力」的设备上常显，桌面档行为一字不变。 */
+@media (hover: none) {
+  .folder-delete,
+  .folder-card-remove {
+    opacity: 1;
+  }
+}
+/* 键盘 Tab 到也要看得见（不依赖 hover） */
+.folder-delete:focus-visible,
+.folder-card-remove:focus-visible {
+  opacity: 1;
+}
 
 .collection-create-btn {
   display: block;
@@ -1752,7 +1774,8 @@ button {
     z-index: 40;
     display: flex;
     flex-direction: column;
-    padding: 64px 10px 24px;
+    padding: calc(64px + env(safe-area-inset-top)) calc(10px + env(safe-area-inset-right))
+      calc(24px + env(safe-area-inset-bottom)) calc(10px + env(safe-area-inset-left)); /* G-06 安全区 */
     overflow-y: auto;
     background: rgba(26, 22, 44, 0.72);
     border-right: 1px solid rgba(255, 255, 255, 0.08);
@@ -1780,7 +1803,9 @@ button {
     background: rgba(26, 22, 44, 0.72);
     border-top: 1px solid rgba(255, 255, 255, 0.08);
     z-index: 20;
-    padding-bottom: env(safe-area-inset-bottom);
+    padding-bottom: env(safe-area-inset-bottom); /* 需 viewport-fit=cover 才不为 0（G-06 已补） */
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
   }
   .bottom-item {
     flex: 1;
@@ -2106,6 +2131,12 @@ button {
   grid-template-columns: repeat(2, 1fr);
   gap: 16px;
 }
+/* G-08：子项除名字外全 flex-shrink:0，≤768 两列必溢出叠字（「我的-关注」与搜索页创作者共用此类） */
+@media (max-width: 768px) {
+  .creator-list {
+    grid-template-columns: 1fr;
+  }
+}
 
 .creator-item {
   display: flex;
@@ -2201,6 +2232,22 @@ button {
 .creator-item-unfollow:hover {
   border-color: var(--danger);
   color: var(--danger);
+}
+
+/* G-08（续）：单列后条目内部仍需约 353px > 窄档可用 302px → 让子项换行，动作项一个不减。
+   必须写在上面这几条基础声明之后，否则同特异度下会被基础规则盖掉。 */
+@media (max-width: 768px) {
+  .creator-item {
+    flex-wrap: wrap;
+    row-gap: 8px;
+  }
+  .creator-item-count {
+    flex-shrink: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }
 
 /* --- 数据备份/恢复工具区（P0b） --- */
