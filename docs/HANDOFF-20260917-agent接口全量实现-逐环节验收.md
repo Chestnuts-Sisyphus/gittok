@@ -739,7 +739,7 @@ npx tsx scripts/gittok-fun-anchor-check.ts
 ## 七、行为约束遵守情况
 
 - **不打扰用机**：全程无弹窗、无 GUI 启动；长跑均为命令行/后台进程。
-- **密钥零回显**：只读 `D:/AI/KEY/`，输出仅掩码前缀；push 用 classic PAT（`ghp_`，含 workflow scope），
+- **密钥零回显**：只读 `$KEY_DIR`（具体路径见仓库外治理文档，本公开仓不写），输出仅掩码前缀；push 用 classic PAT（`ghp_`，含 workflow scope），
   本地 credential helper 覆写仅在单条命令内生效。
 - **免费模型**：MCP/文档/脚本零 LLM 依赖；skill 运行只用免费档（glm-4.7-flash）；
   T7 因免费额度不足直接停跑（未用任何付费/订阅通道）。
