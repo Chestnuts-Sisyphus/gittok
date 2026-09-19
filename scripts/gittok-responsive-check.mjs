@@ -418,6 +418,16 @@ async function checkView(cdp, view) {
   );
 
   // 4 侧栏/底栏/tabs 命中档
+  const grad = await cdp.eval(`
+    const bi=getComputedStyle(document.body,'::before').backgroundImage||'';
+    return bi.includes('linear-gradient');
+  `);
+  report(
+    view.key,
+    "固定渐变底仍在（body::before，09-05 性能拍板）",
+    grad === true,
+    `body::before backgroundImage ${grad ? "含 linear-gradient" : "不含 linear-gradient"}`,
+  );
   const ch = await cdp.eval(`return window.__gt.chrome();`);
   const want = expectedChrome(view.w);
   const chromeOk = ch.sidebar === want.sidebar && ch.bottomBar === want.bottomBar && ch.tabs === want.tabs;
