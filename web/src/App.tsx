@@ -172,6 +172,7 @@ const SNAPSHOT_CAP = 1000; // 喜欢/收藏快照总条数上限（~1KB/张，1M
 // 2026-09-14 栗子实测发现「乐趣」与「创意」共用 key=fun 导致串台，此为该 bug 的机制性修法）。
 import { applyFeedbackToFun } from "./feedback-score.ts";
 import { diversifyRank } from "../../src/feed/similarity.ts";
+import { keepForRecommend } from "./copy-gate.ts";
 import {
   DYNAMIC_SECTIONS,
   CATEGORY_SECTIONS,
@@ -640,8 +641,9 @@ function buildRecommended(
   followingSet: ReadonlySet<string> = new Set(),
 ): FeedCard[] {
   const now = Date.now();
-  // L0 池过滤：点踩排除；沉寂库退场（真沉寂，收藏豁免）
+  // L0 池过滤：点踩排除；沉寂库退场（真沉寂，收藏豁免）；文案不合格卡剔出推荐池（COPY-08，搜索/直达不受影响）
   const pool = cards.filter((c) => {
+    if (!keepForRecommend(c)) return false;
     const inter = interactions[c.repo];
     if (inter?.type === "dislike") return false;
     if ((c.silentRounds ?? 0) >= 3 && inter?.type !== "bookmark") return false;

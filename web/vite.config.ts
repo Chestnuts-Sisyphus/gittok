@@ -3,6 +3,7 @@ import path from "node:path";
 import { defineConfig, type Plugin } from "vite";
 import react from "@vitejs/plugin-react";
 import { splitFeedPayload } from "./src/payload-split.ts";
+import { cardCopyOk, type CopyOkCard } from "../src/feed/copy-ok.ts";
 
 /**
  * 构建前把 data/feed.json 拆成列表 + 详情表。
@@ -28,6 +29,10 @@ function prepareFeedPlugin(): Plugin {
       const raw = fs.readFileSync(input, "utf8");
       const parsed: unknown = JSON.parse(raw);
       const cards = Array.isArray(parsed) ? parsed : [];
+      // 构建期文案合格打标（COPY-08 呈现闸的数据源）：判据 = 生产闸 cardChecks 本体，
+      // 在**未拆 detailCn 的原始卡**上量（闸要看得到全文）。只进构建产物，data/feed.json 不动。
+      const copyOkByRepo = new Map<string, boolean>();
+      for (const c of cards as CopyOkCard[]) copyOkByRepo.set(c.repo, cardCopyOk(c));
       const { list, details } = splitFeedPayload(cards as Array<{ repo: string; detailCn?: string }>);
 
       // 加载提速（2026-09-05）：列表剔除前端零消费的死字段。
@@ -37,6 +42,7 @@ function prepareFeedPlugin(): Plugin {
         delete card["bigbros"];
         delete card["aiDim"];
         delete card["score"];
+        card["copyOk"] = copyOkByRepo.get(String(card["repo"])) === true;
       }
 
       const listPath = path.join(outDir, "feed.json");

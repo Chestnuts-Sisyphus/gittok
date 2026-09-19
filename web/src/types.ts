@@ -41,6 +41,9 @@ export interface FeedCard {
   reasonCn: string;
   /** 详情介绍（长文，兼顾通俗+专业+细致） */
   detailCn: string;
+  /** 文案生产闸复检结果。构建期打标（web/vite.config.ts → src/feed/copy-ok.ts），
+   *  false = 不过现行 cardChecks，推荐池剔除（web/src/copy-gate.ts）；缺键按合格处理。 */
+  copyOk?: boolean;
   stars: number;
   starGrowth: number;
   /** 每日频道时效热度分（相对增速主轴，涨得快>涨得多） */
