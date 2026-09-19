@@ -281,8 +281,9 @@ async function main(): Promise<void> {
   // 合格池规模环比：COPY-08 呈现闸让合格池直接决定推荐池深度，池子一夜缩水无人预警是本轮新风险
   // （块一 C 节第 1 条）。做法：每次跑批把读数追加进 gitignore 的 tmp/ 报表历史，环比上一次。
   const pool = total - fail;
+  const factsHas = total - factsMissing;
   const histPath = path.resolve(process.cwd(), "tmp", "copy-audit-history.jsonl");
-  let prev: { at?: string; pool?: number } | null = null;
+  let prev: { at?: string; pool?: number; factsHas?: number } | null = null;
   try {
     if (fs.existsSync(histPath)) {
       const lines = fs
@@ -294,8 +295,15 @@ async function main(): Promise<void> {
     fs.mkdirSync(path.dirname(histPath), { recursive: true });
     fs.appendFileSync(
       histPath,
-      JSON.stringify({ at: new Date().toISOString(), source: feedTarget, total, fail, pool, done: doneSet.size }) +
-        "\n",
+      JSON.stringify({
+        at: new Date().toISOString(),
+        source: feedTarget,
+        total,
+        fail,
+        pool,
+        done: doneSet.size,
+        factsHas,
+      }) + "\n",
       "utf-8",
     );
   } catch (e) {
@@ -305,6 +313,11 @@ async function main(): Promise<void> {
   console.log(
     `  合格池规模环比 ${delta === null ? "（首跑无基准）" : `${delta >= 0 ? "+" : ""}${delta} 张`}｜本次合格 ${pool} 张` +
       (prev?.pool !== undefined ? `｜上一跑 ${prev.pool} 张（${prev.at?.slice(0, 16).replace("T", " ")}）` : ""),
+  );
+  // K-02：facts 覆盖单列环比（专项队列 gittok-facts-backfill.ts 的收益看这一行）
+  console.log(
+    `  facts 覆盖 ${prev?.factsHas !== undefined ? `${prev.factsHas}→` : "（首跑无基准）"}${factsHas} 张（${pct(factsHas, total)}）` +
+      `｜专项队列 data/facts-backfill-state.json`,
   );
 
   console.log("");
