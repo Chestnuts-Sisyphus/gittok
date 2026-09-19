@@ -119,7 +119,7 @@ jobs:
           node-version: 22
 
       - name: Install root dependencies (tsx for the gates)
-        run: npm install --no-audit --no-fund
+        run: pnpm install --frozen-lockfile || pnpm install
 
       - name: Build web (stamps copyOk into dist)
         working-directory: web
