@@ -1,3 +1,18 @@
 pnpm lint
 pnpm format:check
 pnpm typecheck
+
+# D2 卡片不变量闸（K-07）：本地提交路径此前完全不跑这道闸，字段缺失/回退全靠 CI 拦。
+# 对照物现取 HEAD 已提交版 data/feed.json，而不是 data/feed.prev.json——后者只有 promote-v3 会写，
+# 实测停在 09-17，拿它比会造出大面积假回退（闸内亦已加 72h 新鲜度上限兜底）。
+if git cat-file -e HEAD:data/feed.json 2>/dev/null; then
+  prev_feed="$(mktemp)"
+  git show HEAD:data/feed.json > "$prev_feed"
+  INVARIANTS_PREV="$prev_feed" npx tsx scripts/gittok-card-invariants.ts
+  rm -f "$prev_feed"
+else
+  npx tsx scripts/gittok-card-invariants.ts
+fi
+
+# K-08 泄漏扫描（值形态凭据零容忍 → 直接拦下提交；凭据库指针按白名单放行并注释）。
+npx tsx scripts/gittok-leak-scan.ts
