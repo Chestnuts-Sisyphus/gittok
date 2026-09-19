@@ -66,6 +66,9 @@
   --font-serif: "Lora", "Noto Serif SC", "Times New Roman", "Songti SC", "SimSun", serif;
   --feed-card-h: 288px;
   --feed-row-gap: 16px;
+  /* G-10：卡片流每列最小宽度。⚠ 与 web/src/feed-layout.ts 的 FEED_COL_MIN 双写——
+     虚拟列表按「列数 × 行高」算垫片，两处不同值就会错位（同 --feed-card-h 那条纪律）。 */
+  --feed-col-min: 500px;
   --header-h: 60px;
   --header-bg: #16122a;
   --sidebar-inset: 24px;
@@ -464,7 +467,9 @@ button {
 }
 .feed-list {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  /* G-10：原 `repeat(2, 1fr)` 死写两列 → 769–1200 每列仅约 310px，20-35 字的一句话放不下。
+     改为按 --feed-col-min 自动填列：≥1440 仍是两列（现状不变），更窄自动降为一列。 */
+  grid-template-columns: repeat(auto-fill, minmax(var(--feed-col-min), 1fr));
   gap: var(--feed-row-gap);
 }
 
@@ -630,6 +635,10 @@ button {
 .repo-owner {
   color: var(--text-secondary);
   white-space: nowrap;
+  /* G-12：长 owner（实测 29 字）此前无省略号也无收缩约束，会把 .repo-name 挤成 0 宽 */
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .repo-sep {
   color: var(--text-muted);
@@ -736,7 +745,9 @@ button {
 .card-meta {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
+  /* G-12：这里是全站唯一可长高的一行——换行后卡片内容超出 288px 定高，
+     被 .card{overflow:hidden} 把下一行 .card-tags 整行吃掉。锁单行，溢出交给各子项的省略号。 */
+  flex-wrap: nowrap;
   gap: 12px;
   font-size: 0.78rem;
   color: var(--text-secondary);
@@ -1259,6 +1270,11 @@ button {
 
 .picker-item-name {
   flex: 1;
+  /* G-12：长收藏夹名此前会把右侧计数挤出容器 → 给收缩下限与省略号 */
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   color: var(--text);
 }
 .picker-item-count {
@@ -1364,6 +1380,11 @@ button {
   font-size: 1rem;
   font-weight: 600;
   color: var(--text);
+  /* G-12：长名字此前会把「删除」按钮挤出可视区（同 .picker-item-name 那条） */
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .folder-count {
   font-size: 0.8rem;
@@ -1716,6 +1737,11 @@ button {
   .main {
     padding: 16px 12px 24px;
   }
+  /* G-13：桌面 24px 32px 内距在窄档白吃 64px（390 档实测卡宽只剩 268px = 68.7% 视口）
+     → 左右内距交给 .main 的 12px，卡片宽度回到视口 90% 以上；桌面档不动 */
+  .feed-content {
+    padding: 12px 0;
+  }
   .feed-list {
     grid-template-columns: 1fr;
     --feed-row-gap: 12px;
@@ -1780,10 +1806,19 @@ button {
     background: rgba(26, 22, 44, 0.72);
     border-right: 1px solid rgba(255, 255, 255, 0.08);
     transform: translateX(-100%);
-    transition: transform 0.25s ease;
+    transition:
+      transform 0.25s ease,
+      visibility 0s linear 0.25s;
+    /* G-12：关闭态此前仍可被 Tab 进去（只靠 transform 移出视口）→ 补 visibility 收掉焦点可达性，
+       延迟 0.25s 生效是为了不打断滑出动画；打开态下面那条把延迟清零。 */
+    visibility: hidden;
   }
   .drawer.open {
     transform: translateX(0);
+    visibility: visible;
+    transition:
+      transform 0.25s ease,
+      visibility 0s linear 0s;
   }
   /* 抽屉内频道项触控目标（≥44px） */
   .drawer .side-item {
@@ -2746,4 +2781,39 @@ button {
 .agent-retry:focus-visible {
   outline: 2px solid var(--agent-accent-text);
   outline-offset: 2px;
+}
+
+/* --- G-11 / RESP-05：窄高档（横屏手机）---
+   667×375 实测可视带只有 267px < 卡高 288px，整屏放不下半张卡。降卡高并把解读收到 2 行。
+   ⚠ --feed-card-h 与 web/src/feed-layout.ts 的 FEED_CARD_HEIGHT_SHORT 双写：
+   虚拟列表按「(卡高 + 行距) × 行数」算垫片，只改 CSS 会立刻错位。 */
+@media (max-height: 560px) {
+  :root {
+    /* 实测 667×375 首卡顶 103px、可视带下沿 321px → 只剩 218px，240 仍放不下，收到 210 */
+    --feed-card-h: 210px;
+  }
+  .reason-clamped {
+    -webkit-line-clamp: 2;
+  }
+  .main {
+    padding-top: 8px;
+  }
+  .feed-content {
+    padding-top: 0;
+  }
+}
+
+/* --- RESP-21 / G-12：减动效偏好兜底 ---
+   前面三条 prefers-reduced-motion 只覆盖了 13 个 @keyframes 里的 4 个（card-fade-out / spin /
+   agent-spin / creator-enter / toast-* / picker-in 全漏）。这里做全局兜底，
+   写在文件末尾以便盖过前面各处的 animation/transition 声明。 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

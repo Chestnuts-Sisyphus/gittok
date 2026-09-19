@@ -1,7 +1,14 @@
 // @ts-ignore —— 与 storage.test.ts 相同：根 vitest 跑 web 测试
+import { readFileSync } from "node:fs";
+// @ts-ignore
+import { resolve } from "node:path";
+// @ts-ignore
 import { describe, it, expect } from "vitest";
 import {
   FEED_CARD_HEIGHT,
+  FEED_CARD_HEIGHT_SHORT,
+  FEED_COL_MIN,
+  FEED_SHORT_MAX_HEIGHT,
   FEED_COLS_DESKTOP,
   FEED_MOBILE_MAX_WIDTH,
   FEED_OVERSCAN_ROWS,
@@ -135,5 +142,20 @@ describe("feedViewportOf", () => {
         { clientHeight: 800, getBoundingClientRect: () => ({ top: 60 }) },
       ),
     ).toEqual({ listTop: 40, viewportHeight: 800 });
+  });
+});
+
+describe("双写契约（CSS 与 JS 常量不许漂）", () => {
+  const cssRaw = readFileSync(resolve("web/src/styles.css"), "utf8");
+  it("--feed-col-min === FEED_COL_MIN（G-10 列数最小宽）", () => {
+    const cssMin = Number(cssRaw.match(/--feed-col-min:\s*(\d+)px/)?.[1]);
+    expect(cssMin).toBe(FEED_COL_MIN);
+  });
+  it("--feed-card-h === FEED_CARD_HEIGHT；窄高档 --feed-card-h === FEED_CARD_HEIGHT_SHORT", () => {
+    const vars = [...cssRaw.matchAll(/--feed-card-h:\s*(\d+)px/g)].map((m) => Number(m[1]));
+    expect(vars).toContain(FEED_CARD_HEIGHT);
+    expect(vars).toContain(FEED_CARD_HEIGHT_SHORT);
+    const shortBlock = cssRaw.match(/@media \(max-height: (\d+)px\)[\s\S]*?\}/);
+    expect(Number(shortBlock?.[1])).toBe(FEED_SHORT_MAX_HEIGHT);
   });
 });

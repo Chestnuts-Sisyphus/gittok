@@ -15,7 +15,11 @@ import {
 } from "./feed-payload.ts";
 import { loadCachedText, saveCachedText } from "./feed-cache.ts";
 import {
+  FEED_CARD_HEIGHT,
   FEED_MOBILE_MAX_WIDTH,
+  FEED_SHORT_MAX_HEIGHT,
+  feedCardHeightForHeight,
+  feedColsForContentWidth,
   feedGridFromMatch,
   feedViewportOf,
   feedWindow,
@@ -699,13 +703,23 @@ function useFeedGrid() {
     () =>
       typeof window !== "undefined" && window.matchMedia(`(max-width: ${FEED_MOBILE_MAX_WIDTH}px)`).matches,
   );
+  // G-11：横屏窄高（≤560）时 CSS 把卡高降到 240，垫片档位必须同步，否则虚拟列表错位
+  const [cardHeight, setCardHeight] = useState(() =>
+    typeof window === "undefined" ? FEED_CARD_HEIGHT : feedCardHeightForHeight(window.innerHeight),
+  );
   useEffect(() => {
     const mq = window.matchMedia(`(max-width: ${FEED_MOBILE_MAX_WIDTH}px)`);
     const onChange = () => setMobile(mq.matches);
     mq.addEventListener("change", onChange);
-    return () => mq.removeEventListener("change", onChange);
+    const shortQ = window.matchMedia(`(max-height: ${FEED_SHORT_MAX_HEIGHT}px)`);
+    const onHeight = () => setCardHeight(feedCardHeightForHeight(window.innerHeight));
+    shortQ.addEventListener("change", onHeight);
+    return () => {
+      mq.removeEventListener("change", onChange);
+      shortQ.removeEventListener("change", onHeight);
+    };
   }, []);
-  return feedGridFromMatch(mobile);
+  return { ...feedGridFromMatch(mobile), cardHeight };
 }
 
 interface FeedVirtualListProps {
@@ -732,15 +746,33 @@ function FeedVirtualList({
   entering = false,
   onExpose,
 }: FeedVirtualListProps) {
-  const { cols, rowGap } = useFeedGrid();
+  const { cols: gridCols, rowGap, cardHeight } = useFeedGrid();
   const wrapRef = useRef<HTMLDivElement>(null);
-  const listKey = `${channel ?? ""}:${cards[0]?.repo ?? ""}:${cards.length}:${cols}:${rowGap}`;
+  // G-10：列数由网格自身宽度决定（CSS 是 auto-fill minmax(--feed-col-min)），
+  // 垫片必须按浏览器真正渲染的列数算，否则行高错位。窄档先给初值，量完立刻校正。
+  const [cols, setCols] = useState(gridCols);
+  useEffect(() => {
+    const wrap = wrapRef.current;
+    if (!wrap) return;
+    const measure = () => {
+      const list = wrap.querySelector<HTMLElement>(".feed-list");
+      if (!list) return;
+      const next = feedColsForContentWidth(list.clientWidth, rowGap);
+      setCols((prev) => (prev === next ? prev : next));
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(wrap);
+    return () => ro.disconnect();
+  }, [rowGap]);
+  const listKey = `${channel ?? ""}:${cards[0]?.repo ?? ""}:${cards.length}:${cols}:${rowGap}:${cardHeight}`;
   const [winKey, setWinKey] = useState(listKey);
   const [win, setWin] = useState<FeedWindow>(() =>
     feedWindow({
       cardCount: cards.length,
       cols,
       rowGap,
+      cardHeight,
       listTop: 0,
       viewportHeight: typeof window !== "undefined" ? window.innerHeight : 900,
     }),
@@ -752,6 +784,7 @@ function FeedVirtualList({
         cardCount: cards.length,
         cols,
         rowGap,
+        cardHeight,
         listTop: 0,
         viewportHeight: typeof window !== "undefined" ? window.innerHeight : 900,
       }),
@@ -770,6 +803,7 @@ function FeedVirtualList({
         cardCount: cards.length,
         cols,
         rowGap,
+        cardHeight,
         listTop,
         viewportHeight,
       });
@@ -792,7 +826,7 @@ function FeedVirtualList({
       window.removeEventListener("resize", onScroll);
       if (raf) cancelAnimationFrame(raf);
     };
-  }, [cards.length, cards[0]?.repo, channel, cols, rowGap]);
+  }, [cards.length, cards[0]?.repo, channel, cols, rowGap, cardHeight]);
 
   const visible = cards.slice(win.startIdx, win.endIdx);
 

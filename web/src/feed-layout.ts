@@ -8,6 +8,19 @@ export const FEED_ROW_HEIGHT = FEED_CARD_HEIGHT + FEED_ROW_GAP;
 export const FEED_COLS_DESKTOP = 2;
 export const FEED_COLS_MOBILE = 1;
 export const FEED_MOBILE_MAX_WIDTH = 768;
+/** G-10：每列最小宽度。⚠ 与 styles.css 的 `--feed-col-min` 双写，改一处必须改两处，
+ *  否则 CSS 实际列数与垫片按列数算出的高度失配 → 虚拟列表错位（同 `FEED_CARD_HEIGHT` 那条纪律）。 */
+export const FEED_COL_MIN = 500;
+/** G-11：视口高 ≤560（横屏手机）时 CSS 把 `--feed-card-h` 降到 210px。
+ *  ⚠ 同样是双写契约：垫片行高必须跟着降，否则滚动高度与内容不符。 */
+export const FEED_SHORT_MAX_HEIGHT = 560;
+export const FEED_CARD_HEIGHT_SHORT = 210;
+
+export function feedCardHeightForHeight(viewportHeight: number): number {
+  return viewportHeight > 0 && viewportHeight <= FEED_SHORT_MAX_HEIGHT
+    ? FEED_CARD_HEIGHT_SHORT
+    : FEED_CARD_HEIGHT;
+}
 /** 约 3 屏。快滑也不翻空白，又不把几百张玻璃卡留在 DOM 里。 */
 export const FEED_OVERSCAN_ROWS = 10;
 
@@ -35,6 +48,16 @@ export function feedColsForWidth(width: number): number {
   return width <= FEED_MOBILE_MAX_WIDTH ? FEED_COLS_MOBILE : FEED_COLS_DESKTOP;
 }
 
+/**
+ * G-10：列数不再由视口宽决定，而要照 CSS `repeat(auto-fill, minmax(FEED_COL_MIN, 1fr))`
+ * 用**网格自身可用宽度**还原（视口宽推不出列数——侧栏、内距、1500px 上限都吃宽度）。
+ * 与浏览器同式：列数 = floor((可用宽 + 间距) / (最小列宽 + 间距))，至少 1 列。
+ */
+export function feedColsForContentWidth(contentWidth: number, rowGap: number = FEED_ROW_GAP): number {
+  if (!(contentWidth > 0)) return 1;
+  return Math.max(1, Math.floor((contentWidth + rowGap) / (FEED_COL_MIN + rowGap)));
+}
+
 export function feedRowGapForWidth(width: number): number {
   return width <= FEED_MOBILE_MAX_WIDTH ? FEED_ROW_GAP_MOBILE : FEED_ROW_GAP;
 }
@@ -46,9 +69,11 @@ export function feedWindow(opts: {
   listTop: number;
   viewportHeight: number;
   overscanRows?: number;
+  /** G-11：窄高档（视口高 ≤560）CSS 把卡高降到 240，垫片必须用同一个值。 */
+  cardHeight?: number;
 }): FeedWindow {
   const cols = Math.max(1, opts.cols | 0);
-  const rowH = FEED_CARD_HEIGHT + opts.rowGap;
+  const rowH = (opts.cardHeight ?? FEED_CARD_HEIGHT) + opts.rowGap;
   const rowCount = opts.cardCount > 0 ? Math.ceil(opts.cardCount / cols) : 0;
   const overscan = opts.overscanRows ?? FEED_OVERSCAN_ROWS;
   const viewTop = -opts.listTop;

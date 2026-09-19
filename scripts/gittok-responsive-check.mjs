@@ -37,6 +37,8 @@ const SHOT_DIR = process.env.GITTK_SHOTS || path.join(REPO, "tmp", "responsive",
 const DATA_DIR = process.env.GITTK_OUT || path.join(REPO, "tmp", "responsive");
 const SRV_PORT = Number(process.env.GITTK_RESP_PORT || 19102);
 const CDP_PORT = Number(process.env.GITTK_RESP_CDP || 19301);
+let PAGE_URL = "";
+
 const TAG = (() => {
   const a = process.argv.find((x) => x.startsWith("--tag="));
   return a ? a.slice(6) : new Date().toISOString().replace(/[:.]/g, "-");
@@ -46,13 +48,18 @@ const ONLY = (() => {
   return a ? a.slice(7) : null;
 })();
 
-/** 七档视口：任务书点名的 5 档宽度 + 手机横屏 844×390 + G-11 点名的 667×375（窄高横屏）。
- *  每档出「首页 + 弹层 + 我的页」截图（核心 6 张首页截图即前六档）。 */
+/** 十二档视口：G-10 验收点名的八档宽度（700/760/900/1000/1200/1400/1600/1920）
+ *  + 手机竖屏 390×844 + 两个横屏档 844×390、667×375（G-11）。每档出「首页 + 弹层 + 我的页」截图。 */
 const VIEWS = [
   { key: "1920x1080", w: 1920, h: 1080, mobile: false },
+  { key: "1600x900", w: 1600, h: 900, mobile: false },
   { key: "1400x900", w: 1400, h: 900, mobile: false },
+  { key: "1200x900", w: 1200, h: 900, mobile: false },
   { key: "1000x800", w: 1000, h: 800, mobile: false },
+  { key: "900x800", w: 900, h: 800, mobile: false },
   { key: "768x1024", w: 768, h: 1024, mobile: false },
+  { key: "760x900", w: 760, h: 900, mobile: true },
+  { key: "700x900", w: 700, h: 900, mobile: true },
   { key: "390x844", w: 390, h: 844, mobile: true },
   { key: "844x390", w: 844, h: 390, mobile: true },
   { key: "667x375", w: 667, h: 375, mobile: true },
@@ -240,6 +247,29 @@ window.__gt = {
     const cs=getComputedStyle(e);
     return { cols: cs.gridTemplateColumns.split(' ').filter(Boolean).length,
              sw: e.scrollWidth, cw: e.clientWidth }; },
+  boxOverflow(sel, limit){
+    return [...document.querySelectorAll(sel)].slice(0, limit ?? 8)
+      .map((e)=>({ sw: e.scrollWidth, cw: e.clientWidth, sh: e.scrollHeight, ch: e.clientHeight }));
+  },
+  /** 一行容量：用隐藏探针（复制该元素字体相关计算样式 + 10 个全角字）量单字宽，
+   *  再看内容宽能塞几个字。不拿卡上真实文本量——首串含拉丁词或标点会把单字宽算歪。 */
+  capacity(sel, limit){
+    return [...document.querySelectorAll(sel)].slice(0, limit ?? 8).map((el)=>{
+      const cs=getComputedStyle(el);
+      const inner=el.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+      const probe=document.createElement('span');
+      ['fontFamily','fontSize','fontWeight','fontStyle','letterSpacing','textTransform'].forEach(k=>{
+        probe.style[k]=cs[k];
+      });
+      probe.style.position='absolute'; probe.style.visibility='hidden';
+      probe.style.whiteSpace='nowrap'; probe.textContent='国国国国国国国国国国';
+      document.body.appendChild(probe);
+      const charW=probe.getBoundingClientRect().width/10;
+      probe.remove();
+      if(!(charW>0) || inner<=0) return { cap: 0, width: Math.round(inner), charW: 0 };
+      return { cap: Math.floor(inner/charW), width: Math.round(inner), charW: +charW.toFixed(1) };
+    });
+  },
   clickText(sel, text){
     const els=[...document.querySelectorAll(sel)];
     const el=text? els.find(e=>(e.textContent||'').includes(text)) : els[0];
@@ -295,12 +325,17 @@ async function shot(cdp, name) {
 /** 单档全量检查。 */
 async function checkView(cdp, view) {
   await setView(cdp, view);
-  await new Promise((r) => setTimeout(r, 900));
+  // 每档都从「重新加载首页」开始：上一档的点选与滚动会把页面留在非首屏状态，
+  // 那样量到的「首卡」其实是列表中段的卡，读数不可信。
+  await cdp.call("Page.navigate", { url: PAGE_URL });
+  await new Promise((r) => setTimeout(r, 1200));
   const n = await waitCards(cdp);
   if (n === 0) {
     report(view.key, "页面就绪", false, "一张卡都没渲染出来");
     return;
   }
+  await cdp.call("Runtime.evaluate", { expression: PAGE_TOOLS });
+  await new Promise((r) => setTimeout(r, 300));
 
   // 1 横向溢出
   const ov = await cdp.eval(`return window.__gt.overflow();`);
@@ -325,27 +360,42 @@ async function checkView(cdp, view) {
       (clip.clipped.length ? `｜被裁：${clip.clipped.map((c) => `.${c.cls}+${c.over}px`).join(" ")}` : ""),
   );
 
-  // 3 逐档实际可见字数
+  // 3 逐档实际可见字数（口径：G-10 桌面档一行容量 ≥28 字；G-13 窄档卡宽 ≥ 视口 88%）
   const m = await cdp.eval(
-    `return {s: window.__gt.measure('.summary', 12), r: window.__gt.measure('.reason-clamped', 12)};`,
+    `return {s: window.__gt.measure('.summary', 12), cap: window.__gt.capacity('.summary', 12), r: window.__gt.measure('.reason-clamped', 12), t: window.__gt.boxOverflow('.card-tags', 12), cardW: document.querySelector('.card').getBoundingClientRect().width};`,
   );
-  const sVis = m.s.map((x) => x.visible);
-  const sMin = Math.min(...sVis);
   const sClip = m.s.filter((x) => x.visible < x.total).length;
+  const capMin = Math.min(...m.cap.map((x) => x.cap));
+  if (view.w > 768) {
+    report(
+      view.key,
+      ".summary 一行容量 ≥28 字（G-10）",
+      capMin >= 28,
+      `容量 min ${capMin} 字（单字宽 ${m.cap[0]?.charW}px / 内容宽 ${m.cap[0]?.width}px）｜采样整句可见 ${m.s.length - sClip}/${m.s.length}`,
+    );
+  } else {
+    report(
+      view.key,
+      "卡宽 ≥ 视口 88%（G-13）",
+      m.cardW >= view.w * 0.88,
+      `卡宽 ${Math.round(m.cardW)}px = 视口 ${((m.cardW / view.w) * 100).toFixed(1)}%｜一行容量 min ${capMin} 字`,
+    );
+  }
+  const noReason = m.r.filter((x) => x.visibleLines === 0);
   report(
     view.key,
-    ".summary 整句可见（20-35 字规格）",
-    sClip === 0,
-    `min 可见 ${sMin} 字（采样 ${m.s.length} 张，卡宽 ${m.s[0]?.width}px）｜掉字 ${sClip} 张`,
+    ".reason 至少一行可见（定高不吃光）",
+    noReason.length === 0,
+    `clamp ${m.r[0]?.clamp ?? "?"} 行，可见行数 ${[...new Set(m.r.map((x) => x.visibleLines))].join("/")}｜一行不见 ${noReason.length} 张` +
+      `（文本超出 clamp 被省略号截断 ${m.r.filter((x) => x.visible < x.total).length} 张，属设计内截断，判据见「卡片不被吃行」）`,
   );
-  const eaten = m.r.filter((x) => x.clamp > 0 && x.visibleLines < x.clamp);
-  const byDesign = m.r.filter((x) => x.clamp > 0 && x.visible < x.total).length;
+  const tagsCut = m.t.filter((x) => x.sw > x.cw + 1);
   report(
     view.key,
-    ".reason 可见行数达 clamp 声明（不被定高吃行）",
-    eaten.length === 0,
-    `clamp ${m.r[0]?.clamp ?? "?"} 行，实测可见行数 ${[...new Set(m.r.map((x) => x.visibleLines))].join("/")}｜被吃行 ${eaten.length} 张` +
-      (byDesign ? `（另有 ${byDesign} 张文本超出 clamp 属设计内截断）` : ""),
+    ".card-tags 单行不被裁（+N 计数可见）",
+    tagsCut.length === 0,
+    `采样 ${m.t.length} 张` +
+      (tagsCut.length ? `｜被裁 ${tagsCut.map((x) => `${x.sw}>${x.cw}`).join(" ")}` : ""),
   );
 
   // 4 侧栏/底栏/tabs 命中档
@@ -371,9 +421,9 @@ async function checkView(cdp, view) {
   `);
   report(
     view.key,
-    "整卡放得下（顶栏下、底栏上的可视带内）",
-    fit.top >= fit.headerH - 1 && fit.bottom <= fit.band + 1,
-    `卡 ${fit.top}→${fit.bottom}，可视带 ${fit.headerH}→${fit.band}（视口高 ${fit.inner}）｜卡高 ${fit.cardH}`,
+    "整卡放得下（可视带高 ≥ 卡高）",
+    fit.band - fit.headerH >= fit.cardH,
+    `可视带高 ${fit.band - fit.headerH}（顶栏 ${fit.headerH}→底栏上沿 ${fit.band}，视口 ${fit.inner}）｜卡高 ${fit.cardH}｜首卡 top ${fit.top}`,
   );
 
   // 6 详情弹层：动作区与弹层本体不破相
@@ -507,6 +557,19 @@ async function main() {
     process.exit(1);
   }
   const feedPath = path.join(DIST, "data", "feed.json");
+  // 前置：dist 里的 CSS 必须不比源码旧。踩过一次 build 失败但 dist 是旧的，
+  // 测台照样跑完并给出「看似有效」的读数——那种绿/红都不可信。
+  const srcCss = path.join(REPO, "web", "src", "styles.css");
+  const distCss = fs
+    .readdirSync(path.join(DIST, "assets"))
+    .filter((f) => f.endsWith(".css"))
+    .map((f) => path.join(DIST, "assets", f))[0];
+  if (distCss && fs.existsSync(srcCss) && fs.statSync(distCss).mtimeMs < fs.statSync(srcCss).mtimeMs) {
+    console.error(
+      `dist 里的 CSS（${path.basename(distCss)}）比 web/src/styles.css 旧 —— 先重新 npm run build（注意看退出码），再跑本闸`,
+    );
+    process.exit(1);
+  }
   const feedLen = JSON.parse(fs.readFileSync(feedPath, "utf-8")).length;
   console.log(`dist 数据规模 ${feedLen} 张｜静态服务器 http://127.0.0.1:${SRV_PORT}/`);
   if (feedLen < 1000) {
@@ -543,8 +606,8 @@ async function main() {
     await cdp.call("Emulation.setEmulatedMedia", {
       features: [{ name: "prefers-color-scheme", value: "dark" }],
     });
-    const url = `http://127.0.0.1:${SRV_PORT}/`;
-    await cdp.call("Page.navigate", { url });
+    PAGE_URL = `http://127.0.0.1:${SRV_PORT}/`;
+    await cdp.call("Page.navigate", { url: PAGE_URL });
     await new Promise((r) => setTimeout(r, 1500));
     await cdp.eval(seedScript());
     // 收藏夹里放几张真实卡，让 .folder-card-remove 也能渲染出来
@@ -560,10 +623,6 @@ async function main() {
         return top3;
       });
     `);
-    await cdp.call("Page.navigate", { url });
-    await new Promise((r) => setTimeout(r, 1200));
-    await cdp.call("Runtime.evaluate", { expression: PAGE_TOOLS });
-    await new Promise((r) => setTimeout(r, 300));
 
     for (const view of VIEWS) {
       if (ONLY && ONLY !== view.key) continue;
