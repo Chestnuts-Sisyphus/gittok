@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-09-20T06:03:09.998Z",
+  "updatedAt": "2026-09-20T07:20:39.072Z",
   "lanes": {
     "zhipu": {
       "key": "zhipu",
-      "calls": 2473,
-      "ok": 1908,
-      "lastError": "Error: 429 该模型当前访问量过大，请您稍后再试",
+      "calls": 2543,
+      "ok": 1973,
+      "lastError": "Error: 500 操作失败",
       "lastClass": "ok",
-      "updatedAt": "2026-09-20T06:03:09.998Z"
+      "updatedAt": "2026-09-20T07:20:39.072Z"
     },
     "agnes": {
       "key": "agnes",
@@ -54,11 +54,11 @@
     },
     "openrouter": {
       "key": "openrouter",
-      "calls": 340,
-      "ok": 115,
+      "calls": 347,
+      "ok": 122,
       "lastError": "TypeError: Cannot read properties of undefined (reading '0')",
       "lastClass": "ok",
-      "updatedAt": "2026-09-20T05:56:56.089Z"
+      "updatedAt": "2026-09-20T07:19:27.971Z"
     },
     "custom-modelscope": {
       "key": "custom-modelscope",
@@ -78,11 +78,12 @@
     },
     "modelscope": {
       "key": "modelscope",
-      "calls": 455,
-      "ok": 143,
+      "calls": 467,
+      "ok": 148,
       "lastError": "TypeError: Cannot read properties of null (reading '0')",
-      "lastClass": "ok",
-      "updatedAt": "2026-09-20T06:01:27.951Z"
+      "lastClass": "network",
+      "updatedAt": "2026-09-20T07:19:11.182Z",
+      "retiredUntil": "2026-09-20T07:49:11.182Z"
     },
     "spark": {
       "key": "spark",
