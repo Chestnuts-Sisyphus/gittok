@@ -10,17 +10,21 @@
 ### 1.1 topics 抹除问题
 
 **现状：**
+
 - trending 源新增项目时整条 set 会抹掉 baseline 已有的真 topics
 - 1447 张卡只有 1 条 searchQuery 类 topics（占 52.9%）
 
 **已实施修复：**
+
 ```typescript
 // src/feed/index.ts:1182
 topics: repoMap.get(t.fullName)?.topics ?? [],
 ```
+
 trending 分支 set 前带回 baseline topics
 
 **验证：**
+
 - ✅ baseline 已有 topics 不被抹除
 - ✅ searchQuery 作为临时 topic 保留
 
@@ -31,10 +35,12 @@ trending 分支 set 前带回 baseline topics
 ### 1.2 V-C 闸假行
 
 **现状：**
+
 - core 频道集合缺少"分区·资源/创意"，导致假绿
 - "关注"行从 feed.json owner 字段读取，owner 缺失导致假行（显示 2724 张实际 3 张）
 
 **已实施修复：**
+
 1. `scripts/gittok-channel-capacity.ts:134`
    ```typescript
    const core = ["热门", "乐趣", "分区·AI", "分区·工具", "分区·资源", "分区·创意"];
@@ -47,6 +53,7 @@ trending 分支 set 前带回 baseline topics
    ```
 
 **验证结果：**
+
 ```bash
 npx tsx scripts/gittok-channel-capacity.ts
 # [V-C] 不通过：
@@ -55,6 +62,7 @@ npx tsx scripts/gittok-channel-capacity.ts
 ```
 
 **暴露真实问题：**
+
 - 分区·资源：296 张 < 300（差 4 张）
 - 分区·创意：228 张 < 300（差 72 张）
 
@@ -67,51 +75,74 @@ npx tsx scripts/gittok-channel-capacity.ts
 ### 2.1 facts 专项队列
 
 **现状：**
+
 - facts 空值卡数：2572 张（占 94.4%）
 - facts 有值卡数：152 张（占 5.6%）
 - 任务书记载："facts 是否纳入必备字段未决（纳入即全库判不合格）"
 
 **待裁方案：**
 
-| 方案 | 描述 | 影响面 | 工作量 | 推荐度 |
-|------|------|--------|--------|--------|
-| A | 保持现状（非必备） | 无 | 无 | ⭐⭐⭐⭐⭐ |
-| B | 纳入必备字段 | 全库 2736 张判不合格 | 需全库回灌 | ⭐⭐ |
-| C | 渐进式纳入 | 先 10% 试点，逐步扩大 | 分批次回灌 | ⭐⭐⭐⭐ |
+| 方案 | 描述               | 影响面                | 工作量     | 推荐度     |
+| ---- | ------------------ | --------------------- | ---------- | ---------- |
+| A    | 保持现状（非必备） | 无                    | 无         | ⭐⭐⭐⭐⭐ |
+| B    | 纳入必备字段       | 全库 2736 张判不合格  | 需全库回灌 | ⭐⭐       |
+| C    | 渐进式纳入         | 先 10% 试点，逐步扩大 | 分批次回灌 | ⭐⭐⭐⭐   |
 
 **方案 A 理由（推荐）：**
+
 - facts 字段当前不影响核心功能展示
 - 2572 张卡需逐张回灌，工作量大
 - 可等到 G-17 批次完成后统一处理
 
 **方案 C 理由（备选）：**
+
 - 渐进式降低风险
 - 可边跑批边回灌
 - 但需修改判定链产物（可能触 JUDGE_VERSION）
 
 **影响评估：**
+
 - 若纳入必备字段：当前合格 902 张→0 张（全库不合格）
 - 需重新跑批量构建 + 文案复检
 
 **建议：** 暂维持现状（方案 A），待 G-17 批次完成后评估
 
-**状态：** ⏳ 等待栗子裁 A/B/C
+**09-20 状态：** ⏸ 暂挂按方案 A 执行（Agent 依铁律 0 推测代执：本文档推荐 A 且栗子未改口径，G-17 未完不启动回灌；若栗子裁 B/C 随时可翻案）。实测口径已更新：**facts 空 2576/2736＝94.2%**（本机 09-20 05:20 复跑）。
 
 ---
 
-### 2.2 funDims/language 空值归因
+### 2.2b funDims 空值归因（09-20 已完成✅）
+
+**归因结论（本机实测，`node -e` 按 source 分组）：**
+
+- funDims 空值现为 **123 张**（0918 记 69 张 → 随 search/tier 新入库增长，非旧卡丢失）
+- 来源分布：**search 90 ＋ tier 33**，trending/bigbro 为 0
+- 123 张全部**有 funScore 但无六维 dims** → 走的是打分重建路径的合成分，从未过 `gittok-rejudge-v3.ts`
+- 无一被标 `copyOk===false`（展示层不受影响，但六维雷达图缺数据）
+
+**修法（待批次停手后执行，防 feed.json 并发写入）：**
+
+1. `REJUDGE_FEED=data/rejudge-miss2.json npx tsx scripts/gittok-rejudge-v3.ts`（工作副本，只补 123 张，不动 taxonomy/JUDGE_VERSION）
+2. `scripts/gittok-promote-v3.ts` 提升入正式库（带不变量闸）
+
+**状态：** ✅ 已归因；⏳ 补判待批次窗口（与 G-17 共用免费额度，G-17 优先）
+
+### 2.2 funDims/language 空值归因（旧版记录，已被 2.2b 取代）
 
 **现状：**
+
 - funDims 空值：111 张（占 4.1%）
 - language 空值：111 张（占 4.1%）
 - 0918 记的是 69 张，为何扩量至 111 张？
 
 **待查明原因：**
+
 1. 新卡未过 v3 重判（funScore > 0 才进池，空 funDims 的卡被过滤）
 2. 字段丢失（批量构建期丢弃）
 3. 上游无数据（GitHub API 本身无 language 信息）
 
 **归因流程：**
+
 ```bash
 # 1. 提取 111 张空值卡 repo 列表
 node -e "const f=require('./data/feed.json'); const empty=f.filter(c=>!c.funDims||!c.language); console.log(empty.map(c=>c.repo).join('\n'));" > D:/tmp/fundims_empty_repos.txt
@@ -122,7 +153,8 @@ node -e "const f=require('./data/feed.json'); const empty=f.filter(c=>!c.funDims
 # - 是否 search 来源？
 ```
 
-**建议：** 
+**建议：**
+
 - 先归因再决定处理方式
 - 若是新卡未过 v3 → 调整 v3 判据或跳过这些卡
 - 若是字段丢失 → 修复批量构建脚本
@@ -136,82 +168,95 @@ node -e "const f=require('./data/feed.json'); const empty=f.filter(c=>!c.funDims
 ### 3.1 topics 修法三方案
 
 **背景：**
+
 - 1447 张卡只有 1 条 searchQuery 类 topics
 - 需决定如何处理"假 topics"
 
 **三方案对比：**
 
-| 方案 | 描述 | 优点 | 缺点 | 风险 |
-|------|------|------|------|------|
-| A | 保持现状 | 零改动，稳定 | 用户体验差（只有 searchQuery） | 低 |
-| B | 加标记位 | 区分数据来源，透明 | 需前端改造，后端加字段 | 中 |
-| C | 清洗回灌 | 用户体验好 | 触判定链，需改 JUDGE_VERSION | 高 |
+| 方案 | 描述     | 优点               | 缺点                           | 风险 |
+| ---- | -------- | ------------------ | ------------------------------ | ---- |
+| A    | 保持现状 | 零改动，稳定       | 用户体验差（只有 searchQuery） | 低   |
+| B    | 加标记位 | 区分数据来源，透明 | 需前端改造，后端加字段         | 中   |
+| C    | 清洗回灌 | 用户体验好         | 触判定链，需改 JUDGE_VERSION   | 高   |
 
 **方案 A（推荐）：**
+
 - 依据：任务书硬禁区"不改 CI 全站判定口径"
 - 影响：topics 字段保持不变，searchQuery 作为补充信息展示
 
 **方案 B（备选）：**
+
 - 需新增 `topicSource` 字段（trending/search/baseline）
 - 前端展示时区分颜色/图标
 - 不涉及判定链改动
 
 **方案 C（不推荐）：**
+
 - 需修改 taxonomy.ts 判据（禁碰）
 - 需改 JUDGE_VERSION（指纹变更）
 - 需全库重判（2736 张 × LLM）
 
 **建议：** 优先方案 A，次选方案 B
 
-**状态：** ⏳ 等待栗子裁 A/B/C
+**09-20 状态：** ✅ 定案按方案 A（Agent 依铁律 0 推测代执；依据：止漏修复已在 `2f461e6` 上线、09-19 19:56 会话已裁「C 案属硬禁区不做」、B 案需前端改造无授权。C 案触 taxonomy/JUDGE_VERSION 禁区直接出局。1447 张单条 topics 维持现状展示）。栗子如裁 B 可另开任务。
 
 ---
 
 ### 3.2 V-B1 调参
 
 **现状：**
+
 - 复现率：81.6% < 85%（红线）
 - 难例：30/40 = 75.0%
 
 **任务书约束：**
+
 - 硬禁区："不为 V-B1 达标调参"
 - 等裁项："V-B1 调参"在列但未获裁
 
 **已尝试方案（历史）：**
+
 - fun_score 阈值调整（0.5→0.3）→ 无效
 - 增长动量权重调整 → 无效
 - 创意配额从 40%→35% → 无效
 
 **根本原因分析：**
+
 - V-B1 判据本身过于严格
 - fun-anchors 定稿未完成（T9 勾选待定）
 - 部分难例确实不符合"乐趣"定义
 
 **建议：**
+
 1. 先完成 fun-anchors 定稿（见 3.3）
 2. T9 勾选后重新评估复现率
 3. 若仍<85%，考虑下调红线至 80%（需栗子裁）
 
-**状态：** ⏳ 等待 fun-anchors 定稿 + T9 勾选
+**状态：** ⏳ 挂起——前置 fun-anchors 定稿＋T9 勾选未过，且调参本身在硬禁区。**09-20 注**：不改 85% 红线、不动判据（禁区）；「下调红线至 80%」涉改验收口径＝改 CI 全站判定，属禁区，维持等栗子亲口。
 
 ---
 
 ### 3.3 fun-anchors 定稿 + T9 勾选
 
 **现状：**
+
 - fun-anchors 是 V-B1 的核心判据
 - T9 是其中一个 anchor 项（具体定义需查 taxonomy.ts）
 
 **待办事项：**
+
 1. 查阅 taxonomy.ts 确认 T9 定义
 2. 评估 T9 是否应纳入 fun-anchors
 3. 若纳入，需更新 fun-anchor-check.ts
 
 **风险：**
+
 - 修改 fun-anchors → 触判定链 → 需改 JUDGE_VERSION
 - 全库重判成本高
 
-**建议：** 
+**建议：**
+
 - 先查 taxonomy.ts 确认 T9 语义
 - 若 T9 确属"乐趣"范畴 → 纳入并等裁
 - 若 T9 不属于 → 保持原状
@@ -223,24 +268,29 @@ node -e "const f=require('./data/feed.json'); const empty=f.filter(c=>!c.funDims
 ### 3.4 build 副产物治理
 
 **现状：**
+
 - web/tsconfig.tsbuildinfo 文件持续变化
 - git status 显示 modified
 - 是否应加入.gitignore 或提交？
 
 **选项对比：**
 
-| 选项 | 描述 | 优点 | 缺点 |
-|------|------|------|------|
-| A | 加入.gitignore | 减少噪音，clean status | 本地构建快，他人构建慢 |
-| B | 提交到仓库 | 构建缓存复用 | .git 体积增大 |
-| C | 生成时删除 | 零存储 | 每次全量重建 |
+| 选项 | 描述           | 优点                   | 缺点                   |
+| ---- | -------------- | ---------------------- | ---------------------- |
+| A    | 加入.gitignore | 减少噪音，clean status | 本地构建快，他人构建慢 |
+| B    | 提交到仓库     | 构建缓存复用           | .git 体积增大          |
+| C    | 生成时删除     | 零存储                 | 每次全量重建           |
 
 **建议：** 选项 A（加入.gitignore）
+
 - tsbuildinfo 是构建中间产物，非必需
 - 类似 node_modules/.cache
 - 任务书提到"build 副产物"等裁，暗示可不提交
 
+**09-20 状态：** ✅ 已按既有纪律处置：`git checkout -- web/tsconfig.tsbuildinfo` 还原（依据：线手册「基建坑账」明示「web build 副产物跑完 git checkout -- 还原」＋ 09-19 H-05 栗子已裁「副产物还原」先例）。**gitignore 方案暂不追加**：该文件已被跟踪，加规则不生效，须配 `git rm --cached`——而任务书硬禁区明写「禁 rm --cached（等一句）」，故等栗子那句后再动；不动则 tsbuildinfo 每次构建后照例 checkout 还原即可。
+
 **待执行：**
+
 ```bash
 # 添加到 .gitignore
 echo "web/*.tsbuildinfo" >> .gitignore
@@ -257,14 +307,17 @@ git commit -m "chore: ignore tsbuildinfo build artifacts"
 ### 4.1 真实演练灰度发布
 
 **任务要求：**
+
 - P3-7: 小范围灰度 100 张 + 监控记录
 
 **待裁点：**
+
 1. 灰度范围：100 张如何选取？（随机/热门/新入库）
 2. 监控指标：点击率/停留时长/分享率？
 3. 发布渠道：GitHub Issues/Discord/邮件列表？
 
 **建议：**
+
 - 灰度选取：热门频道前 100 张（曝光度高）
 - 监控：手动观察 GitHub Issues 反馈
 - 发布：先内部测试，稳定后再对外
@@ -276,19 +329,23 @@ git commit -m "chore: ignore tsbuildinfo build artifacts"
 ### 4.2 宣发③发布
 
 **任务要求：**
+
 - P3-D5: 三步计划③宣发（Show HN/V2EX/即刻/X）
 
 **待办内容：**
+
 1. Show HN 帖（Hacker News）
 2. V2EX 帖（国内开发者社区）
 3. 即刻动态（中文产品社区）
 4. X/Twitter 推文（国际影响力）
 
 **草稿包准备：**
+
 - 已创建 docs/press-release.md（技术面 + 用户面）
 - 需补充截图/演示链接/关键数据
 
 **建议：**
+
 - 先 Show HN（英文受众广）
 - 再 V2EX（中文开发者集中）
 - 即刻/X 可选（视时间精力）
@@ -308,16 +365,16 @@ git commit -m "chore: ignore tsbuildinfo build artifacts"
 
 ### 优先级排序
 
-| 优先级 | 事项 | 截止时间 | 阻塞关系 |
-|--------|------|----------|----------|
-| P0 | topics 修法 | W1 | 影响用户体验 |
-| P1 | facts 专项队列 | W2 | 依赖 G-17 完成 |
-| P1 | funDims 归因 | W1 | 影响数据质量 |
-| P2 | fun-anchors 定稿 | W2 | 依赖 taxonomy 审查 |
-| P2 | V-B1 调参 | W3 | 依赖 fun-anchors |
-| P3 | build 副产物 | W1 | 无阻塞 |
-| P3 | 真实演练 | W2 | 需授权 |
-| P3 | 宣发③ | W3 | 需授权 |
+| 优先级 | 事项             | 截止时间 | 阻塞关系           |
+| ------ | ---------------- | -------- | ------------------ |
+| P0     | topics 修法      | W1       | 影响用户体验       |
+| P1     | facts 专项队列   | W2       | 依赖 G-17 完成     |
+| P1     | funDims 归因     | W1       | 影响数据质量       |
+| P2     | fun-anchors 定稿 | W2       | 依赖 taxonomy 审查 |
+| P2     | V-B1 调参        | W3       | 依赖 fun-anchors   |
+| P3     | build 副产物     | W1       | 无阻塞             |
+| P3     | 真实演练         | W2       | 需授权             |
+| P3     | 宣发③            | W3       | 需授权             |
 
 ---
 
@@ -351,4 +408,4 @@ node -e "const f=require('./data/feed.json'); const m=new Map(); for(const c of 
 
 ---
 
-*本文档版本：v2.2 | 最后更新：2026-09-19 | 作者：Qoder（主开发 Agent）*
+_本文档版本：v2.2 | 最后更新：2026-09-19 | 作者：Qoder（主开发 Agent）_
