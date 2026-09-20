@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-09-20T07:20:39.072Z",
+  "updatedAt": "2026-09-20T08:28:15.965Z",
   "lanes": {
     "zhipu": {
       "key": "zhipu",
-      "calls": 2543,
-      "ok": 1973,
-      "lastError": "Error: 500 操作失败",
+      "calls": 2611,
+      "ok": 2036,
+      "lastError": "Error: 429 该模型当前访问量过大，请您稍后再试",
       "lastClass": "ok",
-      "updatedAt": "2026-09-20T07:20:39.072Z"
+      "updatedAt": "2026-09-20T08:28:15.965Z"
     },
     "agnes": {
       "key": "agnes",
@@ -54,11 +54,11 @@
     },
     "openrouter": {
       "key": "openrouter",
-      "calls": 347,
-      "ok": 122,
+      "calls": 356,
+      "ok": 131,
       "lastError": "TypeError: Cannot read properties of undefined (reading '0')",
       "lastClass": "ok",
-      "updatedAt": "2026-09-20T07:19:27.971Z"
+      "updatedAt": "2026-09-20T08:27:00.991Z"
     },
     "custom-modelscope": {
       "key": "custom-modelscope",

@@ -9622,9 +9622,9 @@
     "owner": "bmad-code-org",
     "name": "BMAD-METHOD",
     "desc": "Breakthrough Method for Agile Ai Driven Development",
-    "summaryCn": "用AI开发代码的极简流程，小白也能秒上手",
-    "reasonCn": "这是一套面向开发者的敏捷AI工作流框架，通过模板化思维和标准化流程，将AI辅助开发的门槛降到最低。它提供了完整的代码生成、测试、审查和部署流水线，让开发者能像搭积木一样快速构建应用，无需纠结复杂的提示词技巧。",
-    "detailCn": "想象一下，你以前写代码得先构思架构，再一个个敲函数，遇到bug还得回头改。现在有了BMAD METHOD，你只需要告诉它“我要做一个电商网站”，剩下的比如建数据库、写接口、写前端页面，甚至单元测试，AI都会自动帮你生成。这就像你找了个超级编程助手，它不仅会写代码，还懂怎么写好代码。\n\n这套方法的核心在于“模板化”和“模块化”。它不是那种让你去学什么高深提示词工程的教程，而是一套现成的“操作说明书”。你只要按照它的步骤，把你的需求填进去，AI就能一步步帮你把项目做出来。它内置了很多常用的开发模板，比如Web应用、API服务、数据处理脚本等，你不需要从零开始设计。\n\n安装和使用非常简单。项目提供了清晰的文档和示例代码，你可以直接克隆仓库，然后按照README里的指引运行。它的命令行工具设计得很直观，输入项目需求，就能生成基础框架。\n\n特别适合那些想快速验证想法的开发者、初创团队，以及正在学习编程的学生。不管你是想做个小工具练手，还是想开发一个完整的商业应用，它都能帮你在短时间内把想法变成现实。目前项目在GitHub上获得了5万多的star，社区非常活跃，文档和示例都在不断更新。虽然它是基于JavaScript生态的，但理念通用，任何语言的开发者都能从中受益。",
+    "summaryCn": "把敏捷全流程拆解为专用 AI Agent 协作完成开发",
+    "reasonCn": "BMAD-METHOD 将敏捷开发的各个环节抽象为 Scrum Master、架构师、开发者等专用 AI Agent，通过结构化上下文传递实现从需求分析、架构设计到代码生成的全流程自动化。它不只是生成代码，更保留了决策链路与架构意图，让 AI 协作像真实团队一样有章可循。适合想用 AI 落地复杂项目、而非只写零散代码片段的开发者。",
+    "detailCn": "BMAD-METHOD 的核心在于把敏捷开发的“思考过程”显性化为一套可执行的 Agent 协作协议。项目定义了 Scrum Master、Product Owner、Architect、Developer、QA 等专用角色，每个角色对应一组精心设计的提示词与技能包，负责处理需求拆解、架构决策、代码实现、测试验证等特定环节。不同于普通代码助手只关注单文件生成，BMAD 强调上下文在角色间的结构化流转：需求文档产出架构简报，架构简报指导代码生成，代码变更自动回溯更新文档，形成闭环。\n\n安装方式为通过 npm 或 npx 运行安装脚本，将 Agent 定义与工作流模板部署到项目目录，随后在支持 Agent 模式的 IDE（如 Cursor、Windsurf）或命令行中调用。上手时，先用 `*plan` 让 SM 拆解需求，再用 `*design` 让架构师输出技术方案，最后由 Developer 逐故事实现。整个过程无需编写复杂提示词，开发者扮演“产品负责人”审核关键决策点即可。\n\n该方法适合中大型项目或需要长期维护的代码库，尤其擅长处理跨模块依赖、架构演进与技术债控制。对于追求“一次生成、长期可维护”的团队，它提供了比临时拼凑 Prompt 更可靠的工程化路径。文档与示例齐全，社区活跃，持续迭代新角色与最佳实践。",
     "stars": 53252,
     "starGrowth": 77,
     "createdAt": "2025-04-13T14:54:25Z",
@@ -9703,7 +9703,17 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.23533786524449785
+    "heatScore": 0.23533786524449785,
+    "facts": [
+      {
+        "claim": "定义 Scrum Master、Architect、Developer 等专用 Agent 角色",
+        "source": "BMad Method is the agile way to do it — decisions stay explicit, context carries forward, and the process sizes itself to the work."
+      },
+      {
+        "claim": "提供从构思到架构再到代码的结构化全流程",
+        "source": "turn an idea or change request into working software without giving up the thinking"
+      }
+    ]
   },
   {
     "repo": "react/react-native",
@@ -9797,9 +9807,9 @@
     "owner": "tw93",
     "name": "Pake",
     "desc": "🤱🏻 Turn any webpage into a desktop app with one command.",
-    "summaryCn": "你是否曾经被各种网页工具折磨？比如想用一个在线PDF转换器，却得先开浏览器",
-    "reasonCn": "技术上看，Pake用Rust写核心部分，性能远超传统Electron应用，打包出来的软件体积极小，启动速度也快。它内置了预配置的Rust环境，用户不需要安装任何开发工具链，一条命令就能跑。支持多平台，Mac、Windows、Linux都能用，打包后的应用可以拖到Dock栏或开始菜单，和普通桌面软件一",
-    "detailCn": "你是否曾经被各种网页工具折磨？比如想用一个在线PDF转换器，却得先开浏览器、搜网站、登录账号、看广告？Pake的出现就是为了解决这个痛点。它能把任何网页打包成一个独立的桌面应用程序，装好就能用，没有浏览器的繁琐。\n\n技术上看，Pake用Rust写核心部分，性能远超传统Electron应用，打包出来的软件体积极小，启动速度也快。它内置了预配置的Rust环境，用户不需要安装任何开发工具链，一条命令就能跑。支持多平台，Mac、Windows、Linux都能用，打包后的应用可以拖到Dock栏或开始菜单，和普通桌面软件一模一样。\n\n上手很简单。安装Node.js后，运行npm install -g pake-cli，然后执行pake https://你的网址 --name 应用名，等一会儿就能得到一个可安装的应用程序包。项目自带了一些热门网站的配置，比如Claude、ChatGPT网页版、Notion等，可以直接用。\n\n适合这些人群：不想被浏览器标签页淹没的打工人；需要常用网页工具但讨厌打开浏览器的用户；给团队统一部署内部Web系统的管理员；想给自家项目做个桌面客户端又不想学前端框架的开发者。\n\n项目虽然只有6万多star，但在中文社区非常受欢迎，因为解决了很多人长期忍受的痛点。作者tw93持续更新，已经支持了AI对话框、笔记工具等多个热门场景。相比传统Electron打包方案，Pake更轻量、更简单，是普通用户的福音。",
+    "summaryCn": "一键将网页转化为跨平台桌面应用，体积仅 10M。",
+    "reasonCn": "Pake 是一款基于 Rust 技术的桌面应用打包工具，旨在解决网页转桌面应用体积过大和性能差的问题。它让开发者能通过极简命令或在线平台，将任何网页封装成原生桌面程序，支持快捷键、沉浸式窗口和样式定制等功能。无论是个人项目还是企业应用，Pake 都能让网页应用拥有接近原生软件的体验。",
+    "detailCn": "Pake 项目通过 Rust 技术栈解决了传统 Web 桌面应用体积臃肿、运行缓慢的痛点。项目自述中提到，其安装包体积仅为 Electron 项目的近 1/20，通常控制在 10M 以内，这意味着更快的下载和安装速度。同时，得益于 Rust Tauri 框架，Pake 在内存占用和启动速度上也远超传统的 JavaScript 框架，为用户提供了更流畅的使用体验。\n\n对于开发者而言，Pake 提供了两种极为便捷的使用方式。一种是直接使用在线构建平台，用户只需上传网页链接，即可获得打包好的桌面应用，无需配置任何本地开发环境。另一种是安装其命令行工具，开发者可以在本地通过一行命令将网页打包，并自定义应用图标、窗口设置和功能特性，整个过程简单高效。\n\n在功能支持方面，Pake 提供了丰富且实用的特性。它支持设置系统快捷键、实现全屏沉浸式窗口、拖拽文件上传等原生桌面软件功能，还允许用户自定义界面样式甚至移除网页广告。这使得原本受限于浏览器环境的 Web 应用，能够获得更接近原生软件的交互体验和性能表现。\n\nPake 适用于所有希望将 Web 服务转换为桌面应用的开发者，尤其是那些对应用体积和性能有较高要求的场景。无论是个人工具、企业内部应用，还是开源项目的演示程序，Pake 都能通过其轻量化和易用性，帮助项目快速落地并提升用户体验。",
     "stars": 61539,
     "starGrowth": 52,
     "createdAt": "2022-10-14T09:32:57Z",
@@ -9888,7 +9898,21 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.15853497781894407
+    "heatScore": 0.15853497781894407,
+    "facts": [
+      {
+        "claim": "安装包体积极小，比 Electron 小近 20 倍。",
+        "source": "Installer is nearly 20 times smaller than Electron packages, typically under 10M on disk"
+      },
+      {
+        "claim": "基于 Rust Tauri 技术栈，内存占用更低。",
+        "source": "Built with Rust Tauri, much faster than traditional JS frameworks with lower memory usage"
+      },
+      {
+        "claim": "提供在线构建平台，无需本地环境即可打包。",
+        "source": "use Online Building with no environment setup required"
+      }
+    ]
   },
   {
     "repo": "0xDE57/SpaceProject",
@@ -14801,9 +14825,9 @@
     "owner": "community-scripts",
     "name": "ProxmoxVE",
     "desc": "Proxmox VE Helper-Scripts (Community Edition) ",
-    "summaryCn": "Proxmox虚拟机的瑞士军刀，帮你搞定备份迁移和日常运维的神级脚本库",
-    "reasonCn": "这个仓库是Proxmox VE社区维护的一组辅助脚本集合，专门解决PVE在备份、迁移、清理和日常运维中的痛点。它不是单一工具，而是一个工具箱，包含大量经过验证的Shell脚本，功能覆盖从虚拟机热迁移到日志轮转的全场景。",
-    "detailCn": "相信很多用Proxmox VE（PVE）的朋友都有过这样的烦恼：PVE原生功能虽然强大，但在某些自动化操作、批量处理或者特定场景的备份策略上，往往显得不够灵活，甚至需要写复杂的命令行。这个仓库就是来填补这个空白的，它汇聚了社区大神们开发的各种辅助脚本，堪称PVE用户的“外挂工具箱”。\n\n从技术架构来看，这些脚本并非重新造轮子，而是基于Proxmox提供的API（pveproxy）和命令行工具（如qm、pvesm等）进行封装和优化。它们的核心价值在于将复杂的运维逻辑沉淀为可复用的脚本，例如自动化清理旧备份以释放存储空间、批量迁移虚拟机以应对硬件故障、或者自动监控存储空间并发送警报。这些脚本通常代码简洁、依赖最少（主要依赖Shell和标准Linux工具），便于集成到现有的自动化运维流程中。\n\n上手非常友好，因为它是社区脚本库，你不需要安装复杂的依赖环境。基本用法是克隆仓库，然后根据需要执行特定的脚本。例如，你可以运行clean-backups.pl来自动清理超过指定天数的备份，或者使用migrate.pl来进行虚拟机的热迁移。大多数脚本都支持-y参数来临时跳过确认提示，方便脚本化调用。建议先阅读脚本头部的注释和help信息，了解其参数含义后再执行，以免误操作影响生产环境。\n\n这个项目最适合那些已经在生产环境或实验室使用Proxmox VE的运维工程师、云原生爱好者以及家庭实验室（HomeLab）玩家。如果你是单节点PVE，主要用来做开发测试，它可以极大提升日常维护效率；如果你管理的是多节点集群，其中的迁移和一致性检查脚本则尤为宝贵。对于刚接触PVE的小白，建议先在测试环境熟悉，因为部分脚本涉及存储和计算资源的底层操作。\n\n社区活跃度方面，该项目stars接近3万，说明受众广泛，是Proxmox生态中最流行的辅助工具集之一。脚本由社区共同维护，迭代较快，通常紧跟PVE新版本发布。与官方自带的功能相比，它更侧重于解决官方尚未覆盖的“最后一公里”痛点，如灵活的备份保留策略和可视化的迁移辅助。虽然它不包含AI能力，但在“实用”和“运维效率”维度上得分极高，是任何深度使用Proxmox VE用户都值得收藏的宝库。",
+    "summaryCn": "Proxmox VE 一键部署脚本集合，覆盖数百种自托管服务。",
+    "reasonCn": "这是一个为 Proxmox VE 打造的社区维护脚本库，解决了自托管服务安装配置繁琐的问题。用户只需在 Shell 中粘贴一条命令、回答几个提示，即可自动完成容器或虚拟机的创建与服务部署。项目涵盖家庭自动化、媒体服务器、网络工具、数据库、监控栈等数百种热门服务，基于 tteck 原始工作演进而来，持续由社区更新维护。",
+    "detailCn": "这个项目是一个建立在 tteck 原始工作基础之上的社区驱动脚本集合，专门为 Proxmox VE 虚拟化平台设计。它解决的核心痛点是：在裸机虚拟化环境中手动安装、配置各类自托管服务极其繁琐，往往需要查找软件包、编写配置文件、处理依赖关系，门槛较高。\n\n项目的核心亮点在于“One-command installations” —— 一条命令安装。用户访问 community-scripts.org 网站浏览分类，找到目标服务，复制对应的 Shell 命令粘贴到 Proxmox VE 的 Shell 终端执行，脚本会自动拉取镜像、创建 LXC 容器或 KVM 虚拟机、完成网络存储配置、安装服务并做基础硬化。整个过程只需回答主机名、IP 地址、密码等少量交互提示，几分钟内即可获得一个开箱即用的服务实例。\n\n脚本库覆盖面极广，包含数百种服务，分类涵盖 Home Assistant 等家庭自动化、Jellyfin/Plex 等媒体服务器、AdGuard Home/Pi-hole 等网络工具、PostgreSQL/Redis 等数据库、Prometheus/Grafana 等监控栈，基本囊括了家庭实验室和中小规模自托管场景的主流需求。每个脚本都经过社区测试，遵循统一的交互规范和安全基线。\n\n上手极其简单：只需确保 Proxmox VE 已安装并联网，打开 Shell 或 SSH 连接，从官网复制命令即可运行，无需额外安装依赖或克隆仓库。适合拥有闲置硬件想搭建家庭实验室的爱好者、希望快速验证服务可行性的运维人员，以及不想在配置文件上耗费大量时间的自托管入门者。项目采用 Shell 编写，源码完全开放，用户可按需审计或二次开发。",
     "stars": 29621,
     "starGrowth": 13,
     "createdAt": "2024-11-01T14:06:43Z",
@@ -14890,7 +14914,17 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.040316633469497994
+    "heatScore": 0.040316633469497994,
+    "facts": [
+      {
+        "claim": "建立在 tteck 原始工作基础之上的社区项目",
+        "source": "A community project — built on the foundation of @tteck's original work"
+      },
+      {
+        "claim": "覆盖数百种服务的跨类别脚本集合",
+        "source": "The collection covers hundreds of services across categories like home automation, media servers, networking tools, databases, monitoring stacks, and more"
+      }
+    ]
   },
   {
     "repo": "sgl-project/sglang",
