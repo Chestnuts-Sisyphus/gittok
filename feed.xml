@@ -6,7 +6,7 @@
     <description>AI 开源生态每日简报 · Daily AI ecosystem digest</description>
     <language>zh-CN</language>
     <atom:link href="https://chestnuts-sisyphus.github.io/gittok/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Sun, 20 Sep 2026 22:13:30 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 21 Sep 2026 06:11:07 +0000</lastBuildDate>
     <item>
       <title>AI CLI 工具社区动态日报 2026-09-21</title>
       <link>https://chestnuts-sisyphus.github.io/gittok/#2026-09-21/ai-cli</link>
@@ -4188,6 +4188,653 @@ All recent PRs are active and recent. There are no stale items in the backlog th
 </ol>
 <hr>
 <p><em>本日报由 <a href="https://github.com/Chestnuts-Sisyphus/gittok">GitTok</a> 自动生成。</em></p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>AI 工具生态周报 2026-09-21</title>
+      <link>https://chestnuts-sisyphus.github.io/gittok/#2026-09-21/ai-weekly</link>
+      <guid isPermaLink="true">https://chestnuts-sisyphus.github.io/gittok/#2026-09-21/ai-weekly</guid>
+      <pubDate>Mon, 21 Sep 2026 00:00:00 +0000</pubDate>
+      <description>AI 工具生态周报 2026-W39 覆盖日期: 2026-09-15 ~ 2026-09-21 | 生成时间: 2026-09-21 06:04 UTC AI 工具生态周报（2026-W39） 统计周期：2026-09-15 至 2026-09-21数据来源：GitHub 社区动态、Hacker News、各工具官方仓库 1. 本周要闻 日期 事件 要点 09-21 Claude Code Skills 社区持续爆发 proofcore-contract-auditor（Solidity/Rust 合约审计+TON 锚定）与 md2video-audio（Markdown→带旁白视频）稳居 PR 热度榜前二，Web3 安全审计与多媒体内容生成成为 Skill 生态两大热点方向。 09-21 HN 最高分帖：ChatGPT 广告追踪曝光 分数 457，252 评论，社区对 OpenAI 通过广告收集器追踪站外用户行为的隐私担忧达到新高。 09-20 OpenAI Codex v0.155.1 热修复上线 紧急修复本地 TUI 默认启用 reasoning-summary 导致部分模型提...</description>
+      <content:encoded><![CDATA[<h1>AI 工具生态周报 2026-W39</h1>
+<blockquote>
+<p>覆盖日期: 2026-09-15 ~ 2026-09-21 | 生成时间: 2026-09-21 06:04 UTC</p>
+</blockquote>
+<hr>
+<h1>AI 工具生态周报（2026-W39）</h1>
+<blockquote>
+<p>统计周期：2026-09-15 至 2026-09-21<br>数据来源：GitHub 社区动态、Hacker News、各工具官方仓库</p>
+</blockquote>
+<hr>
+<h2>1. 本周要闻</h2>
+<table>
+<thead>
+<tr>
+<th>日期</th>
+<th>事件</th>
+<th>要点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>09-21</td>
+<td><strong>Claude Code Skills 社区持续爆发</strong></td>
+<td><code>proofcore-contract-auditor</code>（Solidity/Rust 合约审计+TON 锚定）与 <code>md2video-audio</code>（Markdown→带旁白视频）稳居 PR 热度榜前二，Web3 安全审计与多媒体内容生成成为 Skill 生态两大热点方向。</td>
+</tr>
+<tr>
+<td>09-21</td>
+<td><strong>HN 最高分帖：ChatGPT 广告追踪曝光</strong></td>
+<td>分数 457，252 评论，社区对 OpenAI 通过广告收集器追踪站外用户行为的隐私担忧达到新高。</td>
+</tr>
+<tr>
+<td>09-20</td>
+<td><strong>OpenAI Codex v0.155.1 热修复上线</strong></td>
+<td>紧急修复本地 TUI 默认启用 reasoning-summary 导致部分模型提供方拒绝请求的问题；Windows 数据大量丢失（#46022）仍为最严重未决 Bug。</td>
+</tr>
+<tr>
+<td>09-19</td>
+<td><strong>CoPaw v2.2.1 发布</strong></td>
+<td>企业级 Hub 网关与高危死锁修复同步上线，20 条 Issue、41 条 PR 变动，17 条已合并，活跃度位居同赛道前列。</td>
+</tr>
+<tr>
+<td>09-18</td>
+<td><strong>NanoBot PR 密集合并期</strong></td>
+<td>单日 56 条 PR 更新，37 条已合并；NIM 超时 failover、WebUI 临时会话持久化、子代理私有会话隔离等核心体验问题集中修复。</td>
+</tr>
+<tr>
+<td>09-17</td>
+<td><strong>MIT 研究：LLM 不会再变聪明，钱也解决不了</strong></td>
+<td>HN 热度 4 分，引发关于算力/数据墙与架构天花板的深度焦虑讨论。</td>
+</tr>
+<tr>
+<td>09-16</td>
+<td><strong>Gemini CLI v0.60.0 正式版发布</strong></td>
+<td>同时发布 v0.61.0-nightly；Copilot CLI 单日密集发布 3 个版本（v1.0.84-7~9），生态进入快速迭代期。</td>
+</tr>
+<tr>
+<td>09-15</td>
+<td><strong>PicoClaw 高危 Bug：数据竞争导致空指针崩溃</strong></td>
+<td>Issue #3374 暴露 <code>Config.initSensitiveCache</code> 多线程竞争风险，单 key 配置持久化问题（#3373）同步曝光。</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>2. CLI 工具进展</h2>
+<h3>整体态势</h3>
+<p>本周 AI CLI 工具生态从&quot;功能尝鲜&quot;全面转向**&quot;生产环境工程加固&quot;**，核心矛盾集中在会话持久化、跨平台沙箱兼容、Token/缓存计费透明度与子代理生命周期管理。</p>
+<h3>各工具动态</h3>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>版本动态</th>
+<th>核心进展</th>
+<th>社区痛点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>OpenAI Codex</strong></td>
+<td>v0.155.1（热修复）→ v0.156.0-alpha 系列</td>
+<td>连续 5 个 alpha 快速迭代；v0.155.1 修复 reasoning-summary 兼容问题</td>
+<td>Windows 数据丢失、WSL 沙箱锁定、macOS Computer Use 窗口定位不稳定</td>
+</tr>
+<tr>
+<td><strong>Gemini CLI</strong></td>
+<td>v0.60.0 正式版 + v0.62.0-nightly</td>
+<td>Subagent 恢复逻辑优化；OAuth 刷新与 PTY 清理</td>
+<td>Subagent 误报成功、终端挂起、AST 感知工具缺陷、Token 压缩溢出</td>
+</tr>
+<tr>
+<td><strong>GitHub Copilot CLI</strong></td>
+<td>v1.0.84-7 ~ -9（单日 3 版）</td>
+<td>MCP 协议深度适配；BYOK 部署强化</td>
+<td>长会话 OOM、Vi 模式兼容、企业级权限策略</td>
+</tr>
+<tr>
+<td><strong>Claude Code</strong></td>
+<td>无新版本</td>
+<td>Skills 生态持续繁荣；<code>Hivemind</code> 免费模型多 Agent 编排 Skill 进入热点</td>
+<td>社区 Skills 信任边界（#492）、Org 内 Skill 共享机制</td>
+</tr>
+<tr>
+<td><strong>OpenCode</strong></td>
+<td>v1.18.31</td>
+<td>DB 迁移修复、编辑距离优化</td>
+<td>TUI 内存占用过高（空项目 6GB+ RSS）、1.18.30 版本崩溃回归</td>
+</tr>
+<tr>
+<td><strong>Pi (pi-mono)</strong></td>
+<td>0.85.x 维护期</td>
+<td>Provider 扩展（OrcaRouter/GMI Cloud）；<code>/forget</code> 命令上线</td>
+<td>Claude Opus 5 兼容、上下文 budget 控制、Shell 信号处理</td>
+</tr>
+<tr>
+<td><strong>Kimi Code CLI</strong></td>
+<td>无新版本</td>
+<td>跨平台剪贴板、会话日期前缀、缓存计费逻辑优化</td>
+<td><code>cache_read</code> vs <code>cache_creation</code> 计费差异引发付费用户关注</td>
+</tr>
+<tr>
+<td><strong>DeepSeek TUI</strong></td>
+<td>0.9.14 重构阶段</td>
+<td>CodeWhale TUI 模块拆分；子代理 compaction 优化</td>
+<td>会话恢复失效、写冲突</td>
+</tr>
+</tbody></table>
+<p><strong>共同关注方向：</strong></p>
+<ol>
+<li><strong>会话压缩（Compaction）</strong>：Pi、Gemini CLI、DeepSeek TUI 均报告因 Thinking Block 导致 token 爆炸或角色丢失</li>
+<li><strong>Subagent 可靠性</strong>：Gemini CLI 与 DeepSeek TUI 集中修复子代理中断误报成功、并发 token 耗尽问题</li>
+<li><strong>Windows 兼容性</strong>：Codex、Pi、Gemini 均有多条 Windows/WSL 专项修复</li>
+</ol>
+<hr>
+<h2>3. AI Agent 生态（OpenClaw 及同赛道）</h2>
+<h3>生态全景</h3>
+<p>个人 AI 助手与自主智能体开源生态正处于**&quot;功能扩张&quot;向&quot;基础设施加固与安全隔离&quot;过渡**的关键期。各项目普遍由多渠道接入转向解决 OOM、跨会话上下文混乱、沙箱隔离等深水区问题。</p>
+<h3>项目活跃度对比</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>本周状态</th>
+<th>关键动态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>NanoBot</strong></td>
+<td>🟢 极高活跃度</td>
+<td>合并窗口期，核心修复聚焦 Provider 稳定性（NIM 超时 failover）、WebUI 交互、子代理私有会话隔离；持续引入新 Provider（aimlapi.com）</td>
+</tr>
+<tr>
+<td><strong>CoPaw</strong></td>
+<td>🔵 爆发期</td>
+<td>v2.2.1 发布；企业级 Hub 网关与死锁修复；20 Issue/41 PR 高频变动</td>
+</tr>
+<tr>
+<td><strong>LobsterAI</strong></td>
+<td>🟢 高频迭代</td>
+<td>23 条 PR 集中关闭；网关稳定性与 Cowork 体验升级</td>
+</tr>
+<tr>
+<td><strong>PicoClaw</strong></td>
+<td>🟡 稳定维护</td>
+<td>修复数据竞争崩溃（#3374）与多 key 配置持久化丢失（#3373）；网络可观测性增强</td>
+</tr>
+<tr>
+<td><strong>NanoClaw</strong></td>
+<td>🟡 高危关注</td>
+<td>深陷内存 OOM 与存储膨胀信任危机，社区讨论热烈</td>
+</tr>
+<tr>
+<td><strong>IronClaw</strong></td>
+<td>🟡 低频质控</td>
+<td>转向模型基准测试与错误分类复盘；Reborn 存储架构重构</td>
+</tr>
+<tr>
+<td><strong>ZeptoClaw</strong></td>
+<td>🟢 稳健优化</td>
+<td>加固端侧模型工具调用与依赖安全；5 Issue/6 PR</td>
+</tr>
+<tr>
+<td><strong>Moltis</strong></td>
+<td>🟡 低频维护</td>
+<td>聚焦沙箱粒度与构建防崩溃</td>
+</tr>
+<tr>
+<td><strong>OpenClaw / Hermes Agent / Moltis / ZeroClaw</strong></td>
+<td>⚠️ 数据缺失</td>
+<td>摘要生成失败，但作为生态事实标准与参照物持续影响衍生项目架构</td>
+</tr>
+</tbody></table>
+<p><strong>生态趋势判断：</strong></p>
+<ul>
+<li>OpenClaw 作为<strong>事实上的架构母本</strong>，其设计理念持续渗透至 PicoClaw、NanoClaw、LobsterAI 等派生分支</li>
+<li>各项目差异化明显：PicoClaw/ZeptoClaw 偏向极轻量端侧，CoPaw/LobsterAI 偏向桌面协作与企业级网关</li>
+<li>安全与合规（沙箱隔离、权限校验、记忆持久化）成为本周共同攻坚方向</li>
+</ul>
+<hr>
+<h2>4. 开源趋势</h2>
+<blockquote>
+<p>⚠️ 本周 GitHub Trending 趋势报告数据生成失败，以下基于社区动态推断。</p>
+</blockquote>
+<h3>技术方向热度排名</h3>
+<ol>
+<li><p><strong>自托管推理编排器</strong>（HN 讨论 12 分，3 评论）<br>LocalAI、exo、GPUStack、vLLM 横向对比引发企业私有化部署兴趣上升。</p>
+</li>
+<li><p><strong>多 Agent 编排模式</strong><br>&quot;参谋长模式（Chief of Staff Pattern）&quot;成为 Claude Code Agent 编排的新兴工程范式（HN 24 分，22 评论）。</p>
+</li>
+<li><p><strong>开源模型备份与数字遗产保护</strong><br>Pirate Face 项目（367 分，119 评论）引发社区对模型&quot;下架风险&quot;与数字资产保护的广泛共鸣。</p>
+</li>
+<li><p><strong>零成本多 Agent 协作</strong><br>Claude Code Skills 中 <code>Hivemind</code> PR（#1628）提出免费模型 headless workers + Claude 规划审阅的混合架构，呼应成本焦虑。</p>
+</li>
+<li><p><strong>Rust 成为高性能 AI CLI 底座主流</strong><br>Codex、DeepSeek TUI、ZeptoClaw 均采用 Rust，强调内存安全与低延迟。</p>
+</li>
+</ol>
+<hr>
+<h2>5. HN 社区热议</h2>
+<h3>核心话题</h3>
+<table>
+<thead>
+<tr>
+<th>话题</th>
+<th>分数/评论</th>
+<th>社区情绪</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ChatGPT 广告追踪用户站外行为</td>
+<td>457/252</td>
+<td>😠 隐私担忧与信任危机</td>
+</tr>
+<tr>
+<td>LLM 复制&quot;心理欺诈&quot;机制（冷读把戏）</td>
+<td>150/238</td>
+<td>🤔 对 AI 可信度的深度反思</td>
+</tr>
+<tr>
+<td>Claude 发现主流哈希函数种子无关碰撞</td>
+<td>6/0</td>
+<td>🔬 密码学边缘突破，潜力引发关注</td>
+</tr>
+<tr>
+<td>MIT 证明 LLM 不会再变聪明</td>
+<td>4/1</td>
+<td>😟 算力/数据墙焦虑</td>
+</tr>
+<tr>
+<td>Pirate Face 拯救面临下架的 LLM 模型</td>
+<td>367/119</td>
+<td>❤️ 对数字遗产保护的强烈共鸣</td>
+</tr>
+<tr>
+<td>Anthropic 推动 AI &quot;kill switch&quot; 监管</td>
+<td>38/96</td>
+<td>😤 反监管俘获情绪，质疑行政垄断</td>
+</tr>
+<tr>
+<td>Hugging Face 索赔 OpenAI 1 亿美元</td>
+<td>118/41</td>
+<td>⚖️ 开源伦理与数据侵占争议</td>
+</tr>
+<tr>
+<td>OpenAI 3 亿美元收购手机相机公司 Glass Imaging</td>
+<td>121/93</td>
+<td>📱 硬件战略猜测</td>
+</tr>
+</tbody></table>
+<h3>社区情绪总结</h3>
+<p>本周 HN 社区呈现<strong>明显的反大型 AI 公司情绪</strong>：对隐私侵犯、监管俘获、数据侵占的批评达到新高；同时对开源模型保护、成本焦虑、架构天花板等议题表现出深度焦虑。技术讨论让位于对行业权力结构的质疑。</p>
+<hr>
+<h2>6. 官方动态</h2>
+<h3>Anthropic</h3>
+<ul>
+<li><strong>Claude Code Skills 生态持续扩展</strong>：<code>proofcore-contract-auditor</code>、<code>md2video-audio</code>、<code>Hivemind</code> 等多款社区 Skill 进入高热度 PR，显示 Skill 生态从官方工具向第三方开发者开放的方向明确。</li>
+<li><strong>AI 监管争议</strong>：Anthropic 联合创始人在 BBC 呼吁 AI &quot;kill switch&quot; 强制化，引发 HN 社区对&quot;监管俘获&quot;的强烈批评（38 分，96 评论），认为这是设置行业壁垒、排挤开源竞争者的策略。</li>
+</ul>
+<h3>OpenAI</h3>
+<ul>
+<li><strong>Codex 快速迭代</strong>：从 v0.155.0-alpha.4 一路迭代至 v0.155.1 热修复，再推出 v0.156.0-alpha 系列，显示正式版发布前的密集打磨期。</li>
+<li><strong>硬件布局</strong>：3 亿美元收购手机相机制造商 Glass Imaging，社区猜测其为 Vision Pro 或下一代 AI 手机做准备。</li>
+<li><strong>隐私争议</strong>：ChatGPT 通过广告收集器追踪用户站外行为的报道引发最大规模社区 backlash。</li>
+<li><strong>数据侵权诉讼</strong>：Hugging Face 索赔 1 亿美元，指控 OpenAI 黑客式获取其计算资源，引发开源伦理大讨论。</li>
+</ul>
+<hr>
+<h2>7. 下周信号</h2>
+<p>基于本周数据，预判以下趋势值得关注：</p>
+<table>
+<thead>
+<tr>
+<th>信号</th>
+<th>预判</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Codex 正式版发布</strong></td>
+<td>v0.156.x 系列已进入 alpha 末期，预计下周或下周初发布稳定版，Windows 数据丢失问题将成为最终验收关键。</td>
+</tr>
+<tr>
+<td><strong>Skills 生态商业化试探</strong></td>
+<td>Claude Code Skills 社区 PR 热度持续，Anthropic 可能在下周公布官方审核/认证机制，回应 #492 信任边界诉求。</td>
+</tr>
+<tr>
+<td><strong>多 Agent 编排成为新热点</strong></td>
+<td>&quot;参谋长模式&quot;与 Hivemind 等低成本多 Agent 方案兴起，预示下周将有更多工具跟进编排层抽象。</td>
+</tr>
+<tr>
+<td><strong>企业级安全合规加速</strong></td>
+<td>CoPaw、LobsterAI、NanoBot 本周均集中修复权限、沙箱、死锁问题，预计下周企业级 Agent 安全成为各工具共同优先级。</td>
+</tr>
+<tr>
+<td><strong>开源模型备份需求上升</strong></td>
+<td>Pirate Face 项目高热度反映社区对模型下架的焦虑，下周可能出现更多模型归档/镜像工具。</td>
+</tr>
+<tr>
+<td><strong>API 计费透明度争议</strong></td>
+<td>Kimi Code CLI 的 <code>cache_read</code> 计费问题与 Pi 的计费归一化需求，预示下周多个工具可能推出更细粒度的用量报告功能。</td>
+</tr>
+<tr>
+<td><strong>Rust CLI 生态持续扩张</strong></td>
+<td>本周 DeepSeek TUI、ZeptoClaw、Codex 均使用 Rust，预计下周更多 AI 工具转向 Rust 以解决内存安全与性能问题。</td>
+</tr>
+</tbody></table>
+<hr>
+<p><em>报告生成时间：2026-09-22</em><br><em>数据来源：GitHub 社区动态、Hacker News、各工具官方仓库</em></p>
+<hr>
+<p><em>本日报由 <a href="https://github.com/Chestnuts-Sisyphus/gittok">GitTok</a> 自动生成。</em></p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>AI Tools Weekly Digest 2026-09-21</title>
+      <link>https://chestnuts-sisyphus.github.io/gittok/#2026-09-21/ai-weekly-en</link>
+      <guid isPermaLink="true">https://chestnuts-sisyphus.github.io/gittok/#2026-09-21/ai-weekly-en</guid>
+      <pubDate>Mon, 21 Sep 2026 00:00:00 +0000</pubDate>
+      <description>AI Tools Ecosystem Weekly Report 2026-W39 Coverage: 2026-09-15 ~ 2026-09-21 | Generated: 2026-09-21 06:04 UTC 🤖 AI Tools Ecosystem Weekly Report — 2026-W39 Sep 15 – Sep 21, 2026 1. Week&amp;#39;s Top Stories # Date Event 1 Sep 21 ChatGPT ad-collector controversy peaks on HN (457 pts, 252 comments) — exposed cross-site behavior tracking, sparking privacy debate across the ecosystem. 2 Sep 21 Anthropic &amp;quot;AI Slowdown&amp;quot; monopoly lawsuit surfaces — community questions whether regulation is being...</description>
+      <content:encoded><![CDATA[<h1>AI Tools Ecosystem Weekly Report 2026-W39</h1>
+<blockquote>
+<p>Coverage: 2026-09-15 ~ 2026-09-21 | Generated: 2026-09-21 06:04 UTC</p>
+</blockquote>
+<hr>
+<h1>🤖 AI Tools Ecosystem Weekly Report — 2026-W39</h1>
+<p><strong>Sep 15 – Sep 21, 2026</strong></p>
+<hr>
+<h2>1. Week&#39;s Top Stories</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Date</th>
+<th>Event</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Sep 21</td>
+<td><strong>ChatGPT ad-collector controversy peaks on HN</strong> (457 pts, 252 comments) — exposed cross-site behavior tracking, sparking privacy debate across the ecosystem.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Sep 21</td>
+<td><strong>Anthropic &quot;AI Slowdown&quot; monopoly lawsuit surfaces</strong> — community questions whether regulation is being weaponized to entrench open-weight models.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Sep 20</td>
+<td><strong>Claude Code Skills ecosystem matures</strong> — top PRs (#1771, #1703, #822) cover Web3 audit, markdown-to-video, and zero-code E2E testing, signaling shift toward domain-specific agent tooling.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Sep 19</td>
+<td><strong>OpenAI Codex v0.155.1 hotfix released</strong> — patched reasoning-summary rejection bug; alpha.1–4 cycle began for v0.156.0. Windows data-loss issues (#46022) remain unresolved.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Sep 19</td>
+<td><strong>NanoBot hits critical mass</strong> — 28 PRs in 24h, 21 still pending; focus on workspace isolation security (#4072), provider expansion, and WebUI polish.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Sep 18</td>
+<td><strong>AI CLI tools converge on &quot;long-running autonomous agents&quot;</strong> — session persistence, sandbox safety, and sub-agent concurrency emerge as shared engineering bottlenecks across Codex, Gemini CLI, Pi, and DeepSeek TUI.</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Sep 17</td>
+<td><strong>OpenClaw-derivative ecosystem self-organizes</strong> — LobsterAI, CoPaw, NanoClaw, and PicoClaw accelerate infrastructure fixes (OOM, schema sanitization, multi-gateway compatibility) around OpenClaw as de facto reference architecture.</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Sep 16</td>
+<td><strong>GitHub Copilot CLI v1.0.84–7 released</strong> alongside Gemini CLI v0.60.0 stable — both tools shipping agent-context management and MCP protocol deep integration.</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>2. CLI Tools Progress</h2>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Weekly Activity</th>
+<th>Key Changes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Claude Code</strong></td>
+<td>Skills PRs (#1771, #1703, #822, #1628) dominate discussions; community demands trust-boundary controls and org-wide sharing.</td>
+<td><code>proofcore-contract-auditor</code> (Web3), <code>md2video-audio</code>, <code>Hivemind</code> (zero-cost multi-agent) top hot list.</td>
+</tr>
+<tr>
+<td><strong>OpenAI Codex</strong></td>
+<td>Alpha sprint: v0.155.1 hotfix → alpha.1–4 for v0.156.0. 10+ issues/day, mainly Windows/WSL sandbox and rate-limit anomalies.</td>
+<td><code>/voice</code> experimental voice feature from v0.155.0; reasoning-summary default disabled in TUI.</td>
+</tr>
+<tr>
+<td><strong>Gemini CLI</strong></td>
+<td>v0.60.0 stable released; nightly builds continue. P1 bugs around subagent recovery, terminal hang, AST-aware tooling.</td>
+<td>OAuth refresh, PTY cleanup, and UI crash fixes merged.</td>
+</tr>
+<tr>
+<td><strong>GitHub Copilot CLI</strong></td>
+<td>Rapid release cadence (v1.0.84-7 → -9). MCP protocol adaptation and agent-context hardening are priorities.</td>
+<td>BYOK deployment and IDE-CLI sync improvements.</td>
+</tr>
+<tr>
+<td><strong>Pi (pi-mono)</strong></td>
+<td>Provider ecosystem expands rapidly (OrcaRouter, GMI Cloud). <code>/forget</code> command added. High PR merge volume.</td>
+<td>Context budget management, Claude Opus 5 compatibility, and shell signal handling refined.</td>
+</tr>
+<tr>
+<td><strong>Kimi Code CLI</strong></td>
+<td>Stable maintenance; focus on cross-platform clipboard, session date prefix, and cache billing transparency.</td>
+<td><code>cache_read</code> vs <code>cache_creation</code> billing logic draws paid-user attention.</td>
+</tr>
+<tr>
+<td><strong>OpenCode</strong></td>
+<td>v1.18.30 crash regression; v1.18.31 shipped. DB migration fixes, env var restoration, edit-distance optimization.</td>
+<td>TUI memory usage (6–7 GB RSS) remains a critical pain point.</td>
+</tr>
+<tr>
+<td><strong>DeepSeek TUI</strong></td>
+<td>In v0.9.14 refactor phase — no new release. Sub-agent and compaction PRs (#6189, #6277, #6286) ongoing.</td>
+<td>CodeWhale TUI module split; session recovery bugs persist.</td>
+</tr>
+</tbody></table>
+<p><strong>Shared CLI pain points this week:</strong> long-session OOM, session compaction breaking <code>reasoning_content</code>, sub-agent lifecycle mismanagement, Windows sandbox/policy blocks, and token/billing transparency.</p>
+<hr>
+<h2>3. AI Agent Ecosystem (OpenClaw &amp; Peers)</h2>
+<p>The OpenClaw-derived ecosystem shows a clear pattern: <strong>OpenClaw acts as the de facto reference architecture</strong>, with derivative projects competing on specialization (edge-light, enterprise hub, Windows compatibility) while feeding infrastructure hardening back into the collective.</p>
+<table>
+<thead>
+<tr>
+<th>Project</th>
+<th>Weekly Status</th>
+<th>Notable Activity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>NanoBot</strong></td>
+<td>🔥 Very High</td>
+<td>28 PRs/day (Sep 20); workspace isolation (#4072), aimlapi provider, Jev shell safeguard, Markdown link TUI fix.</td>
+</tr>
+<tr>
+<td><strong>LobsterAI</strong></td>
+<td>🔥 Very High</td>
+<td>23 PRs (Sep 19); Windows compat, OpenClaw gateway robustness, Cowork UX upgrades.</td>
+</tr>
+<tr>
+<td><strong>CoPaw</strong></td>
+<td>🔥 Very High</td>
+<td>v2.2.1; 41 PRs / 20 issues (Sep 18); enterprise hub gateway, critical deadlock fixes.</td>
+</tr>
+<tr>
+<td><strong>PicoClaw</strong></td>
+<td>🟢 Stable</td>
+<td>Bandwidth reporter + SSE events merged; data-race bug in <code>Config.initSensitiveCache</code> (#3374) still open.</td>
+</tr>
+<tr>
+<td><strong>NanoClaw</strong></td>
+<td>🟡 Active but risky</td>
+<td>19 PRs; ongoing OOM and storage bloat trust concerns; community watching closely.</td>
+</tr>
+<tr>
+<td><strong>ZeptoClaw</strong></td>
+<td>🟢 Stable</td>
+<td>Model tool-call hardening and dependency security updates.</td>
+</tr>
+<tr>
+<td><strong>IronClaw</strong></td>
+<td>🟡 Low-freq quality gate</td>
+<td>Shifted to model benchmarking and error-classification review.</td>
+</tr>
+<tr>
+<td><strong>Moltis</strong></td>
+<td>🟡 Low-freq</td>
+<td>Sandbox granularity and crash-proof builds; Rust-based.</td>
+</tr>
+<tr>
+<td><strong>NullClaw / TinyClaw</strong></td>
+<td>⚪ Inactive</td>
+<td>No activity this week.</td>
+</tr>
+</tbody></table>
+<p><strong>Key trend:</strong> Projects are pivoting from feature-breadth to <strong>infra-stability</strong> — OOM fixes, persistent storage reliability, provider fallback logic, and enterprise-grade workspace isolation dominate PRs.</p>
+<hr>
+<h2>4. Open Source Trends</h2>
+<p>Based on GitHub activity and community signals this week:</p>
+<ul>
+<li><strong>Rust adoption accelerating</strong> for performance-critical CLI agents (DeepSeek TUI v0.9.14, Moltis, Codex core) — driven by OOM and memory-safety requirements in long-running sessions.</li>
+<li><strong>MCP (Model Context Protocol) standardization</strong> — Copilot CLI and OpenCode both deepening MCP integration; emerging as the default context-sharing layer between tools.</li>
+<li><strong>Self-hosted inference orchestrators</strong> gaining traction — LocalAI, exo, GPUStack, and vLLM comparison (HN, Sep 21) signals growing enterprise demand for on-prem deployment.</li>
+<li><strong>Multi-agent orchestration patterns</strong> maturing — &quot;Chief of Staff&quot; pattern for Claude Code agents (HN, Sep 21) and <code>Hivemind</code> skill for zero-cost headless worker coordination indicate production-ready multi-agent workflows are emerging.</li>
+<li><strong>AI model preservation/backup</strong> — Pirate Face project (HN, Sep 16, 367 pts) highlights community anxiety about model &quot;digital heritage&quot; as commercial models face takedowns.</li>
+<li><strong>Hash-collision discovery via LLMs</strong> — Claude found seed-independent collisions in mainstream hash functions (HN, Sep 21), a notable signal of LLMs entering cryptographic research.</li>
+</ul>
+<hr>
+<h2>5. HN Community Highlights</h2>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Date</th>
+<th>Score / Comments</th>
+<th>Sentiment</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ChatGPT ad-collector privacy invasion</td>
+<td>Sep 21</td>
+<td>457 / 252</td>
+<td>😠 Outrage — highest-score post of the week</td>
+</tr>
+<tr>
+<td>Psychic con mechanisms in chat LLMs</td>
+<td>Sep 21</td>
+<td>150 / 238</td>
+<td>🤔 Philosophical concern — trust &amp; manipulation</td>
+</tr>
+<tr>
+<td>$280B AI burn-rate anxiety &amp; monopoly lawsuit</td>
+<td>Sep 21</td>
+<td>—</td>
+<td>😰 Financial skepticism toward Big AI</td>
+</tr>
+<tr>
+<td>OpenAI buys Glass Imaging ($300M camera maker)</td>
+<td>Sep 16</td>
+<td>121 / 93</td>
+<td>🧐 Speculative — Vision Pro / AI-phone trajectory</td>
+</tr>
+<tr>
+<td>Hugging Face sues OpenAI ($100M for compute traces)</td>
+<td>Sep 16</td>
+<td>118 / 41</td>
+<td>😤 Open-source rights defense</td>
+</tr>
+<tr>
+<td>Anthropic &quot;kill switch&quot; regulatory capture criticism</td>
+<td>Sep 16</td>
+<td>38 / 96</td>
+<td>😠 Strong pushback against regulatory monopolization</td>
+</tr>
+<tr>
+<td>Sunk Cost: local LLM hardware breakeven calculator</td>
+<td>Sep 16</td>
+<td>46 / 96</td>
+<td>💡 Practical — API vs. local deployment economics</td>
+</tr>
+<tr>
+<td>Bough: open-source Claude Code replacement</td>
+<td>Sep 16</td>
+<td>10 / 5</td>
+<td>🔧 DIY ethos — desire for tool autonomy</td>
+</tr>
+</tbody></table>
+<p><strong>Overall community sentiment:</strong> Dominated by <strong>distrust of Big AI consolidation</strong> — privacy invasions, regulatory capture, and data expropriation concerns. Active interest in self-hosted, open, and economically transparent alternatives.</p>
+<hr>
+<h2>6. Official Announcements</h2>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Date</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>OpenAI</strong></td>
+<td>Sep 19</td>
+<td>Codex v0.155.1 hotfix (reasoning-summary TUI fix); v0.156.0 alpha cycle begun</td>
+</tr>
+<tr>
+<td><strong>OpenAI</strong></td>
+<td>Sep 16</td>
+<td>(No new announcements; continued alpha iteration)</td>
+</tr>
+<tr>
+<td><strong>Anthropic</strong></td>
+<td>—</td>
+<td>No direct tool announcements this week; community debate focused on Anthropic&#39;s regulatory &quot;kill switch&quot; stance (HN coverage, not official release)</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>7. Next Week&#39;s Signals to Watch</h2>
+<table>
+<thead>
+<tr>
+<th>Signal</th>
+<th>Why It Matters</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Codex v0.156.0 stable release</strong></td>
+<td>Likely to land; Windows sandbox and session persistence fixes will be closely watched by enterprise adopters.</td>
+</tr>
+<tr>
+<td><strong>NanoBot pre-release 0.3.5</strong></td>
+<td>PR backlog (~15 pending) will determine whether a stable release ships next week; workspace security (#4072) resolution is critical.</td>
+</tr>
+<tr>
+<td><strong>OpenCode memory regression</strong></td>
+<td>6–7 GB RSS in empty projects needs resolution before the next stable; could drive fork activity if unaddressed.</td>
+</tr>
+<tr>
+<td><strong>MCP protocol adopters</strong></td>
+<td>Watch for new integrations from Gemini CLI and Copilot CLI — MCP could become the default cross-tool context standard by Q4.</td>
+</tr>
+<tr>
+<td><strong>Claude Code Skills governance</strong></td>
+<td>PR #492 (trust-boundary abuse) and #228 (org-wide sharing) may see resolution or official response from Anthropic.</td>
+</tr>
+<tr>
+<td><strong>CoPaw v2.2.1 follow-up</strong></td>
+<td>Deadlock fixes are critical; any regression in the enterprise hub path will be immediately visible in issues.</td>
+</tr>
+<tr>
+<td><strong>OpenClaw ecosystem health</strong></td>
+<td>If NanoClaw&#39;s OOM crisis escalates, it may trigger fork activity or community-led mitigation projects.</td>
+</tr>
+</tbody></table>
+<hr>
+<p><em>Report generated from GitTok daily digests, 2026-W39. Coverage: 9 CLI tools, 13 OpenClaw-ecosystem projects, Hacker News community signals.</em></p>
+<hr>
+<p><em>This digest is auto-generated by <a href="https://github.com/Chestnuts-Sisyphus/gittok">GitTok</a>.</em></p>
 ]]></content:encoded>
     </item>
     <item>
@@ -13352,1338 +13999,6 @@ Issue #7537 反映出用户对 LLM 输出效率与控制力的焦虑。特定版
 
 <details>
 <summary><strong>DeepSeek TUI</strong> — <a href="https://github.com/Hmbown/DeepSeek-TUI">Hmbown/DeepSeek-TUI</a></summary>
-
-<p>⚠️ Summary generation failed.</p>
-</details>
-
-<hr>
-<p><em>This digest is auto-generated by <a href="https://github.com/Chestnuts-Sisyphus/gittok">GitTok</a>.</em></p>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>AI Agents 生态日报 2026-09-18</title>
-      <link>https://chestnuts-sisyphus.github.io/gittok/#2026-09-18/ai-agents</link>
-      <guid isPermaLink="true">https://chestnuts-sisyphus.github.io/gittok/#2026-09-18/ai-agents</guid>
-      <pubDate>Fri, 18 Sep 2026 00:00:00 +0000</pubDate>
-      <description>OpenClaw 生态日报 2026-09-18 Issues: 500 | PRs: 500 | 覆盖项目: 13 个 | 生成时间: 2026-09-17 22:32 UTC OpenClaw NanoBot Hermes Agent PicoClaw NanoClaw NullClaw IronClaw LobsterAI TinyClaw Moltis CoPaw ZeptoClaw ZeroClaw OpenClaw 项目深度报告 ⚠️ 摘要生成失败。 横向生态对比 2026-09-18 个人 AI 助手与自主智能体开源生态全景报告 1. 生态全景 当前个人 AI 助手与自主智能体开源生态正处于从“功能盲目扩张”向“基础设施加固与安全隔离”过渡的深化期。各主流项目（如 PicoClaw、NanoClaw、CoPaw 等）不再单纯追求大模型调用链路的铺设，而是全面聚焦于多端/多网关协议兼容性、本地/边缘设备的沙箱隔离、工具调用的容错性（如 Schema 净化）以及企业级治理能力。整体生态呈现出高并发的代码提交与精细化的稳定性修复并行的特征。 2. 各项目活跃度对比 项目名称 核...</description>
-      <content:encoded><![CDATA[<h1>OpenClaw 生态日报 2026-09-18</h1>
-<blockquote>
-<p>Issues: 500 | PRs: 500 | 覆盖项目: 13 个 | 生成时间: 2026-09-17 22:32 UTC</p>
-</blockquote>
-<ul>
-<li><a href="https://github.com/openclaw/openclaw">OpenClaw</a></li>
-<li><a href="https://github.com/HKUDS/nanobot">NanoBot</a></li>
-<li><a href="https://github.com/nousresearch/hermes-agent">Hermes Agent</a></li>
-<li><a href="https://github.com/sipeed/picoclaw">PicoClaw</a></li>
-<li><a href="https://github.com/qwibitai/nanoclaw">NanoClaw</a></li>
-<li><a href="https://github.com/nullclaw/nullclaw">NullClaw</a></li>
-<li><a href="https://github.com/nearai/ironclaw">IronClaw</a></li>
-<li><a href="https://github.com/netease-youdao/LobsterAI">LobsterAI</a></li>
-<li><a href="https://github.com/TinyAGI/tinyagi">TinyClaw</a></li>
-<li><a href="https://github.com/moltis-org/moltis">Moltis</a></li>
-<li><a href="https://github.com/agentscope-ai/CoPaw">CoPaw</a></li>
-<li><a href="https://github.com/qhkm/zeptoclaw">ZeptoClaw</a></li>
-<li><a href="https://github.com/zeroclaw-labs/zeroclaw">ZeroClaw</a></li>
-</ul>
-<hr>
-<h2>OpenClaw 项目深度报告</h2>
-<p>⚠️ 摘要生成失败。</p>
-<hr>
-<h2>横向生态对比</h2>
-<h1>2026-09-18 个人 AI 助手与自主智能体开源生态全景报告</h1>
-<hr>
-<h2>1. 生态全景</h2>
-<p>当前个人 AI 助手与自主智能体开源生态正处于<strong>从“功能盲目扩张”向“基础设施加固与安全隔离”过渡的深化期</strong>。各主流项目（如 PicoClaw、NanoClaw、CoPaw 等）不再单纯追求大模型调用链路的铺设，而是全面聚焦于<strong>多端/多网关协议兼容性、本地/边缘设备的沙箱隔离、工具调用的容错性（如 Schema 净化）以及企业级治理能力</strong>。整体生态呈现出高并发的代码提交与精细化的稳定性修复并行的特征。</p>
-<hr>
-<h2>2. 各项目活跃度对比</h2>
-<table>
-<thead>
-<tr>
-<th align="left">项目名称</th>
-<th align="left">核心语言</th>
-<th align="left">今日 Issues 动态</th>
-<th align="left">今日 PR 动态</th>
-<th align="left">Release 情况</th>
-<th align="left">健康度评估</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><strong>OpenClaw</strong></td>
-<td align="left">-</td>
-<td align="left"><em>摘要失败</em></td>
-<td align="left"><em>摘要失败</em></td>
-<td align="left">-</td>
-<td align="left"><em>数据缺失</em></td>
-</tr>
-<tr>
-<td align="left"><strong>NanoBot</strong></td>
-<td align="left">-</td>
-<td align="left"><em>摘要失败</em></td>
-<td align="left"><em>摘要失败</em></td>
-<td align="left">-</td>
-<td align="left"><em>数据缺失</em></td>
-</tr>
-<tr>
-<td align="left"><strong>Hermes Agent</strong></td>
-<td align="left">-</td>
-<td align="left"><em>摘要失败</em></td>
-<td align="left"><em>摘要失败</em></td>
-<td align="left">-</td>
-<td align="left"><em>数据缺失</em></td>
-</tr>
-<tr>
-<td align="left"><strong>PicoClaw</strong></td>
-<td align="left">Go</td>
-<td align="left">1条 (已关闭)</td>
-<td align="left">14条 (7已合并)</td>
-<td align="left">无新版本</td>
-<td align="left">🟢 <strong>稳定维护</strong> (依赖升级与多渠道打磨)</td>
-</tr>
-<tr>
-<td align="left"><strong>NanoClaw</strong></td>
-<td align="left">Node.js/TS</td>
-<td align="left">1条 (已关闭)</td>
-<td align="left">19条 (4已合并)</td>
-<td align="left">无新版本</td>
-<td align="left">🟢 <strong>高活跃度</strong> (持续攻坚安装与监控体验)</td>
-</tr>
-<tr>
-<td align="left"><strong>NullClaw</strong></td>
-<td align="left">-</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">无新版本</td>
-<td align="left">⚪ <strong>静默</strong> (无活动)</td>
-</tr>
-<tr>
-<td align="left"><strong>IronClaw</strong></td>
-<td align="left">Rust?</td>
-<td align="left">1条更新 (OfficeQA分析)</td>
-<td align="left">0</td>
-<td align="left">无新版本</td>
-<td align="left">🟡 <strong>低频质控</strong> (转向模型基准和错误分类复盘)</td>
-</tr>
-<tr>
-<td align="left"><strong>LobsterAI</strong></td>
-<td align="left">-</td>
-<td align="left">-</td>
-<td align="left">12条关闭/合并</td>
-<td align="left">无新版本</td>
-<td align="left">🟢 <strong>高频迭代</strong> (网关稳定性与 Cowork 体验升级)</td>
-</tr>
-<tr>
-<td align="left"><strong>TinyClaw</strong></td>
-<td align="left">-</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">无新版本</td>
-<td align="left">⚪ <strong>静默</strong> (无活动)</td>
-</tr>
-<tr>
-<td align="left"><strong>Moltis</strong></td>
-<td align="left">Rust</td>
-<td align="left">2条活跃</td>
-<td align="left">2条待评审</td>
-<td align="left">无新版本</td>
-<td align="left">🟡 <strong>低频维护</strong> (聚焦沙箱粒度与构建防崩溃)</td>
-</tr>
-<tr>
-<td align="left"><strong>CoPaw</strong></td>
-<td align="left">Python</td>
-<td align="left">20条更新</td>
-<td align="left">41条变动 (17已合并)</td>
-<td align="left">v2.2.1 (当前主版)</td>
-<td align="left">🔵 <strong>爆发期</strong> (企业级Hub网关与高危死锁修复交织)</td>
-</tr>
-<tr>
-<td align="left"><strong>ZeptoClaw</strong></td>
-<td align="left">Rust</td>
-<td align="left">5条更新 (4关闭)</td>
-<td align="left">6条 (4关闭/合并)</td>
-<td align="left">无新版本</td>
-<td align="left">🟢 <strong>稳健优化</strong> (加固端侧模型工具调用与依赖安全)</td>
-</tr>
-<tr>
-<td align="left"><strong>ZeroClaw</strong></td>
-<td align="left">-</td>
-<td align="left"><em>摘要失败</em></td>
-<td align="left"><em>摘要失败</em></td>
-<td align="left">-</td>
-<td align="left"><em>数据缺失</em></td>
-</tr>
-</tbody></table>
-<hr>
-<h2>3. OpenClaw 在生态中的定位</h2>
-<p><em>由于 OpenClaw 本日核心摘要生成失败，但基于多款生态衍生项目（如 PicoClaw、NanoClaw、LobsterAI）与参照物背景可知：</em></p>
-<ul>
-<li><strong>生态心智地位</strong>：OpenClaw 作为该赛道的<strong>核心参照与事实上的架构母本</strong>（多衍生出 PicoClaw、NanoClaw、IronClaw、LobsterAI 等派生分支），承担着多渠道 IM 接入、网关状态管理与标准 Agent 执行循环的“黄金标准”角色。</li>
-<li><strong>技术路线差异</strong>：相比于其派生项目（如强调极轻量端侧的 PicoClaw/ZeptoClaw，或偏向桌面协作的 CoPaw/LobsterAI），OpenClaw 体系更侧重于<strong>全功能、跨平台 IM 网关的完备性与复杂的长会话管理</strong>。</li>
-<li><strong>社区规模</strong>：拥有最广泛的二次开发生态与衍生项目群，是整个开源智能体生态的“晴雨表”。</li>
-</ul>
-<hr>
-<h2>4. 共同关注的技术方向</h2>
-<p>在本次统计周期内，多个项目不约而同地涌现出以下共性技术诉求：</p>
-<ol>
-<li><strong>多渠道 IM 兼容与网关韧性</strong><ul>
-<li><strong>涉及项目</strong>：PicoClaw、LobsterAI、CoPaw</li>
-<li><strong>具体诉求</strong>：解决复杂 IM 环境下的 401 授权错误、并发导致网关锁僵死、浏览器 DNS 异常逃逸导致进程退出等痛点，确保全天候在线率。</li>
-</ul>
-</li>
-<li><strong>边缘/本地模型（Small Language Models）的工具调用容错</strong><ul>
-<li><strong>涉及项目</strong>：ZeptoClaw、IronClaw</li>
-<li><strong>具体诉求</strong>：由于本地弱模型（如 Ollama 托管模型）对严格 JSON Schema 的理解与生成能力有限，项目开始强制引入工具参数校验、入参类型强转（Coercion）和 Schema 净化（Sanitization），降低工具调用失败率。</li>
-</ul>
-</li>
-<li><strong>企业级治理与安全性隔离</strong><ul>
-<li><strong>涉及项目</strong>：CoPaw、Moltis</li>
-<li><strong>具体诉求</strong>：多 Agent 场景下的文件系统挂载点隔离、非 root 运行（<code>run_as</code>）控制，以及集中化密钥托管与调用量统计面板（Hub 网关机制）。</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h2>5. 差异化定位分析</h2>
-<p>生态内的开源助手展现出了清晰的<strong>分层定位</strong>：</p>
-<table>
-<thead>
-<tr>
-<th align="left">维度</th>
-<th align="left">极致轻量/端侧边缘派 (如 PicoClaw, ZeptoClaw)</th>
-<th align="left">桌面/办公协同派 (如 CoPaw, LobsterAI)</th>
-<th align="left">深度推理与架构演进派 (如 NanoClaw, IronClaw, Moltis)</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><strong>功能侧重</strong></td>
-<td align="left">极小内存占用、单二进制分发、树莓派/端侧兼容、本地 Ollama 适配。</td>
-<td align="left">结构化工作区（Cowork）、Diff 视图、可视化进程面板、飞书/多IM深度融合。</td>
-<td align="left">安全沙箱粒度、多网关路由、基准测试（如 OfficeQA）失败分类与自动化审计。</td>
-</tr>
-<tr>
-<td align="left"><strong>目标用户</strong></td>
-<td align="left">嵌入式极客、边缘计算开发者、本地隐私计算追求者。</td>
-<td align="left">日常办公协同用户、需要可视化监控的非硬核开发者。</td>
-<td align="left">AI 架构师、企业级集成商、模型评测研究员。</td>
-</tr>
-<tr>
-<td align="left"><strong>关键架构差异</strong></td>
-<td align="left">编译型语言（Go/Rust为主），无重型依赖。</td>
-<td align="left">混合架构（如 Electron/Python/Node 组合），强调富 UI 与插件生态。</td>
-<td align="left">容器化隔离、严格的进程重入保护、多身份认证网关。</td>
-</tr>
-</tbody></table>
-<hr>
-<h2>6. 社区热度与成熟度</h2>
-<p>按活跃度与开发阶段可划分为三个梯队：</p>
-<ul>
-<li><strong>第一梯队：爆发期与高频迭代（CoPaw, LobsterAI, NanoClaw）</strong><ul>
-<li><strong>特征</strong>：每日数十条 PR 与 Issue 交互。处于新功能密集落地（如 CoPaw 的 Hub 网关、LobsterAI 的 Diff 视图面板）与架构修补期，但同时也伴随着较高的运行期风险（如死锁、内存飙升）。</li>
-</ul>
-</li>
-<li><strong>第二梯队：稳定维护与质量巩固（PicoClaw, ZeptoClaw, Moltis）</strong><ul>
-<li><strong>特征</strong>：开发节奏稳健，重点转向依赖安全审计（如修复 Rustls 漏洞）、CI 架构瘦身、Cron 逻辑严谨化以及小模型适配，项目健康度高。</li>
-</ul>
-</li>
-<li><strong>第三梯队：低频静默与深度反思（IronClaw, NullClaw, TinyClaw）</strong><ul>
-<li><strong>特征</strong>：代码直接提交减少，但往往有高质量的系统性审计输出（如 IronClaw 的 OfficeQA 失败分类法），重心转向模型能力边界评估。</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2>7. 值得关注的趋势信号</h2>
-<p>从本次各社区动态中，可向 AI 智能体开发者提炼出以下行业趋势：</p>
-<ol>
-<li><strong>“模型能力瓶颈”替代“框架缺陷”成为主要矛盾</strong><ul>
-<li>随着基础设施趋于成熟，开发者日益发现 Agent 任务失败的根源往往在于模型自身的长链条推理、导航错误及 Schema 遵循度不足（如 IronClaw 的复盘报告所示）。未来的优化重心将从“修框架 Bug”转向“防崩溃护栏（Guardrails）与提示词策略优化”。</li>
-</ul>
-</li>
-<li><strong>端侧推理的防御性编程成为标配</strong><ul>
-<li>ZeptoClaw 和 PicoClaw 等项目的动作表明，面向本地/弱模型的 AI 助手必须在网关层内置更强的“容错清洗”能力（如动态修正不合规的 JSON 输出），不能过分依赖大模型的绝对服从性。</li>
-</ul>
-</li>
-<li><strong>企业级 Hub 与权限治理正从“锦上添花”变为“刚需”</strong><ul>
-<li>CoPaw 上线 Hub 集中密钥与成员治理机制，标志着个人 AI 助手正正式向“团队共享工作台”演进，多账号、配额统计与精细化权限隔离将是后续开源产品的核心竞争力。</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h2>同赛道项目详细报告</h2>
-<details>
-<summary><strong>NanoBot</strong> — <a href="https://github.com/HKUDS/nanobot">HKUDS/nanobot</a></summary>
-
-<p>⚠️ 摘要生成失败。</p>
-</details>
-
-<details>
-<summary><strong>Hermes Agent</strong> — <a href="https://github.com/nousresearch/hermes-agent">nousresearch/hermes-agent</a></summary>
-
-<p>⚠️ 摘要生成失败。</p>
-</details>
-
-<details>
-<summary><strong>PicoClaw</strong> — <a href="https://github.com/sipeed/picoclaw">sipeed/picoclaw</a></summary>
-
-<p><strong>PicoClaw 项目日报（2026‑09‑18）</strong></p>
-<hr>
-<h3>1. 今日速览</h3>
-<ul>
-<li><strong>活跃度</strong>：过去 24 h 内共出现 <strong>1 条 issue（已关闭）</strong> 与 <strong>14 条 PR（7 已合并、7 待合并）</strong>，整体贡献率保持在 <strong>≈50 %</strong>。  </li>
-<li><strong>贡献者</strong>：主要是社区维护者与 Dependabot（依赖升级）。  </li>
-<li><strong>项目健康</strong>：无新版本发布，依赖项已及时更新，未出现重大的运行崩溃或安全警告，项目状态可归入 “稳定维护” 阶段。</li>
-</ul>
-<hr>
-<h3>2. 版本发布</h3>
-<blockquote>
-<p><strong>无</strong> 本日新增 Release。  </p>
-</blockquote>
-<hr>
-<h3>3. 项目进展</h3>
-<table>
-<thead>
-<tr>
-<th>PR 号</th>
-<th>类型</th>
-<th>主要变更</th>
-<th>影响</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>#3360</strong></td>
-<td>Dependabot</td>
-<td><code>larksuite/oapi-sdk-go</code> 3.9.4 → 3.11.0</td>
-<td>修复旧 SDK 的类型安全问题，提升与 Lark API 的兼容性</td>
-</tr>
-<tr>
-<td><strong>#3361</strong></td>
-<td>Dependabot</td>
-<td><code>google.golang.org/protobuf</code> 1.36.11 → 1.36.12</td>
-<td>解决 protobuf 运行时的轻微冲突</td>
-</tr>
-<tr>
-<td><strong>#3362</strong></td>
-<td>Dependabot</td>
-<td><code>golang.org/x/term</code> 0.44.0 → 0.45.0</td>
-<td>增强终端交互功能，修复 Windows 终端 bug</td>
-</tr>
-<tr>
-<td><strong>#3363</strong></td>
-<td>Dependabot</td>
-<td><code>ergochat/irc-go</code> 0.6.0 → 0.7.0</td>
-<td>支持 IRCv3 多行消息，提升 IRC 兼容性</td>
-</tr>
-<tr>
-<td><strong>#3358</strong></td>
-<td>Feature</td>
-<td>线程化回复改进</td>
-<td>让非回复触发的消息在群聊中能正确引用，提升可读性</td>
-</tr>
-<tr>
-<td><strong>#1158</strong></td>
-<td>Feature</td>
-<td>新增 <code>anthropic-messages</code> 协议</td>
-<td>让 Anthropic 原生 Messages API 能被 PicoClaw 直接调用，解决第三方 Anthropic 代理兼容性问题</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p><strong>总体</strong>：本日合并的 PR 主要集中在依赖升级与核心功能细化（线程回复、Anthropic 兼容），推动了项目在安全性、可维护性与多渠道兼容性方面的稳步前进。</p>
-</blockquote>
-<hr>
-<h3>4. 社区热点</h3>
-<table>
-<thead>
-<tr>
-<th>讨论</th>
-<th>链接</th>
-<th>亮点</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>Issue #3349</strong> – QQ 频道无法使用</td>
-<td><a href="https://github.com/sipeed/picoclaw/issues/3349">#3349</a></td>
-<td>5 条评论，涉及 401 授权错误；社区对 QQ 频道的稳定性提出关注，已通过关闭标记表明已修复。</td>
-</tr>
-<tr>
-<td><strong>PR #3381</strong> – 切换 OpenAI 到 Responses API</td>
-<td><a href="https://github.com/sipeed/picoclaw/pull/3381">#3381</a></td>
-<td>讨论较多（&gt;10 条评论），用户希望更快的响应并减少请求次数；该 PR 仍待审查。</td>
-</tr>
-<tr>
-<td><strong>PR #3376</strong> – Deltachat 配置校验修复</td>
-<td><a href="https://github.com/sipeed/picoclaw/pull/3376">#3376</a></td>
-<td>解决启动时报 “unknown type” 的错误，受 Deltachat 用户关注。</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p><strong>诉求</strong>：社区关注 QQ、Deltachat 以及 OpenAI 相关功能的稳定性和性能优化。</p>
-</blockquote>
-<hr>
-<h3>5. Bug 与稳定性</h3>
-<table>
-<thead>
-<tr>
-<th>Bug</th>
-<th>影响</th>
-<th>是否已修复</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>#3349</strong> – QQ 频道 401 Authorization 错误</td>
-<td>影响所有使用 QQ 频道的用户</td>
-<td>已关闭，PR #3358 解决了相关配置问题</td>
-</tr>
-<tr>
-<td><strong>依赖冲突</strong> – 旧版依赖导致编译失败</td>
-<td>影响 CI/CD 与 Docker 构建</td>
-<td>通过 Dependabot PR #3360‑#3364 修复</td>
-</tr>
-<tr>
-<td><strong>终端兼容性</strong> – Windows 终端 <code>golang.org/x/term</code> 0.44.0 问题</td>
-<td>影响 Windows 用户</td>
-<td>通过 PR #3362 修复</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p><strong>整体</strong>：Bug 处理率高，所有已报告问题均已得到修复或正在修复中。</p>
-</blockquote>
-<hr>
-<h3>6. 功能请求与路线图信号</h3>
-<ul>
-<li><strong>#3354</strong>：IRCv3 <code>draft/multiline</code> 支持 → 计划在下个版本加入完整 IRC 兼容层。  </li>
-<li><strong>#3353</strong>：工具反馈动画限制 → 可作为用户体验细化功能。  </li>
-<li><strong>#3344</strong>：Build Remote Agent 手机配对 → 若需求增长，可在 1.1 版本中实现更完整的远程代理。  </li>
-<li><strong>#3381</strong>：OpenAI responses API → 受欢迎，建议优先评估后续版本。</li>
-</ul>
-<blockquote>
-<p><strong>优先级</strong>：基于社区评论数量与技术可行性，建议在 1.1 版集中完成 OpenAI responses、IRC multiline 与 Build Remote Agent 的实现。</p>
-</blockquote>
-<hr>
-<h3>7. 用户反馈摘要</h3>
-<ul>
-<li><strong>QQ 频道</strong>：用户抱怨 401 授权错误导致无法使用，提示需要更新授权头格式。  </li>
-<li><strong>Deltachat</strong>：用户遇到启动报 “unknown type” 的配置错误。  </li>
-<li><strong>Anthropic</strong>：部分代理服务只能使用 Messages API，现已通过 <code>anthropic-messages</code> 协议得到支持。  </li>
-<li><strong>终端体验</strong>：Windows 用户在终端交互时出现乱码，已通过 <code>golang.org/x/term</code> 0.45.0 修复。</li>
-</ul>
-<blockquote>
-<p><strong>共识</strong>：用户对多渠道兼容性、配置稳定性与 API 速度（OpenAI）尤为敏感。</p>
-</blockquote>
-<hr>
-<h3>8. 待处理积压</h3>
-<table>
-<thead>
-<tr>
-<th>号</th>
-<th>类型</th>
-<th>说明</th>
-<th>链接</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>#3222</strong></td>
-<td>Refactor</td>
-<td>Deltachat 代码重构，已标记为 stale</td>
-<td><a href="https://github.com/sipeed/picoclaw/pull/3222">#3222</a></td>
-</tr>
-<tr>
-<td><strong>#3354</strong></td>
-<td>Feature</td>
-<td>IRC multiline 支持，已开启但未审查</td>
-<td><a href="https://github.com/sipeed/picoclaw/pull/3354">#3354</a></td>
-</tr>
-<tr>
-<td><strong>#3353</strong></td>
-<td>Feature</td>
-<td>工具反馈动画改进</td>
-<td><a href="https://github.com/sipeed/picoclaw/pull/3353">#3353</a></td>
-</tr>
-<tr>
-<td><strong>#3381</strong></td>
-<td>Feature</td>
-<td>OpenAI responses API 方案</td>
-<td><a href="https://github.com/sipeed/picoclaw/pull/3381">#3381</a></td>
-</tr>
-</tbody></table>
-<blockquote>
-<p><strong>建议</strong>：针对上述 PR，优先评审并尽快合并，以缓解社区对新功能的期望。</p>
-</blockquote>
-<hr>
-<p><strong>结语</strong><br>PicoClaw 在本日保持了良好的活跃度与稳定性。依赖升级及时、核心功能改进显著，社区对多渠道兼容性的需求正在得到及时响应。建议后续重点推进 OpenAI responses 与 IRC multiline 的实现，并持续监控 QQ 频道与 Deltachat 的使用反馈，以维持项目的高质量交付。</p>
-</details>
-
-<details>
-<summary><strong>NanoClaw</strong> — <a href="https://github.com/qwibitai/nanoclaw">qwibitai/nanoclaw</a></summary>
-
-<p><strong>NanoClaw 项目日报 – 2026‑09‑18</strong></p>
-<table>
-<thead>
-<tr>
-<th>维度</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>Issues 更新</strong></td>
-<td>1 条（已关闭）</td>
-</tr>
-<tr>
-<td><strong>Pull Requests</strong></td>
-<td>19 条（15 待合并，4 已合并/关闭）</td>
-</tr>
-<tr>
-<td><strong>版本发布</strong></td>
-<td>0 个</td>
-</tr>
-</tbody></table>
-<hr>
-<h3>1️⃣ 今日速览</h3>
-<p>NanoClaw 仍保持高活跃度：近 24 小时内产生了 19 条 PR，并有 4 条被合并或关闭。虽然没有新版本发布，但多项关键修复与功能改进已完成，说明维护团队对核心稳定性和功能迭代保持强劲。整体热度与社区讨论量相对平稳，维持在“高活跃度”区间。</p>
-<hr>
-<h3>2️⃣ 版本发布</h3>
-<p>无新版本发布。  </p>
-<hr>
-<h3>3️⃣ 项目进展</h3>
-<table>
-<thead>
-<tr>
-<th>PR</th>
-<th>状态</th>
-<th>关键改动</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>#3844</strong></td>
-<td>✅ 已合并</td>
-<td>替换 <code>setup.sh</code> 的 sudo retry，改为使用用户级 npm 前缀</td>
-<td>解决在 Linux 发行版中安装 Node 时因权限导致的 <code>EACCES</code> 错误，提高安装可靠性。</td>
-</tr>
-<tr>
-<td><strong>#3846</strong></td>
-<td>✅ 已合并</td>
-<td>新增 <code>/add-typesafe-tool</code> Skill 及 <code>maintainer</code> agent 模板</td>
-<td>通过 TypeSafe 的 Jev 判断模型，为决策工作流提供安全、可追溯的容器工具。</td>
-</tr>
-<tr>
-<td><strong>#3148</strong></td>
-<td>✅ 已合并</td>
-<td><code>WEBHOOK_PORT</code> 现在优先读取 <code>.env</code> 或环境变量</td>
-<td>解决 webhook 端口冲突，提升部署灵活性。</td>
-</tr>
-<tr>
-<td><strong>#3845</strong></td>
-<td>✅ 已合并</td>
-<td>本地监控 Dashboard（<code>@nanoco/nanoclaw-dashboard</code>）</td>
-<td>为运维人员提供实时可视化，支持 <code>DASHBOARD_PORT/SECRET</code> 配置。</td>
-</tr>
-<tr>
-<td><strong>#3849</strong></td>
-<td>🔧 开放</td>
-<td><code>opencode</code> 的序列化恢复</td>
-<td>解决 Gemini 强制顺序导致的历史恢复失败。</td>
-</tr>
-<tr>
-<td><strong>#3825 / #3818 / #3817 / #3816 / #3815</strong></td>
-<td>🔧 开放</td>
-<td>Iron Proxy 认证、Gateway 选择、OneCLI 迁移、Credential contract 集中</td>
-<td>这些 PR 在推进“多网关/多身份认证”路线图，预期在下个版本中完成。</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p><strong>整体进度</strong>：本日合并的 4 条 PR 主要集中在安装、监控与安全方面，推动了项目的可靠性与可维护性。开放的 PR 则聚焦在下一代身份与网关架构，为未来版本奠定基础。</p>
-</blockquote>
-<hr>
-<h3>4️⃣ 社区热点</h3>
-<table>
-<thead>
-<tr>
-<th>项目</th>
-<th>说明</th>
-<th>链接</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>Issue #957</strong></td>
-<td>已关闭，讨论在文档中加入 “Podman 作为 Docker 的替代”</td>
-<td><a href="https://github.com/nanocoai/nanoclaw/issues/957">https://github.com/nanocoai/nanoclaw/issues/957</a></td>
-</tr>
-<tr>
-<td><strong>PR #3845</strong></td>
-<td>关注度最高（评论 5，点赞 3），新增本地监控 Dashboard</td>
-<td><a href="https://github.com/nanocoai/nanoclaw/pull/3845">https://github.com/nanocoai/nanoclaw/pull/3845</a></td>
-</tr>
-<tr>
-<td><strong>PR #3844</strong></td>
-<td>解决跨平台安装失败，评论 4，点赞 2</td>
-<td><a href="https://github.com/nanocoai/nanoclaw/pull/3844">https://github.com/nanocoai/nanoclaw/pull/3844</a></td>
-</tr>
-</tbody></table>
-<p><strong>诉求分析</strong>  </p>
-<ul>
-<li><strong>Podman</strong>：用户希望在无 Docker 的环境（尤其是 macOS + Linux）中保持相同的容器体验。  </li>
-<li><strong>Dashboard</strong>：运维人员需要可视化监控，避免依赖外部监控工具。  </li>
-<li><strong>安装脚本</strong>：在多发行版的 Node 环境下保持无障碍安装是最常见的痛点。</li>
-</ul>
-<hr>
-<h3>5️⃣ Bug 与稳定性</h3>
-<table>
-<thead>
-<tr>
-<th>级别</th>
-<th>问题</th>
-<th>状态</th>
-<th>关联 PR</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>高</strong></td>
-<td>① <code>setup.sh</code> 由于权限导致 <code>EACCES</code>（已解决 #3844）</td>
-<td>✅ 已修复</td>
-<td>#3844</td>
-</tr>
-<tr>
-<td><strong>中</strong></td>
-<td>② webhook 端口冲突导致崩溃（已解决 #3148）</td>
-<td>✅ 已修复</td>
-<td>#3148</td>
-</tr>
-<tr>
-<td><strong>低</strong></td>
-<td>③ 代码注释与文档不一致，导致新手上手困难（未修复）</td>
-<td>❌ 待解决</td>
-<td></td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>目前无新回归或崩溃报告，整体稳定性维持在良好水平。</p>
-</blockquote>
-<hr>
-<h3>6️⃣ 功能请求与路线图信号</h3>
-<table>
-<thead>
-<tr>
-<th>请求</th>
-<th>关联 PR</th>
-<th>评估</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Podman 支持</td>
-<td>#957</td>
-<td>已关闭，功能已通过文档更新实现</td>
-</tr>
-<tr>
-<td>Iron Proxy Gateway</td>
-<td>#3817, #3818, #3825, #3816, #3815</td>
-<td>处于设计/实现阶段，预计 2026‑10 版本可集成</td>
-</tr>
-<tr>
-<td>本地监控 Dashboard</td>
-<td>#3845</td>
-<td>已实现，已上线功能</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p><strong>路线图</strong>：项目正向“多网关、分级认证、可视化运维”方向发展。Iron Proxy 与 OneCLI 的拆分/迁移是下一个里程碑。</p>
-</blockquote>
-<hr>
-<h3>7️⃣ 用户反馈摘要</h3>
-<ul>
-<li><strong>安装问题</strong>：多数评论集中在 Docker/Podman 环境差异导致的安装失败。  </li>
-<li><strong>使用场景</strong>：用户希望在无 root 权限的生产环境中运行 NanoClaw；同时需要可视化监控以便快速定位问题。  </li>
-<li><strong>满意度</strong>：对快速修复 (#3844, #3148) 与新功能 (#3845) 表现出积极反馈。  </li>
-<li><strong>不满意</strong>：对 “配置冲突” 与 “文档缺失” 的抱怨仍存在，建议进一步完善 <code>README</code> 与 <code>setup</code> 指南。</li>
-</ul>
-<hr>
-<h3>8️⃣ 待处理积压</h3>
-<table>
-<thead>
-<tr>
-<th>项目</th>
-<th>说明</th>
-<th>链接</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>Issue #2680 (相关 PR #2681)</strong></td>
-<td>“skip linger on per‑home‑encrypted systems”</td>
-<td><a href="https://github.com/nanocoai/nanoclaw/pull/2681">https://github.com/nanocoai/nanoclaw/pull/2681</a></td>
-</tr>
-<tr>
-<td><strong>PR #3551 / #3552</strong></td>
-<td>MCP‑policy 强制与 OneCLI 路由配置</td>
-<td><a href="https://github.com/nanocoai/nanoclaw/pull/3551">https://github.com/nanocoai/nanoclaw/pull/3551</a>  / <a href="https://github.com/nanocoai/nanoclaw/pull/3552">https://github.com/nanocoai/nanoclaw/pull/3552</a></td>
-</tr>
-<tr>
-<td><strong>PR #3751 / #3752</strong></td>
-<td>WhatsApp 通讯录过滤 &amp; pending 消息处理</td>
-<td><a href="https://github.com/nanocoai/nanoclaw/pull/3751">https://github.com/nanocoai/nanoclaw/pull/3751</a>  / <a href="https://github.com/nanocoai/nanoclaw/pull/3752">https://github.com/nanocoai/nanoclaw/pull/3752</a></td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>这些问题已持续多周，建议在下周内部讨论后快速推进，以避免影响用户体验。</p>
-</blockquote>
-<hr>
-<p><strong>整体评估</strong><br>NanoClaw 在过去 24 小时内保持了高度的社区活跃度与开发效率。核心修复已解决常见安装与运行问题，新增的监控 Dashboard 与 Iron Proxy 相关功能为后续版本奠定技术基础。建议优先关注待处理积压，以维持项目稳定性与用户满意度。</p>
-</details>
-
-<details>
-<summary><strong>NullClaw</strong> — <a href="https://github.com/nullclaw/nullclaw">nullclaw/nullclaw</a></summary>
-
-<p>过去24小时无活动。</p>
-</details>
-
-<details>
-<summary><strong>IronClaw</strong> — <a href="https://github.com/nearai/ironclaw">nearai/ironclaw</a></summary>
-
-<h1>IronClaw 项目动态日报 (2026-09-18)</h1>
-<p><strong>数据来源</strong>: <a href="https://github.com/nearai/ironclaw">github.com/nearai/ironclaw</a>
-<strong>统计周期</strong>: 过去 24 小时 (2026-09-17 00:00 至 2026-09-18 00:00 UTC)</p>
-<h2>1. 今日速览</h2>
-<p>IronClaw 项目今日整体处于<strong>极低活跃度</strong>状态，代码开发节奏暂时放缓。过去 24 小时内无新代码合并、无版本发布，仅有一条关于模型基准测试失败分类的 Issue 更新。项目当前重心似乎从功能开发转向了<strong>模型质量评估与稳定性分析</strong>，特别是针对 DeepSeek-V4-Flash 在特定任务集上的表现进行深度复盘。<strong>整体健康度评估：平稳但静默</strong>，适合维护者进行内部技术复盘而非对外功能迭代。</p>
-<h2>2. 版本发布</h2>
-<p><em>今日无新版本发布。</em></p>
-<h2>3. 项目进展</h2>
-<p><em>今日无合并或关闭的 Pull Requests。代码库在过去 24 小时内无实质性功能推进或修复落地。</em></p>
-<h2>4. 社区热点</h2>
-<p>今日社区唯一的活跃点集中在模型能力评估上，虽无大量讨论，但内容具有较高的技术参考价值。</p>
-<ul>
-<li><strong>#8101 [OPEN] Daily ironclaw failure taxonomy — 2026-09-17</strong><ul>
-<li><strong>链接</strong>: <a href="https://github.com/nearai/ironclaw/issues/8101">nearai/ironclaw#8101</a></li>
-<li><strong>作者</strong>: pranavraja99</li>
-<li><strong>热度分析</strong>: 虽然评论量为 0，但这并非一个普通的 Bug 报告，而是一个<strong>系统性质量审计文档</strong>。该 Issue 详细分析了 <code>officeqa</code> 测试套件中 35 个非通过任务，指出其中绝大多数是真实的模型质量错误（genuine model-quality errors），而非框架代码缺陷。</li>
-<li><strong>背后诉求</strong>: 用户或维护者正在试图区分“框架 Bug”与“模型能力不足”。这表明社区/维护团队正在关注 AI Agent 在实际办公场景下的<strong>可靠性边界</strong>，特别是针对 DeepSeek-V4-Flash 模型的导航和推理能力瓶颈。</li>
-</ul>
-</li>
-</ul>
-<h2>5. Bug 与稳定性</h2>
-<p>今日未报告新的代码级 Bug 或崩溃问题。</p>
-<ul>
-<li><strong>稳定性观察</strong>:  Issue #8101 揭示了当前系统在 <code>officeqa</code> 场景下的<strong>通过率问题</strong>。<ul>
-<li><strong>严重程度</strong>: 中（非系统崩溃，但影响功能可用率）。</li>
-<li><strong>根因分析</strong>: 根据 Issue 描述，35 个失败案例主要归因于 <strong>DeepSeek-V4-Flash 模型自身的推理/导航错误</strong>，而非 IronClaw 框架的逻辑错误。</li>
-<li><strong>Fix 状态</strong>: 无对应的代码 Fix PR。解决路径可能依赖于<strong>模型升级</strong>或<strong>Prompt 策略优化</strong>，而非代码修改。</li>
-</ul>
-</li>
-</ul>
-<h2>6. 功能请求与路线图信号</h2>
-<p><em>今日无明确的新功能请求。</em></p>
-<p>然而，Issue #8101 的存在暗示了潜在的路线图方向：</p>
-<ul>
-<li><strong>Benchmark 透明度需求</strong>: 用户/维护者正在建立“每日失败分类法”（Daily Failure Taxonomy），这可能预示未来版本会包含更详细的<strong>错误归因报告</strong>或<strong>基准测试可视化面板</strong>。</li>
-<li><strong>模型适配优化</strong>: 针对特定模型（如 DeepSeek-V4-Flash）在 <code>officeqa</code> 等复杂推理任务上的表现优化，可能是下一阶段的技术攻坚重点。</li>
-</ul>
-<h2>7. 用户反馈摘要</h2>
-<p><em>今日 Issue 无评论，无直接用户痛点反馈。</em></p>
-<p>间接信号显示，用户高度关注<strong>实际任务完成率</strong>（Pass Rate）而非系统是否运行。<code>officeqa</code> 套件的 35 个失败案例表明，用户在处理复杂办公自动化任务时，对模型的<strong>长链条推理能力</strong>和<strong>多步骤任务执行准确性</strong>仍有较高期待，当前模型表现未能完全满足这一场景下的稳定性要求。</p>
-<h2>8. 待处理积压</h2>
-<p><em>基于现有数据，无法识别长期未响应的积压项。</em></p>
-<p><strong>建议关注点</strong>：</p>
-<ul>
-<li>鉴于 Issue #8101 涉及详细的技术分类，建议维护者评估是否需要将此类日报转化为<strong>自动化的监控看板</strong>，以便实时跟踪模型版本升级后的表现差异。</li>
-<li>关注 <code>officeqa</code> 测试套件后续是否有代码层面的改进（如重试机制、错误恢复策略）以弥补模型固有缺陷。</li>
-</ul>
-<hr>
-<p><strong>分析师备注</strong>: IronClaw 作为 AI 智能体与个人助手领域的开源项目，其核心竞争壁垒可能正从“框架稳定性”转向“模型效果优化”。今日的静默日（Quiet Day）配合一份高质量的失败分析报告，表明项目正处于<strong>精细调优阶段</strong>，而非快速扩张期。</p>
-</details>
-
-<details>
-<summary><strong>LobsterAI</strong> — <a href="https://github.com/netease-youdao/LobsterAI">netease-youdao/LobsterAI</a></summary>
-
-<h1>LobsterAI 项目动态日报 (2026-09-18)</h1>
-<h2>1. 今日速览</h2>
-<p>今日 LobsterAI 保持<strong>中等活跃度</strong>，核心开发聚焦于 <strong>OpenClaw 网关稳定性优化</strong>与 <strong>Cowork 交互体验升级</strong>。过去 24 小时内，项目团队合并/关闭了 12 个 PR，主要解决了网关锁机制僵死、浏览器 DNS 异常导致网关重启以及 IM 负载误判等关键稳定性问题。同时，社区贡献者提交了多项针对 Cowork 可视化、MCP 国际化及插件加载的修复方案，但部分长期未解决的陈旧 Issue（Stale）仍需维护者介入清理。整体而言，项目处于“高频修 Bug + 体验打磨”的阶段，基础架构健壮性正在持续增强。</p>
-<h2>2. 版本发布</h2>
-<p><em>（今日无新版本发布）</em></p>
-<h2>3. 项目进展</h2>
-<p>今日代码合并多围绕以下三个核心方向，显著提升了系统的可靠性与易用性：</p>
-<ul>
-<li><p><strong>OpenClaw 网关稳定性加固</strong>：</p>
-<ul>
-<li><strong>[PR #2698] 安全恢复陈旧网关锁所有者</strong>：修复了当遗留网关或迁移锁仍引用存活 PID 时，一键修复流程被维护锁阻断的问题。现在系统能在手动修复屏障内先核验锁所有者，确保数据库快照、Doctor 检查及后续恢复流程顺畅执行。<em><a href="https://github.com/netease-youdao/LobsterAI/pull/2698">Link</a></em></li>
-<li><strong>[PR #2695] 防止浏览器 DNS 故障触发网关重启</strong>：解决了 Playwright 导航中 DNS 错误逃逸出异步回调导致网关意外退出、进而中断会话和 IM 连接的问题。此次修复将导航失败限制在工具调用内，保证了网关的持续性。<em><a href="https://github.com/netease-youdao/LobsterAI/pull/2695">Link</a></em></li>
-<li><strong>[PR #2694] 守护 IM 工作负载与配置恢复观察</strong>：修复了原生 IM 任务在准备/运行阶段因尚未创建 ActiveTurn 而被误判为空闲从而触发网关重启的问题。引入了有界 IM 工作证据跟踪，避免打断正在进行的任务。<em><a href="https://github.com/netease-youdao/LobsterAI/pull/2694">Link</a></em></li>
-</ul>
-</li>
-<li><p><strong>Cowork 交互体验优化</strong>：</p>
-<ul>
-<li><strong>[PR #2692] 动态思考阶段显示</strong>：当模型静默等待时，Cowork 活动行不再仅显示静态 &quot;Thinking&quot;，而是轮换展示短期阶段词，并显示已完成步骤数，有效缓解用户感知的“卡顿”焦虑。<em><a href="https://github.com/netease-youdao/LobsterAI/pull/2692">Link</a></em></li>
-<li><strong>[PR #1079] 新增“当前进程”右侧面板</strong>：在 Cowork 会话详情页新增右侧面板，实时展示当前轮次的工具执行记录，并对文件写入/编辑操作提供 Diff 红绿高亮视图，极大提升了调试透明度。<em><a href="https://github.com/netease-youdao/LobsterAI/pull/1079">Link</a></em></li>
-</ul>
-</li>
-<li><p><strong>基础功能修复</strong>：</p>
-<ul>
-<li><strong>[PR #2691] 恢复原生飞书插件加载</strong>：修复了 macOS 原生 Node 加载路径下 <code>@larksuite/openclaw-lark</code> 插件因 CJS/ESM 混用导致的 <code>ReferenceError</code>，确保飞书渠道能正常注册。<em><a href="https://github.com/netease-youdao/LobsterAI/pull/2691">Link</a></em></li>
-<li><strong>[PR #2693] 优化应用退出体验</strong>：使应用退出时立即隐藏窗口以提供即时反馈，并通过轮询实际退出状态而非固定等待，加速技能服务的清理过程。<em><a href="https://github.com/netease-youdao/LobsterAI/pull/2693">Link</a></em></li>
-<li><strong>[PR #1087] 修复 <code>continueSession</code> 重复报错</strong>：消除了 <code>continueSession</code> 失败时向用户展示两条不同格式错误消息的问题，统一错误处理逻辑。<em><a href="https://github.com/netease-youdao/LobsterAI/pull/1087">Link</a></em></li>
-</ul>
-</li>
-</ul>
-<h2>4. 社区热点</h2>
-<ul>
-<li><strong>话题：OpenClaw 版本兼容性与安全合规</strong><ul>
-<li><strong>[Issue #1082] package.json 中 openclaw.version 滞后</strong>：用户 <code>baleli668</code> 指出 <code>package.json</code> 中锁定的 <code>openclaw.version</code> 为 <code>v2026.3.2</code>，质疑是否支持最新版本，并提及国家互联网应急中心（CNCERT）对更新到最新版本的要求。这反映了<strong>安全合规</strong>与<strong>版本同步</strong>是社区关注的痛点。虽然标记为 <code>[stale]</code> 且已关闭，但其提出的供应链安全依赖问题值得团队在后续 Release Notes 中明确回应。<em><a href="https://github.com/netease-youdao/LobsterAI/issues/1082">Link</a></em></li>
-</ul>
-</li>
-<li><strong>话题：Cowork 开发体验（DX）</strong><ul>
-<li><strong>[PR #1079] 工具执行可视化</strong>：该 PR 旨在解决用户在 Cowork 模式下难以追踪 Agent 内部动作的问题。通过提供 Diff 视图和进程面板，直接回应了高级用户对<strong>可观测性</strong>的需求，此类功能通常能显著提升复杂任务的调试效率。</li>
-</ul>
-</li>
-</ul>
-<h2>5. Bug 与稳定性</h2>
-<p>以下问题影响了核心功能的稳定性，部分已有对应修复 PR：</p>
-<ul>
-<li><strong>[严重/已修复] IM 网关并发导致 TypeError 崩溃</strong><ul>
-<li><strong>Issue</strong>: <a href="https://github.com/netease-youdao/LobsterAI/issues/1026">#1026</a> - <code>NimGateway.sendTeamTextReply</code> 在 <code>stop()</code> 与发送消息并发时，因 <code>v2Client</code> 被置空导致 <code>TypeError</code> 崩溃。</li>
-<li><strong>Status</strong>: 已有对应 PR <a href="https://github.com/netease-youdao/LobsterAI/pull/1028">#1028</a> 待合并（标记为 Stale，需检查为何未自动合并）。</li>
-</ul>
-</li>
-<li><strong>[高/已修复] 网关锁机制僵死</strong><ul>
-<li><strong>Issue</strong>: 无直接 Issue，但在 PR <a href="https://github.com/netease-youdao/LobsterAI/pull/2698">#2698</a> 中描述。遗留锁引用存活 PID 导致一键修复失败，阻断数据库恢复。</li>
-<li><strong>Status</strong>: 已合并 (<code>CLOSED</code>)。</li>
-</ul>
-</li>
-<li><strong>[中/已修复] 浏览器 DNS 错误导致网关重启</strong><ul>
-<li><strong>Issue</strong>: 无直接 Issue，在 PR <a href="https://github.com/netease-youdao/LobsterAI/pull/2695">#2695</a> 中描述。Playwright DNS 错误逃逸导致网关退出。</li>
-<li><strong>Status</strong>: 已合并 (<code>CLOSED</code>)。</li>
-</ul>
-</li>
-<li><strong>[中/待处理] <code>CoworkRunner</code> 重入保护缺失</strong><ul>
-<li><strong>Issue</strong>: <a href="https://github.com/netease-youdao/LobsterAI/issues/1089">#1089</a> - <code>startSession</code>/<code>continueSession</code> 缺乏并发保护，快速连续发送消息可能导致流式消息损坏和重复。</li>
-<li><strong>Status</strong>: 已关闭 (<code>CLOSED</code>，标记 Stale)，但需注意此问题若在生产环境复现，可能引发数据一致性问题。需确认是否有后续 PR 彻底解决并发状态修改问题，或仅通过上层 UI 节流规避。</li>
-</ul>
-</li>
-<li><strong>[低/已修复] <code>continueSession</code> 重复错误消息</strong><ul>
-<li><strong>Issue</strong>: 见 PR <a href="https://github.com/netease-youdao/LobsterAI/pull/1087">#1087</a>。</li>
-<li><strong>Status</strong>: 已合并 (<code>CLOSED</code>)。</li>
-</ul>
-</li>
-</ul>
-<h2>6. 功能请求与路线图信号</h2>
-<ul>
-<li><strong>Cowork 工作区增强 (Codex 风格)</strong><ul>
-<li><strong>信号</strong>: PR <a href="https://github.com/netease-youdao/LobsterAI/pull/2696">#2696</a> 正在评审中，引入“工作区审查”、“内联问题坞”和“Tasks 面板”。这表明团队正致力于将 Cowork 从一个简单的聊天界面演进为一个<strong>结构化的协作工作区</strong>，提升多任务并行管理的能力。</li>
-</ul>
-</li>
-<li><strong>定时任务告警</strong><ul>
-<li><strong>信号</strong>: PR <a href="https://github.com/netease-youdao/LobsterAI/pull/1078">#1078</a> 已关闭（可能已合并或合并至 Release 分支），实现了定时任务失败时向 IM 推送告警。这填补了用户必须主动检查才能发现 Cron 失败的盲区，增强了运维监控能力。</li>
-</ul>
-</li>
-<li><strong>MCP 体验完善</strong><ul>
-<li><strong>信号</strong>: PR <a href="https://github.com/netease-youdao/LobsterAI/pull/1081">#1081</a> 修复了 MCP 同步提示的国际化及 UI 滚动条溢出问题，显示团队正在细致打磨 MCP 集成的用户体验。</li>
-</ul>
-</li>
-</ul>
-<h2>7. 用户反馈摘要</h2>
-<ul>
-<li><strong>稳定性焦虑</strong>: 多个 Issue 和 PR 提及网关意外重启、崩溃和消息损坏（如 #1026, #1089, #2694, #2695）。用户反馈的核心痛点是**“长会话或并发操作下的不可预测性”**。团队通过加固锁机制和异步边界，正在积极应对这一痛点。</li>
-<li><strong>透明度需求</strong>: 用户希望更清楚地知道 Agent 正在做什么。PR #1079（进程面板）和 PR #2692（动态思考状态）直接回应了“黑盒”操作带来的不确定性，是提升信任度的关键功能。</li>
-<li><strong>国际化细节</strong>: PR #1081 指出中英混杂的提示信息，反映出海外用户或对语言规范敏感的用户对细节质量有较高要求。</li>
-</ul>
-<h2>8. 待处理积压</h2>
-<ul>
-<li><strong>安全相关 Issue</strong>:<ul>
-<li><strong><a href="https://github.com/netease-youdao/LobsterAI/issues/1031">Issue #1031</a></strong>: <code>shell:openExternal</code> IPC 接口未校验 URL 协议，存在任意协议调用风险（如 <code>file://</code>）。<strong>建议</strong>: 这是一个潜在的安全漏洞（RCE 或本地文件读取风险），虽标记为 Stale，但应作为高优先级安全修复项重新评估并尽快关闭。</li>
-</ul>
-</li>
-<li><strong>构建效率 Issue</strong>:<ul>
-<li><strong><a href="https://github.com/netease-youdao/LobsterAI/pull/1027">PR #1027</a></strong>: 建议跳过不可达的内网 npm registry 以加速构建。这主要影响内部构建或特定网络环境的开发者，非核心功能阻塞，但可优化 CI/CD 效率。</li>
-</ul>
-</li>
-<li><strong>并发逻辑 Issue</strong>:<ul>
-<li><strong><a href="https://github.com/netease-youdao/LobsterAI/issues/1089">Issue #1089</a></strong>: 虽然已关闭，但缺乏对应的显眼 Fix PR 链接。如果该问题未通过代码层面的重入锁彻底解决，仅靠关闭 Issue 可能掩盖潜在的山姆（Race Condition）。建议在下一版本回归测试中重点验证快速连续消息场景。</li>
-</ul>
-</li>
-</ul>
-<hr>
-<p><strong>数据截止</strong>: 2026-09-17 24:00 (UTC)
-<strong>生成时间</strong>: 2026-09-18</p>
-</details>
-
-<details>
-<summary><strong>TinyClaw</strong> — <a href="https://github.com/TinyAGI/tinyagi">TinyAGI/tinyagi</a></summary>
-
-<p>过去24小时无活动。</p>
-</details>
-
-<details>
-<summary><strong>Moltis</strong> — <a href="https://github.com/moltis-org/moltis">moltis-org/moltis</a></summary>
-
-<h1>Moltis 项目动态日报 (2026-09-18)</h1>
-<h2>1. 今日速览</h2>
-<p>今日 Moltis 项目总体处于<strong>低频但针对性强的维护状态</strong>。过去 24 小时内未发布新版本，无 PR 合并。社区活动集中在 <strong>Agent 沙箱隔离粒度控制</strong>、<strong>Cron 定时任务时间解析 Bug 修复</strong>，以及 <strong>Nix 构建链路断裂</strong> 的反馈上。目前有 2 条活跃 Issue 与 2 条待评审 PR，整体健康度平稳，关注重点开始向安全隔离与多 Agent 粒度权限下沉。</p>
-<hr>
-<h2>3. 项目进展</h2>
-<p><em>注：今日暂无已合并/已关闭的 PR。以下为推进中的核心 PR 进展：</em></p>
-<ul>
-<li><strong>Agent 沙箱安全增强</strong>：PR <a href="https://github.com/moltis-org/moltis/pull/1272">#1272</a> 为 Agent预设（Preset）中的 <code>[sandbox]</code> 配置块增加了三个按 Agent 粒度控制的参数（<code>mounts</code> 挂载路径、<code>run_as</code> 运行 UID/GID、<code>force</code> 强制沙箱模式）。该改动将大幅提升多 Agent 协同场景下的文件系统隔离性与安全性。</li>
-<li><strong>Cron 定时任务解析修复</strong>：PR <a href="https://github.com/moltis-org/moltis/pull/1262">#1262</a> 修复了 <code>active_hours</code> 设置为 <code>&quot;24:00&quot;</code> 时导致 <code>chrono</code> 库解析失败并静默回退至“全天激活”的问题，确保定时策略能够严格按预期执行。</li>
-</ul>
-<hr>
-<h2>4. 社区热点</h2>
-<p>今日无高并发/高评论度的讨论，但开发者对项目打包构建及插件扩展表现出持续关注：</p>
-<ul>
-<li><strong><a href="https://github.com/moltis-org/moltis/issues/1273">#1273</a> Nix Flake 无法构建发布 Tag</strong>：构建维护者 <code>flexiondotorg</code> 报告了 Tag <code>20260913.02</code> 下 <code>nix build</code> 失败的问题，揭示了项目在 Git 依赖库重命名及 Web 静态资源打包流程上的缺失，引发了 Nix/Reproducible Build 生态用户的关注。</li>
-</ul>
-<hr>
-<h2>5. Bug 与稳定性</h2>
-<table>
-<thead>
-<tr>
-<th align="left">严重程度</th>
-<th align="left">问题类型</th>
-<th align="left">描述</th>
-<th align="left">状态 / 修复 PR</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><strong>中高</strong></td>
-<td align="left">构建断裂</td>
-<td align="left">Tag <code>20260913.02</code> 的 <code>flake.nix</code> 缺少 <code>wacore-0.6.0</code> 和 <code>zvec-rust-0.6.0</code> 的哈希配置及 Web 静态资产，导致 Nix 构建中断。</td>
-<td align="left"><a href="https://github.com/moltis-org/moltis/issues/1273">#1273</a> (待修复)</td>
-</tr>
-<tr>
-<td align="left"><strong>中</strong></td>
-<td align="left">逻辑缺陷</td>
-<td align="left">Cron 任务中配置默认时间窗口（<code>end = &quot;24:00&quot;</code>）会导致解析失败，触发 fail-open 逻辑使任务全天持续运行。</td>
-<td align="left"><a href="https://github.com/moltis-org/moltis/pull/1262">#1262</a> (待合并)</td>
-</tr>
-</tbody></table>
-<hr>
-<h2>6. 功能请求与路线图信号</h2>
-<ul>
-<li><strong>WASM Web Search 性能优化请求</strong>：Issue <a href="https://github.com/moltis-org/moltis/issues/1274">#1274</a> 提出为 <code>moltis-wasm-web-search</code> 模块引入预付费搜索跳转/预检（Prepaid search hop）机制，表明用户正尝试在 WASM 插件环境中使用更轻量、高效的网络搜索功能。</li>
-<li><strong>沙箱隔离成为刚需</strong>：PR <a href="https://github.com/moltis-org/moltis/pull/1272">#1272</a> 的提出表明 Moltis 正在从单纯的个人 AI 助手向“多 Agent 混用/高权限 Agent 执行”演进，强制沙箱隔离与非 root 运行（<code>run_as</code>）可能成为下一个 minor 版本的标准特性。</li>
-</ul>
-<hr>
-<h2>7. 用户反馈摘要</h2>
-<ul>
-<li><strong>构建生态断层</strong>：NixOS / Nix 体系用户在升级至最新发布版本时遇到阻碍，由于项目引用的 Git Crates 重命名（如 <code>wacore</code>、<code>zvec-rust</code>），依赖锁未适配导致离线构建失败。</li>
-<li><strong>默认配置陷阱</strong>：配置 Cron 激活时间段的用户反馈，官方文档给出的默认参数 <code>end = &quot;24:00&quot;</code> 反而会导致定时限制失效，暴露出配置解析层兜底机制不够严谨的问题。</li>
-</ul>
-<hr>
-<h2>8. 待处理积压</h2>
-<ul>
-<li><strong><a href="https://github.com/moltis-org/moltis/pull/1262">#1262</a> fix(cron): treat active_hours end=&quot;24:00&quot; as end-of-day</strong>：该 PR 提交已超 10 天，影响 Cron 定时任务的精准度，建议维护者优先评审合并。</li>
-<li><strong><a href="https://github.com/moltis-org/moltis/issues/1273">#1273</a> Nix flake 构建修复</strong>：涉及发布 Tag 的完整性，需补齐 <code>outputHashes</code> 及前端 web assets 打包逻辑。</li>
-</ul>
-</details>
-
-<details>
-<summary><strong>CoPaw</strong> — <a href="https://github.com/agentscope-ai/CoPaw">agentscope-ai/CoPaw</a></summary>
-
-<p>以下是为您整理的 <strong>CoPaw (QwenPaw)</strong> 项目动态日报：</p>
-<hr>
-<h1>CoPaw 项目动态日报（2026-09-18）</h1>
-<h2>1. 今日速览</h2>
-<p>今日 CoPaw 社区呈现<strong>高度活跃状态</strong>，重点围绕 <strong>2.2.1 桌面端稳定性修复</strong>、<strong>上下文/Scroll 上下文淘汰算法优化</strong>、<strong>MCP 协议兼容性</strong> 以及 <strong>企业级 Hub 机制上线</strong> 展开。
-在过去 24 小时内，共有 20 条 Issues 被更新/新建，41 条 PR 产生变动（17 条合并或关闭）。整体项目正处于 2.2.x 版本的修补期与企业级能力（Hub Gateway、语音实时交互）的迭代交汇期。</p>
-<hr>
-<h2>2. 版本发布</h2>
-<blockquote>
-<p><strong>今日无新版本发布。</strong> 当前最新主版本为 <strong>v2.2.1</strong>。</p>
-</blockquote>
-<hr>
-<h2>3. 项目进展</h2>
-<p>今日共合并/关闭了 17 条 PR，其中多项突破性功能与底座修复成功落地：</p>
-<ul>
-<li><strong>企业级模型网关与权限治理落地</strong>：合并了 <a href="https://github.com/agentscope-ai/CoPaw/pull/7779">#7779</a>，Hub 现已具备模型网关功能，支持密钥集中托管、成员权限治理与调用量统计看板，大幅提升了团队协同与安全合规能力。</li>
-<li><strong>运行环境归一化</strong>：合并 <a href="https://github.com/agentscope-ai/CoPaw/pull/7751">#7751</a>，将 Docker 镜像中的应用 Python 运行时与桌面端统一（钉死为 Python 3.11 独立运行时），彻底解决了容器环境与桌面端因 OpenSSL/Python 版本差异导致的偶发行为不一致。</li>
-<li><strong>Runtime 活跃度遥测</strong>：合并 <a href="https://github.com/agentscope-ai/CoPaw/pull/7802">#7802</a>，引入 Agent 执行级别的每日运行遥测机制，为后续分析实例真实使用率提供数据支撑。</li>
-</ul>
-<hr>
-<h2>4. 社区热点</h2>
-<p>以下为今日讨论度最高的 Issues 与 PRs，反映了社区当前最迫切的诉求：</p>
-<ul>
-<li><strong><a href="https://github.com/agentscope-ai/QwenPaw/issues/7678">#7678</a> [Bug]: spawn subAgent 任务全量超时失败</strong> (10 评论)<ul>
-<li><strong>核心诉求</strong>：Windows 2.2.0/2.2.1 环境下，SubAgent 派生任务存在 100% 超时卡死现象。用户反映即使将 Timeout 设长也无法解决，表明后台子进程/线程通讯链路上存在阻塞漏洞，急需官方排查。</li>
-</ul>
-</li>
-<li><strong><a href="https://github.com/agentscope-ai/QwenPaw/issues/6318">#6318</a> [Feature]: 支持按 Conversation 级别指定模型</strong> (7 评论)<ul>
-<li><strong>核心诉求</strong>：目前模型绑定在 Agent 级别，用户希望在多轮对话中能够灵活切换单次 Session 的模型（如日常对话用 Fast 模型，复杂推演切 Deep 模型），提升灵活性并降低 Token 成本。</li>
-</ul>
-</li>
-<li><strong><a href="https://github.com/agentscope-ai/QwenPaw/issues/7810">#7810</a> 上下文限制与爆表问题</strong> (3 评论)<ul>
-<li><strong>背后的问题</strong>：用户对模型实际窗口大小与设置值矛盾感到困惑。该问题已直接触发官方修复 PR <a href="https://github.com/agentscope-ai/CoPaw/pull/7832">#7832</a>，旨在显式化上下文覆盖逻辑。</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2>5. Bug 与稳定性</h2>
-<p>今日集中报告了多起<strong>运行时死锁、UI 卡死及上下文丢失</strong>等高优先级缺陷：</p>
-<h3>🔴 高危 / 架构风险（High Severity）</h3>
-<ol>
-<li><strong>插件同步 I/O 导致主进程死锁</strong> <a href="https://github.com/agentscope-ai/QwenPaw/issues/7840">#7840</a><ul>
-<li><strong>现象</strong>：本地插件如果在主事件循环中执行同步 I/O，会导致整个 CoPaw 实例（所有 Agent、Channel）卡死 40s+。目前缺乏隔离机制与监测规范。</li>
-</ul>
-</li>
-<li><strong>桌面端启动竞态导致 UI 空白</strong> <a href="https://github.com/agentscope-ai/QwenPaw/issues/7841">#7841</a><ul>
-<li><strong>现象</strong>：Desktop 2.2.1 启动时 Console UI 加载先于 Backend Ready，导致模型列表、插件面板永久空白，必须手动刷新。</li>
-</ul>
-</li>
-<li><strong>桌面端 UI 卡死与内存飙升</strong> <a href="https://github.com/agentscope-ai/QwenPaw/issues/7818">#7818</a><ul>
-<li><strong>现象</strong>：长时间运行后内存占用极高，页面停止响应。</li>
-</ul>
-</li>
-</ol>
-<h3>🟡 中危 / 核心流程受阻（Medium Severity）</h3>
-<ol>
-<li><strong>Console SSE 传输空 Payload 导致前端卡死</strong> <a href="https://github.com/agentscope-ai/QwenPaw/issues/7813">#7813</a> / <a href="https://github.com/agentscope-ai/QwenPaw/issues/7814">#7814</a><ul>
-<li><strong>现象</strong>：<code>_strip_event_headlines</code> 输出裸 <code>null</code> 字面量时，引发 SSE 了解析异常，且无终结事件，导致 UI 永远停留在等待状态。</li>
-</ul>
-</li>
-<li><strong>Scroll 策略丢上下文/丢失 User Turn</strong> <a href="https://github.com/agentscope-ai/QwenPaw/issues/7836">#7836</a> / <a href="https://github.com/agentscope-ai/QwenPaw/issues/7837">#7837</a><ul>
-<li><strong>现象</strong>：多 Tool 调用场景下，Scroll 淘汰算法将包含 User 提问在内的工具输出一并丢弃，导致模型失去原始指令。</li>
-</ul>
-</li>
-<li><strong>快捷命令作用域错位</strong> <a href="https://github.com/agentscope-ai/QwenPaw/issues/7812">#7812</a><ul>
-<li><strong>现象</strong>：桌面端刚启动时在聊天框输入 <code>/compact</code>，会作用于默认 Fallback 会话而非当前屏幕显示会话。（<em>已有修复 PR <a href="https://github.com/agentscope-ai/CoPaw/pull/7834">#7834</a></em>）</li>
-</ul>
-</li>
-<li><strong>MCP 驱动 OAuth Token 刷新失效</strong> <a href="https://github.com/agentscope-ai/QwenPaw/issues/7821">#7821</a> / DashScope MCP 500 错误处理异常 <a href="https://github.com/agentscope-ai/QwenPaw/issues/7827">#7827</a></li>
-</ol>
-<hr>
-<h2>6. 功能请求与路线图信号</h2>
-<p>根据今日新增 Issue 与 PR，未来版本演进展现出以下技术方向：</p>
-<ul>
-<li><strong>实时语音交互（Realtime Voice）</strong>：PR [#7785](<a href="https://github.com/agents">https://github.com/agents</a></li>
-</ul>
-</details>
-
-<details>
-<summary><strong>ZeptoClaw</strong> — <a href="https://github.com/qhkm/zeptoclaw">qhkm/zeptoclaw</a></summary>
-
-<h1>ZeptoClaw 项目动态日报（2026-09-18）</h1>
-<h2>1. 今日速览</h2>
-<p>过去 24 小时内，ZeptoClaw 项目保持适度活跃，主要围绕<strong>底层依赖安全修复</strong>、<strong>本地/边缘模型工具调用鲁棒性增强</strong>以及<strong>CI/CD 工作流调整</strong>展开。全天更新 Issues 5 条（关闭 4 条，新建 1 条），更新 Pull Requests 6 条（合并/关闭 4 条，待合并 2 条）。项目今日重点清除了影响依赖审计的安全漏洞，并正式将 PR 验证重心转向本地化校验，进一步巩固了其作为轻量级端侧 AI 智能体运行时的定位。</p>
-<hr>
-<h2>2. 项目进展</h2>
-<p>今日共合并/关闭了 4 项关键 Pull Requests 及相关 Issues，主要涉及工程基础设施与关键安全修复：</p>
-<ul>
-<li><strong>修复 Rustls 高危安全漏洞 (RUSTSEC-2026-0285)</strong>：<ul>
-<li>PR <a href="https://github.com/qhkm/zeptoclaw/pull/692">#692</a>（配合 Issue <a href="https://github.com/qhkm/zeptoclaw/issues/697">#697</a>）已完成升级，将 <code>Rustls</code> 依赖版本升至安全版本 <code>0.23.45</code>。此举解决了此前多个依赖更新 PR 被 <code>Cargo deny</code> 和安全审计卡死的问题。</li>
-</ul>
-</li>
-<li><strong>清理与重构 GitHub Actions CI 架构</strong>：<ul>
-<li>PR <a href="https://github.com/qhkm/zeptoclaw/pull/700">#700</a>（配合 Issue <a href="https://github.com/qhkm/zeptoclaw/issues/699">#699</a>）已关闭/移除原有的 PR CI、E2E 与 PR Hygiene 工作流，仅保留基于 Tag 触发的 Release 与 Docker 构建发布。此举旨在降低自动化 CI 开销，更新后的贡献指南要求开发者在提交合并请求前完成本地验证。</li>
-<li>同时，关停了相关的 CI 规格校验议题 Issue <a href="https://github.com/qhkm/zeptoclaw/issues/629">#629</a>（aarch64 7MB 体积门禁）与 Issue <a href="https://github.com/qhkm/zeptoclaw/issues/545">#545</a>。</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2>3. 社区热点</h2>
-<p>今日社区讨论与提交集中在<strong>端侧模型工具调用的容错性</strong>与<strong>基础设施流转方式</strong>上：</p>
-<ul>
-<li><strong>本地模型 Tool Calling 校验与适配</strong>（Issue <a href="https://github.com/qhkm/zeptoclaw/issues/698">#698</a> / PR <a href="https://github.com/qhkm/zeptoclaw/pull/701">#701</a>）<ul>
-<li><strong>热点分析</strong>：ZeptoClaw 核心主打边缘/端侧 AI 运行时（如支持 Ollama/Local 提供商），但在实际场景中，弱小模型或严格格式的 Local LLM 经常因未清洗的工具 JSON Schema 或不合规的模型入参而崩溃。开发者提交了专门的修复方案，对出站 Schema 进行规范化净化，并对入参进行强制类型转换，极大地提升了小模型调用外部 MCP 工具的成功率。</li>
-</ul>
-</li>
-<li><strong>CI 工作流的战略调整</strong>（Issue <a href="https://github.com/qhkm/zeptoclaw/issues/699">#699</a> / PR <a href="https://github.com/qhkm/zeptoclaw/pull/700">#700</a>）<ul>
-<li><strong>热点分析</strong>：移除了标准 GitHub Actions CI 检查，转向依赖本地环境验证。这反映了项目组在开发节奏与云端 CI 资源消耗之间的权衡，后续需观察此举是否会对社区外部贡献者的代码质量门槛造成影响。</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2>4. Bug 与稳定性</h2>
-<table>
-<thead>
-<tr>
-<th align="left">严重程度</th>
-<th align="left">问题描述</th>
-<th align="left">状态</th>
-<th align="left">关联 Issue/PR</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><strong>P2-High (高安全风险)</strong></td>
-<td align="left"><strong>Rustls 安全漏洞 RUSTSEC-2026-0285</strong>：底层依赖引用的 <code>Rustls 0.23.39</code> 存在安全隐患，导致 <code>cargo deny</code> 审计直接阻断 CI。</td>
-<td align="left"><strong>已修复 (CLOSED)</strong></td>
-<td align="left">Issue <a href="https://github.com/qhkm/zeptoclaw/issues/697">#697</a> <br> PR <a href="https://github.com/qhkm/zeptoclaw/pull/692">#692</a></td>
-</tr>
-</tbody></table>
-<hr>
-<h2>5. 功能请求与路线图信号</h2>
-<ul>
-<li><strong>弱模型/本地模型工具调用强硬化（Tool Schema Sanitization &amp; Coercion）</strong>：<ul>
-<li><strong>需求背景</strong>：Issue <a href="https://github.com/qhkm/zeptoclaw/issues/698">#698</a> 指出，MCP（Model Context Protocol）插件和外部服务返回的原始 <code>input_schema</code> 未经校验直接送往本地 LLM，极易引发解析错误。</li>
-<li><strong>路线图信号</strong>：正在进行的 PR <a href="https://github.com/qhkm/zeptoclaw/pull/701">#701</a> 在 <code>ToolRegistry</code> 中增加了 <code>sanitize_schema()</code> 函数，并实现了针对 inbound 工具参数的强制转换逻辑。这标志着 ZeptoClaw 正进一步强化其在 <strong>树莓派/Jetson/Apple Silicon 等边缘计算设备（aarch64 平台，体积目标控制在 7MB 以内）</strong> 运行弱模型时的防御性编程能力，预计将作为下个版本的核心增强卖点。</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2>6. 用户反馈摘要</h2>
-<p>根据近期 Issue 与 PR 提交的上下文，提炼出以下关键开发者痛点与使用场景：</p>
-<ol>
-<li><strong>端侧/本地模型兼容性差</strong>：用户在通过 Ollama 等本地后端调用 MCP 工具时，常因 JSON Schema 不规范导致 Agent 链路断裂。</li>
-<li><strong>安全阻断开发流程</strong>：此前 Dependabot 的升级 PR 频繁因安全漏洞阻断，社区对尽快更新依赖基线（Audit Baseline）有明确诉求，现已得到解决。</li>
-</ol>
-<hr>
-<h2>7. 待处理积压 (Backlog)</h2>
-<p>目前需要维护者关注的待处理/待合并项目：</p>
-<ol>
-<li><strong>核心功能 PR 待合并</strong>：<ul>
-<li>PR <a href="https://github.com/qhkm/zeptoclaw/pull/701">#701</a> - <code>feat(providers): sanitize tool schemas and coerce model tool-args for strict/local backends</code>（提升本地模型工具调用成功率的关键 PR，建议优先 Review 并完成本地测试后合并）。</li>
-</ul>
-</li>
-<li><strong>常规依赖更新</strong>：<ul>
-<li>PR <a href="https://github.com/qhkm/zeptoclaw/pull/683">#683</a> - <code>fix(deps): bump Swatinem/rust-cache from 2.9.1 to 2.9.2</code>（待合并的构建缓存依赖更新）。</li>
-</ul>
-</li>
-</ol>
-</details>
-
-<details>
-<summary><strong>ZeroClaw</strong> — <a href="https://github.com/zeroclaw-labs/zeroclaw">zeroclaw-labs/zeroclaw</a></summary>
-
-<p>⚠️ 摘要生成失败。</p>
-</details>
-
-<hr>
-<p><em>本日报由 <a href="https://github.com/Chestnuts-Sisyphus/gittok">GitTok</a> 自动生成。</em></p>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>AI Agents Ecosystem Digest 2026-09-18</title>
-      <link>https://chestnuts-sisyphus.github.io/gittok/#2026-09-18/ai-agents-en</link>
-      <guid isPermaLink="true">https://chestnuts-sisyphus.github.io/gittok/#2026-09-18/ai-agents-en</guid>
-      <pubDate>Fri, 18 Sep 2026 00:00:00 +0000</pubDate>
-      <description>OpenClaw Ecosystem Digest 2026-09-18 Issues: 500 | PRs: 500 | Projects covered: 13 | Generated: 2026-09-17 22:32 UTC OpenClaw NanoBot Hermes Agent PicoClaw NanoClaw NullClaw IronClaw LobsterAI TinyClaw Moltis CoPaw ZeptoClaw ZeroClaw OpenClaw Deep Dive ⚠️ Summary generation failed. Cross-Ecosystem Comparison Peer Project Reports NanoBot — HKUDS/nanobot ⚠️ Summary generation failed. Hermes Agent — nousresearch/hermes-agent Project DIGEST Today’s Overview: The Hermes Agent project is on track with...</description>
-      <content:encoded><![CDATA[<h1>OpenClaw Ecosystem Digest 2026-09-18</h1>
-<blockquote>
-<p>Issues: 500 | PRs: 500 | Projects covered: 13 | Generated: 2026-09-17 22:32 UTC</p>
-</blockquote>
-<ul>
-<li><a href="https://github.com/openclaw/openclaw">OpenClaw</a></li>
-<li><a href="https://github.com/HKUDS/nanobot">NanoBot</a></li>
-<li><a href="https://github.com/nousresearch/hermes-agent">Hermes Agent</a></li>
-<li><a href="https://github.com/sipeed/picoclaw">PicoClaw</a></li>
-<li><a href="https://github.com/qwibitai/nanoclaw">NanoClaw</a></li>
-<li><a href="https://github.com/nullclaw/nullclaw">NullClaw</a></li>
-<li><a href="https://github.com/nearai/ironclaw">IronClaw</a></li>
-<li><a href="https://github.com/netease-youdao/LobsterAI">LobsterAI</a></li>
-<li><a href="https://github.com/TinyAGI/tinyagi">TinyClaw</a></li>
-<li><a href="https://github.com/moltis-org/moltis">Moltis</a></li>
-<li><a href="https://github.com/agentscope-ai/CoPaw">CoPaw</a></li>
-<li><a href="https://github.com/qhkm/zeptoclaw">ZeptoClaw</a></li>
-<li><a href="https://github.com/zeroclaw-labs/zeroclaw">ZeroClaw</a></li>
-</ul>
-<hr>
-<h2>OpenClaw Deep Dive</h2>
-<p>⚠️ Summary generation failed.</p>
-<hr>
-<h2>Cross-Ecosystem Comparison</h2>
-<hr>
-<h2>Peer Project Reports</h2>
-<details>
-<summary><strong>NanoBot</strong> — <a href="https://github.com/HKUDS/nanobot">HKUDS/nanobot</a></summary>
-
-<p>⚠️ Summary generation failed.</p>
-</details>
-
-<details>
-<summary><strong>Hermes Agent</strong> — <a href="https://github.com/nousresearch/hermes-agent">nousresearch/hermes-agent</a></summary>
-
-<p>Project DIGEST</p>
-<p>Today’s Overview: The Hermes Agent project is on track with continuous development and integration. We have successfully completed the migration to the new version of the agent, addressing compatibility issues and enhancing stability. Additionally, we have addressed several bugs and regressions reported by users, ensuring a better experience for everyone using our platform. As always, we continue to listen to user feedback and actively address their needs.</p>
-<p>Releases: No new releases were made today.</p>
-<p>Project Progress: We have fixed PRs related to #11359, #114057, #114252, and #114452. These PRs addressed various issues such as broken navigation links, missing icons, and incorrect tool-call logic. They have also improved the agent&#39;s memory management and allowed for more accurate reassignment of tasks.</p>
-<p>Community Hot Topics: The most active Issues and PRs with the most comments/reactions are related to breaking changes in the agent&#39;s UI. One notable issue is #11359, which was caused by a change in the way navigation links are displayed. Another issue, #114252, addresses the lack of a Kanban reassign/archive tool in the catalog, which was causing coordinator fence gaps.</p>
-<p>Bugs &amp; Stability: Today, no bugs were reported. However, it&#39;s essential to note that we have already fixed several bugs reported by users in PRs like #114057, #114252, and #114452. These fixes address common issues such as broken links, missing icons, and incorrect tool-call logic.</p>
-<p>Feature Requests &amp; Roadmap Signals: As of now, there are no new feature requests or roadmap signals mentioned in the community discussions. However, we are continuously monitoring user feedback and considering potential features for future versions.</p>
-<p>User Feedback Summary: Based on user feedback, the most common pain points include broken navigation links and missing icons. Some users have also expressed frustration with the agent&#39;s memory management and task reassignment process. Overall, users seem satisfied with the current state of the agent but are looking forward to improvements in these areas.</p>
-<p>Backlog Watch: There are several long-unanswered important Issues (#11359, #114057, #114252, and #114452) and PRs (#11359, #114057, #114252, and #114452) that require maintainer attention. These issues range from navigation link issues to memory management problems and need urgent resolution to ensure smooth user experience.</p>
-</details>
-
-<details>
-<summary><strong>PicoClaw</strong> — <a href="https://github.com/sipeed/picoclaw">sipeed/picoclaw</a></summary>
-
-<p>⚠️ Summary generation failed.</p>
-</details>
-
-<details>
-<summary><strong>NanoClaw</strong> — <a href="https://github.com/qwibitai/nanoclaw">qwibitai/nanoclaw</a></summary>
-
-<p>⚠️ Summary generation failed.</p>
-</details>
-
-<details>
-<summary><strong>NullClaw</strong> — <a href="https://github.com/nullclaw/nullclaw">nullclaw/nullclaw</a></summary>
-
-<p>No activity in the last 24 hours.</p>
-</details>
-
-<details>
-<summary><strong>IronClaw</strong> — <a href="https://github.com/nearai/ironclaw">nearai/ironclaw</a></summary>
-
-
-
-<h1>IronClaw Project Digest — 2026-09-18</h1>
-<h2>1. Today&#39;s Overview</h2>
-<p>IronClaw activity on 2026-09-18 remains minimal, with only one issue updated in the past 24 hours and no new pull requests or releases. The project&#39;s sole daily activity centers on Issue #8101, a recurring failure taxonomy report tracking non-passing tasks from the officeqa benchmark suite. No merged or closed PRs were recorded today, and no new releases were published. Overall, the project appears to be in a low-velocity maintenance phase, with automated benchmark reporting serving as the primary contributor workflow.</p>
-<hr>
-<h2>2. Releases</h2>
-<p>No new releases were published in the last 24 hours.</p>
-<hr>
-<h2>3. Project Progress</h2>
-<ul>
-<li><strong>Merged PRs today:</strong> 0</li>
-<li><strong>Closed PRs today:</strong> 0</li>
-</ul>
-<p>No features or fixes were advanced today. The absence of merged pull requests suggests the current development cycle is either between milestones or waiting on review cycles.</p>
-<hr>
-<h2>4. Community Hot Topics</h2>
-<p><strong>#8101 — Daily ironclaw failure taxonomy — 2026-09-17</strong></p>
-<ul>
-<li>Author: <a href="https://github.com/pranavraja99">@pranavraja99</a></li>
-<li><a href="https://github.com/nearai/ironclaw/issues/8101">View on GitHub</a></li>
-<li>Comments: 0 | 👍: 0</li>
-</ul>
-<p>This is the only issue from the last 24 hours. It continues the daily automated failure taxonomy for the officeqa benchmark suite, reporting <strong>35 non-pass tasks</strong> from a DeepSeek-V4-Flash run. While currently low-engagement, this recurring issue reflects an active benchmarking and quality-assurance workflow. The underlying need it serves is <strong>systematic model-evaluation tracking</strong> — helping the team identify regression patterns across benchmark runs.</p>
-<hr>
-<h2>5. Bugs &amp; Stability</h2>
-<p>No bug reports, crashes, or regressions were filed today.</p>
-<ul>
-<li>The officeqa suite&#39;s 35 non-pass tasks in Issue #8101 are characterized as <strong>genuine model-quality errors</strong> rather than IronClaw framework defects, suggesting the issues reside in the evaluated model (DeepSeek-V4-Flash) rather than in IronClaw itself.</li>
-<li>No fix PRs are associated with today&#39;s issues.</li>
-</ul>
-<hr>
-<h2>6. Feature Requests &amp; Roadmap Signals</h2>
-<p>No explicit feature requests were submitted today. The recurring daily failure taxonomy reports indicate an ongoing commitment to <strong>automated benchmark reporting and model-evaluation infrastructure</strong>, which may signal a roadmap direction toward more granular, automated QA pipelines.</p>
-<hr>
-<h2>7. User Feedback Summary</h2>
-<ul>
-<li><strong>Primary feedback channel today:</strong> Automated benchmark reporting (Issue #8101).</li>
-<li><strong>User sentiment:</strong> No direct user complaints or praise reported today. The benchmark data indicates that DeepSeek-V4-Flash&#39;s performance on officeqa tasks contains meaningful failure patterns warranting attention.</li>
-<li><strong>Use cases surfaced:</strong> Agent benchmarking and evaluation via the officeqa suite remain central to the project&#39;s operational focus.</li>
-</ul>
-<hr>
-<h2>8. Backlog Watch</h2>
-<p>No long-unanswered issues were identified in the 24-hour window. However, the <strong>recurring nature</strong> of the daily failure taxonomy suggests a sustained backlog of benchmark-driven issues that may accumulate over time. Maintainers should monitor whether these daily reports transition into actionable fix PRs or remain as observational tracking items.</p>
-<hr>
-<p><strong>Project Health Assessment:</strong> Low activity day. Benchmarking pipeline is operational; no regressions or release activity to flag. The team&#39;s focus appears to be on evaluation and monitoring rather than feature development at this time.</p>
-</details>
-
-<details>
-<summary><strong>LobsterAI</strong> — <a href="https://github.com/netease-youdao/LobsterAI">netease-youdao/LobsterAI</a></summary>
-
-<p>⚠️ Summary generation failed.</p>
-</details>
-
-<details>
-<summary><strong>TinyClaw</strong> — <a href="https://github.com/TinyAGI/tinyagi">TinyAGI/tinyagi</a></summary>
-
-<p>No activity in the last 24 hours.</p>
-</details>
-
-<details>
-<summary><strong>Moltis</strong> — <a href="https://github.com/moltis-org/moltis">moltis-org/moltis</a></summary>
-
-<h1>Moltis Project Digest: 2026-09-18</h1>
-<h2>1. Today&#39;s Overview</h2>
-<p>Activity on the Moltis project remains stable but low, with no new releases detected today. The project saw a total of 4 updates across Issues and Pull Requests, indicating standard maintenance cycles. While the volume of work is modest, the focus appears to be on refining sandboxing capabilities and correcting configuration parsing logic to ensure robust agent execution.</p>
-<h2>2. Releases</h2>
-<p><strong>None.</strong> No new versions were released within the last 24 hours.</p>
-<h2>3. Project Progress</h2>
-<p>No Pull Requests were merged or closed today. The active development focus is currently on two open Pull Requests that are advancing infrastructure and reliability:</p>
-<ul>
-<li><strong>Agent Sandbox Hardening (PR #1272):</strong> This feature PR is moving forward to enhance security and isolation by introducing per-agent configuration knobs. It introduces <code>sandbox.mounts</code> for extra host bind mounts, <code>sandbox.run_as</code> to define specific <code>uid:gid</code> execution contexts, and <code>sandbox.force</code> to enforce strict sandboxing for specific agents.</li>
-<li><strong>Cron Logic Correction (PR #1262):</strong> A bug fix PR is addressing a critical parsing issue in the cron active hours logic. It corrects the handling of the <code>end=&quot;24:00</code> edge case, which was failing due to a parsing order conflict, ensuring agents respect their configured time windows accurately.</li>
-</ul>
-<h2>4. Community Hot Topics</h2>
-<p>The community is currently focused on specific technical hurdles regarding build environments and security features.</p>
-<ul>
-<li><strong>Nix Build System Failure (Issue #1273):</strong> Users are reporting a failure to build the project using the Nix flake system at the latest tag (<code>20260913.02</code>). The primary blocker is a mismatch in vendored crate hashes (<code>wacore</code>, <code>zvec-rust</code>) and a lack of complete <code>cargoLock</code> entries.<ul>
-<li><em>Link:</em> <a href="https://github.com/moltis-org/moltis/issues/1273">Issue #1273</a></li>
-</ul>
-</li>
-<li><strong>WASM Web Search Enhancement (Issue #1274):</strong> A feature request is open regarding the preflight search hop for the Moltis wasm-web-search module. This suggests a need to optimize or secure the search workflow within the WebAssembly module.<ul>
-<li><em>Link:</em> <a href="https://github.com/moltis-org/moltis/issues/1274">Issue #1274</a></li>
-</ul>
-</li>
-</ul>
-<h2>5. Bugs &amp; Stability</h2>
-<p><strong>Severity: Medium</strong></p>
-<ul>
-<li><strong>Cron Time Window Parsing (Issue #1262 context):</strong> While not a new report today, the underlying bug causing cron active hours to fail at <code>end=&quot;24:00&quot;</code> is a stability concern for agents relying on scheduled execution. The fix is currently in review (PR #1262).</li>
-</ul>
-<p><strong>Severity: High</strong></p>
-<ul>
-<li><strong>Nix Flake Build Breakage (Issue #1273):</strong> The inability to build the latest published tag prevents users from reproducing the environment reliably. This is a significant stability blockage for users relying on the Nix package manager.</li>
-</ul>
-<h2>6. Feature Requests &amp; Roadmap Signals</h2>
-<ul>
-<li><strong>Sandbox Isolation:</strong> The community is actively pushing for more granular sandbox controls. The request for <code>sandbox.force</code> (enforcing sandboxing) and per-agent mounts indicates a roadmap trend toward <strong>zero-trust execution</strong> and strict resource isolation.</li>
-<li><strong>WASM Search Optimization:</strong> The request for a &quot;prepaid search hop&quot; in wasm-web-search suggests the project is looking to optimize external API calls or data retrieval strategies within the WebAssembly runtime.</li>
-</ul>
-<h2>7. User Feedback Summary</h2>
-<p>Users are expressing frustration with <strong>environment reproducibility</strong>. The inability to build the latest release via Nix flake highlights a gap between development (tags) and deployment (buildability). Additionally, users are asking for more control over execution contexts, specifically the ability to force sandboxing and define user contexts (<code>uid:gid</code>) to align with security policies.</p>
-<h2>8. Backlog Watch</h2>
-<ul>
-<li><strong>Nix Flake Maintenance:</strong> Issue #1273 has been open for a day. Maintainers need to update <code>flake.nix</code> to include the missing vendored crate hashes (<code>wacore-0.6.0</code>, <code>zvec-rust-0.6.0</code>) to restore build stability.</li>
-<li><strong>WASM Search Architecture:</strong> Issue #1274 is a new enhancement request that will likely require architectural changes to the web search module.</li>
-</ul>
-</details>
-
-<details>
-<summary><strong>CoPaw</strong> — <a href="https://github.com/agentscope-ai/CoPaw">agentscope-ai/CoPaw</a></summary>
-
-<p>⚠️ Summary generation failed.</p>
-</details>
-
-<details>
-<summary><strong>ZeptoClaw</strong> — <a href="https://github.com/qhkm/zeptoclaw">qhkm/zeptoclaw</a></summary>
-
-<h1>ZeptoClaw Project Digest</h1>
-<p><strong>Date:</strong> 2026-09-18
-<strong>Project:</strong> ZeptoClaw (github.com/qhkm/zeptoclaw)</p>
-<h3>1. Today&#39;s Overview</h3>
-<p>Activity on the ZeptoClaw repository has been <strong>moderate and focused on maintenance and security</strong>. The project handled 5 issues and 6 pull requests in the last 24 hours, with a high volume of dependencies being updated and critical security patches being applied. While there are no new feature releases, the team is actively stabilizing the codebase by removing legacy CI infrastructure and hardening tool schemas against security vulnerabilities.</p>
-<h3>2. Releases</h3>
-<p><strong>None.</strong> There are no new releases available as of 2026-09-18.</p>
-<h3>3. Project Progress</h3>
-<ul>
-<li><strong>Security &amp; Dependency Hygiene:</strong> The primary focus of the merged PRs was dependency management. Three dependency updates were merged successfully, including a critical upgrade of <strong>Rustls to version 0.23.45</strong> to address the security advisory <strong>RUSTSEC-2026-0285</strong>, unblocking cargo deny and security audits.</li>
-<li><strong>Infrastructure Simplification:</strong> In response to user feedback, the project removed all GitHub Actions CI checks. This change simplifies the maintenance burden by disabling CI, E2E, and PR hygiene workflows, shifting validation responsibility to local environments.</li>
-<li><strong>Tooling Hardening:</strong> Work began on sanitizing tool JSON schemas to improve robustness for strict and local AI backends.</li>
-</ul>
-<h3>4. Community Hot Topics</h3>
-<ul>
-<li><strong>Security Patch (Rustls):</strong> Issue #697 and PR #692 are the most critical topics. The project is currently blocked on security audits due to a vulnerable Rustls dependency. The maintainer has successfully patched this to version 0.23.45.<ul>
-<li><a href="https://github.com/qhkm/zeptoclaw/issues/697">Issue #697</a></li>
-<li><a href="https://github.com/qhkm/zeptoclaw/pull/692">PR #692</a></li>
-</ul>
-</li>
-<li><strong>Tool Schema Sanitization:</strong> Issue #698 and PR #701 introduce a new feature to sanitize tool JSON schemas. This addresses a gap in handling weak local models and strict backends.<ul>
-<li><a href="https://github.com/qhkm/zeptoclaw/issues/698">Issue #698</a></li>
-<li><a href="https://github.com/qhkm/zeptoclaw/pull/701">PR #701</a></li>
-</ul>
-</li>
-</ul>
-<h3>5. Bugs &amp; Stability</h3>
-<ul>
-<li><strong>Severity: High (Security)</strong><ul>
-<li><strong>Rustls Vulnerability:</strong> All 18 current Dependabot PRs were failing due to Rustls 0.23.39 being affected by RUSTSEC-2026-0285. A fix has been applied via PR #692 (Closed).</li>
-</ul>
-</li>
-<li><strong>Severity: High (Infrastructure)</strong><ul>
-<li><strong>CI Removal:</strong> The project is undergoing a significant structural change where GitHub Actions CI workflows are being removed entirely. This is a breaking change for contributors who rely on automated testing but is being accepted by the user base.</li>
-</ul>
-</li>
-</ul>
-<h3>6. Feature Requests &amp; Roadmap Signals</h3>
-<ul>
-<li><strong>Tool Schema Coercion:</strong> There is a clear roadmap signal to improve the robustness of &quot;Tool Calling&quot; (function calling) features. Specifically, the project aims to sanitize schemas and coerce arguments for &quot;local&quot; providers (like Ollama) and &quot;strict&quot; backends to prevent crashes or invalid responses when models are weak or non-compliant.</li>
-<li><strong>Binary Size Optimization:</strong> While not a new request, Issue #629 highlights the strategic goal of keeping the binary size under 7MB for ARM64 targets (robots/embedded), though current reality sits closer to 10.5MB for x86_64.</li>
-</ul>
-<h3>7. User Feedback Summary</h3>
-<p>The user base is requesting a <strong>shift from automated CI to manual/local validation</strong>. By explicitly requesting the removal of GitHub Actions CI checks, users are signaling a preference for a leaner project that relies on the user&#39;s local environment for validation rather than repository automation. This suggests a desire for simplicity and reduced overhead in contribution.</p>
-<h3>8. Backlog Watch</h3>
-<ul>
-<li><strong>Binary Size Gate (Issue #629):</strong> This is a long-standing issue (last updated June 2026) regarding the binary size gate for aarch64. While the motivation is valid, the issue remains unresolved, indicating a potential long-term technical debt regarding optimization for embedded targets.</li>
-<li><strong>Integration Feature Compilation (Issue #545):</strong> This issue (from April 2026) identified that optional integration features are not compiled during normal PR CI. This may still be a source of silent bugs or drift in feature parity.</li>
-</ul>
-</details>
-
-<details>
-<summary><strong>ZeroClaw</strong> — <a href="https://github.com/zeroclaw-labs/zeroclaw">zeroclaw-labs/zeroclaw</a></summary>
 
 <p>⚠️ Summary generation failed.</p>
 </details>
