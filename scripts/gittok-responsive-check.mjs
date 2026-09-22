@@ -131,6 +131,19 @@ function summaryCapacityPass(capMin) {
   return capMin >= SUMMARY_CAPACITY_PASS_MIN;
 }
 
+/** 一行容量**上限**（2026-09-23 新增判据）的跨平台折算：上限是「行太长」的判据，
+ *  与单字宽**成反比**，所以非 Windows 档要**放大**而不是缩小。
+ *  实测（2026-09-23，两端都是同一份 CSS/同 640px 卡/同 571px 内容宽）：
+ *    Windows 本机无头 Chrome 单字宽 16.66px → 34 字；
+ *    CI ubuntu runner 无头 Chrome（CJK 走回退字体）单字宽 13.0px → 44 字，比 **1.29**；
+ *    1400 档 552px 卡：Windows 28 字 ↔ Linux 37 字，比 **1.32**。
+ *  取 1.35 留余量。首跑就是漏了这一步，CI 上 9 档全红（卡宽/列数两条**平台无关、两端都过**）。
+ *  ⚠ 与上面那条 1.142 不是同一对样本（那条量的是 mac/Android 的字族差 25.4→29.0），别互相套用：
+ *  非 Windows 档「行容量」这个量本身跨平台差异很大，真正的硬保证是**卡宽上限**（几何量，与字体无关）。 */
+const CROSS_PLATFORM_CAP_SCALE = 1.35;
+const SUMMARY_CAPACITY_PASS_MAX =
+  RUN_PLATFORM === "win32" ? FEED_CAPACITY_MAX : Math.ceil(FEED_CAPACITY_MAX * CROSS_PLATFORM_CAP_SCALE);
+
 // ---------------------------------------------------------------------------
 // 无窗口静态服务器（只读 dist，端口不抢 19101/5173/4173）
 // ---------------------------------------------------------------------------
@@ -494,8 +507,9 @@ async function checkView(cdp, view) {
     report(
       view.key,
       `.summary 一行容量 ≤${FEED_CAPACITY_MAX} 字（上限，与卡宽上限同源）`,
-      capMin <= FEED_CAPACITY_MAX,
-      `容量 min ${capMin} 字（上限 ${FEED_CAPACITY_MAX} 字＝卡宽上限 ${FEED_CARD_MAX}px 的实测反推值）` +
+      capMin <= SUMMARY_CAPACITY_PASS_MAX,
+      `容量 min ${capMin} 字（本档上限 ${SUMMARY_CAPACITY_PASS_MAX} 字；Windows 标定值 ${FEED_CAPACITY_MAX} 字` +
+        `${RUN_PLATFORM === "win32" ? "" : `，非 Windows（${RUN_PLATFORM}）按实测单字宽比 ×${CROSS_PLATFORM_CAP_SCALE} 折算`}）` +
         `｜区间 [${FEED_CAPACITY_MIN}, ${FEED_CAPACITY_MAX}] 字：下限＝G-10 既有口径，上限＝栗子 2026-09-22「不要强行拉伸」`,
     );
     report(
