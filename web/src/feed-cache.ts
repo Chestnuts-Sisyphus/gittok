@@ -8,6 +8,8 @@
  *
  * 为什么 IndexedDB 不是 localStorage：2.1MB 文本在 localStorage 的 UTF-16
  * 计费下 ≈4.2MB，贴着 5MB 配额边，容易 QuotaExceeded；IDB 无此忧。
+ * （列表此后涨到 4.9 MiB —— 2026-09-22 线上实测 5,107,850 B，UTF-16 计费下远超配额，
+ *  这条判断只被加强，未被推翻。）
  */
 
 const DB_NAME = "gittok-feed-cache";

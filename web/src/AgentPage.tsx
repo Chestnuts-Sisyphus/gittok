@@ -22,9 +22,9 @@ import {
 
 const SITE = "https://chestnuts-sisyphus.github.io/gittok";
 
-/** feed.json 体积（KB；2026-09-18 线上实测 4424078 B）。状态板备注与 REST 示例
+/** feed.json 体积（KB；2026-09-22 线上实测 5107850 B）。状态板备注与 REST 示例
     共用这一个来源——此前两处各写各的，同页出现「4.3MB」与「4.4MB」两个数字 */
-const FEED_JSON_KB = 4320;
+const FEED_JSON_KB = 4988;
 const FEED_JSON_MB = `${(FEED_JSON_KB / 1024).toFixed(1)}MB`;
 
 /** 状态自检的端点（相对路径走站点域名；jsDelivr 为 CDN 镜像） */

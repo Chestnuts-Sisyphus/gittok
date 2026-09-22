@@ -7,6 +7,32 @@
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
     <meta name="description" content="GitTok — 用中文刷 GitHub 好项目 · AI 推荐 · 大牛动态 · 搜索" />
+    <!-- SEO / 分享卡片（2026-09-22）：og:image 与 canonical 必须是绝对地址，
+         且指向站点域名（GitHub Pages 子路径 /gittok/）；og-image.png 随 vite
+         从 web/public/ 拷进 dist，无需 deploy-web.yml 额外搬运。 -->
+    <link rel="canonical" href="https://chestnuts-sisyphus.github.io/gittok/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="GitTok" />
+    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:url" content="https://chestnuts-sisyphus.github.io/gittok/" />
+    <meta property="og:title" content="GitTok — 刷 GitHub 好项目" />
+    <meta
+      property="og:description"
+      content="开源版抖音信息流：每天自动聚合 GitHub 与全球 AI 生态的好项目，LLM 写中文摘要与评分。无需登录，匿名只读接口对 agent 开放。"
+    />
+    <meta property="og:image" content="https://chestnuts-sisyphus.github.io/gittok/og-image.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="GitTok 信息流界面：左侧频道与分区，右侧中文项目卡片" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="GitTok — 刷 GitHub 好项目" />
+    <meta
+      name="twitter:description"
+      content="开源版抖音信息流：每天自动聚合 GitHub 与全球 AI 生态的好项目，LLM 写中文摘要与评分。无需登录。"
+    />
+    <meta name="twitter:image" content="https://chestnuts-sisyphus.github.io/gittok/og-image.png" />
+    <meta name="twitter:image:alt" content="GitTok 信息流界面：左侧频道与分区，右侧中文项目卡片" />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <link rel="preload" href="./data/feed.json" as="fetch" crossorigin />
     <link rel="preconnect" href="https://fonts.googleapis.com" />

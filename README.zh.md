@@ -19,12 +19,33 @@
 
 **🌐 [https://chestnuts-sisyphus.github.io/gittok/](https://chestnuts-sisyphus.github.io/gittok/)**
 
-无需登录，每天 08:00 CST 自动更新数据。
+无需登录，每天 04:00 CST 自动更新数据。
+线上信息流现有 **2831 张卡片**（2026-09-22 实测），其中 **950 张**通过站内文案合格闸、进入推荐池。
+
+[![GitTok 信息流——卡片流 + 动态频道 + 分区](assets/gittok-desktop.png)](https://chestnuts-sisyphus.github.io/gittok/)
+
+*信息流本体：左侧是动态频道（推荐 / 热门 / 每日 / 乐趣 / 关注）与分区（AI / 资源 / 工具 / 创意），
+右侧是按热度排序的中文卡片。*
+
+[![GitTok Agent 接入页——四条匿名只读接入路径](assets/gittok-agent.png)](https://chestnuts-sisyphus.github.io/gittok/#agent)
+
+*[Agent 接入页](https://chestnuts-sisyphus.github.io/gittok/#agent)：四条匿名只读接入路径
+（Agent Skill / MCP server / RSS / REST API）＋ 在线可用性自检。*
+
+## 📣 推送通道
+
+日报不只留在网站上：每轮日报生成后会推到 Telegram 与飞书（另有上面的 RSS）。
+
+| Telegram（`@agents_radar`） | 飞书群 |
+|---|---|
+| ![Telegram 频道收到的当日日报](assets/telegram.jpg) | ![飞书群收到的当日日报](assets/feishu.jpg) |
+
+*两个通道继承自上游项目（见页面底部「前身」一节），因此推送署名仍是 `agents-radar`。*
 
 ## 🏗️ 架构
 
 ```
-GitHub Actions (daily-digest.yml) 每天 08:00 CST
+GitHub Actions (daily-digest.yml) 每天 04:00 CST
   ├─ 并行抓取 10+ 数据源（GitHub/HN/PH/ArXiv/HF/Dev.to/...）
   ├─ LLM 中文评分（智谱 GLM-4.7-Flash，免费）
   ├─ 生成 digests/ 日报 + data/feed.json（信息流数据）
@@ -91,7 +112,7 @@ GitTok 不只给人看，也直接对 agent 开放——下面每个接口都公
 
 | 接口 | 地址 | 格式 | 说明 |
 |---|---|---|---|
-| 卡片列表 | `https://chestnuts-sisyphus.github.io/gittok/data/feed.json` | JSON | 首屏轻量列表（不含 `detailCn`），约 4.2MB，每天更新数次 |
+| 卡片列表 | `https://chestnuts-sisyphus.github.io/gittok/data/feed.json` | JSON | 首屏轻量列表（不含 `detailCn`），约 4.9 MiB（5,107,850 字节，2026-09-22 实测），每天更新数次 |
 | 卡片详情表 | `https://chestnuts-sisyphus.github.io/gittok/data/feed-details.json` | JSON | `{ "owner/name": detailCn }` 映射，取中文长文 |
 | 卡片列表（全量单文件） | `https://cdn.jsdelivr.net/gh/Chestnuts-Sisyphus/gittok@master/data/feed.json` | JSON | 仓库源文件：自带 `detailCn`、字段最全；大陆直连更快 |
 | RSS | `https://chestnuts-sisyphus.github.io/gittok/feed.xml` | RSS 2.0 | 日报条目流 |
@@ -137,6 +158,16 @@ GitTok 不是全屏沉浸的 TikTok 复制品——**「Tok」是那种感觉**�
 - **后端**：Node.js + TypeScript，GitHub Actions 定时驱动
 - **前端**：React + Vite，GitHub Pages 部署
 - **LLM**：智谱 GLM-4.7-Flash（OpenAI 兼容端点，永久免费）
+
+## 🪜 前身
+
+GitTok 由 [agents-radar](https://github.com/duanyytop/agents-radar) 演进而来——那是一个面向
+AI CLI / agent 工具链的日报站。下图是它的界面，也就是现在这套卡片流所取代的形态；沿用下来的是
+整条管道（多源抓取 → LLM 评分 → 日报生成 → 推送）。
+
+| 上游站点（中文） | 上游站点（英文） |
+|---|---|
+| ![agents-radar 日报站（中文）](assets/web-zh.png) | ![agents-radar 日报站（英文）](assets/web-en.png) |
 
 ## 📝 许可证
 

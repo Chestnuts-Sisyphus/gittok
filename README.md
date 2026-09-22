@@ -19,12 +19,34 @@
 
 **🌐 [https://chestnuts-sisyphus.github.io/gittok/](https://chestnuts-sisyphus.github.io/gittok/)**
 
-No login required. Data updates automatically every day at 08:00 CST.
+No login required. Data updates automatically every day at 04:00 CST.
+The live feed holds **2,831 cards** (measured 2026-09-22); **950** of them pass the in-site copy gate into the recommendation pool.
+
+[![GitTok feed — card browsing with channels and zones](assets/gittok-desktop.png)](https://chestnuts-sisyphus.github.io/gittok/)
+
+*The feed: dynamic channels (Recommended / Hot / Daily / Fun / Following) on the left, zones
+(AI / Resources / Tools / Creative) below, heat-ranked Chinese cards on the right.*
+
+[![GitTok agent page — four anonymous read-only access paths](assets/gittok-agent.png)](https://chestnuts-sisyphus.github.io/gittok/#agent)
+
+*The [agent page](https://chestnuts-sisyphus.github.io/gittok/#agent): four anonymous read-only access
+paths (Agent Skill / MCP server / RSS / REST API) plus a live availability self-check.*
+
+## 📣 Push channels
+
+Reports also leave the website: every digest run pushes to Telegram and Feishu (plus the RSS feed above).
+
+| Telegram (`@agents_radar`) | Feishu group |
+|---|---|
+| ![Telegram channel receiving the daily digest](assets/telegram.jpg) | ![Feishu group receiving the daily digest](assets/feishu.jpg) |
+
+*Both channels are inherited from the upstream project (see lineage at the bottom of this page), which is
+why the posts are signed `agents-radar`.*
 
 ## 🏗️ Architecture
 
 ```
-GitHub Actions (daily-digest.yml) — daily 08:00 CST
+GitHub Actions (daily-digest.yml) — daily 04:00 CST
   ├─ Fetch 10+ sources in parallel (GitHub / HN / PH / ArXiv / HF / Dev.to / ...)
   ├─ LLM scoring in Chinese (Zhipu GLM-4.7-Flash, free)
   ├─ Generate digests/ daily reports + data/feed.json (feed data)
@@ -91,7 +113,7 @@ availability self-check, on the [Agent page](https://chestnuts-sisyphus.github.i
 
 | Endpoint | URL | Format | Notes |
 |---|---|---|---|
-| Card list | `https://chestnuts-sisyphus.github.io/gittok/data/feed.json` | JSON | Lightweight list (no `detailCn`), ~4.2MB, updated several times a day |
+| Card list | `https://chestnuts-sisyphus.github.io/gittok/data/feed.json` | JSON | Lightweight list (no `detailCn`), ≈4.9 MiB (5,107,850 bytes, measured 2026-09-22), updated several times a day |
 | Card details | `https://chestnuts-sisyphus.github.io/gittok/data/feed-details.json` | JSON | `{ "owner/name": detailCn }` map for the long Chinese write-up |
 | Card list (full, single file) | `https://cdn.jsdelivr.net/gh/Chestnuts-Sisyphus/gittok@master/data/feed.json` | JSON | Repo source file: includes `detailCn`, all fields; faster from mainland China |
 | RSS | `https://chestnuts-sisyphus.github.io/gittok/feed.xml` | RSS 2.0 | Digest entries |
@@ -137,6 +159,16 @@ GitTok is not a fullscreen clone of TikTok. **"Tok" is the feeling**: browsing G
 - **Backend**: Node.js + TypeScript, driven by GitHub Actions cron
 - **Frontend**: React + Vite, deployed on GitHub Pages
 - **LLM**: Zhipu GLM-4.7-Flash (OpenAI-compatible endpoint, permanently free)
+
+## 🪜 Lineage
+
+GitTok grew out of [agents-radar](https://github.com/duanyytop/agents-radar), a daily digest site for
+AI CLI / agent tooling. Its interface below is what the current card feed replaced — the pipeline
+(multi-source fetching → LLM scoring → daily digest → push) is the part that carried over.
+
+| Upstream site (Chinese) | Upstream site (English) |
+|---|---|
+| ![agents-radar digest site, Chinese](assets/web-zh.png) | ![agents-radar digest site, English](assets/web-en.png) |
 
 ## 📝 License
 

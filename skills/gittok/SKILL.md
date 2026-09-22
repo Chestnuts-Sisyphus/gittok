@@ -12,7 +12,7 @@ metadata:
 
 GitTok 是一个中文开源信息流站点：每天抓取 GitHub Trending/Search、Hacker News、Product Hunt、
 ArXiv、Hugging Face、Dev.to、Lobste.rs、Anthropic/OpenAI 官方站等 10+ 源，由 LLM 写中文
-摘要与长文，热度加权、沉寂判定、排序与搜索全部由代码固化并有测试锁定，2600+ 张项目卡片每日更新。
+摘要与长文，热度加权、沉寂判定、排序与搜索全部由代码固化并有测试锁定，2831 张项目卡片每日更新（2026-09-22 实测）。
 
 本 skill 让 agent **实时**读取这些数据并用中文讲解今天的开源热点。
 

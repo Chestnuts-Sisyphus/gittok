@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  GitTok 站点地图。
+  站点是单页应用：所有频道（推荐/热门/每日/乐趣/关注）、分区（AI/资源/工具/创意）、
+  搜索与详情都在同一个 URL 内用 hash 路由切换，爬虫可见的页面只有一个根地址，
+  故本文件只列根地址（多列 hash 地址对爬虫无意义）。
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://chestnuts-sisyphus.github.io/gittok/</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>

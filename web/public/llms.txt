@@ -1,6 +1,6 @@
 # GitTok
 
-> GitTok 是一个中文开源信息流：每天自动聚合 GitHub Trending / GitHub Search、Hacker News、Product Hunt、ArXiv、Hugging Face、Dev.to、Lobste.rs 与 Anthropic / OpenAI 官方站等 10+ 个信源，由 LLM 生成中文摘要与长文，热度加权、沉寂判定、排序与搜索全部由代码固化并有测试锁定；2600+ 张开源项目卡片每日更新，匿名可读、无需登录。
+> GitTok 是一个中文开源信息流：每天自动聚合 GitHub Trending / GitHub Search、Hacker News、Product Hunt、ArXiv、Hugging Face、Dev.to、Lobste.rs 与 Anthropic / OpenAI 官方站等 10+ 个信源，由 LLM 生成中文摘要与长文，热度加权、沉寂判定、排序与搜索全部由代码固化并有测试锁定；2831 张开源项目卡片每日更新（2026-09-22 实测），匿名可读、无需登录。
 
 数据形态：每张卡片含仓库名、原始英文描述、中文一句话概括（summaryCn）、中文简介（reasonCn）、
 中文长文（detailCn）、stars 与近期涨星（starGrowth）、分区（zone：AI / 资源 / 工具 / 创意）、
@@ -9,7 +9,7 @@
 
 ## 数据接口
 
-- [卡片列表（站点，轻量）](https://chestnuts-sisyphus.github.io/gittok/data/feed.json): JSON 数组，站点首屏用的列表（不含 detailCn），约 3.4MB
+- [卡片列表（站点，轻量）](https://chestnuts-sisyphus.github.io/gittok/data/feed.json): JSON 数组，站点首屏用的列表（不含 detailCn），约 4.9 MiB（5,107,850 字节，2026-09-22 实测）
 - [卡片列表（全量单文件）](https://cdn.jsdelivr.net/gh/Chestnuts-Sisyphus/gittok@master/data/feed.json): 仓库源文件，自带 detailCn 长文、字段最全；大陆直连比站点快（实测 1.8MB/s vs 121KB/s）
 - [卡片详情表](https://chestnuts-sisyphus.github.io/gittok/data/feed-details.json): JSON 对象 `{ "owner/name": detailCn }`，按需取某项目的中文长文
 - [RSS](https://chestnuts-sisyphus.github.io/gittok/feed.xml): RSS 2.0，日报条目流

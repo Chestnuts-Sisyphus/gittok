@@ -11,7 +11,7 @@ Hugging Face、Dev.to、Lobste.rs、Anthropic/OpenAI 官方站等 10+ 源，由 
 
 | 接口 | 地址 | 格式 | 说明 |
 |---|---|---|---|
-| 卡片列表 | `https://chestnuts-sisyphus.github.io/gittok/data/feed.json` | JSON 数组 | 站点首屏用的轻量列表（不含 `detailCn`），约 3.4MB |
+| 卡片列表 | `https://chestnuts-sisyphus.github.io/gittok/data/feed.json` | JSON 数组 | 站点首屏用的轻量列表（不含 `detailCn`），约 4.9 MiB（5,107,850 字节，2026-09-22 实测） |
 | 卡片详情表 | `https://chestnuts-sisyphus.github.io/gittok/data/feed-details.json` | JSON 对象 | `{ "owner/name": detailCn }` 映射，按需取长文 |
 | 卡片列表（全量单文件） | `https://cdn.jsdelivr.net/gh/Chestnuts-Sisyphus/gittok@master/data/feed.json` | JSON 数组 | 仓库源文件：**自带 `detailCn`**、字段最全；大陆直连比站点快（实测 1.8MB/s vs 121KB/s） |
 | RSS | `https://chestnuts-sisyphus.github.io/gittok/feed.xml` | RSS 2.0 | 日报条目流 |

@@ -2,7 +2,7 @@
 
 ## Project overview
 
-GitTok (repo: gittok) is an open-source "TikTok" for GitHub — it aggregates the best projects from GitHub and the AI ecosystem daily, scores them with a free LLM, and delivers them as an addictive Chinese card feed (browsing GitHub feels like swiping short videos). A GitHub Actions cron job runs at 00:00 UTC (08:00 CST) and produces bilingual (Chinese + English) digest reports, committed Markdown files, and `data/feed.json` for the React frontend.
+GitTok (repo: gittok) is an open-source "TikTok" for GitHub — it aggregates the best projects from GitHub and the AI ecosystem daily, scores them with a free LLM, and delivers them as an addictive Chinese card feed (browsing GitHub feels like swiping short videos). A GitHub Actions cron job runs at 20:00 UTC (04:00 CST) and produces bilingual (Chinese + English) digest reports, committed Markdown files, and `data/feed.json` for the React frontend.
 
 ## Commands
 
