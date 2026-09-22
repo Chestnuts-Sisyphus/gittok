@@ -74,8 +74,12 @@ curl -s https://cdn.jsdelivr.net/gh/Chestnuts-Sisyphus/gittok@master/digests/202
 | `topics` | string[] | GitHub topics |
 | `aiDims` | string[] | LLM 多维度标签 |
 
-站点列表会额外剥掉 `bigbros` / `aiDim` / `score` 三个死字段（历史遗留）；
-需要全量字段就用上面的「全量单文件」或仓库 `data/feed.json`。
+站点列表会额外剥掉两批字段：
+1. `bigbros` / `aiDim` / `score`——历史遗留死字段（前者是盖章退役残留，中者与 `aiDims[0]` 重复，后者组装时恒 0）；
+2. `funDims` / `facts` / `zoneReason` / `funReason` / `funScoreSource` / `zoneSource` / `legacyZone` / `legacyFunScore`
+   ——判定中间产物与溯源标记（2026-09-23 起剥；站点一屏都不展示。实测站点列表 gzip 由 1,380,144 B → 1,209,026 B，−12.4%）。
+需要这些字段就用上面的「全量单文件」或仓库 `data/feed.json`（**源文件一个字段都不少**，瘦身只发生在构建产物里）。
+上表列出的字段（含 `pushedAt`）在站点列表中**保证在场**——剥掉的字段都不在表内。
 
 ## 排序与搜索语义（与站点一致）
 

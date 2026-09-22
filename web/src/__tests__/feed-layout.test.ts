@@ -189,20 +189,30 @@ describe("卡宽上限（2026-09-23 栗子：能两列时不要强行拉伸）",
 });
 
 describe("列数（照 CSS auto-fill 同式还原）", () => {
-  it("实测宽度表：2 列门槛 = 网格 1116px，单列档不再占满", () => {
-    // 本机无头 Chrome 实测的网格可用宽（1920/1600/1400/1343/1200/1100/1000/900/769 档）
-    expect(feedColsForContentWidth(1436)).toBe(2);
-    expect(feedColsForContentWidth(1320)).toBe(2);
-    expect(feedColsForContentWidth(1120)).toBe(2);
-    expect(feedColsForContentWidth(1116)).toBe(2); // 2×550+16 恰好两列
-    expect(feedColsForContentWidth(1115)).toBe(1);
-    expect(feedColsForContentWidth(1063)).toBe(1);
-    expect(feedColsForContentWidth(974)).toBe(1);
-    expect(feedColsForContentWidth(872)).toBe(1);
+  it("实测宽度表：1/2/3 列门槛（2026-09-23 起宽屏可出三列）", () => {
+    // 本机无头 Chrome 实测的网格可用宽（各档视口 − 侧栏 216px − 内容内距 48px）
+    expect(feedColsForContentWidth(1656)).toBe(3); // 1920 档（闸口径）
+    expect(feedColsForContentWidth(1640)).toBe(3); // 三列下限：3×536+2×16
+    expect(feedColsForContentWidth(1639)).toBe(2);
+    expect(feedColsForContentWidth(1336)).toBe(2); // 1600 档
+    expect(feedColsForContentWidth(1136)).toBe(2); // 1400 档
+    expect(feedColsForContentWidth(1088)).toBe(2); // 两列下限：2×536+16
+    expect(feedColsForContentWidth(1087)).toBe(1);
+    expect(feedColsForContentWidth(1079)).toBe(1); // 1343 档
+    expect(feedColsForContentWidth(936)).toBe(1); // 1200 档
+    expect(feedColsForContentWidth(776)).toBe(1); // 900 档
+    expect(feedColsForContentWidth(720)).toBe(1); // 1000 档
     expect(feedColsForContentWidth(629)).toBe(1);
-    expect(feedColsForContentWidth(550)).toBe(1);
-    // CSS 下限写 min(550px, 100%)：窄于 550 的容器仍算 1 列（不溢出、也不出 0 列）
+    expect(feedColsForContentWidth(536)).toBe(1);
+    // CSS 下限写 min(536px, 100%)：窄于 536 的容器仍算 1 列（不溢出、也不出 0 列）
     expect(feedColsForContentWidth(489)).toBe(1);
     expect(feedColsForContentWidth(0)).toBe(1);
+  });
+
+  it("三列不破「一行 ≥28 字」：536px ＝ 28 字的精确反推值", () => {
+    // 实测口径：一行容量 = floor((卡宽 − 69) / 16.66)，16.66px 是本机 Windows 全角字宽
+    expect(Math.floor((FEED_COL_MIN - 69) / 16.66)).toBeGreaterThanOrEqual(28);
+    // 再往下取一档就破了（这就是 1600/1400 档出不了三列的原因）
+    expect(Math.floor((FEED_COL_MIN - 1 - 69) / 16.66)).toBe(27);
   });
 });

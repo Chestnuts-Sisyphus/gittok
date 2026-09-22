@@ -55,6 +55,7 @@ const ONLY = (() => {
  *    与 1100×800（旧「单列占满 820px」的拉伸档）。**769–1342 这段此前一个档都没有**，
  *    而卡宽上限/列数这两类回归恰好只在这段现形（乙2/乙3）。每档出「首页 + 弹层 + 我的页」截图。 */
 const VIEWS = [
+  { key: "2560x1080", w: 2560, h: 1080, mobile: false },
   { key: "1920x1080", w: 1920, h: 1080, mobile: false },
   { key: "1600x900", w: 1600, h: 900, mobile: false },
   { key: "1400x900", w: 1400, h: 900, mobile: false },
@@ -83,10 +84,14 @@ const VIEWS = [
 const FEED_CARD_MAX = 640;
 const FEED_CAPACITY_MIN = 28;
 const FEED_CAPACITY_MAX = 34;
+/** 三列门槛＝网格 ≥ 3×536 + 2×16 = 1640px（＝内容区上限 1688 − 内距 48）；两列门槛＝ 2×536+16 = 1088px。
+ *  2026-09-23 实测（本机无头 Chrome，含/不含 --hide-scrollbars 两遍读数一致——`.app-body`
+ *  已 `scrollbar-gutter: stable`，上限 1688 在两种情形下都是绑定约束，故列数确定不摆动）。 */
 const EXPECT_DESKTOP = {
-  "1920x1080": { cols: 2, cardW: 640, capMin: 34, capMax: 34 },
+  "2560x1080": { cols: 3, cardW: 536, capMin: 28, capMax: 28 },
+  "1920x1080": { cols: 3, cardW: 536, capMin: 28, capMax: 28 },
   "1600x900": { cols: 2, cardW: 640, capMin: 34, capMax: 34 },
-  "1400x900": { cols: 2, cardW: 552, capMin: 28, capMax: 28 },
+  "1400x900": { cols: 2, cardW: 553, capMin: 29, capMax: 29 },
   "1343x900": { cols: 1, cardW: 640, capMin: 34, capMax: 34 },
   "1200x900": { cols: 1, cardW: 640, capMin: 34, capMax: 34 },
   "1100x800": { cols: 1, cardW: 640, capMin: 34, capMax: 34 },
@@ -94,7 +99,7 @@ const EXPECT_DESKTOP = {
   "900x800": { cols: 1, cardW: 640, capMin: 34, capMax: 34 },
   // 844×390 是 mobile:true 但 w>768 —— CSS 媒体查询按**宽度**走，844 用桌面栅格
   // （闸的档位分支同理照 w 判），所以它也归桌面预期表。首跑漏了这条，闸立刻报「预期 ?」，
-  // 属预期表缺档而非产品缺陷（2026-09-23 实测：网格 704 → 单列 → 卡宽 640、两侧各留 32px）。
+  // 属预期表缺档而非产品缺陷（2026-09-23 实测：网格 720 → 单列 → 卡宽 640、两侧各留 40px）。
   "844x390": { cols: 1, cardW: 640, capMin: 34, capMax: 34 },
 };
 
