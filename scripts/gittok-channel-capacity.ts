@@ -72,7 +72,7 @@ export function funSorted(cards: CapCard[]): CapCard[] {
   return cards.filter((c) => (c.funScore ?? 0) > 0).sort((a, b) => funScoreOf(b) - funScoreOf(a));
 }
 
-interface Row {
+export interface Row {
   name: string;
   pool: number;
   out: number;
@@ -171,6 +171,11 @@ function report(): void {
   if (problems.length > 0) {
     console.error("[V-C] 不通过：");
     for (const p of problems) console.error(`  x ${p}`);
+    // 2026-09-23 修「只报不拦」：此前这里只 return，脚本恒 exit 0 → CI 里这一步恒绿，
+    // 「分区·创意 237<300」这类**真实违例**跑了几个月一次都没拦过（乙10）。
+    // 现在与闸的语义对齐：有问题 → 非 0 退出。CI 会因此变红，那是数据侧缺口的真实信号——
+    // 不许靠调 MIN_REACHABLE 让它变绿（不许为过闸改标准）。
+    process.exitCode = 1;
     return;
   }
   console.log(
@@ -178,4 +183,6 @@ function report(): void {
   );
 }
 
-report();
+// 只有「被直接执行」时才跑报告：本文件同时被 src/__tests__/channel-capacity-exit.test.ts import，
+// 若在 import 时也执行，测试进程会被 report() 置上 exitCode=1（假红风险）。
+if (process.argv[1] && /gittok-channel-capacity\.[tj]s$/.test(process.argv[1])) report();

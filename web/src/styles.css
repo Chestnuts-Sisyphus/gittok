@@ -71,8 +71,20 @@
   --feed-card-h: 288px;
   --feed-row-gap: 16px;
   /* G-10：卡片流每列最小宽度。⚠ 与 web/src/feed-layout.ts 的 FEED_COL_MIN 双写——
-     虚拟列表按「列数 × 行高」算垫片，两处不同值就会错位（同 --feed-card-h 那条纪律）。 */
-  --feed-col-min: 500px;
+     虚拟列表按「列数 × 行高」算垫片，两处不同值就会错位（同 --feed-card-h 那条纪律）。
+     2026-09-23 由 500 → 550：Card 502px 时 .summary 一行只放得下 25 字（实测），
+     低于本项目自定的「一行 ≥28 字」下限。550px 反推依据（本机无头 Chrome 实测单字宽 16.66px、
+     一行容量 = floor((卡宽 − 69) / 16.66)）：(550 − 69) / 16.66 = 28.87 → **28 字**，留 0.87 字余量。
+     代价：两列出列门槛由「网格 ≥1016px」抬到「≥1116px」（视口 ≈1396px），
+     1296–1396 这段由「两列各 502–552px（25–28 字）」改为「单列 640px 居中（34 字）」。 */
+  --feed-col-min: 550px;
+  /* 2026-09-23 栗子：「能两列的时候不要强行拉伸这么长的宽度」——卡宽上限。
+     取值依据：① 上限必须低于被投诉的现状 710px（38 字，1920 档实测）；② 落在中文单行
+     20–40 字舒适区的内侧，且不牺牲 .reason 的两行可见（卡高 288px 定高不变）。
+     640px → (640 − 69) / 16.66 = 34.27 → **34 字**。故一行容量区间＝[28, 34] 字。
+     ⚠ 与 web/src/feed-layout.ts 的 FEED_CARD_MAX 双写（同 --feed-col-min 那条纪律）。
+     ⚠ 只在 >768 生效（见 .feed-list > .card 那条）：手机档「卡宽 ≥ 视口 88%」是设计，不许破。 */
+  --feed-card-max: 640px;
   --header-h: 60px;
   --header-bg: #16122a;
   --sidebar-inset: 24px;
@@ -374,7 +386,12 @@ button {
   text-overflow: ellipsis;
 }
 
-/* 内容区：流式贴侧栏右缘（不居中），上限 1500px 防超宽屏卡片拉太宽 */
+/* 内容区：流式贴侧栏右缘（不居中），上限 1500px 防超宽屏卡片拉太宽。
+   2026-09-23 全站内容区宽度口径（三档，别再说"一致"）：
+     顶栏 chrome `--max-width: 1650px`（导航条，与内容无关）｜feed 内容区 1500px（本处）
+     ｜创作者页 .creator-page / 详情弹层 .detail-card / Agent 页 .agent-page 1200px。
+   为什么保留三档：feed 是卡片栅格（两列 640 上限后仍需 ≥1116px 出两列），
+   另三处是"居中的单列阅读/列表页"，1200 是其既有设计，本轮不动（改动会牵动弹层飞入动画与手机档）。 */
 .feed-content {
   flex: 1;
   min-width: 0;
@@ -472,9 +489,29 @@ button {
 .feed-list {
   display: grid;
   /* G-10：原 `repeat(2, 1fr)` 死写两列 → 769–1200 每列仅约 310px，20-35 字的一句话放不下。
-     改为按 --feed-col-min 自动填列：≥1440 仍是两列（现状不变），更窄自动降为一列。 */
-  grid-template-columns: repeat(auto-fill, minmax(var(--feed-col-min), 1fr));
+     改为按 --feed-col-min 自动填列。
+     2026-09-23：轨道 max 必须保持 `1fr`（**非确定**）——CSS Grid 的 auto-fill 重复次数规则是
+     「不溢出的最大整数，轨道 max 是确定长度就用 max、否则用 min」；若把上限写进轨道
+     （minmax(550px, 640px)），计数就改用 640，网格 1120px 会从两列塌成一列（本机实测）。
+     故上限改由卡片自身承担（见下一条 .feed-list > .card），轨道与列数算法一字不动。
+     下限写 min(--feed-col-min, 100%)：容器窄于 550px 时轨道退成容器宽，不出横向溢出
+     （旧写法 minmax(500px, 1fr) 在 489px 容器上实测溢出 495>489）。 */
+  grid-template-columns: repeat(auto-fill, minmax(min(var(--feed-col-min), 100%), 1fr));
   gap: var(--feed-row-gap);
+}
+
+/* 卡宽上限（2026-09-23 栗子：「能两列的时候不要强行拉伸这么长的宽度」）：
+   轨道仍是 1fr（列数与 JS 孪生 FEED_COL_MIN 完全一致），卡片自身限宽后在自己的轨道里居中——
+   一举解决两端：宽屏两列不再各拉成 710px；单列档（769–1396）不再占满整行（实测 1063px → 640px）。
+   width:100% 必须有：只有 max-width 时 grid item 会收缩成 max-content（实测塌成 36px）。
+   ⚠ 只给 >768：手机档「卡宽 ≥ 视口 88%」是既有设计，≤768 的 grid-template-columns:1fr 覆盖
+     已经让卡片占满，这里再限宽就会破它（闸的 ≤768 分支会红）。 */
+@media (min-width: 769px) {
+  .feed-list > .card {
+    max-width: var(--feed-card-max);
+    width: 100%;
+    justify-self: center;
+  }
 }
 
 .channel-entering .card {
@@ -832,6 +869,9 @@ button {
 }
 
 .detail-mover {
+  /* 2026-09-23 同病清点：判**不改**。弹层是居中模态、内容是「详情正文 + 动作区」这一种版式，
+     行宽由正文自身（.detail-summary / 代码块）决定，不是 feed 那种"卡片被 1fr 拉满"的机制；
+     卡宽上限（--feed-card-max）对它不适用。动它会牵动 detail-fly 飞入动画的起止矩形与手机档，本轮不碰。 */
   max-width: 1200px;
   width: 100%;
   max-height: 90vh;
@@ -2173,7 +2213,7 @@ button {
   margin-top: 0;
 }
 
-/* --- 我的-关注：创作者卡片列表（任务书 B；任务书 F 改两列网格，与 .feed-list 同语言） --- */
+/* --- 我的-关注 / 搜索页：创作者卡片列表（任务书 B；任务书 F 改两列网格，与 .feed-list 同语言） --- */
 .creator-list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -2183,6 +2223,19 @@ button {
 @media (max-width: 768px) {
   .creator-list {
     grid-template-columns: 1fr;
+  }
+}
+/* 2026-09-23 同病清点（栗子「不要强行拉伸」）：创作者条与 feed 卡同处一个内容区（上限 1436px 网格），
+   固定两列时每列会被拉到 710px——与 feed 卡被投诉的是同一条机制。处置：套同一上限常量、同样居中。
+   实测（本机无头 Chrome）：1920 档从 710 → 640；≤768 仍占满。
+   ⚠ width:100% 必须有：只写 max-width + justify-self:center 时 grid item 会收缩成 max-content
+   （实测塌成 394/371/364px，行与行宽度还各不相同）。这条与 .feed-list > .card 同因同治。
+   ⚠ 只给 >768（≤768 的 1fr 让行占满，与手机档设计一致）。 */
+@media (min-width: 769px) {
+  .creator-list > .creator-item {
+    max-width: var(--feed-card-max);
+    width: 100%;
+    justify-self: center;
   }
 }
 
@@ -2387,7 +2440,9 @@ button {
 /* --- Agent 接入页（第四 tab：让 Agent 直接使用 GitTok） --- */
 
 .agent-page {
-  /* 与 .creator-page / .detail-card 同为 1200px，全站内容区宽度一致 */
+  /* 2026-09-23 口径订正：原注释写「与 .creator-page / .detail-card 同为 1200px，全站内容区宽度一致」
+     ——对 feed 页**不成立**（feed 内容区是 1500px，顶栏是 1650px）。实话是：全站内容区取三档，
+     1200 是「居中的单列页/弹层」这一档的共同值（另两档见 .feed-content 处的口径表）。 */
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
@@ -2588,7 +2643,13 @@ button {
 }
 
 /* 2×2：4 张卡此前 3 列排成 3+1，第 4 张独占一行留 2/3 空白；
-   同时把卡片从 340px 放宽到 580px，代码块少折行 */
+   同时把卡片从 340px 放宽到 580px，代码块少折行
+   2026-09-23 同病清点（栗子「不要强行拉伸」）：判**不限宽**，实测为本机无头 Chrome 量值——
+     Agent 页内容宽 1200（1920/1400 档）→ 2 轨道 [593,593]，4 项填满、无空轨道；
+     内容宽 1052（1100 档）→ 2 轨道 [519,519]；内容宽 852（900 档）→ **1 轨道 [852]**，四项各占 852。
+   依据：本卡的正文是「代码块 + 两句短说明」，加宽减少折行（与 340→580 的初衷同向）；
+   加上限只会让两列不齐、代码块多折行。⚠ 唯一需要盯的是「条目数 < 轨道数」时 auto-fit 会收空轨道
+   把剩下的拉满（本页条目写死 4 条，改动时须重新判定）。 */
 .agent-paths {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(460px, 100%), 1fr));
@@ -2686,7 +2747,10 @@ button {
   text-decoration: underline;
 }
 
-/* 2×2：同为 4 项，避免 3 列排成 3+1 的残缺行（与 .agent-paths 同节奏） */
+/* 2×2：同为 4 项，避免 3 列排成 3+1 的残缺行（与 .agent-paths 同节奏）
+   2026-09-23 同病清点：判**不限宽**。实测：内容宽 1200 → 2 轨道 [595,595]（4 项填满）；
+   内容宽 852（900 档）→ 1 轨道 [852]。依据同 .agent-paths；另 :2723 那条注释里
+   「AI 日报说明最长 560px」正是本栅格 1200 档实测卡宽 595px 的设计基准，加上限会改掉它。 */
 .agent-resources {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(460px, 100%), 1fr));
@@ -2725,6 +2789,13 @@ button {
   line-height: 1.45;
 }
 
+/* 2026-09-23 同病清点：判**不限宽、保留 auto-fit**。这是「三步接入」步进器——整行三项等分是设计
+   意图（等分才读得出"三步"），与 feed 卡那条「长文本行不许拉伸」不是一回事；
+   每卡内文是短句、会自动折行，392px 与 276px 的阅读差别可忽略，反而留空轨道更差。
+   实测（本机无头 Chrome）：内容宽 1200（1920/1400 档）→ 4 轨道 [392,392,392,0]，3 项占 3 轨道、
+   第 4 条空轨道被 auto-fit 收掉 → 三项各 392px 铺满；内容宽 1052 → 3 轨道 [343,343,343]；
+   内容宽 852（900 档）→ 3 轨道 [276,276,276]。
+   这一条是「被 auto-fit 拉伸」的**已知实例**，判定为设计内，不改。 */
 .agent-steps {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));

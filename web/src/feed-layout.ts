@@ -9,8 +9,17 @@ export const FEED_COLS_DESKTOP = 2;
 export const FEED_COLS_MOBILE = 1;
 export const FEED_MOBILE_MAX_WIDTH = 768;
 /** G-10：每列最小宽度。⚠ 与 styles.css 的 `--feed-col-min` 双写，改一处必须改两处，
- *  否则 CSS 实际列数与垫片按列数算出的高度失配 → 虚拟列表错位（同 `FEED_CARD_HEIGHT` 那条纪律）。 */
-export const FEED_COL_MIN = 500;
+ *  否则 CSS 实际列数与垫片按列数算出的高度失配 → 虚拟列表错位（同 `FEED_CARD_HEIGHT` 那条纪律）。
+ *  2026-09-23：500 → 550。CSS 的轨道下限写的是 `min(550px, 100%)`——容器窄于 550 时轨道退成容器宽、
+ *  仍算 1 列，与本函数 `Math.max(1, …)` 同值，故两边在全部实测宽度上一致（489/550/629/1063/1116/1120/
+ *  1320/1436 逐档比对过）。 */
+export const FEED_COL_MIN = 550;
+/** 2026-09-23：卡宽上限（栗子：「能两列的时候不要强行拉伸这么长的宽度」）。
+ *  ⚠ 与 styles.css 的 `--feed-card-max` 双写，且**只在 >768 生效**（≤768 由
+ *  `grid-template-columns: 1fr` 让卡片占满，是既有手机设计）。
+ *  它只约束卡片自身（轨道仍是 1fr），所以**不进列数计算** —— `feedColsForContentWidth` 不受它影响。
+ *  一行容量：640px → floor((640 − 69) / 16.66) = 34 字（下限 550px → 28 字）。 */
+export const FEED_CARD_MAX = 640;
 /** G-11：视口高 ≤560（横屏手机）时 CSS 把 `--feed-card-h` 降到 210px。
  *  ⚠ 同样是双写契约：垫片行高必须跟着降，否则滚动高度与内容不符。 */
 export const FEED_SHORT_MAX_HEIGHT = 560;
@@ -49,9 +58,12 @@ export function feedColsForWidth(width: number): number {
 }
 
 /**
- * G-10：列数不再由视口宽决定，而要照 CSS `repeat(auto-fill, minmax(FEED_COL_MIN, 1fr))`
+ * G-10：列数不再由视口宽决定，而要照 CSS `repeat(auto-fill, minmax(min(FEED_COL_MIN, 100%), 1fr))`
  * 用**网格自身可用宽度**还原（视口宽推不出列数——侧栏、内距、1500px 上限都吃宽度）。
  * 与浏览器同式：列数 = floor((可用宽 + 间距) / (最小列宽 + 间距))，至少 1 列。
+ * 轨道 max 保持 `1fr`（非确定）是前提：CSS 的 auto-fill 计数在 max 确定为长度时会改用 max 计数，
+ * 那样 1120px 网格会塌成一列而本函数仍算两列 → 垫片错位。卡宽上限（FEED_CARD_MAX）只约束卡片自身，
+ * 不参与列数，故本函数与上限无关。
  */
 export function feedColsForContentWidth(contentWidth: number, rowGap: number = FEED_ROW_GAP): number {
   if (!(contentWidth > 0)) return 1;

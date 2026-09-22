@@ -7,7 +7,8 @@
  *
  * 做什么：用 CDP 起无头 Chrome（本机 GameViewer 虚拟显示器致 GPU 合成失效 → 一律 --disable-gpu，
  * 无窗口不抢焦点），逐档量「横向溢出 / 卡片被 overflow:hidden 吃掉的行 / 逐档实际可见字数
- * （CDP Range 逐字量）/ 侧栏与底栏命中档 / 弹层动作区溢出 / 触摸端按钮可见性 / Agent 页可达 / 整卡是否放得下」，
+ * （CDP Range 逐字量）/ **卡宽上限 ≤--feed-card-max 与列数＝预期表（2026-09-23 补，乙2/乙3）** /
+ * 侧栏与底栏命中档 / 弹层动作区溢出 / 触摸端按钮可见性 / Agent 页可达 / 整卡是否放得下」，
  * 每档出一张截图，结果同时落 JSON 供改前改后 diff。
  *
  * 用法（先建 dist 并灌真实数据）：
@@ -48,13 +49,18 @@ const ONLY = (() => {
   return a ? a.slice(7) : null;
 })();
 
-/** 十二档视口：G-10 验收点名的八档宽度（700/760/900/1000/1200/1400/1600/1920）
- *  + 手机竖屏 390×844 + 两个横屏档 844×390、667×375（G-11）。每档出「首页 + 弹层 + 我的页」截图。 */
+/** 十四档视口：G-10 验收点名的八档宽度（700/760/900/1000/1200/1400/1600/1920）
+ *  + 手机竖屏 390×844 + 两个横屏档 844×390、667×375（G-11）
+ *  + 2026-09-23 补两个中间档：1343×900（旧「两列各 524px＝27 字」的挤压档，新设计下应为单列）
+ *    与 1100×800（旧「单列占满 820px」的拉伸档）。**769–1342 这段此前一个档都没有**，
+ *    而卡宽上限/列数这两类回归恰好只在这段现形（乙2/乙3）。每档出「首页 + 弹层 + 我的页」截图。 */
 const VIEWS = [
   { key: "1920x1080", w: 1920, h: 1080, mobile: false },
   { key: "1600x900", w: 1600, h: 900, mobile: false },
   { key: "1400x900", w: 1400, h: 900, mobile: false },
+  { key: "1343x900", w: 1343, h: 900, mobile: false },
   { key: "1200x900", w: 1200, h: 900, mobile: false },
+  { key: "1100x800", w: 1100, h: 800, mobile: false },
   { key: "1000x800", w: 1000, h: 800, mobile: false },
   { key: "900x800", w: 900, h: 800, mobile: false },
   { key: "768x1024", w: 768, h: 1024, mobile: false },
@@ -64,6 +70,33 @@ const VIEWS = [
   { key: "844x390", w: 844, h: 390, mobile: true },
   { key: "667x375", w: 667, h: 375, mobile: true },
 ];
+
+/** 2026-09-23：卡宽上限与列数预期表（照收尾后的 `--feed-card-max: 640px` / `--feed-col-min: 550px`
+ *  ＋本机实测的网格可用宽）。**只列 >768 的档**——≤768 有另一条判据（卡宽 ≥ 视口 88%，G-13）。
+ *
+ *  为什么改成「预期表」而不是继续用一条阈值：旧判据 `>768` 只查「一行容量 ≥28 字」，**没有上限**
+ *  （乙2），所以 1920 档卡宽被拉到 710px（38 字）这类回归结构上抓不到。列数同样从来没有断言
+ *  （`cols` 只被创作者列表那条用过）。
+ *
+ *  预期表怎么来的：cardMax 单卡宽上限；capacity 该档一行容量（.summary 隐藏探针实测口径）。
+ *  两列门槛＝网格 ≥ 2×550+16 = 1116px（实测：1400 档网格 1120 → 两列；1343 档网格 1063 → 单列）。 */
+const FEED_CARD_MAX = 640;
+const FEED_CAPACITY_MIN = 28;
+const FEED_CAPACITY_MAX = 34;
+const EXPECT_DESKTOP = {
+  "1920x1080": { cols: 2, cardW: 640, capMin: 34, capMax: 34 },
+  "1600x900": { cols: 2, cardW: 640, capMin: 34, capMax: 34 },
+  "1400x900": { cols: 2, cardW: 552, capMin: 28, capMax: 28 },
+  "1343x900": { cols: 1, cardW: 640, capMin: 34, capMax: 34 },
+  "1200x900": { cols: 1, cardW: 640, capMin: 34, capMax: 34 },
+  "1100x800": { cols: 1, cardW: 640, capMin: 34, capMax: 34 },
+  "1000x800": { cols: 1, cardW: 640, capMin: 34, capMax: 34 },
+  "900x800": { cols: 1, cardW: 640, capMin: 34, capMax: 34 },
+  // 844×390 是 mobile:true 但 w>768 —— CSS 媒体查询按**宽度**走，844 用桌面栅格
+  // （闸的档位分支同理照 w 判），所以它也归桌面预期表。首跑漏了这条，闸立刻报「预期 ?」，
+  // 属预期表缺档而非产品缺陷（2026-09-23 实测：网格 704 → 单列 → 卡宽 640、两侧各留 32px）。
+  "844x390": { cols: 1, cardW: 640, capMin: 34, capMax: 34 },
+};
 
 /** 每档侧栏/底栏/tabs 的期望命中档（照 styles.css 现状：仅 480/768/900 三档宽度断点）。 */
 function expectedChrome(w) {
@@ -431,10 +464,21 @@ async function checkView(cdp, view) {
       (clip.clipped.length ? `｜被裁：${clip.clipped.map((c) => `.${c.cls}+${c.over}px`).join(" ")}` : ""),
   );
 
-  // 3 逐档实际可见字数（口径：G-10 桌面档一行容量 ≥28 字；G-13 窄档卡宽 ≥ 视口 88%）
-  const m = await cdp.eval(
-    `return {s: window.__gt.measure('.summary', 12), cap: window.__gt.capacity('.summary', 12), r: window.__gt.measure('.reason-clamped', 12), t: window.__gt.boxOverflow('.card-tags', 12), cardW: document.querySelector('.card').getBoundingClientRect().width};`,
-  );
+  // 3 逐档实际可见字数（口径：G-10 桌面档一行容量 ≥28 字；2026-09-23 加上限 ≤34 字与卡宽/列数；
+  //   G-13 窄档卡宽 ≥ 视口 88%）
+  const m = await cdp.eval(`
+    const list=document.querySelector('.feed-list');
+    const card=document.querySelector('.card');
+    const lcs=list? getComputedStyle(list): null;
+    const tracks=lcs? lcs.gridTemplateColumns.split(' ').filter(Boolean): [];
+    const cr=card.getBoundingClientRect();
+    const lr=list? list.getBoundingClientRect(): cr;
+    return {s: window.__gt.measure('.summary', 12), cap: window.__gt.capacity('.summary', 12),
+            r: window.__gt.measure('.reason-clamped', 12), t: window.__gt.boxOverflow('.card-tags', 12),
+            cardW: cr.width, cardLeftInGrid: Math.round(cr.left-lr.left),
+            gridW: list? list.clientWidth: 0, gridRightSlack: Math.round(lr.right-cr.right),
+            cols: tracks.length, tracks: tracks.map(t=>Math.round(parseFloat(t)))};
+  `);
   const sClip = m.s.filter((x) => x.visible < x.total).length;
   const capMin = Math.min(...m.cap.map((x) => x.cap));
   if (view.w > 768) {
@@ -445,12 +489,39 @@ async function checkView(cdp, view) {
       `容量 min ${capMin} 字（单字宽 ${m.cap[0]?.charW}px / 内容宽 ${m.cap[0]?.width}px）｜采样整句可见 ${m.s.length - sClip}/${m.s.length}` +
         `｜口径：${RUN_PLATFORM === "win32" ? `Windows 基准 28 字（${SUMMARY_CAPACITY_PASS_MIN}）` : `非 Windows（${RUN_PLATFORM}）按 14.2% 跨平台漂移归一，下限 ${SUMMARY_CAPACITY_PASS_MIN} 字`}`,
     );
-  } else {
+    // ── 2026-09-23 新增（乙2：旧闸只有下限、没有上限，710px 拉伸回归抓不到） ──
+    const exp = EXPECT_DESKTOP[view.key];
     report(
       view.key,
-      "卡宽 ≥ 视口 88%（G-13）",
+      `.summary 一行容量 ≤${FEED_CAPACITY_MAX} 字（上限，与卡宽上限同源）`,
+      capMin <= FEED_CAPACITY_MAX,
+      `容量 min ${capMin} 字（上限 ${FEED_CAPACITY_MAX} 字＝卡宽上限 ${FEED_CARD_MAX}px 的实测反推值）` +
+        `｜区间 [${FEED_CAPACITY_MIN}, ${FEED_CAPACITY_MAX}] 字：下限＝G-10 既有口径，上限＝栗子 2026-09-22「不要强行拉伸」`,
+    );
+    report(
+      view.key,
+      `卡宽 ≤ ${FEED_CARD_MAX}px 且符合预期表（甲1）`,
+      !!exp && m.cardW <= FEED_CARD_MAX + 1 && Math.abs(m.cardW - exp.cardW) <= 1,
+      `卡宽 ${Math.round(m.cardW)}px（预期 ${exp ? exp.cardW : "?"}，上限 ${FEED_CARD_MAX}）` +
+        `｜轨道 ${JSON.stringify(m.tracks)}｜网格 ${m.gridW}px｜居中余量 左 ${m.cardLeftInGrid} 右 ${m.gridRightSlack}`,
+    );
+    report(
+      view.key,
+      `列数 = 预期表 且单列档不被拉满（甲3）`,
+      !!exp && m.cols === exp.cols && (m.cols > 1 || m.gridW > m.cardW + 1),
+      `列数 ${m.cols}（预期 ${exp ? exp.cols : "?"}）｜网格 ${m.gridW}px，卡宽 ${Math.round(m.cardW)}px` +
+        `｜单列档必须 ` + (m.cols === 1 ? `有留白（实留 ${m.gridW - Math.round(m.cardW)}px 合计）` : `—`),
+    );
+  } else {
+    // ≤768 的「占满」判据**只适用于手机档**：这里是 480/768 两档断点下的既定设计（G-13），
+    // 卡宽不被 --feed-card-max 约束（上限规则写在 @media (min-width: 769px) 里）。
+    // 769–1342 那段「单列但不该占满」由上面的卡宽上限/列数两条断言管，两条判据方向相反、各管一段。
+    report(
+      view.key,
+      "卡宽 ≥ 视口 88%（G-13，仅 ≤768 手机档适用）",
       m.cardW >= view.w * 0.88,
-      `卡宽 ${Math.round(m.cardW)}px = 视口 ${((m.cardW / view.w) * 100).toFixed(1)}%｜一行容量 min ${capMin} 字`,
+      `卡宽 ${Math.round(m.cardW)}px = 视口 ${((m.cardW / view.w) * 100).toFixed(1)}%｜一行容量 min ${capMin} 字` +
+        `｜本判据为**占满型**设计，与 769+ 的「卡宽 ≤ 上限」方向相反，互不适用`,
     );
   }
   const noReason = m.r.filter((x) => x.visibleLines === 0);

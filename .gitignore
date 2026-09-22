@@ -10,6 +10,10 @@ social/
 *.tsbuildinfo
 web/dist/
 web/node_modules/
+# 仓内 Python venv：scripts/gittok-visual-check.py 需要 websocket-client，
+# 本机纪律是「不许全局 pip install」（venv --system-site-packages 会写进系统 site-packages），
+# 故依赖装在仓内 .venv：python -m venv .venv && .venv/Scripts/python -m pip install websocket-client
+.venv/
 
 # impeccable-ignore-start
 # Ephemeral output, runtime state, and per-dev overrides.

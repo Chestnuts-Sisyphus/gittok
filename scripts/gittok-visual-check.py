@@ -13,6 +13,17 @@
 - cp ../data/feed.json dist/data/feed.json（真实数据）
 - cp ../data/following.json dist/data/following.json 2>/dev/null
 
+本机跑法（2026-09-23 补齐依赖：此前 `import websocket` → ModuleNotFoundError，
+整条视觉闸在本机跑不起来、只跑了响应式闸，视觉面等于没验收）：
+    # 依赖装进**仓内 venv**（本机纪律：不许全局 pip install；--system-site-packages 是假隔离，别用）
+    python -m venv .venv
+    ./.venv/Scripts/python.exe -m pip install websocket-client
+    # 本脚本不自带静态服务器，得先起一个（端口与 VISUAL_PORT 一致）
+    ./.venv/Scripts/python.exe -m http.server 19101 --directory web/dist &
+    ./.venv/Scripts/python.exe scripts/gittok-visual-check.py     # EXIT 0 = 全部 PASS
+    # 实测 2026-09-23：7 项全 PASS（软渲染 hover/滚动满帧、GPU-hover、6 项 CSS 断言、6 页截图），EXIT 0
+    # 脚本自己一律 --headless=new（含"gpu"那档只是不加 --disable-gpu），不会弹窗抢焦点。
+
 用法：python D:/AI/QODER/1/gittok_accept/accept_visual.py
 输出：每项 PASS/FAIL + 最终汇总。全部 PASS = 视觉验收达标。
 

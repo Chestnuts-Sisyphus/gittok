@@ -7,6 +7,7 @@ import { describe, it, expect } from "vitest";
 import {
   FEED_CARD_HEIGHT,
   FEED_CARD_HEIGHT_SHORT,
+  FEED_CARD_MAX,
   FEED_COL_MIN,
   FEED_SHORT_MAX_HEIGHT,
   FEED_COLS_DESKTOP,
@@ -15,6 +16,7 @@ import {
   FEED_ROW_GAP,
   FEED_ROW_GAP_MOBILE,
   FEED_ROW_HEIGHT,
+  feedColsForContentWidth,
   feedColsForWidth,
   feedGridFromMatch,
   feedRowGapForWidth,
@@ -151,11 +153,56 @@ describe("双写契约（CSS 与 JS 常量不许漂）", () => {
     const cssMin = Number(cssRaw.match(/--feed-col-min:\s*(\d+)px/)?.[1]);
     expect(cssMin).toBe(FEED_COL_MIN);
   });
+  it("--feed-card-max === FEED_CARD_MAX（2026-09-23 卡宽上限）", () => {
+    const cssMax = Number(cssRaw.match(/--feed-card-max:\s*(\d+)px/)?.[1]);
+    expect(cssMax).toBe(FEED_CARD_MAX);
+  });
   it("--feed-card-h === FEED_CARD_HEIGHT；窄高档 --feed-card-h === FEED_CARD_HEIGHT_SHORT", () => {
     const vars = [...cssRaw.matchAll(/--feed-card-h:\s*(\d+)px/g)].map((m) => Number(m[1]));
     expect(vars).toContain(FEED_CARD_HEIGHT);
     expect(vars).toContain(FEED_CARD_HEIGHT_SHORT);
     const shortBlock = cssRaw.match(/@media \(max-height: (\d+)px\)[\s\S]*?\}/);
     expect(Number(shortBlock?.[1])).toBe(FEED_SHORT_MAX_HEIGHT);
+  });
+});
+
+describe("卡宽上限（2026-09-23 栗子：能两列时不要强行拉伸）", () => {
+  const cssRaw = readFileSync(resolve("web/src/styles.css"), "utf8");
+  const css = cssRaw.replace(/\/\*[\s\S]*?\*\//g, "");
+  const feedList = css.match(/\.feed-list\s*\{[^}]+\}/)?.[0] ?? "";
+
+  it("轨道 max 保持 1fr（写进轨道会让 auto-fill 改用 max 计数 → 少一列）", () => {
+    expect(feedList).toMatch(/repeat\(\s*auto-fill\s*,\s*minmax\(min\(var\(--feed-col-min\),\s*100%\),\s*1fr\)\s*\)/);
+    expect(feedList).not.toMatch(/minmax\([^)]*var\(--feed-card-max\)/);
+  });
+
+  it("卡宽上限只给 >768（手机档靠 1fr 占满，是既有设计）", () => {
+    const block = css.match(/@media \(min-width: 769px\)\s*\{([\s\S]*?)\n\}/)?.[1] ?? "";
+    expect(block).toMatch(/\.feed-list\s*>\s*\.card/);
+    expect(block).toMatch(/max-width:\s*var\(--feed-card-max\)/);
+    expect(block).toMatch(/justify-self:\s*center/);
+    // 只有 max-width 不够：grid item 会收缩成 max-content（实测塌成 36px）
+    expect(block).toMatch(/width:\s*100%/);
+    const mobileBlock = css.match(/@media \(max-width: 768px\)\s*\{[\s\S]*?\n\}/)?.[0] ?? "";
+    expect(mobileBlock).toMatch(/\.feed-list\s*\{[^}]*grid-template-columns:\s*1fr/);
+  });
+});
+
+describe("列数（照 CSS auto-fill 同式还原）", () => {
+  it("实测宽度表：2 列门槛 = 网格 1116px，单列档不再占满", () => {
+    // 本机无头 Chrome 实测的网格可用宽（1920/1600/1400/1343/1200/1100/1000/900/769 档）
+    expect(feedColsForContentWidth(1436)).toBe(2);
+    expect(feedColsForContentWidth(1320)).toBe(2);
+    expect(feedColsForContentWidth(1120)).toBe(2);
+    expect(feedColsForContentWidth(1116)).toBe(2); // 2×550+16 恰好两列
+    expect(feedColsForContentWidth(1115)).toBe(1);
+    expect(feedColsForContentWidth(1063)).toBe(1);
+    expect(feedColsForContentWidth(974)).toBe(1);
+    expect(feedColsForContentWidth(872)).toBe(1);
+    expect(feedColsForContentWidth(629)).toBe(1);
+    expect(feedColsForContentWidth(550)).toBe(1);
+    // CSS 下限写 min(550px, 100%)：窄于 550 的容器仍算 1 列（不溢出、也不出 0 列）
+    expect(feedColsForContentWidth(489)).toBe(1);
+    expect(feedColsForContentWidth(0)).toBe(1);
   });
 });
