@@ -1,0 +1,94 @@
+{
+  "zh": {
+    "ai-cli": [
+      "OpenAI Codex v0.156.0 活跃度极高，强化 TUI 原生体验",
+      "OpenCode v1.18.32 全方位迭代，兼容多种模型提供商",
+      "Gemini CLI 深耕代理可靠性，重点适配 MCP 协议",
+      "GitHub Copilot CLI 侧重稳定性，积极适配 MCP 生态",
+      "Pi v0.87.1 强调生态功能补全，定位 IDE 级别辅助",
+      "Kimi Code v1.52.0 处于架构转型期，关注上下文管理"
+    ],
+    "ai-agents": [
+      "OpenClaw 生态 13 个项目活跃，NanoBot 修复文件读取与 Discord 稳定性",
+      "Google 官方推出 google/ax Agent 运行时，今日暴增 2324 stars",
+      "Stablyai/orca 并行 Agent 集群开发环境热度持续高涨，Star 数达 75,556",
+      "OpenClaw 标榜“真正能干活”，39W+ Stars 代表通用任务自动化 Agent 最高热度",
+      "智能体系统转向“训练/优化 harness”，Agent harness 正则化递归自改进",
+      "Agent 运行时与开发环境成为新基础设施红海，大厂加速开源原生布局"
+    ],
+    "ai-trending": [
+      "Google 发布 google/ax 开源 Agent 编排运行时，空降 GitHub 榜首",
+      "Stablyai/orca 并行 Agent 集群开发环境热度飙升，支持多端运行",
+      "OpenClaw 代表通用任务自动化 Agent，39W+ Stars 引领多智能体集群化趋势",
+      "Agent 运行时与开发环境成为新基础设施，开发者需求从简单 Prompt 封装转向工程化",
+      "多智能体集群从概念走向桌面化，用户需统一界面管理 AI 智能体",
+      "大厂入场收编开源标准，Google 等科技巨头推动 Agent 协议标准化"
+    ],
+    "ai-arxiv": [
+      "Kimi Delta Attention 扩展至复数域，增强长程依赖建模能力",
+      "LoRA 超网络实现端侧个性化 LLM 生成，手机级算力下高效部署",
+      "Pinocchio 为黑盒 LLM 提供快速不确定性估计，支持置信度过滤",
+      "Critical-State RL 诊断多轮工具调用关键状态，提升 RL 训练效率",
+      "Agent harness 正则化递归自改进，推动智能体系统走向生产化",
+      "视频世界模型引入三维隐式记忆，机器人模拟器承担训练评测闭环"
+    ],
+    "ai-hf": [
+      "Qwen3.8-27B-GGUF 下载量破 700 万，成为对话系统专用模型首选",
+      "Qwen/Qwen-Image-2.1 图像分类性能显著提升，超越现有主流模型",
+      "Qwen/Qwen-Image-2.1-Uncensored-GGUF 提供未经审查版本，适合实验探索",
+      "Qwen3.8-Flash-Next 模型通过量化技术实现高效训练与推理",
+      "开源模型在 HF 上占据主导地位，社区驱动模型开发趋势明显",
+      "QuantumML 社区活跃，多款模型通过量化技术降低计算资源需求"
+    ],
+    "ai-community": [
+      "Cheap RAG 方案无需向量库，Gemini File Search 两步实现",
+      "Agent 测试成本优化：2490 次调用缩减至 206 次，保持覆盖率",
+      "LLM 生成代码需默认防范 API Key 泄露，默认值防护是关键",
+      "资深 QA 转型 AI 新人，折射 AI 时代职业转型的真实痛点",
+      "AI 解决了“怎么写代码”但未解决“做什么”，人类判断力仍是核心差距",
+      "Hugging Face 事件 1200 个 Agent 攻防故事，提供安全方向学习范例"
+    ]
+  },
+  "en": {
+    "ai-cli": [
+      "Claude Code Skills: New trigger evaluation reliability fixes",
+      "New Web3 Skill: proofcore-contract-auditor added",
+      "OpenAI Codex and Gemini CLI listed in tools digest",
+      "GitHub Copilot CLI updated in community digest",
+      "Kimi Code CLI and DeepSeek TUI added to tools list",
+      "Claude Code Skills PRs maintain high community visibility"
+    ],
+    "ai-agents": [
+      "Hermes Agent v0.21.4: Minor bug fixes and performance improvements",
+      "Hermes Agent: Gateway self-restart issue fixed",
+      "Hermes Agent: Security audit risk config key added",
+      "OpenClaw ecosystem covers 13 projects with high activity",
+      "NanoBot peer project report generated successfully",
+      "Cross-ecosystem comparison section available"
+    ],
+    "ai-trending": [
+      "Google AX: Open agentic orchestration runtime",
+      "ECC: Agent harness performance optimization system",
+      "Nasiko: Developer Control Plane for AI agents",
+      "n8n: Workflow automation with native AI capabilities",
+      "StablyAI Orca: Agent Development Environment",
+      "BuilderIO agent-native: Framework for agentic apps"
+    ],
+    "ai-hn": [
+      "Claude Opus 5.5: New Anthropic model release",
+      "GPT-6 Sol and Luna: New OpenAI model announcements",
+      "OpenAI: Employees fired for using AI in training",
+      "OpenAI: ChatGPT lawsuit tied to school shooting",
+      "GPT-6 Astra: Breaks Enigma message from 2005",
+      "Hacker News: High engagement on model benchmarks"
+    ],
+    "ai-community": [
+      "ChatGPT: Ad-collector tracking raises privacy concerns",
+      "Jev and Laya: Decision engines intensify open vs closed debate",
+      "RAG in Go: Gemini File Search eliminates vector DB",
+      "Agent testing: Cost reduced 92% with smart sampling",
+      "LLM coding: API key leakage concerns highlighted",
+      "OpenAI: Model retirement schedule forces migration planning"
+    ]
+  }
+}
