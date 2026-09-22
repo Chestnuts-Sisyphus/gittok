@@ -12,6 +12,7 @@ import {
   buildWeeklyPrompt,
   buildMonthlyPrompt,
   buildHnPrompt,
+  TRENDING_PROMPT_MAX_CHARS,
 } from "../prompts-data.ts";
 import type { RepoConfig, GitHubItem, GitHubRelease } from "../github.ts";
 import type { RepoDigest } from "../prompts.ts";
@@ -222,6 +223,87 @@ describe("buildTrendingPrompt", () => {
     const result = buildTrendingPrompt(data, "2026-03-09");
     expect(result).toContain("[topic:ai-agent]");
     expect(result).toContain("1,000");
+  });
+
+  // GA5（2026-09-22）：旗舰日报 ai-trending 自 09-06 起连续输出失败占位符，
+  // 一手证据是 data/fleet-health.json 里的 `400 Prompt exceeds max length`（智谱）
+  // 与 `413 Request too large`（Groq）；实测根因是主题搜索结果膨胀到 5930 个仓库、
+  // prompt 达 1,184,043 字符。以下四条把"体积受控且不静默丢数据"钉成回归红线。
+  describe("prompt size budget (GA5)", () => {
+    function makeSearchRepo(i: number) {
+      return {
+        fullName: `org/repo-${i}`,
+        description: `description for repo ${i}`,
+        language: "Python",
+        stargazersCount: 100000 - i,
+        pushedAt: "2026-03-08",
+        url: `https://github.com/org/repo-${i}`,
+        searchQuery: "ai-agent",
+      };
+    }
+
+    function manyRepos(): TrendingData {
+      return {
+        trendingRepos: [],
+        searchRepos: Array.from({ length: 5000 }, (_, i) => makeSearchRepo(i)),
+        trendingFetchSuccess: true,
+      };
+    }
+
+    it("caps the prompt at the budget even with thousands of repos", () => {
+      const result = buildTrendingPrompt(manyRepos(), "2026-03-09");
+      // 旧实现下这里是 1,184,043 量级；预算生效后必须落在默认预算内
+      expect(result.length).toBeLessThanOrEqual(TRENDING_PROMPT_MAX_CHARS);
+      expect(result.length).toBeGreaterThan(1000); // 不是被砍成空壳
+    });
+
+    it("honours an explicit smaller budget (the shrink-retry ladder)", () => {
+      for (const budget of [12000, 8000, 6000, 4000, 3000]) {
+        const result = buildTrendingPrompt(manyRepos(), "2026-03-09", "zh", budget);
+        expect(result.length).toBeLessThanOrEqual(budget);
+      }
+    });
+
+    it("has a documented floor: the instruction skeleton itself cannot be trimmed", () => {
+      // 预算低于"指令骨架"时兑现不了——骨架是 prompt 的固定正文，不可裁。
+      // 这里把下限量出来钉住，免得缩预算阶梯调到比骨架还小时被误读成"预算生效了"。
+      const emptyData: TrendingData = { trendingRepos: [], searchRepos: [], trendingFetchSuccess: false };
+      const skeleton = buildTrendingPrompt(emptyData, "2026-03-09", "zh", 1).length;
+      expect(skeleton).toBeGreaterThan(500); // 骨架非空
+      expect(skeleton).toBeLessThan(3000); // 且远小于默认预算，缩预算阶梯有真实空间
+      const floored = buildTrendingPrompt(manyRepos(), "2026-03-09", "zh", 1);
+      expect(floored.length).toBeLessThanOrEqual(skeleton + 2500); // 数据段仍被压到最小档
+    });
+
+    it("keeps the highest-star repos and states how many were omitted", () => {
+      const result = buildTrendingPrompt(manyRepos(), "2026-03-09", "zh", 6000);
+      expect(result).toContain("org/repo-0"); // stars 最高者必留
+      expect(result).toContain("未列出"); // 省略数如实写明，不静默丢
+      expect(result).toMatch(/列出 \d+ \/ 共 5000 个仓库/);
+    });
+
+    it("uses Search-API fallback repos instead of the failure placeholder", () => {
+      // HTML 通道被挡时 trending.ts 用 Search API 兜底填 trendingRepos；
+      // 旧实现要求 trendingFetchSuccess 才渲染，会把兜底数据整段丢成占位符。
+      const data: TrendingData = {
+        trendingRepos: [
+          {
+            fullName: "org/fallback-repo",
+            description: "from search fallback",
+            language: "Go",
+            todayStars: 0,
+            totalStars: 900,
+            forks: 10,
+            url: "https://github.com/org/fallback-repo",
+          },
+        ],
+        searchRepos: [],
+        trendingFetchSuccess: false,
+      };
+      const result = buildTrendingPrompt(data, "2026-03-09", "zh");
+      expect(result).toContain("org/fallback-repo");
+      expect(result).not.toContain("未能抓取");
+    });
   });
 });
 

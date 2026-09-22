@@ -28,8 +28,8 @@ import {
   buildPeersComparisonPrompt,
   buildSkillsPrompt,
 } from "./prompts.ts";
-import { buildTrendingPrompt, buildHighlightsPrompt, type ReportHighlights } from "./prompts-data.ts";
-import { callLlm, saveFile, autoGenFooter, LLM_TOKENS_TRENDING, recordFleetHealth } from "./report.ts";
+import { buildHighlightsPrompt, type ReportHighlights } from "./prompts-data.ts";
+import { callLlm, saveFile, autoGenFooter, recordFleetHealth, summarizeTrending } from "./report.ts";
 import { buildCliReportContent, buildOpenclawReportContent } from "./report-builders.ts";
 import {
   saveWebReport,
@@ -288,12 +288,7 @@ async function generateSummaries(
       if (!hasData) {
         return MSG.trendingNoData[lang];
       }
-      return summarize(
-        "trending",
-        buildTrendingPrompt(trendingData, dateStr, lang),
-        MSG.trendingFailed[lang],
-        LLM_TOKENS_TRENDING,
-      );
+      return summarizeTrending(trendingData, dateStr, lang);
     })(),
   ]);
 

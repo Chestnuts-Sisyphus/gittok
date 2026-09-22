@@ -14,39 +14,115 @@ import type { HfData } from "./hf.ts";
 import type { DevtoData } from "./devto.ts";
 import type { LobstersData } from "./lobsters.ts";
 import type { Lang } from "./i18n.ts";
-export function buildTrendingPrompt(data: TrendingData, dateStr: string, lang: Lang = "zh"): string {
+/**
+ * trending 日报 prompt 的字符预算（GA5，2026-09-22）。
+ *
+ * 为什么需要它：旗舰日报 `ai-trending` 自 2026-09-06 起连续输出失败占位符。
+ * 一手证据在 `data/fleet-health.json` 的 digest 条目里（2026-09-21T23:14Z）：
+ *   `zhipu#5  Error: 400 Prompt exceeds max length`
+ *   `groq#9   Error: 413 Request too large for model qwen/qwen3.8-27b ... on tokens per minu…`
+ * 实测根因（`scripts/ga5-trending-prompt-probe.ts`）：主题搜索结果膨胀到 **5930 个仓库**，
+ * 拼出的 prompt 达 **1,184,043 字符**——任何免费档都吃不下，所以必然回落成占位符。
+ *
+ * 预算把"超长必然失败"换成"按价值排序后的截断"，并在正文里如实写明省略了多少个，
+ * 不静默丢数据。默认 20000 字符（含模板骨架），对 8000 TPM 档与 128K 上下文档都留足余量。
+ */
+export const TRENDING_PROMPT_MAX_CHARS = 20000;
+
+/** 单个仓库条目里描述最多留多少字符（避免一条长描述吃掉整个预算） */
+const REPO_ENTRY_MAX_CHARS = 200;
+
+/** 模板骨架（两份语言的固定正文）预留量 */
+const PROMPT_SKELETON_RESERVE = 4000;
+
+function clip(text: string, max: number): string {
+  return text.length <= max ? text : `${text.slice(0, max - 1)}…`;
+}
+
+/** 按预算逐条装填；装不下的不装，并把"装了几条／丢了几条"如实带回 */
+function fitSection<T>(
+  items: T[],
+  render: (item: T) => string,
+  budget: number,
+): { text: string; included: number; omitted: number } {
+  const parts: string[] = [];
+  let used = 0;
+  for (const item of items) {
+    const line = render(item);
+    if (used + line.length + 1 > budget) break;
+    parts.push(line);
+    used += line.length + 1;
+  }
+  return { text: parts.join("\n"), included: parts.length, omitted: items.length - parts.length };
+}
+
+export function buildTrendingPrompt(
+  data: TrendingData,
+  dateStr: string,
+  lang: Lang = "zh",
+  budget: number = TRENDING_PROMPT_MAX_CHARS,
+): string {
+  const dataBudget = Math.max(2000, budget - PROMPT_SKELETON_RESERVE);
+
+  // 排序＝价值排序：trending 看今日新增（其次总星），主题搜索看总星。
+  // 截断只发生在"装不下"时，且顺序可复现（同分保持原序，Array.prototype.sort 在本运行时稳定）。
+  const trendingRanked = [...data.trendingRepos].sort(
+    (a, b) => b.todayStars - a.todayStars || b.totalStars - a.totalStars,
+  );
+  const searchRanked = [...data.searchRepos].sort((a, b) => b.stargazersCount - a.stargazersCount);
+
+  // 六成预算给主题搜索（它是条目的主体），四成给 trending 榜单
+  const trendingFit = fitSection(
+    trendingRanked,
+    (r) =>
+      `- [${r.fullName}](${r.url})` +
+      (r.language ? ` [${r.language}]` : "") +
+      ` ⭐${r.totalStars.toLocaleString()}` +
+      (r.todayStars > 0 ? ` (+${r.todayStars} today)` : "") +
+      (r.forks > 0 ? ` 🍴${r.forks.toLocaleString()}` : "") +
+      (r.description ? `\n  ${clip(r.description, REPO_ENTRY_MAX_CHARS)}` : ""),
+    Math.floor(dataBudget * 0.4),
+  );
+  const searchFit = fitSection(
+    searchRanked,
+    (r) =>
+      `- [${r.fullName}](${r.url})` +
+      (r.language ? ` [${r.language}]` : "") +
+      ` ⭐${r.stargazersCount.toLocaleString()}` +
+      ` [topic:${r.searchQuery}]` +
+      (r.description ? `\n  ${clip(r.description, REPO_ENTRY_MAX_CHARS)}` : ""),
+    Math.floor(dataBudget * 0.6),
+  );
+
+  // 榜单有没有抓到，看**有没有仓库**而不是看 HTML 抓取标志：HTML 通道被挡时
+  // trending.ts 会用 Search API 兜底填 trendingRepos，那批数据同样是可用的榜单数据，
+  // 旧写法（要求 trendingFetchSuccess）会把兜底数据整段丢成占位符。
   const trendingSection =
-    data.trendingFetchSuccess && data.trendingRepos.length > 0
-      ? data.trendingRepos
-          .map(
-            (r) =>
-              `- [${r.fullName}](${r.url})` +
-              (r.language ? ` [${r.language}]` : "") +
-              ` ⭐${r.totalStars.toLocaleString()}` +
-              (r.todayStars > 0 ? ` (+${r.todayStars} today)` : "") +
-              (r.forks > 0 ? ` 🍴${r.forks.toLocaleString()}` : "") +
-              (r.description ? `\n  ${r.description}` : ""),
-          )
-          .join("\n")
+    trendingRanked.length > 0
+      ? trendingFit.text +
+        (trendingFit.omitted > 0
+          ? lang === "en"
+            ? `\n(…${trendingFit.omitted} more repositories omitted: prompt size budget)`
+            : `\n（…另有 ${trendingFit.omitted} 个仓库因 prompt 体积预算未列出）`
+          : "")
       : lang === "en"
         ? "(Unable to fetch today's GitHub Trending list)"
         : "（未能抓取今日 GitHub Trending 榜单）";
 
   const searchSection =
-    data.searchRepos.length > 0
-      ? data.searchRepos
-          .map(
-            (r) =>
-              `- [${r.fullName}](${r.url})` +
-              (r.language ? ` [${r.language}]` : "") +
-              ` ⭐${r.stargazersCount.toLocaleString()}` +
-              ` [topic:${r.searchQuery}]` +
-              (r.description ? `\n  ${r.description}` : ""),
-          )
-          .join("\n")
+    searchRanked.length > 0
+      ? searchFit.text +
+        (searchFit.omitted > 0
+          ? lang === "en"
+            ? `\n(…${searchFit.omitted} more repositories omitted: prompt size budget)`
+            : `\n（…另有 ${searchFit.omitted} 个仓库因 prompt 体积预算未列出）`
+          : "")
       : lang === "en"
         ? "(No search results)"
         : "（无搜索结果）";
+
+  const trendingShown = trendingFit.included;
+  const searchShown = searchFit.included;
 
   if (lang === "en") {
     return `You are a technical analyst focused on the AI open-source ecosystem. The following is ${dateStr} GitHub AI-related trending repository data. Please filter for AI relevance, categorize, and analyze trends.
@@ -57,12 +133,12 @@ export function buildTrendingPrompt(data: TrendingData, dateStr: string, lang: L
 
 ---
 
-## GitHub Today's Trending (${data.trendingRepos.length} repositories)
+## GitHub Today's Trending (${trendingShown} of ${data.trendingRepos.length} repositories)
 ${trendingSection}
 
 ---
 
-## AI Topic Search Results (${data.searchRepos.length} repositories, deduplicated)
+## AI Topic Search Results (${searchShown} of ${data.searchRepos.length} repositories, deduplicated)
 ${searchSection}
 
 ---
@@ -106,12 +182,12 @@ Style: English, professional and concise, must include GitHub links for every pr
 
 ---
 
-## GitHub 今日 Trending 榜单（共 ${data.trendingRepos.length} 个仓库）
+## GitHub 今日 Trending 榜单（列出 ${trendingShown} / 共 ${data.trendingRepos.length} 个仓库，按今日新增排序）
 ${trendingSection}
 
 ---
 
-## AI 主题搜索结果（共 ${data.searchRepos.length} 个仓库，已去重）
+## AI 主题搜索结果（列出 ${searchShown} / 共 ${data.searchRepos.length} 个仓库，已去重，按 stars 排序）
 ${searchSection}
 
 ---

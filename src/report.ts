@@ -4,8 +4,10 @@
 
 import fs from "node:fs";
 import path from "node:path";
-import { type Lang, FOOTER } from "./i18n.ts";
+import { type Lang, FOOTER, MSG } from "./i18n.ts";
 import { sleep } from "./date.ts";
+import { buildTrendingPrompt, TRENDING_PROMPT_MAX_CHARS } from "./prompts-data.ts";
+import type { TrendingData } from "./trending.ts";
 
 // ---------------------------------------------------------------------------
 // LLM token budget constants
@@ -282,6 +284,44 @@ const callLlmImpl = createLlmCaller(createProvider(), parseFallbackFactories()) 
 /** digest 全管道统一 LLM 入口（主源 + LLM_FALLBACKS 并行分摊 + 429 冷却轮转） */
 export async function callLlm(prompt: string, maxTokens = LLM_TOKENS_DEFAULT): Promise<string> {
   return callLlmImpl(prompt, maxTokens);
+}
+
+/**
+ * trending 日报专用调用：**体积预算 + 缩预算重试阶梯**（GA5，2026-09-22）。
+ *
+ * 为什么不能只用上层那个"吞错误返回占位符"的包装：trending 的失败恰好是可诊断、
+ * 可退让的——一手证据在 `data/fleet-health.json` 的 digest 条目里：
+ *   `zhipu#5  Error: 400 Prompt exceeds max length`
+ *   `groq#9   Error: 413 Request too large for model qwen/qwen3.8-27b`
+ * 实测（`scripts/ga5-trending-prompt-probe.ts`）主题搜索结果曾膨胀到 5930 个仓库、
+ * prompt 达 1,184,043 字符——任何免费档都吃不下，于是必然回落成占位符。
+ *
+ * 少列一些仓库仍能产出合格日报，回落成占位符才是纯损失。所以这里按 1 → 1/2 → 1/4
+ * 的预算依次重试，每次失败都把错误原文打进日志（Actions log 可查），全败才回落占位符。
+ * 放在 report.ts 而不是 index.ts：这样它可被验证脚本直接复用，不必复制逻辑。
+ */
+export async function summarizeTrending(data: TrendingData, dateStr: string, lang: Lang): Promise<string> {
+  const budgets = [
+    TRENDING_PROMPT_MAX_CHARS,
+    Math.floor(TRENDING_PROMPT_MAX_CHARS / 2),
+    Math.floor(TRENDING_PROMPT_MAX_CHARS / 4),
+  ];
+  let lastErr = "";
+  for (const budget of budgets) {
+    const prompt = buildTrendingPrompt(data, dateStr, lang, budget);
+    console.log(`  [trending] Calling LLM (budget=${budget}, actual chars=${prompt.length})...`);
+    try {
+      const out = await callLlm(prompt, LLM_TOKENS_TRENDING);
+      if (out.trim()) return out;
+      lastErr = "empty response";
+      console.error(`  [trending] Empty response at budget=${budget}`);
+    } catch (err) {
+      lastErr = String(err);
+      console.error(`  [trending] LLM call failed at budget=${budget}: ${err}`);
+    }
+  }
+  console.error(`  [trending] All budgets exhausted; falling back to placeholder. last error: ${lastErr}`);
+  return MSG.trendingFailed[lang];
 }
 
 /** 当前进程 LLM 编队健康快照（未跑过任何调用时返回空数组） */
