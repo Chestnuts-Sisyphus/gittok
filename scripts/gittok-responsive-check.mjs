@@ -92,22 +92,29 @@ const FEED_CARD_MAX = 700;
  *  单列档上限 700px（37 汉字）；多列区实测卡宽 420–668（两列）/ 430–540（三列），全在区间内。
  *  实测代价（2841 张真实卡 + 真字体度量）：420 卡 71% 摘要被截、640 卡 15.9%、700 卡 0.8%。
  *  所以区间取 [21, 38]：下限＝21（列宽下限 420px 的实测容量），上限＝38（考证上沿，实测最大卡 700px＝37 字）。 */
-const FEED_CAPACITY_MIN = 21;
+const FEED_CAPACITY_MIN = 24;
 const FEED_CAPACITY_MAX = 38;
 /** 列数规则（2026-09-23 第四版，**列数由 JS 单一真源反解、CSS 只认 `--feed-cols`**）：
- *  cols = ceil((可用宽+gap)/(700+gap))，若会把卡片压到 <420px 就减一列 → **卡片宽度永远落在 [420,700]**
- *  （＝21–37 汉字，落在考证的可读区间 22–38 字内/边缘）。两列下界 = 网格 856px（＝视口 1135，含侧栏 216/内距 48/滚动条槽 15）；
- *  三列下界 = 网格 1416px（视口 1695）。内容区上限跟顶栏口径 1650px，超宽屏由「侧栏＋内容整壳 1866px 居中」收边
+ *  cols = ceil((可用宽+gap)/(700+gap))，若会把卡片压到 <480px 就减一列 → **卡片宽度永远落在 [480,700]**
+ *  （＝24–37 汉字，落在考证的可读区间 22–38 字内）。两列下界 = 网格 976px（＝视口 1255，含侧栏 216/内距 48/滚动条槽 15）；
+ *  三列下界 = 网格 1472px（视口 1751）。内容区上限跟顶栏口径 1650px，超宽屏由「侧栏＋内容整壳 1866px 居中」收边
  *  （Bootstrap「容器 ≥1400px 封顶」/ Ant Design「留白到限定值再缩放主内容」同路线），故 1920/2560 都停在三列 523px。
+ *  ⚠ 2026-09-23 三轮（甲A4）：最小卡宽 420→**480**——栗子「本来该两列的场景变成了三列窄卡」
+ *  （1700 档实测 3×463）。改后 1700 → 2×700；1275 仍两列（硬约束）；1920/2560 三列 523 不变。
+ *  ⚠ 同轮 T3：滚动条改回自绘 8px 细条（根因＝`* { scrollbar-color }` 让 Chromium 整块忽略
+ *  `::-webkit-scrollbar`），`.app-body` 的 `scrollbar-gutter: stable` 预留槽随之 15→8px
+ *  → 多列档可用宽 +7px：1275 卡宽 490→**494**、1343 524→528、1400 553→556、1600 652→656
+ *  （单列档卡宽受 700 上限约束、不受影响；1920/2560 由 1866px 外壳封顶、逐像素不变）。
  *  实测（本机无头 Chrome，含/不含 --hide-scrollbars 两遍读数一致——`.app-body` 已 `scrollbar-gutter: stable`）。 */
 const EXPECT_DESKTOP = {
   "2560x1080": { cols: 3, cardW: 523, capMin: 27, capMax: 27 },
   "1920x1080": { cols: 3, cardW: 523, capMin: 27, capMax: 27 },
-  "1600x900": { cols: 2, cardW: 652, capMin: 35, capMax: 35 },
-  "1400x900": { cols: 2, cardW: 553, capMin: 29, capMax: 29 },
-  "1343x900": { cols: 2, cardW: 524, capMin: 27, capMax: 27 },
-  "1275x900": { cols: 2, cardW: 490, capMin: 25, capMax: 25 },
-  "1200x900": { cols: 2, cardW: 452, capMin: 23, capMax: 23 },
+  "1600x900": { cols: 2, cardW: 656, capMin: 35, capMax: 35 },
+  "1400x900": { cols: 2, cardW: 556, capMin: 29, capMax: 29 },
+  "1343x900": { cols: 2, cardW: 528, capMin: 27, capMax: 27 },
+  "1275x900": { cols: 2, cardW: 494, capMin: 25, capMax: 25 },
+  // 1200 档：网格 921 < 两列下界 976 → 单列 700（改前是 2×452＝23 字，栗子点名的「窄卡」同族）
+  "1200x900": { cols: 1, cardW: 700, capMin: 37, capMax: 37 },
   "1100x800": { cols: 1, cardW: 700, capMin: 37, capMax: 37 },
   "1000x800": { cols: 1, cardW: 700, capMin: 37, capMax: 37 },
   "900x800": { cols: 1, cardW: 700, capMin: 37, capMax: 37 },
@@ -328,7 +335,11 @@ window.__gt = {
     const hd=document.querySelector('.header');
     const cs=(e)=>e? getComputedStyle(e):null;
     const sbcs=cs(sb), bbcs=cs(bb), hdcs=cs(hd);
-    const iconMode = sb && sbcs.display!=='none' && Math.round(sb.getBoundingClientRect().width) <= 100;
+    const w = sb ? Math.round(sb.getBoundingClientRect().width) : 0;
+    // 2026-09-23 三轮：≤768 的侧栏从 display:none 改成「塌缩态」（width:0 + visibility:hidden）——
+    // 它仍在渲染树里，但**不是**图标栏。判定必须带上可见性与宽度，否则会在手机档误跑图标栏断言
+    // （实测：side-item 全被 visibility 过滤 → itemMinH 0 → 5 档假红）。
+    const iconMode = !!sb && sbcs.display!=='none' && sbcs.visibility!=='hidden' && w > 0 && w <= 100;
     const items=[...document.querySelectorAll('.sidebar .side-item')].filter(e=>{
       const s=getComputedStyle(e); return s.display!=='none' && s.visibility!=='hidden';});
     return {
@@ -539,14 +550,23 @@ async function checkView(cdp, view) {
     const tracks=lcs? lcs.gridTemplateColumns.split(' ').filter(Boolean): [];
     const cr=card.getBoundingClientRect();
     const lr=list? list.getBoundingClientRect(): cr;
+    // 三轮 T3/甲1 新判据用：单列档「频道头/偏好条」的左右缘必须与卡片一致
+    //（旧判据拿网格盒宽当代理——三轮把「收块」换成「轨道收 700 + 块满宽」后，
+    // 网格盒宽不再代表可见内容宽，代理失效；直接比可见矩形才是那条要求的本义）。
+    const cue=document.querySelector('.feed-content > .channel-head, .feed-content > .pref-prompt, .feed-content > .status');
+    const cr2=cue? cue.getBoundingClientRect(): null;
     return {s: window.__gt.measure('.summary', 12), cap: window.__gt.capacity('.summary', 12),
             r: window.__gt.measure('.reason-clamped', 12), t: window.__gt.boxOverflow('.card-tags', 12),
             cardW: cr.width, cardLeftInGrid: Math.round(cr.left-lr.left),
             gridW: list? list.clientWidth: 0, gridRightSlack: Math.round(lr.right-cr.right),
+            cueW: cr2? cr2.width: 0, cueDelta: cr2? Math.round(Math.abs(cr2.left-cr.left)): null,
+            cueRightDelta: cr2? Math.round(Math.abs(cr2.right-cr.right)): null,
             cols: tracks.length, tracks: tracks.map(t=>Math.round(parseFloat(t)))};
   `);
   const sClip = m.s.filter((x) => x.visible < x.total).length;
   const capMin = Math.min(...m.cap.map((x) => x.cap));
+  // 单列档「频道头与卡片左右缘对齐」：判左右缘各 ≤4px（浮动取整余量）
+  const cueAlignsCard = m.cueDelta !== null && m.cueDelta <= 4 && m.cueRightDelta <= 4;
   if (view.w > 768) {
     report(
       view.key,
@@ -574,12 +594,14 @@ async function checkView(cdp, view) {
     );
     report(
       view.key,
-      `列数 = 预期表 且单列档内容块 ≤「卡宽上限＋内距」（甲3/栗子 09-23 截图那条）`,
-      !!exp && m.cols === exp.cols && (m.cols > 1 || m.gridW <= FEED_CARD_MAX + 48 + 1),
+      `列数 = 预期表 且单列档频道头与卡片左右缘对齐（甲3/栗子 09-23 截图那条）`,
+      !!exp && m.cols === exp.cols && (m.cols > 1 || cueAlignsCard),
       `列数 ${m.cols}（预期 ${exp ? exp.cols : "?"}）｜网格 ${m.gridW}px，卡宽 ${Math.round(m.cardW)}px` +
-        `｜单列档要求网格 ≤ ${FEED_CARD_MAX + 48}（卡宽上限＋内距）：` +
+        `｜单列档要求「频道头 ≡ 卡片」左右缘：` +
         (m.cols === 1
-          ? `实测 ${m.gridW}px → ${m.gridW <= FEED_CARD_MAX + 49 ? "内容块与卡片左右缘对齐 ✓（留白移到内容块之外，成为页面边距）" : "❌ 卡片会比上面的频道头窄 → 出现「悬浮在空处」的错位"}`
+          ? m.cueDelta === null
+            ? "本档无频道头/偏好条可测（不判）"
+            : `实测 左缘差 ${m.cueDelta}px、右缘差 ${m.cueRightDelta}px → ${cueAlignsCard ? "对齐 ✓（条与卡同宽 700，留白在右侧作页面边距）" : "❌ 卡片与上面的条错位"}`
           : `多列填满行 ✓`),
     );
   } else {
@@ -699,11 +721,20 @@ async function checkView(cdp, view) {
   if (ch.sidebar || ch.bottomBar) {
     // 滚动条样式 token 在场（甲5）：scrollbar-color 由 G5 的 * 规则声明；gutter stable 只在 .app-body
     const sbInfo = await cdp.eval(`return window.__gt.scrollbarInfo('.app-body');`);
+    // 2026-09-23 三轮 T3：判据从「scrollbar-color 非 auto」改成**「自绘细条在场（非系统回退）」**。
+    // 为什么换：Chromium 里 `scrollbar-color` 一非 auto，`::-webkit-scrollbar` 整块被忽略
+    // （实测三格对照：只写 webkit→自绘 20px 生效；两者都写→回落系统 15px）。
+    // 所以三轮流行的做法是把标准属性关进 `@supports not selector(::-webkit-scrollbar)`（Firefox 专用）,
+    // Chromium 侧 scrollbar-color 的 computed 值**本来就该是 auto**——旧断言把「修好了」判成红。
+    // 新判据量的是「渲染结果」：槽位宽度必须等于自绘声明的 8px（系统回退是 15px）。
+    const sizeOk = !!sbInfo && sbInfo.slot === 8;
     report(
       view.key,
-      "滚动条样式 token 在场（甲5：scrollbar-color 深色细条）",
-      !!sbInfo && sbInfo.color && sbInfo.color !== "auto",
-      `app-body scrollbar-color ${sbInfo?.color ?? "未声明"}｜gutter ${sbInfo?.gutter ?? "?"}｜槽位 ${sbInfo?.slot ?? "?"}px`,
+      "滚动条样式：自绘细条在场、非系统回退（甲5/三轮 T3）",
+      sizeOk,
+      `app-body 槽位 ${sbInfo?.slot ?? "?"}px（自绘声明 8px；系统回退会是 15px）` +
+        `｜scrollbar-color ${sbInfo?.color ?? "未声明"}（Chromium 走 ::-webkit-scrollbar 自绘，故为 auto；Firefox 由 @supports 分支接管）` +
+        `｜gutter ${sbInfo?.gutter ?? "?"}`,
     );
   }
 

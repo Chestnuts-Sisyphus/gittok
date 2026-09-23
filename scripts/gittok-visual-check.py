@@ -130,7 +130,12 @@ def launch(url, port, profile, disable_gpu=True):
         "--no-default-browser-check",
         f"--user-data-dir={TMP_BASE}/accept_{profile}",
         "--window-size=1400,900",
-        "--hide-scrollbars",
+        # ⚠ 三轮 T5：**删掉 --hide-scrollbars**。
+        #   改前它让本闸对 T3 的主体（滚动条）完全失明：屏幕上看不到条、侧栏也无占位，
+        #   于是「观感清单-滚动条」段的截图里根本没有滚动条可看，assert_css 的槽位读数也失真
+        #   （实测：app-body 因 scrollbar-gutter:stable 仍读到 8px 的**预留槽**，
+        #    而侧栏读到 0 → 误判成「侧栏没有细条」；其实只是条被藏了）。
+        #   去掉之后：截图里能看到真实的自绘细条，槽位读数与真实浏览器一致。
         url,
     ]
     if disable_gpu:
@@ -344,6 +349,90 @@ def extra_view_shots(cdp):
            f"{len(made) - len(missing)}/3" + (f" 缺 {missing}" if missing else ""))
 
 
+# ── 三轮 T5（2026-09-23）：观感清单段 ───────────────────────────────────────────
+# ⚠ 头注（二轮教训，写进闸里防止再犯）：
+#   二轮三闸全绿（responsive 312 / drag 15 / visual 10）但栗子看图仍然打回——
+#   **CSS 属性断言 ≠ 审美达标**。闸只能防回归，不能证明好看。
+#   所以「观感类」交付的过关方式有两条腿，缺一不可：
+#     ① 本段这类**可断言**的设计不变量（形态/间距/态色/自绘条）——防回归；
+#     ② 每轮交付必须出**整页截图集**并逐张目测（或 visual-judge 子代理），
+#        过关标准是「他看一眼不皱眉」，不是「断言为真」。截图随本段一并落盘，
+#        交付前必须逐张看（10/10b/11/11b 四张是三轮 T2/T3 的首跑样本）。
+#   判据来源：三轮块1「先量后改」的定版——图标栏取 V2 去框极简式、滚动条取自绘 8px 细条。
+OBSERVE_CHECKS_ICON = [
+    # ① 去框：组容器不再有玻璃底/边框/圆角（深底上再叠一层玻璃＝两层装饰打架）
+    ("图标栏-组容器已去框（无背景图）", "getComputedStyle(document.querySelector('.sidebar .side-group-box')).backgroundImage", "none"),
+    ("图标栏-组容器无边框", "getComputedStyle(document.querySelector('.sidebar .side-group-box')).borderTopWidth", "0px"),
+    ("图标栏-组容器无圆角", "getComputedStyle(document.querySelector('.sidebar .side-group-box')).borderTopLeftRadius", "0px"),
+    # ② 触控与节奏：44×44 正方形指示器 + 4px 纵节奏（间距统一是栗子②的点名项）
+    ("图标栏-指示器 44×44", "JSON.stringify((function(){var e=document.querySelector('.sidebar .side-item');var r=e.getBoundingClientRect();return [Math.round(r.width),Math.round(r.height)];})())", "[44,44]"),
+    ("图标栏-指示器圆角 12px", "getComputedStyle(document.querySelector('.sidebar .side-item')).borderTopLeftRadius", "12px"),
+    ("图标栏-项间距 4px", "getComputedStyle(document.querySelector('.sidebar .side-item')).marginBottom", "4px"),
+    # ③ 激活态＝低饱和指示器底色（不再全宽渐变药丸）
+    ("图标栏-激活态非渐变药丸", "getComputedStyle(document.querySelector('.sidebar .side-item.active')).backgroundImage", "none"),
+    ("图标栏-激活态用 accent-light 底", "getComputedStyle(document.querySelector('.sidebar .side-item.active')).backgroundColor", "rgba(99, 102, 241, 0.12)"),
+    # ④ 分组：居中细线（20×1），不再悬空 3px 短杠
+    ("图标栏-分组线 20×1", "JSON.stringify((function(){var g=document.querySelector('.sidebar .side-group');var b=getComputedStyle(g,'::before');return [b.width,b.height];})())", '["20px","1px"]'),
+    # ⑤ 轨道自滚：滚动条隐藏（64px 轨道里再挤 8px 槽会与 44px 图标抢位）+ 底缘渐隐作滚动暗示
+    ("图标栏-轨道条已隐藏（不占位）", "String((function(){var sb=document.querySelector('.sidebar');return sb.offsetWidth-sb.clientWidth;})())", "0"),
+    ("图标栏-底缘渐隐在场", "String(getComputedStyle(document.querySelector('.sidebar')).maskImage.indexOf('linear-gradient')>=0)", "true"),
+]
+OBSERVE_CHECKS_SCROLLBAR = [
+    # 自绘细条（T3 根因：`* { scrollbar-color }` 非 auto 会让 Chromium 整块忽略 ::-webkit-scrollbar）
+    ("滚动条-自绘 8px 在场（系统回退是 15px）", "String((function(){var a=document.querySelector('.app-body');return a.offsetWidth-a.clientWidth;})())", "8"),
+    ("滚动条-宽度 token=8px（与 --scrollbar-size 同源）", "getComputedStyle(document.documentElement).getPropertyValue('--scrollbar-size').trim()", "8px"),
+    ("滚动条-槽位策略：app-body 常驻预留（列数不摆动）", "getComputedStyle(document.querySelector('.app-body')).scrollbarGutter", "stable"),
+]
+
+
+def _shot_clip(cdp, name, clip):
+    os.makedirs(OUT_DIR, exist_ok=True)
+    r = cdp.call("Page.captureScreenshot", {"format": "png", "fromSurface": True, "clip": clip})
+    data = r.get("result", {}).get("data")
+    if not data:
+        report(f"截图-{name}", False, "无数据")
+        return
+    import base64
+    with open(os.path.join(OUT_DIR, name), "wb") as f:
+        f.write(base64.b64decode(data))
+    report(f"截图-{name}", True, name)
+
+
+def observe_checklist(cdp):
+    """观感清单段：图标栏 880×900 + 矮视口两条滚动条 1200×600 两组设计不变量。
+    两张特写一并落盘——**交付前必须逐张目测**（断言只防回归，不证明好看）。"""
+    cdp.call("Emulation.setDeviceMetricsOverride", {"width": 880, "height": 900, "deviceScaleFactor": 1, "mobile": False})
+    time.sleep(1.5)
+    assert_css(cdp, OBSERVE_CHECKS_ICON, "观感清单-图标栏（880×900）")
+    shot(cdp, "10_observe_rail_880.png")
+    _shot_clip(cdp, "10b_observe_rail_zoom.png", {"x": 0, "y": 60, "width": 100, "height": 540, "scale": 2})
+    # 先回首页重载：本段位于 nav_shots/extra_view_shots 之后，页面停在别的 tab 上，
+    # 而「两条滚动条同屏」是**首页**的形态（别的页侧栏内容少、不溢出 → 没有第二条）。重载消除这个变量。
+    cdp.eval("location.reload(); 1")
+    time.sleep(2.5)
+    cdp.call("Emulation.setDeviceMetricsOverride", {"width": 1200, "height": 600, "deviceScaleFactor": 1, "mobile": False})
+    time.sleep(1.5)
+    assert_css(cdp, OBSERVE_CHECKS_SCROLLBAR, "观感清单-滚动条（1200×600 矮视口两条同屏）")
+    # 宽档侧栏：**溢出时**必须用同一套 8px 自绘细条（两条同屏观感统一）；
+    # 内容不高的频道侧栏不溢出＝不占位，那是正常态（不做「恒 8」的假判据）。
+    sb = cdp.eval(
+        "(function(){var b=document.querySelector('.sidebar');var cs=getComputedStyle(b);"
+        "return [b.scrollHeight-b.clientHeight, b.offsetWidth-b.clientWidth, Math.round(b.getBoundingClientRect().width),"
+        "cs.visibility, window.innerWidth, cs.overflowY, cs.scrollbarWidth, cs.maskImage.slice(0,24),"
+        "document.querySelectorAll('.sidebar').length, (b.parentElement||{}).className];})()"
+    ) or [False, 0, 0, "?", 0]
+    report(
+        "观感清单-宽档侧栏溢出时用同一套细条",
+        (not isinstance(sb[0], int)) or sb[0] <= 4 or sb[1] == 8,
+        f"侧栏溢出量 {sb[0]}px（≤4px 视为亚像素噪声，不判）｜滚动条占位 {sb[1]}px｜侧栏宽 {sb[2]}px｜visibility {sb[3]}｜视口 {sb[4]}"
+        f"｜overflowY {sb[5]}｜scrollbarWidth {sb[6]}｜mask {sb[7]}｜.sidebar 个数 {sb[8]}｜父类 {sb[9]}"
+        + ("（未溢出，不判）" if not sb[0] else "（应为与内容区同规格 8px）"),
+    )
+    shot(cdp, "11_observe_scroll_1200.png")
+    _shot_clip(cdp, "11b_observe_scrollbar_zoom.png", {"x": 1188, "y": 60, "width": 12, "height": 540, "scale": 6})
+    cdp.call("Emulation.clearDeviceMetricsOverride")
+
+
 def main():
     url = f"http://127.0.0.1:{SRV_PORT}/"
     # 检查 dist 数据规模
@@ -381,6 +470,7 @@ def main():
         shot(cdp, "01_home.png")
         nav_shots(cdp)
         extra_view_shots(cdp)
+        observe_checklist(cdp)
     finally:
         p.kill()
 

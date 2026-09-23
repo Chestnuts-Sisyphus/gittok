@@ -147,6 +147,25 @@ describe("feedViewportOf", () => {
   });
 });
 
+describe("CSS 结构自检（三轮踩过的坑：注释没闭合会把下一条规则整条吃掉）", () => {
+  const cssRaw = readFileSync(resolve("web/src/styles.css"), "utf8");
+  it("注释配平（/* 与 */ 数量相等）", () => {
+    expect((cssRaw.match(/\/\*/g) ?? []).length).toBe((cssRaw.match(/\*\//g) ?? []).length);
+  });
+  it("花括号配平", () => {
+    const stripped = cssRaw.replace(/\/\*[\s\S]*?\*\//g, "");
+    expect((stripped.match(/\{/g) ?? []).length).toBe((stripped.match(/\}/g) ?? []).length);
+  });
+  it("注释外不出现中文破折号行（＝注释漏闭合的指纹）", () => {
+    // 三轮实伤：新写的一段 `── … ──` 落在注释的 `*/` 之后 → 浏览器把这段文字当成选择器，
+    // 紧跟着的 `.feed-content { … }` 整条被吞 → 内容区宽度/内距全失效（实测网格 1602→1650、
+    // 卡宽 523→539、拖动闸四条列数翻转全丢）。这条断言是那次的直接指纹。
+    const stripped = cssRaw.replace(/\/\*[\s\S]*?\*\//g, "");
+    const stray = stripped.split("\n").filter((l) => l.includes("──") && !l.trim().startsWith("//"));
+    expect(stray).toEqual([]);
+  });
+});
+
 describe("双写契约（CSS 与 JS 常量不许漂）", () => {
   const cssRaw = readFileSync(resolve("web/src/styles.css"), "utf8");
   it("--feed-col-min === FEED_COL_MIN（G-10 列数最小宽）", () => {
@@ -176,50 +195,79 @@ describe("卡宽上限（2026-09-23 栗子：能两列时不要强行拉伸）",
     expect(feedList).not.toMatch(/minmax\([^)]*var\(--feed-card-max\)/);
   });
 
-  it("卡宽上限只给 >768（手机档靠 1fr 占满，是既有设计）", () => {
-    const block = css.match(/@media \(min-width: 769px\)\s*\{([\s\S]*?)\n\}/)?.[1] ?? "";
-    expect(block).toMatch(/\.feed-list\s*>\s*\.card/);
-    expect(block).toMatch(/max-width:\s*var\(--feed-card-max\)/);
-    expect(block).toMatch(/justify-self:\s*center/);
+  it("卡宽上限**全档统一**（三轮：跨 768 连续 + 修可读性越界），手机档仍 1fr 占满", () => {
+    // 三轮把上限从 `@media (min-width:769px)` 提成基础规则，两个原因：
+    //   ① 跨 768 连续：手机档原先无上限（768 档卡宽 744 ＝ 40.5 汉字，超考证区间上沿 38），
+    //      一越界上限就生效 → 切换当帧 36–44px 瞬跳（实测 smooth-after-v2.json）；
+    //   ② 上限统一后 768 两侧几何相同，该簇消失；≤768「卡宽 ≥ 视口 88%」仍成立（700/768 = 91.1%）。
+    const base = css.match(/\n\.feed-list\s*>\s*\.card\s*\{([^}]*)\}/)?.[1] ?? "";
+    expect(base).toMatch(/max-width:\s*var\(--feed-card-max\)/);
+    expect(base).toMatch(/justify-self:\s*start/); // 与左对齐的频道头对齐（center 会错开最多 22px）
     // 只有 max-width 不够：grid item 会收缩成 max-content（实测塌成 36px）
-    expect(block).toMatch(/width:\s*100%/);
-    const mobileBlock = css.match(/@media \(max-width: 768px\)\s*\{[\s\S]*?\n\}/)?.[0] ?? "";
+    expect(base).toMatch(/width:\s*100%/);
+    // 手机档仍是 1fr 占满（≤768 的块文件里有多个，取**含 .feed-list 的那个**）
+    const mobileBlocks = [...css.matchAll(/@media \(max-width:\s*768px\)\s*\{[\s\S]*?\n\}/g)].map((m) => m[0]);
+    const mobileBlock = mobileBlocks.find((b) => /\.feed-list\s*\{/.test(b)) ?? "";
     expect(mobileBlock).toMatch(/\.feed-list\s*\{[^}]*grid-template-columns:\s*1fr/);
   });
 });
 
 describe("列数（照 CSS auto-fill 同式还原）", () => {
-  it("列数反解（第四版规则：卡片宽度永在 [420, 700]）", () => {
-    // 规则：cols = ceil((A+gap)/(700+gap))，若卡片被压到 <420 就减一列。用实测网格宽逐点锁。
+  it("列数反解（第四版规则：卡片宽度永在 [480, 700]）", () => {
+    // 规则：cols = ceil((A+gap)/(700+gap))，若卡片被压到 <480 就减一列。用实测网格宽逐点锁。
     expect(feedColsForContentWidth(1602)).toBe(3); // 1920/2560 档 → (1602−32)/3 = 523
-    expect(feedColsForContentWidth(1421)).toBe(3); // 1700 档 → 463
-    expect(feedColsForContentWidth(1416)).toBe(2); // 两列的下界：ceil(1432/716)=2 → (1416−16)/2 = 700（正好到上限）
+    expect(feedColsForContentWidth(1481)).toBe(3); // 1760 档 → 483
+    expect(feedColsForContentWidth(1472)).toBe(3); // 三列的下界：(1472−32)/3 = 480（正好到下限）
+    expect(feedColsForContentWidth(1471)).toBe(2); // 再窄 1px 就会压到 479.67 → 退两列（宁可两列不挤窄卡）
+    expect(feedColsForContentWidth(1421)).toBe(2); // **1700 档 → 两列 700**（栗子点名的场景，改前是 3×463）
+    expect(feedColsForContentWidth(1416)).toBe(2); // 旧两列下界（M=420 时代）：此时两列 700
     expect(feedColsForContentWidth(1352)).toBe(2); // 1631 档 → 668
     expect(feedColsForContentWidth(1321)).toBe(2); // 1600 档 → 652（改前 auto-fill 会排三列各 430＝21 汉字）
     expect(feedColsForContentWidth(1221)).toBe(2); // 1500 档 → 603
     expect(feedColsForContentWidth(1121)).toBe(2); // 1400 档 → 553
     expect(feedColsForContentWidth(1001)).toBe(2); // 1280 档 → 493
-    expect(feedColsForContentWidth(921)).toBe(2); // 1200 档 → 453
-    expect(feedColsForContentWidth(861)).toBe(2); // 1140 档 → 423
-    expect(feedColsForContentWidth(856)).toBe(2); // 两列的下界：(856−16)/2 = 420（正好到下限）
-    expect(feedColsForContentWidth(855)).toBe(1); // 再窄 1px 就会压到 419.5 → 退回单列（宁可单列不挤窄卡）
+    expect(feedColsForContentWidth(996)).toBe(2); // **1275 档 → 490（硬约束：已认可窗口，必须两列）**
+    expect(feedColsForContentWidth(976)).toBe(2); // 两列的新下界：(976−16)/2 = 480（正好到下限）
+    expect(feedColsForContentWidth(975)).toBe(1); // 再窄 1px 就会压到 479.5 → 退回单列（宁可单列不挤窄卡）
+    expect(feedColsForContentWidth(921)).toBe(1); // 1200 档 → 单列 700（改前是 2×453）
+    expect(feedColsForContentWidth(861)).toBe(1); // 1140 档 → 单列 700（改前 2×423）
+    expect(feedColsForContentWidth(856)).toBe(1); // 旧两列下界（M=420）：现在按 480 判已是单列
     expect(feedColsForContentWidth(748)).toBe(1); // 单列带（内容块收到 748）
     expect(feedColsForContentWidth(721)).toBe(1); // 1000 档
     expect(feedColsForContentWidth(661)).toBe(1); // 940 档（卡片填满）
-    expect(feedColsForContentWidth(420)).toBe(1);
+    expect(feedColsForContentWidth(480)).toBe(1);
     expect(feedColsForContentWidth(366)).toBe(1); // ≤768 手机档：1 列填满
     expect(feedColsForContentWidth(0)).toBe(1);
   });
 
-  it("列宽下限 420px＝21 汉字、单列档上限 700px＝37 汉字（考证区间的实测取舍）", () => {
-    // 实测口径：一行容量 = floor((卡宽 − 69) / 16.66)
-    expect(FEED_COL_MIN).toBe(420);
-    expect(Math.floor((FEED_COL_MIN - 69) / 16.66)).toBe(21);
-    // 考证的可读区间下沿是 22 汉字（Bringhurst 45–75 拉丁字符 ÷ 2；Unicode TR11 全角 1em／半角 1/2em）。
-    // 取 21 低 1 字属**实测取舍**：每降 20px「单列＋留白」那段就窄 20px，而 1 个字（16.7px）肉眼不可辨。
-    expect(Math.floor((FEED_COL_MIN + 20 - 69) / 16.66)).toBe(22);
-    // 上限 700＝37 汉字，落在 22–38 区间内（WCAG 2.2 SC 1.4.8 的 CJK 上限 40，原文声明非强制）
+  it("列宽下限 480px＝24 汉字、单列档上限 700px＝37 汉字（考证区间的实测取舍）", () => {
+    // 实测口径：一行容量 = floor((卡宽 − 69) / 16.66)（与闸的 1275 档标定 25 字同式）
+    expect(FEED_COL_MIN).toBe(480);
+    expect(Math.floor((FEED_COL_MIN - 69) / 16.66)).toBe(24);
+    // 考证的可读区间 22–38 汉字（Bringhurst 45–75 拉丁字符 ÷ 2；Unicode TR11 全角 1em／半角 1/2em；
+    // WCAG 2.2 SC 1.4.8 只给上限「80 chars (40 if CJK)」，原文声明非强制）——480 落在区间内。
+    expect(Math.floor((FEED_COL_MIN - 69) / 16.66)).toBeGreaterThanOrEqual(22);
+    // 上限 700＝37 汉字，落在 22–38 区间内（WCAG 的 CJK 上限 40）
     expect(FEED_CARD_MAX).toBe(700);
     expect(Math.floor((FEED_CARD_MAX - 69) / 16.66)).toBe(37);
+  });
+
+  it("单列带由列数驱动、与像素边界解耦（乙B6）", () => {
+    // 旧写法把 1134 写死在 @media 里（＝2×420+16+216+48+15−1 的派生值）；改 M 就会过期。
+    const cssNoComment = readFileSync(resolve("web/src/styles.css"), "utf8").replace(/\/\*[\s\S]*?\*\//g, "");
+    expect(cssNoComment).not.toMatch(/max-width:\s*1134px/);
+    expect(cssNoComment).not.toMatch(/max-width:\s*calc\(var\(--feed-card-max\) \+ 48px\)/);
+    // 收边作用在「不参与列数反解」的元素上：单列档收网格轨道（>768 内）+ 频道头/偏好条/空态（全档）
+    const band = cssNoComment.match(/@media \(min-width: 769px\)\s*\{[\s\S]*?\n\}/g)?.join("\n") ?? "";
+    expect(band).toMatch(/\.feed-list\[style\*="--feed-cols: 1"\]\s*\{[^}]*minmax\(0, var\(--feed-card-max\)\)/);
+    expect(band).toMatch(/justify-content:\s*start/);
+    expect(cssNoComment).toMatch(
+      /\.feed-content > \.channel-head,[\s\S]{0,160}?max-width:\s*var\(--feed-card-max\)/,
+    );
+    // ⚠ 自锁回归锁：`.feed-content` 自己**不许**再被收窄——列数是从 .feed-list 的 clientWidth 反解的，
+    //    收窄它会让反解永远得到 1 列（实测 900–1751 全档 cols 恒为 1）。
+    expect(cssNoComment).not.toMatch(
+      /\.feed-content:has\(\.feed-list\[style\*="--feed-cols: 1"\]\)\s*\{[^}]*max-width/s,
+    );
   });
 });

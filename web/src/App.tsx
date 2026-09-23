@@ -811,6 +811,9 @@ function FeedVirtualList({
     const offset = vw <= 900 ? 76 : 280; // 图标栏 64+12 / 全侧栏 192+24+内距48+槽15≈63 → 216+48+15+1
     return feedColsForContentWidth(vw - offset, rowGap);
   });
+  // FLIP 的量测根：`.feed-content`（卡片在它内部的 .feed-window 里，频道头/偏好条是它的直接子元素）。
+  // 拿不到时退回 .feed-window（只有卡片参与，退化到二轮的行为）。
+  const flipRoot = (el: HTMLElement): HTMLElement => el.closest<HTMLElement>(".feed-content") ?? el;
   const beforeRef = useRef<FlipEntry[] | null>(null);
   const reducedMotionRef = useRef(false);
   useEffect(() => {
@@ -826,7 +829,9 @@ function FeedVirtualList({
       setCols((prev) => {
         if (prev === next) return prev;
         // 列数真的要变：先把旧布局矩形量下来，等 DOM 重排后按 FLIP 补差。
-        if (!reducedMotionRef.current) beforeRef.current = measureCardsFlip(list);
+        // 三轮 T1：量测根从 `.feed-list` 提到 `.feed-content`——频道头/偏好条与卡片同源变宽，
+        // 一起补差（它们原先没人管，实测一帧跳 157px）。
+        if (!reducedMotionRef.current) beforeRef.current = measureCardsFlip(flipRoot(wrap));
         return next;
       });
     };
@@ -840,8 +845,8 @@ function FeedVirtualList({
     const before = beforeRef.current;
     beforeRef.current = null;
     if (!before || reducedMotionRef.current) return;
-    const list = wrapRef.current?.querySelector<HTMLElement>(".feed-list");
-    if (list) playCardsFlip(list, before);
+    const wrap = wrapRef.current;
+    if (wrap) playCardsFlip(flipRoot(wrap), before);
   });
   const listKey = `${channel ?? ""}:${cards[0]?.repo ?? ""}:${cards.length}:${cols}:${rowGap}:${cardHeight}`;
   const [winKey, setWinKey] = useState(listKey);

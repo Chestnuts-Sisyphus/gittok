@@ -153,7 +153,12 @@ jobs:
           CHROME_PATH: /usr/bin/google-chrome
         run: node scripts/gittok-drag-check.mjs
 
-      - name: Visual acceptance gate（六项审美断言 + 6 页截图；帧率在本 job 降为信息项）
+      - name: Frame-domain transition gate（三轮 T5：逐帧连续性——起跳帧 ≤8px、无单帧尖峰）
+        env:
+          CHROME_PATH: /usr/bin/google-chrome
+        run: node scripts/gittok-smooth-check.mjs
+
+      - name: Visual acceptance gate（视觉断言 + 观感清单段 + 11 张截图；帧率在本 job 降为信息项）
         run: |
           pip install websocket-client
           python3 -m http.server 19111 --bind 127.0.0.1 --directory web/dist &

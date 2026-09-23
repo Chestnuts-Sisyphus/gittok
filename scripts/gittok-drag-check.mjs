@@ -33,12 +33,14 @@ const TAG = (() => {
   return a ? a.slice(6) : new Date().toISOString().replace(/[:.]/g, "-");
 })();
 
-/** 两个列数门槛的翻转对（与 feedColsForContentWidth 的两列/三列下界一致：网格 856 / 1416）。 */
+/** 两个列数门槛的翻转对（与 feedColsForContentWidth 的两列/三列下界一致：网格 976 / 1472）。
+ *  2026-09-23 三轮：最小卡宽 420→480 让两个门槛整体右移（视口 1255 / 1751），
+ *  旧档位 1100→1180 与 1650→1730 已经跨不过去（会直接判「列数翻转未发生」）。 */
 const COL_SCENES = [
-  { label: "1→2列", from: 1100, to: 1180 },
-  { label: "2→3列", from: 1650, to: 1730 },
-  { label: "2→1列", from: 1180, to: 1100 },
-  { label: "3→2列", from: 1730, to: 1650 },
+  { label: "1→2列", from: 1210, to: 1290 },
+  { label: "2→3列", from: 1710, to: 1790 },
+  { label: "2→1列", from: 1290, to: 1210 },
+  { label: "3→2列", from: 1790, to: 1710 },
 ];
 /** 首帧场景：三个代表视口（大/中/小桌面）。 */
 const FIRSTPAINT_VIEWS = [1920, 1275, 1000];
