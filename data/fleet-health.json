@@ -350,7 +350,7 @@
   },
   {
     "job": "feed",
-    "at": "2026-09-23T18:20:48.080Z",
+    "at": "2026-09-23T22:12:21.839Z",
     "workers": [
       {
         "name": "zhipu",
@@ -365,12 +365,12 @@
       {
         "name": "agnes",
         "calls": 4,
-        "ok": 1,
+        "ok": 2,
         "err429": 2,
         "cooldowns": 0,
-        "otherErrors": 1,
+        "otherErrors": 0,
         "cooling": false,
-        "lastError": "Error: Unexpected empty response from agnes"
+        "lastError": "Error: 429 You’ve reached the API rate limit for free users. Upgrade to a Token Plan to unlock higher limits and continue using the API without interruption. (request id: 20260923215512262744804aovkYM"
       },
       {
         "name": "agnes#2",
@@ -380,7 +380,7 @@
         "cooldowns": 0,
         "otherErrors": 1,
         "cooling": false,
-        "lastError": "Error: Unexpected empty response from agnes"
+        "lastError": "Error: 429 You’ve reached the API rate limit for free users. Upgrade to a Token Plan to unlock higher limits and continue using the API without interruption. (request id: 20260923220214661456739tJ7159"
       },
       {
         "name": "zhipu#2",
@@ -394,11 +394,12 @@
       {
         "name": "zhipu#3",
         "calls": 1,
-        "ok": 1,
+        "ok": 0,
         "err429": 0,
         "cooldowns": 0,
-        "otherErrors": 0,
-        "cooling": false
+        "otherErrors": 1,
+        "cooling": false,
+        "lastError": "Error: 400 系统检测到输入或生成内容可能包含不安全或敏感内容，请您避免输入易产生敏感内容的提示语，感谢您的配合。"
       },
       {
         "name": "zhipu#4",
@@ -412,13 +413,12 @@
       },
       {
         "name": "zhipu#5",
-        "calls": 2,
+        "calls": 1,
         "ok": 1,
-        "err429": 1,
+        "err429": 0,
         "cooldowns": 0,
         "otherErrors": 0,
-        "cooling": false,
-        "lastError": "Error: 429 您的账户已达到速率限制，请您控制请求频率"
+        "cooling": false
       },
       {
         "name": "groq",
@@ -494,6 +494,26 @@
       },
       {
         "name": "groq#9",
+        "calls": 4,
+        "ok": 0,
+        "err429": 4,
+        "cooldowns": 1,
+        "otherErrors": 0,
+        "cooling": false,
+        "lastError": "Error: 429 Request too large for model `qwen/qwen3.8-27b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on output tokens per minute (OTPM): Limit 1000, Requested 1258. The "
+      },
+      {
+        "name": "groq#10",
+        "calls": 3,
+        "ok": 1,
+        "err429": 2,
+        "cooldowns": 0,
+        "otherErrors": 0,
+        "cooling": false,
+        "lastError": "Error: 429 Request too large for model `qwen/qwen3.8-27b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on output tokens per minute (OTPM): Limit 1000, Requested 1947. The "
+      },
+      {
+        "name": "gemini",
         "calls": 1,
         "ok": 1,
         "err429": 0,
@@ -502,44 +522,23 @@
         "cooling": false
       },
       {
-        "name": "groq#10",
-        "calls": 4,
-        "ok": 0,
-        "err429": 4,
-        "cooldowns": 1,
+        "name": "gemini#2",
+        "calls": 1,
+        "ok": 1,
+        "err429": 0,
+        "cooldowns": 0,
         "otherErrors": 0,
-        "cooling": false,
-        "lastError": "Error: 429 Request too large for model `qwen/qwen3.8-27b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on output tokens per minute (OTPM): Limit 1000, Requested 3626. The "
+        "cooling": false
       },
       {
-        "name": "gemini",
-        "calls": 4,
+        "name": "gemini#3",
+        "calls": 1,
         "ok": 0,
-        "err429": 3,
+        "err429": 0,
         "cooldowns": 0,
         "otherErrors": 1,
         "cooling": false,
         "lastError": "Error: 503 status code (no body)"
-      },
-      {
-        "name": "gemini#2",
-        "calls": 4,
-        "ok": 0,
-        "err429": 4,
-        "cooldowns": 1,
-        "otherErrors": 0,
-        "cooling": false,
-        "lastError": "Error: 429 status code (no body)"
-      },
-      {
-        "name": "gemini#3",
-        "calls": 4,
-        "ok": 0,
-        "err429": 4,
-        "cooldowns": 1,
-        "otherErrors": 0,
-        "cooling": false,
-        "lastError": "Error: 429 status code (no body)"
       },
       {
         "name": "gemini#4",
@@ -582,12 +581,11 @@
       {
         "name": "gemini#8",
         "calls": 1,
-        "ok": 0,
+        "ok": 1,
         "err429": 0,
         "cooldowns": 0,
-        "otherErrors": 1,
-        "cooling": false,
-        "lastError": "Error: 503 status code (no body)"
+        "otherErrors": 0,
+        "cooling": false
       },
       {
         "name": "mistral",
@@ -696,7 +694,7 @@
         "cooldowns": 0,
         "otherErrors": 1,
         "cooling": false,
-        "lastError": "Error: Unexpected empty response from custom-modelscope"
+        "lastError": "SyntaxError: Unexpected token 'e', \"ent Bot Au\"... is not valid JSON"
       },
       {
         "name": "custom-spark",
