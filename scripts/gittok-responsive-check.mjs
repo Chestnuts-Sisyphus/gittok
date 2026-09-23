@@ -84,33 +84,36 @@ const VIEWS = [
  *
  *  预期表怎么来的：cardMax 单卡宽上限；capacity 该档一行容量（.summary 隐藏探针实测口径）。
  *  两列门槛＝网格 ≥ 2×550+16 = 1116px（实测：1400 档网格 1120 → 两列；1343 档网格 1063 → 单列）。 */
-const FEED_CARD_MAX = 640;
-/** 一行容量区间（2026-09-23 第三版）：下限由**可读区间**定，不再由「最宽卡能放多少字」定。
+const FEED_CARD_MAX = 700;
+/** 一行容量区间（2026-09-23 第四版）：由**考证的可读区间**定，不再由「某档卡能放多少字」定。
  *  中文行长可读区间 22–38 汉字（Bringhurst 45–75 拉丁字符 ÷ 2；Unicode TR11 全角 1em／半角 1/2em；
- *  WCAG 2.2 SC 1.4.8 只给**上限**「80 chars (40 if CJK)」，标注 "Content is not required to use these values"）。
- *  设计取列宽 460px（**23 汉字**，floor((460−69)/16.66)=23）为下限、640px（34 汉字）为上限，故区间＝[23, 34] 字。
- *  实测代价（2841 张真实卡 + 真字体度量）：460px 卡 62% 摘要被截（平均截 6.4 字），640px 卡 15.9%（1.5 字）。 */
-const FEED_CAPACITY_MIN = 23;
-const FEED_CAPACITY_MAX = 34;
-/** 三列门槛＝网格 ≥ 3×460 + 2×16 = 1412px；两列门槛＝ 2×460+16 = 936px（＝视口 1215，含侧栏 216/内距 48/滚动条槽 15）。
- *  内容区上限跟顶栏口径 1650px，故 1920/2560 都停在 3 列（网格 1602 → 523px/列）。
- *  2026-09-23 实测（本机无头 Chrome，含/不含 --hide-scrollbars 两遍读数一致——`.app-body`
- *  已 `scrollbar-gutter: stable`，上限在两种情形下都是绑定约束，故列数确定不摆动）。 */
+ *  WCAG 2.2 SC 1.4.8 只给**上限**「80 chars (40 if CJK)」，且原文声明 "Content is not required to use these values"）。
+ *  设计：列宽下限 420px（21 汉字，比下沿低 1 字——实测取舍：每降 20px「单列＋留白」那段就窄 20px）；
+ *  单列档上限 700px（37 汉字）；多列区实测卡宽 420–668（两列）/ 430–540（三列），全在区间内。
+ *  实测代价（2841 张真实卡 + 真字体度量）：420 卡 71% 摘要被截、640 卡 15.9%、700 卡 0.8%。
+ *  所以区间取 [21, 38]：下限＝21（列宽下限 420px 的实测容量），上限＝38（考证上沿，实测最大卡 700px＝37 字）。 */
+const FEED_CAPACITY_MIN = 21;
+const FEED_CAPACITY_MAX = 38;
+/** 列数规则（2026-09-23 第四版，**列数由 JS 单一真源反解、CSS 只认 `--feed-cols`**）：
+ *  cols = ceil((可用宽+gap)/(700+gap))，若会把卡片压到 <420px 就减一列 → **卡片宽度永远落在 [420,700]**
+ *  （＝21–37 汉字，落在考证的可读区间 22–38 字内/边缘）。两列下界 = 网格 856px（＝视口 1135，含侧栏 216/内距 48/滚动条槽 15）；
+ *  三列下界 = 网格 1416px（视口 1695）。内容区上限跟顶栏口径 1650px，超宽屏由「侧栏＋内容整壳 1866px 居中」收边
+ *  （Bootstrap「容器 ≥1400px 封顶」/ Ant Design「留白到限定值再缩放主内容」同路线），故 1920/2560 都停在三列 523px。
+ *  实测（本机无头 Chrome，含/不含 --hide-scrollbars 两遍读数一致——`.app-body` 已 `scrollbar-gutter: stable`）。 */
 const EXPECT_DESKTOP = {
   "2560x1080": { cols: 3, cardW: 523, capMin: 27, capMax: 27 },
   "1920x1080": { cols: 3, cardW: 523, capMin: 27, capMax: 27 },
-  "1600x900": { cols: 2, cardW: 640, capMin: 34, capMax: 34 },
+  "1600x900": { cols: 2, cardW: 652, capMin: 35, capMax: 35 },
   "1400x900": { cols: 2, cardW: 553, capMin: 29, capMax: 29 },
   "1343x900": { cols: 2, cardW: 524, capMin: 27, capMax: 27 },
   "1275x900": { cols: 2, cardW: 490, capMin: 25, capMax: 25 },
-  "1200x900": { cols: 1, cardW: 640, capMin: 34, capMax: 34 },
-  "1100x800": { cols: 1, cardW: 640, capMin: 34, capMax: 34 },
-  "1000x800": { cols: 1, cardW: 640, capMin: 34, capMax: 34 },
-  "900x800": { cols: 1, cardW: 640, capMin: 34, capMax: 34 },
+  "1200x900": { cols: 2, cardW: 452, capMin: 23, capMax: 23 },
+  "1100x800": { cols: 1, cardW: 700, capMin: 37, capMax: 37 },
+  "1000x800": { cols: 1, cardW: 700, capMin: 37, capMax: 37 },
+  "900x800": { cols: 1, cardW: 700, capMin: 37, capMax: 37 },
   // 844×390 是 mobile:true 但 w>768 —— CSS 媒体查询按**宽度**走，844 用桌面栅格
-  // （闸的档位分支同理照 w 判），所以它也归桌面预期表。首跑漏了这条，闸立刻报「预期 ?」，
-  // 属预期表缺档而非产品缺陷（2026-09-23 实测：单列 → 卡宽 640）。
-  "844x390": { cols: 1, cardW: 640, capMin: 34, capMax: 34 },
+  // （闸的档位分支同理照 w 判），所以它也归桌面预期表。实测：侧栏此时是 64px 图标栏、单列 700。
+  "844x390": { cols: 1, cardW: 700, capMin: 37, capMax: 37 },
 };
 
 /** 每档侧栏/底栏/tabs 的期望命中档（照 styles.css 现状：仅 480/768/900 三档宽度断点）。 */
@@ -517,7 +520,7 @@ async function checkView(cdp, view) {
       `.summary 一行容量 ≥${FEED_CAPACITY_MIN} 字（可读区间下限）`,
       summaryCapacityPass(capMin),
       `容量 min ${capMin} 字（单字宽 ${m.cap[0]?.charW}px / 内容宽 ${m.cap[0]?.width}px）｜采样整句可见 ${m.s.length - sClip}/${m.s.length}` +
-        `｜口径：${RUN_PLATFORM === "win32" ? `Windows 基准 ${FEED_CAPACITY_MIN} 字（=列宽下限 460px＝23 汉字）` : `非 Windows（${RUN_PLATFORM}）按 14.2% 跨平台漂移归一，下限 ${SUMMARY_CAPACITY_PASS_MIN} 字`}`,
+        `｜口径：${RUN_PLATFORM === "win32" ? `Windows 基准 ${FEED_CAPACITY_MIN} 字（=列宽下限 420px＝21 汉字）` : `非 Windows（${RUN_PLATFORM}）按 14.2% 跨平台漂移归一，下限 ${SUMMARY_CAPACITY_PASS_MIN} 字`}`,
     );
     // ── 2026-09-23 新增（乙2：旧闸只有下限、没有上限，710px 拉伸回归抓不到） ──
     const exp = EXPECT_DESKTOP[view.key];
@@ -527,7 +530,7 @@ async function checkView(cdp, view) {
       capMin <= SUMMARY_CAPACITY_PASS_MAX,
       `容量 min ${capMin} 字（本档上限 ${SUMMARY_CAPACITY_PASS_MAX} 字；Windows 标定值 ${FEED_CAPACITY_MAX} 字` +
         `${RUN_PLATFORM === "win32" ? "" : `，非 Windows（${RUN_PLATFORM}）按实测单字宽比 ×${CROSS_PLATFORM_CAP_SCALE} 折算`}）` +
-        `｜区间 [${FEED_CAPACITY_MIN}, ${FEED_CAPACITY_MAX}] 字：下限＝460px 列的 23 汉字（中文可读区间 22–38 汉字内），上限＝栗子 2026-09-22「不要强行拉伸」`,
+        `｜区间 [${FEED_CAPACITY_MIN}, ${FEED_CAPACITY_MAX}] 字：下限＝420px 列的 21 汉字（中文可读区间 22–38 汉字，实测取舍低 1 字），上限＝栗子 2026-09-22「不要强行拉伸」`,
     );
     report(
       view.key,

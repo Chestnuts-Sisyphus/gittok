@@ -189,34 +189,37 @@ describe("卡宽上限（2026-09-23 栗子：能两列时不要强行拉伸）",
 });
 
 describe("列数（照 CSS auto-fill 同式还原）", () => {
-  it("实测宽度表：1/2/3 列门槛（2026-09-23 第三版：门限由可读区间定）", () => {
-    // 本机无头 Chrome 实测的网格可用宽（各档视口 − 侧栏 216px − 内距 48px − 滚动条槽 15px）
-    expect(feedColsForContentWidth(1602)).toBe(3); // 1920/2560 档（内容区跟顶栏口径 1650）
-    expect(feedColsForContentWidth(1412)).toBe(3); // 三列下限：3×460+2×16
-    expect(feedColsForContentWidth(1411)).toBe(2);
-    expect(feedColsForContentWidth(1321)).toBe(2); // 1600 档
-    expect(feedColsForContentWidth(1121)).toBe(2); // 1400 档
-    expect(feedColsForContentWidth(1064)).toBe(2); // 1343 档
-    expect(feedColsForContentWidth(996)).toBe(2); // 1275 档（栗子 09-23 截图那个窗口）
-    expect(feedColsForContentWidth(975)).toBe(2); // 1254 档
-    expect(feedColsForContentWidth(936)).toBe(2); // 两列下限：2×460+16
-    expect(feedColsForContentWidth(935)).toBe(1);
-    expect(feedColsForContentWidth(873)).toBe(1); // 1200 档
-    expect(feedColsForContentWidth(673)).toBe(1); // 1000 档
-    expect(feedColsForContentWidth(573)).toBe(1); // 900 档
-    expect(feedColsForContentWidth(460)).toBe(1);
-    // CSS 下限写 min(460px, 100%)：窄于 460 的容器仍算 1 列（不溢出、也不出 0 列）
-    expect(feedColsForContentWidth(366)).toBe(1);
+  it("列数反解（第四版规则：卡片宽度永在 [420, 700]）", () => {
+    // 规则：cols = ceil((A+gap)/(700+gap))，若卡片被压到 <420 就减一列。用实测网格宽逐点锁。
+    expect(feedColsForContentWidth(1602)).toBe(3); // 1920/2560 档 → (1602−32)/3 = 523
+    expect(feedColsForContentWidth(1421)).toBe(3); // 1700 档 → 463
+    expect(feedColsForContentWidth(1416)).toBe(2); // 两列的下界：ceil(1432/716)=2 → (1416−16)/2 = 700（正好到上限）
+    expect(feedColsForContentWidth(1352)).toBe(2); // 1631 档 → 668
+    expect(feedColsForContentWidth(1321)).toBe(2); // 1600 档 → 652（改前 auto-fill 会排三列各 430＝21 汉字）
+    expect(feedColsForContentWidth(1221)).toBe(2); // 1500 档 → 603
+    expect(feedColsForContentWidth(1121)).toBe(2); // 1400 档 → 553
+    expect(feedColsForContentWidth(1001)).toBe(2); // 1280 档 → 493
+    expect(feedColsForContentWidth(921)).toBe(2); // 1200 档 → 453
+    expect(feedColsForContentWidth(861)).toBe(2); // 1140 档 → 423
+    expect(feedColsForContentWidth(856)).toBe(2); // 两列的下界：(856−16)/2 = 420（正好到下限）
+    expect(feedColsForContentWidth(855)).toBe(1); // 再窄 1px 就会压到 419.5 → 退回单列（宁可单列不挤窄卡）
+    expect(feedColsForContentWidth(748)).toBe(1); // 单列带（内容块收到 748）
+    expect(feedColsForContentWidth(721)).toBe(1); // 1000 档
+    expect(feedColsForContentWidth(661)).toBe(1); // 940 档（卡片填满）
+    expect(feedColsForContentWidth(420)).toBe(1);
+    expect(feedColsForContentWidth(366)).toBe(1); // ≤768 手机档：1 列填满
     expect(feedColsForContentWidth(0)).toBe(1);
   });
 
-  it("列宽下限 460px＝23 汉字，落在中文可读行长区间 22–38 汉字内", () => {
+  it("列宽下限 420px＝21 汉字、单列档上限 700px＝37 汉字（考证区间的实测取舍）", () => {
     // 实测口径：一行容量 = floor((卡宽 − 69) / 16.66)
-    expect(Math.floor((FEED_COL_MIN - 69) / 16.66)).toBe(23);
-    // 再降 40px 就掉到 21 汉字＝跌出可读区间下沿（22），故不再降
-    expect(Math.floor((FEED_COL_MIN - 40 - 69) / 16.66)).toBe(21);
-    // 上限 640px＝34 汉字，仍在区间内，且低于 WCAG「80 chars (40 if CJK)」的 CJK 上限
-    expect(FEED_CARD_MAX).toBe(640);
-    expect(Math.floor((FEED_CARD_MAX - 69) / 16.66)).toBe(34);
+    expect(FEED_COL_MIN).toBe(420);
+    expect(Math.floor((FEED_COL_MIN - 69) / 16.66)).toBe(21);
+    // 考证的可读区间下沿是 22 汉字（Bringhurst 45–75 拉丁字符 ÷ 2；Unicode TR11 全角 1em／半角 1/2em）。
+    // 取 21 低 1 字属**实测取舍**：每降 20px「单列＋留白」那段就窄 20px，而 1 个字（16.7px）肉眼不可辨。
+    expect(Math.floor((FEED_COL_MIN + 20 - 69) / 16.66)).toBe(22);
+    // 上限 700＝37 汉字，落在 22–38 区间内（WCAG 2.2 SC 1.4.8 的 CJK 上限 40，原文声明非强制）
+    expect(FEED_CARD_MAX).toBe(700);
+    expect(Math.floor((FEED_CARD_MAX - 69) / 16.66)).toBe(37);
   });
 });

@@ -752,8 +752,10 @@ function FeedVirtualList({
 }: FeedVirtualListProps) {
   const { cols: gridCols, rowGap, cardHeight } = useFeedGrid();
   const wrapRef = useRef<HTMLDivElement>(null);
-  // G-10：列数由网格自身宽度决定（CSS 是 auto-fill minmax(--feed-col-min)），
-  // 垫片必须按浏览器真正渲染的列数算，否则行高错位。窄档先给初值，量完立刻校正。
+  // G-10 / 2026-09-23 第四版：列数是**单一真源**——由本组件量出网格可用宽、按 feedColsForContentWidth
+  // 反解（规则：先取让卡片不超上限 700px 的最少列数，若会把卡片压到下限 420px 以下再减一列），
+  // 然后同时喂给两处：① CSS 变量 `--feed-cols`（.feed-list 的轨道数）② 这里的垫片计算。
+  // 这样 CSS 与 JS 不再各存一份列宽常量（旧版双写常量的漂移会让垫片错位，见 2026-09-22 乙4）。
   const [cols, setCols] = useState(gridCols);
   useEffect(() => {
     const wrap = wrapRef.current;
@@ -849,7 +851,7 @@ function FeedVirtualList({
       {win.topPad > 0 && (
         <div className="feed-window-pad" style={{ height: win.topPad }} aria-hidden="true" />
       )}
-      <div className="feed-list">
+      <div className="feed-list" style={{ "--feed-cols": cols } as React.CSSProperties}>
         {visible.map((card) => (
           <FeedCardMemo
             key={card.repo}
