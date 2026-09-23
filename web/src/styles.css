@@ -60,6 +60,15 @@
   --success: #22c55e;
   --warning: #f59e0b;
   --border: rgba(255, 255, 255, 0.08);
+  /* 二轮 G5（2026-09-23 栗子⑤）：全站滚动条统一——深色细条，与 UI token 同源。
+     thumb 用 --text-muted 同族的浅紫灰（够摸到但不刺眼），hover 提到 --accent-text 一族；
+     track 全透明（背景渐变透出来，不出现第二条「灰底」）。
+     ⚠ 只写 scrollbar-color/width（Firefox）+ ::-webkit-scrollbar（Chromium），
+     禁 scrollbar-width:none（open-regression 锁①：会拆掉 gutter，飞/落两套折行）。
+     宽度 10px：比系统 15px 细、比 8px 好摸（任务书 G5 验收「深色、细、与 token 同源」）。 */
+  --scrollbar-thumb: rgba(148, 143, 178, 0.45);
+  --scrollbar-thumb-hover: rgba(129, 140, 248, 0.7);
+  --scrollbar-size: 10px;
   --radius: 16px;
   --radius-sm: 10px;
   --shadow-hover:
@@ -96,6 +105,37 @@
   --header-h: 60px;
   --header-bg: #16122a;
   --sidebar-inset: 24px;
+}
+
+/* ── 二轮 G5（2026-09-23 栗子⑤）：全站滚动条统一 ──
+   侧栏与 .app-body 两条滚动条（以及任何弹层内的滚动）共用同一套样式：
+   深色细条 + 透明槽，颜色走上面的 --scrollbar-* token。
+   Firefox 走 scrollbar-color（宽度交给系统、由颜色统一观感——scrollbar-width
+   只允许 thin，**禁 none**，open-regression 锁①）；Chromium 走 ::-webkit-scrollbar。
+   两条规则写在一起保证两族浏览器观感同源。 */
+* {
+  scrollbar-color: var(--scrollbar-thumb) transparent;
+}
+::-webkit-scrollbar {
+  width: var(--scrollbar-size);
+  height: var(--scrollbar-size);
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: calc(var(--scrollbar-size) / 2);
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover,
+::-webkit-scrollbar-thumb:active {
+  background: var(--scrollbar-thumb-hover);
+  background-clip: content-box;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
 }
 
 html {
@@ -549,8 +589,13 @@ button {
 
 /* 主信息流：列数只认 `--feed-cols`（App 按 feedColsForContentWidth 反解后写进来）——
    卡片宽度因此永远落在 [420, 700]，超上限就加列、低于下限就减列，没有固定宽度。
-   选择器用 `.feed-window >` 限定，避免影响收藏夹/搜索页那两处次级列表（它们继续走上面的 auto-fill）。 */
-.feed-window > .feed-list {
+   二轮 G6（2026-09-23）：次级列表（搜索页热门预览、收藏夹展开）也由 useResponsiveCols
+   反解后写进**同一个变量**，走同一条规则——同一视口两处列数/卡宽一致，
+   不再是 auto-fill 的另一套口径（实测 1600 档主 2×653 vs 预览 3×502 的分叉就此消除）。
+   注意 React 对 style 对象会同时落 `style` 属性字符串，`[style]` 存在性选择即可；
+   主信息流 `.feed-window >` 继续单独命中（它有虚拟垫片兄弟节点，结构不同）。 */
+.feed-window > .feed-list,
+.feed-list[style] {
   grid-template-columns: repeat(var(--feed-cols, 1), minmax(0, 1fr));
 }
 
@@ -1707,6 +1752,13 @@ button {
 .search-creators {
   margin-bottom: 28px;
 }
+/* 二轮 G6（2026-09-23）：搜索空态与主信息流**同一内容口径**——
+   上限同 --max-width、内距同 24px。热门预览的网格由此与主信息流同宽
+   （旧况预览走 .main 直接内距 20px，1600 档比主信息流宽出 84px → 卡宽对不齐）。 */
+.search-empty-unified {
+  max-width: var(--max-width);
+  padding: 20px 24px 32px;
+}
 
 /* --- 状态显示 --- */
 .status {
@@ -1910,7 +1962,9 @@ button {
     padding: calc(64px + env(safe-area-inset-top)) calc(10px + env(safe-area-inset-right))
       calc(24px + env(safe-area-inset-bottom)) calc(10px + env(safe-area-inset-left)); /* G-06 安全区 */
     overflow-y: auto;
-    background: rgba(26, 22, 44, 0.72);
+    /* 二轮 G4（2026-09-23）：抽屉与底栏/顶栏同一观感——不透明 --header-bg。
+       半透明玻璃底会让底层卡片正文透出来（栗子④同一条投诉的抽屉版）。 */
+    background: var(--header-bg);
     border-right: 1px solid rgba(255, 255, 255, 0.08);
     transform: translateX(-100%);
     transition:
@@ -1942,8 +1996,13 @@ button {
     height: 54px;
     display: flex;
     align-items: stretch;
-    background: rgba(26, 22, 44, 0.72);
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    /* 二轮 G4（2026-09-23 栗子④）：底栏不要半透明，与顶栏同一观感——
+       直接用同一个 token（--header-bg = #16122a，不透明），描边也对齐顶栏的
+       inset 高光 + border。旧值 rgba(26,22,44,.72) 会让卡片正文透过底栏可读
+       （实测 700×620 截图），且与 chrome-layout.test.ts「顶栏不半透明」的既有决定相反。 */
+    background: var(--header-bg);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07);
+    border-top: 1px solid var(--border);
     z-index: 20;
     padding-bottom: env(safe-area-inset-bottom); /* 需 viewport-fit=cover 才不为 0（G-06 已补） */
     padding-left: env(safe-area-inset-left);
@@ -2009,21 +2068,51 @@ button {
   }
 }
 
-/* 侧边栏移动端折叠：icon-only（<900px），其余布局不变 */
+/* 侧边栏移动端折叠：icon-only（769–900px），其余布局不变。
+   ── 二轮 G2-②（2026-09-23）：宽度变化 64↔192 加 0.2s 过渡——拖动跨过 900 断点时
+   侧栏是「滑」到新宽度而不是跳变（内容区 flex 天然跟随）。⚠ 只过渡 width：
+   margin/padding 一并过渡会让断点附近每帧都在重排（实测拖动帧率掉一半）。
+   ── 二轮 G3（2026-09-23）：图标栏重做。旧版把 .side-group 标题与 .side-text 整块
+   display:none——分组表达消失、按钮无可访问名称、间距节奏散掉（栗子甲3「排版很差」）。
+   新版：① 图标按钮本体加大到 44px 触控目标、居中；② 分组用 3px accent 短横线分隔
+   （与宽侧栏 .side-group::before 的同一条 accent 竖条同源，两态同一 token）；
+   ③ 选中态沿用 .side-item.active 的同一渐变（同一 token，不改色）；
+   ④ 文字用 opacity+height 收掉而不是 display:none，aria-label/title 补可访问名称。 */
 @media (max-width: 900px) {
   .sidebar {
     width: 64px;
     margin-left: 12px;
     padding: 16px 8px;
+    transition: width 0.2s ease;
   }
   .side-item {
     justify-content: center;
     padding: 10px 0;
+    min-width: 44px;
+    min-height: 44px;
+    gap: 0;
   }
   .side-text {
     display: none;
   }
+  /* 分组标题不再 display:none 整块删掉：改成「同源的 accent 短横线」——
+     高度 0 + overflow hidden 收掉文字，只留 ::before 那条竖条压成横线。
+     视觉上是一组分隔符，DOM/读屏里仍是组标题（有文字内容）。 */
   .side-group {
+    display: flex;
+    justify-content: center;
+    padding: 0 0 6px;
+    margin-bottom: 10px;
+    font-size: 0;
+    overflow: hidden;
+    height: auto;
+  }
+  .side-group::before {
+    width: 18px;
+    height: 3px;
+    border-radius: 2px;
+  }
+  .side-group::after {
     display: none;
   }
   .side-divider {

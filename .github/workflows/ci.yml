@@ -143,10 +143,15 @@ jobs:
           if (ok === 0) { console.error("no copyOk=true in dist: gate would not cover COPY-08"); process.exit(1); }
           '
 
-      - name: Responsive check gate（G-16，285 项/16 档：新增卡宽上限·列数·三列预期表 + 中间档·2560 档·栗子窗口档）
+      - name: Responsive check gate（G-16，312 项/16 档：卡宽上限·列数·三列预期表 + 二轮图标栏/底栏/滚动条断言）
         env:
           CHROME_PATH: /usr/bin/google-chrome
         run: node scripts/gittok-responsive-check.mjs
+
+      - name: Drag smoothness gate（二轮 G7③：列数翻转 top 跳变 ≤8px、FLIP 过渡在场、首帧列数单条）
+        env:
+          CHROME_PATH: /usr/bin/google-chrome
+        run: node scripts/gittok-drag-check.mjs
 
       - name: Visual acceptance gate（六项审美断言 + 6 页截图；帧率在本 job 降为信息项）
         run: |

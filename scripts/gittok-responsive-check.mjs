@@ -319,6 +319,39 @@ window.__gt = {
     return { sidebar: vis('.sidebar'), bottomBar: vis('.bottom-bar'), tabs: vis('.tabs'),
              hoverNone: matchMedia('(hover: none)').matches, coarse: matchMedia('(pointer: coarse)').matches };
   },
+  /** 二轮 G3/G4/G5 断言（2026-09-23）：导航形态内部排版、底栏底色、滚动条样式。
+   *  旧闸只断言 sidebar/bottomBar 的 display 命中档——图标栏 64px 排版、底栏半透明、
+   *  滚动条样式全在盲区（乙3/乙4），甲3/甲4/甲5 因此能长期存在。 */
+  chromeDetail(){
+    const sb=document.querySelector('.sidebar');
+    const bb=document.querySelector('.bottom-bar');
+    const hd=document.querySelector('.header');
+    const cs=(e)=>e? getComputedStyle(e):null;
+    const sbcs=cs(sb), bbcs=cs(bb), hdcs=cs(hd);
+    const iconMode = sb && sbcs.display!=='none' && Math.round(sb.getBoundingClientRect().width) <= 100;
+    const items=[...document.querySelectorAll('.sidebar .side-item')].filter(e=>{
+      const s=getComputedStyle(e); return s.display!=='none' && s.visibility!=='hidden';});
+    return {
+      sidebarShown: !!sb && sbcs.display!=='none',
+      sidebarW: sb? Math.round(sb.getBoundingClientRect().width):0,
+      iconMode,
+      itemMinH: items.length? Math.min(...items.map(e=>Math.round(e.getBoundingClientRect().height))):0,
+      itemsNoName: items.filter(e=>!e.getAttribute('aria-label') && !(e.textContent||'').trim()).length,
+      groupBars: document.querySelectorAll('.sidebar .side-group').length,
+      bottomShown: !!bb && bbcs.display!=='none',
+      bottomBg: bb? bbcs.backgroundColor:null,
+      headerBg: hd? hdcs.backgroundColor:null,
+    };
+  },
+  /** 滚动条：Chromium 无头里 ::-webkit-scrollbar 是 shadow DOM 里的伪元素，读不到计算样式；
+   *  但「占位宽度」可以直接从滚动容器 clientWidth−offsetWidth 之类量出（--hide-scrollbars 时恒 0），
+   *  scrollbar-color 可从容器 computedStyle 读到（本闸显式声明它，断言样式 token 在场）。 */
+  scrollbarInfo(sel){
+    const e=document.querySelector(sel); if(!e) return null;
+    const cs=getComputedStyle(e);
+    return { color: cs.scrollbarColor, gutter: cs.scrollbarGutter,
+             slot: e.offsetWidth - e.clientWidth - (parseFloat(cs.borderLeftWidth)||0) - (parseFloat(cs.borderRightWidth)||0) };
+  },
   opacity(sel){ const e=document.querySelector(sel); if(!e) return null;
     const cs=getComputedStyle(e); const r=e.getBoundingClientRect();
     return { opacity: cs.opacity, visibility: cs.visibility, display: cs.display, w: Math.round(r.width), h: Math.round(r.height) }; },
@@ -631,6 +664,49 @@ async function checkView(cdp, view) {
     `侧栏 ${ch.sidebar}(want ${want.sidebar}) 底栏 ${ch.bottomBar}(want ${want.bottomBar}) tabs ${ch.tabs}(want ${want.tabs})`,
   );
 
+  // 4.5 二轮 G3/G4/G5 断言（2026-09-23）：图标栏排版 / 底栏不透明 / 滚动条样式（甲3/甲4/甲5）
+  const cd = await cdp.eval(`return window.__gt.chromeDetail();`);
+  if (cd.iconMode) {
+    // 图标栏（769–900 与 844 横屏）：触控 ≥44、无「无名按钮」、分组表达在场（accent 短横线）
+    report(
+      view.key,
+      "图标栏触控目标 ≥44px（甲3）",
+      cd.itemMinH >= 44,
+      `side-item 最小高 ${cd.itemMinH}px（样式 ≥44 判）`,
+    );
+    report(
+      view.key,
+      "图标栏按钮有可访问名称（甲3：aria-label/title）",
+      cd.itemsNoName === 0,
+      `无名按钮 ${cd.itemsNoName}/${cd.itemMinH ? "" : ""}`,
+    );
+    report(
+      view.key,
+      "图标栏分组表达在场（甲3：side-group 短横线）",
+      cd.groupBars > 0,
+      `.side-group 元素 ${cd.groupBars} 个（发现/分类 两组标题以横线形式保留）`,
+    );
+  }
+  if (cd.bottomShown && cd.headerBg) {
+    // 底栏与顶栏同一不透明底色（甲4：rgba(26,22,44,.72) → var(--header-bg)）
+    report(
+      view.key,
+      "底栏底色 = 顶栏且不透明（甲4）",
+      cd.bottomBg === cd.headerBg,
+      `底栏 ${cd.bottomBg} vs 顶栏 ${cd.headerBg}（一致判；旧值 rgba(26, 22, 44, 0.72) 会透出正文）`,
+    );
+  }
+  if (ch.sidebar || ch.bottomBar) {
+    // 滚动条样式 token 在场（甲5）：scrollbar-color 由 G5 的 * 规则声明；gutter stable 只在 .app-body
+    const sbInfo = await cdp.eval(`return window.__gt.scrollbarInfo('.app-body');`);
+    report(
+      view.key,
+      "滚动条样式 token 在场（甲5：scrollbar-color 深色细条）",
+      !!sbInfo && sbInfo.color && sbInfo.color !== "auto",
+      `app-body scrollbar-color ${sbInfo?.color ?? "未声明"}｜gutter ${sbInfo?.gutter ?? "?"}｜槽位 ${sbInfo?.slot ?? "?"}px`,
+    );
+  }
+
   // 5 整卡放得下（横屏/窄高档：卡片必须完整落在顶栏之下、底栏之上）
   const fit = await cdp.eval(`
     const c=document.querySelector('.card'); const r=c.getBoundingClientRect();
@@ -871,7 +947,10 @@ async function main() {
       "--no-first-run",
       "--no-default-browser-check",
       `--user-data-dir=${profile}`,
-      "--hide-scrollbars",
+      // 二轮 G7（2026-09-23 乙3）：去掉 --hide-scrollbars——旧闸对滚动条整体失明，
+      // 甲5（系统条 vs 自绘条）、乙11（槽位策略）在旧口径下结构上测不到。
+      // 样式化滚动条（10px 细条）占位与系统条不同，但 scrollbar-gutter:stable 让
+      // 布局对两者都确定（改前实测含/不含两遍读数一致），所以去掉不影响其余断言口径。
       "--window-size=1920,1080",
       "about:blank",
     ],

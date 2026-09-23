@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback, useMemo } from "react";
+import { useState, useEffect, useLayoutEffect, useRef, useCallback, useMemo } from "react";
 import type { ChangeEvent } from "react";
 import type { FeedCard, Collection } from "./types.ts";
 import { FeedCardMemo, CardDetail, GithubAvatar } from "./FeedCard.tsx";
@@ -17,6 +17,7 @@ import { loadCachedText, saveCachedText } from "./feed-cache.ts";
 import {
   FEED_CARD_HEIGHT,
   FEED_MOBILE_MAX_WIDTH,
+  FEED_ROW_GAP,
   FEED_ROW_HEIGHT,
   FEED_SHORT_MAX_HEIGHT,
   feedCardHeightForHeight,
@@ -29,6 +30,7 @@ import {
   sameFeedWindow,
   type FeedWindow,
 } from "./feed-layout.ts";
+import { measureCards as measureCardsFlip, playCardsFlip, type FlipEntry } from "./feed-flip.ts";
 import {
   AlertTriangle,
   BookOpen,
@@ -232,6 +234,8 @@ function ChannelNav({
               key={s.key}
               className={`side-item${activeKey === s.key ? " active" : ""}`}
               onClick={() => onPick(s.key)}
+              aria-label={s.title}
+              title={s.title}
             >
               <span className="side-icon">
                 <SectionIcon icon={s.icon} size={18} />
@@ -248,6 +252,8 @@ function ChannelNav({
             key={s.key}
             className={`side-item${activeKey === s.key ? " active" : ""}`}
             onClick={() => onPick(s.key)}
+            aria-label={s.title}
+            title={s.title}
           >
             <span className="side-icon">
               <SectionIcon icon={s.icon} size={18} />
@@ -702,8 +708,42 @@ function buildRecommended(
 // 卡高锁死之后，垫片可以按精确行高算，只挂视口附近的玻璃卡。
 // ---------------------------------------------------------------------------
 
-function useFeedGrid() {
-  const [mobile, setMobile] = useState(
+/**
+ * 二轮 G6（2026-09-23 乙2）：次级列表（搜索页热门预览、收藏夹展开）与主信息流**同一条列数规则**。
+ * 旧况：它们走 `.feed-list` 兜底的 CSS auto-fill（按 min 取最多列）——同一视口主信息流 2×653、
+ * 预览 3×502，两套口径并存（实测 1600/1400 两档）。改法：一样量容器宽、按 feedColsForContentWidth
+ * 反解、写进同一个 `--feed-cols`；CSS 用 `.feed-list[style*="--feed-cols"]` 不行——直接给容器
+ * 加 style 即可，`.feed-window >` 那条主规则继续只管虚拟列表。
+ */
+function useResponsiveCols(rowGap: number): { ref: (el: HTMLElement | null) => void; cols: number } {
+  const elRef = useRef<HTMLElement | null>(null);
+  const [cols, setCols] = useState(1);
+  // 条件渲染下（搜索空态/收藏夹展开只在特定视图存在），ref 挂上时 effect 已经跑过了——
+  // 所以 ref callback 里直接触发首次测量，不能指望 effect。
+  const measureRef = useRef<() => void>(() => {});
+  useEffect(() => {
+    measureRef.current = () => {
+      const el = elRef.current;
+      if (!el) return;
+      const list = el.querySelector<HTMLElement>(".feed-list") ?? el;
+      setCols(feedColsForContentWidth(list.clientWidth, rowGap));
+    };
+    measureRef.current();
+    const ro = new ResizeObserver(() => measureRef.current());
+    if (elRef.current) ro.observe(elRef.current);
+    const roRef = ro;
+    return () => roRef.disconnect();
+  }, [rowGap]);
+  return {
+    cols,
+    ref: (el: HTMLElement | null) => {
+      elRef.current = el;
+      if (el) measureRef.current();
+    },
+  };
+}
+
+function useFeedGrid() {  const [mobile, setMobile] = useState(
     () =>
       typeof window !== "undefined" && window.matchMedia(`(max-width: ${FEED_MOBILE_MAX_WIDTH}px)`).matches,
   );
@@ -756,7 +796,26 @@ function FeedVirtualList({
   // 反解（规则：先取让卡片不超上限 700px 的最少列数，若会把卡片压到下限 420px 以下再减一列），
   // 然后同时喂给两处：① CSS 变量 `--feed-cols`（.feed-list 的轨道数）② 这里的垫片计算。
   // 这样 CSS 与 JS 不再各存一份列宽常量（旧版双写常量的漂移会让垫片错位，见 2026-09-22 乙4）。
-  const [cols, setCols] = useState(gridCols);
+  // G-10 / 2026-09-23 第四版：列数是**单一真源**——由本组件量出网格可用宽、按 feedColsForContentWidth
+  // 反解（规则：先取让卡片不超上限 700px 的最少列数，若会把卡片压到下限 420px 以下再减一列），
+  // 然后同时喂给两处：① CSS 变量 `--feed-cols`（.feed-list 的轨道数）② 这里的垫片计算。
+  // 这样 CSS 与 JS 不再各存一份列宽常量（旧版双写常量的漂移会让垫片错位，见 2026-09-22 乙4）。
+  // 二轮甲2/乙1（2026-09-23）：首帧列数**初值直接由视口宽按同一套门槛算出**——
+  // 可用宽 ≈ 视口 − 侧栏(216) − 内距(48) − 滚动条槽(15)；侧栏 ≤900 是图标栏 64px
+  //（＋边距 12 → 内容缩进 76）。估算偏一档也没关系，measure 会立刻校正；
+  // 但 1920/1275/1000 这些常见视口能直接算中，首帧不再「先画错列数再跳」（rAF 实测过的闪变）。
+  const [cols, setCols] = useState(() => {
+    if (typeof window === "undefined") return gridCols;
+    const vw = window.innerWidth;
+    if (vw <= FEED_MOBILE_MAX_WIDTH) return 1;
+    const offset = vw <= 900 ? 76 : 280; // 图标栏 64+12 / 全侧栏 192+24+内距48+槽15≈63 → 216+48+15+1
+    return feedColsForContentWidth(vw - offset, rowGap);
+  });
+  const beforeRef = useRef<FlipEntry[] | null>(null);
+  const reducedMotionRef = useRef(false);
+  useEffect(() => {
+    reducedMotionRef.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  }, []);
   useEffect(() => {
     const wrap = wrapRef.current;
     if (!wrap) return;
@@ -764,13 +823,26 @@ function FeedVirtualList({
       const list = wrap.querySelector<HTMLElement>(".feed-list");
       if (!list) return;
       const next = feedColsForContentWidth(list.clientWidth, rowGap);
-      setCols((prev) => (prev === next ? prev : next));
+      setCols((prev) => {
+        if (prev === next) return prev;
+        // 列数真的要变：先把旧布局矩形量下来，等 DOM 重排后按 FLIP 补差。
+        if (!reducedMotionRef.current) beforeRef.current = measureCardsFlip(list);
+        return next;
+      });
     };
     measure();
     const ro = new ResizeObserver(measure);
     ro.observe(wrap);
     return () => ro.disconnect();
   }, [rowGap]);
+  // 列数落进 DOM 后的同一帧：用上一步量的旧矩形做 FLIP 补差（Last→Invert→Play）。
+  useLayoutEffect(() => {
+    const before = beforeRef.current;
+    beforeRef.current = null;
+    if (!before || reducedMotionRef.current) return;
+    const list = wrapRef.current?.querySelector<HTMLElement>(".feed-list");
+    if (list) playCardsFlip(list, before);
+  });
   const listKey = `${channel ?? ""}:${cards[0]?.repo ?? ""}:${cards.length}:${cols}:${rowGap}:${cardHeight}`;
   const [winKey, setWinKey] = useState(listKey);
   const [win, setWin] = useState<FeedWindow>(() =>
@@ -932,6 +1004,9 @@ export default function App() {
   const [seen] = useState<Record<string, number>>(loadSeen);
   const seenRef = useRef(seen);
   const [expandedCols, setExpandedCols] = useState<Record<string, boolean>>({});
+  // 二轮 G6：收藏夹展开的卡片网格与主信息流同一条列数反解。多个收藏夹共用同一容器宽
+  // （.folder-cards 全宽），列数相同——一个 hook 量「我的页内容区」即可。
+  const { cols: folderCols, ref: folderColsRef } = useResponsiveCols(FEED_ROW_GAP);
   const [searchQuery, setSearchQuery] = useState("");
   const [detailCard, setDetailCard] = useState<FeedCard | null>(null);
   const sourceRectRef = useRef<DOMRect | null>(null);
@@ -1516,6 +1591,8 @@ export default function App() {
         .slice(0, 8),
     [cards],
   );
+  // 二轮 G6：热门预览与主信息流同一条列数反解（不再是 CSS auto-fill 的另一套口径）
+  const { cols: hotCols, ref: hotColsRef } = useResponsiveCols(FEED_ROW_GAP);
 
   // 创作者页项目列表（栈顶 owner 过滤，score 降序）
   const creatorCards = useMemo(() => {
@@ -1723,6 +1800,8 @@ export default function App() {
                       <button
                         className={`side-item${meView === "liked" ? " active" : ""}`}
                         onClick={() => setMeView("liked")}
+                        aria-label="喜欢"
+                        title="喜欢"
                       >
                         <span className="side-icon">
                           <ThumbsUp size={18} />
@@ -1732,6 +1811,8 @@ export default function App() {
                       <button
                         className={`side-item${meView === "collections" ? " active" : ""}`}
                         onClick={() => setMeView("collections")}
+                        aria-label="收藏"
+                        title="收藏"
                       >
                         <span className="side-icon">
                           <Star size={18} />
@@ -1741,6 +1822,8 @@ export default function App() {
                       <button
                         className={`side-item${meView === "following" ? " active" : ""}`}
                         onClick={() => setMeView("following")}
+                        aria-label="关注"
+                        title="关注"
                       >
                         <span className="side-icon">
                           <Heart size={18} />
@@ -1820,7 +1903,8 @@ export default function App() {
                           </div>
                         )}
 
-                        {collections.map((col) => {
+                        <div ref={folderColsRef} data-cols-root="folders">
+                          {collections.map((col) => {
                           const expanded = expandedCols[col.id] ?? false;
                           const colCards = expanded
                             ? col.repos
@@ -1860,7 +1944,11 @@ export default function App() {
                                     <p className="folder-empty">暂未匹配到项目卡片（数据可能已更新）</p>
                                   )}
                                   {colCards.length > 0 && (
-                                    <div className="feed-list">
+                                    <div
+                                      className="feed-list"
+                                      style={{ "--feed-cols": folderCols } as React.CSSProperties}
+                                      data-cols-root="folder"
+                                    >
                                       {colCards.map((card) => (
                                         <div key={card.repo} className="folder-card-wrapper">
                                           <FeedCardMemo
@@ -1886,6 +1974,7 @@ export default function App() {
                             </div>
                           );
                         })}
+                        </div>
 
                         <button className="collection-create-btn" onClick={handleCreateCollection}>
                           + 新建收藏夹
@@ -2013,6 +2102,9 @@ export default function App() {
                       onChange={(e) => setSearchQuery(e.target.value)}
                       autoFocus
                     />
+                    {/* 二轮 G6：搜索空态的热门预览套进与主信息流**同一个内容容器**
+                        （.feed-content 同宽）——同视口下预览与主信息流的列数/卡宽从机制上一致，
+                        而不是「同一规则、不同容器宽」的貌合神离（预览容器没有侧栏，1600 档会多出一列）。 */}
                     {searchQuery && (
                       <button className="search-clear" onClick={() => setSearchQuery("")}>
                         <X size={16} />
@@ -2020,9 +2112,9 @@ export default function App() {
                     )}
                   </div>
 
-                  {/* 空状态：推荐搜索词 + 分类直达 + 热门项目预览 */}
+                  {/* 空状态：推荐搜索词 + 分类直达 + 热门项目预览（G6：与主信息流同一内容容器与内距口径） */}
                   {!searchQuery && (
-                    <div className="search-empty">
+                    <div className="search-empty search-empty-unified">
                       <div className="search-chips">
                         <div className="search-empty-title">试试搜索</div>
                         <div className="chip-row">
@@ -2057,7 +2149,11 @@ export default function App() {
 
                       <div className="search-hot">
                         <div className="search-empty-title">热门项目</div>
-                        <div className="feed-list">
+                        <div
+                          className="feed-list"
+                          ref={hotColsRef}
+                          style={{ "--feed-cols": hotCols } as React.CSSProperties}
+                        >
                           {hotPreview.map((card) => (
                             <FeedCardMemo
                               key={card.repo}

@@ -319,6 +319,31 @@ def nav_shots(cdp):
     return made
 
 
+# 二轮 G7（2026-09-23 乙8）：视觉验收扩到 ≥3 档——图标栏（880×900）、底栏+滚动条（700×620）、
+# 全侧栏矮视口（1200×600，两条滚动条同屏）。旧闸只跑 1400×900 一档，
+# 图标栏/底栏/滚动条/窄档观感不在任何视觉验收里（甲3/甲4/甲5 的截图盲区）。
+# 每档把画面切回首页再截，档位间用 setDeviceMetricsOverride 切换（与 responsive 闸同机制）。
+EXTRA_VIEW_SHOTS = [
+    ("07_iconbar_880.png", 880, 900, False),
+    ("08_bottombar_700.png", 700, 620, True),
+    ("09_short_1200.png", 1200, 600, False),
+]
+
+
+def extra_view_shots(cdp):
+    made = []
+    for name, w, h, mobile in EXTRA_VIEW_SHOTS:
+        cdp.call("Emulation.setDeviceMetricsOverride",
+                 {"width": w, "height": h, "deviceScaleFactor": 1, "mobile": mobile})
+        time.sleep(1.5)
+        shot(cdp, name)
+        made.append(name)
+    cdp.call("Emulation.clearDeviceMetricsOverride")
+    missing = [m for m in made if not os.path.exists(os.path.join(OUT_DIR, m))]
+    report("截图-3 扩展档齐全（图标栏/底栏/矮视口）", not missing,
+           f"{len(made) - len(missing)}/3" + (f" 缺 {missing}" if missing else ""))
+
+
 def main():
     url = f"http://127.0.0.1:{SRV_PORT}/"
     # 检查 dist 数据规模
@@ -355,6 +380,7 @@ def main():
         ], "视觉断言-首页")
         shot(cdp, "01_home.png")
         nav_shots(cdp)
+        extra_view_shots(cdp)
     finally:
         p.kill()
 
