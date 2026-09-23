@@ -143,7 +143,7 @@ jobs:
           if (ok === 0) { console.error("no copyOk=true in dist: gate would not cover COPY-08"); process.exit(1); }
           '
 
-      - name: Responsive check gate（G-16，267 项/15 档：新增卡宽上限·列数·三列预期表 + 中间档与 2560 档）
+      - name: Responsive check gate（G-16，285 项/16 档：新增卡宽上限·列数·三列预期表 + 中间档·2560 档·栗子窗口档）
         env:
           CHROME_PATH: /usr/bin/google-chrome
         run: node scripts/gittok-responsive-check.mjs

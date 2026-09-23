@@ -189,30 +189,34 @@ describe("卡宽上限（2026-09-23 栗子：能两列时不要强行拉伸）",
 });
 
 describe("列数（照 CSS auto-fill 同式还原）", () => {
-  it("实测宽度表：1/2/3 列门槛（2026-09-23 起宽屏可出三列）", () => {
-    // 本机无头 Chrome 实测的网格可用宽（各档视口 − 侧栏 216px − 内容内距 48px）
-    expect(feedColsForContentWidth(1656)).toBe(3); // 1920 档（闸口径）
-    expect(feedColsForContentWidth(1640)).toBe(3); // 三列下限：3×536+2×16
-    expect(feedColsForContentWidth(1639)).toBe(2);
-    expect(feedColsForContentWidth(1336)).toBe(2); // 1600 档
-    expect(feedColsForContentWidth(1136)).toBe(2); // 1400 档
-    expect(feedColsForContentWidth(1088)).toBe(2); // 两列下限：2×536+16
-    expect(feedColsForContentWidth(1087)).toBe(1);
-    expect(feedColsForContentWidth(1079)).toBe(1); // 1343 档
-    expect(feedColsForContentWidth(936)).toBe(1); // 1200 档
-    expect(feedColsForContentWidth(776)).toBe(1); // 900 档
-    expect(feedColsForContentWidth(720)).toBe(1); // 1000 档
-    expect(feedColsForContentWidth(629)).toBe(1);
-    expect(feedColsForContentWidth(536)).toBe(1);
-    // CSS 下限写 min(536px, 100%)：窄于 536 的容器仍算 1 列（不溢出、也不出 0 列）
-    expect(feedColsForContentWidth(489)).toBe(1);
+  it("实测宽度表：1/2/3 列门槛（2026-09-23 第三版：门限由可读区间定）", () => {
+    // 本机无头 Chrome 实测的网格可用宽（各档视口 − 侧栏 216px − 内距 48px − 滚动条槽 15px）
+    expect(feedColsForContentWidth(1602)).toBe(3); // 1920/2560 档（内容区跟顶栏口径 1650）
+    expect(feedColsForContentWidth(1412)).toBe(3); // 三列下限：3×460+2×16
+    expect(feedColsForContentWidth(1411)).toBe(2);
+    expect(feedColsForContentWidth(1321)).toBe(2); // 1600 档
+    expect(feedColsForContentWidth(1121)).toBe(2); // 1400 档
+    expect(feedColsForContentWidth(1064)).toBe(2); // 1343 档
+    expect(feedColsForContentWidth(996)).toBe(2); // 1275 档（栗子 09-23 截图那个窗口）
+    expect(feedColsForContentWidth(975)).toBe(2); // 1254 档
+    expect(feedColsForContentWidth(936)).toBe(2); // 两列下限：2×460+16
+    expect(feedColsForContentWidth(935)).toBe(1);
+    expect(feedColsForContentWidth(873)).toBe(1); // 1200 档
+    expect(feedColsForContentWidth(673)).toBe(1); // 1000 档
+    expect(feedColsForContentWidth(573)).toBe(1); // 900 档
+    expect(feedColsForContentWidth(460)).toBe(1);
+    // CSS 下限写 min(460px, 100%)：窄于 460 的容器仍算 1 列（不溢出、也不出 0 列）
+    expect(feedColsForContentWidth(366)).toBe(1);
     expect(feedColsForContentWidth(0)).toBe(1);
   });
 
-  it("三列不破「一行 ≥28 字」：536px ＝ 28 字的精确反推值", () => {
-    // 实测口径：一行容量 = floor((卡宽 − 69) / 16.66)，16.66px 是本机 Windows 全角字宽
-    expect(Math.floor((FEED_COL_MIN - 69) / 16.66)).toBeGreaterThanOrEqual(28);
-    // 再往下取一档就破了（这就是 1600/1400 档出不了三列的原因）
-    expect(Math.floor((FEED_COL_MIN - 1 - 69) / 16.66)).toBe(27);
+  it("列宽下限 460px＝23 汉字，落在中文可读行长区间 22–38 汉字内", () => {
+    // 实测口径：一行容量 = floor((卡宽 − 69) / 16.66)
+    expect(Math.floor((FEED_COL_MIN - 69) / 16.66)).toBe(23);
+    // 再降 40px 就掉到 21 汉字＝跌出可读区间下沿（22），故不再降
+    expect(Math.floor((FEED_COL_MIN - 40 - 69) / 16.66)).toBe(21);
+    // 上限 640px＝34 汉字，仍在区间内，且低于 WCAG「80 chars (40 if CJK)」的 CJK 上限
+    expect(FEED_CARD_MAX).toBe(640);
+    expect(Math.floor((FEED_CARD_MAX - 69) / 16.66)).toBe(34);
   });
 });
