@@ -156,6 +156,18 @@ describe("CSS 结构自检（三轮踩过的坑：注释没闭合会把下一条
     const stripped = cssRaw.replace(/\/\*[\s\S]*?\*\//g, "");
     expect((stripped.match(/\{/g) ?? []).length).toBe((stripped.match(/\}/g) ?? []).length);
   });
+  it("全站 transition 不许出现裸时长（必须走 motion token）", () => {
+    // 三轮 T1 验收②：改前 38 处 `transition:` 里混着 0.15/0.2/0.25/0.28/0.3s——
+    // 同一个交互在不同元素上快慢不一，是「过渡不丝滑」的观感来源之一。
+    // 现在统一走 --motion-fast/base/slow + --ease-*，这条断言把「裸值」钉死为红。
+    // 允许：transition: none（锁⑨要求它在 .card.is-open-source 上）；`0s linear` 的 visibility 延迟开关。
+    const stripped = cssRaw.replace(/\/\*[\s\S]*?\*\//g, "");
+    const decls = [...stripped.matchAll(/transition:\s*([^;}]+)/g)].map((m) => m[1].replace(/\s+/g, " ").trim());
+    expect(decls.length).toBeGreaterThan(20); // 样本有效性：真扫到了声明（避免正则失效后「恒空窗口」假绿）
+    const bare = decls.filter((d) => d !== "none" && /\d*\.?\d+m?s|\d+ms/.test(d.replace(/0s/g, "")));
+    expect(bare).toEqual([]);
+  });
+
   it("注释外不出现中文破折号行（＝注释漏闭合的指纹）", () => {
     // 三轮实伤：新写的一段 `── … ──` 落在注释的 `*/` 之后 → 浏览器把这段文字当成选择器，
     // 紧跟着的 `.feed-content { … }` 整条被吞 → 内容区宽度/内距全失效（实测网格 1602→1650、
