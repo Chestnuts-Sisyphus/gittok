@@ -1,0 +1,70 @@
+{
+  "zh": {
+    "ai-cli": [
+      "Claude Code Skills 社区 PR 1771 热推 Solidity/Rust 合约审计工具",
+      "md2video-audio 将 Markdown 一键渲染为带解说 MP4 视频",
+      "pyxel 支持 Python 中创建调试 8-bit 复古游戏",
+      "document-typography 自动修复 AI 生成文档排版问题",
+      "覆盖 9 大主流 AI CLI 工具，含 Claude Code、Gemini CLI",
+      "Web3 开发者高度关注 proofcore 零知识证明审计技能"
+    ],
+    "ai-agents": [
+      "OpenClaw 生态转向生产级稳定性与合规关键转型期",
+      "NanoBot 今日 PR 35 条活跃，聚焦上下文压缩与并发内存",
+      "NanoClaw 发布 v2.4.0，重构凭证网关与任务调度",
+      "NullClaw 有 17 条活跃 Issues，修复 Zig 栈溢出问题",
+      "LobsterAI 2026.9.23 更新，实验性 Jev 决策模型受关注",
+      "覆盖 13 个智能体项目，重点解决长连接断连与内存溢出"
+    ],
+    "ai-trending": [
+      "Google AX 单日增星 1542，成多智能体底层操作系统",
+      "Agent-Substrate 一天涨星 560，支持插件化技能记忆",
+      "obra/superpowers 总星 290,651，社区活跃度最高",
+      "davila7/claude-code-templates 单日增星 393，提升 LLM 开发效率",
+      "TensorFlow 稳居热榜，累计 20 万+ 星仍是训练部署基石",
+      "Anthropic Fin-Services 与 Video-Use 加速大模型行业化落地"
+    ],
+    "ai-hf": [
+      "Qwen3.8-27B 获 16,135 赞和 691 万下载领跑热榜",
+      "DeepSeek-V4.1-Flash 成为多模态 LLM 高下载热度代表",
+      "MiniMax-H3 在视频生成方向表现突出",
+      "低比特量化生态活跃，Ternary 2-bit 与 GGUF 社区版占位多",
+      "XingChen-AGI Xing4.0-29B-A4B 获 1,561 赞，或为 MoE 结构",
+      "小米 MiMo V2.6 系列三模型上榜，强化学习路线受关注"
+    ],
+    "ai-community": [
+      "Lobste 非自回归决策模型帖子获 61 赞引热议",
+      "ChatGPT 通过广告收集器追踪跨网站活动话题 60 赞",
+      "AI 代码编写速度远超人类审核成为社区焦点",
+      "LLM-guard 已归档，开发者推出确定性替代方案",
+      "多代理系统人机协作实践指南获社区推荐",
+      "Per-Agent 成本跟踪在简单任务中成为优化热点"
+    ]
+  },
+  "en": {
+    "ai-cli": [
+      "Claude Code v2.1.281 adds Gateway and Bedrock IAM support",
+      "OpenAI Codex rust-v0.156.1 integrates GPT-6 Sol and Luna",
+      "MCP plugin architecture becomes ecosystem standard",
+      "Enterprise security controls prioritize OS-level sandboxing",
+      "Windows file-lock stability remains key pain point",
+      "DeepSeek TUI joins 9-tool CLI comparison lineup"
+    ],
+    "ai-agents": [
+      "NanoClaw v2.4.0 leads with 27 active PRs and high health",
+      "LobsterAI releases v2026.9.23 with strong activity",
+      "Agents shift to MCP and A2A inter-agent communication",
+      "Container-based isolation powers secure agent execution",
+      "CoPaw v2.2.x tracks 34 issues and 15 active PRs",
+      "Open-source ecosystem targets long-haul memory stability"
+    ],
+    "ai-trending": [
+      "Google ax runtime hits 8,973 stars with +1,542 today",
+      "weave-os/router cuts agentic costs by 40-70%",
+      "akitaonrails/ai-memory adds Rust-based long-term memory",
+      "superpowers sees explosive growth on GitHub",
+      "browserbase/stagehand bridges agents to browser control",
+      "ai-memory project reaches 8,207 stars"
+    ]
+  }
+}
