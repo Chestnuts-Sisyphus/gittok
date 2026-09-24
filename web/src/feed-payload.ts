@@ -45,11 +45,34 @@ export function warmFeedDetails(): void {
   })();
 }
 
-/** 解析详情表。打开弹窗前调用，保证第一帧就是完整内容（含深度解读）。 */
+/**
+ * 解析详情表。打开弹窗前调用，保证第一帧就是完整内容（含深度解读）。
+ *
+ * ⚠ 2026-09-24 四轮：**加了看门狗**。原来直接 `return textPromise.then(...)`——只要预热那条链
+ * 有任何一步不落地（见 `feed-cache.ts` 的 `loadCachedText`：缺 `tx.onabort` 出口时 Promise
+ * 会永久挂起），本函数就永远不 resolve；而调用方是 `handleOpenDetail` 里的
+ * `prefetchFeedDetails().then(() => setDetailCard(...))` ⇒ **弹层永远不出现**，
+ * 源卡却已被标成隐形（现场：点一下卡片没了、什么都没打开；线上必现、本地同 bundle 不复现）。
+ * 看门狗：预热超过 `WARM_DEADLINE_MS` 还没落地，就直接自己拉一次详情表（不走缓存、不写缓存），
+ * 再失败也给 `{}` —— 弹层至少能开，内容是可见的降级，而不是**静默卡死**。
+ */
+const WARM_DEADLINE_MS = 1500;
+
 export function prefetchFeedDetails(): Promise<Record<string, string>> {
-  warmFeedDetails();
   if (parsed) return Promise.resolve(parsed);
-  return (textPromise ?? Promise.resolve("{}")).then((text) => {
+  warmFeedDetails();
+  const warm: Promise<string> = (textPromise ?? Promise.resolve("{}")).then((t) => t);
+  const watchdog = new Promise<string>((resolve) => {
+    const timer = setTimeout(() => {
+      fetch(DETAILS_URL)
+        .then((r) => (r.ok ? r.text() : "{}"))
+        .then(resolve)
+        .catch(() => resolve("{}"));
+    }, WARM_DEADLINE_MS);
+    const clear = () => clearTimeout(timer);
+    void warm.then(clear, clear);
+  });
+  return Promise.race([warm, watchdog]).then((text) => {
     if (!parsed) {
       try {
         parsed = JSON.parse(text) as Record<string, string>;
