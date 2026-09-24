@@ -4,6 +4,7 @@
 
 import fs from "node:fs";
 import path from "node:path";
+import { assertSafeSegment } from "./safe-path.ts";
 import { type Lang, FOOTER, MSG } from "./i18n.ts";
 import { sleep } from "./date.ts";
 import { buildTrendingPrompt, TRENDING_PROMPT_MAX_CHARS } from "./prompts-data.ts";
@@ -373,10 +374,19 @@ export function recordFleetHealth(job: string): void {
 // ---------------------------------------------------------------------------
 
 export function saveFile(content: string, ...segments: string[]): string {
-  const filepath = path.join("digests", ...segments);
-  fs.mkdirSync(path.dirname(filepath), { recursive: true });
-  fs.writeFileSync(filepath, content, "utf-8");
-  return filepath;
+  // 五轮 T7 乙B4：写盘前的两道路径边界（Mimosa 报的那条 CWE-22 链的终点在这里）——
+  // ① 逐段拒绝分隔符 / `.` / `..` / 盘符；② 规范化后必须仍在工作目录之内。
+  // ② 紧邻 sink 写（而不是只调 safe-path.ts 的助手）是因为扫描器只认「贴着的边界」；
+  // 由来说明与「拒绝而非清洗」的理由见 src/safe-path.ts。
+  for (const [i, s] of segments.entries()) assertSafeSegment(s, `saveFile 段[${i}]`);
+  const root = process.cwd();
+  const target = path.resolve(root, path.join("digests", ...segments));
+  if (target !== root && !target.startsWith(root + path.sep)) {
+    throw new Error(`saveFile 越出工作目录：${target}`);
+  }
+  fs.mkdirSync(path.dirname(target), { recursive: true });
+  fs.writeFileSync(target, content, "utf-8");
+  return path.join("digests", ...segments);
 }
 
 export function autoGenFooter(lang: Lang = "zh"): string {

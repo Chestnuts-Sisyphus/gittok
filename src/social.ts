@@ -14,15 +14,22 @@ import "dotenv/config";
 import fs from "node:fs";
 import path from "node:path";
 import { callLlm } from "./report.ts";
+import { assertSafeSegment } from "./safe-path.ts";
 
 const DIGESTS_DIR = "digests";
 const SOCIAL_DIR = "social";
 
 function saveSocialFile(content: string, filename: string): string {
+  // 五轮 T7 乙B4：两道路径边界（同 saveFile；由来说明见 src/safe-path.ts）
+  assertSafeSegment(filename, "saveSocialFile filename");
+  const root = process.cwd();
+  const target = path.resolve(root, SOCIAL_DIR, filename);
+  if (target !== root && !target.startsWith(root + path.sep)) {
+    throw new Error(`saveSocialFile 越出工作目录：${target}`);
+  }
   fs.mkdirSync(SOCIAL_DIR, { recursive: true });
-  const filepath = path.join(SOCIAL_DIR, filename);
-  fs.writeFileSync(filepath, content, "utf-8");
-  return filepath;
+  fs.writeFileSync(target, content, "utf-8");
+  return path.join(SOCIAL_DIR, filename);
 }
 
 // Reports to include as source material (zh only)

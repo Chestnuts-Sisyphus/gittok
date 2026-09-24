@@ -1316,8 +1316,25 @@ export default function App() {
       setDetailCard(mergeDetail(card, ready));
       return;
     }
+    // ── 五轮 T1（线上实测的根因就在这里）───────────────────────────────────────────
+    // 症状：线上点卡片 → 卡片立刻隐形、弹层**长期不出现**、无报错（本地同 bundle 正常）。
+    // 实测（`D:/tmp/gt-r5-open-live.mjs`，线上冷 profile）：弹层**确实会开**，但要等
+    // **105.4 秒**——那一刻正是 `feed-details.json` 下载完的时刻；同一张卡在数据就位后再点
+    // 只要 **107ms**。此前「弹层从不出现」的结论来自 3.5s 的观察窗，是探针窗口太短。
+    // 所以根因不是渲染被挡住，而是：**点击路径在等一个 5.2MB 的详情表下载**，
+    // 而源卡已经被标成隐形 ⇒ 用户看到的就是「点一下卡片没了，什么都没打开」。
+    // 这台机器到 GH Pages 的带宽下 `feed.json`（4.4MB 压缩）就要 55.8s、详情表 105.3s，
+    // 三个并发请求（预热 + 两个看门狗）还在互相抢同一条窄带。
+    //
+    // 修法：**点击立刻开弹层**（用列表卡自身的数据），详情表到位后再补 `detailCn`。
+    // 为什么这样就够：`CardDetail` 的「深度解读」本来就是 `card.detailCn && …` 条件渲染，
+    // 缺它时弹层是**可见的降级**（简要介绍/元信息/动作区都在），不是残缺空块；
+    // 补上来的那次更新走同一个 `key={detailCard.repo}` ⇒ 不重挂、不重播入场动画
+    // （入场的 `to` 是 identity，面板布局盒变化不会让落点偏）。
+    // 这也是 `feed-cache.ts` 里那句话的同一条纪律：**慢的只是提速手段，它不该拖住功能**。
+    setDetailCard(card);
     void prefetchFeedDetails().then((details) => {
-      setDetailCard(mergeDetail(card, details));
+      setDetailCard((prev) => (prev && prev.repo === card.repo ? mergeDetail(prev, details) : prev));
     });
   }, []);
 

@@ -20,6 +20,7 @@ import {
   fetchSkillsData,
   createGitHubIssue,
 } from "./github.ts";
+import { assertSafeSegment } from "./safe-path.ts";
 import {
   type RepoDigest,
   buildCliPrompt,
@@ -450,7 +451,11 @@ async function main(): Promise<void> {
 
   // 5. Generate highlights for Telegram notification
   const readReport = (name: string): string | undefined => {
-    const p = path.join("digests", dateStr, name);
+    // 五轮 T7 乙B4：读路径的两道边界（由来说明见 src/safe-path.ts）
+    assertSafeSegment(name, "readReport name");
+    const root = process.cwd();
+    const p = path.resolve(root, path.join("digests", dateStr, name));
+    if (p !== root && !p.startsWith(root + path.sep)) throw new Error(`readReport 越出工作目录：${p}`);
     return fs.existsSync(p) ? fs.readFileSync(p, "utf-8") : undefined;
   };
 

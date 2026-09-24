@@ -92,12 +92,25 @@ describe("saveFile", () => {
 
   it("creates parent directories recursively", () => {
     saveFile("content", "2026-03-09", "ai-cli.md");
-    expect(fs.mkdirSync).toHaveBeenCalledWith(expectedDir, { recursive: true });
+    // 五轮 T7 乙B4：写盘用**已校验的绝对路径**（而非再拼一次相对路径）——
+    // 边界检查判的是「规范化后的目标」，写盘就必须写**同一个字符串**；
+    // 否则「检查的」与「写的」是两处拼装，中间任何改动都能把两者拆开。
+    expect(fs.mkdirSync).toHaveBeenCalledWith(path.resolve(process.cwd(), expectedDir), { recursive: true });
   });
 
   it("writes content as utf-8", () => {
     saveFile("hello world", "2026-03-09", "test.md");
-    expect(fs.writeFileSync).toHaveBeenCalledWith(path.join(expectedDir, "test.md"), "hello world", "utf-8");
+    expect(fs.writeFileSync).toHaveBeenCalledWith(
+      path.resolve(process.cwd(), expectedDir, "test.md"),
+      "hello world",
+      "utf-8",
+    );
+  });
+
+  it("路径越界一律抛错（不是静默改写）：分隔符 / `..` 都拦", () => {
+    expect(() => saveFile("x", "2026-03-09", "../escape.md")).toThrow(/分隔符/);
+    expect(() => saveFile("x", "2026-03-09", "sub/escape.md")).toThrow(/分隔符/);
+    expect(() => saveFile("x", "2026-03-09", "..")).toThrow(/相对路径段/);
   });
 });
 

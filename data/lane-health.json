@@ -1,13 +1,14 @@
 {
-  "updatedAt": "2026-09-20T08:28:15.965Z",
+  "updatedAt": "2026-09-24T16:19:03.203Z",
   "lanes": {
     "zhipu": {
       "key": "zhipu",
-      "calls": 2611,
-      "ok": 2036,
-      "lastError": "Error: 429 该模型当前访问量过大，请您稍后再试",
-      "lastClass": "ok",
-      "updatedAt": "2026-09-20T08:28:15.965Z"
+      "calls": 2718,
+      "ok": 2135,
+      "lastError": "Error: summary-fix 2 张 超时 90000ms",
+      "lastClass": "network",
+      "updatedAt": "2026-09-24T16:05:41.099Z",
+      "retiredUntil": "2026-09-24T16:35:41.099Z"
     },
     "agnes": {
       "key": "agnes",
@@ -54,11 +55,12 @@
     },
     "openrouter": {
       "key": "openrouter",
-      "calls": 356,
-      "ok": 131,
-      "lastError": "TypeError: Cannot read properties of undefined (reading '0')",
-      "lastClass": "ok",
-      "updatedAt": "2026-09-20T08:27:00.991Z"
+      "calls": 427,
+      "ok": 181,
+      "lastError": "Error: summary-fix 10 张 超时 60000ms",
+      "lastClass": "network",
+      "updatedAt": "2026-09-24T15:29:52.686Z",
+      "retiredUntil": "2026-09-24T15:59:52.686Z"
     },
     "custom-modelscope": {
       "key": "custom-modelscope",
@@ -78,12 +80,11 @@
     },
     "modelscope": {
       "key": "modelscope",
-      "calls": 467,
-      "ok": 148,
+      "calls": 478,
+      "ok": 156,
       "lastError": "TypeError: Cannot read properties of null (reading '0')",
-      "lastClass": "network",
-      "updatedAt": "2026-09-20T07:19:11.182Z",
-      "retiredUntil": "2026-09-20T07:49:11.182Z"
+      "lastClass": "ok",
+      "updatedAt": "2026-09-24T16:19:03.203Z"
     },
     "spark": {
       "key": "spark",

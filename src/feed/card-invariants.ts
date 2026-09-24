@@ -15,7 +15,7 @@
  *   if (!r.ok) throw new Error(...)   // 管道在写盘前自断
  */
 
-import { ZONES, FUN_DIMS } from "./taxonomy.ts";
+import { ZONES, FUN_DIMS, SUMMARY_MIN, SUMMARY_MAX } from "./taxonomy.ts";
 
 /**
  * 硬性字段：**管道每轮必然产出**的字段（缺 = 管道坏了 / 缓存白名单漏了 → 拒绝提交）。
@@ -156,9 +156,15 @@ export function checkCardInvariants(
       add(repo, "domainTags", `领域词数量 ${tags.length} 不在 3-6`);
     }
     const summary = c["summaryCn"];
-    if (typeof summary === "string" && summary.length > 0 && (summary.length < 20 || summary.length > 35)) {
-      // 内容质量线：告警不拦截（存量卡有历史欠账，E8 全文案重跑统一清）
-      add(repo, "summaryCn", `字数 ${summary.length} 不在 20-35（内容质量线，不拦提交）`, "warn");
+    if (
+      typeof summary === "string" &&
+      summary.length > 0 &&
+      (summary.length < SUMMARY_MIN || summary.length > SUMMARY_MAX)
+    ) {
+      // 五轮 T2：**硬拦**（原先只 warn）。原先豁免的理由是「存量卡历史欠账，E8 全文案重跑统一清」——
+      // 2026-09-24 该欠账已清零（全库 2932 张逐张核过），且生成端那处口径漂移也一并修好，
+      // 所以这条线现在如实反映产出质量：不合规的文案不允许再进库。
+      add(repo, "summaryCn", `字数 ${summary.length} 不在 ${SUMMARY_MIN}-${SUMMARY_MAX}`);
     }
   }
 

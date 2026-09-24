@@ -54,7 +54,14 @@ vi.mock("../report.ts", async (importOriginal) => {
 // stars 轮转刷新不打真网络（resp.ok=false → 跳过刷新，无害）
 vi.stubGlobal("fetch", vi.fn(async () => ({ ok: false, status: 404 })) as unknown as typeof fetch);
 
-import { generateFeed, effLen, summaryFromDetailFirstPara } from "../feed/index.ts";
+import {
+  generateFeed,
+  effLen,
+  summaryFromDetailFirstPara,
+  fitSummary,
+  summaryWithinContract,
+} from "../feed/index.ts";
+import { SUMMARY_MIN, SUMMARY_MAX } from "../feed/taxonomy.ts";
 
 // ---------------------------------------------------------------------------
 // Fixtures
@@ -260,16 +267,55 @@ describe("P0a 长度校验（effLen / 重评 / detail 兜底 / pending）", () =
     expect(callCount.n).toBe(2);
   });
 
-  it("summaryFromDetailFirstPara：从第一段截 20-35 字且句号收尾", () => {
+  it("summaryFromDetailFirstPara：从第一段截 20-35 字（**按 String.length**）且句末收尾", () => {
     const detail =
       "简单来说，这是一个帮你本地跑大模型的神器，不需要昂贵的显卡。\n\n技术上，它用纯 C++ 实现推理内核。\n\n安装很简单，一行命令搞定。";
     const s = summaryFromDetailFirstPara(detail);
-    expect(s.length).toBeGreaterThanOrEqual(15);
-    expect(effLen(s)).toBeLessThanOrEqual(38);
+    expect(s.length).toBeGreaterThanOrEqual(SUMMARY_MIN);
+    expect(s.length).toBeLessThanOrEqual(SUMMARY_MAX);
     expect(s.startsWith("简单来说")).toBe(true);
     expect(s.endsWith("。")).toBe(true);
     // 空输入 → ""
     expect(summaryFromDetailFirstPara("")).toBe("");
+  });
+
+  // 五轮 T2②：**产出后校验**锁。这条线的立论 = 闸只拦「交给它判的」，
+  // 而兜底装配路径不经过 cardChecks ⇒ 生成端必须自己判，且判据必须与闸同口径（String.length）。
+  // 回归事故：这里原先按 effLen 收 35、闸按 length 判 35 → 全库 418 张「生成端合规/闸超字」漏出去。
+  it("fitSummary：任何输入都切到 ≤35（含 ASCII 膨胀的卡），且不硬切在单词中间", () => {
+    // ASCII 膨胀：raw 45 / effLen 仅 ~24 —— 旧实现（effLen 口径）会原样放过
+    const asciiHeavy = "一个终端里的AI编程搭档，支持Claude GPT Deepseek等300多个模型任你选";
+    expect(asciiHeavy.length).toBeGreaterThan(SUMMARY_MAX);
+    const cut = fitSummary(asciiHeavy);
+    expect(cut.length).toBeLessThanOrEqual(SUMMARY_MAX);
+    expect(cut.length).toBeGreaterThanOrEqual(SUMMARY_MIN);
+    // 切点落在分句标点上（不是「…等300」这种硬切）
+    expect(cut.endsWith("等")).toBe(true);
+
+    // 长句里没有分句标点 → 硬切，但仍必须 ≤35（不许出现「…的 Pyth」那种超界）
+    const noPunct = "The open source agent harness runtime layer that turns an LLM into a workable agent";
+    const hard = fitSummary(noPunct);
+    expect(hard.length).toBe(SUMMARY_MAX);
+    expect(hard.startsWith("The open source")).toBe(true);
+
+    // 已合规的原文原样返回（不主动改写合格内容）
+    expect(fitSummary("短摘要")).toBe("短摘要");
+  });
+
+  it("summaryFromDetailFirstPara：截不出合规的一句时返回空串（不再产出超字/欠字）", () => {
+    // 第一段与整篇都短于 20 字 → 空串（调用方按「不合格不上站」处理）
+    expect(summaryFromDetailFirstPara("太短了。")).toBe("");
+    expect(summaryFromDetailFirstPara("短。\n\n也短。")).toBe("");
+    // 每一条产出都必须自己过契约
+    const cases = [
+      "第一段：想象一下，平常需要上百美元的云 GPU 才能跑的大语言模型，现在只要一台笔记本就够了。",
+      "Genetic Drawing 是一个诞生于 2017 年的 Python 玩具项目，其核心创意在于用遗传算法复刻图片，整个过程可视化且充满随机性。",
+      "全球最大的GPT Image 2 prompt库，提供丰富的图像生成提示。",
+    ];
+    for (const c of cases) {
+      const s = summaryFromDetailFirstPara(c);
+      expect(s === "" || summaryWithinContract(s), `产出不满足契约：${s.length} 字「${s}」`).toBe(true);
+    }
   });
 
   it("重评失败 + 有 detail → 兜底构造的卡 summary 非空且 20-35 字（不再留空被前端填充）", async () => {
@@ -295,8 +341,9 @@ describe("P0a 长度校验（effLen / 重评 / detail 兜底 / pending）", () =
 
     const card = cards.find((c) => c.repo === "new/fallback-sum");
     expect(card).toBeDefined();
-    expect(card!.summaryCn.length).toBeGreaterThanOrEqual(10);
-    expect(effLen(card!.summaryCn)).toBeLessThanOrEqual(38);
+    // 五轮 T2②：兜底产出的 summary 现在必须**整段落在契约内**（不是「≥10 字就行」）
+    expect(card!.summaryCn.length).toBeGreaterThanOrEqual(SUMMARY_MIN);
+    expect(card!.summaryCn.length).toBeLessThanOrEqual(SUMMARY_MAX);
     expect(card!.summaryCn.startsWith("这是一个测试项目")).toBe(true);
   });
 

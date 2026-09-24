@@ -58,16 +58,36 @@ export function warmFeedDetails(): void {
  */
 const WARM_DEADLINE_MS = 1500;
 
+/**
+ * 直拉详情表文本（不走缓存、不写缓存），**全页至多一条在飞**。
+ *
+ * ⚠ 2026-09-24 五轮 T1 实测：原先每次 `prefetchFeedDetails()` 都各起一条看门狗 fetch，
+ * 于是「预热 1 条 + 两个调用点各 1 条」= **同一份 5.2MB 文件同时下 3 遍**（线上调用序列实测
+ * 三条 `feed-details.json`，每条 ~104s）。窄带下它们互相抢带宽，谁都不先到。
+ * 合流后仍是「看门狗」语义（预热挂了照样能自己拉），只是不再重复下载。
+ * 结算即清（成功/失败都清）——失败不该被永久记成"在飞"。
+ */
+let directPromise: Promise<string> | null = null;
+function fetchDetailsText(): Promise<string> {
+  if (!directPromise) {
+    directPromise = fetch(DETAILS_URL)
+      .then((r) => (r.ok ? r.text() : "{}"))
+      .catch(() => "{}")
+      .then((text) => {
+        directPromise = null;
+        return text;
+      });
+  }
+  return directPromise;
+}
+
 export function prefetchFeedDetails(): Promise<Record<string, string>> {
   if (parsed) return Promise.resolve(parsed);
   warmFeedDetails();
   const warm: Promise<string> = (textPromise ?? Promise.resolve("{}")).then((t) => t);
   const watchdog = new Promise<string>((resolve) => {
     const timer = setTimeout(() => {
-      fetch(DETAILS_URL)
-        .then((r) => (r.ok ? r.text() : "{}"))
-        .then(resolve)
-        .catch(() => resolve("{}"));
+      void fetchDetailsText().then(resolve);
     }, WARM_DEADLINE_MS);
     const clear = () => clearTimeout(timer);
     void warm.then(clear, clear);

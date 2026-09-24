@@ -7,6 +7,7 @@ import fs from "node:fs";
 import path from "node:path";
 import yaml from "js-yaml";
 import type { RepoConfig } from "./github.ts";
+import { assertNoParentTraversal } from "./safe-path.ts";
 
 // ---------------------------------------------------------------------------
 // Schema types
@@ -148,7 +149,17 @@ export function toRepoConfig(e: RawRepoEntry): RepoConfig {
 }
 
 export function loadConfig(configPath = "config.yml"): RadarConfig {
+  // 五轮 T7 乙B4：**读**路径的两道边界。这里刻意**不**做「必须在项目目录内」的无条件硬限制——
+  // 绝对路径是既有用法（单测 `loadConfig("/nonexistent/config.yml")` 钉着「找不到就回落默认值」，
+  // 命令行显式传路径也是产品行为）；能改这个入参的人已经能在这台机器上执行命令了。
+  // 规则：① 任何形式都禁「上级目录段」；② **相对**路径解析后必须落在工作目录内
+  //      （相对路径越界只可能是 `..` 或环境异常，没有正当用法）。由见 src/safe-path.ts。
+  assertNoParentTraversal(configPath, "configPath");
   const resolved = path.resolve(configPath);
+  const root = process.cwd();
+  if (!path.isAbsolute(configPath) && resolved !== root && !resolved.startsWith(root + path.sep)) {
+    throw new Error(`config 相对路径越出工作目录：${resolved}`);
+  }
 
   if (!fs.existsSync(resolved)) {
     console.log(`[config] ${configPath} not found — using built-in defaults.`);

@@ -1,7 +1,20 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
-import { capacityProblems, MIN_REACHABLE, type Row } from "../../scripts/gittok-channel-capacity.ts";
+import {
+  capacityProblems,
+  CARDS_PER_SCREEN,
+  MIN_REACHABLE,
+  MIN_SCREENS,
+  REF_VIEWPORT_HEIGHT,
+  type Row,
+} from "../../scripts/gittok-channel-capacity.ts";
+import {
+  FEED_COL_MIN,
+  FEED_ROW_GAP,
+  FEED_ROW_HEIGHT,
+  feedColsForContentWidth,
+} from "../../web/src/feed-layout.ts";
 
 /**
  * V-C 频道容量闸的「拦截力」契约（2026-09-23 补，对应缺口乙10）。
@@ -62,8 +75,25 @@ describe("V-C 容量闸退出码（源码级锁，防「只报不拦」复发）
     expect(tail.slice(0, iPass)).not.toMatch(/process\.exitCode\s*=\s*0/);
   });
 
-  it("阈值是栗子定稿的 300，不被顺手改小", () => {
-    expect(MIN_REACHABLE).toBe(300);
-    expect(SRC).toMatch(/export const MIN_REACHABLE = 300;/);
+  it("阈值不再是拍的数字：由「屏数 × 每屏张数」推导，且每屏张数来自版式规则本身", () => {
+    // 五轮 T3（2026-09-24）：栗子问「为什么有这样的要求」，溯源证明 300 **从来没有推导**
+    // （`git log -S MIN_REACHABLE` 只有 a0f2fca，只加了常量、无注释、无文档）。
+    // ⇒ 这条锁从「数字必须是 300」升级成「数字必须是推导出来的」——**比锁一个值更严**：
+    //    谁想把线压低，不能只改一个数字，必须同时改 MAC 版式规则或屏数，而那两个都会在
+    //    别处（列数单测/拖拽闸/视觉闸）当场翻车。
+    expect(MIN_SCREENS).toBe(40); // 唯一允许直接取值的量：栗子定稿的「刷几屏」
+    // 每屏张数 = 列数(两列门槛内容宽) × 行数(参照视口高)，逐项复算
+    const expectCols = feedColsForContentWidth(2 * FEED_COL_MIN + FEED_ROW_GAP);
+    const expectRows = Math.floor(REF_VIEWPORT_HEIGHT / FEED_ROW_HEIGHT);
+    expect(CARDS_PER_SCREEN).toBe(expectCols * expectRows);
+    expect(expectCols).toBe(2); // 两列门槛的内容宽必须正好给出两列（653px 卡宽 ×2 + 16 间距 = 1322）
+    expect(MIN_REACHABLE).toBe(MIN_SCREENS * CARDS_PER_SCREEN);
+    expect(MIN_REACHABLE).toBe(240); // 今日实测值：40 × 6（分区·创意 245 ⇒ 余 5 张）
+    // 不许再退回「一个裸常量」
+    expect(SRC).toMatch(/export const MIN_REACHABLE = MIN_SCREENS \* CARDS_PER_SCREEN;/);
+  });
+
+  it("报告里能看到推导（口径可复核，不是只给结论）", () => {
+    expect(SRC).toMatch(/屏 × \$\{CARDS_PER_SCREEN\} 张\/屏/);
   });
 });

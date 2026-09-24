@@ -38,6 +38,7 @@ import {
   initTagWeights,
 } from "./personalize.ts";
 import { cardChecks, effLen, detailQualified } from "./checks.ts";
+import { SUMMARY_MIN, SUMMARY_MAX } from "./taxonomy.ts";
 import { cleanV4, isSkeleton, isMirror } from "./stage1.ts";
 import { pack, checkBatch, fixAdjacent } from "./stage2.ts";
 import { ProductionScheduler, parseMatrix } from "./scheduler.ts";
@@ -563,9 +564,46 @@ export function fallbackReasonFromDetail(detailCn: string): string | null {
 }
 
 /**
+ * 把一段文字切成**符合摘要契约**（`SUMMARY_MIN`–`SUMMARY_MAX` 字）的一句话。
+ *
+ * 计数口径 = `String.length`（与 `checks.cardChecks` G1、`card-invariants` 同一口径）。
+ * ⚠ 不用 `effLen`：`effLen` 是「视觉宽度折算」（ASCII 记 0.5），它是**版式**的输入，
+ * 不是契约的口径。2026-09-24 五轮实测：这里原先按 effLen 收到 35、而闸按 length 判 35，
+ * 于是全库 418 张卡「生成端认为合规、闸认为超字」漏出去（400 张正是本函数的产物）。
+ *
+ * 切点优先级：最后一个句末标点 → 最后一个分句标点（连标点一起去掉）→ 硬切。
+ * 为什么要挑切点：硬切会把「…的 Python」切成「…的 Pyth」，读者一眼看出是机器切的；
+ * 落在标点上则是完整的一句话／一个分句。
+ */
+export function fitSummary(text: string): string {
+  const t = (text ?? "").trim();
+  if (t.length <= SUMMARY_MAX) return t;
+  const win = t.slice(0, SUMMARY_MAX);
+  const lastAt = (re: RegExp, dropTrail: boolean): number => {
+    const m = [...win.matchAll(re)];
+    if (m.length === 0) return -1;
+    const last = m[m.length - 1]!;
+    const at = last.index ?? -1;
+    return dropTrail ? at : at + 1;
+  };
+  const sent = lastAt(/[。！？!?]/g, false);
+  if (sent >= SUMMARY_MIN) return win.slice(0, sent);
+  const clause = lastAt(/[，、；：,;:]/g, true);
+  if (clause >= SUMMARY_MIN) return win.slice(0, clause);
+  return win;
+}
+
+/** 产出的 summary 是否**自己就过契约**（≥SUMMARY_MIN 且 ≤SUMMARY_MAX）。
+ *  生成端用它做「产出后校验」：不合格就别写进库里，别指望下游闸替你拦
+ *  ——下面那两条兜底装配路径**不经过** `cardChecks`，闸看不见它们。 */
+export function summaryWithinContract(s: string): boolean {
+  return typeof s === "string" && s.length >= SUMMARY_MIN && s.length <= SUMMARY_MAX;
+}
+
+/**
  * detail 第一段截取 summary（P0a 兜底收尾：一句话描述从「这是什么」段截 20-35 字句号收尾，
  * 与 reason 用的技术段互补不重复；避免 summary 留空被前端用 reason 首句填充成超长文本）。
- * 返回 effLen 尽量落在 20-35；无法截取返回 ""。
+ * 返回值**必然满足** `summaryWithinContract`，或为 ""（截不出合规的一句时如实返回空）。
  */
 export function summaryFromDetailFirstPara(detailCn: string): string {
   const segments = detailCn
@@ -574,15 +612,9 @@ export function summaryFromDetailFirstPara(detailCn: string): string {
     .filter((s) => s.length > 0);
   if (segments.length === 0) return "";
   let body = segments[0] ?? "";
-  if (effLen(body) < 20) body = segments.join(" ");
-  let acc = "";
-  let reached = false;
-  for (const ch of body) {
-    acc += ch;
-    if (effLen(acc) >= 20) reached = true;
-    if (reached && (/[。！？]/.test(ch) || effLen(acc) >= 35)) break;
-  }
-  return acc;
+  if (body.length < SUMMARY_MIN) body = segments.join(" ");
+  const cut = fitSummary(body);
+  return summaryWithinContract(cut) ? cut : "";
 }
 
 // ---------------------------------------------------------------------------
@@ -1453,25 +1485,32 @@ export async function generateFeed(
               if (!sc) {
                 // 本轮评分失败 + 历史 detail 兜底：构造最小评分（summary 从 detail 第一段截 20-35 字，
                 // 防前端用 reason 首句填充成超长文本——P0a 收尾）
+                // 五轮 T2②：兜底截出的 summary 必须**自己就过契约**；截不出合规的一句 ⇒ 不写这张卡
+                // （与下面「宁缺毋滥」同一条纪律——两条兜底装配路径都不经过 cardChecks，闸看不见它们）。
+                const fabricated = summaryFromDetailFirstPara(detail);
+                if (!summaryWithinContract(fabricated)) {
+                  failedThisRound.push(m);
+                  continue;
+                }
                 sc = {
                   repo: m.repo,
                   aiDims: [],
                   aiDim: "其他",
                   aiScore: 0.5,
-                  summaryCn: summaryFromDetailFirstPara(detail),
+                  summaryCn: fabricated,
                   reasonCn: fallback,
                   detailCn: detail,
                 };
               } else {
                 // sc 有值（本轮批量评分成功）但长度不达标 + 重评失败：reason 用 detail 兜底的同时，
                 // summary 若不达标也一并从 detail 第一段截取（与 reason 用的第二段互补，零重复风险）
-                const summaryOk = sc.summaryCn && sc.summaryCn.length >= 20 && sc.summaryCn.length <= 35;
-                sc = {
-                  ...sc,
-                  reasonCn: fallback,
-                  detailCn: detail,
-                  summaryCn: summaryOk ? sc.summaryCn : summaryFromDetailFirstPara(detail),
-                };
+                const summaryOk = summaryWithinContract(sc.summaryCn ?? "");
+                const next = summaryOk ? sc.summaryCn : summaryFromDetailFirstPara(detail);
+                if (!summaryWithinContract(next ?? "")) {
+                  failedThisRound.push(m);
+                  continue;
+                }
+                sc = { ...sc, reasonCn: fallback, detailCn: detail, summaryCn: next };
               }
             } else {
               // 纯长度失败但 detail 兜底不可用（detail 异常短）→ 不合格不上站（宁缺毋滥）

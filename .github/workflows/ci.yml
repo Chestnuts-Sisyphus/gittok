@@ -65,9 +65,11 @@ jobs:
       - name: Card invariants gate（D2）
         run: npx tsx scripts/gittok-card-invariants.ts
 
-      # 频道容量闸（V-C，栗子 L8）：每个核心频道必须真的能滚到 ≥300 张、无重复、
-      # 显示张数 = 实际张数、前缀配额合规。
-      - name: Channel capacity check（V-C）
+      # 频道容量闸（V-C，栗子 L8）：每个核心频道必须真的能滚到「40 屏 × 6 张/屏 = 240 张」、
+      # 无重复、显示张数 = 实际张数、前缀配额合规。
+      # 口径 2026-09-24 五轮改：原「≥300 张」是不可推导的魔法数（栗子问「为什么有这样的要求」，
+      # 溯源证明它从来没有推导）→ 换成「屏数 × 每屏张数」，每屏张数由版式规则实时算出（见脚本注释）。
+      - name: Channel capacity check（V-C，40 屏 × 6 张/屏 = 240 张）
         run: npx tsx scripts/gittok-channel-capacity.ts
 
   # GitTok MCP server（2026-09-17）：search / top / detail 三 tool 的打包与测试。

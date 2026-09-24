@@ -1,0 +1,2983 @@
+{
+  "version": "summary-fix:T2:1",
+  "updatedAt": "2026-09-24T16:19:03.316Z",
+  "done": {
+    "FareedKhan-dev/kimi-k3-in-c": {
+      "at": "2026-09-24T14:56:28.603Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 38,
+      "to": 35,
+      "summary": "纯C99实现，将2.78万亿参数模型压缩至8GB内存，单CPU即可运行"
+    },
+    "grafana/mcp-grafana": {
+      "at": "2026-09-24T14:57:09.630Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 40,
+      "to": 23,
+      "summary": "Grafana 配置管理的 MCP 服务器工具"
+    },
+    "truefoundry/trueforge": {
+      "at": "2026-09-24T14:57:09.630Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 90,
+      "to": 26,
+      "summary": "将 LLM 转为可运行 Agent 的开源运行时框架"
+    },
+    "imDema/FreeMove": {
+      "at": "2026-09-24T14:57:09.630Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 45,
+      "to": 25,
+      "summary": "Windows 目录迁移工具，支持 C 盘空间管理"
+    },
+    "lsdefine/GenericAgent": {
+      "at": "2026-09-24T14:57:09.630Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 41,
+      "to": 26,
+      "summary": "具备自我进化能力的 Agent 框架，技能树自动扩展"
+    },
+    "microsoft/AI": {
+      "at": "2026-09-24T14:57:09.631Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 36,
+      "to": 22,
+      "summary": "微软官方提供的结构化 AI 知识与入门文档库"
+    },
+    "intellij-elixir/intellij-elixir": {
+      "at": "2026-09-24T14:57:09.631Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 54,
+      "to": 30,
+      "summary": "Elixir 语言的 JetBrains IDE 编辑器插件"
+    },
+    "amusi/ICCV2025-Papers-with-Code": {
+      "at": "2026-09-24T14:57:14.898Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 40,
+      "to": 34,
+      "summary": "收录ICCV 2025全部论文及代码，按技术栈细分的视觉顶会资源库。"
+    },
+    "alitto/pond": {
+      "at": "2026-09-24T14:57:14.898Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 42,
+      "to": 34,
+      "summary": "Go语言Worker Pool库，精确限制并发任务数量避免资源耗尽。"
+    },
+    "seemoo-lab/nexmon": {
+      "at": "2026-09-24T14:57:14.900Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 45,
+      "to": 34,
+      "summary": "为Broadcom WiFi芯片定制固件，支持监控模式与帧注入攻击。"
+    },
+    "YouMind-OpenLab/awesome-gpt-image-2": {
+      "at": "2026-09-24T14:57:14.900Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 37,
+      "to": 35,
+      "summary": "全球最大GPT Image 2提示词库，含2000+精选图像生成示例。"
+    },
+    "whittlem/pycryptobot": {
+      "at": "2026-09-24T14:57:14.900Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 41,
+      "to": 31,
+      "summary": "开源加密货币交易机器人，通过Telegram社区提供策略支持。"
+    },
+    "AlkaidLab/foundation-sunshine": {
+      "at": "2026-09-24T14:57:18.275Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 48,
+      "to": 35,
+      "summary": "开源游戏串流工具，支持7.1.4环绕声与Opus DRED丢包恢复技术"
+    },
+    "google-gemini/gemini-cli": {
+      "at": "2026-09-24T14:57:18.275Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 36,
+      "to": 28,
+      "summary": "命令行AI代理，利用Gemini模型深度理解代码与上下文"
+    },
+    "elalish/manifold": {
+      "at": "2026-09-24T14:57:18.275Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 41,
+      "to": 29,
+      "summary": "3D几何库，保证布尔运算输出始终为流形网格，适合CAD建模"
+    },
+    "hundredrabbits/Orca": {
+      "at": "2026-09-24T14:57:18.275Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 36,
+      "to": 26,
+      "summary": "基于字母的实时音序器，支持终端与Monome硬件运行"
+    },
+    "basicmachines-co/basic-memory": {
+      "at": "2026-09-24T14:57:18.275Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 36,
+      "to": 26,
+      "summary": "AI对话记忆系统，利用向量检索让AI记住上下文不遗忘"
+    },
+    "alexhallam/tv": {
+      "at": "2026-09-24T14:57:18.276Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 45,
+      "to": 29,
+      "summary": "高性能CSV分析工具，流式处理5MB大文件，终端内优雅显示"
+    },
+    "deepset-ai/haystack": {
+      "at": "2026-09-24T14:57:18.276Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 37,
+      "to": 29,
+      "summary": "生产级LLM应用编排框架，构建RAG系统与Agent工作流"
+    },
+    "google/adk-python": {
+      "at": "2026-09-24T14:57:18.276Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 39,
+      "to": 32,
+      "summary": "Google开源Python工具箱，代码优先构建可控的AI智能体"
+    },
+    "mainmatter/100-exercises-to-learn-rust": {
+      "at": "2026-09-24T14:57:18.276Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 42,
+      "to": 28,
+      "summary": "Rust编程自学路径，通过100个练习题掌握语言核心特性"
+    },
+    "huggingface/diffusers": {
+      "at": "2026-09-24T14:57:20.951Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 38,
+      "to": 26,
+      "summary": "基于PyTorch的扩散模型库，支持图像视频音频生成"
+    },
+    "simonrw/rust-fitsio": {
+      "at": "2026-09-24T14:57:20.951Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 53,
+      "to": 21,
+      "summary": "Rust编写的天文数据FITS读写FFI库"
+    },
+    "cookiecutter/cookiecutter-django": {
+      "at": "2026-09-24T14:57:20.951Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 44,
+      "to": 21,
+      "summary": "快速生成生产级Django项目的脚手架框架"
+    },
+    "martenbjork/github-xp": {
+      "at": "2026-09-24T14:57:20.951Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 40,
+      "to": 33,
+      "summary": "将GitHub界面复刻为Windows XP风格的Chrome扩展"
+    },
+    "IBM/mcp-context-forge": {
+      "at": "2026-09-24T14:57:20.951Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 40,
+      "to": 24,
+      "summary": "统一管理MCP和REST API的AI网关中间件"
+    },
+    "huggingface/optimum": {
+      "at": "2026-09-24T14:57:20.952Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 38,
+      "to": 24,
+      "summary": "Hugging Face生态的硬件优化推理训练库"
+    },
+    "hubotio/hubot": {
+      "at": "2026-09-24T14:57:24.079Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 46,
+      "to": 28,
+      "summary": "基于ESM的聊天机器人框架，提供脚本插件以实现办公自动化"
+    },
+    "CharlesPikachu/musicdl": {
+      "at": "2026-09-24T14:57:24.079Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 36,
+      "to": 27,
+      "summary": "纯Python编写，支持全网主流音乐平台的无损下载工具"
+    },
+    "ShareX/ShareX": {
+      "at": "2026-09-24T14:57:24.079Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 37,
+      "to": 26,
+      "summary": "支持截图录屏及自动上传的免费开源效率工具，高度可定制"
+    },
+    "cncf/tag-security": {
+      "at": "2026-09-24T14:57:24.079Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 41,
+      "to": 24,
+      "summary": "云原生安全规范与资源库，旨在降低安全防护实施成本"
+    },
+    "AaronLasseigne/active_interaction": {
+      "at": "2026-09-24T14:57:24.080Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 48,
+      "to": 26,
+      "summary": "Rails服务对象库，用于封装复杂业务逻辑与输入验证"
+    },
+    "FormidableLabs/react-swipeable": {
+      "at": "2026-09-24T14:57:24.080Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 39,
+      "to": 25,
+      "summary": "React手势处理库，让网页支持移动端丝滑滑动交互"
+    },
+    "michelpereira/awesome-open-source-games": {
+      "at": "2026-09-24T14:57:24.080Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 51,
+      "to": 28,
+      "summary": "基于Web技术的开源游戏源码索引，涵盖多种游戏机制与引擎"
+    },
+    "ikas-mc/ContextMenuForWindows11": {
+      "at": "2026-09-24T14:57:24.080Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 40,
+      "to": 32,
+      "summary": "Windows11右键菜单增强工具，支持自定义功能与多种安装方式"
+    },
+    "git-learning-game/oh-my-git": {
+      "at": "2026-09-24T14:57:27.514Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 43,
+      "to": 32,
+      "summary": "这款游戏通过像素场景将 Git 命令具象化，零门槛学习版本控制。"
+    },
+    "Attnam/ivan": {
+      "at": "2026-09-24T14:57:27.515Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 49,
+      "to": 35,
+      "summary": "经典 Roguelike 的像素化续作，玩家需在随机地下城中血腥生存。"
+    },
+    "googlecreativelab/coder": {
+      "at": "2026-09-24T14:57:27.515Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 41,
+      "to": 32,
+      "summary": "基于浏览器的极简 Web IDE，集成了实时预览与代码沙盒功能。"
+    },
+    "Bitterbot-AI/bitterbot-desktop": {
+      "at": "2026-09-24T14:57:27.515Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 41,
+      "to": 33,
+      "summary": "支持 P2P 交互与情感记忆的本地 AI 伴侣，打造数字伙伴体验。"
+    },
+    "Codennnn/vue-color-avatar": {
+      "at": "2026-09-24T14:57:27.516Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 38,
+      "to": 31,
+      "summary": "基于 Vue 的矢量头像生成器，支持可视化组件搭配与随机生成。"
+    },
+    "speed47/spectre-meltdown-checker": {
+      "at": "2026-09-24T14:57:27.516Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 50,
+      "to": 32,
+      "summary": "支持多种 CPU 漏洞变体的系统安全检测工具，自动评估缓解措施。"
+    },
+    "neuml/txtai": {
+      "at": "2026-09-24T14:57:32.715Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 43,
+      "to": 32,
+      "summary": "全栈AI框架，封装向量数据库与LLM，简化语义搜索与知识库构建。"
+    },
+    "fosskers/aura": {
+      "at": "2026-09-24T14:57:32.715Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 45,
+      "to": 35,
+      "summary": "支持多语言且兼容性强的Arch Linux包管理器，提供安全迁移方案。"
+    },
+    "tidwall/jj": {
+      "at": "2026-09-24T14:57:32.716Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 45,
+      "to": 32,
+      "summary": "高性能JSON编辑工具，支持路径语法提取与复杂数据结构精细修改。"
+    },
+    "feross/simple-peer": {
+      "at": "2026-09-24T14:57:32.716Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 40,
+      "to": 31,
+      "summary": "封装WebRTC握手过程，让浏览器实现无需服务器的点对点通信。"
+    },
+    "kyrolabs/awesome-langchain": {
+      "at": "2026-09-24T14:57:32.716Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 41,
+      "to": 33,
+      "summary": "LangChain生态资源导航，聚合AI工具、框架与开发项目清单。"
+    },
+    "ReactiveX/RxJava": {
+      "at": "2026-09-24T14:57:32.716Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 45,
+      "to": 32,
+      "summary": "基于Java标准的响应式编程库，将异步事件流处理与底层调度隐藏。"
+    },
+    "Adrian104/Dungeon-Generator": {
+      "at": "2026-09-24T14:57:32.716Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 40,
+      "to": 32,
+      "summary": "基于BSP算法的程序化2D地下城地图生成器，零依赖且高度可配置。"
+    },
+    "AUK9527/Are-u-ok": {
+      "at": "2026-09-24T14:57:36.164Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 43,
+      "to": 31,
+      "summary": "适配多款路由器芯片，支持固件版本兼容的iStore插件管理工具"
+    },
+    "lmnr-ai/lmnr": {
+      "at": "2026-09-24T14:57:36.164Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 39,
+      "to": 33,
+      "summary": "专为AI Agent设计的可观测性平台，可视化追踪调用链与调试信息"
+    },
+    "mcinglis/c-style": {
+      "at": "2026-09-24T14:57:36.164Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 37,
+      "to": 27,
+      "summary": "C语言编程规范指南，强调代码正确性与可读性而非运行速度"
+    },
+    "0x90n/InfoSec-Black-Friday": {
+      "at": "2026-09-24T14:57:36.164Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 46,
+      "to": 27,
+      "summary": "信息安全领域黑五优惠清单，专注安全工具与课程的折扣汇总"
+    },
+    "STranslate/STranslate": {
+      "at": "2026-09-24T14:57:36.165Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 47,
+      "to": 34,
+      "summary": "Windows桌面翻译工具，集成OCR与多种翻译API的截图翻译软件"
+    },
+    "coze-dev/coze-loop": {
+      "at": "2026-09-24T14:57:36.165Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 40,
+      "to": 30,
+      "summary": "AI Agent全生命周期管理平台，自动化调试与性能评估工具"
+    },
+    "TheWaWaR/simple-http-server": {
+      "at": "2026-09-24T14:57:36.165Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 48,
+      "to": 28,
+      "summary": "Rust编写的静态文件服务器，内置CORS与压缩传输功能"
+    },
+    "labring/sealos": {
+      "at": "2026-09-24T14:57:36.165Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 36,
+      "to": 29,
+      "summary": "基于K8s的云原生平台，一键部署应用并支持AI自动运维管理"
+    },
+    "zaproxy/zaproxy": {
+      "at": "2026-09-24T14:57:39.549Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 18,
+      "to": 26,
+      "summary": "Web 应用安全扫描工具，可自动检测并分析网站漏洞。"
+    },
+    "lightgbm-org/LightGBM": {
+      "at": "2026-09-24T14:57:39.549Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 38,
+      "to": 24,
+      "summary": "基于决策树的梯度提升框架，能快速处理大规模数据。"
+    },
+    "go-qml/qml": {
+      "at": "2026-09-24T14:57:39.550Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 37,
+      "to": 29,
+      "summary": "Go 语言调用 QML 渲染界面，兼顾高性能与跨平台开发。"
+    },
+    "KKKKhazix/human-writing": {
+      "at": "2026-09-24T14:57:39.550Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 37,
+      "to": 31,
+      "summary": "专用的中文改写 Skill，去除 AI 味让文本更像真人表达。"
+    },
+    "paperless-ngx/paperless-ngx": {
+      "at": "2026-09-24T14:57:39.550Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 36,
+      "to": 28,
+      "summary": "自托管文档管理系统，自动扫描归档纸质文件并支持全文检索。"
+    },
+    "ipfs/kubo": {
+      "at": "2026-09-24T14:57:39.550Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 40,
+      "to": 32,
+      "summary": "Go 语言实现的 IPFS 守护进程，提供去中心化内容存储服务。"
+    },
+    "libgit2/libgit2sharp": {
+      "at": "2026-09-24T14:57:39.550Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 47,
+      "to": 32,
+      "summary": "C# 封装的 Git 库，让 .NET 应用能高效管理版本控制。"
+    },
+    "Avarok-Cybersecurity/atlas": {
+      "at": "2026-09-24T14:57:39.550Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 36,
+      "to": 31,
+      "summary": "纯 Rust 编写的推理引擎，比传统框架更轻量且推理速度更快。"
+    },
+    "cheat-engine/cheat-engine": {
+      "at": "2026-09-24T14:57:43.027Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 46,
+      "to": 33,
+      "summary": "支持 Lua 脚本的强大游戏内存修改工具，可随意修改单机游戏数据。"
+    },
+    "opensteno/plover": {
+      "at": "2026-09-24T14:57:43.027Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 39,
+      "to": 31,
+      "summary": "基于硬件按键的开源速记软件，通过按特定组合键实现极速打字输入。"
+    },
+    "open-duelyst/duelyst": {
+      "at": "2026-09-24T14:57:43.028Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 51,
+      "to": 25,
+      "summary": "支持本地部署的卡牌游戏，拥有全解锁机制且无需联网。"
+    },
+    "tailcallhq/forgecode": {
+      "at": "2026-09-24T14:57:43.028Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 45,
+      "to": 28,
+      "summary": "终端 AI 编程助手，支持 300+ 模型并在本地运行。"
+    },
+    "javascript-tutorial/uk.javascript.info": {
+      "at": "2026-09-24T14:57:46.268Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 40,
+      "to": 27,
+      "summary": "基于浏览器的交互式JS教程，深入讲解底层原理与核心机制"
+    },
+    "ageerle/ruoyi-ai": {
+      "at": "2026-09-24T14:57:46.268Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 36,
+      "to": 28,
+      "summary": "企业级AI开发框架，统一管理多LLM厂商并集成安全RAG"
+    },
+    "antfu-collective/taze": {
+      "at": "2026-09-24T14:57:46.268Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 40,
+      "to": 30,
+      "summary": "基于npx的依赖更新工具，支持SHA签名与CI/CD批量管理"
+    },
+    "chiraggude/awesome-laravel": {
+      "at": "2026-09-24T14:57:46.268Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 47,
+      "to": 28,
+      "summary": "Laravel全生命周期资源导航，覆盖开发部署与生态工具"
+    },
+    "solidjs/solid": {
+      "at": "2026-09-24T14:57:46.268Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 40,
+      "to": 28,
+      "summary": "无虚拟DOM的前端框架，通过编译时优化实现极致运行时性能"
+    },
+    "zilliztech/claude-context": {
+      "at": "2026-09-24T14:57:46.268Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 43,
+      "to": 30,
+      "summary": "基于MCP协议的代码库搜索工具，为AI编程助手提供全局上下文"
+    },
+    "introfini/ZotSeek": {
+      "at": "2026-09-24T14:57:46.269Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 36,
+      "to": 31,
+      "summary": "本地化Zotero语义搜索工具，内置MCP支持AI代理文献查询"
+    },
+    "GD4AI/obsidian-llm-wiki": {
+      "at": "2026-09-24T14:57:46.269Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 39,
+      "to": 32,
+      "summary": "Obsidian知识图谱插件，利用RAG技术构建本地化智能知识库"
+    },
+    "ultrasecurity/Storm-Breaker": {
+      "at": "2026-09-24T14:57:46.269Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 37,
+      "to": 27,
+      "summary": "Web界面设备监控工具，集成地理位置追踪与日志管理功能"
+    },
+    "albertpumarola/GANimation": {
+      "at": "2026-09-24T14:59:12.572Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 37,
+      "to": 30,
+      "summary": "用面部动作单元驱动 GAN，单张人像即可生成连续表情动画序列"
+    },
+    "AI4Finance-Foundation/FinGPT": {
+      "at": "2026-09-24T14:59:12.573Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 39,
+      "to": 34,
+      "summary": "开源金融大模型套件，提供轻量微调与数据清洗工具，降低垂直模型训练门槛"
+    },
+    "asgeirtj/system_prompts_leaks": {
+      "at": "2026-09-24T14:59:12.574Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 42,
+      "to": 32,
+      "summary": "汇总主流大模型内部系统提示词，标注版本来源，便于对比模型行为差异"
+    },
+    "rlaope/estudy": {
+      "at": "2026-09-24T14:59:16.664Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 39,
+      "to": 26,
+      "summary": "计算机核心课程笔记代码合集，操作系统网络分布式全覆盖"
+    },
+    "alisadeghiaghili/Deutsch": {
+      "at": "2026-09-24T14:59:16.664Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 39,
+      "to": 33,
+      "summary": "Markdown编写的德语学习库，内置Python脚本实现快速检索"
+    },
+    "zi-yue-1129/DATAGEN": {
+      "at": "2026-09-24T14:59:16.664Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 36,
+      "to": 23,
+      "summary": "多智能体协作的科研助手，自动生成假设分析与报告"
+    },
+    "53AI/53AIHub": {
+      "at": "2026-09-24T14:59:16.664Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 87,
+      "to": 31,
+      "summary": "企业级AI知识库门户，集成Coze等平台管理Agent与提示词"
+    },
+    "siderolabs/talos": {
+      "at": "2026-09-24T14:59:16.665Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 48,
+      "to": 34,
+      "summary": "专为Kubernetes设计的极简Linux发行版，基于分片架构构建"
+    },
+    "jupyter/docker-stacks": {
+      "at": "2026-09-24T14:59:16.665Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 40,
+      "to": 35,
+      "summary": "预构建Docker镜像，提供开箱即用的JupyterLab数据科学环境"
+    },
+    "NVIDIA/Megatron-LM": {
+      "at": "2026-09-24T14:59:16.665Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 45,
+      "to": 32,
+      "summary": "面向超大规模GPU集群的Transformer模型分布式训练框架"
+    },
+    "badafans/better-cloudflare-ip": {
+      "at": "2026-09-24T14:59:20.210Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 41,
+      "to": 29,
+      "summary": "自动测速并筛选Cloudflare的优质IP以提升访问速度"
+    },
+    "johnlui/Learn-Laravel-5": {
+      "at": "2026-09-24T14:59:20.210Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 40,
+      "to": 25,
+      "summary": "面向中国开发者的Laravel 5中文系统入门教程"
+    },
+    "trivago/prettier-plugin-sort-imports": {
+      "at": "2026-09-24T14:59:20.210Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 39,
+      "to": 30,
+      "summary": "Prettier插件用于自动整理代码中的import语句顺序"
+    },
+    "tw-in-js/twind": {
+      "at": "2026-09-24T14:59:20.210Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 42,
+      "to": 25,
+      "summary": "无需构建工具的TailwindCSS运行时编译方案"
+    },
+    "google/agents-cli": {
+      "at": "2026-09-24T14:59:20.210Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 39,
+      "to": 34,
+      "summary": "Google Cloud的AI Agent开发与部署一体化CLI工具"
+    },
+    "wine-mirror/wine": {
+      "at": "2026-09-24T14:59:20.211Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 45,
+      "to": 25,
+      "summary": "在Linux系统上运行Windows软件的兼容层库"
+    },
+    "ktbyers/netmiko": {
+      "at": "2026-09-24T14:59:20.211Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 38,
+      "to": 24,
+      "summary": "Python库用于通过统一接口管理多厂商网络设备"
+    },
+    "mozilla-ai/document-to-podcast": {
+      "at": "2026-09-24T14:59:20.211Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 45,
+      "to": 21,
+      "summary": "基于本地AI将文档内容转换成播客音频的工具"
+    },
+    "adaltas/node-csv": {
+      "at": "2026-09-24T14:59:20.211Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 40,
+      "to": 24,
+      "summary": "功能全面的Node.js CSV数据解析与转换库"
+    },
+    "vrothberg/vgrep": {
+      "at": "2026-09-24T14:59:20.211Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 38,
+      "to": 20,
+      "summary": "集成grep与分页查看功能的终端搜索工具"
+    },
+    "facebookarchive/Tweaks": {
+      "at": "2026-09-24T14:59:24.163Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 44,
+      "to": 23,
+      "summary": "iOS应用调试工具，支持真机拖动滑块实时调参。"
+    },
+    "agiresearch/OpenAGI": {
+      "at": "2026-09-24T14:59:24.163Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 39,
+      "to": 26,
+      "summary": "基于LLM内核的AIOS，支持插件式开发与工具调用。"
+    },
+    "garychowcmu/daizhigev20": {
+      "at": "2026-09-24T14:59:24.163Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 47,
+      "to": 22,
+      "summary": "海量TXT古籍库，网页搜索即可在线查看全文。"
+    },
+    "roots/bedrock": {
+      "at": "2026-09-24T14:59:24.163Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 45,
+      "to": 27,
+      "summary": "现代化WordPress开发模板，分离代码与配置数据。"
+    },
+    "coreybutler/nvm-windows": {
+      "at": "2026-09-24T14:59:24.164Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 36,
+      "to": 30,
+      "summary": "Windows下Node.js版本管理工具，支持多版本切换。"
+    },
+    "kyegomez/BitNet": {
+      "at": "2026-09-24T14:59:24.164Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 42,
+      "to": 34,
+      "summary": "PyTorch实现的1-bit LLM模型，压缩权重实现低比特推理。"
+    },
+    "onetimesecret/onetimesecret": {
+      "at": "2026-09-24T14:59:24.164Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 38,
+      "to": 23,
+      "summary": "一次性密码分享平台，生成唯一链接确保信息安全。"
+    },
+    "gokcehan/lf": {
+      "at": "2026-09-24T14:59:24.164Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 37,
+      "to": 23,
+      "summary": "终端文件管理器，支持Vim键位操作与异步IO。"
+    },
+    "alm-tools/alm": {
+      "at": "2026-09-24T14:59:24.164Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 45,
+      "to": 30,
+      "summary": "Web端TypeScript IDE，探索浏览器内开发体验。"
+    },
+    "i-am-bee/beeai-framework": {
+      "at": "2026-09-24T14:59:24.164Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 47,
+      "to": 28,
+      "summary": "支持Python与TypeScript的智能体开发框架。"
+    },
+    "darkreader/darkreader": {
+      "at": "2026-09-24T14:59:28.646Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 41,
+      "to": 32,
+      "summary": "浏览器扩展一键生成深色模式，支持精细调节对比度与亮度以保护视力。"
+    },
+    "segmentio/myth": {
+      "at": "2026-09-24T14:59:28.646Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 37,
+      "to": 35,
+      "summary": "标准CSS转译工具，支持原生变量与数学函数，无侵入式提升样式开发体验。"
+    },
+    "raspberrypi/firmware": {
+      "at": "2026-09-24T14:59:28.646Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 41,
+      "to": 30,
+      "summary": "树莓派官方固件仓库，包含引导加载器、内核镜像及硬件适配文件。"
+    },
+    "romannurik/AndroidAssetStudio": {
+      "at": "2026-09-24T14:59:28.646Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 36,
+      "to": 33,
+      "summary": "自动化生成多分辨率安卓图标的本地工具，支持Node.js环境运行。"
+    },
+    "ludwig-ai/ludwig": {
+      "at": "2026-09-24T14:59:32.329Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 36,
+      "to": 24,
+      "summary": "低代码框架，零代码构建自定义LLM和神经网络模型"
+    },
+    "Sollimann/bonsai": {
+      "at": "2026-09-24T14:59:32.329Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 37,
+      "to": 22,
+      "summary": "Rust编写的确定性行为树，游戏AI决策引擎"
+    },
+    "bikini/exploitarium": {
+      "at": "2026-09-24T14:59:32.329Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 38,
+      "to": 21,
+      "summary": "收集大量未报告漏洞PoC，网络安全研究宝库"
+    },
+    "NVlabs/parrot": {
+      "at": "2026-09-24T14:59:32.329Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 49,
+      "to": 22,
+      "summary": "基于CCCL的GPU数组融合库，提升计算性能"
+    },
+    "vi/websocat": {
+      "at": "2026-09-24T14:59:32.329Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 36,
+      "to": 23,
+      "summary": "WebSocket命令行工具，网络调试瑞士军刀"
+    },
+    "ysc/QuestionAnsweringSystem": {
+      "at": "2026-09-24T14:59:32.329Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 42,
+      "to": 28,
+      "summary": "Java实现的IBM Watson问答系统，本地部署参考"
+    },
+    "coleam00/mcp-crawl4ai-rag": {
+      "at": "2026-09-24T14:59:32.329Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 41,
+      "to": 22,
+      "summary": "支持AI助手直接调用网页爬取的MCP协议服务"
+    },
+    "lucidrains/audiolm-pytorch": {
+      "at": "2026-09-24T14:59:32.330Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 46,
+      "to": 23,
+      "summary": "AudioLM模型开源实现，高性能语音合成系统"
+    },
+    "gitify-app/gitify": {
+      "at": "2026-09-24T15:00:36.944Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 38,
+      "to": 30,
+      "summary": "将GitHub通知收进系统菜单栏，跨平台常驻，轻量不占资源。"
+    },
+    "xerrors/Yuxi": {
+      "at": "2026-09-24T15:00:36.944Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 12,
+      "to": 32,
+      "summary": "自托管知识智能体平台，集RAG、图谱、多智能体与权限管控于一体。"
+    },
+    "BinNong/meet-libai": {
+      "at": "2026-09-24T15:00:36.944Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 41,
+      "to": 27,
+      "summary": "用知识图谱与RAG让李白诗词可对话，检索增强生成解答。"
+    },
+    "dandavison/delta": {
+      "at": "2026-09-24T15:00:36.944Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 39,
+      "to": 30,
+      "summary": "Rust写的命令行分页器，为git、diff输出加语法高亮。"
+    },
+    "xinsir6/ControlNetPlus": {
+      "at": "2026-09-24T15:00:36.944Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 43,
+      "to": 28,
+      "summary": "图像生成多条件控制插件，无损叠加多种控制，省显存提速度。"
+    },
+    "dat999zx/knowl": {
+      "at": "2026-09-24T15:00:36.945Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 46,
+      "to": 35,
+      "summary": "为Claude等AI工具提供持久记忆，事实存本地SQLite，可溯源。"
+    },
+    "bigcode-project/starcoder2": {
+      "at": "2026-09-24T15:00:36.945Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 49,
+      "to": 28,
+      "summary": "开源多语言代码生成模型，超600种语言，长上下文处理强。"
+    },
+    "1038lab/ComfyUI-RMBG": {
+      "at": "2026-09-24T15:00:36.945Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 37,
+      "to": 33,
+      "summary": "ComfyUI抠图节点，整合BiRefNet等模型，应对复杂边缘。"
+    },
+    "lmnr-ai/index": {
+      "at": "2026-09-24T15:03:14.645Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 45,
+      "to": 30,
+      "summary": "让视觉 LLM 像人一样看网页并自动完成点击输入等浏览器操作"
+    },
+    "makeyourownneuralnetwork/makeyourownneuralnetwork": {
+      "at": "2026-09-24T15:03:14.645Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 36,
+      "to": 28,
+      "summary": "从零手写神经网络识别手写数字，无需深厚数学背景的入门教程"
+    },
+    "facebookresearch/chameleon": {
+      "at": "2026-09-24T15:03:14.646Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 44,
+      "to": 35,
+      "summary": "Meta FAIR 发布的多模态基础模型，含浏览器端输入输出可视化工具"
+    },
+    "andreas128/RePaint": {
+      "at": "2026-09-24T15:03:14.646Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 39,
+      "to": 30,
+      "summary": "用去噪扩散模型从噪声生成像素，精准修复图像缺失区域的修复工具"
+    },
+    "alganzory/HaramBlur": {
+      "at": "2026-09-24T15:03:14.646Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 42,
+      "to": 33,
+      "summary": "浏览器扩展用 AI 实时检测并模糊人脸与敏感内容，保护隐私减少干扰"
+    },
+    "maguowei/starred": {
+      "at": "2026-09-24T15:04:28.707Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 40,
+      "to": 28,
+      "summary": "自动同步 GitHub Star 到仓库生成分类导航页。"
+    },
+    "ayangweb/Awesome-BongoCat": {
+      "at": "2026-09-24T15:04:28.707Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 44,
+      "to": 21,
+      "summary": "汇总多语言实现的桌面跟随键盘敲击动画小猫。"
+    },
+    "miguelgrinberg/microdot": {
+      "at": "2026-09-24T15:04:28.708Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 38,
+      "to": 27,
+      "summary": "极简 Flask 风格 Python 框架可跑单片机。"
+    },
+    "anitaa1990/Android-Cheat-sheet": {
+      "at": "2026-09-24T15:04:28.708Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 39,
+      "to": 27,
+      "summary": "资深工程师维护的 Android 面试题库含新技术栈。"
+    },
+    "iOfficeAI/OfficeCLI": {
+      "at": "2026-09-24T15:04:28.708Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 39,
+      "to": 27,
+      "summary": "单二进制无依赖让 AI 直接读写 Office 文件。"
+    },
+    "vibheksoni/stealth-browser-mcp": {
+      "at": "2026-09-24T15:04:28.708Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 39,
+      "to": 27,
+      "summary": "为 AI Agent 提供规避检测的真实浏览器自动化。"
+    },
+    "GTNewHorizons/GT-New-Horizons-Modpack": {
+      "at": "2026-09-24T15:04:28.709Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 39,
+      "to": 22,
+      "summary": "千个配方重组的 MC 工业模组包任务书引导。"
+    },
+    "c3lang/c3c": {
+      "at": "2026-09-24T15:04:50.497Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 41,
+      "to": 34,
+      "summary": "C3语言编译器，全ABI兼容C，语法现代、内存安全，无缝融入旧工程。"
+    },
+    "grandgaming9321-prog/reality-engine": {
+      "at": "2026-09-24T15:05:27.131Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 37,
+      "to": 33,
+      "summary": "AI驱动的动态世界模拟引擎，让NPC自主决策生成不可预测的叙事体验"
+    },
+    "BrandonPotter/SimpleTCP": {
+      "at": "2026-09-24T15:05:27.132Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 38,
+      "to": 35,
+      "summary": ".NET轻量TCP库，封装连接池/重连/心跳，几行代码即可建立稳定通信"
+    },
+    "cloudflare/agents": {
+      "at": "2026-09-24T15:05:59.362Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 36,
+      "to": 31,
+      "summary": "在Cloudflare边缘网络部署运行AI Agents框架。"
+    },
+    "awjuliani/DeepRL-Agents": {
+      "at": "2026-09-24T15:05:59.362Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 42,
+      "to": 31,
+      "summary": "配套教程的TensorFlow强化学习算法Jupyter实现。"
+    },
+    "microsoft/SynapseML": {
+      "at": "2026-09-24T15:05:59.363Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 42,
+      "to": 24,
+      "summary": "在Spark集群内直接运行分布式机器学习流水线。"
+    },
+    "GitHubDaily/ChatGPT-Prompt-Engineering-for-Developers-in-Chinese": {
+      "at": "2026-09-24T15:05:59.363Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 40,
+      "to": 27,
+      "summary": "面向开发者的ChatGPT提示词工程课程中英双语资料。"
+    },
+    "lucidrains/lion-pytorch": {
+      "at": "2026-09-24T15:05:59.363Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 60,
+      "to": 29,
+      "summary": "Google Lion优化器的PyTorch轻量级实现库。"
+    },
+    "AIGCDesignGroup/ReplaceAnything": {
+      "at": "2026-09-24T15:05:59.363Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 42,
+      "to": 21,
+      "summary": "基于虚拟模型实现图像局部精准内容替换技术。"
+    },
+    "EveryInc/compound-engineering-plugin": {
+      "at": "2026-09-24T15:05:59.363Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 37,
+      "to": 27,
+      "summary": "支持Claude Code等编辑器的AI编程辅助插件。"
+    },
+    "calcom/sans": {
+      "at": "2026-09-24T15:05:59.363Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 37,
+      "to": 23,
+      "summary": "Cal.com出品的开源屏幕优化可变字体家族。"
+    },
+    "google/differential-privacy": {
+      "at": "2026-09-24T15:05:59.363Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 36,
+      "to": 21,
+      "summary": "Google开源的差分隐私统计计算库实现。"
+    },
+    "streamyfin/streamyfin": {
+      "at": "2026-09-24T15:06:15.891Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 42,
+      "to": 34,
+      "summary": "基于 Expo 开发的现代 Jellyfin 跨平台流媒体播放客户端"
+    },
+    "google/neural-tangents": {
+      "at": "2026-09-24T15:06:15.891Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 43,
+      "to": 24,
+      "summary": "JAX 库让无限宽神经网络像普通网络一样构建训练"
+    },
+    "SearchSavior/OpenArc": {
+      "at": "2026-09-24T15:06:15.891Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 129,
+      "to": 31,
+      "summary": "Intel 设备上的 OpenAI 兼容多模态模型推理服务引擎"
+    },
+    "anthropics/claude-desktop-buddy": {
+      "at": "2026-09-24T15:06:15.892Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 48,
+      "to": 26,
+      "summary": "通过蓝牙协议让 Claude 与硬件桌面宠物实时交互"
+    },
+    "griptape-ai/griptape": {
+      "at": "2026-09-24T15:06:15.892Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 44,
+      "to": 27,
+      "summary": "Python 框架以模块化方式编排大语言模型复杂工作流"
+    },
+    "matiaskorhonen/paper-age": {
+      "at": "2026-09-24T15:06:15.892Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 40,
+      "to": 25,
+      "summary": "Rust 将机密转为不可逆纸面图案实现离线安全备份"
+    },
+    "CodeBoarding/CodeBoarding": {
+      "at": "2026-09-24T15:06:15.892Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 39,
+      "to": 23,
+      "summary": "结合静态分析与大模型生成实时更新的代码架构地图"
+    },
+    "devsisters/DQN-tensorflow": {
+      "at": "2026-09-24T15:06:15.892Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 41,
+      "to": 33,
+      "summary": "TensorFlow 复现 DQN 算法并含经验回放与目标网络机制"
+    },
+    "PrimeIntellect-ai/prime-agent": {
+      "at": "2026-09-24T15:06:15.892Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 39,
+      "to": 29,
+      "summary": "可自我改进的编程 Agent 支持长任务自主执行与经验积累"
+    },
+    "chatfire-AI/huobao-drama": {
+      "at": "2026-09-24T15:08:12.013Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 41,
+      "to": 34,
+      "summary": "全栈TS平台，一键配置API实现短剧脚本、分镜到视频全流程自动生产。"
+    },
+    "MARKTECHPOST-AI-MEDIA-INC/AI-Agents-Projects-Tutorials": {
+      "at": "2026-09-24T15:08:12.013Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 36,
+      "to": 32,
+      "summary": "涵盖金融分析、编程辅导等场景的AI Agent构建实战教程合集。"
+    },
+    "IlyaRice/RAG-Challenge-2": {
+      "at": "2026-09-24T15:08:12.013Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 43,
+      "to": 34,
+      "summary": "RAG竞赛冠军方案，用Docling解析年报PDF实现精准财务问答。"
+    },
+    "shareAI-lab/claw0": {
+      "at": "2026-09-24T15:08:12.013Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 37,
+      "to": 31,
+      "summary": "分十阶段教学的AI网关架构教程，从零构建生产级Agent系统。"
+    },
+    "QwenLM/Qwen3.8": {
+      "at": "2026-09-24T15:08:12.013Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 39,
+      "to": 33,
+      "summary": "融入顶级模型能力的开放权重LLM，专项强化长程Agent任务表现。"
+    },
+    "microsoft/SkillOpt": {
+      "at": "2026-09-24T15:08:12.014Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 39,
+      "to": 33,
+      "summary": "解耦模型权重的Agent技能优化框架，用验证门控迭代提示工程策略。"
+    },
+    "anthropics/claude-plugins-community": {
+      "at": "2026-09-24T15:08:12.014Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 48,
+      "to": 35,
+      "summary": "社区维护的Claude插件生态库，赋予模型工具调用与外部系统交互能力。"
+    },
+    "cilame/v_jstools": {
+      "at": "2026-09-24T15:08:32.355Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 44,
+      "to": 33,
+      "summary": "浏览器插件构建仿真环境，分析JS混淆与反调试机制，提升逆向调试效率"
+    },
+    "mgba-emu/mgba": {
+      "at": "2026-09-24T15:08:32.355Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 39,
+      "to": 33,
+      "summary": "高性能GBA模拟器，精准还原硬件渲染，支持现代显示滤镜与跨平台运行"
+    },
+    "guoqincode/Open-AnimateAnyone": {
+      "at": "2026-09-24T15:08:32.355Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 47,
+      "to": 31,
+      "summary": "开源视频生成项目，融合主流框架实现人物动作向静态图像的迁移动画"
+    },
+    "Physical-Intelligence/openpi": {
+      "at": "2026-09-24T15:09:40.958Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 50,
+      "to": 33,
+      "summary": "提供预训练视觉语言动作模型权重，支持机器人直接部署或微调适配硬件。"
+    },
+    "QwenLM/Qwen3-TTS": {
+      "at": "2026-09-24T15:09:40.959Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 54,
+      "to": 32,
+      "summary": "发布0.6B和1.7B语音模型，支持自然语言控制的声音克隆合成。"
+    },
+    "deepseek-ai/DeepSeek-V2": {
+      "at": "2026-09-24T15:09:40.959Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 45,
+      "to": 30,
+      "summary": "236B总参数MoE模型，单次激活21B实现高效低成本推理。"
+    },
+    "FreedomIntelligence/LLMZoo": {
+      "at": "2026-09-24T15:09:40.959Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 39,
+      "to": 34,
+      "summary": "开放多语言LLM模型权重、训练数据与评估基准，涵盖全语种与拉丁语系。"
+    },
+    "Coding-Solo/godot-mcp": {
+      "at": "2026-09-24T15:09:40.959Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 41,
+      "to": 33,
+      "summary": "基于MCP协议连接AI与Godot引擎，实现代码运行实时反馈调试。"
+    },
+    "ZSeven-W/dsh-openpencil": {
+      "at": "2026-09-24T15:09:51.430Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 37,
+      "to": 32,
+      "summary": "聊天工具插件，直接渲染.op设计稿文件，免切窗预览编辑设计细节。"
+    },
+    "facebookresearch/jepa": {
+      "at": "2026-09-24T15:09:51.430Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 65,
+      "to": 33,
+      "summary": "Meta视频自监督模型，嵌入空间预测替代像素重构，学鲁棒视觉表征。"
+    },
+    "coleam00/ai-agents-masterclass": {
+      "at": "2026-09-24T15:09:51.430Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 38,
+      "to": 34,
+      "summary": "AI Agent实战教程库，视频带码手把手教工具调用与多步任务规划。"
+    },
+    "lllyasviel/stable-diffusion-webui-forge": {
+      "at": "2026-09-24T15:11:30.887Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 49,
+      "to": 31,
+      "summary": "SD WebUI优化分支，大幅降显存提速度，兼容原版生态插件。"
+    },
+    "deepseek-ai/DeepSeek-Coder": {
+      "at": "2026-09-24T15:11:30.888Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 48,
+      "to": 31,
+      "summary": "87%代码数据训练的代码大模型，支持16K上下文与项目级补全。"
+    },
+    "langchain-ai/chat-langchain": {
+      "at": "2026-09-24T15:11:30.888Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 45,
+      "to": 34,
+      "summary": "基于LangChain构建的文档问答全栈应用，含后端逻辑与前端界面。"
+    },
+    "ts1/BLEUnlock": {
+      "at": "2026-09-24T15:11:30.888Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 44,
+      "to": 35,
+      "summary": "Mac菜单栏工具，蓝牙感应iPhone距离自动锁屏解锁，本地隐私安全。"
+    },
+    "ml-explore/mlx": {
+      "at": "2026-09-24T15:11:30.888Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 40,
+      "to": 35,
+      "summary": "苹果芯片专用ML框架，NumPy风格API，惰性计算统一内存加速训练。"
+    },
+    "billmei/every-chatgpt-gui": {
+      "at": "2026-09-24T15:12:20.160Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 44,
+      "to": 31,
+      "summary": "收录Web、移动端、桌面端的ChatGPT开源GUI客户端列表"
+    },
+    "deepseek-ai/DeepEP": {
+      "at": "2026-09-24T15:12:20.160Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 47,
+      "to": 27,
+      "summary": "专家并行训练的高性能GPU通信库，支持JIT编译免安装"
+    },
+    "JushBJJ/Mr.-Ranedeer-AI-Tutor": {
+      "at": "2026-09-24T15:12:20.160Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 46,
+      "to": 26,
+      "summary": "已停更的GPT-4提示词集，将模型变身个性化学习导师"
+    },
+    "ClarkThyLord/Voxel-Core": {
+      "at": "2026-09-24T15:12:20.160Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 39,
+      "to": 26,
+      "summary": "Godot 3体素插件，封装地形生成、编辑与渲染功能"
+    },
+    "chenxin-dlut/codex-anime-pets": {
+      "at": "2026-09-24T15:12:20.161Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 37,
+      "to": 26,
+      "summary": "Codex桌面端插件，在IDE角落显示像素风桌宠动画"
+    },
+    "paulburgess1357/nvim-mcp": {
+      "at": "2026-09-24T15:12:20.161Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 36,
+      "to": 29,
+      "summary": "免插件通过MCP协议让AI Agent直接操控Neovim"
+    },
+    "dg/ai-access": {
+      "at": "2026-09-24T15:12:20.161Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 44,
+      "to": 32,
+      "summary": "PHP统一接口库，一套代码对接OpenAI、Claude等多模型"
+    },
+    "chenshuang-zhang/imagenet_d": {
+      "at": "2026-09-24T15:12:20.161Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 48,
+      "to": 30,
+      "summary": "CVPR 2024数据集，含13类退化测试图像分类模型鲁棒性"
+    },
+    "anopara/genetic-drawing": {
+      "at": "2026-09-24T15:12:53.847Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 50,
+      "to": 35,
+      "summary": "用遗传算法演化笔触拟合图像，支持掩码控制细节密度的Python绘画工具"
+    },
+    "dair-ai/ML-Notebooks": {
+      "at": "2026-09-24T15:12:53.847Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 70,
+      "to": 25,
+      "summary": "零配置云端运行的精简机器学习Jupyter教程集合"
+    },
+    "doccano/doccano": {
+      "at": "2026-09-24T15:12:53.847Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 39,
+      "to": 28,
+      "summary": "浏览器即用的协作式文本标注平台，覆盖分类/实体/摘要任务"
+    },
+    "ClosureTree/closure_tree": {
+      "at": "2026-09-24T15:12:53.847Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 52,
+      "to": 24,
+      "summary": "用闭包表单查询搞定Rails层级数据全祖先后代树"
+    },
+    "civitai/civitai": {
+      "at": "2026-09-24T15:12:53.848Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 36,
+      "to": 26,
+      "summary": "聚合模型权重/参数/示例图的AI绘画模型社区托管平台"
+    },
+    "composer/composer": {
+      "at": "2026-09-24T15:12:53.848Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 49,
+      "to": 35,
+      "summary": "通过composer.json声明依赖自动解析版本锁定的PHP包管理器"
+    },
+    "tiny-craft/tiny-rdm": {
+      "at": "2026-09-24T15:12:53.848Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 43,
+      "to": 33,
+      "summary": "基于Webview2构建的轻量跨平台Redis可视化管理桌面客户端"
+    },
+    "Blazemeter/taurus": {
+      "at": "2026-09-24T15:12:53.848Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 51,
+      "to": 35,
+      "summary": "用YAML统一驱动JMeter/Gatling等引擎的性能测试封装工具"
+    },
+    "antimatter15/splat": {
+      "at": "2026-09-24T15:12:53.848Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 43,
+      "to": 31,
+      "summary": "WebGL实现3D高斯泼溅实时渲染，浏览器即可浏览照片生成场景"
+    },
+    "koute/stdweb": {
+      "at": "2026-09-24T15:13:37.286Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 50,
+      "to": 26,
+      "summary": "Rust绑定Web API，支持内嵌JS代码混合开发"
+    },
+    "skilion/onedrive": {
+      "at": "2026-09-24T15:13:37.286Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 44,
+      "to": 34,
+      "summary": "Linux命令行OneDrive同步工具，支持Inotify实时监控"
+    },
+    "Arnold-n/P1P2MQTT": {
+      "at": "2026-09-24T15:13:37.286Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 49,
+      "to": 27,
+      "summary": "ESP32桥接Daikin热泵P1/P2总线至MQTT"
+    },
+    "kornia/kornia": {
+      "at": "2026-09-24T15:13:37.287Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 38,
+      "to": 27,
+      "summary": "PyTorch几何视觉库，算子支持GPU加速与自动求导"
+    },
+    "felixrieseberg/macintosh.js": {
+      "at": "2026-09-24T15:13:37.287Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 45,
+      "to": 30,
+      "summary": "Electron复刻Mac OS 8，在现代系统运行经典界面"
+    },
+    "PetoiCamp/OpenCatEsp32-Quadruped-Robot": {
+      "at": "2026-09-24T15:13:37.287Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 54,
+      "to": 26,
+      "summary": "ESP32驱动四足机器人框架，含运动学模型与硬件方案"
+    },
+    "Lightning-AI/LitServe": {
+      "at": "2026-09-24T15:13:37.288Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 38,
+      "to": 27,
+      "summary": "Python推理服务框架，内置自动批处理与多模型流水线"
+    },
+    "sv222/devops-interview-questions": {
+      "at": "2026-09-24T15:13:37.288Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 39,
+      "to": 30,
+      "summary": "DevOps面试题答案集，覆盖CI/CD与K8s等核心技术栈"
+    },
+    "eugeniughelbur/obsidian-second-brain": {
+      "at": "2026-09-24T15:13:57.720Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 36,
+      "to": 35,
+      "summary": "把 Obsidian 笔记变成 CLI Agent 的持久化语义记忆库"
+    },
+    "Devin-AXIS/deepseek-design": {
+      "at": "2026-09-24T15:13:57.721Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 38,
+      "to": 35,
+      "summary": "DeepSeek 驱动的原生设计系统，自动把内容语义转为可编辑 PPT"
+    },
+    "datawhalechina/deepagents-in-action": {
+      "at": "2026-09-24T15:13:57.721Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 39,
+      "to": 34,
+      "summary": "LangGraph 官方大使出品的生产级 AI Agent 实战教程"
+    },
+    "VerifyTests/Verify": {
+      "at": "2026-09-24T15:14:10.070Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 19,
+      "to": 25,
+      "summary": "快照测试工具，把复杂对象序列化为文件自动对比差异。"
+    },
+    "microsoft/PIKE-RAG": {
+      "at": "2026-09-24T15:14:10.071Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 40,
+      "to": 27,
+      "summary": "面向工业知识推理的 RAG 框架，融合挖掘与多步推理。"
+    },
+    "butaixianran/Stable-Diffusion-Webui-Civitai-Helper": {
+      "at": "2026-09-24T15:14:10.071Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 49,
+      "to": 32,
+      "summary": "SD WebUI 插件，直连 Civitai 搜索下载管理模型。"
+    },
+    "deforum/deforum-stable-diffusion": {
+      "at": "2026-09-24T15:14:10.071Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 39,
+      "to": 24,
+      "summary": "基于扩散模型的视频生成工具，支持关键帧路径动画。"
+    },
+    "Jittor/JittorLLMs": {
+      "at": "2026-09-24T15:14:10.072Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 37,
+      "to": 31,
+      "summary": "Jittor 大模型推理库，极低内存即可在 CPU 跑通模型。"
+    },
+    "fengdu78/machine_learning_beginner": {
+      "at": "2026-09-24T15:14:10.072Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 47,
+      "to": 30,
+      "summary": "机器学习入门教程库，涵盖 Python、经典算法与深度框架。"
+    },
+    "wonderwhy-er/DesktopCommanderMCP": {
+      "at": "2026-09-24T15:14:10.072Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 48,
+      "to": 30,
+      "summary": "MCP 服务端，赋予 LLM 终端、文件系统与代码编辑能力。"
+    },
+    "google-coral/coralnpu": {
+      "at": "2026-09-24T15:14:20.889Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 36,
+      "to": 35,
+      "summary": "开源NPU硬件IP，采用矩阵向量协同与RISC-V实现低功耗AI推理。"
+    },
+    "aigc3d/LHM": {
+      "at": "2026-09-24T15:14:20.890Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 38,
+      "to": 29,
+      "summary": "大规模高斯重建模型，支持任意视角输入且仅需8GB显存运行。"
+    },
+    "PickleBoxer/dev-chatgpt-prompts": {
+      "at": "2026-09-24T15:14:20.890Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 36,
+      "to": 27,
+      "summary": "开发者提示词集，提供分类清晰的编程任务模板供直接复用。"
+    },
+    "generative-computing/granite-switch": {
+      "at": "2026-09-24T15:14:20.890Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 36,
+      "to": 33,
+      "summary": "模块化模型训练框架，通过Switch机制实现组件热插拔与配置同步。"
+    },
+    "AgriciDaniel/claude-obsidian": {
+      "at": "2026-09-24T15:14:20.890Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 39,
+      "to": 35,
+      "summary": "Obsidian AI插件，自动解析文档建立双向链接生成个人知识图谱。"
+    },
+    "fqscfqj/Y2A-Auto": {
+      "at": "2026-09-24T15:14:20.891Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 40,
+      "to": 35,
+      "summary": "YouTube搬运自动化管线，集成下载、ASR、翻译与阿里云内容审核。"
+    },
+    "ML-GSAI/LLaDA": {
+      "at": "2026-09-24T15:14:52.939Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 44,
+      "to": 26,
+      "summary": "采用扩散而非自回归架构的大语言模型，支持并行生成文本"
+    },
+    "bigscience-workshop/promptsource": {
+      "at": "2026-09-24T15:14:52.940Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 42,
+      "to": 29,
+      "summary": "用函数将数据集实例映射为自然语言模板，支撑大规模多任务微调"
+    },
+    "hwchase17/langchain-hub": {
+      "at": "2026-09-24T15:14:52.940Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 44,
+      "to": 35,
+      "summary": "集中托管经社区验证的提示词、链与 Agent 模板，便于复用与版本控制"
+    },
+    "PaddlePaddle/FastDeploy": {
+      "at": "2026-09-24T15:15:19.189Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 38,
+      "to": 34,
+      "summary": "飞桨推出的跨平台模型部署工具包，支持异构硬件统一推理与大模型量化加速"
+    },
+    "agentsmd/agents.md": {
+      "at": "2026-09-24T15:15:19.190Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 41,
+      "to": 35,
+      "summary": "面向 AI 编程代理的项目级指令规范，统一文档格式以指导代码生成与重构"
+    },
+    "advaitpaliwal/feynman": {
+      "at": "2026-09-24T15:15:19.190Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 41,
+      "to": 34,
+      "summary": "具备自我反思迭代能力的开源 AI 研究代理，能自主规划并完成代码任务"
+    },
+    "CompVis/stable-diffusion": {
+      "at": "2026-09-24T15:15:26.099Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 41,
+      "to": 33,
+      "summary": "在潜空间跑扩散模型生成图片，开源权重让个人显卡也能玩 AI 绘画。"
+    },
+    "jax-ml/jax": {
+      "at": "2026-09-24T15:15:59.308Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 41,
+      "to": 35,
+      "summary": "Google出品NumPy兼容数组库，函数变换实现自动微分与硬件加速。"
+    },
+    "developersdigest/llm-answer-engine": {
+      "at": "2026-09-24T15:15:59.309Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 46,
+      "to": 32,
+      "summary": "集成多搜索API的RAG引擎，实时检索联网信息并生成带溯源答案。"
+    },
+    "joey-zhou/xiaozhi-esp32-server-java": {
+      "at": "2026-09-24T15:15:59.309Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 45,
+      "to": 35,
+      "summary": "Java全栈管理小智ESP32设备，支持监控、音色角色配置与对话记录。"
+    },
+    "amazon-science/mm-cot": {
+      "at": "2026-09-24T15:15:59.309Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 37,
+      "to": 30,
+      "summary": "解耦训练多模态思维链模型，分阶段生成推理过程再推断最终答案。"
+    },
+    "Akegarasu/lora-scripts": {
+      "at": "2026-09-24T15:15:59.309Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 44,
+      "to": 31,
+      "summary": "SD模型微调一键训练套件，含GUI界面与国内网络优化安装脚本。"
+    },
+    "varunshenoy/GraphGPT": {
+      "at": "2026-09-24T15:15:59.309Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 40,
+      "to": 31,
+      "summary": "LLM将非结构文本转动态知识图谱，支持多轮对话增量更新图结构。"
+    },
+    "google-research/simclr": {
+      "at": "2026-09-24T15:15:59.309Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 38,
+      "to": 31,
+      "summary": "自监督对比学习视觉框架，通过数据增强最大化同图不同视图相似度。"
+    },
+    "llmsresearch/llm-flashcards": {
+      "at": "2026-09-24T15:15:59.309Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 49,
+      "to": 32,
+      "summary": "180张MDX交互式卡片拆解大模型核心概念，从分词到部署全覆盖。"
+    },
+    "deepseek-ai/DeepSeek-V3": {
+      "at": "2026-09-24T15:15:59.309Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 43,
+      "to": 34,
+      "summary": "6710亿参数MoE大模型，单次激活370亿参数兼顾性能与推理效率。"
+    },
+    "AILab-CVC/YOLO-World": {
+      "at": "2026-09-24T15:16:05.459Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 50,
+      "to": 30,
+      "summary": "基于视觉语言模型实现零样本实时检测，支持文本与图像双模态提示"
+    },
+    "waditu/czsc": {
+      "at": "2026-09-24T15:16:05.459Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 36,
+      "to": 32,
+      "summary": "Python 缠论量化库，自动识别笔线段中枢并生成可视化分析图表"
+    },
+    "NVIDIA/Isaac-GR00T": {
+      "at": "2026-09-24T15:16:05.459Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 46,
+      "to": 29,
+      "summary": "面向人形机器人的通用基座模型，提供推理微调评估一体化工具链"
+    },
+    "JimmyLv/BibiGPT-v1": {
+      "at": "2026-09-24T15:16:05.459Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 39,
+      "to": 31,
+      "summary": "多源音视频 AI 摘要工具，支持网页扩展一键生成结构化内容大纲"
+    },
+    "mindfold-ai/Trellis": {
+      "at": "2026-09-24T15:16:05.460Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 39,
+      "to": 33,
+      "summary": "将项目记忆持久化至代码库，让 AI 编程代理跨会话保持上下文一致性"
+    },
+    "facebookresearch/sam2": {
+      "at": "2026-09-24T15:16:14.098Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 38,
+      "to": 34,
+      "summary": "统一图像与视频分割架构，单帧点击即可流式追踪目标，实现实时交互式抠图"
+    },
+    "google-deepmind/deepmind-research": {
+      "at": "2026-09-24T15:16:32.113Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 39,
+      "to": 34,
+      "summary": "开源顶会论文官方实现与科研环境，覆盖强化学习等前沿 AI 算法复现。"
+    },
+    "oasis-surveys/oasis-platform": {
+      "at": "2026-09-24T15:16:32.113Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 38,
+      "to": 35,
+      "summary": "自托管 AI 语音访谈平台，多模型支持半结构化提纲并自动生成分析报告。"
+    },
+    "google/model_search": {
+      "at": "2026-09-24T15:17:27.236Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 43,
+      "to": 32,
+      "summary": "AutoML框架自动搜索神经网络架构，替代人工试错设计模型结构。"
+    },
+    "TabbyML/tabby": {
+      "at": "2026-09-24T15:17:27.236Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 37,
+      "to": 32,
+      "summary": "Rust编写的自托管AI编程助手，代码补全全程本地运行保障隐私。"
+    },
+    "ShishirPatil/gorilla": {
+      "at": "2026-09-24T15:17:27.237Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 46,
+      "to": 35,
+      "summary": "BFCL基准测试量化评估LLM工具调用与多跳推理的Agent实际能力。"
+    },
+    "OpenCoworkAI/open-codesign": {
+      "at": "2026-09-24T15:17:27.237Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 44,
+      "to": 33,
+      "summary": "本地优先AI设计工具，图像转组件化UI资产并支持自带模型离线运行。"
+    },
+    "cvg/LightGlue": {
+      "at": "2026-09-24T15:17:27.237Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 40,
+      "to": 31,
+      "summary": "自适应剪枝加速的图像特征匹配库，按难度动态调整计算量即插即用。"
+    },
+    "dmlc/gluon-cv": {
+      "at": "2026-09-24T15:17:27.237Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 40,
+      "to": 34,
+      "summary": "双框架兼容的计算机视觉模型库，含验证训练脚本可直接复现SOTA结果。"
+    },
+    "mit-han-lab/streaming-llm": {
+      "at": "2026-09-24T15:17:44.788Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 49,
+      "to": 28,
+      "summary": "利用注意力汇点固定KV Cache实现无限长文本流式推理"
+    },
+    "meta-llama/codellama": {
+      "at": "2026-09-24T15:17:44.788Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 45,
+      "to": 27,
+      "summary": "Meta推出的代码大模型家族，支持长上下文与多语言生成"
+    },
+    "brycedrennan/imaginAIry": {
+      "at": "2026-09-24T15:17:44.788Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 40,
+      "to": 29,
+      "summary": "集成超分增强的本地AI绘图工具，支持Linux与macOS"
+    },
+    "tradecatlabs/vibe-coding-cn": {
+      "at": "2026-09-24T15:17:44.788Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 53,
+      "to": 30,
+      "summary": "系统化AI结对编程教程，涵盖Prompt、Skill与工作流"
+    },
+    "karpathy/minGPT": {
+      "at": "2026-09-24T15:17:44.788Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 50,
+      "to": 29,
+      "summary": "Karpathy编写的极简GPT教学实现，核心仅三百行代码"
+    },
+    "modelscope/facechain": {
+      "at": "2026-09-24T15:17:44.788Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 42,
+      "to": 27,
+      "summary": "阿里通义推出的极速一致性肖像生成框架，支持LoRA训练"
+    },
+    "thunlp/PLMpapers": {
+      "at": "2026-09-24T15:17:44.788Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 41,
+      "to": 28,
+      "summary": "清华THUNLP整理的预训练语言模型论文谱系与开源模型库"
+    },
+    "sdaqo/anipy-cli": {
+      "at": "2026-09-24T15:17:44.789Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 68,
+      "to": 28,
+      "summary": "终端下观看下载动漫的Python工具，亦可作为API使用"
+    },
+    "sameemul-haque/GitArt": {
+      "at": "2026-09-24T15:17:44.789Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 39,
+      "to": 25,
+      "summary": "通过伪造提交时间戳在GitHub贡献图绘制像素艺术"
+    },
+    "deepcoldy/botmux": {
+      "at": "2026-09-24T15:17:44.789Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 40,
+      "to": 25,
+      "summary": "飞书消息桥接多种AI编程CLI，每会话独立维护状态"
+    },
+    "iptv-org/iptv": {
+      "at": "2026-09-24T15:17:56.855Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 16,
+      "to": 29,
+      "summary": "全球公开IPTV频道汇总，含分类描述，可直接导入播放器观看"
+    },
+    "karpathy/llm.c": {
+      "at": "2026-09-24T15:17:56.855Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 47,
+      "to": 31,
+      "summary": "纯C与CUDA实现GPT训练推理，无需PyTorch等重型依赖"
+    },
+    "linkedin/Liger-Kernel": {
+      "at": "2026-09-24T15:17:56.855Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 48,
+      "to": 31,
+      "summary": "基于Triton的高效GPU内核库，显著降低大模型训练显存占用"
+    },
+    "PostHog/posthog": {
+      "at": "2026-09-24T15:17:56.856Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 38,
+      "to": 27,
+      "summary": "自托管产品分析平台，集成行为追踪、实验、会话回放等工具"
+    },
+    "jd-opensource/joyagent-jdgenie": {
+      "at": "2026-09-24T15:17:56.856Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 56,
+      "to": 26,
+      "summary": "轻量多智能体框架，支持插拔式扩展RAG与数据治理能力"
+    },
+    "huggingface/text-generation-inference": {
+      "at": "2026-09-24T15:17:56.856Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 38,
+      "to": 34,
+      "summary": "高性能LLM推理服务，提供Rust服务端与Python、gRPC接口"
+    },
+    "deepseek-ai/DeepSeek-OCR": {
+      "at": "2026-09-24T15:17:56.856Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 50,
+      "to": 29,
+      "summary": "探索视觉文本压缩极限的多模态模型，原生支持vLLM加速推理"
+    },
+    "Facico/Chinese-Vicuna": {
+      "at": "2026-09-24T15:17:56.856Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 58,
+      "to": 29,
+      "summary": "面向消费级显卡的中文Vicuna微调方案，降低本地训练门槛"
+    },
+    "micropython/micropython": {
+      "at": "2026-09-24T15:17:56.856Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 47,
+      "to": 30,
+      "summary": "微控制器上运行的Python 3实现，含异步支持与标准库子集"
+    },
+    "catdad/canvas-confetti": {
+      "at": "2026-09-24T15:18:04.546Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 39,
+      "to": 32,
+      "summary": "轻量级 Canvas 彩纸特效库，数行代码即可为网页添加庆祝动画"
+    },
+    "deepinsight/insightface": {
+      "at": "2026-09-24T15:18:04.546Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 50,
+      "to": 35,
+      "summary": "面向部署的人脸识别工具箱，提供检测识别模型并支持 ONNX 跨平台推理"
+    },
+    "yemount/pose-animator": {
+      "at": "2026-09-24T15:18:04.547Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 38,
+      "to": 34,
+      "summary": "浏览器端实时驱动 SVG 骨骼动画，摄像头捕捉姿态表情映射至矢量角色"
+    },
+    "meta-llama/llama": {
+      "at": "2026-09-24T15:18:04.547Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 47,
+      "to": 34,
+      "summary": "Meta 发布的开源大语言模型权重与推理代码，含多规模版本供商用研究"
+    },
+    "liuhuanyong/QASystemOnMedicalKG": {
+      "at": "2026-09-24T15:18:17.725Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 51,
+      "to": 34,
+      "summary": "基于 Neo4j 构建医疗知识图谱，实现疾病实体关系的自动问答检索。"
+    },
+    "lllyasviel/IC-Light": {
+      "at": "2026-09-24T15:18:17.725Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 41,
+      "to": 34,
+      "summary": "AI 图像重光照工具，依据文本或背景调整前景光影且保持内容结构不变。"
+    },
+    "gildas-lormeau/SingleFile": {
+      "at": "2026-09-24T15:18:17.725Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 40,
+      "to": 34,
+      "summary": "浏览器扩展，将完整网页资源打包为单个 HTML 文件以实现离线存档。"
+    },
+    "Jacob-Zhou/simple-csc": {
+      "at": "2026-09-24T15:18:32.804Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 37,
+      "to": 35,
+      "summary": "基于LLM的免训练中文拼写纠错，通过Prompt引导模型自检修正错误。"
+    },
+    "LAION-AI/Open-Assistant": {
+      "at": "2026-09-24T15:18:32.804Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 47,
+      "to": 32,
+      "summary": "发布oasst2大规模指令微调数据集，推动开源对话模型训练普及。"
+    },
+    "rust-lang/rust-analyzer": {
+      "at": "2026-09-24T15:18:32.805Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 58,
+      "to": 33,
+      "summary": "实现LSP协议的Rust语言服务，为主流IDE提供智能补全与重构。"
+    },
+    "vincentchyu/photools": {
+      "at": "2026-09-24T15:18:32.805Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 37,
+      "to": 31,
+      "summary": "离线将GPX轨迹写入照片EXIF，支持反向地理编码与智能插值。"
+    },
+    "claritylab/lucida": {
+      "at": "2026-09-24T15:18:42.012Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 39,
+      "to": 22,
+      "summary": "集成语音视觉多模态交互的智能个人助理后端框架"
+    },
+    "virtualramblas/Domain-Specific-Small-Language-Models": {
+      "at": "2026-09-24T15:18:42.012Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 38,
+      "to": 29,
+      "summary": "配套书籍的Jupyter笔记本，实现领域小语言模型训练评估"
+    },
+    "xuebinqin/U-2-Net": {
+      "at": "2026-09-24T15:18:42.012Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 51,
+      "to": 21,
+      "summary": "基于嵌套U型结构的轻量级显著性目标检测网络"
+    },
+    "iluaii/fwm": {
+      "at": "2026-09-24T15:18:42.012Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 41,
+      "to": 33,
+      "summary": "基于Box2D物理引擎的Wayland合成器，窗口具备实体碰撞特性"
+    },
+    "prabhuomkar/pytorch-cpp": {
+      "at": "2026-09-24T15:18:42.012Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 42,
+      "to": 28,
+      "summary": "PyTorch官方教程的C++完整复现，助力模型部署落地"
+    },
+    "bkamins/Julia-DataFrames-Tutorial": {
+      "at": "2026-09-24T15:18:42.012Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 39,
+      "to": 32,
+      "summary": "Julia DataFrames包的Jupyter交互式系统教程"
+    },
+    "google/automl": {
+      "at": "2026-09-24T15:18:42.012Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 39,
+      "to": 29,
+      "summary": "Google早期开源的神经架构搜索与AutoML实验代码库"
+    },
+    "wybthon/wybthon": {
+      "at": "2026-09-24T15:18:42.012Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 44,
+      "to": 33,
+      "summary": "借助Pyodide在浏览器直接运行Python构建响应式Web应用"
+    },
+    "microsoft/vidur": {
+      "at": "2026-09-24T15:18:42.012Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 38,
+      "to": 22,
+      "summary": "大模型推理系统的大规模黑盒性能仿真与压测工具"
+    },
+    "stephane-caron/pink": {
+      "at": "2026-09-24T15:18:42.013Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 37,
+      "to": 32,
+      "summary": "基于Pinocchio与QP求解器的Python机器人逆运动学库"
+    },
+    "playcanvas/supersplat": {
+      "at": "2026-09-24T15:19:01.357Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 37,
+      "to": 33,
+      "summary": "浏览器端3D高斯泼溅编辑器，支持WebGL实时渲染与点云交互修改。"
+    },
+    "liriliri/aya": {
+      "at": "2026-09-24T15:19:28.406Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 44,
+      "to": 31,
+      "summary": "Android桌面调试工具，可视化ADB提供屏幕镜像与性能分析"
+    },
+    "diafygi/webrtc-ips": {
+      "at": "2026-09-24T15:19:28.407Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 45,
+      "to": 29,
+      "summary": "演示WebRTC STUN机制泄露真实IP的浏览器隐私漏洞"
+    },
+    "ModelEngine-Group/nexent": {
+      "at": "2026-09-24T15:19:28.407Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 38,
+      "to": 28,
+      "summary": "零代码生产级AI Agent编排平台，内置约束与记忆管理"
+    },
+    "flyteorg/flyte": {
+      "at": "2026-09-24T15:19:28.407Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 36,
+      "to": 35,
+      "summary": "Kubernetes原生ML工作流编排引擎，强类型保障数据与GPU调度"
+    },
+    "ViennaRSS/vienna-rss": {
+      "at": "2026-09-24T15:19:28.407Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 40,
+      "to": 30,
+      "summary": "模仿Apple Mail交互的macOS原生开源RSS阅读器"
+    },
+    "codecoradev/uteke": {
+      "at": "2026-09-24T15:19:28.407Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 37,
+      "to": 26,
+      "summary": "Rust编写单二进制AI语义记忆引擎，离线零配置即用"
+    },
+    "goruck/home-generative-agent": {
+      "at": "2026-09-24T15:19:28.407Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 36,
+      "to": 35,
+      "summary": "Home Assistant AI管家，自然语言控制家居支持本地大模型"
+    },
+    "integrations/slack": {
+      "at": "2026-09-24T15:19:41.318Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 38,
+      "to": 31,
+      "summary": "官方指南教你把 GitHub 事件实时推送到 Slack 频道"
+    },
+    "MacDownApp/macdown": {
+      "at": "2026-09-24T15:19:41.319Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 45,
+      "to": 27,
+      "summary": "macOS 上开箱即用的开源 Markdown 编辑器"
+    },
+    "NexusForever/NexusForever": {
+      "at": "2026-09-24T15:19:41.319Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 46,
+      "to": 29,
+      "summary": "让玩家自建服务器重玩已停运 MMORPG WildStar"
+    },
+    "malisper/pgrust": {
+      "at": "2026-09-24T15:19:41.320Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 38,
+      "to": 32,
+      "summary": "用 Rust 重写的 PostgreSQL，并行执行超越原版性能"
+    },
+    "osmdroid/osmdroid": {
+      "at": "2026-09-24T15:21:10.715Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 39,
+      "to": 35,
+      "summary": "Android早期开源地图库，兼容MapView API现已归档停更。"
+    },
+    "Comfy-Org/ComfyUI_frontend": {
+      "at": "2026-09-24T15:21:10.716Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 54,
+      "to": 35,
+      "summary": "ComfyUI官方前端，基于TypeScript实现节点式工作流编排。"
+    },
+    "NVlabs/cuda-oxide": {
+      "at": "2026-09-24T15:21:27.699Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 49,
+      "to": 33,
+      "summary": "将Rust代码直接编译为PTX，让开发者用Rust编写GPU内核。"
+    },
+    "kijai/ComfyUI-SUPIR": {
+      "at": "2026-09-24T15:21:27.699Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 38,
+      "to": 33,
+      "summary": "在ComfyUI中集成SUPIR模型，实现基于扩散的图像超分辨率。"
+    },
+    "vllm-project/production-stack": {
+      "at": "2026-09-24T15:21:27.699Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 52,
+      "to": 35,
+      "summary": "提供vLLM在Kubernetes上生产级部署的参考架构与自动化配置。"
+    },
+    "allenai/open-instruct": {
+      "at": "2026-09-24T15:21:27.700Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 54,
+      "to": 33,
+      "summary": "基于TÜLU 3提供从指令微调到RLVR的大模型后训练完整工作流。"
+    },
+    "Eigenwise/eigenwise-toolshed": {
+      "at": "2026-09-24T15:21:53.182Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 39,
+      "to": 33,
+      "summary": "为Claude Code提供六大插件，解决上下文管理与任务拆解难题"
+    },
+    "agentscope-ai/agentscope-java": {
+      "at": "2026-09-24T15:21:53.182Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 43,
+      "to": 32,
+      "summary": "面向企业级Agent的Java框架，内置工具调用网关保障执行安全"
+    },
+    "FlagAI-Open/FlagAI": {
+      "at": "2026-09-24T15:21:53.183Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 36,
+      "to": 27,
+      "summary": "统一框架支持多模态大模型下载、微调与部署的全流程工具包"
+    },
+    "CopilotC-Nvim/CopilotChat.nvim": {
+      "at": "2026-09-24T15:21:53.183Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 39,
+      "to": 31,
+      "summary": "Neovim插件聚合多模型接口，支持本地离线运行的代码问答助手"
+    },
+    "brightmart/albert_zh": {
+      "at": "2026-09-24T15:21:53.183Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 38,
+      "to": 32,
+      "summary": "提供多框架预训练模型与CLUE工具包的中文ALBERT轻量化方案"
+    },
+    "aws-samples/generative-ai-use-cases": {
+      "at": "2026-09-24T15:21:53.183Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 40,
+      "to": 30,
+      "summary": "基于AWS云服务封装企业级RAG应用的生成式AI场景化实现库"
+    },
+    "ZengLiangYi/ChatCrystal": {
+      "at": "2026-09-24T15:21:53.183Z",
+      "lane": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "from": 38,
+      "to": 29,
+      "summary": "本地优先的AI编程知识库，支持语义搜索与对话记录自动结构化"
+    },
+    "coder/ghostty-web": {
+      "at": "2026-09-24T15:34:28.293Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 49,
+      "to": 32,
+      "summary": "支持xterm.js的浏览器端终端模拟器，WASM实现轻量移植。"
+    },
+    "hunglc007/tensorflow-yolov4-tflite": {
+      "at": "2026-09-24T15:34:28.295Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 46,
+      "to": 29,
+      "summary": "支持多种格式转换的YOLOv4模型工具，助力边缘设备部署。"
+    },
+    "homeassistant-ai/ha-mcp": {
+      "at": "2026-09-24T15:34:41.947Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 40,
+      "to": 35,
+      "summary": "连接Zigbee等设备的非官方Home Assistant API服务"
+    },
+    "BrikerMan/Kashgari": {
+      "at": "2026-09-24T15:34:41.947Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 36,
+      "to": 27,
+      "summary": "支持中文优化的TensorFlow NLP迁移学习框架"
+    },
+    "liaohch3/claude-tap": {
+      "at": "2026-09-24T15:34:41.947Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 44,
+      "to": 32,
+      "summary": "将Claude等AI工具HTTP流量转为可视Trace的代理工具"
+    },
+    "datawhalechina/Agent-Learning-Hub": {
+      "at": "2026-09-24T15:34:41.947Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 40,
+      "to": 24,
+      "summary": "系统化构建AI Agent实用能力的开源学习指南"
+    },
+    "googleapis/python-genai": {
+      "at": "2026-09-24T15:34:41.947Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 46,
+      "to": 31,
+      "summary": "谷歌官方Python SDK，用于调用Gemini大模型API"
+    },
+    "microsoft/genaiscript": {
+      "at": "2026-09-24T15:34:41.947Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 45,
+      "to": 27,
+      "summary": "集成VSCode的LLM脚本化编程工具，支持多模型调用"
+    },
+    "huggingface/smollm": {
+      "at": "2026-09-24T15:35:17.220Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 48,
+      "to": 33,
+      "summary": "轻量级模型SmolLM3在端侧设备上超越同级大模型，实现高效推理。"
+    },
+    "ashishpatel26/LLM-Finetuning": {
+      "at": "2026-09-24T15:35:17.220Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 49,
+      "to": 31,
+      "summary": "基于LoRA技术通过Notebook手把手教你微调大语言模型。"
+    },
+    "Toni-SM/skrl": {
+      "at": "2026-09-24T15:35:17.220Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 48,
+      "to": 28,
+      "summary": "支持多后端的模块化强化学习库，像搭积木一样灵活配置组件。"
+    },
+    "huggingface/huggingface.js": {
+      "at": "2026-09-24T15:35:17.220Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 37,
+      "to": 27,
+      "summary": "前端JS库支持下载模型与MCP协议，便于构建AI应用。"
+    },
+    "Deepractice/PromptX": {
+      "at": "2026-09-24T15:35:17.220Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 39,
+      "to": 33,
+      "summary": "基于MCP协议的Claude插件，赋予AI长期记忆与角色创建能力。"
+    },
+    "yfeng95/GAN": {
+      "at": "2026-09-24T15:36:08.578Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 39,
+      "to": 31,
+      "summary": "基于TensorFlow实现经典GAN架构，生成手写数字图像。"
+    },
+    "Kosinkadink/ComfyUI-AnimateDiff-Evolved": {
+      "at": "2026-09-24T15:36:08.579Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 46,
+      "to": 29,
+      "summary": "扩展ComfyUI动画生成能力，提升视频帧间过渡的流畅度。"
+    },
+    "Mesh-LLM/mesh-llm": {
+      "at": "2026-09-24T15:36:08.579Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 38,
+      "to": 28,
+      "summary": "Rust编写的分布式LLM推理框架，支持跨节点协同计算。"
+    },
+    "mindmuxai/brain.md": {
+      "at": "2026-09-24T15:36:08.579Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 45,
+      "to": 32,
+      "summary": "零依赖CLI工具，为AI Agent提供基于文件的持久化记忆层。"
+    },
+    "QwenAudio/Fun-ASR": {
+      "at": "2026-09-24T15:36:08.579Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 39,
+      "to": 33,
+      "summary": "支持Transformer部署的语音识别模型，适用于资源受限环境。"
+    },
+    "agent-infra/sandbox": {
+      "at": "2026-09-24T15:36:08.579Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 40,
+      "to": 27,
+      "summary": "集成多工具的AI智能体沙箱，通过容器提供安全运行环境。"
+    },
+    "bradautomates/claude-video": {
+      "at": "2026-09-24T15:37:19.993Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 42,
+      "to": 24,
+      "summary": "零配置自动转写视频，用 Claude 理解内容。"
+    },
+    "Anakin-Inc/anakin": {
+      "at": "2026-09-24T15:37:19.993Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 41,
+      "to": 25,
+      "summary": "自托管网页爬虫，把网页内容转为 Markdown。"
+    },
+    "trykimu/videoeditor": {
+      "at": "2026-09-24T15:37:19.993Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 41,
+      "to": 22,
+      "summary": "浏览器端视频剪辑工具，支持多轨道与自动字幕。"
+    },
+    "bitsandbytes-foundation/bitsandbytes": {
+      "at": "2026-09-24T15:37:19.994Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 41,
+      "to": 23,
+      "summary": "LLM 模型量化库，在消费级显卡上运行大模型。"
+    },
+    "MoonshotAI/Kimi-K2": {
+      "at": "2026-09-24T15:37:57.758Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 40,
+      "to": 22,
+      "summary": "万亿参数MoE架构，智能体场景推理工具调用强"
+    },
+    "tvytlx/ai-agent-deep-dive": {
+      "at": "2026-09-24T15:37:57.759Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 40,
+      "to": 30,
+      "summary": "AI Agent源码级教学，含源码分析与最小化Agent项目"
+    },
+    "Acly/krita-ai-diffusion": {
+      "at": "2026-09-24T15:37:57.759Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 38,
+      "to": 23,
+      "summary": "Krita插件，支持局部区域精准AI绘图与修改"
+    },
+    "karpathy/nn-zero-to-hero": {
+      "at": "2026-09-24T15:37:57.759Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 40,
+      "to": 24,
+      "summary": "从零手写micrograd，直观理解神经网络原理"
+    },
+    "KoljaB/RealtimeSTT": {
+      "at": "2026-09-24T15:37:57.759Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 37,
+      "to": 24,
+      "summary": "基于Whisper的Python实时语音转文字库"
+    },
+    "anthropics/claude-code-action": {
+      "at": "2026-09-24T15:37:57.759Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 54,
+      "to": 30,
+      "summary": "GitHub Action，自动执行Claude代码修复建议"
+    },
+    "google/gemma.cpp": {
+      "at": "2026-09-24T15:37:57.759Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 38,
+      "to": 24,
+      "summary": "C++轻量级引擎，优化Gemma模型底层推理研究"
+    },
+    "2noise/ChatTTS": {
+      "at": "2026-09-24T15:38:38.672Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 39,
+      "to": 21,
+      "summary": "开源语音合成模型，生成自然流畅的对话语音。"
+    },
+    "lm-sys/FastChat": {
+      "at": "2026-09-24T15:38:38.672Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 47,
+      "to": 22,
+      "summary": "大模型评测工具，基于人类投票的透明模型排名。"
+    },
+    "labmlai/annotated_deep_learning_paper_implementations": {
+      "at": "2026-09-24T15:38:38.672Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 40,
+      "to": 20,
+      "summary": "左侧代码右侧解析，直观复现深度学习算法。"
+    },
+    "abetlen/llama-cpp-python": {
+      "at": "2026-09-24T15:38:38.673Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 52,
+      "to": 32,
+      "summary": "Python 封装 llama.cpp，自动编译本地运行大模型。"
+    },
+    "GeeeekExplorer/nano-vllm": {
+      "at": "2026-09-24T15:38:38.673Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 45,
+      "to": 25,
+      "summary": "精简 vLLM 源码，展示大模型离线推理引擎原理。"
+    },
+    "karpathy/build-nanogpt": {
+      "at": "2026-09-24T15:38:38.673Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 45,
+      "to": 25,
+      "summary": "通过 Git 历史逐步复现 GPT，配套视频讲解。"
+    },
+    "lllyasviel/ControlNet": {
+      "at": "2026-09-24T15:38:38.673Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 42,
+      "to": 23,
+      "summary": "扩散模型控制插件，可训练副本保持生成风格稳定。"
+    },
+    "JoshuaC215/agent-service-toolkit": {
+      "at": "2026-09-24T15:39:37.915Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 49,
+      "to": 35,
+      "summary": "基于Pydantic规范构建，为AI智能体提供稳健的数据结构管理方案。"
+    },
+    "InternLM/InternLM": {
+      "at": "2026-09-24T15:39:37.915Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 39,
+      "to": 29,
+      "summary": "参数量仅8B的高效开源大语言模型，支持单卡消费级硬件部署。"
+    },
+    "ageron/handson-ml3": {
+      "at": "2026-09-24T15:39:37.915Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 58,
+      "to": 27,
+      "summary": "支持在线运行的机器学习教程，无需配置本地环境即可运行。"
+    },
+    "LSSTDESC/imSim": {
+      "at": "2026-09-24T15:39:37.915Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 37,
+      "to": 34,
+      "summary": "基于GalSim构建，用于模拟天文望远镜成像过程的高清图像生成工具。"
+    },
+    "linearmouse/linearmouse": {
+      "at": "2026-09-24T15:39:37.915Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 37,
+      "to": 34,
+      "summary": "针对Mac系统优化，通过底层驱动修正鼠标移动，实现线性与自定义滚轮。"
+    },
+    "ashawkey/stable-dreamfusion": {
+      "at": "2026-09-24T15:39:37.915Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 48,
+      "to": 31,
+      "summary": "基于文本提示生成高质量3D模型，支持单行指令快速创建三维内容。"
+    },
+    "AgriciDaniel/claude-ads": {
+      "at": "2026-09-24T15:40:23.435Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 48,
+      "to": 30,
+      "summary": "基于Claude的12平台广告管理插件，一键创建全链路广告。"
+    },
+    "deepspeedai/DeepSpeedExamples": {
+      "at": "2026-09-24T15:40:23.435Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 36,
+      "to": 26,
+      "summary": "DeepSpeed模型训练推理加速与压缩实战代码库。"
+    },
+    "kyegomez/zeta": {
+      "at": "2026-09-24T15:40:23.435Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 42,
+      "to": 31,
+      "summary": "基于PyTorch的高性能Transformer模块化训练库。"
+    },
+    "chatchat-space/Langchain-Chatchat": {
+      "at": "2026-09-24T15:40:23.435Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 55,
+      "to": 24,
+      "summary": "集成Langchain的开源本地知识库问答系统。"
+    },
+    "microsoft/BitNet": {
+      "at": "2026-09-24T15:40:23.435Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 48,
+      "to": 27,
+      "summary": "专为x86 CPU优化的1-bit低比特模型推理引擎。"
+    },
+    "babaohuang/GeminiProChat": {
+      "at": "2026-09-24T15:40:23.436Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 48,
+      "to": 25,
+      "summary": "一键部署的Gemini Pro极简Web聊天界面。"
+    },
+    "tanweai/pua": {
+      "at": "2026-09-24T15:40:23.436Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 41,
+      "to": 23,
+      "summary": "体验职场压力的P8工程师高能动性AI角色扮演。"
+    },
+    "apple/tensorflow_macos": {
+      "at": "2026-09-24T15:41:26.743Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 47,
+      "to": 23,
+      "summary": "在Mac上本地训练深度学习模型，无需云端同步。"
+    },
+    "jacobgil/pytorch-grad-cam": {
+      "at": "2026-09-24T15:41:26.743Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 43,
+      "to": 20,
+      "summary": "可视化解释PyTorch模型的决策过程。"
+    },
+    "acheong08/ChatGPT": {
+      "at": "2026-09-24T15:41:26.743Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 40,
+      "to": 26,
+      "summary": "非官方客户端，无需付费API即可调用ChatGPT。"
+    },
+    "rlabbe/Kalman-and-Bayesian-Filters-in-Python": {
+      "at": "2026-09-24T15:41:26.743Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 39,
+      "to": 22,
+      "summary": "在Jupyter中交互式学习卡尔曼滤波原理。"
+    },
+    "tinygrad/tinygrad": {
+      "at": "2026-09-24T15:41:26.744Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 55,
+      "to": 20,
+      "summary": "透明度高的深度学习框架，支持底层自定义。"
+    },
+    "datawhalechina/llms-from-scratch-cn": {
+      "at": "2026-09-24T15:41:26.744Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 67,
+      "to": 25,
+      "summary": "从零构建GLM4、Llama3等主流大模型的教程。"
+    },
+    "apache/parquet-java": {
+      "at": "2026-09-24T15:42:34.467Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 45,
+      "to": 26,
+      "summary": "Java实现的列式存储格式，专为处理复杂嵌套数据设计"
+    },
+    "a-peirogon/cal-annas": {
+      "at": "2026-09-24T15:42:34.468Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 40,
+      "to": 29,
+      "summary": "连接Libgen与Calibre的插件，实时监控书源可用性"
+    },
+    "huggingface/huggingface_hub": {
+      "at": "2026-09-24T15:43:46.288Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 42,
+      "to": 29,
+      "summary": "管理模型与数据集的官方库，支持安全令牌与私有模型版本控制。"
+    },
+    "zexadev/lapisnote": {
+      "at": "2026-09-24T15:43:46.288Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 36,
+      "to": 32,
+      "summary": "本地优先的Markdown笔记应用，集成AI助手辅助写作与润色。"
+    },
+    "org2AI/ORG2": {
+      "at": "2026-09-24T15:43:46.289Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 43,
+      "to": 35,
+      "summary": "基于Rust的AI编程Agent本地记录工具，用于回放完整的思维轨迹。"
+    },
+    "CorentinJ/Real-Time-Voice-Cloning": {
+      "at": "2026-09-24T15:44:44.722Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 51,
+      "to": 32,
+      "summary": "基于几秒音频样本实时克隆音色，将任意文本合成带有特定声纹的语音。"
+    },
+    "DLR-RM/BlenderProc": {
+      "at": "2026-09-24T15:46:06.632Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 41,
+      "to": 26,
+      "summary": "基于Blender的自动化3D渲染与物理仿真流水线。"
+    },
+    "FujiwaraChoki/MoneyPrinter": {
+      "at": "2026-09-24T15:46:06.632Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 49,
+      "to": 20,
+      "summary": "基于Ollama的本地批量视频生成工具。"
+    },
+    "Michael-A-Kuykendall/shimmy": {
+      "at": "2026-09-24T15:46:06.633Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 39,
+      "to": 23,
+      "summary": "纯Rust实现的浏览器端WebGPU推理引擎。"
+    },
+    "keras-team/autokeras": {
+      "at": "2026-09-24T15:46:57.780Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 58,
+      "to": 27,
+      "summary": "基于Keras的自动机器学习框架，零代码构建深度模型。"
+    },
+    "DarkFlippers/unleashed-firmware": {
+      "at": "2026-09-24T15:46:57.780Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 67,
+      "to": 30,
+      "summary": "开源固件扩展Flipper Zero功能，释放设备全部潜力。"
+    },
+    "tensorflow/tfjs-models": {
+      "at": "2026-09-24T15:46:57.780Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 40,
+      "to": 21,
+      "summary": "提供预训练模型库，让浏览器端轻松运行AI。"
+    },
+    "JanLahmann/RasQberry": {
+      "at": "2026-09-24T15:46:57.780Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 40,
+      "to": 20,
+      "summary": "用树莓派和3D打印搭建量子计算实验平台。"
+    },
+    "likeslines-maker/VectorRAG.Net": {
+      "at": "2026-09-24T15:46:57.780Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 42,
+      "to": 24,
+      "summary": "高性能.NET向量库，轻松实现语义搜索与RAG。"
+    },
+    "vikiboss/60s": {
+      "at": "2026-09-24T15:46:57.780Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 37,
+      "to": 23,
+      "summary": "聚合多源全球API，统一接口提供实时数据服务。"
+    },
+    "lakshaybhushan/vecto3d": {
+      "at": "2026-09-24T15:47:27.729Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 43,
+      "to": 26,
+      "summary": "将 SVG 矢量图自动转换为 3D 模型文件的工具。"
+    },
+    "Marksonthegamer/Mate-Engine-Linux-Port": {
+      "at": "2026-09-24T15:47:27.729Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 38,
+      "to": 24,
+      "summary": "运行于 Linux 桌面的 3D 虚拟宠物软件。"
+    },
+    "evoleinik/unchatty": {
+      "at": "2026-09-24T15:47:27.729Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 39,
+      "to": 26,
+      "summary": "让 Claude 减少废话，仅输出代码的提示词工具。"
+    },
+    "microsoft/vscode-copilot-chat": {
+      "at": "2026-09-24T15:47:27.730Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 48,
+      "to": 24,
+      "summary": "VS Code 内置的 AI 编程助手聊天功能。"
+    },
+    "EleutherAI/gpt-neo": {
+      "at": "2026-09-24T15:47:27.730Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 45,
+      "to": 24,
+      "summary": "基于 TPU 集群训练的 GPT 语言模型仓库。"
+    },
+    "MochiDiffusion/MochiDiffusion": {
+      "at": "2026-09-24T15:50:11.828Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 50,
+      "to": 30,
+      "summary": "基于Core ML的Mac端原生生图工具，支持多种高级功能。"
+    },
+    "tensorflow/tfjs": {
+      "at": "2026-09-24T15:50:11.828Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 48,
+      "to": 32,
+      "summary": "在浏览器运行TensorFlow模型，支持端侧训练与传感器交互。"
+    },
+    "github/copilot-cli": {
+      "at": "2026-09-24T15:50:11.828Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 56,
+      "to": 24,
+      "summary": "在终端中运行AI编程助手，通过自然语言执行命令。"
+    },
+    "Macrohard0001/lx-ikun-music-sources": {
+      "at": "2026-09-24T15:50:11.828Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 37,
+      "to": 23,
+      "summary": "支持多平台的音乐API解析脚本，聚合全网音源。"
+    },
+    "threestudio-project/threestudio": {
+      "at": "2026-09-24T15:50:11.829Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 45,
+      "to": 23,
+      "summary": "基于扩散模型的文本转3D生成框架，生成质量高。"
+    },
+    "albumentations-team/albumentations": {
+      "at": "2026-09-24T15:50:11.829Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 47,
+      "to": 21,
+      "summary": "高效的图像数据增强库，提升视觉模型鲁棒性。"
+    },
+    "claude-code-best/claude-code": {
+      "at": "2026-09-24T15:51:10.511Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 56,
+      "to": 34,
+      "summary": "开源替代方案，复刻Anthropic官方Claude Code功能。"
+    },
+    "SeldonIO/seldon-core": {
+      "at": "2026-09-24T15:51:10.511Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 56,
+      "to": 32,
+      "summary": "基于Kubernetes的MLOps框架，统一管理模型部署流程。"
+    },
+    "NielsRogge/Transformers-Tutorials": {
+      "at": "2026-09-24T15:51:10.511Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 42,
+      "to": 34,
+      "summary": "PyTorch实现HuggingFace模型，涵盖训练与部署全流程。"
+    },
+    "anthropics/anthropic-sdk-python": {
+      "at": "2026-09-24T15:51:10.511Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 50,
+      "to": 30,
+      "summary": "Python库，简化与Claude API的连接及认证处理。"
+    },
+    "winfunc/deepreasoning": {
+      "at": "2026-09-24T15:51:10.512Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 48,
+      "to": 31,
+      "summary": "整合DeepSeek与Claude，提供增强的代码生成API。"
+    },
+    "askrella/whatsapp-chatgpt": {
+      "at": "2026-09-24T15:51:10.512Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 46,
+      "to": 34,
+      "summary": "基于Puppeteer的WhatsApp机器人，集成语音与图像处理。"
+    },
+    "cbh123/narrator": {
+      "at": "2026-09-24T15:51:10.512Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 55,
+      "to": 31,
+      "summary": "将生活场景转化为纪录片风格，使用ElevenLabs合成解说。"
+    },
+    "SeanNaren/deepspeech.pytorch": {
+      "at": "2026-09-24T15:52:44.591Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 49,
+      "to": 28,
+      "summary": "基于 PyTorch 的语音识别模型，支持语言模型集成。"
+    },
+    "tumourlove/monolith": {
+      "at": "2026-09-24T15:54:11.898Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 39,
+      "to": 29,
+      "summary": "让 AI 助手直接读写 UE5 蓝图等资产，实现智能创作。"
+    },
+    "frank890417/WebToe": {
+      "at": "2026-09-24T15:54:11.899Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 42,
+      "to": 29,
+      "summary": "浏览器端数据流引擎，导入 .toe 文件实现触控设计风格。"
+    },
+    "opencx-labs/copilot": {
+      "at": "2026-09-24T15:54:11.899Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 51,
+      "to": 31,
+      "summary": "TypeScript 开发的编辑器插件，提供高效代码补全功能。"
+    },
+    "ThreeMammals/Ocelot": {
+      "at": "2026-09-24T15:55:27.703Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 42,
+      "to": 24,
+      "summary": "基于中间件管道的.NET微服务API网关解决方案"
+    },
+    "atlassian/atlassian-mcp-server": {
+      "at": "2026-09-24T15:55:27.703Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 43,
+      "to": 31,
+      "summary": "支持OAuth 2.1认证的Atlassian官方MCP服务器"
+    },
+    "novicezk/midjourney-proxy": {
+      "at": "2026-09-24T15:55:27.704Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 47,
+      "to": 32,
+      "summary": "模拟Discord协议将MidJourney转为REST API"
+    },
+    "stenciljs/core": {
+      "at": "2026-09-24T15:55:54.086Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 48,
+      "to": 28,
+      "summary": "用 TS 和 JSX 编写 Web 组件，支持跨框架复用"
+    },
+    "FooIbar/EhViewer": {
+      "at": "2026-09-24T15:57:53.455Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 48,
+      "to": 27,
+      "summary": "Kotlin编写的Android图片阅读器支持动态取色"
+    },
+    "Ziforge/ableton-liveapi-tools": {
+      "at": "2026-09-24T15:58:46.724Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 45,
+      "to": 25,
+      "summary": "解决线程锁，在IDE远程安全操控Live音乐软件。"
+    },
+    "konstaui/konsta": {
+      "at": "2026-09-24T16:04:11.042Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 45,
+      "to": 31,
+      "summary": "Tailwind风格移动端UI工具包，一套组件适配双平台观感。"
+    },
+    "riffusion/riffusion-app-hobby": {
+      "at": "2026-09-24T16:04:11.042Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 40,
+      "to": 23,
+      "summary": "把音频转成图像，用扩散模型谱写旋律的创意应用。"
+    },
+    "torinmb/mediapipe-touchdesigner": {
+      "at": "2026-09-24T16:13:58.541Z",
+      "lane": "确定性地毯切（无模型）",
+      "from": 42,
+      "to": 34,
+      "summary": "在创意编码和实时视觉艺术领域，TouchDesigner 是行业标准"
+    },
+    "bahdotsh/wrkflw": {
+      "at": "2026-09-24T16:13:58.544Z",
+      "lane": "确定性地毯切（无模型）",
+      "from": 41,
+      "to": 21,
+      "summary": "第一段：每次修改 CI 配置都要推送到仓库"
+    },
+    "skills/copilot-codespaces-vscode": {
+      "at": "2026-09-24T16:19:03.204Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 51,
+      "to": 35,
+      "summary": "在云端开发环境中，让Copilot与VS Code顺畅协作的桥梁工具。"
+    }
+  },
+  "failed": {
+    "torinmb/mediapipe-touchdesigner": {
+      "at": "2026-09-24T16:04:11.042Z",
+      "tries": 18,
+      "why": [
+        "与深度解读开头重复未消除（必须换个角度写）"
+      ]
+    },
+    "bahdotsh/wrkflw": {
+      "at": "2026-09-24T16:04:11.043Z",
+      "tries": 16,
+      "why": [
+        "与深度解读开头重复未消除（必须换个角度写）"
+      ]
+    }
+  }
+}

@@ -19,6 +19,13 @@
  *   npx tsx scripts/gittok-recopy.ts --all --limit=50     # 全库口径（含已过闸）重跑
  *   npx tsx scripts/gittok-recopy.ts --repo=owner/name    # 只跑指定 repo（调试）
  *   npx tsx scripts/gittok-recopy.ts --max-minutes=30     # 墙钟上限（到点安全停，state 已落盘）
+ *   npx tsx scripts/gittok-recopy.ts --only-summary       # 只跑「摘要契约违约卡」（五轮 T2 收窄队列，见下）
+ *
+ * `--only-summary`（2026-09-24 五轮 T2）：把队列收窄到 `SUMMARY_MIN`–`SUMMARY_MAX` 之外的卡。
+ * 为什么需要它：E-8 的既有队列是「**所有**不过闸的卡」（今天 1940 张），而五轮 P0-2 要闭环的
+ * 只有「摘要字数」这一条——不新增选项就只能排队等 E-8 跑完，或凭空扩大写入面。
+ * 它**不放松任何判据**：仍然逐卡过 `cardChecks` 全闸、仍然只写回四类文案字段；
+ * 只是把「先跑谁」从文件顺序改成「摘要违约优先」。
  *
  * 环境变量：RECOPY_FEED / RECOPY_STATE / RECOPY_LIMIT / RECOPY_TIMEOUT_MS / RECOPY_MAX_RETRY / RECOPY_MAX_MINUTES
  *
@@ -44,6 +51,7 @@ import {
   BATCH_MAX_TOKENS,
 } from "../src/feed/prompts.ts";
 import { cardChecks, effLen } from "../src/feed/checks.ts";
+import { summaryWithinContract } from "../src/feed/index.ts";
 import { cleanV4 } from "../src/feed/stage1.ts";
 import { loadConfig } from "../src/config.ts";
 import type { Fact, RepoForScoring, ScoringResult } from "../src/feed/types.ts";
@@ -156,19 +164,22 @@ export function isShortCard(card: Card): boolean {
 
 function pickTodo(
   cards: Card[],
-  opts: { all: boolean; repo: string | null; state: RecopyState },
-): { todo: Card[]; gateFail: number; shortCount: number } {
+  opts: { all: boolean; repo: string | null; onlySummary: boolean; state: RecopyState },
+): { todo: Card[]; gateFail: number; summaryFail: number; shortCount: number } {
   const shortCount = cards.filter(isShortCard).length;
   let gateFail = 0;
+  let summaryFail = 0;
   const todo: Card[] = [];
   for (const c of cards) {
     if (opts.repo && c.repo !== opts.repo) continue;
     if (opts.state.done[c.repo]) continue; // 已过闸并写回 → 跳过（续跑核心）
+    const summaryBad = !summaryWithinContract(c.summaryCn ?? "");
+    if (summaryBad) summaryFail++;
     const fails = gateOf(c);
     if (fails.length > 0) gateFail++;
-    if (opts.all || fails.length > 0) todo.push(c);
+    if (opts.onlySummary ? summaryBad : opts.all || fails.length > 0) todo.push(c);
   }
-  return { todo, gateFail, shortCount };
+  return { todo, gateFail, summaryFail, shortCount };
 }
 
 // ---------------------------------------------------------------------------
@@ -350,6 +361,7 @@ function parseArgs(argv: string[]): {
   limit: number;
   repo: string | null;
   maxMinutes: number;
+  onlySummary: boolean;
 } {
   const get = (name: string): string | null => {
     const hit = argv.find((a) => a.startsWith(`--${name}=`));
@@ -361,6 +373,7 @@ function parseArgs(argv: string[]): {
     limit: Number(get("limit") ?? process.env["RECOPY_LIMIT"] ?? 20),
     repo: get("repo"),
     maxMinutes: Number(get("max-minutes") ?? process.env["RECOPY_MAX_MINUTES"] ?? 60),
+    onlySummary: argv.includes("--only-summary"),
   };
 }
 
@@ -368,11 +381,17 @@ async function main(): Promise<void> {
   const args = parseArgs(process.argv.slice(2));
   const cards = JSON.parse(fs.readFileSync(FEED, "utf-8")) as Card[];
   const state = loadState();
-  const { todo, gateFail, shortCount } = pickTodo(cards, { all: args.all, repo: args.repo, state });
+  const { todo, gateFail, summaryFail, shortCount } = pickTodo(cards, {
+    all: args.all,
+    repo: args.repo,
+    onlySummary: args.onlySummary,
+    state,
+  });
 
   console.log(
-    `[recopy] 全库 ${cards.length} 张｜不过闸 ${gateFail} 张｜短卡(reasonCn<80) ${shortCount} 张｜` +
-      `已写回 ${Object.keys(state.done).length} 张｜本次待跑 ${Math.min(todo.length, args.limit)}/${todo.length} 张`,
+    `[recopy] 全库 ${cards.length} 张｜不过闸 ${gateFail} 张｜摘要违约 ${summaryFail} 张｜短卡(reasonCn<80) ${shortCount} 张｜` +
+      `已写回 ${Object.keys(state.done).length} 张｜本次待跑 ${Math.min(todo.length, args.limit)}/${todo.length} 张` +
+      `${args.onlySummary ? "（--only-summary 口径）" : ""}`,
   );
   console.log(`[recopy] state：${STATE_FILE}（指纹 ${state.version}）`);
   if (args.dryRun) {

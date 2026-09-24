@@ -1,5 +1,23 @@
 /**
- * V-C 频道容量与浏览深度验收（栗子 L8）——报告版（骨架，分段补全）。
+ * V-C 频道容量与浏览深度验收——报告版。
+ *
+ * ── 2026-09-24 五轮 T3：把「≥300 张」这个**魔法数**换成可推导口径 ────────────────
+ * 来历（栗子 09-24 问「为什么有这样的要求呢，你知道的我最讨厌不完全归纳法」，我溯源过）：
+ *   `git log -S "MIN_REACHABLE" -- scripts/gittok-channel-capacity.ts` 只有 `a0f2fca`（2026-09-15
+ *   「体系重构」），那一次只加了常量——**没有注释、没有文档、没有任何推导**。全仓唯一提到它的
+ *   `docs/equilibrium-decisions.md` 只是**记录**它报出的违例。这正是他讨厌的那种数：
+ *   看起来像个标准，其实是拍的。
+ *
+ * 新口径（可推导，且**契约变则它自动跟着变**）：
+ *   要求 = **MIN_SCREENS（要能连续刷多少屏）× 每屏卡数**。
+ *   每屏卡数**不是一个数字**，而是从内容契约与版式规则算出来的：
+ *     · 内容契约：摘要 20-35 字（`taxonomy.ts` 的 SUMMARY_MIN/MAX）⇒ 一行需 35×16.66+69 = 653px 卡宽；
+ *     · 列数规则：`feedColsForContentWidth`（**UI 用的就是这一个函数**，不是另抄一份）；
+ *     · 行数规则：`floor(参照视口高 / (卡定高 + 行距))`。
+ *   参照视口取**主流桌面档 1920×1080**（本机实测 `D:/tmp/gt-layout/r5/t3t4.json`：该档内容区
+ *   正好两列、可见 3 行 ⇒ **6 张/屏**，与四轮「按主流桌面档 6 张/屏」的说法一致）。
+ *   ⚠ 顶部 chrome（约 325px 的频道头/偏好条/标签栏）**不计入**：这样算出来的行数是**上界**，
+ *     也就是对频道容量的**更严**要求——宁可要求多，不放过少（闸宁可红，不许绿得虚）。
  */
 
 import fs from "node:fs";
@@ -20,12 +38,29 @@ import {
   type ChannelCard,
 } from "../src/feed/channel-policy.ts";
 import { ZONES } from "../src/feed/taxonomy.ts";
+// 列数/行高**复用 UI 的同一份规则**（web/src/feed-layout.ts 是纯函数、无 DOM 依赖）：
+// 版式一变（摘要上限、卡高、列宽下限），这里的「每屏张数」与要求线自动跟着变。
+import { FEED_COL_MIN, FEED_ROW_GAP, FEED_ROW_HEIGHT, feedColsForContentWidth } from "../web/src/feed-layout.ts";
 
 export interface CapCard extends ChannelCard {
   owner?: string;
 }
 
-export const MIN_REACHABLE = 300;
+/** 参照视口高（主流桌面档 1920×1080 的高）。只用于把「屏」换算成「张」。 */
+export const REF_VIEWPORT_HEIGHT = 1080;
+/** 要能连续刷多少屏（栗子 2026-09-24 定稿：40 屏——「刷几十屏不见底」的那句人话）。 */
+export const MIN_SCREENS = 40;
+
+/**
+ * 一屏几张 = 列数(两列门槛的内容宽) × 行数(参照视口高)。
+ * 内容宽取「刚好够两列」＝2×653+16＝1322px ⇒ `feedColsForContentWidth` 返回 2
+ * （它取的是「卡宽仍 ≥653 的**最大**列数」，1322 上正好 2）。今日 = 2 × 3 = **6 张/屏**。
+ */
+export const CARDS_PER_SCREEN: number =
+  feedColsForContentWidth(2 * FEED_COL_MIN + FEED_ROW_GAP) * Math.floor(REF_VIEWPORT_HEIGHT / FEED_ROW_HEIGHT);
+
+/** 每核心频道的最低张数 = 屏数 × 每屏张数。今日 = 40 × 6 = **240**（2026-09-24 实测：分区·创意 245 ⇒ 余 5 张）。 */
+export const MIN_REACHABLE = MIN_SCREENS * CARDS_PER_SCREEN;
 
 export const FEED_FILE = path.join(process.cwd(), "data", "feed.json");
 
@@ -151,7 +186,14 @@ function report(): void {
   const cards = loadCards();
   const rows = capacityRows(cards);
   console.log(
-    `[V-C] 数据源 data/feed.json｜卡库 ${cards.length} 张｜CHANNEL_CAP=${String(CHANNEL_CAP)}｜单频道要求至少 ${MIN_REACHABLE} 张`,
+    `[V-C] 数据源 data/feed.json｜卡库 ${cards.length} 张｜CHANNEL_CAP=${String(CHANNEL_CAP)}`,
+  );
+  // 要求线的**推导过程**必须能被人一眼复核（五轮 T3：把魔法数换成可推导口径）
+  console.log(
+    `[V-C] 口径：每核心频道 ≥ ${MIN_SCREENS} 屏 × ${CARDS_PER_SCREEN} 张/屏 = ${MIN_REACHABLE} 张｜` +
+      `每屏 = feedColsForContentWidth(${2 * FEED_COL_MIN + FEED_ROW_GAP}) = ${CARDS_PER_SCREEN / Math.floor(REF_VIEWPORT_HEIGHT / FEED_ROW_HEIGHT)} 列` +
+      ` × floor(${REF_VIEWPORT_HEIGHT} / ${FEED_ROW_HEIGHT}) = ${Math.floor(REF_VIEWPORT_HEIGHT / FEED_ROW_HEIGHT)} 行` +
+      `（卡定高 ${FEED_ROW_HEIGHT - FEED_ROW_GAP} + 行距 ${FEED_ROW_GAP}；卡宽下限 ${FEED_COL_MIN} 来自摘要 35 字契约）`,
   );
   console.log("");
   console.log("频道       池子(显示)  实际输出  重复  前缀配额违规");
@@ -179,7 +221,8 @@ function report(): void {
     return;
   }
   console.log(
-    `[V-C] 通过：核心频道可达至少 ${MIN_REACHABLE} 张、无重复卡、显示张数等于实际张数、前缀配额合规`,
+    `[V-C] 通过：核心频道可达至少 ${MIN_REACHABLE} 张（${MIN_SCREENS} 屏 × ${CARDS_PER_SCREEN} 张/屏）、无重复卡、` +
+      `显示张数等于实际张数、前缀配额合规`,
   );
 }
 
