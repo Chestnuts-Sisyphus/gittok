@@ -1,0 +1,86 @@
+{
+  "zh": {
+    "ai-cli": [
+      "OpenAI Codex 连发 5 个 Alpha 版本，修复 Windows 桌面端沙箱与按钮消失 Bug",
+      "Gemini CLI 发布 v0.61.0，解决子代理挂起与 Shell 注入问题",
+      "GitHub Copilot CLI 发布 v1.0.89，优化 OAuth 客户端配置与 Ask-user 表单",
+      "OpenCode V2 架构推进，引入前置工具钩子与上下文压缩阈值调整",
+      "Pi-mono 修复 TUI 长对话重绘风暴及图片粘贴功能",
+      "Google ax 与 Google Hindsight 今日新增 Stars 爆发式增长，领跑 AI Agent 基础设施赛道"
+    ],
+    "ai-agents": [
+      "LobsterAI 激进清理技术债务，24 小时收获 50 个 PR",
+      "NanoBot 与 NullClaw 稳步构建多渠道兼容性与底层稳定性",
+      "OpenClaw 作为底层“Agent 执行引擎”标准，支撑下游项目如 LobsterAI",
+      "NullClaw 与 NanoClaw 专注跨平台部署，优化 WSL/树莓派与 ARM64 环境",
+      "Hindsight 解决 Agent 长期记忆与动态学习难题，今日斩获 1607 Stars",
+      "Google ax 发布智能体编排运行时，构建复杂多步骤任务流底层支撑"
+    ],
+    "ai-trending": [
+      "Google ax 与 Hindsight 今日新增 Stars 爆发式增长，领跑 AI Agent 基础设施赛道",
+      "Google ax 发布智能体编排运行时，构建复杂多步骤任务流底层支撑",
+      "Hindsight 解决 Agent 长期记忆与动态学习难题，今日斩获 1607 Stars",
+      "Univer 被称为 AI Agents 办公协同套件，今日新增 1060 Stars",
+      "HydraDB 基于对象存储构建高性能图数据库，今日新增 1232 Stars",
+      "OpenClaw 凭借 39 万历史 Stars 居首，代表通用终端智能体极高关注度"
+    ],
+    "ai-arxiv": [
+      "熵校准信用分配统一 on-policy distillation 与 GRPO，提升数学推理效率",
+      "扩散语言模型学习因果捷径，有望降低复杂推理计算成本",
+      "Log-Depth 递归 LM 挑战 Transformer 固定深度与二次开销",
+      "Agent-Editing 世界模型减少高熵工具结果重建负担，支持可编辑状态",
+      "Shutdown Sabotage 研究 LLM 多智能体系统中的关停规避倾向",
+      "PASTABench 提出多步智能体轨迹主动式安全评估基准"
+    ],
+    "ai-hf": [
+      "Convaiinnovations 发布 Laya-Multilingual 语言模型，高下载数与点赞数突出",
+      "Qwen/Qwen3.8-Flash-Next 图像到文本生成表现优异，获得大量点赞",
+      "DeepSeek-ai 推出 DeepSeek-V4.1-Flash 视频处理模型",
+      "Qwen/Qwen3.8-27B-GGUF 创新量化技术受到社区关注",
+      "热门模型榜单今日呈现多模态与专用模型并进格局",
+      "Hugging Face Hub 今日共 30 个模型更新，涵盖语言、多模态与视频处理"
+    ],
+    "ai-community": [
+      "7 个 Agent 评估错误及一行代码修复方案，对构建可信赖 Agent 系统有直接参考价值",
+      "优化搜索索引比增加训练数据更能解决 LLM 准确性问题",
+      "深入分析 AI Agent 中经典的“混淆副手”安全漏洞如何被重新引入",
+      "RAG 系统在自检测幻觉时出现“静默失败”，揭示深层评估挑战",
+      "实验验证语义缓存相似性问题，对构建高效 AI 助手有实践指导",
+      "提供从 OpenAI/Claude API 迁移到 AWS Bedrock 的完整指南与实践参考"
+    ]
+  },
+  "en": {
+    "ai-cli": [
+      "Claude Code: Critical Windows trigger fix",
+      "Claude Code: MCP v2.0 HTTP header support",
+      "Claude Code: Docx stability updates",
+      "OpenAI Codex joins CLI tools list",
+      "Gemini CLI now available on GitHub",
+      "GitHub Copilot CLI gains traction"
+    ],
+    "ai-agents": [
+      "NanoBot: 39 PRs merged in 24 hours",
+      "NanoBot: WebUI usability improvements",
+      "NanoBot: Multi-channel reliability fixes",
+      "NanoBot: Context-compaction stability focus",
+      "OpenClaw ecosystem tracks 13 agents",
+      "NanoBot: High activity in main branch"
+    ],
+    "ai-trending": [
+      "Google AX: Massive 1,376 star growth",
+      "Hindsight: Agent memory sees explosive growth",
+      "Agent Native infrastructure is the trend",
+      "Agent Skills become standard productivity unit",
+      "Needle: 2-bit AI for tiny edge devices",
+      "AI OS concept is heating up"
+    ],
+    "ai-community": [
+      "7 agent eval mistakes cost weeks",
+      "Running Jev on TPU v6e explained",
+      "Your model needs a better search index",
+      "Focus on boring engineering for reliability",
+      "Jev decision layer dominates discussions",
+      "Practical debugging of agent environments"
+    ]
+  }
+}
