@@ -8,33 +8,33 @@ export const FEED_ROW_HEIGHT = FEED_CARD_HEIGHT + FEED_ROW_GAP;
 export const FEED_COLS_DESKTOP = 2;
 export const FEED_COLS_MOBILE = 1;
 export const FEED_MOBILE_MAX_WIDTH = 768;
-/** G-10：每列最小宽度。⚠ 与 styles.css 的 `--feed-col-min` 双写，改一处必须改两处，
- *  否则 CSS 实际列数与垫片按列数算出的高度失配 → 虚拟列表错位（同 `FEED_CARD_HEIGHT` 那条纪律）。
- *  取值史 500 → 550 → 536 → 460 → 420 → **480**（2026-09-23 傍晚，栗子第三轮验收④）。
- *  420 → 480 的原因（栗子原话）：「卡片在两列甚至两列以上的情况的最小宽度有点小了……
- *  本来我觉得该两列展示的场景结果变成了三列宽度较小的卡片」——1700 档实测 **3 列 × 463px**。
- *  480 的效果（`D:/tmp/gt-layout/r3/t4-矩阵.json` 逐档实测）：
- *    · 1700 → **2 列 × 700**（他点名的场景）；1751 起才转三列 480；
- *    · 1275 仍是两列 490（**硬约束**：栗子已认可的窗口，任何取值让 1275 掉出两列即作废）；
- *    · 1920/2560 仍三列 523，与改前逐像素一致；≤768 手机档不受影响。
- *  480px ＝ **24 汉字**：口径与闸一致（一行容量 = floor((卡宽 − 69) / 16.66)，见
- *  scripts/gittok-responsive-check.mjs 的 1275 档标定 25 字）；考证的可读区间 22–38 汉字
- *  （Bringhurst 45–75 拉丁字符 ÷ 2；Unicode TR11 全角 1em／半角 1/2em；WCAG 2.2 SC 1.4.8
- *  只给上限「80 chars (40 if CJK)」且原文声明非强制）——480 落在区间内。
- *  另两处候选被实测否掉：**500** 会让 1275 掉回单列（=490 正好等于下限，无余量）→ 作废；
- *  460 在 1700 档仍是三列 463（病没治）。
- *  CSS 的轨道下限写的是 `min(var(--feed-col-min), 100%)`——容器窄于下限时轨道退成容器宽、
- *  仍算 1 列，与本函数 `Math.max(1, …)` 同值，故两边在全部实测宽度上一致。 */
-export const FEED_COL_MIN = 480;
-/** 2026-09-23：卡宽上限 = **700px（37 汉字）**，且它**只在单列档可能生效**——多列区实测从不触顶
- *  （两列区 420–668、三列区 440–539，全在考证的 22–38 汉字区间内）。
- *  栗子 09-23 第二问明确否掉「固定卡片宽度」：所以宽度由**列数**决定，这个常量只兜单列那一档。
- *  ⚠ 与 styles.css 的 `--feed-card-max` 双写，且**只在 >768 生效**（≤768 由
- *  `grid-template-columns: 1fr` 让卡片占满，是既有手机设计）。
- *  它只约束卡片自身（轨道仍是 1fr），所以**不进列数计算** —— `feedColsForContentWidth` 不受它影响。 */
-export const FEED_CARD_MAX = 700;
-/** G-11：视口高 ≤560（横屏手机）时 CSS 把 `--feed-card-h` 降到 210px。
- *  ⚠ 同样是双写契约：垫片行高必须跟着降，否则滚动高度与内容不符。 */
+/** ── 摘要契约 → 布局反推（2026-09-24 四轮，栗子定标准）────────────────────────────
+ *  栗子原话：「我们必须定好摘要必须小于的字数，然后把所有摘要大于这个字数的都重写」＋
+ *  「在卡片是两列及以上的时候说明屏幕有足够的宽度，这个时候应该保证所有摘要都能全部展示出来」
+ *  ＋「只要当宽度小于一列的时候，才应该被迫减少摘要的显示宽度」。
+ *
+ *  ⇒ 第一性依据不是「卡宽应该多少」，而是**这句话能不能一行读完**。所以：
+ *     · 摘要上限是**站内既有标准**，不是本轮新造的数——`src/feed/prompts.ts:156` 的评分提示词原文：
+ *       `summary_cn`: 面向完全不了解这个项目的人…**20-35 个汉字**（硬性要求：少于 20 字或多于
+ *       35 个字都不合格，写完后数一遍字数确认）。`src/feed/card-invariants.ts` 也按同一条线出告警。
+ *     · 卡宽由它反推：一行放下 35 字所需的**最小卡宽** = 35×16.66 + 69 = **652.1 → 653px**。
+ *     · 列数规则随之改写：取「卡宽仍 ≥ 653」的**最大**列数（旧规则是「最少列数使卡宽 ≤700」）。
+ *       结果是：2 列及以上时，任何合规摘要都必然一行放得下；只有屏幕窄到给不出 653px 卡才退 1 列，
+ *       而 1 列是**铺满**内容区的（不许留空档——栗子 09-24 红框那条）。
+ *     · 「卡宽上限（FEED_CARD_MAX）」这个概念**整个删除**：卡片永远铺满自己的轨道，
+ *       宽度只由列数决定；轨道宽由列数规则保证落在 [653, 2×653+16) 内。
+ *  ⚠ `--feed-col-min` 与 `FEED_COL_MIN` 仍是双写契约（漂移会让虚拟列表垫片按错列数算高度）。 */
+/** 摘要一行的**内容契约**：上限 35 个汉字（＝提示词里的硬性要求）。 */
+export const FEED_SUMMARY_MAX = 35;
+/** 实测单字宽（17px 根字号、700 字重；与 G9 表「一行容量 = floor((卡宽−69)/16.66)」同式）。 */
+export const FEED_CHAR_W = 16.66;
+/** 卡内 chrome 实测 69px（卡内距 20×2 + 摘要内距 12×2 + 左边框 3 + 卡边框 1×2）。 */
+export const FEED_CARD_CHROME = 69;
+/** 多列档最小卡宽 = 一行放下 FEED_SUMMARY_MAX 字 → 35×16.66 + 69 = 652.1 → 653（向上取整留余量）。 */
+export const FEED_COL_MIN = Math.ceil(FEED_SUMMARY_MAX * FEED_CHAR_W + FEED_CARD_CHROME);
+/** 单列档卡宽的理论上界：再宽就该两列了（2×653+16 = 1322）。
+ *  只作**文档与闸的读数参考**，不参与任何约束——约束是「列数由卡宽下限反推」。 */
+export const FEED_CARD_MAX = 2 * FEED_COL_MIN + FEED_ROW_GAP;
 export const FEED_SHORT_MAX_HEIGHT = 560;
 export const FEED_CARD_HEIGHT_SHORT = 210;
 
@@ -89,8 +89,12 @@ export function feedColsForWidth(width: number): number {
 export function feedColsForContentWidth(contentWidth: number, rowGap: number = FEED_ROW_GAP): number {
   if (!(contentWidth > 0)) return 1;
   const widthAt = (n: number) => (contentWidth - (n - 1) * rowGap) / n;
-  let cols = Math.max(1, Math.ceil((contentWidth + rowGap) / (FEED_CARD_MAX + rowGap)));
-  while (cols > 1 && widthAt(cols) < FEED_COL_MIN) cols--;
+  // 取「卡宽仍 ≥ FEED_COL_MIN（＝一行放得下 35 字的卡宽）」的**最大**列数。
+  // 为什么是最大而不是最少：栗子 09-24「在卡片是两列及以上的时候说明屏幕有足够的宽度，
+  // 这个时候应该保证所有摘要都能全部展示出来」——列数只能加到一个"摘要仍然读得完整"的上限为止；
+  // 能两列就别三列（三列会让卡宽掉到 35 字以下 ≙ 摘要被截），屏幕不够宽就老实一列铺满（不留空档）。
+  let cols = 1;
+  while (widthAt(cols + 1) >= FEED_COL_MIN) cols++;
   return cols;
 }
 

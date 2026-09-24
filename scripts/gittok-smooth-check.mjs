@@ -16,12 +16,16 @@
  *   α 起跳帧连续性：状态切换后第一帧的渲染矩形 vs 切换前落定矩形 ≤ 8px
  *     —— 抓「瞬移」。无动画的硬切会在这里给出几十到几百 px（改前实测：768 档 768px、
  *        900 档 140px、1134 档 157px）。
+ *   ⚠ 2026-09-24 四轮追加：列数规则改成「取卡宽 ≥ 653 的最大列数」后，**桌面只剩一个列数门槛**
+ *     （网格 1322px ＝视口 1594），所以本闸动态探测到的切换点从 4 处减到 2 处
+ *     （768 与 1594，各两方向）——断言数随之为 9 项。这是**规则简化**的结果，不是覆盖退化：
+ *     `样本有效性` 的下限已同步为 ≥2 个切换点（探到几个就判几个，点位仍然不写死）。
  *   ⚠ 2026-09-24 四轮 T3：**900 这一档不再是断点**——icon-only rail 删除后，769–900 与 >900
  *     走同一形态（192 侧栏 + 24 边距），跨 900 没有任何几何变化。切换点是动态探测的
  *     （COARSE_FROM..TO 粗扫 + 翻转点定位，不写死点位），故本轮断言数 17→13：消失的正是原
  *     900 zone 的 4 条，剩下的 768(772) / 两列(1252) / 三列(1744) 共 6 个切换点 6/6 全绿。
  *     ⇒ 这不是覆盖退化，而是**断点本身被删掉了**（结构性消除优于逐条补过渡）。
- *     `样本有效性 ≥4` 的下限仍成立（实测 6 个切换点全部发生状态切换）。
+ *     `样本有效性` 的下限同步为 ≥2（实测全部切换点都发生状态切换）。
  *   β 无尖峰：整个采样窗内相邻帧的最大位移 ≤ 该元素本次**总变化量**的 45%
  *     —— 抓「一帧跳完再慢慢爬」。平滑缓动（--ease-geometry＝cubic-bezier(0.4,0,0.2,1)）
  *        峰值约 16–20% 总变化；硬切是 100%。为什么不用「≤8px/帧」：128px 的形变哪怕线性
@@ -64,7 +68,10 @@ const COARSE_FROM = 700;
 const COARSE_TO = 1900;
 const COARSE_STEP = 12;
 const STEP = 2;
-const STEPS_PER_ZONE = 6;
+const STEPS_PER_ZONE = 13; // 2026-09-24 四轮：6 → 13（细扫窗 ±12px）。
+// 为什么加宽：粗扫步长 12px ⇒ 它报出的翻转点最多偏离真翻转点 12px（四轮实测：列数真翻转在视口 1594，
+// 粗扫报 1600，而细扫窗原本只覆盖 1596–1606 ⇒ **真翻转整个落在窗外**，那一档于是"没有任何元素在动"，
+// 「无尖峰」判据 0/0 假绿（已被下面新增的"必须有采样"判据打红）。窗加宽到 ±12px 后覆盖真翻转点。
 const SAMPLE_MS = 380;
 /** α 阈值（px）：切换当帧允许的位移。2px 的驱动步长 + 6px 余量。 */
 const MAX_FLIP_DELTA = 8;
@@ -294,17 +301,25 @@ async function main() {
       `实测 ${worstFlip.value}px（${worstFlip.el ?? "-"}.${worstFlip.field ?? "-"} @${worstFlip.step ?? "-"}）` +
         `｜该 zone ${z.stateChanged ? "发生" : "未发生"}形态/列数切换`,
     );
+    // ⚠ 「无样本 ≠ 通过」（09-20 纪律 · 恒空窗口那一条）：本 zone 若一个元素的变化都没采到
+    //   （worstPeak.el 为空 ⇒ ratio 停在初值 0），说明这一档的采样窗里**没有任何元素在动**，
+    //   此时 ratio ≤ 阈值 是假绿而非通过 —— 四轮实测踩到：1594 边界「放大」方向 0.0%（-.- 单帧 -px）。
+    //   判据改成：必须有采样（el 存在）才允许判通过；没有采样就是 FAIL。
+    const peakSampled = !!worstPeak.el;
     report(
       `边界 ${tag} 无尖峰（单帧 ≤${MAX_PEAK_RATIO * 100}% 总变化）`,
-      worstPeak.ratio <= MAX_PEAK_RATIO,
-      `实测峰值比 ${(worstPeak.ratio * 100).toFixed(1)}%（${worstPeak.el ?? "-"}.${worstPeak.field ?? "-"} ` +
-        `单帧 ${worstPeak.maxFrame ?? "-"}px / 总变化 ${worstPeak.total ?? "-"}px @${worstPeak.step ?? "-"}）`,
+      peakSampled && worstPeak.ratio <= MAX_PEAK_RATIO,
+      (peakSampled
+        ? `实测峰值比 ${(worstPeak.ratio * 100).toFixed(1)}%（${worstPeak.el}.${worstPeak.field} ` +
+          `单帧 ${worstPeak.maxFrame ?? "-"}px / 总变化 ${worstPeak.total ?? "-"}px @${worstPeak.step ?? "-"}）`
+        : `❌ 本 zone **无采样**（没有任何元素的矩形在采样窗内变化）——恒空窗口不能判通过`) +
+        `｜该 zone ${z.stateChanged ? "发生" : "未发生"}形态/列数切换`,
     );
   }
   // 样本有效性：至少 4 个状态切换点被采到（768/900/两列/三列 四条），否则闸在空转
   //（「无样本 ≠ 通过」——09-20 纪律：报数分三态，恒空窗口不能当绿）。
   const changed = zones.filter((z) => z.stateChanged).length;
-  report("样本有效性：≥4 个切换点实测发生状态切换", changed >= 4, `发生切换的切换点 ${changed}/${zones.length}`);
+  report("样本有效性：≥2 个切换点实测发生状态切换", changed >= 2, `发生切换的切换点 ${changed}/${zones.length}`);
 
   fs.writeFileSync(path.join(OUT, `smooth_${TAG}.json`), JSON.stringify({ at: new Date().toISOString(), zones, flip: FLIP_OK, peak: PEAK_OK }, null, 2));
   const failed = RESULTS.filter((r) => !r.ok);

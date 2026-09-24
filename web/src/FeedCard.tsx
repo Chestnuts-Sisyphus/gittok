@@ -413,20 +413,24 @@ export function CardDetail({
       return;
     }
     // 首帧即动（锁⑩）：playCloseMotion 内部同步写 from 再 animate，中间不落笔。
-    const { card: anim, fade, dim } = playCloseMotion(
+    // 退场时把源卡一起反向淡回来（栗子：「退场动画的结尾出现了卡片原有位置闪现」）——
+    // 只在这张卡真的可见时才做（live 非空）；回退案里源卡已经不可用，没有可交接的对象。
+    const { card: anim, fade, revealAnim, dim } = playCloseMotion(
       panel,
       overlayRef.current,
       motion,
       live ? CLOSE_DURATION : CLOSE_INPLACE_DURATION,
+      live ? sourceEl : null,
     );
     const done = () => {
       panel.classList.remove("is-flying");
       cardEl?.classList.remove("is-flying");
-      // 先钉住终点态再卸：`is-flying` 一撤，面板会瞬间回到布局盒（居中大盒）。
-      // 透明度已由 fade 收到 0，但 transform 也要清干净——否则下一次打开会带着旧 transform
-      // 起跳（锁⑧：二次开飞前清飞行 transform）。
       panel.style.transform = "";
+      // ⚠ 顺序要紧：先 onClose()（内部摘掉源卡的 `is-open-source`，CSS 即刻把 opacity 还给卡片），
+      // 再取消 reveal 的 fill —— 同一帧内完成，所以看不到任何跳变；
+      // 反过来（先取消再摘 class）会让卡片有几率闪一帧 opacity:0（class 还在）。
       onClose();
+      revealAnim?.cancel();
     };
     void anim.finished.then(done, done);
     void fade.finished.catch(() => {});

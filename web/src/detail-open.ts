@@ -322,13 +322,22 @@ export function closeInPlaceMotion(current: Box, layout: Box) {
  *   于是那 113ms 里用户看到「迷你弹层停在卡片上」＝一眼假的破绽（f12_238ms 那帧就是）。
  *   修法不是去抢 React 的提交时间，而是**让面板在飞行末段透明度归零**——落地即不可见，
  *   卸载晚多久都不影响观感。这条也顺手把「落点硬切」消掉（否则着陆是一次 pop）。
- *   曲线用 `cubic-bezier(0.2,0.8,0.2,1)`：与遮罩 `fadeIn` 同一条（站内既有），不是新造曲线。 */
+ *   曲线用 `cubic-bezier(0.2,0.8,0.2,1)`：与遮罩 `fadeIn` 同一条（站内既有），不是新造曲线。
+ *
+ * ⚠ 2026-09-24 第二轮修（栗子：「退场动画的结尾出现了卡片原有位置闪现的问题」）：
+ *   第一版只做了「面板化掉」，源卡在整个退场期间仍是隐形的（`is-open-source`＝opacity 0），
+ *   直到动画结束后 `closeDetail()` 摘掉那个 class → **卡片从无到有地"啪"一下出现**＝他看到的闪现。
+ *   修法：把源卡的显形也做成一段过渡——`reveal` 参数接一个元素，让它与面板的化掉**同一窗口**
+ *   反向淡入（面板 1→0、卡片 0→1），于是"弹层落回卡片"是一次交接而不是一次跳变。
+ *   动画用 `fill: "forwards"` 顶住 CSS 的 `opacity:0`；调用方在摘掉 class 的**同一帧**取消它
+ *   （否则残留的 fill 会在下次打开时把卡片顶成可见——锁⑧同族的坑）。 */
 export function playCloseMotion(
   panel: HTMLElement,
   overlay: HTMLElement | null,
   motion: OpenMotion,
   duration = CLOSE_DURATION,
-): { card: Animation; fade: Animation; dim?: Animation } {
+  reveal?: HTMLElement | null,
+): { card: Animation; fade: Animation; revealAnim?: Animation; dim?: Animation } {
   panel.style.transformOrigin = "top left";
   panel.style.transform = motion.from;
   const timing: KeyframeAnimationOptions = {
@@ -346,13 +355,21 @@ export function playCloseMotion(
   //   透明度从第 3 帧（~46ms / 进度 0.6）就已经掉到 0.58，等于整段都在淡出，
   //   "往回走"这件事几乎看不见。换成 delay 语义无歧义：120ms 内一动不动，最后 80ms 化掉。
   const fadeMs = Math.round(duration * 0.4);
-  const fade = panel.animate([{ opacity: 1 }, { opacity: 0 }], {
+  const fadeTiming: KeyframeAnimationOptions = {
     duration: fadeMs,
     delay: duration - fadeMs,
     easing: "cubic-bezier(0.2, 0.8, 0.2, 1)", // 与遮罩 fadeIn 同一条（站内既有曲线）
     fill: "forwards",
-  });
+  };
+  const fade = panel.animate([{ opacity: 1 }, { opacity: 0 }], fadeTiming);
   if (now != null) fade.startTime = now;
+
+  // 源卡显形（同一窗口反向淡入）：面板 1→0 的同时卡片 0→1 ⇒ 「落回卡片」是一次交接
+  let revealAnim: Animation | undefined;
+  if (reveal && typeof reveal.animate === "function") {
+    revealAnim = reveal.animate([{ opacity: 0 }, { opacity: 1 }], fadeTiming);
+    if (now != null) revealAnim.startTime = now;
+  }
 
   let dim: Animation | undefined;
   if (overlay && typeof overlay.animate === "function") {
@@ -370,5 +387,5 @@ export function playCloseMotion(
       dim = undefined;
     }
   }
-  return { card, fade, dim };
+  return { card, fade, revealAnim, dim };
 }
