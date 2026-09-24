@@ -105,11 +105,22 @@
      第一性依据＝**一句话能不能一行读完**：摘要上限是站内既有标准（`src/feed/prompts.ts:156`
      的 20–35 个汉字硬性要求），一行放下 35 字需 35×16.66+69 = 652.1 → **653px**。
      ⇒ 列数取「卡宽仍 ≥ 653」的**最大**列数（见 feed-layout.ts 的 feedColsForContentWidth）；
-        于是 2 列及以上时合规摘要必然一行放得下；屏幕不够宽就 1 列**铺满**（不留空档）；
-        「卡宽上限」这个概念连同 `--feed-card-max` 一起删除——卡宽只由列数决定。
+        于是 2 列及以上时合规摘要必然一行放得下。
      与 web/src/feed-layout.ts 的 FEED_COL_MIN 双写（漂移会让虚拟列表垫片按错列数算高度）。
      ⚠ ≤768 手机档仍由 `grid-template-columns: 1fr` 铺满（那才是「宽度小于一列」的情形）。 */
   --feed-col-min: 653px;
+  /* ── 单列档卡宽上限（2026-09-25 五轮追加，栗子定标准）──────────────────────────
+     栗子原话（配两张图）：「这个太长了，我理想的单列卡片的极限宽度应该在第二张图片左右」
+     →「更正一下，我理想的单列卡片极限宽度应该按这个来」（红框圈的是**两列档里的那张卡**）。
+     ⇒ 口径：**单列档的卡宽上限 = 两列档在参照档（1920×1080、内容网格 1602px）下的单卡宽**
+        = (1602 − 16) / 2 = **793px**。
+     为什么这样取（而不是上一版那个 700 或拍一个数）：
+       · 参照档是**站内最宽**的档（壳上限 1866 ⇒ 内容网格封顶 1602），所以两列档的卡宽**永远 ≤ 793**
+         ⇒ 「任何窗口下，卡宽都不超过我在两列档里看到的那张卡」这条不变式在全档成立；
+       · 单列档此前是「铺满」（1400 档 1128、1500 档 1228）——栗子 09-24 要过「不留空档」，
+         09-25 明确改口：宁可要有边距的阅读列，也不要一条长到 1228px 的卡片。
+     与 web/src/feed-layout.ts 的 FEED_CARD_MAX 双写（由 lock 单测钉住两边同值）。 */
+  --feed-card-max: 793px;
   --header-h: 60px;
   --header-bg: #16122a;
   --sidebar-inset: 24px;
@@ -643,10 +654,6 @@ button {
   min-width: 0;
   max-width: var(--max-width);
   padding: 24px 24px;
-  /* 三轮 T1（甲A1）：手机档是 `padding: 12px 0`（占满整行），桌面档 24px——跨 768 时左右内距
-     0↔24 也是内容列宽度路径的一段，与 .sidebar/.main-feed 同参过渡。
-     ⚠ **不**过渡 max-width：它在列数翻转时由单列带 `:has()` 规则接管，过渡它会与卡片 FLIP 抢同一段时间，
-     变成「一边补差一边改目标」（实测口径见三轮任务书 T1③）。 */
   transition: padding var(--motion-base) var(--ease-geometry);
 }
 
@@ -752,6 +759,51 @@ button {
      主信息流另有更精确的一条（见下面的 `.feed-window > .feed-list`）。 */
   grid-template-columns: repeat(auto-fill, minmax(min(var(--feed-col-min), 100%), 1fr));
   gap: var(--feed-row-gap);
+}
+
+/* 主信息流：列数只认 `--feed-cols`（App 按 feedColsForContentWidth 反解后写进来）——
+   卡片宽度因此永远落在 [420, 700]，超上限就加列、低于下限就减列，没有固定宽度。
+   二轮 G6（2026-09-23）：次级列表（搜索页热门预览、收藏夹展开）也由 useResponsiveCols
+   反解后写进**同一个变量**，走同一条规则——同一视口两处列数/卡宽一致，
+   不再是 auto-fill 的另一套口径（实测 1600 档主 2×653 vs 预览 3×502 的分叉就此消除）。
+   注意 React 对 style 对象会同时落 `style` 属性字符串，`[style]` 存在性选择即可；
+   主信息流 `.feed-window >` 继续单独命中（它有虚拟垫片兄弟节点，结构不同）。 */
+.feed-window > .feed-list,
+.feed-list[style] {
+  grid-template-columns: repeat(var(--feed-cols, 1), minmax(0, 1fr));
+}
+
+/* ── 单列档：卡宽上限收到 793（2026-09-25 五轮，栗子「按这个来」）───────────────
+   口径：**单列档的卡宽上限 = 两列档在参照档（1920×1080、内容网格 1602）下的单卡宽** = 793px。
+   机制：**收轨道 + 收头宽**，都由 JS 写下的 `data-cols="1"` 这一个属性驱动。
+   为什么必须是「同一个属性驱动」（本机实测迭代了四版才定，把三条否决理由记在这里防复踩）：
+     · 版 1（`:has(.feed-list[data-cols=1])` 收 `.feed-content` 的 max-width）：**自锁**——
+       列数由 `.feed-list` 的实测宽反解，一收窄就量到 793 ⇒ 判 1 列 ⇒ 继续收 ⇒ 宽窗口永远回不到两列
+       （实测 1920 档卡宽 793、列数 1）。
+     · 版 2（改成视口断点 `≤1593`）：不自锁了，但断点与 JS 的列数切换**不同帧**——
+       头宽在 CSS 断点那一帧先跳 530px，而卡片 FLIP 要等 JS 判完列数才补差 ⇒ 头没有路径，smooth 闸红。
+     · 版 3（给 `max-width` 加 transition）：更糟——`margin-inline:auto` 让容器 x 一帧走完 264px，
+       卡片宽出现 131% 单帧尖峰（过渡与 FLIP 抢同一段时间，正是四轮注释警告过的那件事）。
+     ⇒ 定版：**属性驱动 + 收轨道**。属性由 React 在 `data-cols` 上写，与列数**同一帧**变化，
+       于是轨道、头、卡片全在同一次重排里换挡，而 FLIP 的 before/after 正好覆盖这一帧 ⇒ 每个元素都有路径。
+       收轨道不会改 `.feed-list` 自己的 clientWidth（它仍是网格盒宽）⇒ 反解列数时读到的还是**可用宽**，
+       自锁问题从机制上不存在（版 1 的根因）。
+   ⚠ 只对 ≥769 生效：≤768 手机档仍是「卡宽 = 视口 − 内距」的占满型设计（那时网格 ≤ 820，上限不会咬住）。 */
+@media (min-width: 769px) {
+  /* ① 轨道：单列档只留一条 793 的轨道并居中（卡片仍 width:100% 铺满它 ⇒ 「卡宽 = 轨道宽」不变量不变） */
+  .feed-window > .feed-list[data-cols="1"],
+  .feed-list[data-cols="1"][style] {
+    grid-template-columns: minmax(0, var(--feed-card-max));
+    justify-content: center;
+  }
+  /* ② 频道头/偏好条/状态行：与卡片同宽同位（头 ≡ 卡；它们是 flex 盒子不是轨道，单独给上限）。
+        选择器挂在 `.feed-layout >` 上 ⇒ 只作用主信息流，不动我的页/搜索页的其它容器。 */
+  .feed-layout:has(> .feed-content > .feed-window > .feed-list[data-cols="1"]) > .feed-content > .channel-head,
+  .feed-layout:has(> .feed-content > .feed-window > .feed-list[data-cols="1"]) > .feed-content > .pref-prompt,
+  .feed-layout:has(> .feed-content > .feed-window > .feed-list[data-cols="1"]) > .feed-content > .status {
+    max-width: var(--feed-card-max);
+    margin-inline: auto;
+  }
 }
 
 /* 主信息流：列数只认 `--feed-cols`（App 按 feedColsForContentWidth 反解后写进来）——

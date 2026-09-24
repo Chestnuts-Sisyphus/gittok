@@ -109,16 +109,20 @@ const VIEWS = [
  *  两列门槛：网格 ≥ 2×653+16 = **1322px**（＝视口 1594）；内容区上限跟顶栏口径 1650px，
  *  超宽屏由「侧栏＋内容整壳 1866px 居中」收边 ⇒ 三点五列以上永不出现，1920/2560 都是两列 793。 */
 const FEED_COL_MIN = 653;
+/** 单列档卡宽上限（2026-09-25 五轮，栗子「单列卡片的极限宽度按这个来」＝两列档那张卡）。
+ *  ＝两列档在参照档（1920×1080、内容网格 1602）下的单卡宽 = (1602−16)/2 = 793。
+ *  与 web/src/feed-layout.ts 的 FEED_CARD_MAX、styles.css 的 --feed-card-max 三处同值。 */
+const FEED_CARD_MAX = 793;
 const FEED_CAPACITY_MIN = 24;
 const EXPECT_DESKTOP = {
   "2560x1080": { cols: 2, cardW: 793, capMin: 43, capMax: 43 },
   "1920x1080": { cols: 2, cardW: 793, capMin: 43, capMax: 43 },
   "1600x900": { cols: 2, cardW: 656, capMin: 35, capMax: 35 },
-  "1400x900": { cols: 1, cardW: 1128, capMin: 63, capMax: 63 },
-  "1343x900": { cols: 1, cardW: 1071, capMin: 60, capMax: 60 },
-  "1275x900": { cols: 1, cardW: 1003, capMin: 56, capMax: 56 },
-  "1200x900": { cols: 1, cardW: 928, capMin: 51, capMax: 51 },
-  "1100x800": { cols: 1, cardW: 828, capMin: 45, capMax: 45 },
+  "1400x900": { cols: 1, cardW: 793, capMin: 43, capMax: 43 },
+  "1343x900": { cols: 1, cardW: 793, capMin: 43, capMax: 43 },
+  "1275x900": { cols: 1, cardW: 793, capMin: 43, capMax: 43 },
+  "1200x900": { cols: 1, cardW: 793, capMin: 43, capMax: 43 },
+  "1100x800": { cols: 1, cardW: 793, capMin: 43, capMax: 43 },
   "1000x800": { cols: 1, cardW: 728, capMin: 39, capMax: 39 },
   "900x800": { cols: 1, cardW: 628, capMin: 33, capMax: 33 },
   // 844×390 是 mobile:true 但 w>768 —— CSS 媒体查询按**宽度**走，844 用桌面栅格。
@@ -605,8 +609,9 @@ async function checkView(cdp, view) {
               const gap = parseFloat(lcs.columnGap||'0')||0;
               // 多列档：每条轨道 = (网格−(n−1)gap)/n（轨道被 1fr 等分）
               if (colsN > 1) return Math.abs(m0 - (list.clientWidth-(colsN-1)*gap)/colsN) <= 1.5;
-              // 单列档（>768）：轨道 == 网格宽（卡铺满，右侧零空档 —— 四轮 R2）
-              return Math.abs(m0 - list.clientWidth) <= 1.5;
+              // 单列档（>769）：轨道 = min(网格, 卡宽上限)（2026-09-25 起单列档收轨道到 793，
+              // 栗子「单列卡片的极限宽度按这个来」；超出部分是轨道的居中留量，不再算「轨道内空档」）
+              return Math.abs(m0 - Math.min(list.clientWidth, ${FEED_CARD_MAX})) <= 1.5;
             })(),
             ruleVars: (()=>{ if (!list) return null; const c=getComputedStyle(list); return {
               colsVar: c.getPropertyValue('--feed-cols').trim(),
@@ -625,6 +630,17 @@ async function checkView(cdp, view) {
       summaryCapacityPass(capMin),
       `容量 min ${capMin} 字（单字宽 ${m.cap[0]?.charW}px / 内容宽 ${m.cap[0]?.width}px）｜采样整句可见 ${m.s.length - sClip}/${m.s.length}` +
         `｜口径：${RUN_PLATFORM === "win32" ? `Windows 基准 ${FEED_CAPACITY_MIN} 字（=列宽下限 420px＝21 汉字）` : `非 Windows（${RUN_PLATFORM}）按 14.2% 跨平台漂移归一，下限 ${SUMMARY_CAPACITY_PASS_MIN} 字`}`,
+    );
+    // ── 2026-09-25 五轮 R4：**单列档卡宽 ≤ 793**（＝两列档在参照档的卡宽，栗子「按这个来」）──
+    // 栗子配图指出单列档 1228 的卡「太长了」；上限＝他在两列档里看到的那张卡的宽度。
+    // 这条是**上界**，与 R1（多列档 ≥653 的下界）配对：卡宽的允许区间被两条结构性判据夹死。
+    report(
+      view.key,
+      `R4 单列档卡宽 ≤ ${FEED_CARD_MAX}px（＝两列档卡宽，栗子 09-25「按这个来」）`,
+      m.cardW <= FEED_CARD_MAX + 1.5,
+      `卡宽 ${Math.round(m.cardW)}px（上限 ${FEED_CARD_MAX}px）` +
+        (m.cols > 1 ? "（多列档由 R1+列数规则管，本档不判）" : `｜网格 ${m.gridW}px ⇒ 左右边距各 ${Math.round((m.gridW - m.cardW) / 2)}px`) +
+        `｜改前实测：1500 档卡宽 1228（栗子：「这个太长了」）`,
     );
     const exp = EXPECT_DESKTOP[view.key];
     const expCap = exp?.capMax ?? 99;
@@ -657,7 +673,7 @@ async function checkView(cdp, view) {
         (m.cols === 1
           ? m.cueDelta === null
             ? "本档无频道头/偏好条可测（不判）"
-            : `实测 左缘差 ${m.cueDelta}px、右缘差 ${m.cueRightDelta}px → ${cueAlignsCard ? "对齐 ✓（条与卡同宽 700，留白在右侧作页面边距）" : "❌ 卡片与上面的条错位"}`
+            : `实测 左缘差 ${m.cueDelta}px、右缘差 ${m.cueRightDelta}px → ${cueAlignsCard ? `对齐 ✓（条与卡同宽 ${Math.round(m.cardW)}px；09-25 起单列档的卡宽上限由**内容容器**承担，超出部分变成左右对称的页边距）` : "❌ 卡片与上面的条错位"}`
           : `多列填满行 ✓`),
     );
     // ── 2026-09-24 四轮 T5（甲A1 / 乙B5）+ 四轮 R3：**头/偏好条 == 网格宽（全档）** ──

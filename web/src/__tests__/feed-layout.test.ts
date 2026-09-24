@@ -11,6 +11,7 @@ import {
   FEED_CARD_MAX,
   FEED_CHAR_W,
   FEED_COL_MIN,
+  FEED_GRID_REF,
   FEED_SUMMARY_MAX,
   FEED_SHORT_MAX_HEIGHT,
   FEED_COLS_DESKTOP,
@@ -187,11 +188,14 @@ describe("双写契约（CSS 与 JS 常量不许漂）", () => {
     const cssMin = Number(cssRaw.match(/--feed-col-min:\s*(\d+)px/)?.[1]);
     expect(cssMin).toBe(FEED_COL_MIN);
   });
-  it("--feed-col-min === FEED_COL_MIN（由摘要契约反推；「卡宽上限」常量已删除）", () => {
-    // 四轮：卡宽上限这个概念整个删除——卡宽只由列数决定，所以 CSS 里不该再有 --feed-card-max。
+  it("--feed-col-min === FEED_COL_MIN（由摘要契约反推；--feed-card-max 与其同值成对）", () => {
+    // 四轮曾把「卡宽上限」整个删除（那时单列档要铺满）。09-25 栗子改口「单列卡片的极限宽度按这个来」
+    // ⇒ 上限回来了，但**机制在内容侧**（见下面那条锁），所以 CSS 里 --feed-card-max 是**必须存在**的，
+    // 且必须与 JS 常量同值。
     const cssMin = Number(cssRaw.match(/--feed-col-min:\s*(\d+)px/)?.[1]);
+    const cssMax = Number(cssRaw.match(/--feed-card-max:\s*(\d+)px/)?.[1]);
     expect(cssMin).toBe(FEED_COL_MIN);
-    expect(cssRaw).not.toMatch(/--feed-card-max\s*:/);
+    expect(cssMax).toBe(FEED_CARD_MAX);
   });
   it("--feed-card-h === FEED_CARD_HEIGHT；窄高档 --feed-card-h === FEED_CARD_HEIGHT_SHORT", () => {
     const vars = [...cssRaw.matchAll(/--feed-card-h:\s*(\d+)px/g)].map((m) => Number(m[1]));
@@ -202,7 +206,7 @@ describe("双写契约（CSS 与 JS 常量不许漂）", () => {
   });
 });
 
-describe("卡片铺满轨道（四轮：卡宽上限已删除，宽度只由列数决定）", () => {
+describe("卡片铺满轨道（09-25：上限在**内容容器**上，卡片自身仍铺满）", () => {
   const cssRaw = readFileSync(resolve("web/src/styles.css"), "utf8");
   const css = cssRaw.replace(/\/\*[\s\S]*?\*\//g, "");
   const cssNoCommentAll = css;
@@ -213,16 +217,19 @@ describe("卡片铺满轨道（四轮：卡宽上限已删除，宽度只由列�
     expect(feedList).not.toMatch(/minmax\([^)]*var\(--feed-card-max\)/);
   });
 
-  it("卡片**铺满自己的轨道**（四轮：无卡宽上限；单列档＝网格宽＝右侧零空档）", () => {
-    // 四轮 2026-09-24：栗子两条——「2 列及以上时所有摘要都要能完整展示」→ 卡宽 ≥ 一行 35 字的宽度；
-    // 「（红框）这种空隙不允许出现」→ 单列档铺满。两条合起来把「卡宽上限」这个概念消灭了：
-    // 卡宽 = 轨道宽，轨道宽由列数规则保证落在 [653, 2×653+16)。
+  it("卡片**铺满自己的轨道**（卡宽 = 轨道宽；上限落在内容容器，不在卡片）", () => {
+    // 09-25 栗子两条合起来的新口径：
+    //   · 「单列卡片的极限宽度按这个来」（＝两列档那张卡 = 793）⇒ 上限回来了；
+    //   · 09-24 的「（红框）这种空隙不允许出现」仍然算数 ⇒ **轨道内不留空**：卡仍是 width:100%。
+    // 两者能同时成立，靠的是把上限写在**内容容器**（.feed-content 的 max-width）而不是卡片身上：
+    // 容器一窄，轨道与卡一起变窄，头/偏好条天然同宽。卡片自身一旦挂 max-width 就会回到
+    // 「轨道 1fr + 卡限宽」那种「轨道里留空」的形状——2026-09-25 那条回归锁守的就是这件事。
     const base = css.match(/\.feed-list\s*>\s*\.card\s*\{([^}]*)\}/)?.[1] ?? "";
-    expect(base).toMatch(/width:\s*100%/);          // 不带它会塌成 max-content（历史实测 36px）
-    expect(base).not.toMatch(/max-width/);           // 上限概念已删
-    expect(cssNoCommentAll).not.toMatch(/var\(--feed-card-max\)/);
-    // 单列档不再收轨道（旧「单列带」规则已删除）：不该再有 data-cols="1" 的轨道收边规则
-    expect(cssNoCommentAll).not.toMatch(/\.feed-list\[data-cols="1"\]\s*\{/);
+    expect(base).toMatch(/width:\s*100%/); // 不带它会塌成 max-content（历史实测 36px）
+    expect(base).not.toMatch(/max-width/); // 上限在**轨道**身上，不在卡片身上
+    // 上限只许出现在两处：①单列档的轨道（minmax 上限）②单列档的头/偏好条/状态行（共用一个声明）
+    const cardMaxUses = [...cssNoCommentAll.matchAll(/var\(--feed-card-max\)/g)];
+    expect(cardMaxUses.length).toBe(2);
     // 手机档仍是 1fr 占满
     const mobileBlocks = [...css.matchAll(/@media \(max-width:\s*768px\)\s*\{[\s\S]*?\n\}/g)].map((m) => m[0]);
     const mobileBlock = mobileBlocks.find((b) => /\.feed-list\s*\{/.test(b)) ?? "";
@@ -266,16 +273,53 @@ describe("列数（照 CSS auto-fill 同式还原）", () => {
     expect(Math.floor((cardW - FEED_CARD_CHROME) / FEED_CHAR_W)).toBeGreaterThanOrEqual(FEED_SUMMARY_MAX);
   });
 
-  it("单列带机制已**整体删除**（四轮）：不该再有收轨道 / 收头宽的规则", () => {
-    // 历史：二/三轮为让单列档「卡与头左右缘对齐」把轨道收到 700 并左对齐，代价是右侧 28–228px 空档。
-    // 四轮改成「单列铺满 + 卡宽由列数规则保证」，对齐成了布局的结果而不是补丁 ⇒ 那两条规则都删掉。
-    // 本测试是**反向锁**：任何人把旧规则加回来都会红。
-    expect(cssNoCommentAll).not.toMatch(/\.feed-list\[data-cols="1"\]/);
-    expect(cssNoCommentAll).not.toMatch(/\.feed-content:has\(/);
-    expect(cssNoCommentAll).not.toMatch(/max-width:\s*1134px/);
-    expect(cssNoCommentAll).not.toMatch(/max-width:\s*calc\(var\(--feed-card-max\) \+ 48px\)/);
+  it("单列档卡宽上限 = 两列档卡宽（09-25 栗子「按这个来」）：机制在**内容侧**，卡片自身仍铺满", () => {
+    // ── 口径来历（2026-09-25 五轮）─────────────────────────────────────────────
+    // 栗子配两张图：「这个太长了，我理想的单列卡片的极限宽度应该在第二张图片左右」
+    // →「更正一下，我理想的单列卡片极限宽度应该按这个来」（红框圈的是**两列档里的那张卡**）。
+    // ⇒ 单列档卡宽上限 = 两列档在参照档（1920×1080、内容网格 FEED_GRID_REF=1602）下的单卡宽。
+    expect(FEED_CARD_MAX).toBe(793);
+    expect(FEED_CARD_MAX).toBe(Math.floor((FEED_GRID_REF - FEED_ROW_GAP) / 2)); // 推导，不是拍的
+    expect(feedColsForContentWidth(FEED_GRID_REF)).toBe(2); // 参照档确实是两列 ⇒ 793 就是它的卡宽
+    expect(FEED_CARD_MAX).toBeGreaterThan(FEED_COL_MIN); // 上限必须 ≥ 下限，否则规则自相矛盾
+
+    // ── 双写契约：JS 常量 ↔ CSS token（漂移会让闸的读数与改版的人都对不上）──
+    const cssNum = cssNoCommentAll.match(/--feed-card-max:\s*(\d+)px/);
+    expect(cssNum?.[1], "styles.css 里没有 --feed-card-max").toBeTruthy();
+    expect(Number(cssNum?.[1])).toBe(FEED_CARD_MAX);
+
+    // ── 机制在**内容侧**：卡片不许挂 max-width（那是四轮删掉的「轨道 1fr + 卡限宽」形状）──
+    const cardBlock = cssNoCommentAll.match(/\.feed-list > \.card\s*\{([^}]*)\}/)?.[1] ?? "";
+    expect(cardBlock).toMatch(/width:\s*100%/);
+    expect(cardBlock, "卡片身上不许出现 max-width（限宽要落在内容容器上）").not.toMatch(/max-width/);
+    expect(cssNoCommentAll, "不许用 justify-self 把卡片挤到一边（四轮红框那条的根因）").not.toMatch(
+      /justify-self:\s*(start|end|left|right)/,
+    );
+
+    // 开关必须是 **data-cols 属性**（与 JS 的列数同一帧），且只对 ≥769 生效
+    const capBlock = cssNoCommentAll.match(
+      /@media \(min-width: 769px\) \{[\s\S]*?grid-template-columns:\s*minmax\(0, var\(--feed-card-max\)\)[\s\S]*?\n\}/,
+    )?.[0];
+    expect(capBlock, "单列档上限块不在（栗子 09-25 那条会失效）").toBeTruthy();
+    expect(capBlock).toMatch(/\.feed-window > \.feed-list\[data-cols="1"\],\s*\n\s*\.feed-list\[data-cols="1"\]\[style\] \{/);
+    expect(capBlock).toMatch(/grid-template-columns:\s*minmax\(0, var\(--feed-card-max\)\)/);
+    expect(capBlock).toMatch(/justify-content:\s*center/); // 居中（两侧留量相等，不是左对齐留单侧空）
+    expect(capBlock).toMatch(/\.feed-layout:has\(> \.feed-content > \.feed-window > \.feed-list\[data-cols="1"\]\)/); // 头≡卡
+    // ⚠ 不许用视口断点当开关：断点与 JS 列数切换不同帧 ⇒ 头宽先行跳 530px、FLIP 追不上（实测踩到）
+    expect(cssNoCommentAll, "上限不许用视口断点开关（会与列数切换不同帧）").not.toMatch(
+      /@media \(min-width: 769px\) and \(max-width: 1593px\)/,
+    );
+    expect(FEED_CARD_MAX + 48).toBe(841); // 旧版（内容容器法）的算式，留着当「别走回头路」的注脚
+
     // 正向：主规则仍在（列数＝唯一真源）
     expect(cssNoCommentAll).toMatch(/grid-template-columns:\s*repeat\(var\(--feed-cols, 1\), minmax\(0, 1fr\)\)/);
+  });
+
+  it("列数规则本身没被这条上限改掉（两列下界仍是 1322：单列档的宽度靠内容容器收，不靠加列）", () => {
+    // 防「用加列去实现卡宽上限」的误改：09-25 的上限只影响**单列档的容器宽度**，
+    // 不影响「两列需要 1322px」这个门槛（否则 1600 档会掉到 3 列，摘要就放不下了）。
+    expect(feedColsForContentWidth(1322)).toBe(2);
+    expect(feedColsForContentWidth(1321)).toBe(1);
   });
 });
 

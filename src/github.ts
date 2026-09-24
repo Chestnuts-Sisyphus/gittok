@@ -1,6 +1,12 @@
 /**
  * GitHub API types and fetch helpers.
  * Reads GITHUB_TOKEN and DIGEST_REPO from environment at call time.
+ *
+ * ⚠ 出网形状（2026-09-25 五轮 T7 乙B4 的记录）：本文件**所有** `fetch` 的目标都是**写死的**
+ *   `https://api.github.com/...`，外部变量（`digestRepo` / `repo`）只落在**路径段**里
+ *   ⇒ **不存在 SSRF**。Mimosa 扫描对本文件报的 3 条 CWE-918（`src/github.ts:158/255/275`）
+ *   属**误报**：它只看到「变量进了 fetch」，没看域名是常量。
+ *   新增出网调用请沿用这个形状；将来若真需要可变主机，必须先过 host 白名单再发请求。
  */
 
 // ---------------------------------------------------------------------------
