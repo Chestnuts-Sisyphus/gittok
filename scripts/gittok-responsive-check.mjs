@@ -11,9 +11,14 @@
  * 侧栏与底栏命中档 / 弹层动作区溢出 / 触摸端按钮可见性 / Agent 页可达 / 整卡是否放得下」，
  * 每档出一张截图，结果同时落 JSON 供改前改后 diff。
  *
- * 用法（先建 dist 并灌真实数据）：
+ * 用法（先建 dist；⚠ **不要再 cp data/feed.json 过去**）：
  *   cd D:/AI/QODER/1/os-feed/web && npm run build
- *   cp ../data/feed.json dist/data/feed.json && cp ../data/following.json dist/data/following.json
+ *   ⚠ 本闸以前在这里写着 `cp ../data/feed.json dist/data/feed.json` —— 那是**错的**：
+ *     `npm run build` 会在构建期把 `copyOk` 标签打进 `dist/data/feed.json`，
+ *     用仓库根的原始 `data/feed.json` 覆盖它会把标签洗掉 → 视觉闸的前置检查
+ *     「copyOk 真值 0 张」立刻红（2026-09-24 四轮实操踩到）。CI 里有一条同名 E2 guard 写死这件事：
+ *     「if this goes red, the gate is eating untagged data again — do not "fix" it by copying
+ *      data/feed.json over dist; fix the build instead.」
  *   node scripts/gittok-responsive-check.mjs          # 仓库内正身（pnpm responsive:check 亦走这条）
  *   node D:/AI/QODER/1/gittok_accept/gittok_responsive_check.mjs   # 任务书点名的外部入口壳
  *   node ... --only=390x844        # 只跑一档（调试）
@@ -38,6 +43,21 @@ const SHOT_DIR = process.env.GITTK_SHOTS || path.join(REPO, "tmp", "responsive",
 const DATA_DIR = process.env.GITTK_OUT || path.join(REPO, "tmp", "responsive");
 const SRV_PORT = Number(process.env.GITTK_RESP_PORT || 19102);
 const CDP_PORT = Number(process.env.GITTK_RESP_CDP || 19301);
+/**
+ * 四轮 T5（块4「植入即红自证」）：把一段 CSS 注入每一档的页面，用来**证明这条闸真的有鉴别力**。
+ * 用法：`GITTK_INJECT_CSS=D:/tmp/gt-layout/r4/red-head-alltier.css pnpm responsive:check`
+ *   → 该 CSS 应把某条断言打红；不红就说明断言是空转（〇块第 5/6 条的验收动作）。
+ * 为什么用「注入 + 同一份断言代码」而不是另写一份探针：**断言只有一份真源**——
+ * 另写探针会在闸改判据后失效，于是「自证」变成自欺（三轮 gt-observe-red.mjs 是那种形态的补丁版）。
+ */
+const INJECT_CSS = process.env.GITTK_INJECT_CSS
+  ? fs.readFileSync(process.env.GITTK_INJECT_CSS, "utf8")
+  : "";
+/** 同上，但注入的是 **JS**（用来做 CSS 做不到的破坏：摘属性、改 DOM 结构）。
+ *  用法：`GITTK_INJECT_JS=D:/tmp/gt-layout/r4/red/red-3-no-datacols.js pnpm responsive:check` */
+const INJECT_JS = process.env.GITTK_INJECT_JS
+  ? fs.readFileSync(process.env.GITTK_INJECT_JS, "utf8")
+  : "";
 let PAGE_URL = "";
 
 const TAG = (() => {
@@ -117,10 +137,15 @@ const EXPECT_DESKTOP = {
   "1200x900": { cols: 1, cardW: 700, capMin: 37, capMax: 37 },
   "1100x800": { cols: 1, cardW: 700, capMin: 37, capMax: 37 },
   "1000x800": { cols: 1, cardW: 700, capMin: 37, capMax: 37 },
-  "900x800": { cols: 1, cardW: 700, capMin: 37, capMax: 37 },
+  "900x800": { cols: 1, cardW: 628, capMin: 33, capMax: 33 },
   // 844×390 是 mobile:true 但 w>768 —— CSS 媒体查询按**宽度**走，844 用桌面栅格
-  // （闸的档位分支同理照 w 判），所以它也归桌面预期表。实测：侧栏此时是 64px 图标栏、单列 700。
-  "844x390": { cols: 1, cardW: 700, capMin: 37, capMax: 37 },
+  // （闸的档位分支同理照 w 判），所以它也归桌面预期表。
+  // ⚠ 2026-09-24 四轮 T3：这两档的数字**因「删除 icon-only rail」而变**——
+  //   769–900 改用带文字的 192 侧栏（与 >900 同形态），可用宽随之少 140px：
+  //   900 → 网格 768→628（卡 700→628、容量 37→33 字）；844 → 692→572（700→572、37→30 字）。
+  //   两档都必须跟着重标，否则闸会拿「旧预期」判红 —— 这正是〇块第 5 条
+  //  「闸漏网＝流程缺口：修内容必须同时修闸」的执行面。
+  "844x390": { cols: 1, cardW: 572, capMin: 30, capMax: 30 },
 };
 
 /** 每档侧栏/底栏/tabs 的期望命中档（照 styles.css 现状：仅 480/768/900 三档宽度断点）。 */
@@ -134,6 +159,8 @@ function expectedChrome(w) {
 }
 
 const RESULTS = [];
+/** 每档 100% 缩放下的几何读数（四轮 T5 缩放档用它做基准比对，必须跨档留存）。 */
+const READINGS = {};
 function report(view, name, ok, detail) {
   RESULTS.push({ view, name, ok, detail });
   console.log(`[${ok ? "PASS" : "FAIL"}] ${view} — ${name} ${detail}`);
@@ -339,15 +366,32 @@ window.__gt = {
     // 2026-09-23 三轮：≤768 的侧栏从 display:none 改成「塌缩态」（width:0 + visibility:hidden）——
     // 它仍在渲染树里，但**不是**图标栏。判定必须带上可见性与宽度，否则会在手机档误跑图标栏断言
     // （实测：side-item 全被 visibility 过滤 → itemMinH 0 → 5 档假红）。
+    // 2026-09-24 四轮 T3：icon-only rail 已整体删除 ⇒ iconMode 恒 false（字段保留只为兼容旧读数）。
     const iconMode = !!sb && sbcs.display!=='none' && sbcs.visibility!=='hidden' && w > 0 && w <= 100;
     const items=[...document.querySelectorAll('.sidebar .side-item')].filter(e=>{
       const s=getComputedStyle(e); return s.display!=='none' && s.visibility!=='hidden';});
+    // 四轮 T3 新判据用：每一项的 .side-text 可见宽度（收成 0 宽 = 只有图标没有中文 = 朱子图3 那条）
+    const texts=items.map(e=>e.querySelector('.side-text')).filter(Boolean);
+    const textW=texts.map(t=>Math.round(t.getBoundingClientRect().width));
+    const tcs=texts.length? getComputedStyle(texts[0]):null;
+    // 四轮 T2 新判据用：侧栏滚动条占位（定版＝0）与底缘渐隐 mask
+    const box=sb? sb.querySelector('.side-group-box'):null;
     return {
       sidebarShown: !!sb && sbcs.display!=='none',
       sidebarW: sb? Math.round(sb.getBoundingClientRect().width):0,
+      // 「塌缩态」= 手机档那个 width:0 + visibility:hidden 的形态（既不是 rail，也不该跑侧栏断言）
+      collapsed: !!sb && (w === 0 || sbcs.visibility==='hidden'),
       iconMode,
       itemMinH: items.length? Math.min(...items.map(e=>Math.round(e.getBoundingClientRect().height))):0,
       itemsNoName: items.filter(e=>!e.getAttribute('aria-label') && !(e.textContent||'').trim()).length,
+      itemsTotal: items.length,
+      itemsWithZeroText: textW.filter(x=>x<=0).length,
+      minTextW: textW.length? Math.min(...textW): 0,
+      textFontSize: tcs? tcs.fontSize: null,
+      sidebarSlot: sb? sb.offsetWidth - sb.clientWidth: -1,
+      sidebarMaskOk: !!sbcs && String(sbcs.maskImage||sbcs.webkitMaskImage||'none').indexOf('linear-gradient')>=0,
+      sidebarRight: sb? Math.round(sb.getBoundingClientRect().right): null,
+      boxRight: box? Math.round(box.getBoundingClientRect().right): null,
       groupBars: document.querySelectorAll('.sidebar .side-group').length,
       bottomShown: !!bb && bbcs.display!=='none',
       bottomBg: bb? bbcs.backgroundColor:null,
@@ -516,6 +560,16 @@ async function checkView(cdp, view) {
     return;
   }
   await cdp.call("Runtime.evaluate", { expression: PAGE_TOOLS });
+  if (INJECT_CSS) {
+    await cdp.call("Runtime.evaluate", { expression: `(()=>{ let s=document.getElementById('gt-red-inject');
+      if(!s){ s=document.createElement('style'); s.id='gt-red-inject'; document.head.appendChild(s); }
+      s.textContent=${JSON.stringify(INJECT_CSS)}; return s.textContent.length; })()` });
+    await new Promise((r) => setTimeout(r, 350));
+  }
+  if (INJECT_JS) {
+    await cdp.call("Runtime.evaluate", { expression: `(()=>{ ${INJECT_JS} })()` });
+    await new Promise((r) => setTimeout(r, 350));
+  }
   await new Promise((r) => setTimeout(r, 300));
 
   // 1 横向溢出
@@ -561,8 +615,31 @@ async function checkView(cdp, view) {
             gridW: list? list.clientWidth: 0, gridRightSlack: Math.round(lr.right-cr.right),
             cueW: cr2? cr2.width: 0, cueDelta: cr2? Math.round(Math.abs(cr2.left-cr.left)): null,
             cueRightDelta: cr2? Math.round(Math.abs(cr2.right-cr.right)): null,
-            cols: tracks.length, tracks: tracks.map(t=>Math.round(parseFloat(t)))};
+            cols: tracks.length, tracks: tracks.map(t=>Math.round(parseFloat(t))),
+            // 四轮 T5（乙B1/乙B2）：选择器/优先级的**生效性**必须读计算值，不能只 grep 源码。
+            //   · dataCols：显式属性在不在（乙B2 的脆弱点＝整套分流靠 style 属性串匹配）
+            //   · bandTrackOk：单列带「轨道收 700」这条规则**真的生效**了吗——改前它被同优先级
+            //     晚写的 .feed-window > .feed-list 覆盖，读计算值是网格宽（928）而不是 700；
+            //     视觉上没暴露（卡片自身 max-width:700 + justify-self:start 结果相同），
+            //     只有读计算值才抓得到（〇块第 6 条「写了但没生效当缺陷处理」）。
+            dataCols: list? list.getAttribute('data-cols'): null,
+            bandTrackOk: (()=>{
+              if (!list) return null;
+              const m0 = tracks[0]? Math.round(parseFloat(tracks[0])): 0;
+              const colsN = tracks.length;
+              const gap = parseFloat(lcs.columnGap||'0')||0;
+              // 多列档：每条轨道 = (网格−(n−1)gap)/n（轨道被 1fr 等分）
+              if (colsN > 1) return Math.abs(m0 - (list.clientWidth-(colsN-1)*gap)/colsN) <= 1.5;
+              // 单列档（>768）：轨道 = min(卡宽上限, 网格) —— 这正是那条从未生效的规则
+              const want = Math.min(${FEED_CARD_MAX}, list.clientWidth);
+              return Math.abs(m0 - want) <= 1.5;
+            })(),
+            ruleVars: (()=>{ if (!list) return null; const c=getComputedStyle(list); return {
+              colsVar: c.getPropertyValue('--feed-cols').trim(),
+              cardMaxVar: c.getPropertyValue('--feed-card-max').trim() }; })(),
+           };
   `);
+  READINGS[view.key] = m;
   const sClip = m.s.filter((x) => x.visible < x.total).length;
   const capMin = Math.min(...m.cap.map((x) => x.cap));
   // 单列档「频道头与卡片左右缘对齐」：判左右缘各 ≤4px（浮动取整余量）
@@ -604,6 +681,37 @@ async function checkView(cdp, view) {
             : `实测 左缘差 ${m.cueDelta}px、右缘差 ${m.cueRightDelta}px → ${cueAlignsCard ? "对齐 ✓（条与卡同宽 700，留白在右侧作页面边距）" : "❌ 卡片与上面的条错位"}`
           : `多列填满行 ✓`),
     );
+    // ── 2026-09-24 四轮 T5（甲A1 / 乙B5）：**多列档「频道头 = 网格宽」** ──
+    // 这条是本轮图1 的漏网根因：旧闸在多列档只判「列数」，从不判头宽，于是三轮把频道头写成
+    // 全档 max-width:700（多列档只剩网格的 43%–71%）时四道闸全绿。
+    // 判据（任务书 T1 验收①）：多列档 |cueW − gridW| ≤ 2px；单列档由上面那条「头 ≡ 卡」管。
+    if (m.cols > 1) {
+      const dHead = m.cueW ? Math.abs(m.cueW - m.gridW) : null;
+      report(
+        view.key,
+        "多列档频道头/偏好条铺满网格（headW == gridW ±2px，甲A1/乙B5）",
+        dHead !== null && dHead <= 2,
+        m.cueW
+          ? `头宽 ${Math.round(m.cueW)}px vs 网格 ${m.gridW}px（差 ${dHead?.toFixed(1)}px）｜列数 ${m.cols}` +
+            `｜改前实测：1500×520 头 700/网格 1228（43%）、1600×900 头 700/网格 1328`
+          : "本档无频道头/偏好条可测（不判）",
+      );
+    }
+    // ── 2026-09-24 四轮 T5（乙B1/乙B2）：「写了但没生效」类缺陷的计算值级检查 ──
+    // 换掉按源码 grep 的判法：读 getComputedStyle 的轨道与 DOM 上的 data-cols，再反算期望值。
+    //   ① data-cols 必须存在且与计算出的列数一致（乙B2：不再依赖 React 序列化出的属性串空格）
+    //   ② 单列档（>768）轨道必须是 min(700, 网格) —— 乙B1 那条从未生效的规则现在必须生效
+    //      （改前 1200 档读数是网格宽 928 而不是 700）
+    const dataColsOk = String(m.dataCols) === String(m.cols);
+    report(
+      view.key,
+      "列数分流用显式属性 data-cols（乙B2）+ 轨道规则真的生效（乙B1，读计算值）",
+      dataColsOk && m.bandTrackOk === true,
+      `data-cols="${m.dataCols}"（列数 ${m.cols}，一致 ${dataColsOk}）｜轨道 ${JSON.stringify(m.tracks)} 网格 ${m.gridW}px` +
+        `｜判据轨道 ${m.cols > 1 ? `= (网格−(n−1)gap)/n` : `= min(700, 网格) = ${Math.min(FEED_CARD_MAX, m.gridW)}`} →` +
+        ` ${m.bandTrackOk ? "生效 ✓" : "❌ 规则被覆盖/未生效（读的是源码还是计算值？）"}` +
+        `｜--feed-cols=${m.ruleVars?.colsVar} --feed-card-max=${m.ruleVars?.cardMaxVar}`,
+    );
   } else {
     // ≤768 的「占满」判据**只适用于手机档**：这里是 480/768 两档断点下的既定设计（G-13），
     // 卡宽不被 --feed-card-max 约束（上限规则写在 @media (min-width: 769px) 里）。
@@ -614,6 +722,17 @@ async function checkView(cdp, view) {
       m.cardW >= view.w * 0.88,
       `卡宽 ${Math.round(m.cardW)}px = 视口 ${((m.cardW / view.w) * 100).toFixed(1)}%｜一行容量 min ${capMin} 字` +
         `｜本判据为**占满型**设计，与 769+ 的「卡宽 ≤ 上限」方向相反，互不适用`,
+    );
+    // 四轮 T5：手机档同样纳进「头 ≡ 卡」与「data-cols 在场」两条——三轮「跨 768 无瞬跳」的成果
+    // 依赖 ≤768 的头也是 700（与 769 档相同），而 `:has(.feed-list[data-cols="1"])` 正是那个开关：
+    // 手机档若丢掉 data-cols，头会从 700 变回满宽（736），跨 768 立刻回到 36–44px 瞬跳。
+    const cueCardMobile = m.cueW ? Math.abs(m.cueW - m.cardW) <= 2 : null;
+    report(
+      view.key,
+      "手机档频道头 ≡ 卡片宽（±2px）且 data-cols 在场（跨 768 连续的开关，四轮 T5）",
+      String(m.dataCols) === String(m.cols) && cueCardMobile !== false,
+      `data-cols="${m.dataCols}"（列数 ${m.cols}）｜头宽 ${m.cueW ? Math.round(m.cueW) : "无"} vs 卡宽 ${Math.round(m.cardW)}px` +
+        `｜≤768 的头必须是 700（=卡宽）：这样越过 768 进单列带时头不动 → 无瞬跳`,
     );
   }
   const noReason = m.r.filter((x) => x.visibleLines === 0);
@@ -686,27 +805,40 @@ async function checkView(cdp, view) {
     `侧栏 ${ch.sidebar}(want ${want.sidebar}) 底栏 ${ch.bottomBar}(want ${want.bottomBar}) tabs ${ch.tabs}(want ${want.tabs})`,
   );
 
-  // 4.5 二轮 G3/G4/G5 断言（2026-09-23）：图标栏排版 / 底栏不透明 / 滚动条样式（甲3/甲4/甲5）
+  // 4.5 二轮 G3/G4/G5 断言（2026-09-23）：侧栏排版 / 底栏不透明 / 滚动条样式（甲3/甲4/甲5）
+  // ── 2026-09-24 四轮 T3：旧断言是「**图标栏**触控 ≥44 / 有可访问名 / 分组短横线」三条，
+  //    只在 iconMode（侧栏宽 ≤100px）时跑。T3 删除了 icon-only rail（769–900 改用带文字的
+  //    192 侧栏，理由见 styles.css 的「整体删除」注释）⇒ iconMode 恒 false，那三条**永不再执行**。
+  //    这正是〇块第 5 条说的「闸漏网＝流程缺口」：形态没了，闸必须跟着换。
+  //    新判据直接对着朱子图3 的原话「明明有足够大的空间却没有中文说明只有图标」：
+  //      ① 每一项都必须有可见中文（.side-text 宽 > 0）——**任何**桌面档都不许再出现纯图标
+  //      ② 侧栏不出条（四轮 T2 定版）且底缘渐隐在场
+  //      ③ 触控目标 ≥44 与可访问名保留（既是既有决定，也不许退化）
   const cd = await cdp.eval(`return window.__gt.chromeDetail();`);
-  if (cd.iconMode) {
-    // 图标栏（769–900 与 844 横屏）：触控 ≥44、无「无名按钮」、分组表达在场（accent 短横线）
+  if (cd.sidebarShown && !cd.collapsed) {
     report(
       view.key,
-      "图标栏触控目标 ≥44px（甲3）",
-      cd.itemMinH >= 44,
-      `side-item 最小高 ${cd.itemMinH}px（样式 ≥44 判）`,
+      "侧栏每一项都有可见中文（朱子图3：不许只有图标没有中文，四轮 T3）",
+      cd.itemsTotal > 0 && cd.itemsWithZeroText === 0 && cd.minTextW >= 8,
+      `项 ${cd.itemsWithZeroText}/${cd.itemsTotal} 项文字宽为 0（要求 0）｜最小文字宽 ${cd.minTextW}px` +
+        `｜侧栏宽 ${cd.sidebarW}px｜字号 ${cd.textFontSize}` +
+        `｜改前 rail 档（769–900）实测 9/9 项文字宽全为 0（D:/tmp/gt-layout/r4/三图复现.json）`,
     );
     report(
       view.key,
-      "图标栏按钮有可访问名称（甲3：aria-label/title）",
-      cd.itemsNoName === 0,
-      `无名按钮 ${cd.itemsNoName}/${cd.itemMinH ? "" : ""}`,
+      "侧栏触控目标 ≥44px 且有可访问名称（保留既有决定，不许退化）",
+      cd.itemMinH >= 44 && cd.itemsNoName === 0,
+      `side-item 最小高 ${cd.itemMinH}px｜无名按钮 ${cd.itemsNoName} 个`,
     );
+    // ── 四轮 T2 定版（甲A2）：侧栏**不出条** + 底缘渐隐 ──
+    // 旧病象（1500×520 矮视口）：条占 208–216，与玻璃盒右缘 196 只隔 12px，一条亮条站在空档里。
     report(
       view.key,
-      "图标栏分组表达在场（甲3：side-group 短横线）",
-      cd.groupBars > 0,
-      `.side-group 元素 ${cd.groupBars} 个（发现/分类 两组标题以横线形式保留）`,
+      "侧栏不出滚动条 + 底缘渐隐在场（甲A2，四轮 T2 定版）",
+      cd.sidebarSlot === 0 && cd.sidebarMaskOk,
+      `侧栏滚动条占位 ${cd.sidebarSlot}px（定版＝0）｜mask 含 linear-gradient ${cd.sidebarMaskOk}` +
+        `｜盒右缘 ${cd.boxRight}｜侧栏右缘 ${cd.sidebarRight}` +
+        `｜判据来源：两版注入截图对比（D:/tmp/gt-layout/r4/设计pass/inj-t2v1.json）`,
     );
   }
   if (cd.bottomShown && cd.headerBg) {
@@ -1016,6 +1148,49 @@ async function main() {
     for (const view of VIEWS) {
       if (ONLY && ONLY !== view.key) continue;
       await checkView(cdp, view);
+    }
+
+    // ── 6 缩放档（四轮 T5③ / 乙B9）：页面缩放 125%/150% 下几何必须与 100% 档**逐值一致** ──
+    // 为什么需要：三轮所有档都在 DPR=1、无缩放的无头环境跑，而朱子的截图来自真实浏览器
+    // （可能 125% 缩放）。真实浏览器缩放会把 CSS 视口变小（物理 1500 宽的窗口在 150% 下
+    // innerWidth ≈ 1000），媒体查询按 CSS px 走 ⇒ 形态向窄档迁移。这里查的是另一半：
+    // 固定 CSS 视口、只改 deviceScaleFactor，几何**不许**变（DPR 只能影响渲染清晰度）。
+    // 这一条若挂，说明某处用了设备像素做布局决策 ⇒ 真机缩放下必然错档。
+    if (!ONLY) {
+      // ⚠ 这段是 cdp.eval 的**函数体**（外层已包 IIFE），不要再自己包一层 IIFE——包了会静默返回 undefined。
+      const ZOOM_MEASURE = `const list=document.querySelector('.feed-list');
+        const card=document.querySelector('.card');
+        const cue=document.querySelector('.feed-content > .channel-head, .feed-content > .pref-prompt, .feed-content > .status');
+        const lcs=list? getComputedStyle(list): null;
+        const tracks=lcs? lcs.gridTemplateColumns.split(' ').filter(Boolean): [];
+        return { cols: tracks.length, gridW: list? list.clientWidth: 0,
+                 cardW: card? Math.round(card.getBoundingClientRect().width): 0,
+                 cueW: cue? Math.round(cue.getBoundingClientRect().width): 0,
+                 dataCols: list? list.getAttribute('data-cols'): null };`;
+      for (const z of [{ w: 1600, h: 900, dsf: 1.25 }, { w: 1275, h: 900, dsf: 1.5 }, { w: 900, h: 800, dsf: 1.25 }]) {
+        const base = READINGS[`${z.w}x${z.h}`];
+        if (!base) continue;
+        await cdp.call("Emulation.setDeviceMetricsOverride", {
+          width: z.w, height: z.h, deviceScaleFactor: z.dsf, mobile: false,
+        });
+        await new Promise((r) => setTimeout(r, 700));
+        const zm = await cdp.eval(ZOOM_MEASURE);
+        const same =
+          zm.cols === base.cols &&
+          Math.abs(zm.gridW - base.gridW) <= 1 &&
+          Math.abs(zm.cardW - Math.round(base.cardW)) <= 1 &&
+          Math.abs(zm.cueW - Math.round(base.cueW)) <= 2 &&
+          String(zm.dataCols) === String(base.dataCols);
+        report(
+          `${z.w}x${z.h}@${z.dsf}x`,
+          "缩放档几何与 100% 档一致（DPR 不参与布局决策，四轮 T5③/乙B9）",
+          same,
+          `DPR ${z.dsf}：cols ${zm.cols}(基准 ${base.cols})｜网格 ${zm.gridW}(基准 ${base.gridW})` +
+            `｜卡宽 ${zm.cardW}(基准 ${Math.round(base.cardW)})｜头宽 ${zm.cueW}(基准 ${Math.round(base.cueW)})` +
+            `｜data-cols ${zm.dataCols}(基准 ${base.dataCols})`,
+        );
+      }
+      await cdp.call("Emulation.setDeviceMetricsOverride", { width: 1400, height: 900, deviceScaleFactor: 1, mobile: false });
     }
   } finally {
     chrome.kill();

@@ -264,22 +264,61 @@ describe("列数（照 CSS auto-fill 同式还原）", () => {
     expect(Math.floor((FEED_CARD_MAX - 69) / 16.66)).toBe(37);
   });
 
-  it("单列带由列数驱动、与像素边界解耦（乙B6）", () => {
+  it("单列带由列数驱动、与像素边界解耦（乙B6），且规则**排在主规则之后**（乙B1）", () => {
     // 旧写法把 1134 写死在 @media 里（＝2×420+16+216+48+15−1 的派生值）；改 M 就会过期。
     const cssNoComment = readFileSync(resolve("web/src/styles.css"), "utf8").replace(/\/\*[\s\S]*?\*\//g, "");
     expect(cssNoComment).not.toMatch(/max-width:\s*1134px/);
     expect(cssNoComment).not.toMatch(/max-width:\s*calc\(var\(--feed-card-max\) \+ 48px\)/);
-    // 收边作用在「不参与列数反解」的元素上：单列档收网格轨道（>768 内）+ 频道头/偏好条/空态（全档）
+    // 收边作用在「不参与列数反解」的元素上：单列档收网格轨道（>768 内）+ 频道头/偏好条/空态
     const band = cssNoComment.match(/@media \(min-width: 769px\)\s*\{[\s\S]*?\n\}/g)?.join("\n") ?? "";
-    expect(band).toMatch(/\.feed-list\[style\*="--feed-cols: 1"\]\s*\{[^}]*minmax\(0, var\(--feed-card-max\)\)/);
+    // 四轮 T1（乙B2）：列数开关从 [style*="--feed-cols: 1"] 改成显式属性 [data-cols="1"]
+    //（属性串匹配依赖 React 序列化出「含空格」的 --feed-cols: 1;，序列化策略一变就静默失效）
+    expect(band).toMatch(/\.feed-list\[data-cols="1"\]\s*\{[^}]*minmax\(0, var\(--feed-card-max\)\)/);
     expect(band).toMatch(/justify-content:\s*start/);
+    // 四轮 T1（甲A1）：频道头/偏好条/空态改成**按列数分流**——只有单列档限宽 700，多列档铺满网格。
+    // 这条同时是「图1 回归」的源码级指纹（改前是全档 max-width，多列档头只占网格 43%–71%）。
     expect(cssNoComment).toMatch(
-      /\.feed-content > \.channel-head,[\s\S]{0,160}?max-width:\s*var\(--feed-card-max\)/,
+      /\.feed-content:has\(\.feed-list\[data-cols="1"\]\)\s*>\s*\.channel-head,[\s\S]{0,220}?max-width:\s*var\(--feed-card-max\)/,
     );
+    expect(cssNoComment).not.toMatch(/\.feed-content\s*>\s*\.channel-head\s*\{[^}]*max-width:\s*var\(--feed-card-max\)/);
     // ⚠ 自锁回归锁：`.feed-content` 自己**不许**再被收窄——列数是从 .feed-list 的 clientWidth 反解的，
     //    收窄它会让反解永远得到 1 列（实测 900–1751 全档 cols 恒为 1）。
     expect(cssNoComment).not.toMatch(
-      /\.feed-content:has\(\.feed-list\[style\*="--feed-cols: 1"\]\)\s*\{[^}]*max-width/s,
+      /\.feed-content:has\(\.feed-list\[[^\]]*\]\)\s*\{[^}]*max-width/s,
     );
+    // 四轮 T1（乙B1）：单列带规则**必须排在主规则之后**（同优先级晚者胜）。
+    // 改前它写在主规则之前 ⇒ 从未生效（读计算值：1200 档轨道 928px 而非 700px）。
+    // 这里只能守源码顺序；「真的生效」由 scripts/gittok-responsive-check.mjs 读计算值断言。
+    const iMain = cssNoComment.indexOf("grid-template-columns: repeat(var(--feed-cols, 1), minmax(0, 1fr))");
+    const iBand = cssNoComment.indexOf('.feed-list[data-cols="1"] {');
+    expect(iMain).toBeGreaterThan(-1);
+    expect(iBand).toBeGreaterThan(-1);
+    expect(iBand).toBeGreaterThan(iMain);
+  });
+});
+
+describe("侧栏形态（四轮 T3/T2：朱子 09-24 图3「有空间却没有中文」＋图2「滚动条不够优雅」）", () => {
+  const cssRaw = readFileSync(resolve("web/src/styles.css"), "utf8");
+  const cssNoComment = cssRaw.replace(/\/\*[\s\S]*?\*\//g, "");
+
+  it("不许再出现把导航文字收成 0 宽的规则（icon-only rail 的机制，图3 的根因）", () => {
+    // 三轮那条 rail 靠 `.side-text { max-width: 0; opacity: 0 }` 把 9 项文字全部收掉
+    // （实测 769–900 全档文字宽 0）。四轮 T3 删除该形态 ⇒ 这条规则不许再回来。
+    // ⚠ 这是源码级锁；「每一项真的有中文」由 scripts/gittok-responsive-check.mjs 读 DOM 实测
+    //   （`itemsWithZeroText === 0`）与视觉闸的观感清单共同守。
+    const sideTextBlocks = [...cssNoComment.matchAll(/\.side-text\s*\{([^}]*)\}/g)].map((m) => m[1]);
+    expect(sideTextBlocks.length).toBeGreaterThan(0); // 样本有效性：真扫到了这条规则
+    const collapsed = sideTextBlocks.filter((b) => /max-width:\s*0(px)?\b/.test(b));
+    expect(collapsed).toEqual([]);
+  });
+
+  it("侧栏一律不出条 + 底缘渐隐（四轮 T2 定版），且不落 scrollbar-width:none（锁①）", () => {
+    // 定版依据：两版注入截图对比（D:/tmp/gt-layout/r4/设计pass/inj-t2v1.json 不出条 /
+    // inj-t2v2.json 内缩 20px）——取「不出条 + 底缘渐隐」：导航列不参与折行。
+    const sb = cssNoComment.match(/\.sidebar\s*\{([^}]*)\}/)?.[1] ?? "";
+    expect(sb).toMatch(/mask-image:\s*linear-gradient/);
+    expect(sb).toMatch(/scrollbar-width:\s*auto/);
+    expect(cssNoComment).toMatch(/\.sidebar::-webkit-scrollbar\s*\{[^}]*width:\s*0/);
+    expect(cssNoComment).not.toMatch(/scrollbar-width:\s*none/);
   });
 });

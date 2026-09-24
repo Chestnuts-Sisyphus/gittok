@@ -143,7 +143,7 @@ jobs:
           if (ok === 0) { console.error("no copyOk=true in dist: gate would not cover COPY-08"); process.exit(1); }
           '
 
-      - name: Responsive check gate（G-16，312 项/16 档：卡宽上限·列数·三列预期表 + 二轮图标栏/底栏/滚动条断言）
+      - name: Responsive check gate（G-16，四轮 364 项/16 档 + 3 缩放档：卡宽上限·列数·三列预期表 + 头宽≡网格（甲A1）·data-cols/轨道生效性（乙B1/B2）·侧栏带中文（甲A3）·侧栏不出条（甲A2））
         env:
           CHROME_PATH: /usr/bin/google-chrome
         run: node scripts/gittok-responsive-check.mjs
@@ -158,7 +158,7 @@ jobs:
           CHROME_PATH: /usr/bin/google-chrome
         run: node scripts/gittok-smooth-check.mjs
 
-      - name: Visual acceptance gate（视觉断言 + 观感清单段 + 11 张截图；帧率在本 job 降为信息项）
+      - name: Visual acceptance gate（视觉断言 + 观感清单段（侧栏带文字 12 项/滚动条 3 项/侧栏不出条）+ 11 张截图；帧率在本 job 降为信息项）
         run: |
           pip install websocket-client
           python3 -m http.server 19111 --bind 127.0.0.1 --directory web/dist &

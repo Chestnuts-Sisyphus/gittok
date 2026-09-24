@@ -35,6 +35,7 @@ K-06 CI 化（仓库内正身，workflow 里跑得动）：
       python scripts/gittok-visual-check.py
 本机跑法不变（环境变量全部缺省即沿用 Windows 原值，含帧率硬拦）。
 """
+import io
 import json
 import os
 import statistics
@@ -62,6 +63,10 @@ CDP_PORT_BASE = int(os.environ.get("VISUAL_CDP_PORT") or 19201)
 TMP_BASE = os.environ.get("VISUAL_TMP") or "D:/tmp"
 EXTRA_FLAGS = [f for f in (os.environ.get("VISUAL_EXTRA_FLAGS") or "").split(";") if f]
 STRICT = os.environ.get("VISUAL_STRICT") or "all"
+# 四轮 T5（块4「植入即红自证」）：注入一段 CSS 证明观感清单段有鉴别力。
+# 用法：VISUAL_INJECT_CSS=D:/tmp/gt-layout/r4/red-sidebar-text.css ./.venv/Scripts/python.exe scripts/gittok-visual-check.py
+# 与 responsive 闸同源的理由：断言只留一份，注入只换页面——否则「自证」会在判据改动后失效。
+INJECT_CSS = os.environ.get("VISUAL_INJECT_CSS") or ""
 FRAME_NAMES = ("软渲染-hover 满帧", "软渲染-滚动 满帧", "GPU-hover 满帧")
 
 RESULTS = []
@@ -140,6 +145,17 @@ def launch(url, port, profile, disable_gpu=True):
     ]
     if disable_gpu:
         args.insert(3, "--disable-gpu")
+    # ── 四轮 T5 补：**必须用干净 profile + 不落盘缓存** ──────────────────────────────
+    # 实测到的真伤（2026-09-24 四轮）：本闸原来复用 `{TMP_BASE}/accept_{profile}` 这个**上轮留下的**
+    # user-data-dir，于是 Chrome 从磁盘缓存里端出**上一次构建**的 index.html（引用旧 CSS 哈希），
+    # 而那时旧 CSS 已在服务器上 404 ⇒ 闸在**旧版本的页面上**跑整段观感断言：
+    #   实测读数侧栏宽 64px / `.side-text` max-width 0px / 组容器无背景 —— 全是已删除的旧 rail 形态，
+    #   而同一轮里夹在 `location.reload()` 之后的检查读到的却是新形态（slot 0 / mask 在场）。
+    # 这类「闸验的不是当轮产物」是**假绿与假红同源**的根因（〇块第 5/6 条同族），必须修在闸里。
+    # 修法：每次运行前删掉 profile 目录（含 disk cache），并显式禁掉 http 缓存。
+    import shutil
+    shutil.rmtree(f"{TMP_BASE}/accept_{profile}", ignore_errors=True)
+    args.insert(3, "--disk-cache-size=1")
     for i, f in enumerate(EXTRA_FLAGS):
         args.insert(3 + i, f)
     p = subprocess.Popen(args, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
@@ -254,6 +270,17 @@ def assert_css(cdp, checks, label):
     fails = []
     for name, expr, expect in checks:
         val = cdp.eval(expr)
+        # expect=None ⇒ 只判「量级」不判精确值（用于随内容长短变化的读数：如频道名文字宽）。
+        # 四轮 T5 加的这条口径：把「>0」写死成具体数字会在频道改名时假红，
+        # 而「有没有中文」这件事只需要知道它非零。
+        if expect is None:
+            try:
+                ok = float(val) > 0
+            except (TypeError, ValueError):
+                ok = False
+            if not ok:
+                fails.append(f"{name}: got {val!r}, want >0（量级判）")
+            continue
         if val != expect:
             fails.append(f"{name}: got {val!r}, want {expect!r}")
     report(label, not fails, "; ".join(fails) if fails else f"{len(checks)} 项全对")
@@ -329,7 +356,7 @@ def nav_shots(cdp):
 # 图标栏/底栏/滚动条/窄档观感不在任何视觉验收里（甲3/甲4/甲5 的截图盲区）。
 # 每档把画面切回首页再截，档位间用 setDeviceMetricsOverride 切换（与 responsive 闸同机制）。
 EXTRA_VIEW_SHOTS = [
-    ("07_iconbar_880.png", 880, 900, False),
+    ("07_sidebar_880.png", 880, 900, False),
     ("08_bottombar_700.png", 700, 620, True),
     ("09_short_1200.png", 1200, 600, False),
 ]
@@ -345,7 +372,7 @@ def extra_view_shots(cdp):
         made.append(name)
     cdp.call("Emulation.clearDeviceMetricsOverride")
     missing = [m for m in made if not os.path.exists(os.path.join(OUT_DIR, m))]
-    report("截图-3 扩展档齐全（图标栏/底栏/矮视口）", not missing,
+    report("截图-3 扩展档齐全（880 带文字侧栏/底栏/矮视口）", not missing,
            f"{len(made) - len(missing)}/3" + (f" 缺 {missing}" if missing else ""))
 
 
@@ -359,23 +386,45 @@ def extra_view_shots(cdp):
 #        过关标准是「他看一眼不皱眉」，不是「断言为真」。截图随本段一并落盘，
 #        交付前必须逐张看（10/10b/11/11b 四张是三轮 T2/T3 的首跑样本）。
 #   判据来源：三轮块1「先量后改」的定版——图标栏取 V2 去框极简式、滚动条取自绘 8px 细条。
-OBSERVE_CHECKS_ICON = [
-    # ① 去框：组容器不再有玻璃底/边框/圆角（深底上再叠一层玻璃＝两层装饰打架）
-    ("图标栏-组容器已去框（无背景图）", "getComputedStyle(document.querySelector('.sidebar .side-group-box')).backgroundImage", "none"),
-    ("图标栏-组容器无边框", "getComputedStyle(document.querySelector('.sidebar .side-group-box')).borderTopWidth", "0px"),
-    ("图标栏-组容器无圆角", "getComputedStyle(document.querySelector('.sidebar .side-group-box')).borderTopLeftRadius", "0px"),
-    # ② 触控与节奏：44×44 正方形指示器 + 4px 纵节奏（间距统一是栗子②的点名项）
-    ("图标栏-指示器 44×44", "JSON.stringify((function(){var e=document.querySelector('.sidebar .side-item');var r=e.getBoundingClientRect();return [Math.round(r.width),Math.round(r.height)];})())", "[44,44]"),
-    ("图标栏-指示器圆角 12px", "getComputedStyle(document.querySelector('.sidebar .side-item')).borderTopLeftRadius", "12px"),
-    ("图标栏-项间距 4px", "getComputedStyle(document.querySelector('.sidebar .side-item')).marginBottom", "4px"),
-    # ③ 激活态＝低饱和指示器底色（不再全宽渐变药丸）
-    ("图标栏-激活态非渐变药丸", "getComputedStyle(document.querySelector('.sidebar .side-item.active')).backgroundImage", "none"),
-    ("图标栏-激活态用 accent-light 底", "getComputedStyle(document.querySelector('.sidebar .side-item.active')).backgroundColor", "rgba(99, 102, 241, 0.12)"),
-    # ④ 分组：居中细线（20×1），不再悬空 3px 短杠
-    ("图标栏-分组线 20×1", "JSON.stringify((function(){var g=document.querySelector('.sidebar .side-group');var b=getComputedStyle(g,'::before');return [b.width,b.height];})())", '["20px","1px"]'),
-    # ⑤ 轨道自滚：滚动条隐藏（64px 轨道里再挤 8px 槽会与 44px 图标抢位）+ 底缘渐隐作滚动暗示
-    ("图标栏-轨道条已隐藏（不占位）", "String((function(){var sb=document.querySelector('.sidebar');return sb.offsetWidth-sb.clientWidth;})())", "0"),
-    ("图标栏-底缘渐隐在场", "String(getComputedStyle(document.querySelector('.sidebar')).maskImage.indexOf('linear-gradient')>=0)", "true"),
+# ── 四轮 T3/T5（2026-09-24）：观感清单段的**侧栏**组整段重写 ──
+# 旧清单是「图标栏 11 项」（880×900 的 icon-only rail：去框组容器 / 44×44 指示器 / 20×1 分组线 /
+# 轨道条隐藏 …）。四轮 T3 **删除了 icon-only rail**（769–900 改用带文字的 192 侧栏，理由见
+# styles.css 的「整体删除」注释：朱子图3「明明有足够大的空间却没有中文说明只有图标」）。
+# 形态没了，清单必须跟着换——否则这 11 条会全部变成**恒真的空断言**（selector 匹配不到 → 抛错或恒过），
+# 正是〇块第 5 条「闸漏网＝流程缺口」的另一种写法。
+# 新清单直接对着朱子那条诉求与四轮两张定版：① 中文必须在场 ② 玻璃盒形态在 ③ 侧栏不出条。
+OBSERVE_CHECKS_SIDEBAR = [
+    # ① 「有中文」——这项是朱子图3 的原话，也是本轮 T3 的全部意义
+    ("侧栏-第一项文字宽 >0（不许只有图标）",
+     "String((function(){var t=document.querySelector('.sidebar .side-item .side-text');return Math.round(t.getBoundingClientRect().width);})())",
+     None),  # None = 只做「>0」的量级判，精确值随频道名长短变，写死会假红
+    ("侧栏-文字不透明（opacity=1）",
+     "getComputedStyle(document.querySelector('.sidebar .side-item .side-text')).opacity", "1"),
+    ("侧栏-文字未收宽（max-width 是 200px 而非 0）",
+     "getComputedStyle(document.querySelector('.sidebar .side-item .side-text')).maxWidth", "200px"),
+    ("侧栏-项宽填满玻璃盒（≥120px，说明真的用了可用宽）",
+     "String((function(){var e=document.querySelector('.sidebar .side-item');return Math.round(e.getBoundingClientRect().width)>=120;})())", "true"),
+    ("侧栏-宽 192px（769–900 与 >900 同形态）",
+     "String((function(){var sb=document.querySelector('.sidebar');return Math.round(sb.getBoundingClientRect().width);})())", "192"),
+    # ② 玻璃盒形态（宽档既有决定，T3 选「取消 rail」后 769–900 也用这套）
+    ("侧栏-组容器是玻璃盒（有背景图）",
+     "String(getComputedStyle(document.querySelector('.sidebar .side-group-box')).backgroundImage.indexOf('linear-gradient')>=0)", "true"),
+    ("侧栏-组容器圆角 18px",
+     "getComputedStyle(document.querySelector('.sidebar .side-group-box')).borderTopLeftRadius", "18px"),
+    ("侧栏-组容器边框 1px",
+     "getComputedStyle(document.querySelector('.sidebar .side-group-box')).borderTopWidth", "1px"),
+    # 旧 rail 的分组是「一条 20×1 细线」（font-size:0 + ::before 画线）；新形态必须有文字。
+    # ⚠ 判「非 0」而不是写死 px：字号是 0.95rem（html 17px → 16.15px），随 rem 变，
+    #   写死会在有人调根字号时假红，而这条要守的是「有没有文字」。
+    ("侧栏-分组标题有文字（font-size ≠ 0，旧 rail 是细线）",
+     "String(getComputedStyle(document.querySelector('.sidebar .side-group')).fontSize !== '0px')", "true"),
+    ("侧栏-激活态是渐变药丸（宽档形态，与旧 rail 的低饱和指示器不同）",
+     "String(getComputedStyle(document.querySelector('.sidebar .side-item.active')).backgroundImage.indexOf('linear-gradient')>=0)", "true"),
+    # ③ 四轮 T2 定版：侧栏**不出条**（旧清单这里断言的是 rail 的「条隐藏」，现在扩到全档）
+    ("侧栏-不出滚动条（占位 0px）",
+     "String((function(){var sb=document.querySelector('.sidebar');return sb.offsetWidth-sb.clientWidth;})())", "0"),
+    ("侧栏-底缘渐隐在场（不出条的可见性补偿）",
+     "String(getComputedStyle(document.querySelector('.sidebar')).maskImage.indexOf('linear-gradient')>=0)", "true"),
 ]
 OBSERVE_CHECKS_SCROLLBAR = [
     # 自绘细条（T3 根因：`* { scrollbar-color }` 非 auto 会让 Chromium 整块忽略 ::-webkit-scrollbar）
@@ -398,23 +447,46 @@ def _shot_clip(cdp, name, clip):
     report(f"截图-{name}", True, name)
 
 
+def apply_inject(cdp):
+    """把 VISUAL_INJECT_CSS 的 CSS 注入当前页面（供「植入即红自证」用）。
+    ⚠ 必须**每次 reload 之后重新注入**——本段中间有一次 `location.reload()` 回到首页
+    （「两条滚动条同屏」是首页形态），reload 会把注入的 <style> 一起冲掉；
+    2026-09-24 四轮实测踩到：只在开头注入时，安装在 reload 之后的那条断言（宽档侧栏不出条）
+    对注入完全免疫 → 自证假绿。"""
+    if not INJECT_CSS:
+        return
+    css = io.open(INJECT_CSS, encoding="utf-8").read()
+    cdp.eval("(function(){var s=document.getElementById('gt-red-inject');"
+             "if(!s){s=document.createElement('style');s.id='gt-red-inject';document.head.appendChild(s);}"
+             f"s.textContent={json.dumps(css)};return s.textContent.length;}})()")
+    time.sleep(0.4)
+
+
 def observe_checklist(cdp):
-    """观感清单段：图标栏 880×900 + 矮视口两条滚动条 1200×600 两组设计不变量。
+    """观感清单段：侧栏 880×900（四轮 T3 起是**带文字**形态）+ 矮视口两条滚动条 1200×600。
     两张特写一并落盘——**交付前必须逐张目测**（断言只防回归，不证明好看）。"""
+    apply_inject(cdp)
     cdp.call("Emulation.setDeviceMetricsOverride", {"width": 880, "height": 900, "deviceScaleFactor": 1, "mobile": False})
     time.sleep(1.5)
-    assert_css(cdp, OBSERVE_CHECKS_ICON, "观感清单-图标栏（880×900）")
-    shot(cdp, "10_observe_rail_880.png")
-    _shot_clip(cdp, "10b_observe_rail_zoom.png", {"x": 0, "y": 60, "width": 100, "height": 540, "scale": 2})
+    assert_css(cdp, OBSERVE_CHECKS_SIDEBAR, "观感清单-侧栏带文字（880×900，四轮 T3 新形态）")
+    shot(cdp, "10_observe_sidebar_880.png")
+    _shot_clip(cdp, "10b_observe_sidebar_zoom.png", {"x": 0, "y": 60, "width": 260, "height": 540, "scale": 2})
     # 先回首页重载：本段位于 nav_shots/extra_view_shots 之后，页面停在别的 tab 上，
     # 而「两条滚动条同屏」是**首页**的形态（别的页侧栏内容少、不溢出 → 没有第二条）。重载消除这个变量。
     cdp.eval("location.reload(); 1")
     time.sleep(2.5)
+    apply_inject(cdp)  # reload 冲掉 <style> → 这里必须重新注入（否则本段剩下的断言对注入免疫）
     cdp.call("Emulation.setDeviceMetricsOverride", {"width": 1200, "height": 600, "deviceScaleFactor": 1, "mobile": False})
     time.sleep(1.5)
     assert_css(cdp, OBSERVE_CHECKS_SCROLLBAR, "观感清单-滚动条（1200×600 矮视口两条同屏）")
     # 宽档侧栏：**溢出时**必须用同一套 8px 自绘细条（两条同屏观感统一）；
     # 内容不高的频道侧栏不溢出＝不占位，那是正常态（不做「恒 8」的假判据）。
+    # ── 四轮 T2 定版（甲A2）：宽档侧栏**不出条**（旧判据是「溢出时用同一套 8px 自绘细条」，
+    #    那个规格在三轮只处理了 rail 档、宽档一直没动——朱子 09-24 图2 说的就是这个：
+    #    条占 208–216、与玻璃盒右缘 196 只隔 12px，一条亮条站在空档里。
+    #    定版依据＝两版注入截图对照（D:/tmp/gt-layout/r4/设计pass/inj-t2v1.json 不出条 /
+    #    inj-t2v2.json 内缩 20px），选「不出条 + 底缘渐隐」：导航列不参与折行，锁①本义不适用。
+    #    新判据＝溢出与否，占位都必须是 0（恒真的量，不看溢出量）。──
     sb = cdp.eval(
         "(function(){var b=document.querySelector('.sidebar');var cs=getComputedStyle(b);"
         "return [b.scrollHeight-b.clientHeight, b.offsetWidth-b.clientWidth, Math.round(b.getBoundingClientRect().width),"
@@ -422,11 +494,11 @@ def observe_checklist(cdp):
         "document.querySelectorAll('.sidebar').length, (b.parentElement||{}).className];})()"
     ) or [False, 0, 0, "?", 0]
     report(
-        "观感清单-宽档侧栏溢出时用同一套细条",
-        (not isinstance(sb[0], int)) or sb[0] <= 4 or sb[1] == 8,
-        f"侧栏溢出量 {sb[0]}px（≤4px 视为亚像素噪声，不判）｜滚动条占位 {sb[1]}px｜侧栏宽 {sb[2]}px｜visibility {sb[3]}｜视口 {sb[4]}"
-        f"｜overflowY {sb[5]}｜scrollbarWidth {sb[6]}｜mask {sb[7]}｜.sidebar 个数 {sb[8]}｜父类 {sb[9]}"
-        + ("（未溢出，不判）" if not sb[0] else "（应为与内容区同规格 8px）"),
+        "观感清单-宽档侧栏不出条（四轮 T2 定版；底缘渐隐在场）",
+        sb[1] == 0,
+        f"滚动条占位 {sb[1]}px（定版＝0）｜侧栏溢出量 {sb[0]}px｜侧栏宽 {sb[2]}px｜visibility {sb[3]}｜视口 {sb[4]}"
+        f"｜overflowY {sb[5]}｜scrollbarWidth {sb[6]}（必须 auto，锁① 禁 none）｜mask {sb[7]}"
+        f"｜.sidebar 个数 {sb[8]}｜父类 {sb[9]}",
     )
     shot(cdp, "11_observe_scroll_1200.png")
     _shot_clip(cdp, "11b_observe_scrollbar_zoom.png", {"x": 1188, "y": 60, "width": 12, "height": 540, "scale": 6})

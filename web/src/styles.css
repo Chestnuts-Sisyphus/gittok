@@ -177,6 +177,30 @@
   background: transparent;
 }
 
+/* ══ 全站滚动条规格（2026-09-24 四轮 T2，乙B6：**六类容器统一成一套规格**）══════════════
+   背景：三轮只收口过三处（`.app-body` / 宽侧栏 / rail），**从未系统审过**其余容器——
+   栗子 2026-09-24 图2「滑动条的间距排版等并不够优雅」的直接触发点就是宽侧栏那条一直没被处理的条
+   （实测盒与条只隔 12px，见 `.sidebar` 基础态注释）。
+   本节的规格是**唯一口径**，改任何容器的滚动条都必须回到这张表里改，并在闸里同步断言。
+
+   ┌ 容器                 ┌ 规格                            ┌ 为什么
+   │ `.app-body`          │ 8px 自绘条 + `scrollbar-gutter:  │ 正文/长列表：列数由 `.feed-list` 的
+   │                      │ stable`                          │ clientWidth 反解，宽度摆动会改列数
+   │ `.detail-card`       │ 8px 自绘条 + `scrollbar-gutter:  │ 正文阅读列：折行不许随条的出现而重排
+   │                      │ stable`                          │ （open-regression **锁②** 写死这条）
+   │ `.sidebar`           │ **不出条** + 底缘渐隐 +          │ 导航列：不参与折行（nowrap），锁① 的
+   │                      │ `scrollbar-width:auto` 回退      │ 本义不适用；192px 里再挤 8px 太贵
+   │ `.drawer`（≤768 抽屉）│ **不出条** + 底缘渐隐 + 同上回退  │ 同 `.sidebar`（同为导航列，宽仅 250px）
+   │ 次级列表（收藏夹展开/ │ 跟随其滚动祖先（`.app-body`）    │ 它自己不滚——`.feed-list` 是 grid，
+   │ 搜索热门预览）        │ 的规格，不自带条目              │ 溢出交给 `.app-body`
+   │ `.me-tabs` /         │ 8px 自绘条（**横向**，`height`    │ 横向条不参与竖向折行，也不需要
+   │ `.agent-example`     │ 那半边生效）                     │ gutter（不喂任何列数/折行决策）
+   │ `.picker-list`       │ 8px 自绘条（不设 gutter）        │ 选择器弹层：行是单行，宽度摆动不重排
+   └ `.agent-*`/创作者页   │ 跟随 `.app-body`                 │ 无自带滚动
+   └────────────────────────────────────────────────────────────────────────────────
+   ⚠ 全站**永不允许** `scrollbar-width: none`（锁①）；隐藏条一律走 `::-webkit-scrollbar{width:0}`
+   （Chromium 自绘通道）+ 显式 `scrollbar-width: auto` 回退，两条同时写才不违锁。 */
+
 html {
   font-size: 17px;
   -webkit-text-size-adjust: 100%;
@@ -471,6 +495,28 @@ button {
     /* visibility 不参与插值：出现在「展开完成前」不给延迟，消失在「塌缩完成后」才生效
        （延迟由 --sidebar-vis-delay 控制，≤768 塌缩态把它设成 200ms）。 */
     visibility 0s linear var(--sidebar-vis-delay, 0s);
+  /* ── 侧栏一律不出滚动条（2026-09-24 四轮 T2，栗子②「滑动条的间距排版等并不够优雅」）──
+     实测病象（1500×520 矮视口，侧栏溢出 91px）：侧栏右缘 216｜玻璃盒右缘 196｜**条占 208–216**
+     ⇒ 盒与条只隔 12px（＝侧栏 padding-right），一条亮条紧贴内容区左侧站在空档里。
+     四轮出两版注入截图对比（`D:/tmp/gt-layout/r4/shots/inj_t2v1_*`＝不出条｜`inj_t2v2_*`＝条内缩 20px），
+     读数见 `设计pass/inj-t2v1.json`/`inj-t2v2.json`，**定版取「不出条 + 底缘渐隐」**：
+       ① 侧栏是**导航不是阅读内容**——锁①（禁 `scrollbar-width:none`）防的是正文列被拆 gutter 后
+          出现「飞行/落地两套折行」；导航项 `white-space:nowrap`，不参与折行；
+       ② 与旧 rail 档**已是同一套语言**（三轮 2026-09-23 就这么做的），统一后全站只有一个规格；
+       ③ 盒→条 12px 的拥挤整段消失，玻璃盒反而宽 8px（196→204）更平衡；
+       ④ 实现上写进**基础态**：跨 768/900 断点时 mask 与条两侧同值 ⇒ 零跳变（V2 的 padding-right 20
+          会参与跨 900 形变，多一条要盯的路径）。
+     ⚠ 用 `::-webkit-scrollbar{width:0}`（Chromium 自绘通道），**不是** `scrollbar-width:none`
+     ——`open-regression` 锁① 断言「css 里不出现 scrollbar-width:none」仍绿（三轮已实证）。
+     ⚠ `scrollbar-width: auto` 显式回退：防这一项被未来的改动误落成 none（锁①）。 */
+  scrollbar-width: auto;
+  /* 底缘渐隐：矮视口下第二组被裁时给出「还有内容」的暗示（与「不出条」配套的可见性补偿） */
+  mask-image: linear-gradient(180deg, #000 0, #000 calc(100% - 28px), transparent 100%);
+  -webkit-mask-image: linear-gradient(180deg, #000 0, #000 calc(100% - 28px), transparent 100%);
+}
+.sidebar::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
 
 /* 分组容器（玻璃圆角卡片，间距由容器 margin 分隔） */
@@ -483,11 +529,13 @@ button {
   margin-bottom: 18px;
   /* 三轮 T1：跨 900 时容器要「长/收」而不是瞬跳——padding/radius/border-color/box-shadow/margin
      都可插值，统一用 base 时长；实测改前 sidebarBox.h 在切换帧跳 26px（放大）/52px（缩小）。
-     ⚠ `background-image`（--side-group-bg 渐变）**不可插值**：图标栏态用的是 `background: none`，
-     这一项会瞬时到位。它是低对比度的深色玻璃，在深底上落差很小；不为了它引入额外图层。 */
+     ⚠ `background-image`（--side-group-bg 渐变）**不可插值**：旧图标栏态曾用 `background: none`，
+     那一条形态已在四轮 T3 删除（769–900 与 >900 同形），本项现在只在抽屉/手机档显隐时参与。
+     保留过渡的理由：几何量声明齐全，跨任何一次侧栏宽度变化都不会出现「一帧跳」。 */
   transition:
     padding var(--motion-base) var(--ease-geometry),
-    /* border-width 必须显式列出：图标栏态是 `border: 0`，宽度会瞬跳（盒子高度那次 62px 跳变的一部分） */
+    /* border-width 必须显式列出：它曾靠「图标栏态 = border:0」瞬跳（盒子高度那次 62px 跳变的一部分）；
+       四轮 T3 删掉该形态后仍保留——`border-width` 是最容易被别处改成 0 的量，显式声明成本为零。 */
     border-width var(--motion-base) var(--ease-geometry),
     border-radius var(--motion-base) var(--ease-geometry),
     border-color var(--motion-fast) var(--ease-soft),
@@ -508,8 +556,9 @@ button {
   color: var(--text-secondary);
   padding: 0 4px 8px;
   margin-bottom: 6px;
-  /* 三轮 T1：跨 900 时组标题要从「一条 20×1 细线」长成「accent 竖条 + 文字」——
-     这些量都得有过渡，否则分组盒的高度一帧跳（实测 243→305，62px）。 */
+  /* 三轮 T1：这几个量都声明了过渡（旧 icon-only rail 里组标题是一条 20×1 细线，跨 900 要长成
+     「accent 竖条 + 文字」；四轮 T3 删掉 rail 后两态同形，这条过渡只服务抽屉/手机档的显隐）。
+     保留的理由：不参与列数反解、也不构成「每条元素都有路径」的缺口。 */
   transition:
     padding var(--motion-base) var(--ease-geometry),
     margin var(--motion-base) var(--ease-geometry),
@@ -542,7 +591,7 @@ button {
   color: var(--text-secondary);
   font-size: 0.92rem;
   font-family: inherit;
-  /* 三轮 T1：两侧统一 44px 触控高（图标栏 44×44 指示器 / 宽侧栏 44px 行）。
+  /* 三轮 T1：统一 44px 触控高（触屏可达性下限；四轮 T3 删掉图标栏形态后这一条对全档生效）。
      改前宽侧栏是「内距撑出来的 ~38.7px」、图标栏是写死的 `height: 44px`——
      `height: 44px ↔ auto` **不可插值**，跨 900 当帧就跳（实测 sidebarBox.h 243→195）。
      改成两侧都靠 min-height 兜底、高度由内距撑：内距可插值 ⇒ 行高全程恒定 44。 */
@@ -582,7 +631,9 @@ button {
   text-overflow: ellipsis;
   max-width: 200px;
   opacity: 1;
-  /* 三轮 T1：与 .side-item 的 gap/padding 同参——跨 900 时「图标栏 → 文字栏」是一次连续形变 */
+  /* 与 .side-item 的 gap/padding 同参——四轮 T3 删除 icon-only rail 后，769–900 与 >900 同形态，
+     这条过渡只服务「抽屉/手机档」的显隐；保留是为了不错过将来任何一次「侧栏宽度变化」，
+     且它不参与列数反解（导航列不折行，锁①的本义） */
   transition:
     max-width var(--motion-base) var(--ease-geometry), opacity var(--motion-base) var(--ease-soft);
 }
@@ -641,24 +692,32 @@ button {
    ⚠ `min-width: 769px` 必须保留：≤768 手机档的卡是「占满整行」（.feed-list 1fr + 内距 12px 0），
    这条若一并命中会把手机卡从 744 压到 700 以下（闸的 ≤768「卡宽 ≥ 视口 88%」会红）。
    ⚠ 用属性串匹配列数而不是 :has(> .feed-window) 的层级判定：主信息流与次级列表（收藏夹/搜索预览）
-   都写同一个变量，两者都该用同一条单列带规则（与「同一规则」的既有决定一致）。 */
-@media (min-width: 769px) {
-  .feed-list[style*="--feed-cols: 1"] {
-    grid-template-columns: minmax(0, var(--feed-card-max));
-    justify-content: start;
-  }
-}
-/* 频道头/偏好条/空态与卡片同宽（700 上限）——**全宽度带生效，不只在单列带**。
-   为什么不能只给单列带（三轮实测踩到的 768 断点）：手机档（≤768）的内容块是满宽的，
-   卡片本身没有 700 上限 → 768 档实测「频道头 736 / 卡片 744」；一旦越过 768 进桌面档，
-   这两条上限立刻生效 → **切换当帧 36–44px 的宽度瞬跳**（smooth-after-v2.json 起跳帧读数）。
-   把上限做成全档统一后，768 两侧的几何完全相同 → 该簇消失。
-   ⚠ 这也顺手修了一处**既有的可读性越界**：768 档手机卡 744px ＝ 40.5 汉字，
-   超了考证区间上沿 38（口径 floor((卡宽−69)/16.66)）；700px ＝ 37.9 汉字，正好落回区间内。
-   ⚠ ≤768 的「卡宽 ≥ 视口 88%」判据不受影响：768×0.88 = 676 < 700（实测 700/768 = 91.1%）。 */
-.feed-content > .channel-head,
-.feed-content > .pref-prompt,
-.feed-content > .status {
+   都写同一个变量，两者都该用同一条单列带规则（与「同一规则」的既有决定一致）。
+   ── 2026-09-24 四轮 T1（乙B1/乙B2）两处机制修正 ──
+     ① **这条规则此前从未生效**：同优先级 `.feed-window > .feed-list, .feed-list[style]`
+        （见下方主规则）排在它**后面** → 晚者胜，轨道被改回 `repeat(--feed-cols, 1fr)`。
+        实测（1200 档读计算值）：选择器 matches() = true、justify-content:start 生效 ✓，
+        但 gridTemplateColumns = **"928px"**（应为 700）。→ 本轮把本规则**移到主规则之后**。
+        视觉上此前没暴露纯属侥幸（卡片自身 max-width:700 + justify-self:start 结果相同），
+        所以「写了没生效」只能靠**读计算值**抓，不能靠读源码（〇块第 6 条）。
+     ② 列数开关从 `[style*="--feed-cols: 1"]` 改成**显式属性** `[data-cols="1"]`（App 落 `data-cols`）：
+        属性串匹配依赖 React 序列化出「含空格」的 `--feed-cols: 1;`（实测无空格变体 `--feed-cols:1`
+        匹配失败）——React 升级/序列化策略一变就**静默失效**，无报错无断言（乙B2）。 */
+
+/* 频道头/偏好条/空态：**单列档**与卡片同宽（700 上限）、**多列档铺满网格**（不设上限）。
+   ── 2026-09-24 四轮 T1（甲A1，三轮回归修复）──
+   三轮把这里写成「全档 max-width: 700」，本意是消 768 断点的 36–44px 瞬跳，
+   但**忘了多列档**：实测 1500×520 头 700 vs 网格 1228、1600×900 头 700 vs 网格 1328、
+   1252→2560 全档头只占网格 43%–71% ⇒ 栗子「顶部热门分区并没有适应宽度进行填满」（图1）。
+   改成按列数分流后：单列档 700（与卡左右缘对齐）、多列档 = 网格宽（铺满）。
+   ⚠ 768 断点的瞬跳**没有回来**：≤768 的列数恒为 1（`feedColsForContentWidth` 对 ≤768 返 1 列）
+   ⇒ 手机档仍走 700 那支，与 769 档的 700 相同 → 两侧几何一致（实测 768 档 头/卡 均 700）。
+   ⚠ 用 `:has()` 分流而**不是**收窄 `.feed-content` 自己：列数是从 `.feed-list` 的 clientWidth 反解的，
+   收窄容器会自锁（实测 900–1751 全档 cols 恒 1，见本块开头 ②）。
+   ⚠ 这里只改**兄弟节点的上限**，不碰任何参与反解的量测目标 → 无自锁风险（与下面同源）。 */
+.feed-content:has(.feed-list[data-cols="1"]) > .channel-head,
+.feed-content:has(.feed-list[data-cols="1"]) > .pref-prompt,
+.feed-content:has(.feed-list[data-cols="1"]) > .status {
   max-width: var(--feed-card-max);
 }
 
@@ -776,6 +835,22 @@ button {
 .feed-window > .feed-list,
 .feed-list[style] {
   grid-template-columns: repeat(var(--feed-cols, 1), minmax(0, 1fr));
+}
+
+/* 单列带（放不下第二列）：轨道收到卡宽上限并左对齐 —— 让「频道头/偏好条」与卡片左右缘对齐。
+   ── 2026-09-24 四轮 T1（乙B1）──
+   本规则**必须排在上面那条主规则之后**：两者同优先级（`.feed-list[data-cols="1"]` 与
+   `.feed-list[style]` 都是 0-2-0），晚者胜。改前它写在主规则**之前** ⇒ 从未生效（读计算值：
+   1200 档 gridTemplateColumns = "928px" 而非 700px，而同一规则里的 justify-content:start 却生效了）。
+   闸与单测都必须**读计算值**验这条，不能只 grep 源码（〇块第 6 条）。
+   ⚠ `min-width: 769px` 必须保留：≤768 手机档的卡是「占满整行」（.feed-list 1fr + 内距 12px 0），
+   这条若一并命中会把手机卡的网格盒收到 700（闸的 ≤768「卡宽 ≥ 视口 88%」仍成立，但几何与
+   既有 EXPECT 表不符）——手机档的 700 由 `.feed-list > .card` 的 max-width 承担，不走这条。 */
+@media (min-width: 769px) {
+  .feed-list[data-cols="1"] {
+    grid-template-columns: minmax(0, var(--feed-card-max));
+    justify-content: start;
+  }
 }
 
 /* 卡宽上限（2026-09-23 栗子：「能两列的时候不要强行拉伸这么长的宽度」）：
@@ -2117,8 +2192,9 @@ button {
     padding: 1px 6px;
   }
   /* 侧栏（首页 + 我的页）移入抽屉/me-tabs —— 塌缩态见文件后段
-     「@media (max-width: 768px) .sidebar 塌缩」块：那条必须排在图标栏设计块**之后**
-     （图标栏块条件 max-width:900 在 768 档也命中，同优先级晚者胜；改前是 display:none 无此问题）。 */
+     「@media (max-width: 768px) .sidebar 塌缩」块：那条必须排在 `.sidebar` 基础态**之后**
+     （同优先级晚者胜）。四轮 T3 删除了 icon-only rail 的 `@media (max-width:900px)` 块后，
+     768 档只剩这一条 `.sidebar` 规则命中，顺序风险随之消失——保留说明以防将来再插形态块。 */
   /* T2: ☰ 抽屉开关 */
   .drawer-toggle {
     display: flex;
@@ -2141,6 +2217,12 @@ button {
     padding: calc(64px + env(safe-area-inset-top)) calc(10px + env(safe-area-inset-right))
       calc(24px + env(safe-area-inset-bottom)) calc(10px + env(safe-area-inset-left)); /* G-06 安全区 */
     overflow-y: auto;
+    /* 四轮 T2（乙B6）：抽屉是**导航列**，与侧栏同一规格——不出条 + 底缘渐隐。
+       理由同 `.sidebar` 基础态那条注释：导航项不参与折行，锁①的本义不适用；
+       抽屉宽只有 250px，8px 槽会明显挤掉文字的可用宽。 */
+    scrollbar-width: auto; /* 显式回退，防误落 none（锁①） */
+    mask-image: linear-gradient(180deg, #000 0, #000 calc(100% - 28px), transparent 100%);
+    -webkit-mask-image: linear-gradient(180deg, #000 0, #000 calc(100% - 28px), transparent 100%);
     /* 二轮 G4（2026-09-23）：抽屉与底栏/顶栏同一观感——不透明 --header-bg。
        半透明玻璃底会让底层卡片正文透出来（栗子④同一条投诉的抽屉版）。 */
     background: var(--header-bg);
@@ -2151,6 +2233,10 @@ button {
     /* G-12：关闭态此前仍可被 Tab 进去（只靠 transform 移出视口）→ 补 visibility 收掉焦点可达性，
        延迟与滑出动画同时长是为了不打断它；打开态下面那条把延迟清零。 */
     visibility: hidden;
+  }
+  .drawer::-webkit-scrollbar {
+    width: 0;
+    height: 0;
   }
   .drawer.open {
     transform: translateX(0);
@@ -2238,118 +2324,25 @@ button {
   }
 }
 
-/* ── 侧边栏折叠态：icon-only navigation rail（769–900px）──
-   ── 三轮 T2 设计 pass（2026-09-23 栗子②「只有图标的分区栏状态适配不好，排版间距 UI 设计有问题，
-      并没有解决」）：二轮的处理是 token 级修补（44px/aria/一条横线），被原样打回。本轮按
-      「这一块作为一个设计元素成立」重做，先出两版注入截图对比（D:/tmp/gt-layout/r3/shots/t2-V1、t2-V2），
-      定版取 **V2 去框极简式**，理由（按〇块判据）：
-        ① 64px 轨道里塞 18px 半径的玻璃盒，盒内有效宽只剩 40px ＜ 44px 触控目标 → 必然「塞满」
-           （实测：改前盒子内距 14/12/8、按钮 44px 直接压出盒边）；
-        ② 深底（body 渐变）上再叠一层玻璃盒是**两层装饰打架**——轨道不是内容卡，不需要容器；
-        ③ 分组语义交给「居中细线 + 统一 10px 组间距」，比悬在盒子左上角的 3px 短杠（读作瑕疵）清楚。
-      保留（既有决定，不许退化）：44px 触控目标、aria-label/title、DOM 里保留组标题文字（读屏可读）。
-   ── 三轮 T1：宽度过渡已上移到 `.sidebar` 基础态（含 margin/padding），这里不再声明。── */
-@media (max-width: 900px) {
-  .sidebar {
-    width: 64px;
-    margin-left: 12px;
-    padding: 16px 8px;
-    /* 图标栏自滚的滚动条处理（三轮 T3 ④）：64px 轨道里再挤一条 8px 槽会与 44px 图标抢位，
-       改为「隐藏条 + 底缘渐隐」作滚动暗示。**不违锁①精神**：锁①（禁 scrollbar-width:none）
-       防的是**正文阅读列**被拆掉 gutter 后出现「飞行/落地两套折行」；图标栏是导航、不是阅读内容，
-       不参与任何折行，且这里用的是 ::-webkit-scrollbar{width:0}（Chromium 自绘通道），
-       不是锁①点名的 scrollbar-width:none——锁的断言（css 里不出现 scrollbar-width:none）仍绿。
-       wide 档侧栏（>900）与内容区一样用全站统一细条，视觉语言一致。 */
-    scrollbar-width: auto; /* 显式回退，防误落 none（锁①） */
-  }
-  .sidebar::-webkit-scrollbar {
-    width: 0;
-    height: 0;
-  }
-  /* 底缘渐隐：矮视口下第二组被裁时给出「还有内容」的暗示（二轮甲2⑤ 的正面解法） */
-  .sidebar {
-    mask-image: linear-gradient(180deg, #000 0, #000 calc(100% - 28px), transparent 100%);
-    -webkit-mask-image: linear-gradient(180deg, #000 0, #000 calc(100% - 28px), transparent 100%);
-  }
-  /* ① 去框：组容器退化为纯分组语义（背景/边框/阴影/内距全撤） */
-  .side-group-box {
-    /* ⚠ box-shadow 用「三个零阴影」而不是 `none`：`none` 与基础态的三条阴影**不可插值**，
-       跨 900 时会瞬跳（分组盒高度那次 62px 跳变里有一部分来自它）。零阴影与三条同构 → 可插值。
-       background-image 那条（渐变）仍只能瞬切：渐变不可插值，且它是低对比度深色玻璃，
-       在深底上落差极小，不为它引入额外图层。 */
-    background: none;
-    border: 0;
-    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0), 0 0 0 0 rgba(0, 0, 0, 0), 0 0 0 0 rgba(0, 0, 0, 0);
-    border-radius: 0;
-    padding: 0;
-    margin-bottom: 0;
-  }
-  /* ③ 组间距：统一 10px + 居中细线（首组的线由 .side-group::before 承担） */
-  .side-group-box + .side-group-box {
-    margin-top: 10px;
-    padding-top: 10px;
-    border-top: 1px solid var(--border);
-  }
-  .side-group {
-    display: flex;
-    justify-content: center;
-    gap: 0;
-    padding: 0;
-    margin-bottom: 6px;
-    font-size: 0;
-    overflow: hidden;
-  }
-  .side-group::before {
-    width: 20px;
-    height: 1px;
-    border-radius: 1px;
-    background: var(--border);
-  }
-  .side-group::after {
-    display: none;
-  }
-  /* ④ 图标按钮：44×44 正方形指示器（触控目标＝视觉指示器，圆角 12 居中） */
-  .side-item {
-    width: 44px;
-    min-width: 44px;
-    /* height 不写死（基础态已有 min-height:44 + 内距撑高）：写死会与宽档的 auto 不可插值 */
-    padding: 0;
-    margin: 0 auto 4px;
-    border-radius: 12px;
-    gap: 0;
-    justify-content: center;
-  }
-  .side-item:last-child {
-    margin-bottom: 0;
-  }
-  /* ⑤ 激活态：低饱和指示器底色 + accent 图标（旧版是全宽 --accent-gradient 药丸：在 64px 轨道里
-     又重又长，且与玻璃盒圆角互相打架）。hover 用极轻的白叠加，不与激活态抢。 */
-  .side-item.active {
-    background: var(--accent-light);
-    color: var(--accent-text);
-    font-weight: 400;
-    box-shadow: inset 0 0 0 1px rgba(129, 140, 248, 0.22);
-  }
-  .side-item:hover {
-    background: rgba(255, 255, 255, 0.05);
-    color: var(--text);
-  }
-  .side-item.active:hover {
-    background: var(--accent-light);
-    color: var(--accent-text);
-  }
-  /* 文字用「收宽 + 淡出」而不是 display:none：display 是离散属性，跨 900 放大时文字会在
-     侧栏还没变宽的那一刻整块弹出来（且侧栏 overflow-x 会临时出现横向滚动条）。
-     收成 0 宽后与 flex gap 一起过渡，文字随容器宽度长出来。 */
-  .side-text {
-    max-width: 0;
-    opacity: 0;
-    overflow: hidden;
-  }
-  .side-divider {
-    margin: 12px 4px;
-  }
-}
+/* ── 侧边栏折叠态（icon-only navigation rail, 769–900px）已于 2026-09-24 四轮 T3 **整体删除** ──
+   栗子 2026-09-24 图3 反馈：「明明有足够大的空间却没有中文说明只有图标」。四轮先出两版注入截图对比
+   （`D:/tmp/gt-layout/r4/shots/inj_t3v1_*`＝取消 rail｜`inj_t3v2_*`＝extended rail 132px），
+   读数见 `D:/tmp/gt-layout/r4/设计pass/inj-t3v{1,2}.json`，**定版取「取消 rail」**，理由（按〇块判据）：
+     ① **设计融合（删除测试）**：删掉这一整块后，769–900 与 >900 走**同一套**（玻璃盒 + 文字项
+        + --sidebar-inset 24）——全站导航只剩一个形态。extended rail 反而新增第三个宽度
+        （64/132/192）与第三套字号（11px），跨 900 变成三段形变。
+     ② **可读性**：extended rail 的 11px 短标签低于站内其余导航字号（宽档 15.64px、抽屉 14px，
+        底栏 10px 是手机特例）；本方案用 15.64px，与宽档同源。
+     ③ **落地约束核对**：769 档实测网格 **497px ≥ FEED_COL_MIN 480**（余量 17px）
+        ⇒ 不触发「取消 rail 致 769–900 卡宽 <480 则该方案作废」的停手条件。
+     ④ 代价如实记：内容列比 rail 态窄 140px（826 档网格 694→554；554px ＝ 33 汉字，仍在
+        考证可读区间 22–38 内）。这是「给中文」的直接代价。
+   ── 连带改到的闸/预期表（修内容必须同时修闸）──
+     · `scripts/gittok-responsive-check.mjs`：`EXPECT_DESKTOP` 的 **844x390 卡宽 700→572（容量 30 字）**、
+       **900x800 卡宽 700→628（容量 33 字）**；`iconMode`（w≤100 判定）随之恒 false，
+       原「图标栏触控 ≥44 / 有可访问名 / 分组短横线」三条改为**新形态断言**（见闸内注释）。
+     · `scripts/gittok-visual-check.py`：`OBSERVE_CHECKS_ICON`（880×900 的 11 项图标栏清单）
+       整段按新形态重写为「侧栏（带文字）清单」。 */
 
 @media (max-width: 480px) {
   .tab {
@@ -2374,7 +2367,7 @@ button {
      · width:0 + overflow:hidden → 不占位、不可见（.feed-layout 是 flex，0 宽项不贡献宽度）。
    ⚠ `--sidebar-vis-delay` 让 visibility 在「塌缩动画播完之后」才生效（收起时看得见过程），
      反向（展开）时基础态的缺省值 0s 让它立刻可见——不会出现「动画播到一半才现身」。
-   ⚠ 位置：必须在图标栏 `@media (max-width:900px)` 块**之后**——768 档两者都命中且同优先级，
+   ⚠ 位置：必须排在 `.sidebar` 基础态**之后**（四轮 T3 前是「必须在图标栏块之后」）——768 档同优先级，
      晚者胜；改前是 display:none 所以无此冲突。 */
 @media (max-width: 768px) {
   .sidebar {

@@ -801,15 +801,19 @@ function FeedVirtualList({
   // 然后同时喂给两处：① CSS 变量 `--feed-cols`（.feed-list 的轨道数）② 这里的垫片计算。
   // 这样 CSS 与 JS 不再各存一份列宽常量（旧版双写常量的漂移会让垫片错位，见 2026-09-22 乙4）。
   // 二轮甲2/乙1（2026-09-23）：首帧列数**初值直接由视口宽按同一套门槛算出**——
-  // 可用宽 ≈ 视口 − 侧栏(216) − 内距(48) − 滚动条槽(15)；侧栏 ≤900 是图标栏 64px
-  //（＋边距 12 → 内容缩进 76）。估算偏一档也没关系，measure 会立刻校正；
-  // 但 1920/1275/1000 这些常见视口能直接算中，首帧不再「先画错列数再跳」（rAF 实测过的闪变）。
+  // 可用宽 ≈ 视口 − 侧栏(216) − 内距(48) − 滚动条槽(8)。
+  // ── 2026-09-24 四轮 T3：offset 的分档**必须跟着形态走** ──
+  //   改前是 `vw <= 900 ? 76 : 280`——76 是已删除的 icon-only rail 的缩进（64＋12）。
+  //   rail 删除后 769–900 与 >900 同形态（192 侧栏 + 24 边距），所以那一档也要用 280。
+  //   这是个**潜在的首帧错档**：826 档旧式算 750（<976 → 1 列），实际网格 554（也是 1 列）——
+  //   本机逐档核对下来 769–900 的两种算法恰好都得 1 列，所以没暴露；但只要将来该档的
+  //   网格越过 976，旧式就会首帧画 1 列、随后 FLIP 跳到 2 列（正是二轮乙1 修掉的那种闪变）。
   const [cols, setCols] = useState(() => {
     if (typeof window === "undefined") return gridCols;
     const vw = window.innerWidth;
     if (vw <= FEED_MOBILE_MAX_WIDTH) return 1;
-    const offset = vw <= 900 ? 76 : 280; // 图标栏 64+12 / 全侧栏 192+24+内距48+槽15≈63 → 216+48+15+1
-    return feedColsForContentWidth(vw - offset, rowGap);
+    // 桌面档只有一个侧栏形态（192 + 24 边距）→ offset 只有一个值
+    return feedColsForContentWidth(vw - 280, rowGap);
   });
   // FLIP 的量测根：`.feed-content`（卡片在它内部的 .feed-window 里，频道头/偏好条是它的直接子元素）。
   // 拿不到时退回 .feed-window（只有卡片参与，退化到二轮的行为）。
@@ -928,7 +932,11 @@ function FeedVirtualList({
       {win.topPad > 0 && (
         <div className="feed-window-pad" style={{ height: win.topPad }} aria-hidden="true" />
       )}
-      <div className="feed-list" style={{ "--feed-cols": cols } as React.CSSProperties}>
+      {/* data-cols：列数分流用**显式属性**（CSS 侧 `[data-cols="1"]` 读它）。
+          四轮 T1（乙B2）：此前 CSS 靠 `[style*="--feed-cols: 1"]` 匹配 React 序列化出的
+          `--feed-cols: 1;` 字符串——依赖「含空格」这一个隐含约定，序列化策略一变就静默失效。
+          `--feed-cols` 保留：它是 CSS 变量，主规则按它取轨道数，JS 垫片也读它。 */}
+      <div className="feed-list" data-cols={cols} style={{ "--feed-cols": cols } as React.CSSProperties}>
         {visible.map((card) => (
           <FeedCardMemo
             key={card.repo}
@@ -1951,6 +1959,7 @@ export default function App() {
                                   {colCards.length > 0 && (
                                     <div
                                       className="feed-list"
+                                      data-cols={folderCols}
                                       style={{ "--feed-cols": folderCols } as React.CSSProperties}
                                       data-cols-root="folder"
                                     >
@@ -2157,6 +2166,7 @@ export default function App() {
                         <div
                           className="feed-list"
                           ref={hotColsRef}
+                          data-cols={hotCols}
                           style={{ "--feed-cols": hotCols } as React.CSSProperties}
                         >
                           {hotPreview.map((card) => (
