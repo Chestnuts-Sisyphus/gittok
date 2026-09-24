@@ -232,3 +232,143 @@ export function afterPaint(cb: () => void): () => void {
     cancelAnimationFrame(inner);
   };
 }
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   退场（2026-09-24 四轮 T8②：栗子「可以加，但是前提是要优雅、舒适、丝滑、不拖沓，
+   而且还要符合我们网站的整体审美风格」）
+
+   ── 定版规格（先规格后实现；两版实拍对比见 D:/tmp/gt-layout/r4/exit/）──
+   ① **时长 200ms**＝入场 280ms 的 0.71×。依据：NN/g《Animation Duration》
+      「appearing/entering 需要比 disappearing/exiting 略长——弹窗出现 300ms，消失 200–250ms」，
+      且同文把模态类变化的推荐带定在 200–300ms、>500ms 开始像拖拽。0.71 落在 200/300 的区间内。
+   ② **曲线用加速型** `cubic-bezier(0.2, 0, 1, 0.9)`（IBM Carbon 的 `motion(exit, productive)`），
+      **不复用入场的 spring**：spring 有 1.011 的超调（`OPEN_EASING` 实测），超调在「离开」语义上
+      会被读成「弹一下再走」＝栗子点名的「拖沓」；入场用 spring（到达感）、退场用加速（离开感），
+      两条语义分工，仍是同一套时间语言。
+   ③ **几何＝入场的精确逆**：translate3d + **单参数** scale（锁⑤禁非等比），transformOrigin top left。
+      起点取**当前可见盒**（含正在飞的 transform，于是「打开动画没跑完就按 Esc」也能无缝接上），
+      终点取**源卡实时矩形**（锁⑦：读 DOM 不读视口估算）。
+   ④ **回退案**：源卡已被卸载或与视口不相交 → 「原地收束」（scale→0.985 + opacity→0，遮罩同步淡出
+      180ms）。绝不飞向一个看不见的矩形——那会让人以为"飞错地方了"。
+   ⑤ 遮罩与面板**同一条时间线**（同 duration/easing + startTime 对齐）。
+   ⑥ 首帧即动（锁⑩）；连点只跑一次；`prefers-reduced-motion` 直接瞬时；
+      **禁** `commitStyles`（锁⑥）与 View Transition（锁③）；飞行期沿用 `is-flying`
+      （`.detail-card` 只许 `overflow:hidden` 藏条、槽位靠 `scrollbar-gutter:stable` 留着，锁②）。
+   ══════════════════════════════════════════════════════════════════════════ */
+export const CLOSE_DURATION = 200;
+export const CLOSE_EASING = "cubic-bezier(0.2, 0, 1, 0.9)";
+/** 回退案（源卡不可用）：原地收束。略短于飞回——它没有位移要交代，只把一个「消失」说清楚。 */
+export const CLOSE_INPLACE_DURATION = 180;
+
+/**
+ * 源卡还活着吗？活着且与视口相交 → 返回它的**实时**矩形；否则 null（调用方走回退案）。
+ * 为什么不是直接用打开时存下的 `sourceRect`：那是快照。虚拟列表可能已把那张卡卸载
+ * （`isConnected=false`，矩形退化成 0），也可能因页面滚动而移出视口——此时飞过去＝飞向空气。
+ *
+ * ⚠ 入参用**结构化类型**而不是 `Element`：本仓的 vitest 是 node 环境（无 DOM），
+ * 用 `Element` 就没法给这几个分支写单测，而它们恰恰是"飞错地方"这类事故的唯一防线。
+ * `HTMLElement` 结构上满足这个接口，调用方不需要改。
+ */
+export interface SourceLike {
+  isConnected: boolean;
+  getBoundingClientRect(): { left: number; top: number; width: number; height: number; right: number; bottom: number };
+}
+
+export function liveBoxIfUsable(
+  el: SourceLike | null,
+  viewportWidth: number,
+  viewportHeight: number,
+): Box | null {
+  if (!el || !el.isConnected) return null;
+  const r = el.getBoundingClientRect();
+  if (!(r.width > 0.5 && r.height > 0.5)) return null;
+  const visible = r.bottom > 0 && r.top < viewportHeight && r.right > 0 && r.left < viewportWidth;
+  if (!visible) return null;
+  return { left: r.left, top: r.top, width: r.width, height: r.height };
+}
+
+/** 退场几何：`layout` 是面板**无 transform 的布局盒**（＝destBoxFromElement 的读数）。
+ *  ⚠ 守卫必须判 `Number.isFinite` 而不是 `> 0`：布局宽为 0 时 `w/0` 得 `Infinity`，
+ *  而 `Infinity > 0` 是**真**——只判正数会放进一个 `scale(Infinity)` 的 transform，
+ *  整条动画作废（单测 `非法尺寸返回 null` 就是这条的锁）。 */
+export function closeToCardMotion(current: Box, layout: Box, dest: Box) {
+  const sFrom = current.width / layout.width;
+  const sTo = dest.width / layout.width;
+  if (!Number.isFinite(sFrom) || !Number.isFinite(sTo) || sFrom <= 0 || sTo <= 0) return null;
+  return {
+    s: sTo,
+    from: `translate3d(${current.left - layout.left}px, ${current.top - layout.top}px, 0) scale(${sFrom})`,
+    to: `translate3d(${dest.left - layout.left}px, ${dest.top - layout.top}px, 0) scale(${sTo})`,
+  };
+}
+
+/** 回退案几何：原地收束（只有透明度 + 一点点缩，没有位移）。 */
+export function closeInPlaceMotion(current: Box, layout: Box) {
+  const sFrom = current.width / layout.width;
+  if (!Number.isFinite(sFrom) || sFrom <= 0) return null;
+  const sTo = sFrom * 0.985;
+  return {
+    s: sTo,
+    from: `translate3d(${current.left - layout.left}px, ${current.top - layout.top}px, 0) scale(${sFrom})`,
+    to: `translate3d(${current.left - layout.left}px, ${current.top - layout.top}px, 0) scale(${sTo})`,
+  };
+}
+
+/** 面板 + 遮罩同一条时间线跑退场；返回面板动画（调用方等它 finished 再卸 DOM）。
+ *
+ * ⚠ 「落地上还要化掉」这条是**实拍抓出来的**（四轮 T8② 逐帧胶片 `D:/tmp/gt-layout/r4/exit/screencast/`）：
+ *   第一版只动 transform，飞到终点＝一个缩小的弹层刚好盖在源卡上；而 React 卸载要等
+ *   `setDetailCard(null)` 提交（实测**点击→DOM 卸载 313ms**，比动画的 200ms 多 113ms），
+ *   于是那 113ms 里用户看到「迷你弹层停在卡片上」＝一眼假的破绽（f12_238ms 那帧就是）。
+ *   修法不是去抢 React 的提交时间，而是**让面板在飞行末段透明度归零**——落地即不可见，
+ *   卸载晚多久都不影响观感。这条也顺手把「落点硬切」消掉（否则着陆是一次 pop）。
+ *   曲线用 `cubic-bezier(0.2,0.8,0.2,1)`：与遮罩 `fadeIn` 同一条（站内既有），不是新造曲线。 */
+export function playCloseMotion(
+  panel: HTMLElement,
+  overlay: HTMLElement | null,
+  motion: OpenMotion,
+  duration = CLOSE_DURATION,
+): { card: Animation; fade: Animation; dim?: Animation } {
+  panel.style.transformOrigin = "top left";
+  panel.style.transform = motion.from;
+  const timing: KeyframeAnimationOptions = {
+    duration,
+    easing: CLOSE_EASING,
+    fill: "forwards",
+  };
+  const card = panel.animate([{ transform: motion.from }, { transform: motion.to }], timing);
+  const now = document.timeline?.currentTime;
+  if (now != null) card.startTime = now;
+
+  // 前 60% 保持不透明（让人看清「同一块东西在往回走」），后 40% 化掉（落地不留残影）。
+  // ⚠ 这里用「delay + 短时淡出」两条独立参数，**不**用带 offset 的三关键帧：
+  //   实测（`D:/tmp/gt-layout/r4/exit/轨迹.json`）三关键帧在 Chromium 里没有按 offset 分段——
+  //   透明度从第 3 帧（~46ms / 进度 0.6）就已经掉到 0.58，等于整段都在淡出，
+  //   "往回走"这件事几乎看不见。换成 delay 语义无歧义：120ms 内一动不动，最后 80ms 化掉。
+  const fadeMs = Math.round(duration * 0.4);
+  const fade = panel.animate([{ opacity: 1 }, { opacity: 0 }], {
+    duration: fadeMs,
+    delay: duration - fadeMs,
+    easing: "cubic-bezier(0.2, 0.8, 0.2, 1)", // 与遮罩 fadeIn 同一条（站内既有曲线）
+    fill: "forwards",
+  });
+  if (now != null) fade.startTime = now;
+
+  let dim: Animation | undefined;
+  if (overlay && typeof overlay.animate === "function") {
+    try {
+      // 沿用打开时的 `is-open-playing`（它把 CSS 的 fadeIn 关掉）→ 退场期间遮罩的透明度
+      // 只有一个来源＝这条 WAAPI，不会在 fill 之外被 CSS 动画顶回 opacity 1（闪一下）。
+      overlay.classList.add("is-open-playing");
+      dim = overlay.animate([{ opacity: 1 }, { opacity: 0 }], {
+        ...timing,
+        fill: "both",
+        pseudoElement: "::before",
+      });
+      if (now != null) dim.startTime = now;
+    } catch {
+      dim = undefined;
+    }
+  }
+  return { card, fade, dim };
+}

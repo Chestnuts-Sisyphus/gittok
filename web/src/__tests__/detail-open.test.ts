@@ -1,15 +1,21 @@
 // @ts-ignore —— 与 storage.test.ts 相同：根 vitest 跑 web 测试
 import { describe, expect, it } from "vitest";
 import {
+  CLOSE_DURATION,
+  CLOSE_EASING,
+  CLOSE_INPLACE_DURATION,
   OPEN_DURATION,
   OPEN_EASING,
   OPEN_SPRING_POINTS,
   OPEN_SPRING_RESPONSE,
   OPEN_SPRING_SAMPLES,
   afterPaint,
+  closeInPlaceMotion,
+  closeToCardMotion,
   destBoxFromElement,
   destBoxFromViewport,
   isVisibleOpenMotion,
+  liveBoxIfUsable,
   openFromCard,
   sampleLinearEasing,
   springProgress,
@@ -151,5 +157,81 @@ describe("afterPaint", () => {
       globalThis.requestAnimationFrame = origRaf;
       globalThis.cancelAnimationFrame = origCancel;
     }
+  });
+});
+
+describe("退场几何（四轮 T8②）", () => {
+  const layout: Box = { left: 100, top: 45, width: 1200, height: 810 };
+  const card: Box = { left: 340, top: 320, width: 556, height: 288 };
+
+  it("closeToCardMotion 是 openFromCard 的精确逆：终点 = 卡宽/布局宽，位移 = 卡位−布局位", () => {
+    const m = closeToCardMotion(layout, layout, card);
+    expect(m).not.toBeNull();
+    expect(m!.s).toBeCloseTo(556 / 1200, 6);
+    // 落点：translate = 卡左上 − 布局左上
+    expect(m!.to).toBe(`translate3d(${340 - 100}px, ${320 - 45}px, 0) scale(${556 / 1200})`);
+    // 起点（无在飞 transform 时）= identity
+    expect(m!.from).toBe("translate3d(0px, 0px, 0) scale(1)");
+    // 与打开那条同一个终点盒：openFromCard(card, layout).from 与 closeToCardMotion(...).to 应当互为同一几何
+    const open = openFromCard(card, layout)!;
+    expect(open.from).toBe(m!.to);
+  });
+
+  it("起点取「当前可见盒」：打开动画没跑完就关，也从中途那个位置接着走", () => {
+    // 模拟入场进行到一半：面板当前只放大到 700 宽、位置在 (140,90)
+    const mid: Box = { left: 140, top: 90, width: 700, height: 470 };
+    const m = closeToCardMotion(mid, layout, card)!;
+    expect(m.from).toBe(`translate3d(${140 - 100}px, ${90 - 45}px, 0) scale(${700 / 1200})`);
+    // 位移方向仍是「从当前位置向卡片收」，不是从布局盒起跳（那会先瞬移一下）
+    const dxFrom = 140 - 100, dxTo = 340 - 100;
+    expect(Math.sign(dxTo - dxFrom)).toBe(Math.sign(dxTo - 0));
+  });
+
+  it("回退案只有微缩没有位移（源卡不可用时不许飞向看不见的矩形）", () => {
+    const m = closeInPlaceMotion(layout, layout)!;
+    expect(m.s).toBeCloseTo(0.985, 6);
+    expect(m.from.slice(0, 16)).toBe(m.to.slice(0, 16)); // 位移部分逐字相同
+    expect(m.to).toContain("scale(0.985)");
+  });
+
+  it("非法尺寸返回 null（不许对 0 宽做除法，NaN 会让整条 transform 作废）", () => {
+    expect(closeToCardMotion(layout, { ...layout, width: 0 }, card)).toBeNull();
+    expect(closeInPlaceMotion(layout, { ...layout, width: 0 })).toBeNull();
+  });
+
+  it("时长与曲线：退场比入场短（NN/g 0.67–0.83 区间）、曲线是加速型且与入场 spring 不同", () => {
+    const ratio = CLOSE_DURATION / OPEN_DURATION;
+    expect(ratio).toBeGreaterThanOrEqual(0.6);
+    expect(ratio).toBeLessThanOrEqual(0.85);
+    // 增量：这是「退场不拖沓」的判据来源——入场 280ms 是弹簧，退场用独立曲线（不能复用弹簧，
+    // 它的 1.011 超调在「离开」语义里会被读成弹一下再走）
+    expect(CLOSE_EASING).toBe("cubic-bezier(0.2, 0, 1, 0.9)");
+    expect(CLOSE_EASING).not.toBe(OPEN_EASING);
+    expect(CLOSE_INPLACE_DURATION).toBeLessThanOrEqual(CLOSE_DURATION);
+  });
+});
+
+describe("liveBoxIfUsable（源卡还活着吗）", () => {
+  // 结构化替身（node 环境无 DOM）：够 liveBoxIfUsable 用，也照样能表达「已卸载 / 已移出视口」
+  const mk = (rect: Partial<{ left: number; top: number; width: number; height: number; right: number; bottom: number }>, connected = true) => ({
+    isConnected: connected,
+    getBoundingClientRect: () => ({ left: 0, top: 0, width: 100, height: 50, right: 100, bottom: 50, ...rect }),
+  });
+  it("在视口内 → 返回实时矩形（而不是打开时那份快照）", () => {
+    const b = liveBoxIfUsable(mk({ left: 200, top: 300, right: 300, bottom: 350 }), 1200, 900);
+    expect(b).toEqual({ left: 200, top: 300, width: 100, height: 50 });
+  });
+  it("已从 DOM 摘掉（虚拟列表回收）→ null", () => {
+    expect(liveBoxIfUsable(mk({}, false), 1200, 900)).toBeNull();
+  });
+  it("滚出视口 → null", () => {
+    expect(liveBoxIfUsable(mk({ left: 200, top: -400, right: 300, bottom: -350 }), 1200, 900)).toBeNull();
+    expect(liveBoxIfUsable(mk({ left: 200, top: 2000, right: 300, bottom: 2050 }), 1200, 900)).toBeNull();
+  });
+  it("尺寸退化成 0（元素还在但已不渲染）→ null", () => {
+    expect(liveBoxIfUsable(mk({ width: 0, height: 0, right: 0, bottom: 0 }), 1200, 900)).toBeNull();
+  });
+  it("null 元素 → null（没传 sourceEl 时走回退案）", () => {
+    expect(liveBoxIfUsable(null, 1200, 900)).toBeNull();
   });
 });

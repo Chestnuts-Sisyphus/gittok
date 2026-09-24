@@ -1,6 +1,5 @@
-import { memo, useEffect, useLayoutEffect, useRef, useState } from "react";
-import type { FeedCard as Card, Collection } from "./types.ts";
-import {
+import { memo, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import type { FeedCard as Card, Collection } from "./types.ts";import {
   ExternalLink,
   Heart,
   Star,
@@ -14,7 +13,18 @@ import {
   SOURCE_ICONS,
   SOURCE_LABELS,
 } from "./icons.tsx";
-import { destBoxFromElement, isVisibleOpenMotion, openFromCard, playOpenMotion } from "./detail-open.ts";
+import {
+  CLOSE_DURATION,
+  CLOSE_INPLACE_DURATION,
+  closeInPlaceMotion,
+  closeToCardMotion,
+  destBoxFromElement,
+  isVisibleOpenMotion,
+  liveBoxIfUsable,
+  openFromCard,
+  playCloseMotion,
+  playOpenMotion,
+} from "./detail-open.ts";
 
 // ---------------------------------------------------------------------------
 // 工具函数
@@ -297,6 +307,8 @@ interface DetailProps {
   disliked: boolean;
   collections: Collection[];
   sourceRect?: DOMRect | null;
+  /** 源卡 DOM 元素（退场要飞回它，且必须**实时**量它的矩形——快照会过期）。 */
+  sourceEl?: HTMLElement | null;
   onLike: (repo: string) => void;
   onDislike: (repo: string) => void;
   onUpdateCollections: (collections: Collection[]) => void;
@@ -310,6 +322,7 @@ export function CardDetail({
   disliked,
   collections,
   sourceRect = null,
+  sourceEl = null,
   onLike,
   onDislike,
   onUpdateCollections,
@@ -367,6 +380,69 @@ export function CardDetail({
   const fromCard = Boolean(sourceRect);
   const reduceMotion =
     typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /**
+   * 退场（四轮 T8②，规格见 detail-open.ts 的「退场」注释块）：
+   * 所有「关掉它回到列表」的路径都走这里——先播退场，再真卸 DOM。
+   * 为什么不再让关闭瞬时：栗子 09-24 认可「每个元素都有路径」这条判据，而弹层原先没有退场路径
+   * （点 X / 点遮罩 / 按 Esc 都是"啪"一下消失）。**只改 dismiss 类关闭**：进创作者页那种
+   * 「离开去别处」的关闭仍走瞬时（见 App.tsx 的 openCreator）——那时飞回卡片是谎话。
+   * 连点只跑一次（closingRef）；`prefers-reduced-motion` 或环境不支持 WAAPI 时保持瞬时。
+   * ⚠ 读当前可见盒必须在 `cancel()` **之前**，否则读到的是布局盒（没有在飞 transform 的位置）。
+   */
+  const closingRef = useRef(false);
+  const requestClose = useCallback(() => {
+    const panel = panelRef.current;
+    if (closingRef.current) return;
+    if (!panel || reduceMotion || typeof panel.animate !== "function") {
+      onClose();
+      return;
+    }
+    closingRef.current = true;
+    const current = panel.getBoundingClientRect(); // 含可能还在飞的 transform
+    const layout = destBoxFromElement(panel); // 无 transform 的布局盒（所有位移都相对它表达）
+    const live = liveBoxIfUsable(sourceEl, window.innerWidth, window.innerHeight);
+    const motion = live ? closeToCardMotion(current, layout, live) : closeInPlaceMotion(current, layout);
+    panel.getAnimations().forEach((a) => a.cancel());
+    overlayRef.current?.getAnimations().forEach((a) => a.cancel());
+    const cardEl = panel.querySelector(".detail-card");
+    panel.classList.add("is-flying");
+    cardEl?.classList.add("is-flying");
+    if (!motion) {
+      onClose();
+      return;
+    }
+    // 首帧即动（锁⑩）：playCloseMotion 内部同步写 from 再 animate，中间不落笔。
+    const { card: anim, fade, dim } = playCloseMotion(
+      panel,
+      overlayRef.current,
+      motion,
+      live ? CLOSE_DURATION : CLOSE_INPLACE_DURATION,
+    );
+    const done = () => {
+      panel.classList.remove("is-flying");
+      cardEl?.classList.remove("is-flying");
+      // 先钉住终点态再卸：`is-flying` 一撤，面板会瞬间回到布局盒（居中大盒）。
+      // 透明度已由 fade 收到 0，但 transform 也要清干净——否则下一次打开会带着旧 transform
+      // 起跳（锁⑧：二次开飞前清飞行 transform）。
+      panel.style.transform = "";
+      onClose();
+    };
+    void anim.finished.then(done, done);
+    void fade.finished.catch(() => {});
+    void dim?.finished.catch(() => {});
+  }, [onClose, reduceMotion, sourceEl]);
+
+  // Esc ＝「关掉它回列表」，与点 X、点遮罩同一条路径（同一条退场）。
+  // 四轮溯源：App.tsx 原先那条「ESC 立刻关弹窗，不播反向收回」的注释是 b55bca5 描述
+  // 「当时确实没有退场动画」的状态，不是裁决（那次提交同时把 setDetailCard(null) 换成 closeDetail()）。
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") requestClose();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [requestClose]);
 
   useLayoutEffect(() => {
     const panel = panelRef.current;
@@ -435,7 +511,7 @@ export function CardDetail({
   const content = (
     <>
       {likeFlashGen > 0 && <span key={likeFlashGen} className="like-flash-bar" aria-hidden="true" />}
-      <button className="detail-close" onClick={onClose} aria-label="关闭详情">
+      <button className="detail-close" onClick={requestClose} aria-label="关闭详情">
         <X size={18} />
       </button>
 
@@ -581,7 +657,7 @@ export function CardDetail({
   );
 
   return (
-    <div ref={overlayRef} className={`detail-overlay${fromCard ? " is-from-card" : ""}`} onClick={onClose}>
+    <div ref={overlayRef} className={`detail-overlay${fromCard ? " is-from-card" : ""}`} onClick={requestClose}>
       <div
         ref={panelRef}
         className={`detail-mover${fromCard ? " is-from-card" : ""}`}

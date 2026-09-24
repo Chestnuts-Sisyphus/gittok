@@ -1104,15 +1104,10 @@ export default function App() {
     };
   }, []);
 
-  // ESC 立刻关弹窗，不播反向收回
-  useEffect(() => {
-    if (!detailCard) return;
-    const handler = (e: KeyboardEvent) => {
-      if (e.key === "Escape") closeDetail();
-    };
-    window.addEventListener("keydown", handler);
-    return () => window.removeEventListener("keydown", handler);
-  }, [detailCard, closeDetail]);
+  // Esc 的关闭已移进 CardDetail（四轮 T8②）：Esc / 点 X / 点遮罩 对用户是同一件事
+  // 「关掉它回列表」，三条路径必须走同一条退场，否则会被读成「有的地方卡一下」。
+  // 溯源：这里原先那条「ESC 立刻关弹窗，不播反向收回」是 b55bca5 描述「当时没有退场动画」的状态，
+  // 不是裁决（该提交同时把 setDetailCard(null) 换成了 closeDetail()）。
 
   // G-14：键盘逐行刷（A11Y-01：此前全站只有 Escape 一个键能用）
   useEffect(() => {
@@ -2296,6 +2291,7 @@ export default function App() {
           disliked={feedback.dislikes.includes(detailCard.repo)}
           collections={collections}
           sourceRect={sourceRectRef.current}
+          sourceEl={sourceElRef.current}
           onLike={handleLike}
           onDislike={handleDislike}
           onUpdateCollections={handleUpdateCollections}
