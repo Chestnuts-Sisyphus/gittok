@@ -349,7 +349,7 @@
   },
   {
     "job": "feed",
-    "at": "2026-09-25T18:25:49.636Z",
+    "at": "2026-09-25T22:20:03.281Z",
     "workers": [
       {
         "name": "zhipu",
@@ -363,60 +363,60 @@
       },
       {
         "name": "agnes",
+        "calls": 1,
+        "ok": 1,
+        "err429": 0,
+        "cooldowns": 0,
+        "otherErrors": 0,
+        "cooling": false
+      },
+      {
+        "name": "agnes#2",
         "calls": 3,
         "ok": 1,
         "err429": 2,
         "cooldowns": 0,
         "otherErrors": 0,
         "cooling": false,
-        "lastError": "Error: 429 You’ve reached the API rate limit for free users. Upgrade to a Token Plan to unlock higher limits and continue using the API without interruption. (request id: 20260925181053146989338eMegLK"
-      },
-      {
-        "name": "agnes#2",
-        "calls": 1,
-        "ok": 1,
-        "err429": 0,
-        "cooldowns": 0,
-        "otherErrors": 0,
-        "cooling": false
+        "lastError": "Error: 429 You’ve reached the API rate limit for free users. Upgrade to a Token Plan to unlock higher limits and continue using the API without interruption. (request id: 20260925220349909251632aCaNAi"
       },
       {
         "name": "zhipu#2",
-        "calls": 1,
+        "calls": 2,
         "ok": 1,
-        "err429": 0,
+        "err429": 1,
         "cooldowns": 0,
-        "otherErrors": 0,
-        "cooling": false
-      },
-      {
-        "name": "zhipu#3",
-        "calls": 4,
-        "ok": 1,
-        "err429": 3,
-        "cooldowns": 0,
-        "otherErrors": 0,
-        "cooling": false,
-        "lastError": "Error: 429 该模型当前访问量过大，请您稍后再试"
-      },
-      {
-        "name": "zhipu#4",
-        "calls": 4,
-        "ok": 0,
-        "err429": 4,
-        "cooldowns": 1,
         "otherErrors": 0,
         "cooling": false,
         "lastError": "Error: 429 您的账户已达到速率限制，请您控制请求频率"
       },
       {
-        "name": "zhipu#5",
+        "name": "zhipu#3",
         "calls": 1,
         "ok": 1,
         "err429": 0,
         "cooldowns": 0,
         "otherErrors": 0,
         "cooling": false
+      },
+      {
+        "name": "zhipu#4",
+        "calls": 1,
+        "ok": 1,
+        "err429": 0,
+        "cooldowns": 0,
+        "otherErrors": 0,
+        "cooling": false
+      },
+      {
+        "name": "zhipu#5",
+        "calls": 2,
+        "ok": 1,
+        "err429": 1,
+        "cooldowns": 0,
+        "otherErrors": 0,
+        "cooling": false,
+        "lastError": "Error: 429 您的账户已达到速率限制，请您控制请求频率"
       },
       {
         "name": "groq",
@@ -507,7 +507,7 @@
         "cooldowns": 0,
         "otherErrors": 0,
         "cooling": false,
-        "lastError": "Error: 429 Request too large for model `qwen/qwen3.8-27b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on output tokens per minute (OTPM): Limit 1000, Requested 2744. The "
+        "lastError": "Error: 429 Request too large for model `qwen/qwen3.8-27b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on output tokens per minute (OTPM): Limit 1000, Requested 2014. The "
       },
       {
         "name": "gemini",
@@ -562,12 +562,11 @@
       {
         "name": "gemini#6",
         "calls": 1,
-        "ok": 0,
+        "ok": 1,
         "err429": 0,
         "cooldowns": 0,
-        "otherErrors": 1,
-        "cooling": false,
-        "lastError": "Error: 503 status code (no body)"
+        "otherErrors": 0,
+        "cooling": false
       },
       {
         "name": "gemini#7",
@@ -674,7 +673,7 @@
         "err429": 4,
         "cooldowns": 1,
         "otherErrors": 0,
-        "cooling": true,
+        "cooling": false,
         "lastError": "Error: 429 Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day"
       },
       {
@@ -689,17 +688,18 @@
       },
       {
         "name": "custom-modelscope#2",
-        "calls": 0,
+        "calls": 4,
         "ok": 0,
-        "err429": 0,
-        "cooldowns": 0,
+        "err429": 4,
+        "cooldowns": 1,
         "otherErrors": 0,
-        "cooling": false
+        "cooling": true,
+        "lastError": "Error: 429 insufficient balance"
       },
       {
         "name": "custom-spark",
-        "calls": 0,
-        "ok": 0,
+        "calls": 1,
+        "ok": 1,
         "err429": 0,
         "cooldowns": 0,
         "otherErrors": 0,
