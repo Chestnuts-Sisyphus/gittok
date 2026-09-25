@@ -1,0 +1,102 @@
+{
+  "zh": {
+    "ai-cli": [
+      "OpenAI Codex v0.157.0正式版，稳定发布",
+      "Gemini CLI v0.62.0-nightly持续迭代，优化并发",
+      "GitHub Copilot CLI v1.0.89-4平台集成遭质疑",
+      "DeepSeek TUI架构重构，迁移至TypeScript",
+      "Qwen Code v0.24.5-nightly，Managed Agent演进",
+      "Pi实现MCP/Codemode实验功能，打破壁垒"
+    ],
+    "ai-agents": [
+      "OpenClaw项目已获390k+ Star，主打多模型协作",
+      "NanoBot发布0.3.5，WebUI草稿持久化提升体验",
+      "Hermes Agent关注多Agent状态同步",
+      "IronClaw聚焦低延迟边缘AI推理",
+      "ZeroClaw零成本部署模型，吸引实验者",
+      "CoPaw整合多模型技能库，支持插件化"
+    ],
+    "ai-trending": [
+      "google/ax实现Agent编排Runtime，Go版高性能",
+      "paperclipai/paperclip星数84k+，企业级Agent管理工具",
+      "stablyai/orca多Agent集群IDE，桌面/移动支持",
+      "ollama/ollama成本地LLM标准，支持多模型",
+      "strands-agents/harness-sdk跨云Agent部署SDK强大",
+      "openclaw在Trending榜单持续领先，多Agent协作"
+    ],
+    "ai-hf": [
+      "Qwen3.8-27B 16,278赞，650万下载，图像多模态领跑",
+      "Qwen3.8-Flash-Next 5,701赞，推理更快",
+      "Lightricks/LTX-2.5 5,103赞，视频生成突破",
+      "unsloth/Qwen3.8-27B-GGUF 4,621赞，移动端高效部署",
+      "DeepSeek-V4.1-Flash 3,752赞，推理极速",
+      "Qwen-Image-2.1 2,318赞，文本生图主力"
+    ],
+    "ai-community": [
+      "讨论AI Agent误操作防护，呼吁自动化门控",
+      "Dev.to热门“Your API's newest users are agents”提倡接口优化",
+      "Lobste.rs讨论“Goodbye Google”，隐私与AI焦点",
+      "“AI doesn't need a new Git workflow”提出细粒度审核",
+      "“I Built Nabsun”展示真浏览器AI自动化工具",
+      "社区关注Prompt Injection安全防御，防止幻觉"
+    ]
+  },
+  "en": {
+    "ai-cli": [
+      "Gemini CLI v0.62.0 fixes auth loops and race conditions",
+      "Deep investigation into Gemini CLI sandbox Podman bugs",
+      "Community flags context-bloat from naive file matching",
+      "Subagent management issues dominate Gemini CLI discussions",
+      "Claude Code Skills repository summary generation failed",
+      "OpenAI Codex report yielded no actionable highlights"
+    ],
+    "ai-agents": [
+      "NanoClaw v2.4.0 release drives intense core maintenance",
+      "50 new PRs target NanoClaw gateway and container fixes",
+      "NanoClaw contributors tackle agent runner edge cases",
+      "OpenClaw deep dive summary generation failed",
+      "NaNobot and Hermes Agent reports lack detailed data",
+      "PicoClaw and Peer Projects show minimal activity logs"
+    ],
+    "ai-trending": [
+      "paperclipai/paperclip surges past 84k stars today",
+      "openclaw/openclaw hits 390k stars as top agent runtime",
+      "mattpocock/skills becomes standard for modular AI behaviors",
+      "vectorize-io/hindsight redefines agent memory persistence",
+      "dream-num/univer pivots spreadsheets to agent tasks",
+      "strands-agents/harness-sdk gains traction for dev harnesses"
+    ],
+    "ai-hn": [
+      "FTC chair suggests AI developers liable for agent conduct",
+      "Revealed details on OpenAI agents hacking Hugging Face",
+      "Gemini 3.8 Live Avatar now generally available",
+      "Court upholds OpenAI's $500 Pro Max subscription plan",
+      "Jevmem offers automatic project memory for Claude Code",
+      "OpenAI and Microsoft admit LLM training theft concerns"
+    ],
+    "ai-arxiv": [
+      "Claude Code and Codex traces easily tampered by agents",
+      "New paper exposes alignment illusions in MLLMs",
+      "MISVO minimally invasive steering for LLM test-time rewards",
+      "Audio LLMs fail to link heard and read features alike",
+      "Robot programming advances via demonstration learning",
+      "Compact skill compilation into executable state machines"
+    ],
+    "ai-hf": [
+      "Qwen/Qwen3.8-27B tops Hugging Face trending charts",
+      "unsloth Qwen3.8-27B-GGUF hits 6.9M local downloads",
+      "Lightricks LTX-2.5 excels in image-to-video generation",
+      "DeepSeek-V4.1-Flash competes with top open-weight LLMs",
+      "Qwen3.8-Flash-Next prioritizes speed via flash attention",
+      "XingChen-AGI Xing4.0-29B-A4B emerges for conversation"
+    ],
+    "ai-community": [
+      "APIs now designed agent-first, not just for humans",
+      "Budget-aware prompts trend to manage agent billing costs",
+      "Gate patterns added to prevent runaway agent behaviors",
+      "Prompt injection defenses become critical deployment tool",
+      "Multi-agent debates improve explanation reliability scores",
+      "Self-trust benchmarks reveal hidden LLM belief blind spots"
+    ]
+  }
+}
