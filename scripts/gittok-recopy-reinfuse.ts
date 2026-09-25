@@ -25,7 +25,8 @@ const FIELDS = ["summaryCn", "reasonCn", "detailCn", "facts"] as const;
 /** 备份固定落仓内 tmp/（已 gitignore），不接受命令行传路径 ⇒ 没有「任意路径读」这个面。 */
 const BACKUP = path.join("tmp", "reinfuse", "feed-from.json");
 const TARGET = path.join("data", "feed.json");
-const RECEIPTS = path.join("data", "recopy-state.json");
+/** 回执来源：两个批量脚本各自的 state（`--receipts` 取**并集**）。 */
+const RECEIPT_FILES = [path.join("data", "recopy-state.json"), path.join("data", "reason-fix-state.json")];
 
 function atomicWrite(file: string, text: string): void {
   const tmp = `${file}.tmp-reinfuse`;
@@ -50,8 +51,13 @@ function main(): void {
 
   let repos: string[];
   if (argv.includes("--receipts")) {
-    const state = JSON.parse(fs.readFileSync(RECEIPTS, "utf-8")) as { done?: Record<string, unknown> };
-    repos = Object.keys(state.done ?? {});
+    const set = new Set<string>();
+    for (const f of RECEIPT_FILES) {
+      if (!fs.existsSync(f)) continue;
+      const state = JSON.parse(fs.readFileSync(f, "utf-8")) as { done?: Record<string, unknown> };
+      for (const repo of Object.keys(state.done ?? {})) set.add(repo);
+    }
+    repos = [...set];
   } else {
     repos = (get("repos") ?? "")
       .split(",")

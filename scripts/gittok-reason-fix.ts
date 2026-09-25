@@ -1,21 +1,25 @@
 /**
- * 理由契约批量修复（六轮 G1）——**只重写 `reasonCn`**，逐条过生产闸校验。
+ * 理由契约批量修复（六轮 G1 立 / **九轮 T4 扩到「收尾」**）——**只重写 `reasonCn`**，逐条过生产闸校验。
  *
- * 背景：提示词硬性要求「少于 100 或多于 150 都不合格」，而闸原先只判下限
- * （`effLen(r) < 100`）。全库 >150 字 518 张漏出去；卡宽收到 793 后每行 53 汉字 × 3 行
- * = 容量 159，于是其中一批露出省略号。容量 159 ≥ 上限 150 ⇒ 收进契约后省略号结构性消失。
+ * 契约（口径真源＝`src/feed/taxonomy.ts`）：① 长度 100–150（String.length）；② **以句末标点收尾**
+ * （`endsWithSentenceEnd`）。九轮实测全库 **577/2960** 结尾不是句末标点（555 张长度还合规 ⇒
+ * 源文本本身断半句，观感像被截掉一截）。本脚本是这条清账的**主力通道**：只换理由字段、不打整卡，
+ * 所以免费模型够用（整卡重跑那套 `gittok-recopy` 卡在「深度解读 500–800 字」上，实测写回率 1/8）。
  *
  * 纪律（与 `gittok-summary-fix.ts` 同款）：
- *   - 判据不新写：校验调 `cardChecks` + `taxonomy` 的 REASON_MIN/MAX（String.length）。
+ *   - 判据不新写：校验调 `cardChecks` + `taxonomy` 的 REASON_MIN/MAX + `endsWithSentenceEnd`。
  *   - **只写 reasonCn**：summaryCn/detailCn/facts 一律不动。
- *   - 接受条件 = ①新理由落在 100–150；②闸失败类别集合只许缩小；不合格不写回。
- *   - 断点续跑：state 落 `data/reason-fix-state.json`。
+ *   - 接受条件 = ①新理由落在 100–150；②**最后一个字符是句末标点**；③闸失败类别集合只许缩小；不合格不写回。
+ *   - 为什么**不做**确定性补句：结尾断点中位距上一个句末标点 **49 字**（全库 577 张统计），
+ *     回退到句末会让 **475/573** 张掉到 100 字以下；直接补个「。」又会把「支持 HTTP、DNS、TCP、SSL」这类
+ *     半截列举伪装成完整句 ⇒ 两种确定性做法都在骗人，只能走模型重写。
+ *   - 断点续跑：state 落 `data/reason-fix-state.json`；**指纹含口径版本**（改契约即作废旧凭证）。
  *
  * 用法：
  *   npx tsx scripts/gittok-reason-fix.ts --dry-run
  *   npx tsx scripts/gittok-reason-fix.ts --limit=64 --batch=4
  *   npx tsx scripts/gittok-reason-fix.ts --max-minutes=90
- *   npx tsx scripts/gittok-reason-fix.ts --apply-cut          # 超长卡确定性切（不打模型）
+ *   npx tsx scripts/gittok-reason-fix.ts --apply-cut          # 超长卡确定性切（不打模型；只对 >150）
  *   npx tsx scripts/gittok-reason-fix.ts --reapply-state
  */
 
@@ -27,7 +31,7 @@ import { buildPlan, dropRetiredLanes } from "./gittok-fullbuild-lib.ts";
 import { ScheduledLlmExecutor } from "../src/feed/executor.ts";
 import { loadLaneHealth, recordLaneResult, saveLaneHealth } from "../src/feed/lane-health.ts";
 import { cardChecks } from "../src/feed/checks.ts";
-import { REASON_MIN, REASON_MAX } from "../src/feed/taxonomy.ts";
+import { REASON_MIN, REASON_MAX, endsWithSentenceEnd } from "../src/feed/taxonomy.ts";
 import { reasonWithinContract, fitReason } from "../src/feed/index.ts";
 import type { ScoringResult } from "../src/feed/types.ts";
 
@@ -69,7 +73,7 @@ interface FixState {
   failed: Record<string, { at: string; tries: number; why: string[] }>;
 }
 
-const VERSION = "reason-fix:G1:1";
+const VERSION = "reason-fix:G1+T4:1";
 
 function loadState(): FixState {
   try {
@@ -128,14 +132,18 @@ function kind(f: string): string {
 
 const kindsOf = (fails: string[]): Set<string> => new Set(fails.map(kind));
 
-/** 本脚本自己的违约判定（先于闸升级：用 String.length 100–150）。 */
+/** 本脚本自己的违约判定：理由**契约**＝长度（String.length 100–150）＋ 收尾（句末标点）。
+ *  九轮 T4 起收尾也是契约的一部分（口径真源 `taxonomy.endsWithSentenceEnd`）⇒ 这里一并判。 */
 function reasonBad(c: Card): boolean {
-  return !reasonWithinContract(c.reasonCn ?? "");
+  const r = c.reasonCn ?? "";
+  return !reasonWithinContract(r) || !endsWithSentenceEnd(r);
 }
 
 function accept(c: Card, prevFails: string[], next: string): { ok: boolean; why: string[] } {
   const why: string[] = [];
   if (!reasonWithinContract(next)) why.push(`${next.length} 字不在 ${REASON_MIN}-${REASON_MAX}`);
+  // 九轮 T4：收尾必须落到句末标点（两处同侧同值：提示词硬性要求 + 本处校验）。
+  if (!endsWithSentenceEnd(next)) why.push(`结尾不是句末标点（当前结尾「…${next.trim().slice(-8)}」）`);
   const before = kindsOf(prevFails);
   const after = kindsOf(failsOf(c, next));
   for (const k of after) if (!before.has(k)) why.push(`引入了新的闸失败「${k}」`);
@@ -184,13 +192,21 @@ function buildBatchPrompt(items: { card: Card; prevFails: string[] }[]): string 
       const detail = (card.detailCn ?? "").replace(/\s+/g, " ").slice(0, 220);
       const summary = (card.summaryCn ?? "").replace(/\s+/g, " ").slice(0, 80);
       const reason = (card.reasonCn ?? "").replace(/\s+/g, " ");
+      const lenBad = !reasonWithinContract(reason);
+      const endBad = !endsWithSentenceEnd(reason);
+      const why = [
+        lenBad ? `字数 ${reason.length} 不在 ${REASON_MIN}-${REASON_MAX}` : null,
+        endBad ? "结尾不是句末标点（断在半句上）" : null,
+      ]
+        .filter(Boolean)
+        .join("；");
       return [
         `#${i + 1} repo: ${card.repo}`,
         `仓库简介: ${(card.desc ?? "").slice(0, 200) || "（无）"}`,
         `领域标签: ${(card.domainTags ?? []).join("、") || "（无）"}`,
         `一句话摘要（勿重复其措辞）: ${summary || "（无）"}`,
         `深度解读开头（可参考事实，勿整段复述）: ${detail || "（无）"}`,
-        `现有的简要介绍（字数不合规，要重写；现长 ${reason.length}）: ${reason.slice(0, 400)}`,
+        `现有的简要介绍（**要重写**；不合格点＝${why || "需重写"}；现长 ${reason.length}）: ${reason.slice(0, 400)}`,
         `上一轮不合格原因: ${prevFails.slice(0, 2).join("；") || "（无）"}`,
       ].join("\n");
     })
@@ -200,10 +216,12 @@ function buildBatchPrompt(items: { card: Card; prevFails: string[] }[]): string 
 
 硬性要求（缺一不可）：
 1. 字数 ${REASON_MIN}-${REASON_MAX} 个字符（按**字符个数**数：汉字、英文、数字、空格、标点各算一个；目标写到 110-130，写完数一遍）。
-2. 面向第一次听说它的读者，讲清：它是什么、解决什么问题、具体能做到什么。可以出现专业概念，但外行也要读得懂。
-3. 一段连贯文字，不要用①②③等序号，不要用条目列表。
-4. 不要复用「一句话摘要」的措辞；不要出现"最近/最新/突破/XX 星"这类时效或热度词。
-5. 英文专有名词原样保留。
+2. **必须把话说完，最后一个字符是句末标点（。！？）**；结尾停在半个词、半个列举（如「支持 xx、yy」）、逗号或书名号里都不合格。
+3. 面向第一次听说它的读者，讲清：它是什么、解决什么问题、具体能做到什么。可以出现专业概念，但外行也要读得懂。
+4. 一段连贯文字，不要用①②③等序号，不要用条目列表。
+5. **事实与技术细节以现有文案为准，不要新增原文没有的信息、不要换项目**（不合格的只是收尾/长度，不是内容）。
+6. 不要复用「一句话摘要」的措辞；不要出现"最近/最新/突破/XX 星"这类时效或热度词。
+7. 英文专有名词原样保留。
 
 项目清单：
 ${blocks}
@@ -431,7 +449,14 @@ async function main(): Promise<void> {
   if (args.dryRun) {
     for (const c of todo.slice(0, 12)) {
       const n = (c.reasonCn ?? "").length;
-      console.log(`  - ${c.repo}：${n} 字（${n < REASON_MIN ? "过短" : "超长"}）`);
+      // 九轮 T4：违约原因要照实报——长度合规但**断在半句**的占多数，别再一律写「超长」。
+      const why = [
+        n < REASON_MIN ? "过短" : n > REASON_MAX ? "超长" : null,
+        endsWithSentenceEnd(c.reasonCn ?? "") ? null : "结尾非句末标点",
+      ]
+        .filter(Boolean)
+        .join("+");
+      console.log(`  - ${c.repo}：${n} 字（${why || "合规"}）`);
     }
     return;
   }
