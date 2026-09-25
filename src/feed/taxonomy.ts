@@ -286,3 +286,24 @@ export const SUMMARY_MAX = 35;
  */
 export const REASON_MIN = 100;
 export const REASON_MAX = 150;
+
+/**
+ * **收尾口径**（2026-09-25 九轮 T4 立的唯一定义源）：`reasonCn` 必须以句末标点收尾。
+ *
+ * 为什么单独立一条：九轮实测全库 **573/2958（19.4%）** 的理由结尾不是句末标点，
+ * 其中 552 张长度 <150 字（**不是**被上限截的）⇒ 是**源文本本身断半句**；观感上像被裁掉一截
+ * （栗子对省略号/半句反复提过意见）。长度契约管不到它——139 字的半句话长度完全合规。
+ *
+ * 三处同侧同值（〇块第 8 条「提示词写了 ≠ 闸检了」）：
+ *   · **提示词**（`src/feed/prompts.ts` 的 reason_cn 段：硬性要求写成「以句末标点收尾」）；
+ *   · **生成闸**（`src/feed/checks.ts` 的 `cardChecks`：不合格**不写回** ⇒ 防新的）；
+ *   · **库不变量**（`src/feed/card-invariants.ts`：**先 warn**——存量 573 张要等重跑清完才升 hard，
+ *     否则 CI 会因为历史欠账长期变红，把「真红」淹掉）。
+ *
+ * 判定口径：`trim()` 后看**最后一个字符**，允许句末标点后面再跟收尾引号/括号/省略号
+ * （「…好。」「…好」」这类）。与上面两条长度契约同侧（都在 `String.length` 的世界里）。
+ */
+export const SENTENCE_END_RE = /[。！？…]["')）】」』”’]?\s*$/;
+export function endsWithSentenceEnd(s: string): boolean {
+  return SENTENCE_END_RE.test((s ?? "").trim());
+}

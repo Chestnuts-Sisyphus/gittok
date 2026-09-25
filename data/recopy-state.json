@@ -1,7 +1,7 @@
 {
   "version": "recopy:v6-copy+facts:1",
   "createdAt": "2026-09-17T12:12:22.618Z",
-  "updatedAt": "2026-09-25T08:54:23.401Z",
+  "updatedAt": "2026-09-25T13:23:19.520Z",
   "done": {
     "coollabsio/coolify": {
       "at": "2026-09-17T12:38:24.902Z",
@@ -542,6 +542,11 @@
       "at": "2026-09-24T14:55:34.767Z",
       "lane": "zhipu:glm-4.7-flash",
       "tries": 1
+    },
+    "rohitg00/agentmemory": {
+      "at": "2026-09-25T13:21:49.253Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "tries": 1
     }
   },
   "failed": {
@@ -968,20 +973,22 @@
       "tries": 1
     },
     "FareedKhan-dev/kimi-k3-in-c": {
-      "at": "2026-09-25T04:38:45.272Z",
-      "lane": "zhipu:glm-4.7-flash",
+      "at": "2026-09-25T13:06:41.423Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
       "fails": [
-        "简要介绍 176 字（硬性要求 100-150 汉字）"
-      ],
-      "tries": 2
-    },
-    "maguowei/starred": {
-      "at": "2026-09-24T14:50:09.812Z",
-      "lane": "zhipu:glm-4.7-flash",
-      "fails": [
+        "深度解读 161 字（硬性要求 500-800 字）",
         "深度解读 1 段（要求 3-5 段）"
       ],
-      "tries": 1
+      "tries": 3
+    },
+    "maguowei/starred": {
+      "at": "2026-09-25T13:21:28.244Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "fails": [
+        "一句话描述与深度解读开头重复（最长重复片段过长）",
+        "深度解读 1 段（要求 3-5 段）"
+      ],
+      "tries": 2
     },
     "ayangweb/Awesome-BongoCat": {
       "at": "2026-09-24T14:50:27.732Z",
@@ -1088,6 +1095,52 @@
       "fails": [
         "深度解读 225 字（硬性要求 500-800 字）",
         "深度解读 1 段（要求 3-5 段）"
+      ],
+      "tries": 1
+    },
+    "DuarteSantos8/openGym": {
+      "at": "2026-09-25T13:00:23.931Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "fails": [
+        "深度解读 447 字（硬性要求 500-800 字）",
+        "深度解读 1 段（要求 3-5 段）",
+        "未见安装/上手内容（必须覆盖怎么上手）",
+        "facts[1] source 不在参考文档：不在参考文档"
+      ],
+      "tries": 1
+    },
+    "4ian/GDevelop": {
+      "at": "2026-09-25T13:18:06.814Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "fails": [
+        "facts[1] source 不在参考文档：不在参考文档"
+      ],
+      "tries": 1
+    },
+    "superagent-ai/vibekit": {
+      "at": "2026-09-25T13:20:23.313Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "fails": [
+        "深度解读 327 字（硬性要求 500-800 字）",
+        "深度解读 1 段（要求 3-5 段）"
+      ],
+      "tries": 1
+    },
+    "Comfy-Org/ComfyUI": {
+      "at": "2026-09-25T13:20:59.984Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "fails": [
+        "简要介绍 65 字（硬性要求 100-150 汉字）",
+        "含代码块或多行命令示例（禁止，用一句普通的话说明怎么用）",
+        "facts[1] source 不在参考文档：不在参考文档"
+      ],
+      "tries": 1
+    },
+    "apple-aiml-research/ml-cvnets": {
+      "at": "2026-09-25T13:23:19.519Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "fails": [
+        "输出解析失败（无合法 JSON）"
       ],
       "tries": 1
     }

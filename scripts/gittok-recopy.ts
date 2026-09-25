@@ -20,12 +20,19 @@
  *   npx tsx scripts/gittok-recopy.ts --repo=owner/name    # 只跑指定 repo（调试）
  *   npx tsx scripts/gittok-recopy.ts --max-minutes=30     # 墙钟上限（到点安全停，state 已落盘）
  *   npx tsx scripts/gittok-recopy.ts --only-summary       # 只跑「摘要契约违约卡」（五轮 T2 收窄队列，见下）
+ *   npx tsx scripts/gittok-recopy.ts --only-reason-end    # 只跑「理由断句违约卡」（九轮 T4 收窄队列，见下）
  *
  * `--only-summary`（2026-09-24 五轮 T2）：把队列收窄到 `SUMMARY_MIN`–`SUMMARY_MAX` 之外的卡。
  * 为什么需要它：E-8 的既有队列是「**所有**不过闸的卡」（今天 1940 张），而五轮 P0-2 要闭环的
  * 只有「摘要字数」这一条——不新增选项就只能排队等 E-8 跑完，或凭空扩大写入面。
  * 它**不放松任何判据**：仍然逐卡过 `cardChecks` 全闸、仍然只写回四类文案字段；
  * 只是把「先跑谁」从文件顺序改成「摘要违约优先」。
+ *
+ * `--only-reason-end`（2026-09-25 九轮 T4）：把队列收窄到「`reasonCn` 结尾不是句末标点」的卡
+ * （实测 577/2958）。为什么单列一支：断句违约**长度合规**（139 字的半句话完全在 100–150 里），
+ * 长度闸抓不到；九轮把提示词与 `cardChecks` G1-b 都改成「必须以句末标点收尾」之后，
+ * 这批卡自然落进「不过闸」队列，但 E-8 的队列里还有 1600+ 张别的欠账——不单列就轮不到它们。
+ * 同 `--only-summary`：不放松判据，只决定先跑谁；生成端已硬拦，库侧不变量先 warn（见 taxonomy）。
  *
  * 环境变量：RECOPY_FEED / RECOPY_STATE / RECOPY_LIMIT / RECOPY_TIMEOUT_MS / RECOPY_MAX_RETRY / RECOPY_MAX_MINUTES
  *
@@ -52,6 +59,7 @@ import {
 } from "../src/feed/prompts.ts";
 import { cardChecks, effLen } from "../src/feed/checks.ts";
 import { summaryWithinContract } from "../src/feed/index.ts";
+import { endsWithSentenceEnd } from "../src/feed/taxonomy.ts";
 import { cleanV4 } from "../src/feed/stage1.ts";
 import { loadConfig } from "../src/config.ts";
 import type { Fact, RepoForScoring, ScoringResult } from "../src/feed/types.ts";
@@ -139,7 +147,12 @@ interface Card {
   [k: string]: unknown;
 }
 
-/** 用生产闸判「这张卡现有文案是否已达标」（facts 缺失也算不达标 = 需要 E5 段）。 */
+/** 用生产闸判「这张卡现有文案是否已达标」（facts 缺失也算不达标 = 需要 E5 段）。
+ *  ⚠ 九轮 T4 加一条**脚本侧**判据：断句收尾（必须以使句末标点结尾）。
+ *  为什么加在这里而不是生产闸 `cardChecks`：生产闸被 `src/feed/copy-ok.ts` 复用去打建站期
+ *  `copyOk` 标 ⇒ 一硬就会把「只因断句不合格」的 296 张一次性剔出推荐池（实测见
+ *  `scripts/gittok-reason-end-impact.ts`）。两步走的第一步＝**写回闸先硬**（防新的写进来）、
+ *  库侧 `card-invariants` 记 warn（存量可见）、生产闸等存量清完再升。 */
 function gateOf(card: Card): string[] {
   const pseudo: ScoringResult = {
     repo: card.repo,
@@ -154,7 +167,11 @@ function gateOf(card: Card): string[] {
     reasonCn: card.reasonCn,
     detailCn: card.detailCn,
   };
-  return cardChecks(pseudo).fails;
+  const fails = cardChecks(pseudo).fails;
+  if (!endsWithSentenceEnd(card.reasonCn ?? "")) {
+    fails.push(`简要介绍结尾不是句末标点（须以 。！？… 收尾；当前结尾「…${String(card.reasonCn ?? "").trim().slice(-8)}」）`);
+  }
+  return fails;
 }
 
 /** 短卡口径（任务书点名的 21 张那条线）：reasonCn 等效长度 <80。 */
@@ -164,22 +181,31 @@ export function isShortCard(card: Card): boolean {
 
 function pickTodo(
   cards: Card[],
-  opts: { all: boolean; repo: string | null; onlySummary: boolean; state: RecopyState },
-): { todo: Card[]; gateFail: number; summaryFail: number; shortCount: number } {
+  opts: { all: boolean; repo: string | null; onlySummary: boolean; onlyReasonEnd: boolean; state: RecopyState },
+): { todo: Card[]; gateFail: number; summaryFail: number; reasonEndFail: number; shortCount: number } {
   const shortCount = cards.filter(isShortCard).length;
   let gateFail = 0;
   let summaryFail = 0;
+  let reasonEndFail = 0;
   const todo: Card[] = [];
   for (const c of cards) {
     if (opts.repo && c.repo !== opts.repo) continue;
     if (opts.state.done[c.repo]) continue; // 已过闸并写回 → 跳过（续跑核心）
     const summaryBad = !summaryWithinContract(c.summaryCn ?? "");
     if (summaryBad) summaryFail++;
+    const reasonEndBad = !endsWithSentenceEnd(c.reasonCn ?? "");
+    if (reasonEndBad) reasonEndFail++;
     const fails = gateOf(c);
     if (fails.length > 0) gateFail++;
-    if (opts.onlySummary ? summaryBad : opts.all || fails.length > 0) todo.push(c);
+    if (opts.onlySummary) {
+      if (summaryBad) todo.push(c);
+    } else if (opts.onlyReasonEnd) {
+      if (reasonEndBad) todo.push(c);
+    } else if (opts.all || fails.length > 0) {
+      todo.push(c);
+    }
   }
-  return { todo, gateFail, summaryFail, shortCount };
+  return { todo, gateFail, summaryFail, reasonEndFail, shortCount };
 }
 
 // ---------------------------------------------------------------------------
@@ -362,6 +388,7 @@ function parseArgs(argv: string[]): {
   repo: string | null;
   maxMinutes: number;
   onlySummary: boolean;
+  onlyReasonEnd: boolean;
 } {
   const get = (name: string): string | null => {
     const hit = argv.find((a) => a.startsWith(`--${name}=`));
@@ -374,6 +401,7 @@ function parseArgs(argv: string[]): {
     repo: get("repo"),
     maxMinutes: Number(get("max-minutes") ?? process.env["RECOPY_MAX_MINUTES"] ?? 60),
     onlySummary: argv.includes("--only-summary"),
+    onlyReasonEnd: argv.includes("--only-reason-end"),
   };
 }
 
@@ -381,17 +409,18 @@ async function main(): Promise<void> {
   const args = parseArgs(process.argv.slice(2));
   const cards = JSON.parse(fs.readFileSync(FEED, "utf-8")) as Card[];
   const state = loadState();
-  const { todo, gateFail, summaryFail, shortCount } = pickTodo(cards, {
+  const { todo, gateFail, summaryFail, reasonEndFail, shortCount } = pickTodo(cards, {
     all: args.all,
     repo: args.repo,
     onlySummary: args.onlySummary,
+    onlyReasonEnd: args.onlyReasonEnd,
     state,
   });
 
   console.log(
-    `[recopy] 全库 ${cards.length} 张｜不过闸 ${gateFail} 张｜摘要违约 ${summaryFail} 张｜短卡(reasonCn<80) ${shortCount} 张｜` +
+    `[recopy] 全库 ${cards.length} 张｜不过闸 ${gateFail} 张｜摘要违约 ${summaryFail} 张｜断句违约 ${reasonEndFail} 张｜短卡(reasonCn<80) ${shortCount} 张｜` +
       `已写回 ${Object.keys(state.done).length} 张｜本次待跑 ${Math.min(todo.length, args.limit)}/${todo.length} 张` +
-      `${args.onlySummary ? "（--only-summary 口径）" : ""}`,
+      `${args.onlySummary ? "（--only-summary 口径）" : args.onlyReasonEnd ? "（--only-reason-end 口径，九轮 T4）" : ""}`,
   );
   console.log(`[recopy] state：${STATE_FILE}（指纹 ${state.version}）`);
   if (args.dryRun) {

@@ -14004,9 +14004,9 @@
     "owner": "rohitg00",
     "name": "agentmemory",
     "desc": "#1 Persistent memory for AI coding agents based on real-world benchmarks",
-    "summaryCn": "给你的AI编程助手装上一个永不掉线的超级大脑",
-    "reasonCn": "在技术实现上，它并不只是简单的对话历史存储，而是构建了一套基于基准测试优化的持久化记忆机制。它能将复杂的项目上下文、用户的特定偏好以及之前解决 Bug 的路径进行结构化存储。当 AI 再次面对类似任务时，它会通过检索增强生成（RAG）的方式，迅速从记忆库中提取相关片段，从",
-    "detailCn": "想象一下你带了一个实习生写代码，结果他每隔一小时就失忆一次，你得一遍遍告诉他项目架构和命名规范，这简直是噩梦。agentmemory 就是为了解决 AI 编程助手这种“金鱼记忆”而生的，它给 AI 加上了一个可以随时读写的硬盘，让 AI 能记住你之前的所有要求和项目细节。\n\n在技术实现上，它并不只是简单的对话历史存储，而是构建了一套基于基准测试优化的持久化记忆机制。它能将复杂的项目上下文、用户的特定偏好以及之前解决 Bug 的路径进行结构化存储。当 AI 再次面对类似任务时，它会通过检索增强生成（RAG）的方式，迅速从记忆库中提取相关片段，从而做出更精准的决策，而不是盲目地猜测或胡编乱造。\n\n上手使用相对直接。首先需要克隆仓库并安装依赖：npm install，然后配置你的 API Key。通过简单的 API 调用，你可以将当前的上下文注入到 agentmemory 中，或者在 Agent 执行任务前调用内存检索接口。它被设计为插件化架构，可以很容易地集成到现有的 AI Agent 框架中。\n\n这个项目特别适合那些在处理大型代码库、需要 AI 深度参与长期项目的开发者。如果你觉得目前的 AI 编程助手总是忘记你之前的修改建议，或者在处理复杂逻辑时经常前后矛盾，那么这个工具能极大提升你的开发效率，让你感觉 AI 真的在随着项目的推进而成长。\n\n目前该项目在 GitHub 上拥有极高的人气，Star 数接近 3 万，说明很多开发者都深受记忆力不足之苦。相比于简单的向量数据库，它更侧重于针对“编程场景”的记忆优化。虽然还处于快速迭代期，但其针对 Benchmark 的优化方向使其在专业编程领域比通用记忆方案更实用。",
+    "summaryCn": "给所有编程助手的超长记忆外挂，支持十种工具。",
+    "reasonCn": "AgentMemory 是一款专为编程助手设计的持久记忆中间件，通过 iii 引擎构建，为 Claude Code、GitHub Copilot CLI 等十种主流工具提供跨会话记忆。它能将对话、代码片段、知识库整合进知识图谱，解决用户反复解释背景的问题，大幅提升编程效率。",
+    "detailCn": "AgentMemory 是一款专为编程助手设计的持久记忆中间件，通过 iii 引擎构建，为 Claude Code、GitHub Copilot CLI 等十种主流工具提供跨会话记忆。它能将对话、代码片段、知识库整合进知识图谱，解决用户反复解释背景的问题，大幅提升编程效率。\n\n项目构建在 iii 引擎之上，采用了混合搜索技术，将 Karpathy 的 LLM Wiki 模式进行了扩展，增加了置信度评分、生命周期管理和知识图谱功能。这意味着 AgentMemory 不仅能记住对话内容，还能对信息进行分类、排序和关联，帮助 AI 助手更精准地理解上下文。\n\n安装环境要求 Node.js 20 或更高版本，通过 npm 和 npx 即可快速部署。它不需要复杂的配置，通过配置文件即可接入目标编程助手，让 AI 在多轮对话中持续保持对项目背景、历史代码和约定规则的理解。\n\nAgentMemory 非常适合需要频繁切换上下文或处理大型项目的开发者。对于经常在多个终端间切换、需要 AI 助手记住大量历史细节的开发者来说，它能显著减少重复说明，提升协作效率。它也适合希望为现有 AI 编程助手扩展记忆能力的团队，通过知识图谱构建企业专属的代码知识库。",
     "stars": 28771,
     "starGrowth": 53,
     "createdAt": "2026-02-25T07:32:52Z",
@@ -14082,7 +14082,17 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.1974316777310486
+    "heatScore": 0.1974316777310486,
+    "facts": [
+      {
+        "claim": "支持 Claude Code、GitHub Copilot CLI 等十款主流编程助手。",
+        "source": "Persistent memory for Claude Code, GitHub Copilot CLI, Cursor, Gemini CLI, Codex CLI, Hermes, OpenClaw, pi, OpenCode, and any MCP client."
+      },
+      {
+        "claim": "以 iii 引擎为底层构建。",
+        "source": "Built on iii engine"
+      }
+    ]
   },
   {
     "repo": "AprilNEA/OpenLogi",

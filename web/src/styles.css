@@ -1094,12 +1094,13 @@ button {
   gap: 3px;
 }
 
-/* 通俗概括（行数由**卡宽**反推：一行放得下 35 字就 1 行、否则 2 行；见 feed-layout.ts 的
-   `feedCardShapeFor`。1 行档＝常态（卡宽 ≥653，含 1920 两列 793、单列档）；
-   2 行档只在八轮新增的窄 2 列档（卡宽 389–653）出现——那里靠加行而不是靠省略号。
+/* 通俗概括（**字号与行数都由卡宽反推**：窄档字号从 0.98rem 流式收到 0.81rem 把「一行 35 字」
+   的档位下推到卡宽 551；还放不下就加行（1–3 行）。真源＝feed-layout.ts 的 `feedSummaryShapeForCard`，
+   由 App 写进 `--feed-summary-font`（px，不是 rem —— 算式按 px 出值）/ `--feed-summary-lines`。
+   ⚠ 块的 min/max-height 用 em：字号一变，1 行/2 行的槽位高跟着变，不再需要 CSS 各写一份 px。
    ⚠ 与理由段共用「档内块高固定」原则：同档所有卡的行数一致 ⇒ 卡片彼此对齐、无参差。 */
 .summary {
-  font-size: 0.98rem;
+  font-size: var(--feed-summary-font, 0.98rem);
   font-weight: 700;
   line-height: 1.5;
   color: var(--text);
@@ -1123,13 +1124,14 @@ button {
   text-overflow: ellipsis;
   max-height: calc(1 * 1.5em + 16px);
 }
-/* 2 行档（窄 2 列：卡宽 < 653）：同一套「第二道锁」的思路，只是放到 2 行——
-   去掉 nowrap（要换行）、clamp 与 min/max-height 同步到 2 行（块高固定 ⇒ 同行卡片对齐）。 */
-.feed-list[data-sum-lines="2"] .summary {
+/* 多行档（窄卡靠加行不靠省略号）：去掉 nowrap（要换行）、clamp 与 min/max-height 同步到 N 行
+   （块高固定 ⇒ 同行卡片对齐）。N 由 `--feed-summary-lines` 给（九轮：1–3 行）。 */
+.feed-list[data-sum-lines="2"] .summary,
+.feed-list[data-sum-lines="3"] .summary {
   white-space: normal;
-  -webkit-line-clamp: 2;
-  min-height: calc(2 * 1.5em + 16px);
-  max-height: calc(2 * 1.5em + 16px);
+  -webkit-line-clamp: var(--feed-summary-lines, 2);
+  min-height: calc(var(--feed-summary-lines, 2) * 1.5em + 16px);
+  max-height: calc(var(--feed-summary-lines, 2) * 1.5em + 16px);
 }
 
 /* 理由（**行数按卡宽反推 3–7 行**：行数真源＝web/src/feed-layout.ts 的 `feedCardShapeFor()`，
@@ -2173,9 +2175,10 @@ button {
   .card {
     padding: 16px;
   }
-  .summary {
-    font-size: 0.92rem;
-  }
+  /* ⚠ 九轮：这里曾写死 `.summary { font-size: 0.92rem }`（手机档「按设计收窄」的一部分）。
+     手机档纳入自适应后，摘要字号由 `--feed-summary-font` 按卡宽算（390 档得 16.5px ≈ 0.97rem），
+     留着这条会**压过**变量（同优先级、晚者胜 ⇒ 形态算式与实渲不一致，卡高会差一行）。
+     卡内距 16px 则保留 —— 它是 chrome=61（FEED_CARD_CHROME_MOBILE）的几何依据。 */
   .detail-card {
     padding: 24px 20px;
   }

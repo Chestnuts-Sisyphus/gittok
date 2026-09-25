@@ -85,6 +85,14 @@ export function cardChecks(sc: ScoringResult, doc?: string): GateFails {
   if (!(r.length >= REASON_MIN && r.length <= REASON_MAX)) {
     fails.push(`简要介绍 ${r.length} 字（硬性要求 ${REASON_MIN}-${REASON_MAX} 汉字）`);
   }
+  // ⚠ G1-b 断句收尾（九轮 T4）**暂不进本闸**——两步走的第一步：
+  //   口径真源＝`taxonomy.endsWithSentenceEnd`；提示词已加硬性要求；库侧 `card-invariants` 记 **warn**；
+  //   写回闸（`scripts/gittok-recopy.ts` 的 gateOf）**先硬**拦住新写的；本闸（生产闸）等存量清完再升。
+  //   为什么不能现在就硬：本闸被 `src/feed/copy-ok.ts` **100% 复用**去打建站期的 `copyOk` 标
+  //   ⇒ 一硬就会把「只因断句不合格」的 **296 张**（实测 `npx tsx scripts/gittok-reason-end-impact.ts`）
+  //   一次性剔出推荐池（池子 1034 → 738）。那是用「少 296 张卡」去换「结尾一个标点」，
+  //   存量还没清就先把内容拿走，不符合〇块 13 的代价序（先加行/先补内容，再收版式）。
+  //   升级条件：`npx tsx scripts/gittok-reason-end-audit.ts --strict` 转绿（违约 0 或只剩 22 张被上限截的）。
   if (d.length < 500) fails.push(`深度解读 ${d.length} 字（硬性要求 500-800 字）`);
   else if (d.length > 900) fails.push(`深度解读 ${d.length} 字（超过 800 字上限，收一收）`);
 

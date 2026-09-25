@@ -15,7 +15,15 @@
  *   if (!r.ok) throw new Error(...)   // 管道在写盘前自断
  */
 
-import { ZONES, FUN_DIMS, SUMMARY_MIN, SUMMARY_MAX, REASON_MIN, REASON_MAX } from "./taxonomy.ts";
+import {
+  ZONES,
+  FUN_DIMS,
+  SUMMARY_MIN,
+  SUMMARY_MAX,
+  REASON_MIN,
+  REASON_MAX,
+  endsWithSentenceEnd,
+} from "./taxonomy.ts";
 
 /**
  * 硬性字段：**管道每轮必然产出**的字段（缺 = 管道坏了 / 缓存白名单漏了 → 拒绝提交）。
@@ -174,6 +182,13 @@ export function checkCardInvariants(
     ) {
       // 六轮 G2：与提示词同侧同值（String.length 100–150）。原先只检下限且用 effLen。
       add(repo, "reasonCn", `字数 ${reason.length} 不在 ${REASON_MIN}-${REASON_MAX}`);
+    }
+    // 九轮 T4 断句收尾：**先 warn**（两步走的第一步）。
+    // 为什么不当下就升 hard：存量 573/2958（19.4%）是历史欠账，要等重跑清完（E-8 队列）才收口；
+    // 现在就 hard 会让 CI 长期红着，把「真红」淹掉（〇块第 4 条的反面用法）。
+    // 生成端已经**硬拦**（`checks.cardChecks` G1-b）⇒ 新的不会再进来；本条的 warnCount 就是欠账读数。
+    if (typeof reason === "string" && reason.length > 0 && !endsWithSentenceEnd(reason)) {
+      add(repo, "reasonCn", "结尾不是句末标点（九轮 T4：须以 。！？… 收尾；存量欠账，warn）", "warn");
     }
   }
 

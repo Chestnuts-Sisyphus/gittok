@@ -185,7 +185,9 @@ describe("P0a 长度校验（effLen / 重评 / detail 兜底 / pending）", () =
   it("重评成功替换不达标内容：最终 reasonCn 是重评返回值", async () => {
     llmMock.impl = (_prompt: string) => {
       if (callCount.n === 1) return scoreJson("new/replace", SHORT_REASON);
-      return scoreJson("new/replace", GOOD_REASON + "重评补充的技术细节与具体能力说明");
+      // 九轮 T4：重评返回的文案也要守「以句末标点收尾」——fixture 原来结尾停在半个短语上，
+      // 会被新增的 G1-b 拦下（那正是该闸的本义）；补齐句号才代表"达标的重评输出"。
+      return scoreJson("new/replace", GOOD_REASON + "重评补充的技术细节与具体能力说明。");
     };
     const trending = makeTrendingData(["new/replace"]);
 

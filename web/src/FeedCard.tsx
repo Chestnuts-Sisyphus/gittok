@@ -189,7 +189,10 @@ interface Props {
   onOpenCreator?: (owner: string) => void;
   /** 标签槽位（八轮）：本档卡宽下**整行**放得下的 chip 数，由 `feedTagSlotsForCard` 反推后传下来。
    *  为什么要有它：`.card-tags` 是 26px 定高 + overflow:hidden，chip 一旦换行就会被切出
-   *  2px 残片（观感上就是「排版坏了」）。按槽位截断 + 余量折进 `+N` ⇒ 永不换行、且计数诚实。 */
+   *  2px 残片（观感上就是「排版坏了」）。按槽位截断 + 余量折进 `+N` ⇒ 永不换行、且计数诚实。
+   *  ⚠ 九轮订正：**`+N` 片本身也要占一个槽位**。八轮把槽位全给了标签、再额外补一片 `+N`
+   *    ⇒ 实际渲染 slots+1 片，全库扫描实测 9/837 张（1343 档）因此换行（`D:/tmp/gt-layout/r9/slot-tag-*.json`：
+   *    6 片合计 467–539px vs 容器 486px）。九轮改成「要出 `+N` 就先让出一个槽位」⇒ 渲染片数恒 ≤ 槽位。 */
   tagSlots?: number;
 }
 
@@ -205,6 +208,9 @@ function FeedCardComponent({
 }: Props) {
   const langColor = LANG_COLORS[card.language] ?? "#666";
   const reason = cleanReason(card.reasonCn);
+  // 九轮：末片若是 `+N`，标签只能占 slots−1 片（否则整行 chips = slots+1 片，超出估算预算）。
+  const truncated = card.tags.length > tagSlots;
+  const shownTags = card.tags.slice(0, truncated ? Math.max(0, tagSlots - 1) : tagSlots);
   const badges = channelBadges(card, channel);
 
   return (
@@ -289,14 +295,12 @@ function FeedCardComponent({
 
       {card.tags && card.tags.length > 0 && (
         <div className="card-tags">
-          {card.tags.slice(0, tagSlots).map((tag) => (
+          {shownTags.map((tag) => (
             <span key={tag.name} className={`tag-chip tag-${tag.source}`}>
               {tag.name}
             </span>
           ))}
-          {card.tags.length > tagSlots && (
-            <span className="tag-chip tag-more">+{card.tags.length - tagSlots}</span>
-          )}
+          {truncated && <span className="tag-chip tag-more">+{card.tags.length - shownTags.length}</span>}
         </div>
       )}
     </article>

@@ -16,18 +16,15 @@ import {
 import { loadCachedText, saveCachedText } from "./feed-cache.ts";
 import {
   FEED_CARD_HEIGHT_SHORT,
-  FEED_CARD_MAX,
   FEED_GRID_REF,
   FEED_MOBILE_MAX_WIDTH,
-  FEED_REASON_LINES_MIN,
-  FEED_ROW_GAP,
   FEED_ROW_HEIGHT,
   FEED_SHORT_MAX_HEIGHT,
   feedCardHeightForHeight,
   feedCardShapeFor,
   feedColsForContentWidth,
   feedGridFromMatch,
-  feedTagSlotsForCard,
+  feedTierMetricsFor,
   feedViewportOf,
   feedWindow,
   isScrollableOverflow,
@@ -721,16 +718,21 @@ function buildRecommended(
  * 反解、写进同一个 `--feed-cols`；CSS 用 `.feed-list[style*="--feed-cols"]` 不行——直接给容器
  * 加 style 即可，`.feed-window >` 那条主规则继续只管虚拟列表。
  */
-function useResponsiveCols(rowGap: number): {
+function useResponsiveCols(): {
   ref: (el: HTMLElement | null) => void;
   cols: number;
   shape: FeedCardShape;
 } {
+  const mobile = useIsMobile();
+  const { rowGap, chrome, reasonLinesMax } = feedTierMetricsFor(mobile);
   const elRef = useRef<HTMLElement | null>(null);
   const [cols, setCols] = useState(1);
   // 八轮：形态（行数/卡高/标签槽位）与列数**同一次测量**里算出来，一起写进 CSS 变量。
+  // 九轮：手机档（≤768）也走同一条反推（chrome 61 / 理由上限 10），不再有「按设计收窄」那支。
   // 反推规则见 feed-layout.ts 的 `feedCardShapeFor`（窄卡靠加行保住内容契约，不靠截断）。
-  const [shape, setShape] = useState<FeedCardShape>(() => feedCardShapeFor(0, 1, rowGap));
+  const [shape, setShape] = useState<FeedCardShape>(() =>
+    feedCardShapeFor(0, 1, rowGap, chrome, reasonLinesMax),
+  );
   // 条件渲染下（搜索空态/收藏夹展开只在特定视图存在），ref 挂上时 effect 已经跑过了——
   // 所以 ref callback 里直接触发首次测量，不能指望 effect。
   const measureRef = useRef<() => void>(() => {});
@@ -742,14 +744,14 @@ function useResponsiveCols(rowGap: number): {
       const w = list.clientWidth;
       const next = feedColsForContentWidth(w, rowGap);
       setCols(next);
-      setShape(feedCardShapeFor(w, next, rowGap));
+      setShape(feedCardShapeFor(w, next, rowGap, chrome, reasonLinesMax));
     };
     measureRef.current();
     const ro = new ResizeObserver(() => measureRef.current());
     if (elRef.current) ro.observe(elRef.current);
     const roRef = ro;
     return () => roRef.disconnect();
-  }, [rowGap]);
+  }, [rowGap, chrome, reasonLinesMax]);
   return {
     cols,
     shape,
@@ -760,11 +762,25 @@ function useResponsiveCols(rowGap: number): {
   };
 }
 
-function useFeedGrid() {
+/** 手机档（≤768）的**唯一**真源：列数、行距、chrome、理由行数上限都吃它。
+ *  八轮那版还在 FeedVirtualList 里自己 matchMedia 一次、secondary 列表另按 FEED_ROW_GAP 算——
+ *  九轮手机档纳入自适应后，那两处会各算出一套形态（chrome 差 8px ⇒ 摘要行数/卡高都不同）。 */
+function useIsMobile(): boolean {
   const [mobile, setMobile] = useState(
     () =>
       typeof window !== "undefined" && window.matchMedia(`(max-width: ${FEED_MOBILE_MAX_WIDTH}px)`).matches,
   );
+  useEffect(() => {
+    const mq = window.matchMedia(`(max-width: ${FEED_MOBILE_MAX_WIDTH}px)`);
+    const onChange = () => setMobile(mq.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+  return mobile;
+}
+
+function useFeedGrid() {
+  const mobile = useIsMobile();
   // G-11：横屏窄高（≤560）时 CSS 把卡高降到 210，垫片档位必须同步，否则虚拟列表错位。
   // 八轮起这一档**只是下限保护**：正常档的卡高由 feedCardShapeFor 反推（加行就加高），
   // 只有窄高档仍固定 210（那一档连视觉带都放不下半张卡，行数被 CSS 压回 2 行）。
@@ -772,18 +788,12 @@ function useFeedGrid() {
     typeof window === "undefined" ? FEED_CARD_HEIGHT_SHORT : feedCardHeightForHeight(window.innerHeight),
   );
   useEffect(() => {
-    const mq = window.matchMedia(`(max-width: ${FEED_MOBILE_MAX_WIDTH}px)`);
-    const onChange = () => setMobile(mq.matches);
-    mq.addEventListener("change", onChange);
     const shortQ = window.matchMedia(`(max-height: ${FEED_SHORT_MAX_HEIGHT}px)`);
     const onHeight = () => setCardHeight(feedCardHeightForHeight(window.innerHeight));
     shortQ.addEventListener("change", onHeight);
-    return () => {
-      mq.removeEventListener("change", onChange);
-      shortQ.removeEventListener("change", onHeight);
-    };
+    return () => shortQ.removeEventListener("change", onHeight);
   }, []);
-  return { ...feedGridFromMatch(mobile), cardHeight };
+  return { ...feedGridFromMatch(mobile), cardHeight, mobile };
 }
 
 interface FeedVirtualListProps {
@@ -810,7 +820,9 @@ function FeedVirtualList({
   entering = false,
   onExpose,
 }: FeedVirtualListProps) {
-  const { cols: gridCols, rowGap, cardHeight } = useFeedGrid();
+  const { cols: gridCols, rowGap, cardHeight, mobile } = useFeedGrid();
+  // 档位常数（chrome / 理由行数上限）与列数同源：手机档换一套几何常数（见 feedTierMetricsFor）。
+  const { chrome, reasonLinesMax } = feedTierMetricsFor(mobile);
   const wrapRef = useRef<HTMLDivElement>(null);
   // G-10 / 2026-09-23 第四版：列数是**单一真源**——由本组件量出网格可用宽、按 feedColsForContentWidth
   // 反解（规则：先取让卡片不超上限 700px 的最少列数，若会把卡片压到下限 420px 以下再减一列），
@@ -833,12 +845,20 @@ function FeedVirtualList({
   //   ⇒ 列数改由「卡宽 ≤ 793」反解（feedColsForContentWidth），中间带不再退化成带页边距的单列；
   //     窄下来的卡靠**加行**（摘要 1–2 行、理由 3–7 行）保住内容契约，行数/卡高/标签槽位都由
   //     `feedCardShapeFor(网格宽, 列数)` 一次算出 —— 一处改动、四样东西跟着走，避免「改了列数忘了卡高」。
-  //   ⚠ ≤768 手机档**不走这套反推**：那一档是既有的「按设计收窄」（卡宽≈视口−48、摘要 18–19 字、
-  //     理由 3 行），六轮 G9① 记的待裁项，本轮不动（≤768 不许破）。
+  // ── 九轮（2026-09-25 第二轮）：**手机档也走同一算式**，两处「按设计收窄」被取消 ──
+  //   八轮把 ≤768 排除在自适应之外（「那一档是既有设计，≤768 不许破」），代价是实测**每张卡都截断**：
+  //   390 档摘要被截 808/837（一行只放 18 字 < 契约下限 20）、理由被截 837/837（3 行 ≈60 字 < 100）。
+  //   ⇒ 按〇块 7（内容契约优先于版式）与 13（窄卡的代价选「加行」不选「截断」）收口成**纳入自适应**：
+  //     手机档与桌面档共用 `feedCardShapeFor`，只换三个几何常数（feedTierMetricsFor）。
+  //     实测（390 档）：摘要 2 行（每行 18 字 ⇒ 36 ≥ 35，0 截）、理由 8 行、卡高 447 ⇒ 可视带 790 放得下。
+  //   ⚠ 手机档的首帧估算也要给值（旧版给 0 ⇒ 首帧会按 0 宽算出 3 行摘要 + 最小字号，再跳回来）：
+  //     卡宽 = 视口 − 32（.main 内距 12×2 + 滚动条槽 8，本机实测 358@390 / 728@760）。
   const [contentW, setContentW] = useState(() =>
-    typeof window === "undefined" || window.innerWidth <= FEED_MOBILE_MAX_WIDTH
+    typeof window === "undefined"
       ? 0
-      : Math.min(window.innerWidth - 280, FEED_GRID_REF),
+      : window.innerWidth <= FEED_MOBILE_MAX_WIDTH
+        ? Math.max(0, window.innerWidth - 32)
+        : Math.min(window.innerWidth - 280, FEED_GRID_REF),
   );
   const [cols, setCols] = useState(() => {
     if (typeof window === "undefined") return gridCols;
@@ -890,29 +910,15 @@ function FeedVirtualList({
     const wrap = wrapRef.current;
     if (wrap) playCardsFlip(flipRoot(wrap), before);
   });
-  // 档内形态（唯一读法）：网格宽 + 列数 ⇒ 卡宽/摘要行数/理由行数/卡高/标签槽位。
-  // 两档**不反推**（走既有「按设计收窄」）：
-  //   · ≤768 手机档（卡宽≈视口−48、摘要 18–19 字、理由 3 行 —— 六轮 G9① 待裁）；
-  //   · 窄高档（视口高 ≤560、卡高 210、CSS 把理由压到 2 行 —— G-11 的横屏手机档）。
-  // 这两档的**标签槽位仍按几何算**（与行数无关，纯为「不出现半截 chip」）。
-  const legacyShapeTier =
-    cardHeight === FEED_CARD_HEIGHT_SHORT ||
-    (typeof window !== "undefined" && window.innerWidth <= FEED_MOBILE_MAX_WIDTH);
-  const shape = useMemo(
-    () =>
-      legacyShapeTier
-        ? {
-            cardWidth: Math.min(contentW || 0, FEED_CARD_MAX),
-            summaryLines: 1,
-            reasonLines: FEED_REASON_LINES_MIN,
-            cardHeight,
-            tagSlots: feedTagSlotsForCard(Math.min(contentW || 360, FEED_CARD_MAX)),
-          }
-        : feedCardShapeFor(contentW, cols, rowGap),
-    [legacyShapeTier, contentW, cols, rowGap, cardHeight],
-  );
+  // 档内形态（唯一读法）：网格宽 + 列数 + 档位常数 ⇒ 卡宽/摘要字号/摘要行数/理由行数/卡高/标签槽位。
+  // 九轮起只有**窄高档**（视口高 ≤560、G-11 的横屏手机）这一支还会覆盖卡高：CSS 把卡高压到 210
+  // 并把理由 clamp 到 2 行（那一档连可视带都放不下半张卡）。其余档（含手机档）全部走同一算式。
+  const shape = useMemo(() => {
+    const s = feedCardShapeFor(contentW, cols, rowGap, chrome, reasonLinesMax);
+    return cardHeight === FEED_CARD_HEIGHT_SHORT ? { ...s, cardHeight } : s;
+  }, [contentW, cols, rowGap, chrome, reasonLinesMax, cardHeight]);
   // 窄高档（视口高 ≤560）优先：那一档 CSS 把卡高压到 210，垫片与卡高必须同值。
-  const tierCardHeight = cardHeight === FEED_CARD_HEIGHT_SHORT ? cardHeight : shape.cardHeight;
+  const tierCardHeight = shape.cardHeight;
   const listKey = `${channel ?? ""}:${cards[0]?.repo ?? ""}:${cards.length}:${cols}:${rowGap}:${tierCardHeight}`;
   const [winKey, setWinKey] = useState(listKey);
   const [win, setWin] = useState<FeedWindow>(() =>
@@ -1004,6 +1010,9 @@ function FeedVirtualList({
         style={
           {
             "--feed-cols": cols,
+            // 九轮：摘要字号随卡宽流式收缩（0.98→0.81rem）——写 px 而不是 rem，因为真源是
+            // feedSummaryShapeForCard 的算式（卡宽→字号），CSS 只负责照做，别再各写一份。
+            "--feed-summary-font": `${shape.summaryFontPx}px`,
             "--feed-summary-lines": shape.summaryLines,
             "--feed-reason-lines": shape.reasonLines,
             "--feed-card-h": `${tierCardHeight}px`,
@@ -1093,7 +1102,7 @@ export default function App() {
   const [expandedCols, setExpandedCols] = useState<Record<string, boolean>>({});
   // 二轮 G6：收藏夹展开的卡片网格与主信息流同一条列数反解。多个收藏夹共用同一容器宽
   // （.folder-cards 全宽），列数相同——一个 hook 量「我的页内容区」即可。
-  const { cols: folderCols, shape: folderShape, ref: folderColsRef } = useResponsiveCols(FEED_ROW_GAP);
+  const { cols: folderCols, shape: folderShape, ref: folderColsRef } = useResponsiveCols();
   const [searchQuery, setSearchQuery] = useState("");
   const [detailCard, setDetailCard] = useState<FeedCard | null>(null);
   const sourceRectRef = useRef<DOMRect | null>(null);
@@ -1691,7 +1700,7 @@ export default function App() {
     [cards],
   );
   // 二轮 G6：热门预览与主信息流同一条列数反解（不再是 CSS auto-fill 的另一套口径）
-  const { cols: hotCols, shape: hotShape, ref: hotColsRef } = useResponsiveCols(FEED_ROW_GAP);
+  const { cols: hotCols, shape: hotShape, ref: hotColsRef } = useResponsiveCols();
 
   // 创作者页项目列表（栈顶 owner 过滤，score 降序）
   const creatorCards = useMemo(() => {
@@ -2050,6 +2059,7 @@ export default function App() {
                                         style={
                                           {
                                             "--feed-cols": folderCols,
+                                            "--feed-summary-font": `${folderShape.summaryFontPx}px`,
                                             "--feed-summary-lines": folderShape.summaryLines,
                                             "--feed-reason-lines": folderShape.reasonLines,
                                             "--feed-card-h": `${folderShape.cardHeight}px`,
@@ -2266,6 +2276,7 @@ export default function App() {
                           style={
                             {
                               "--feed-cols": hotCols,
+                              "--feed-summary-font": `${hotShape.summaryFontPx}px`,
                               "--feed-summary-lines": hotShape.summaryLines,
                               "--feed-reason-lines": hotShape.reasonLines,
                               "--feed-card-h": `${hotShape.cardHeight}px`,
