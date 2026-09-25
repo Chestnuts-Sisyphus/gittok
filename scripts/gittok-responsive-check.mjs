@@ -50,14 +50,10 @@ const CDP_PORT = Number(process.env.GITTK_RESP_CDP || 19301);
  * 为什么用「注入 + 同一份断言代码」而不是另写一份探针：**断言只有一份真源**——
  * 另写探针会在闸改判据后失效，于是「自证」变成自欺（三轮 gt-observe-red.mjs 是那种形态的补丁版）。
  */
-const INJECT_CSS = process.env.GITTK_INJECT_CSS
-  ? fs.readFileSync(process.env.GITTK_INJECT_CSS, "utf8")
-  : "";
+const INJECT_CSS = process.env.GITTK_INJECT_CSS ? fs.readFileSync(process.env.GITTK_INJECT_CSS, "utf8") : "";
 /** 同上，但注入的是 **JS**（用来做 CSS 做不到的破坏：摘属性、改 DOM 结构）。
  *  用法：`GITTK_INJECT_JS=D:/tmp/gt-layout/r4/red/red-3-no-datacols.js pnpm responsive:check` */
-const INJECT_JS = process.env.GITTK_INJECT_JS
-  ? fs.readFileSync(process.env.GITTK_INJECT_JS, "utf8")
-  : "";
+const INJECT_JS = process.env.GITTK_INJECT_JS ? fs.readFileSync(process.env.GITTK_INJECT_JS, "utf8") : "";
 let PAGE_URL = "";
 
 const TAG = (() => {
@@ -111,43 +107,74 @@ const VIEWS = [
 const FEED_COL_MIN = 653;
 /** 单列档卡宽上限（2026-09-25 五轮，栗子「单列卡片的极限宽度按这个来」＝两列档那张卡）。
  *  ＝两列档在参照档（1920×1080、内容网格 1602）下的单卡宽 = (1602−16)/2 = 793。
- *  与 web/src/feed-layout.ts 的 FEED_CARD_MAX、styles.css 的 --feed-card-max 三处同值。 */
+ *  与 web/src/feed-layout.ts 的 FEED_CARD_MAX、styles.css 的 --feed-card-max 三处同值。
+ *  ⚠ 八轮（2026-09-25 晚）：这条上限从「单列档的收窄依据」升格为**全档的列数依据**——
+ *    栗子：「不允许出现留白……卡片到 793 就是极限、再长就要变成两列」⇒ 取最小 n 使卡宽 ≤793。
+ *    于是 794–1602 的内容宽一律两列（卡宽 389–793），**中间带的对称页边距归零**。 */
 const FEED_CARD_MAX = 793;
-/** ── 理由显示行数（2026-09-25 七轮新增，补的是丙C2「闸不判理由被截」这个漏网）────────
- *  理由的内容契约是 100–150 字（`REASON_MIN/MAX`，硬闸）；显示侧的行数**由卡宽反推**：
- *  `lines = ceil(150 / floor((卡宽 − 69) / 13.94))`，下限 3、上限 4（288 卡高的物理上限）。
- *  与 web/src/feed-layout.ts 的 FEED_REASON_MAX / FEED_REASON_CHAR_W / feedReasonLinesForCard()
- *  双写（lock 单测钉住前两者）。
- *  为什么必须有这条闸：09-25 之前显示侧固定 3 行，而 3 行只对卡宽 ≥766 成立 ⇒
- *  1600 档（卡宽 656）**72/837 张理由被省略号截掉（8.6%）**、1700 档 7/837；
- *  而旧闸只判「.reason 至少一行可见」，并把截断写成「设计内截断，不判」——四道闸全绿却线上真截。 */
-const FEED_REASON_MAX = 150;
-const FEED_REASON_CHAR_W = 16.66 * (0.82 / 0.98); // ≈13.94：摘要单字宽 × 字号比（0.82rem/0.98rem）
+/** 摘要行数/理由行数/卡高/标签槽位：与 web/src/feed-layout.ts 的 feedCardShapeFor 同式（双写，lock 单测钉住）。 */
+const FEED_SUMMARY_MAX = 35;
+const FEED_CHAR_W = 16.66;
+const FEED_REASON_CHAR_W = 16.66 * (0.82 / 0.98);
 const FEED_CARD_CHROME = 69;
-const FEED_REASON_LINES_MAX = 4;
-/** 理由**能完整显示**所需的最小卡宽（让 4 行装下 150 字）＝ 69 + ceil(150/4)×13.94 ≈ 599。
- *  窄于它的档（手机档、窄高档）在 288 卡高里物理上装不下 150 字 ⇒ 那条档**不判** 0 截，
- *  但**照实记数**（skip 而不是 pass），免得「没判」被读成「过了」。 */
-const FEED_REASON_FIT_MIN_CARD_W = Math.ceil(
-  FEED_CARD_CHROME + Math.ceil(FEED_REASON_MAX / FEED_REASON_LINES_MAX) * FEED_REASON_CHAR_W,
-);
-const FEED_SHORT_MAX_HEIGHT = 560;
-function feedReasonLinesExpected(cardW) {
-  if (!(cardW >= FEED_REASON_FIT_MIN_CARD_W)) return 3; // 手机档：按设计收窄，不按契约反推（待裁）
-  const perLine = Math.floor((cardW - FEED_CARD_CHROME) / FEED_REASON_CHAR_W);
-  if (!(perLine > 0)) return 3;
-  return Math.min(FEED_REASON_LINES_MAX, Math.max(3, Math.ceil(FEED_REASON_MAX / perLine)));
+const FEED_CARD_HEIGHT = 288;
+const FEED_SUMMARY_LINE_H = 25; // 1.5em @0.98rem
+const FEED_REASON_LINE_H = 23.7; // 1.7em @0.82rem
+const FEED_REASON_MAX = 150;
+const FEED_REASON_LINES_MIN = 3;
+const FEED_REASON_LINES_MAX = 7;
+const FEED_TAG_SLOT_PX = 88;
+const FEED_TAG_SLOTS_MIN = 2;
+const FEED_TAG_SLOTS_MAX = 8;
+function feedSummaryLinesExpected(cardW) {
+  return Math.floor((cardW - FEED_CARD_CHROME) / FEED_CHAR_W) >= FEED_SUMMARY_MAX ? 1 : 2;
 }
+function feedReasonLinesExpected(cardW) {
+  const perLine = Math.floor((cardW - FEED_CARD_CHROME) / FEED_REASON_CHAR_W);
+  if (!(perLine > 0)) return FEED_REASON_LINES_MIN;
+  return Math.min(
+    FEED_REASON_LINES_MAX,
+    Math.max(FEED_REASON_LINES_MIN, Math.ceil(FEED_REASON_MAX / perLine)),
+  );
+}
+function feedCardHeightExpected(cardW) {
+  return Math.round(
+    FEED_CARD_HEIGHT +
+      (feedSummaryLinesExpected(cardW) - 1) * FEED_SUMMARY_LINE_H +
+      (feedReasonLinesExpected(cardW) - FEED_REASON_LINES_MIN) * FEED_REASON_LINE_H,
+  );
+}
+function feedTagSlotsExpected(cardW) {
+  return Math.min(
+    FEED_TAG_SLOTS_MAX,
+    Math.max(FEED_TAG_SLOTS_MIN, Math.floor((cardW - FEED_CARD_CHROME) / FEED_TAG_SLOT_PX)),
+  );
+}
+/** 八轮：卡宽 ≤793 的最小列数（与 feedColsForContentWidth 同式）。 */
+function feedColsExpected(contentW, gap = 16) {
+  if (!(contentW > 0)) return 1;
+  const at = (n) => (contentW - (n - 1) * gap) / n;
+  let n = 1;
+  while (at(n) > FEED_CARD_MAX) n++;
+  return n;
+}
+const FEED_SHORT_MAX_HEIGHT = 560;
 const FEED_CAPACITY_MIN = 24;
+/** ── 逐档预期表（八轮重排：列数改由「卡宽 ≤793」反解，中间带一律两列）──────────────
+ *  数值＝本机实测（±1.5px 容差）；每档还带**档内形态**（摘要行数 S / 理由行数 R / 卡高 H / 标签槽位 T），
+ *  由 feedSummaryLinesExpected 一族从卡宽反推——**表格与算式互为校验**：
+ *  算式给出期望、实测给出读数，两边对不上就红（防「只改表格」或「只改算式」的单边漂移）。
+ *  ⚠ 1100/1200/1275/1343/1400 这五档在八轮从「1 列 793 + 两侧页边距」变成「2 列 406–556」——
+ *    这正是栗子「不允许出现留白，再长就要变成两列」那条指令的落点。 */
 const EXPECT_DESKTOP = {
   "2560x1080": { cols: 2, cardW: 793, capMin: 43, capMax: 43 },
   "1920x1080": { cols: 2, cardW: 793, capMin: 43, capMax: 43 },
   "1600x900": { cols: 2, cardW: 656, capMin: 35, capMax: 35 },
-  "1400x900": { cols: 1, cardW: 793, capMin: 43, capMax: 43 },
-  "1343x900": { cols: 1, cardW: 793, capMin: 43, capMax: 43 },
-  "1275x900": { cols: 1, cardW: 793, capMin: 43, capMax: 43 },
-  "1200x900": { cols: 1, cardW: 793, capMin: 43, capMax: 43 },
-  "1100x800": { cols: 1, cardW: 793, capMin: 43, capMax: 43 },
+  "1400x900": { cols: 2, cardW: 556, capMin: 29, capMax: 29 },
+  "1343x900": { cols: 2, cardW: 528, capMin: 27, capMax: 27 },
+  "1275x900": { cols: 2, cardW: 494, capMin: 25, capMax: 25 },
+  "1200x900": { cols: 2, cardW: 456, capMin: 23, capMax: 23 },
+  "1100x800": { cols: 2, cardW: 406, capMin: 20, capMax: 20 },
   "1000x800": { cols: 1, cardW: 728, capMin: 39, capMax: 39 },
   "900x800": { cols: 1, cardW: 628, capMin: 33, capMax: 33 },
   // 844×390 是 mobile:true 但 w>768 —— CSS 媒体查询按**宽度**走，844 用桌面栅格。
@@ -457,7 +484,8 @@ window.__gt = {
                whiteSpace: cs.whiteSpace, textOverflow: cs.textOverflow,
                maxH: cs.maxHeight==='none'? null : px(cs.maxHeight),
                minH: cs.minHeight==='none'? null : px(cs.minHeight),
-               oneLine: +(lineH+padY).toFixed(1), boxH: +rect.height.toFixed(1),
+               oneLine: +(lineH+padY).toFixed(1), lineH: +lineH.toFixed(1), padY: +padY.toFixed(1),
+               boxH: +rect.height.toFixed(1),
                visLines: vtops.size, lines: tops.size, sliver, sliverPx, hOverflow };
     });
   },
@@ -565,9 +593,11 @@ async function checkView(cdp, view) {
   }
   await cdp.call("Runtime.evaluate", { expression: PAGE_TOOLS });
   if (INJECT_CSS) {
-    await cdp.call("Runtime.evaluate", { expression: `(()=>{ let s=document.getElementById('gt-red-inject');
+    await cdp.call("Runtime.evaluate", {
+      expression: `(()=>{ let s=document.getElementById('gt-red-inject');
       if(!s){ s=document.createElement('style'); s.id='gt-red-inject'; document.head.appendChild(s); }
-      s.textContent=${JSON.stringify(INJECT_CSS)}; return s.textContent.length; })()` });
+      s.textContent=${JSON.stringify(INJECT_CSS)}; return s.textContent.length; })()`,
+    });
     await new Promise((r) => setTimeout(r, 350));
   }
   if (INJECT_JS) {
@@ -625,6 +655,17 @@ async function checkView(cdp, view) {
                               return Math.round(el.scrollHeight/lh);}))].sort((a,b)=>a-b) }; })(),
             reasonVar: (()=>{ const el=document.querySelector('.reason-clamped');
               return el? getComputedStyle(el).getPropertyValue('--feed-reason-lines').trim() : null; })(),
+            // 八轮 R6/R7：摘要被截数、卡高分布、标签行数（全在 DOM 卡上数，附分母）
+            sAll: (()=>{ const els=[...document.querySelectorAll('.summary')];
+              const clip=els.filter(el=>el.scrollWidth>el.clientWidth+1);
+              return { n: els.length, clipped: clip.length }; })(),
+            sumVar: list? list.getAttribute('data-sum-lines'): null,
+            sumAllLines: list? Number(list.getAttribute('data-sum-lines')||1): 1,
+            cardHs: [...document.querySelectorAll('.card')].map(c=>+c.getBoundingClientRect().height.toFixed(1)),
+            tagSlotsUsed: [...document.querySelectorAll('.card-tags')].map(t=>t.children.length),
+            tagWrapRows: [...document.querySelectorAll('.card-tags')].map(t=>{
+              const tops=new Set([...t.children].map(k=>Math.round(k.getBoundingClientRect().top))); return tops.size; }),
+            rowGap: (()=>{ const g=parseFloat(lcs?.rowGap||'0'); return Number.isFinite(g)? g : 0; })(),
             cardW: cr.width, cardLeftInGrid: Math.round(cr.left-lr.left),
             gridW: list? list.clientWidth: 0, gridRightSlack: Math.round(lr.right-cr.right),
             cueW: cr2? cr2.width: 0, cueDelta: cr2? Math.round(Math.abs(cr2.left-cr.left)): null,
@@ -659,81 +700,123 @@ async function checkView(cdp, view) {
   // 单列档「频道头与卡片左右缘对齐」：判左右缘各 ≤4px（浮动取整余量）
   const cueAlignsCard = m.cueDelta !== null && m.cueDelta <= 4 && m.cueRightDelta <= 4;
   if (view.w > 768) {
+    // ── 摘要容量判据（八轮改口径）──
+    // 旧判据是「一行容量 ≥24 字」（可读性下限，为 480px 卡宽设的）。八轮列数由上限反解后，
+    // 窄 2 列档的**一行**容量可以低到 20 字（卡宽 406）——短行并不难读，真正要守的是
+    // **契约内容不被裁**：槽位容量 = 行数 × 每行字数 ≥ 摘要契约上限 35（是否被裁由 R6 全量判）。
+    const slotCap = capMin * feedSummaryLinesExpected(m.cardW);
     report(
       view.key,
-      `.summary 一行容量 ≥${FEED_CAPACITY_MIN} 字（可读区间下限）`,
-      summaryCapacityPass(capMin),
-      `容量 min ${capMin} 字（单字宽 ${m.cap[0]?.charW}px / 内容宽 ${m.cap[0]?.width}px）｜采样整句可见 ${m.s.length - sClip}/${m.s.length}` +
-        `｜口径：${RUN_PLATFORM === "win32" ? `Windows 基准 ${FEED_CAPACITY_MIN} 字（=列宽下限 420px＝21 汉字）` : `非 Windows（${RUN_PLATFORM}）按 14.2% 跨平台漂移归一，下限 ${SUMMARY_CAPACITY_PASS_MIN} 字`}`,
+      `摘要槽位容量 ≥ 契约上限 ${FEED_SUMMARY_MAX} 字（${feedSummaryLinesExpected(m.cardW)} 行 × 每行 ${capMin} 字 = ${slotCap}）`,
+      slotCap >= FEED_SUMMARY_MAX,
+      `容量 min ${capMin} 字/行 × ${feedSummaryLinesExpected(m.cardW)} 行 = ${slotCap} 字｜单字宽 ${m.cap[0]?.charW}px / 内容宽 ${m.cap[0]?.width}px` +
+        `｜采样整句可见 ${m.s.length - sClip}/${m.s.length}｜口径注：旧判据「一行 ≥${FEED_CAPACITY_MIN} 字」是 480px 卡宽时代的可读性下限，` +
+        `八轮窄档一行本就会短于它（可读区间 22–38 汉字），故改判槽位容量 + R6 全量 0 截`,
     );
-    // ── 2026-09-25 七轮 R4（加严）：单列档卡宽 **= min(网格, 793)** 且左右留量**对称** ──
-    // 五轮的 R4 只有上界（≤793，单边），漏掉两种退化：
-    //   ① 取消上限让卡片铺满网格（栗子 09-25 否掉的「太长了」）；
-    //   ② 把 793 的卡**左对齐**丢在网格左边（栗子 09-24 明确否掉的「这种空隙不允许出现」，
-    //      那时是 700 左对齐留 296px 右空档）。
-    // 这条与 R1（多列档 ≥653）配对把卡宽夹在 [653, 793]；留量对称则锁住「余量作页边距」这条定版。
-    // 余量本身（deadZone = 网格 − 卡宽）**消不掉**（三条口径不可兼得，见规格文件），
-    // 所以它不做 FAIL 判据，只逐档记进读数 —— 让「中间带有多少留白」每次回归都有数，不再假装不存在。
-    const deadZone = m.cols === 1 ? Math.round(m.gridW - Math.round(m.cardW)) : 0;
+    // ── 2026-09-25 八轮 R0（新，直接锁栗子那条指令）：**零留白** —— 轨道铺满网格 ──
+    // 栗子原话：「首先不允许出现留白……那个卡片长度就是卡片极限长度了，再长就要变成两列」。
+    // 判据：n × 卡宽 + (n−1) × 行距 == 网格宽（±1.5px）⇒ 卡片右缘必须抵住网格右缘，
+    //       deadZone（网格 − 卡片占用）必须为 0。七轮那种「1 列 793 + 两侧对称页边距」在这里直接红。
+    const used =
+      Math.round(m.cardW) * m.cols + (m.cols - 1) * Math.round(m.gridW > 0 ? (m.rowGap ?? 16) : 16);
+    const deadZone = Math.max(0, Math.round(m.gridW - used));
+    const r0 = Math.abs(used - m.gridW) <= 1.5;
+    READINGS[view.key] = { ...m, usedWidth: used, deadZone };
+    report(
+      view.key,
+      "R0 零留白：n×卡宽 + (n−1)×行距 == 网格宽（栗子「不允许出现留白」，八轮新增）",
+      r0,
+      `列数 ${m.cols}｜卡宽 ${Math.round(m.cardW)}px ⇒ 占用 ${used}px vs 网格 ${m.gridW}px｜` +
+        `**留白 ${deadZone}px**（判据 ≤1.5）｜` +
+        `改前实测：1500 档 1 列 793 在 1228 网格里 ⇒ 留白 435px（栗子红框那两处）`,
+    );
+    // ── 2026-09-25 七轮 R4（八轮改写）：卡宽必须 ≤ 793，且**单列档不许再收窄** ──
+    // 八轮起列数由上限反解 ⇒ 单列只在网格 ≤793 时出现，那时卡宽 == 网格（收敛成 R0 的特例）。
+    // 这里保留「上限」这一半：防有人把 793 改大（卡又变长）或把单列收窄（又造留白）。
     const slackL = m.cardLeftInGrid;
     const slackR = Math.round(m.gridW - m.cardLeftInGrid - m.cardW);
-    const symmetric = m.cols > 1 || Math.abs(slackL - slackR) <= 2;
-    // deadZone 进读数（G9 表与规格文件的数字来源；中间带留白每次回归都有数）
-    READINGS[view.key] = { ...m, deadZone, slackLeft: slackL, slackRight: slackR };
     report(
       view.key,
-      `R4 单列档卡宽 = min(网格, ${FEED_CARD_MAX}) 且左右留量对称（七轮加严）`,
-      m.cardW <= FEED_CARD_MAX + 1.5 && symmetric,
-      `卡宽 ${Math.round(m.cardW)}px（上限 ${FEED_CARD_MAX}px）` +
-        (m.cols > 1
-          ? "（多列档由 R1+列数规则管，本档不判）"
-          : `｜网格 ${m.gridW}px ⇒ 留量 ${deadZone}px（deadZone，左 ${slackL} / 右 ${slackR}，对称 ${symmetric ? "✓" : "✗"}）`) +
+      `R4 卡宽 ≤ ${FEED_CARD_MAX}px（八轮：上限成为全档列数依据）`,
+      m.cardW <= FEED_CARD_MAX + 1.5,
+      `卡宽 ${Math.round(m.cardW)}px（上限 ${FEED_CARD_MAX}px）｜列数 ${m.cols}｜网格 ${m.gridW}px｜左余 ${slackL} 右余 ${slackR}` +
         `｜改前实测：1500 档卡宽 1228（栗子：「这个太长了」）；左对齐 700 留 296px 右空档（栗子 09-24：「这种空隙不允许出现」）`,
     );
-    // ── 2026-09-25 七轮 R5：**理由按卡宽反推行数 + 桌面档 0 被截** ──
-    // 这是丙C2 的漏网：旧闸只判「.reason 至少一行可见」，把 clamp 截断写成「设计内截断，不判」，
-    // 于是 1600/1700 两档理由真被截（72/837、7/837）而四道闸全绿。
-    // 两段判法（〇块第 6 条「无样本 ≠ 通过」）：
-    //   A 段 该档**装得下**（该档行数 × 每行容量 ≥ 150 且不是窄高档）⇒ 判 0 被截，截一张就红；
-    //   B 段 物理上装不下（手机档 / ≤560 窄高档的 2 行）⇒ **不判**，但把张数与行数照实记进读数。
+    // ── 2026-09-25 八轮 R5：理由行数按卡宽反推（3–7 行）且**0 被截**；卡高必须跟着行数 ──
+    // 七轮那次只到 4 行、且靠「吃掉卡底 27px 余量」塞进 288 —— 各档节奏不齐（栗子：「不够统一」）。
+    // 八轮改成「加行就加卡高」：卡高 = 288 + (S−1)×25 + (R−3)×23.7，**卡底余量恒 27px**。
     const reasonExp = feedReasonLinesExpected(m.cardW);
-    const perLine = Math.floor((m.cardW - FEED_CARD_CHROME) / FEED_REASON_CHAR_W);
-    const reasonCapacity = reasonExp * Math.max(0, perLine);
+    const summaryExp = feedSummaryLinesExpected(m.cardW);
+    const heightExp = feedCardHeightExpected(m.cardW);
+    const tagExp = feedTagSlotsExpected(m.cardW);
+    const perLineR = Math.floor((m.cardW - FEED_CARD_CHROME) / FEED_REASON_CHAR_W);
+    const reasonCapacity = reasonExp * Math.max(0, perLineR);
     const reasonJudgeable = view.h > FEED_SHORT_MAX_HEIGHT && reasonCapacity >= FEED_REASON_MAX;
     const reasonLines = m.rAll?.lines ?? [];
     const reasonFits = reasonLines.length > 0 && Math.max(...reasonLines) <= reasonExp;
     const r5detail =
       `--feed-reason-lines=${m.reasonVar ?? "?"}（期望 ${reasonExp}）｜在 DOM 的理由 ${m.rAll?.n ?? 0} 张，` +
-      `被截 ${m.rAll?.clipped ?? "?"} 张｜实占行数 ${JSON.stringify(reasonLines)}` +
-      `｜口径：lines = ceil(150 / floor((卡宽−69)/13.94))，上下限 3–4（288 卡高上限）` +
-      `｜改前：3 行固定 ⇒ 1600 档 72/837 被截（8.6%）、1700 档 7/837`;
+      `被截 ${m.rAll?.clipped ?? "?"} 张｜实占行数 ${JSON.stringify(reasonLines)}｜容量 ${reasonExp} 行 × ${perLineR} 字 = ${reasonCapacity} 字` +
+      `｜口径：lines = ceil(150 / floor((卡宽−69)/13.94))，上下限 3–7｜改前：固定 3 行 ⇒ 1600 档 72/837 被截（8.6%）`;
     if (reasonJudgeable) {
-      report(view.key, `R5 理由行数按卡宽反推且 0 被截（卡宽 ${Math.round(m.cardW)}px ⇒ ${reasonExp} 行）`, reasonFits && m.rAll.clipped === 0, r5detail);
+      report(
+        view.key,
+        `R5 理由行数按卡宽反推且 0 被截（卡宽 ${Math.round(m.cardW)}px ⇒ ${reasonExp} 行）`,
+        reasonFits && m.rAll.clipped === 0,
+        r5detail,
+      );
     } else {
       skip(
         view.key,
         `R5 理由 0 被截（本档不判：${view.h <= FEED_SHORT_MAX_HEIGHT ? `窄高档 ${view.h}px ≤ ${FEED_SHORT_MAX_HEIGHT}，clamp 收到 2 行` : `卡宽 ${Math.round(m.cardW)}px 装不下 150 字`}）`,
-        `该档容量 ${reasonExp} 行 × ${perLine} 字 = ${reasonCapacity} 字 < ${FEED_REASON_MAX}｜` + r5detail,
+        r5detail,
       );
     }
-    const exp = EXPECT_DESKTOP[view.key];
-    const expCap = exp?.capMax ?? 99;
-    // ── 2026-09-24 四轮 R1：列数 ≥ 2 ⇒ 卡宽 ≥ 653（＝一行放得下 35 字） ──
-    // 旧闸这里是一条「容量 ≤38 字」的上限（「卡宽上限 700」时代的产物）。四轮把上限改成**结构性**的：
-    // 卡宽上限这个概念已删除，宽度只由列数决定，而列数规则保证「再加一列就会掉到 653 以下」——
-    // 于是"摘要能不能一行读完"由 R1 直接锁住，不再需要一个人工上限数字（栗子 09-24 的标准）。
-    // ⚠ 七轮（2026-09-25）追加的第二重身份：**这条同时是「禁止为消留白而提前升列」的锁**。
-    //   任务书 G1 的原推荐方案（网格 ∈ (793,1322) 时提前升 2 列）实测代价＝卡宽 389–653
-    //   ⇒ 摘要被截 4.7%–80%、理由被截 38.8%–99.5%（`D:/tmp/gt-layout/r7/scan-inj2col1500.json`）。
-    //   谁把门槛下调去换「零留白」，R1 就会红在这一档上（配合 R4 的对称判据，两头都堵住）。
-    const r1 = m.cols === 1 || m.cardW >= FEED_COL_MIN - 1.5;
+    // ── 2026-09-25 八轮 R6（新）：摘要**0 被截**（2 行档靠换行而不是省略号）──
+    // 旧闸只判「一行容量 ≥24 字」（可读性下限），不判有没有被裁；窄 2 列档（卡宽 <653）一行放不下
+    // 35 字，八轮给 2 行槽位 ⇒ 内容照样全显。判据＝所有在 DOM 的摘要 scrollWidth ≤ clientWidth+1。
+    const r6Judgeable = view.h > FEED_SHORT_MAX_HEIGHT;
+    const r6 = (m.sAll?.clipped ?? 0) === 0;
     report(
       view.key,
-      `R1 多列档卡宽 ≥ ${FEED_COL_MIN}px（＝一行放得下 ${35} 字，栗子 09-24 标准）`,
-      r1,
-      `列数 ${m.cols}｜卡宽 ${Math.round(m.cardW)}px` +
-        (m.cols === 1 ? "（单列档不受此约束）" : `（阈值 ${FEED_COL_MIN}px，余量 ${(m.cardW - FEED_COL_MIN).toFixed(1)}px）`) +
-        `｜一行容量 min ${capMin} 字`,
+      `R6 摘要 0 被截（卡宽 ${Math.round(m.cardW)}px ⇒ ${summaryExp} 行槽位）`,
+      r6Judgeable ? r6 : true,
+      `data-sum-lines=${m.sumVar ?? "?"}（期望 ${summaryExp}）｜在 DOM 的摘要 ${m.sAll?.n ?? 0} 张，` +
+        `被截 ${m.sAll?.clipped ?? "?"} 张｜口径：一行放得下 35 字（` +
+        `floor((卡宽−69)/16.66) ≥ 35）就 1 行、否则 2 行 ⇒ 窄卡靠加行而不是省略号`,
+    );
+    // ── 2026-09-25 八轮 R7（新）：档内形态三项（卡高 / 理由行数 / 标签槽位）必须与算式一致 ──
+    const heights = [...new Set((m.cardHs ?? []).map((x) => Math.round(x)))].sort((a, b) => a - b);
+    // 窄高档（视口高 ≤560）：卡高由 CSS 锁 210、理由 2 行、摘要仍 1 行（G-11 的横屏手机档），
+    // 不按档内形态反推 —— 这里只判「卡高确实被锁在一个值上」。
+    const shortTier = view.h <= FEED_SHORT_MAX_HEIGHT;
+    const heightOk = shortTier
+      ? heights.length === 1 && Math.abs(heights[0] - 210) <= 1
+      : heights.length === 1 && Math.abs(heights[0] - heightExp) <= 1;
+    // 标签槽位：渲染数 = 槽位（+ 1 个 `+N` 计数片，当被截的标签数 >0 时）
+    const tagOk = (m.tagSlotsUsed ?? []).every((n) => n <= tagExp + 1);
+    const tagWraps = m.tagWrapRows ?? [];
+    const tagOneRow = tagWraps.every((n) => n === 1);
+    report(
+      view.key,
+      `R7 档内形态：卡高 = 算式值、标签不换行（不出现半截 chip）`,
+      heightOk && tagOk && tagOneRow,
+      `卡高 ${JSON.stringify(heights)}（${shortTier ? "窄高档锁 210" : `算式 ${heightExp}px = 288 + (${summaryExp}−1)×25 + (${reasonExp}−3)×23.7`}）｜` +
+        `标签槽位用 ${JSON.stringify([...new Set(m.tagSlotsUsed ?? [])])}（上限 ${tagExp} + 1 个 +N）｜` +
+        `标签行数分布 ${JSON.stringify(tagWraps.reduce((a, x) => ((a[x] = (a[x] || 0) + 1), a), {}))}（必须全 1 行 ⟺ 无半截 chip）`,
+    );
+    const exp = EXPECT_DESKTOP[view.key];
+    // ── 2026-09-24 四轮 R1（八轮改判据）：**卡宽 ≤ 793 且列数 = 算式值** ──
+    // 旧 R1 是「≥2 列 ⇒ 卡宽 ≥653」（那时 2 列只在 ≥1322 才出现）。八轮列数由上限反解，
+    // 2 列档的卡宽可以低到 389 —— 653 下界不再是列数门槛，**内容完整性改由 R5/R6 直接判**
+    // （行数按卡宽反推 + 0 被截），比「用卡宽下界间接保证」更直接。
+    const colsExp = feedColsExpected(m.gridW, m.rowGap ?? 16);
+    report(
+      view.key,
+      `R1 列数 = 上限反解（卡宽 ≤${FEED_CARD_MAX} 的最小列数）`,
+      m.cols === colsExp,
+      `列数 ${m.cols}（算式 ${colsExp}）｜网格 ${m.gridW}px，卡宽 ${Math.round(m.cardW)}px｜` +
+        `算式：取最小 n 使 (网格−(n−1)×16)/n ≤ ${FEED_CARD_MAX} ⇒ 中间带一律两列（零留白）`,
     );
     report(
       view.key,
@@ -766,7 +849,7 @@ async function checkView(cdp, view) {
         dHead !== null && dHead <= 2,
         m.cueW
           ? `头宽 ${Math.round(m.cueW)}px vs 网格 ${m.gridW}px（差 ${dHead?.toFixed(1)}px）｜列数 ${m.cols}` +
-            `｜改前实测：1500×520 头 700/网格 1228（43%）、1600×900 头 700/网格 1328`
+              `｜改前实测：1500×520 头 700/网格 1228（43%）、1600×900 头 700/网格 1328`
           : "本档无频道头/偏好条可测（不判）",
       );
     }
@@ -834,17 +917,28 @@ async function checkView(cdp, view) {
       (tagsCut.length ? `｜被裁 ${tagsCut.map((x) => `${x.sw}>${x.cw}`).join(" ")}` : ""),
   );
 
-  // 3.5 H-01：一句话单行防御锁回归断言（改坏 styles.css 的 max-height / clamp 必须复红）
+  // 3.5 H-01：一句话防御锁回归断言（改坏 styles.css 的 max-height / clamp 必须复红）
   // 口径注：display 不做 FAIL 条件——Chrome 把 computed `display:-webkit-box` 归一报成 "flow-root"
   // （实测 12/12 张），拿它判红必假红；display 的源码契约由 web/src/__tests__/summary-single-line.test.ts 拦。
+  // 八轮：行数由**档**决定（卡宽 ≥653 ⇒ 1 行；窄 2 列档 ⇒ 2 行槽位，靠换行而不是省略号），
+  // 所以断言从「恒 1 行」改成「= 本档行数」，并且「半行字顶外露」仍然恒为 0（这条与行数无关）。
+  const sumLinesTier = m.sumAllLines ?? 1;
   const lk = await cdp.eval(`return window.__gt.summaryLock('.summary', 12);`);
   const lkBad = {
-    "clamp 失效（line-clamp≠1 或 overflow≠hidden）": lk.filter((x) => x.clamp !== "1" || x.overflow !== "hidden"),
-    "max-height 缺失或不等于一行高": lk.filter((x) => x.maxH === null || Math.abs(x.maxH - x.oneLine) > 1),
-    "min-height 缺失或不等于一行高": lk.filter((x) => x.minH === null || Math.abs(x.minH - x.oneLine) > 1),
-    "max≠min（钉死失效）": lk.filter((x) => x.maxH === null || x.minH === null || Math.abs(x.maxH - x.minH) > 0.6),
-    "盒高越出一行": lk.filter((x) => x.boxH > x.oneLine + 1),
-    "可见文本占了两行": lk.filter((x) => x.visLines > 1),
+    [`clamp 失效（line-clamp≠${sumLinesTier} 或 overflow≠hidden）`]: lk.filter(
+      (x) => x.clamp !== String(sumLinesTier) || x.overflow !== "hidden",
+    ),
+    "max-height 缺失或不等于槽位高": lk.filter(
+      (x) => x.maxH === null || Math.abs(x.maxH - (x.lineH * sumLinesTier + x.padY)) > 1,
+    ),
+    "min-height 缺失或不等于槽位高": lk.filter(
+      (x) => x.minH === null || Math.abs(x.minH - (x.lineH * sumLinesTier + x.padY)) > 1,
+    ),
+    "max≠min（钉死失效）": lk.filter(
+      (x) => x.maxH === null || x.minH === null || Math.abs(x.maxH - x.minH) > 0.6,
+    ),
+    盒高越出槽位: lk.filter((x) => x.boxH > x.lineH * sumLinesTier + x.padY + 1),
+    ["可见文本超过 " + sumLinesTier + " 行"]: lk.filter((x) => x.visLines > sumLinesTier),
     // 栗子 09-19 截图证实的形态：clamp 不生效时文本自然折行，max-height 只裁掉半行 → 字顶残留
     "半行字顶外露（裁切线切在行中）": lk.filter((x) => x.sliver > 0),
   };
@@ -855,9 +949,9 @@ async function checkView(cdp, view) {
   const lkClipped = lk.filter((x) => x.lines > x.visLines).length;
   report(
     view.key,
-    "一句话单行防御锁（H-01：max==min==一行高、盒高不越行、可见文本不占两行）",
+    `一句话防御锁（H-01：max==min==${sumLinesTier} 行槽位、盒高不越行、可见文本不超行）`,
     lk.length > 0 && lkWhy === "",
-    `采样 ${lk.length} 张｜一行应有高 ${lk[0]?.oneLine ?? "?"}px（line-height+padding）` +
+    `采样 ${lk.length} 张｜本档槽位 ${sumLinesTier} 行（data-sum-lines）｜一行应有高 ${lk[0]?.oneLine ?? "?"}px（line-height+padding）` +
       `｜max/min ${lk[0]?.maxH}/${lk[0]?.minH}｜盒高 max ${Math.max(...lk.map((x) => x.boxH))}` +
       `｜可见行数 ${[...new Set(lk.map((x) => x.visLines))].join("/")}｜display ${lk[0]?.display} clamp ${lk[0]?.clamp}` +
       `｜white-space ${lk[0]?.whiteSpace} text-overflow ${lk[0]?.textOverflow}` +
@@ -1111,6 +1205,18 @@ async function checkView(cdp, view) {
     }
 
     // 9 Agent 页可达（G-09）
+    // ⚠ 八轮：检查前**重新载入首页**。前序检查（触摸端删除按钮 / 创作者条）可能把页面留在
+    // 「我的」或**创作者页**（整页替换式子页面：既没有底栏也没有 tabs、没有会话流）——
+    // 从那个状态找入口必然找不到，测到的是「上一个检查留下的状态」而不是「Agent 页可达性」。
+    // （八轮实测：6 个 ≤768 档全红，诊断显示底栏 0 / tabs 0 / 卡 0 —— 就是被前序检查留在了子页面。）
+    await cdp.call("Page.navigate", { url: PAGE_URL });
+    for (let i = 0; i < 40; i++) {
+      await new Promise((r) => setTimeout(r, 250));
+      const n = await cdp.eval(`return document.querySelectorAll('.feed-list > .card').length;`);
+      if (typeof n === "number" && n > 0) break;
+    }
+    await new Promise((r) => setTimeout(r, 500));
+    await cdp.call("Runtime.evaluate", { expression: PAGE_TOOLS });
     const reach = await cdp.eval(`
       let via = null;
       const items=[...document.querySelectorAll('.bottom-item')];
@@ -1128,7 +1234,11 @@ async function checkView(cdp, view) {
           if(tab){ tab.click(); via='顶栏 tabs（该档未隐藏）'; }
         }
       }
-      return { via };
+      // 诊断：入口找不到时把「底栏到底有什么」照实带出来（免得只报一句「都没有」没法定位）
+      return { via, bottomItems: items.map(e=>e.textContent),
+                tabsN: document.querySelectorAll('.tabs .tab').length,
+                drawerN: document.querySelectorAll('.drawer').length,
+                feedCards: document.querySelectorAll('.feed-list > .card').length };
     `);
     await new Promise((r) => setTimeout(r, 900));
     const agentOk = await cdp.eval(
@@ -1140,7 +1250,8 @@ async function checkView(cdp, view) {
       !!agentOk,
       reach.via
         ? `入口「${reach.via}」→ .agent- 元素 ${agentOk}`
-        : "底栏、抽屉、可见顶栏 tabs 三处都没有 Agent 入口",
+        : `底栏、抽屉、可见顶栏 tabs 三处都没有 Agent 入口｜诊断：底栏 [${(reach.bottomItems ?? []).join("/")}]｜` +
+            `tabs ${reach.tabsN} 个｜drawer ${reach.drawerN} 个｜信息流卡 ${reach.feedCards} 张`,
     );
     await cdp.eval(`return window.__gt.clickText('.bottom-item','首页');`);
     await new Promise((r) => setTimeout(r, 500));
@@ -1239,6 +1350,13 @@ async function main() {
     // 固定 CSS 视口、只改 deviceScaleFactor，几何**不许**变（DPR 只能影响渲染清晰度）。
     // 这一条若挂，说明某处用了设备像素做布局决策 ⇒ 真机缩放下必然错档。
     if (!ONLY) {
+      await cdp.call("Page.navigate", { url: PAGE_URL });
+      for (let i = 0; i < 40; i++) {
+        await new Promise((r) => setTimeout(r, 250));
+        const n = await cdp.eval(`return document.querySelectorAll(".feed-list > .card").length;`);
+        if (typeof n === "number" && n > 0) break;
+      }
+      await cdp.call("Runtime.evaluate", { expression: PAGE_TOOLS });
       // ⚠ 这段是 cdp.eval 的**函数体**（外层已包 IIFE），不要再自己包一层 IIFE——包了会静默返回 undefined。
       const ZOOM_MEASURE = `const list=document.querySelector('.feed-list');
         const card=document.querySelector('.card');
@@ -1249,11 +1367,18 @@ async function main() {
                  cardW: card? Math.round(card.getBoundingClientRect().width): 0,
                  cueW: cue? Math.round(cue.getBoundingClientRect().width): 0,
                  dataCols: list? list.getAttribute('data-cols'): null };`;
-      for (const z of [{ w: 1600, h: 900, dsf: 1.25 }, { w: 1275, h: 900, dsf: 1.5 }, { w: 900, h: 800, dsf: 1.25 }]) {
+      for (const z of [
+        { w: 1600, h: 900, dsf: 1.25 },
+        { w: 1275, h: 900, dsf: 1.5 },
+        { w: 900, h: 800, dsf: 1.25 },
+      ]) {
         const base = READINGS[`${z.w}x${z.h}`];
         if (!base) continue;
         await cdp.call("Emulation.setDeviceMetricsOverride", {
-          width: z.w, height: z.h, deviceScaleFactor: z.dsf, mobile: false,
+          width: z.w,
+          height: z.h,
+          deviceScaleFactor: z.dsf,
+          mobile: false,
         });
         await new Promise((r) => setTimeout(r, 700));
         const zm = await cdp.eval(ZOOM_MEASURE);
@@ -1272,7 +1397,12 @@ async function main() {
             `｜data-cols ${zm.dataCols}(基准 ${base.dataCols})`,
         );
       }
-      await cdp.call("Emulation.setDeviceMetricsOverride", { width: 1400, height: 900, deviceScaleFactor: 1, mobile: false });
+      await cdp.call("Emulation.setDeviceMetricsOverride", {
+        width: 1400,
+        height: 900,
+        deviceScaleFactor: 1,
+        mobile: false,
+      });
     }
   } finally {
     chrome.kill();

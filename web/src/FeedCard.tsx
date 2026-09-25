@@ -187,6 +187,10 @@ interface Props {
   onOpen: OpenCardHandler;
   channel?: string;
   onOpenCreator?: (owner: string) => void;
+  /** 标签槽位（八轮）：本档卡宽下**整行**放得下的 chip 数，由 `feedTagSlotsForCard` 反推后传下来。
+   *  为什么要有它：`.card-tags` 是 26px 定高 + overflow:hidden，chip 一旦换行就会被切出
+   *  2px 残片（观感上就是「排版坏了」）。按槽位截断 + 余量折进 `+N` ⇒ 永不换行、且计数诚实。 */
+  tagSlots?: number;
 }
 
 function FeedCardComponent({
@@ -197,6 +201,7 @@ function FeedCardComponent({
   onOpen,
   channel,
   onOpenCreator,
+  tagSlots = 8,
 }: Props) {
   const langColor = LANG_COLORS[card.language] ?? "#666";
   const reason = cleanReason(card.reasonCn);
@@ -284,12 +289,14 @@ function FeedCardComponent({
 
       {card.tags && card.tags.length > 0 && (
         <div className="card-tags">
-          {card.tags.slice(0, 8).map((tag) => (
+          {card.tags.slice(0, tagSlots).map((tag) => (
             <span key={tag.name} className={`tag-chip tag-${tag.source}`}>
               {tag.name}
             </span>
           ))}
-          {card.tags.length > 8 && <span className="tag-chip tag-more">+{card.tags.length - 8}</span>}
+          {card.tags.length > tagSlots && (
+            <span className="tag-chip tag-more">+{card.tags.length - tagSlots}</span>
+          )}
         </div>
       )}
     </article>

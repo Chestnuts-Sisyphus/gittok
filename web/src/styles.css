@@ -1094,8 +1094,10 @@ button {
   gap: 3px;
 }
 
-/* 通俗概括（固定 1 行截断；min-height = 1×1.5em + padding 16px，一行容量约 36 字，
-   20-35 字内容恰好撑满零空行；超长截断。保持全站卡片等高） */
+/* 通俗概括（行数由**卡宽**反推：一行放得下 35 字就 1 行、否则 2 行；见 feed-layout.ts 的
+   `feedCardShapeFor`。1 行档＝常态（卡宽 ≥653，含 1920 两列 793、单列档）；
+   2 行档只在八轮新增的窄 2 列档（卡宽 389–653）出现——那里靠加行而不是靠省略号。
+   ⚠ 与理由段共用「档内块高固定」原则：同档所有卡的行数一致 ⇒ 卡片彼此对齐、无参差。 */
 .summary {
   font-size: 0.98rem;
   font-weight: 700;
@@ -1121,14 +1123,20 @@ button {
   text-overflow: ellipsis;
   max-height: calc(1 * 1.5em + 16px);
 }
+/* 2 行档（窄 2 列：卡宽 < 653）：同一套「第二道锁」的思路，只是放到 2 行——
+   去掉 nowrap（要换行）、clamp 与 min/max-height 同步到 2 行（块高固定 ⇒ 同行卡片对齐）。 */
+.feed-list[data-sum-lines="2"] .summary {
+  white-space: normal;
+  -webkit-line-clamp: 2;
+  min-height: calc(2 * 1.5em + 16px);
+  max-height: calc(2 * 1.5em + 16px);
+}
 
-/* 理由（**行数按卡宽反推**，2026-09-25 七轮；行数真源＝web/src/feed-layout.ts 的
-   feedReasonLinesForCard()，由 App 写进 `--feed-reason-lines`）。
-   旧版固定 3 行只对卡宽 ≥766 成立：实测卡宽 656（1600 两列）时 3 行会截掉 **72/837（8.6%）**、
-   706 时 7/837；反推后 4 行在 288 卡高里放得下（第 4 行吃掉底部 27px 余量，实测「可见撑破 0/837」）。
-   `min-height` 跟着行数走：不然同档里 3 行与 4 行的卡，元信息/标签行会错开（行高仍由 --feed-card-h 锁死）。
-   ⚠ `--feed-reason-lines` 与 FEED_REASON_MAX 一族双写，由 lock 单测钉住；手机上仍是 3 行
-     （手机档不按契约反推＝既有的「按设计收窄」，见六轮 G9①，待栗子裁）。 */
+/* 理由（**行数按卡宽反推 3–7 行**：行数真源＝web/src/feed-layout.ts 的 `feedCardShapeFor()`，
+   由 App 写进 `--feed-reason-lines`，八轮起还会同步把卡高写进 `--feed-card-h`——**加行就加卡高**，
+   不再靠吃掉卡底余量（七轮那版 4 行会把底部余量从 27px 挤到 3px，各档节奏不齐 ⇒ 栗子「不够统一」）。
+   `min-height` 跟着行数走：不然同档里行数不同的卡，元信息/标签行会错开（行高仍由 --feed-card-h 锁死）。
+   ⚠ `--feed-reason-lines` 与 FEED_REASON_MAX 一族双写，由 lock 单测钉住。 */
 .reason-clamped {
   font-size: 0.82rem;
   line-height: 1.7;
@@ -1545,7 +1553,12 @@ button {
 .card-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 4px;
+  /* 列距 4px（chip 间距）、**行距 8px**：万一真换行，第二行被推到 26px 裁切线以下 ⇒ 不露半截。
+     （旧写法 gap:4px 时第二行从 26−(chip 高 20 + 4) = 2px 处开始 ⇒ 露出 2px 残片，
+      观感就是「排版坏了」；八轮把「行数自适应 + 槽位估算」与这条兜底一起做，
+      让「换行」既不发生（槽位）、也不难看（行距）。） */
+  column-gap: 4px;
+  row-gap: 8px;
   margin-top: 4px;
   height: 26px;
   overflow: hidden;

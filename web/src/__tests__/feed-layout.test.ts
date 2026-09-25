@@ -17,6 +17,8 @@ import {
   FEED_REASON_LINES_MAX,
   FEED_REASON_LINES_MIN,
   FEED_REASON_MAX,
+  FEED_REASON_LINE_H,
+  FEED_SUMMARY_LINE_H,
   FEED_SUMMARY_MAX,
   FEED_SHORT_MAX_HEIGHT,
   FEED_COLS_DESKTOP,
@@ -25,12 +27,14 @@ import {
   FEED_ROW_GAP,
   FEED_ROW_GAP_MOBILE,
   FEED_ROW_HEIGHT,
+  feedCardShapeFor,
   feedCardWidthFor,
   feedColsForContentWidth,
   feedColsForWidth,
   feedGridFromMatch,
   feedReasonLinesForCard,
   feedRowGapForWidth,
+  feedSummaryLinesForCard,
   feedViewportOf,
   feedWindow,
   isScrollableOverflow,
@@ -253,23 +257,23 @@ describe("卡片铺满轨道（09-25：上限在**内容容器**上，卡片自�
 describe("列数（照 CSS auto-fill 同式还原）", () => {
   const cssRawCols = readFileSync(resolve("web/src/styles.css"), "utf8");
   const cssNoCommentAll = cssRawCols.replace(/\/\*[\s\S]*?\*\//g, "");
-  it("列数反解（四轮规则：取卡宽仍 ≥ 653 的**最大**列数 ⇒ 2 列及以上必然一行读得完 35 字）", () => {
-    // 阈值来源：FEED_SUMMARY_MAX(35) × FEED_CHAR_W(16.66) + FEED_CARD_CHROME(69) = 652.1 → 653。
-    expect(FEED_COL_MIN).toBe(653);
+  it("列数反解（八轮规则：取卡宽 ≤ 793 的**最小**列数 ⇒ 单列只在 ≤793 时存在，中间带一律两列）", () => {
+    // 阈值来源：卡宽上限 793 ＝ 两列档在参照档（1920）下的单卡宽。
+    expect(FEED_CARD_MAX).toBe(793);
     expect(FEED_SUMMARY_MAX).toBe(35);
     expect(FEED_COL_MIN).toBe(Math.ceil(FEED_SUMMARY_MAX * FEED_CHAR_W + FEED_CARD_CHROME));
     // 实测档位（本机 dist 逐档读计算值，见 scripts/gittok-responsive-check.mjs 的 EXPECT 表）
     expect(feedColsForContentWidth(1602)).toBe(2); // 1920/2560 档 → 2 列 × 793（43 字）
-    expect(feedColsForContentWidth(1322)).toBe(2); // 两列下界：(1322−16)/2 = 653（正好到线）
-    expect(feedColsForContentWidth(1321)).toBe(1); // 再窄 1px → 652.5 < 653 ⇒ 退单列（宁可一列铺满，不挤窄卡）
-    expect(feedColsForContentWidth(1472)).toBe(2); // 1744 档 → 2 × 728（39 字）
-    expect(feedColsForContentWidth(1428)).toBe(2); // 1700 档 → 2 × 706（38 字）
-    expect(feedColsForContentWidth(1328)).toBe(2); // 1600 档 → 2 × 656（35 字，正好一行放下上限）
-    expect(feedColsForContentWidth(1228)).toBe(1); // 1500 档 → 1 × 1228（铺满，右侧零空档）
-    expect(feedColsForContentWidth(1128)).toBe(1); // 1400 档 → 1 × 1128
-    expect(feedColsForContentWidth(1003)).toBe(1); // 1275 档 → 1 × 1003
-    expect(feedColsForContentWidth(975)).toBe(1); // 1240 档（栗子红框那张）→ 1 × 975，无空档
-    expect(feedColsForContentWidth(928)).toBe(1); // 1200 档 → 1 × 928
+    expect(feedColsForContentWidth(1472)).toBe(2); // 1744 档 → 2 × 728
+    expect(feedColsForContentWidth(1428)).toBe(2); // 1700 档 → 2 × 706
+    expect(feedColsForContentWidth(1328)).toBe(2); // 1600 档 → 2 × 656
+    expect(feedColsForContentWidth(1228)).toBe(2); // 1500 档 → 2 × 606（八轮起两列：不再留 435px 空白）
+    expect(feedColsForContentWidth(1128)).toBe(2); // 1400 档 → 2 × 556
+    expect(feedColsForContentWidth(1003)).toBe(2); // 1275 档 → 2 × 494
+    expect(feedColsForContentWidth(975)).toBe(2); // 1240 档 → 2 × 480
+    expect(feedColsForContentWidth(928)).toBe(2); // 1200 档 → 2 × 456
+    expect(feedColsForContentWidth(794)).toBe(2); // 门槛：超过 793 就加列
+    expect(feedColsForContentWidth(793)).toBe(1); // 恰好 793 ⇒ 单列（卡宽 = 网格 = 793）
     expect(feedColsForContentWidth(728)).toBe(1); // 1000 档 → 1 × 728
     expect(feedColsForContentWidth(0)).toBe(1);
   });
@@ -335,11 +339,74 @@ describe("列数（照 CSS auto-fill 同式还原）", () => {
     );
   });
 
-  it("列数规则本身没被这条上限改掉（两列下界仍是 1322：单列档的宽度靠内容容器收，不靠加列）", () => {
-    // 防「用加列去实现卡宽上限」的误改：09-25 的上限只影响**单列档的容器宽度**，
-    // 不影响「两列需要 1322px」这个门槛（否则 1600 档会掉到 3 列，摘要就放不下了）。
+  it("八轮：列数改由「卡宽 ≤ 793」反解 —— 单列只在给得出 ≤793 时存在，中间带一律两列（零留白）", () => {
+    // 栗子八轮原话：「首先不允许出现留白……第一张图片的那个卡片长度就是卡片极限长度了，
+    // 再长就要变成两列」。⇒ 取**最小** n 使 cardW(n) ≤ 793（旧口径是「取卡宽 ≥653 的最大列数」，
+    // 于是在中间带退化成「1 列 793 + 两侧页边距」——正是他红框的那两处留白）。
+    expect(FEED_CARD_MAX).toBe(793);
+    expect(feedColsForContentWidth(793)).toBe(1); // 恰好放得下一列 ⇒ 单列
+    expect(feedColsForContentWidth(794)).toBe(2); // 超过上限 1px ⇒ 立刻两列（不再等到 1322）
+    expect(feedColsForContentWidth(1321)).toBe(2); // 旧口径这里是 1 列 793（留白 264/侧）
     expect(feedColsForContentWidth(1322)).toBe(2);
-    expect(feedColsForContentWidth(1321)).toBe(1);
+    expect(feedColsForContentWidth(1602)).toBe(2); // 参照档仍是两列 793（封顶网格 1602 ⇒ 不会出第 3 列）
+    // 全档两条不变式：① 卡宽 ≤ 上限；② **轨道铺满网格（零留白）**
+    for (const w of [793, 794, 828, 900, 1003, 1128, 1228, 1328, 1428, 1602]) {
+      const n = feedColsForContentWidth(w);
+      const cardW = feedCardWidthFor(w, n, FEED_ROW_GAP);
+      expect(cardW, `内容宽 ${w} 的卡宽超上限`).toBeLessThanOrEqual(FEED_CARD_MAX + 1e-9);
+      expect(n * cardW + (n - 1) * FEED_ROW_GAP, `内容宽 ${w} 有留白`).toBeCloseTo(w, 6);
+    }
+  });
+
+  it("八轮：档内形态（摘要 1–2 行 / 理由 3–7 行 / 卡高 / 标签槽位）逐档可复算", () => {
+    // 这五档是闸里真实存在的档（内容宽 → 列数 → 卡宽），数值＝本机实测（responsive 读数一致）
+    const table: Array<[number, number, number, number, number, number, number]> = [
+      // 内容宽, 列数, 卡宽, 摘要行, 理由行, 卡高, 标签槽位
+      [1602, 2, 793, 1, 3, 288, 8], // 参照档（1920/2560 两列）
+      [1428, 2, 706, 1, 4, 312, 7],
+      [1328, 2, 656, 1, 4, 312, 6], // 1600 档
+      [1228, 2, 606, 2, 4, 337, 6], // 1500 档（八轮起两列）
+      [1128, 2, 556, 2, 5, 360, 5], // 1400 档
+      [1003, 2, 494, 2, 5, 360, 4], // 1275 档
+      [828, 2, 406, 2, 7, 408, 3], // 1100 档（最窄档：7 行也放得下 150 字）
+      [728, 1, 728, 1, 4, 312, 7], // 1000 档（≤793 ⇒ 单列铺满；卡宽 728 时理由也要 4 行）
+    ];
+    for (const [w, cols, cardW, S, R, H, T] of table) {
+      const s = feedCardShapeFor(w, cols, FEED_ROW_GAP);
+      expect(Math.round(s.cardWidth), `内容宽 ${w} 卡宽`).toBe(cardW);
+      expect(s.summaryLines, `内容宽 ${w} 摘要行数`).toBe(S);
+      expect(s.reasonLines, `内容宽 ${w} 理由行数`).toBe(R);
+      expect(s.cardHeight, `内容宽 ${w} 卡高`).toBe(H);
+      expect(s.tagSlots, `内容宽 ${w} 标签槽位`).toBe(T);
+    }
+    // 行数与卡高同源：H = 288 + (S−1)×摘要行高 + (R−3)×理由行高 —— 加行只加行高、不动卡底 27px 余量
+    //（旧七轮版靠「吃掉余量」加行，各档节奏不齐 —— 栗子「不够优雅流畅统一」那条就是它）。
+    // 27px 余量本身由浏览器探针守：各档 tags 底 + 27 = 卡高（1100/1400/1500/1600 四档实测一致）。
+    for (const [w, cols] of [
+      [1602, 2],
+      [1228, 2],
+      [828, 2],
+    ] as Array<[number, number]>) {
+      const s = feedCardShapeFor(w, cols, FEED_ROW_GAP);
+      expect(s.cardHeight).toBe(
+        Math.round(
+          FEED_CARD_HEIGHT +
+            (s.summaryLines - 1) * FEED_SUMMARY_LINE_H +
+            (s.reasonLines - 3) * FEED_REASON_LINE_H,
+        ),
+      );
+    }
+    // 最窄档（内容宽 794 ⇒ 2 列 ×389）理由仍放得下 150 字 ⇒ 列数规则与理由上限自洽
+    expect(feedReasonLinesForCard(389)).toBe(FEED_REASON_LINES_MAX);
+    expect(FEED_REASON_FIT_MIN_CARD_W).toBeLessThanOrEqual(389);
+  });
+
+  it("列数规则与摘要上限的关系（旧口径的注脚，防止有人把 1322 门槛写回来）", () => {
+    // 旧口径「两列需要 1322px」是「卡宽 ≥653（一行放下 35 字）」推出来的；八轮改成上限驱动后，
+    // 653 不再是列数门槛，但**它仍是摘要 1 行的门槛**（`feedSummaryLinesForCard`）。
+    expect(FEED_COL_MIN).toBe(653);
+    expect(feedSummaryLinesForCard(653)).toBe(1);
+    expect(feedSummaryLinesForCard(652)).toBe(2);
   });
 });
 
@@ -373,46 +440,56 @@ describe("理由显示行数（2026-09-25 七轮：由 150 字契约 + 卡宽反
   const cssRaw = readFileSync(resolve("web/src/styles.css"), "utf8");
   const cssNoComment = cssRaw.replace(/\/\*[\s\S]*?\*\//g, "");
 
-  it("行数由内容契约反推：4 行装不下就 3 行，装不下 150 字就别硬塞", () => {
+  it("行数由内容契约反推：3–7 行，窄卡靠加行而不是靠省略号（八轮扩到 7 行）", () => {
     expect(FEED_REASON_MAX).toBe(150);
     expect(FEED_REASON_LINES_MIN).toBe(3);
-    expect(FEED_REASON_LINES_MAX).toBe(4);
+    expect(FEED_REASON_LINES_MAX).toBe(7);
     // 单字宽来自字号比（0.82rem/0.98rem），不是另拍的数
     expect(FEED_REASON_CHAR_W).toBeCloseTo(FEED_CHAR_W * (0.82 / 0.98), 6);
-    // 反推的三档（与 09-25 全库实测一致：793→3 行、706/656→4 行、599 是 4 行的物理下界）
-    expect(feedReasonLinesForCard(793)).toBe(3); // 单列档 / 1920 两列：实测 0/837 被截
+    // 逐档（与八轮全库实测一致：793→3 行、656→4、606→4、556→5、406→7）
+    expect(feedReasonLinesForCard(793)).toBe(3);
     expect(feedReasonLinesForCard(766)).toBe(3); // 3 行下界：floor((766−69)/13.94)=50 ⇒ ceil(150/50)=3
     expect(feedReasonLinesForCard(765)).toBe(4);
-    expect(feedReasonLinesForCard(706)).toBe(4); // 1700 两列：改前 7/837 被截
-    expect(feedReasonLinesForCard(656)).toBe(4); // 1600 两列：改前 72/837 被截（8.6%）
-    expect(feedReasonLinesForCard(628)).toBe(4); // 900×800：闸实测 12 张里被截 1 张
-    expect(feedReasonLinesForCard(599)).toBe(4); // 4 行的物理下界
-    expect(feedReasonLinesForCard(598)).toBe(3); // 更窄（手机档）：装不下 150 字，保留既有 3 行
-    expect(feedReasonLinesForCard(358)).toBe(3); // 手机档：既有「按设计收窄」（六轮 G9① 待裁）
-    // 4 行的物理下界是推导出来的：chrome + ceil(150/4) × 单字宽
+    expect(feedReasonLinesForCard(706)).toBe(4);
+    expect(feedReasonLinesForCard(656)).toBe(4); // 1600 档（改前 3 行会截掉 72/837 = 8.6%）
+    expect(feedReasonLinesForCard(606)).toBe(4);
+    expect(feedReasonLinesForCard(556)).toBe(5);
+    expect(feedReasonLinesForCard(442)).toBe(6);
+    expect(feedReasonLinesForCard(406)).toBe(7);
+    expect(feedReasonLinesForCard(389)).toBe(7); // 最窄档（内容宽 794 的两列）
+    // 更窄（手机档 358）仍按公式给 8 行 → 被上限 7 截住；手机档 CSS 另有 3 行窄档规则（不动）
+    expect(feedReasonLinesForCard(358)).toBe(7);
+    // 7 行的物理下界是推导出来的：chrome + ceil(150/7) × 单字宽 ≈ 376 ≤ 389 ⇒ 恒装得下
     expect(FEED_REASON_FIT_MIN_CARD_W).toBe(
       Math.ceil(FEED_CARD_CHROME + Math.ceil(FEED_REASON_MAX / FEED_REASON_LINES_MAX) * FEED_REASON_CHAR_W),
     );
-    expect(FEED_REASON_FIT_MIN_CARD_W).toBe(599);
+    expect(FEED_REASON_FIT_MIN_CARD_W).toBe(376);
   });
 
-  it("卡宽算式是唯一真源：多列铺满轨道、单列收在 793 上限内", () => {
+  it("卡宽算式是唯一真源：多列铺满轨道、单列不超过 793", () => {
     expect(feedCardWidthFor(1602, 2, FEED_ROW_GAP)).toBe(793); // 参照档两列
     expect(feedCardWidthFor(1328, 2, FEED_ROW_GAP)).toBe(656); // 1600 档两列（实测卡宽 656）
-    expect(feedCardWidthFor(1228, 1, FEED_ROW_GAP)).toBe(793); // 1500 档单列：min(1228, 793)
+    expect(feedCardWidthFor(1228, 2, FEED_ROW_GAP)).toBe(606); // 1500 档（八轮起两列，实测 606）
     expect(feedCardWidthFor(728, 1, FEED_ROW_GAP)).toBe(728); // 1000 档单列：网格 < 上限 ⇒ 铺满轨道
+    expect(feedCardWidthFor(793, 1, FEED_ROW_GAP)).toBe(793); // 恰好在门槛上
     expect(feedCardWidthFor(0, 1, FEED_ROW_GAP)).toBe(0);
   });
 
-  it("CSS ↔ JS 双写同值：--feed-reason-lines 是行数的唯一开关（不许再写死 3 行）", () => {
+  it("CSS ↔ JS 双写同值：三个变量是档内形态的唯一开关", () => {
     const reasonBlock = cssNoComment.match(/\.reason-clamped\s*\{([^}]*)\}/)?.[1] ?? "";
     expect(reasonBlock, "styles.css 里没有 .reason-clamped").toBeTruthy();
     expect(reasonBlock).toMatch(/-webkit-line-clamp:\s*var\(--feed-reason-lines,\s*3\)/);
     expect(reasonBlock).toMatch(/min-height:\s*calc\(var\(--feed-reason-lines,\s*3\)\s*\*\s*1\.7em\)/);
     // 不许再出现写死的 3 行（那正是 1600 档被截的根因）
     expect(reasonBlock).not.toMatch(/-webkit-line-clamp:\s*3\s*;/);
+    // 摘要 2 行档：由 data-sum-lines 属性切（与列数同一帧），块高固定 ⇒ 同行卡片对齐
+    expect(cssNoComment).toMatch(/\.feed-list\[data-sum-lines="2"\]\s*\.summary\s*\{/);
+    const sum2 = cssNoComment.match(/\.feed-list\[data-sum-lines="2"\]\s*\.summary\s*\{([^}]*)\}/)?.[1] ?? "";
+    expect(sum2).toMatch(/white-space:\s*normal/);
+    expect(sum2).toMatch(/-webkit-line-clamp:\s*2/);
+    expect(sum2).toMatch(/min-height:\s*calc\(2 \* 1\.5em \+ 16px\)/);
     // 窄高档（≤560、卡高 210）必须把行数压回 2，且**同时**压 --feed-reason-lines——
-    // 否则桌面档算出的 4 行会在这个媒体查询里继续生效，行数槽位与卡高对不上
+    // 否则桌面档算出的 7 行会在这个媒体查询里继续生效，行数槽位与卡高对不上
     const shortBlock = cssNoComment.match(/@media \(max-height: 560px\)\s*\{([\s\S]*?)\n\}/)?.[1] ?? "";
     expect(shortBlock).toMatch(/-webkit-line-clamp:\s*2/);
     expect(shortBlock).toMatch(/--feed-reason-lines:\s*2/);

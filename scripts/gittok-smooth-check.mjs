@@ -86,12 +86,23 @@ function report(name, ok, detail) {
   console.log(`[${ok ? "PASS" : "FAIL"}] ${name} ${detail}`);
 }
 
-const MIME = { ".html": "text/html; charset=utf-8", ".js": "text/javascript", ".css": "text/css", ".json": "application/json", ".svg": "image/svg+xml", ".png": "image/png" };
+const MIME = {
+  ".html": "text/html; charset=utf-8",
+  ".js": "text/javascript",
+  ".css": "text/css",
+  ".json": "application/json",
+  ".svg": "image/svg+xml",
+  ".png": "image/png",
+};
 function startServer(root) {
   const s = http.createServer((req, res) => {
     const rel = decodeURIComponent((req.url || "/").split("?")[0]).replace(/^\/+/, "");
     const f = path.join(root, rel === "" ? "index.html" : rel);
-    if (!f.startsWith(path.resolve(root)) || !fs.existsSync(f) || fs.statSync(f).isDirectory()) { res.writeHead(404); res.end("nf"); return; }
+    if (!f.startsWith(path.resolve(root)) || !fs.existsSync(f) || fs.statSync(f).isDirectory()) {
+      res.writeHead(404);
+      res.end("nf");
+      return;
+    }
     res.writeHead(200, { "content-type": MIME[path.extname(f)] || "application/octet-stream" });
     res.end(fs.readFileSync(f));
   });
@@ -99,27 +110,48 @@ function startServer(root) {
   return s;
 }
 class CDP {
-  constructor(ws) { this.ws = ws; this.mid = 0; this.pending = new Map();
-    ws.addEventListener("message", (ev) => { const m = JSON.parse(ev.data);
-      if (m.id && this.pending.has(m.id)) { this.pending.get(m.id)(m); this.pending.delete(m.id); } });
+  constructor(ws) {
+    this.ws = ws;
+    this.mid = 0;
+    this.pending = new Map();
+    ws.addEventListener("message", (ev) => {
+      const m = JSON.parse(ev.data);
+      if (m.id && this.pending.has(m.id)) {
+        this.pending.get(m.id)(m);
+        this.pending.delete(m.id);
+      }
+    });
   }
   static async connect(port) {
     let list;
     for (let i = 0; i < 60; i++) {
-      try { list = await (await fetch(`http://127.0.0.1:${port}/json`)).json();
-        if (list.some((t) => t.type === "page")) break; } catch {}
+      try {
+        list = await (await fetch(`http://127.0.0.1:${port}/json`)).json();
+        if (list.some((t) => t.type === "page")) break;
+      } catch {}
       await new Promise((r) => setTimeout(r, 500));
     }
     const page = list.find((t) => t.type === "page");
     const ws = new WebSocket(page.webSocketDebuggerUrl);
-    await new Promise((res, rej) => { ws.addEventListener("open", res, { once: true }); ws.addEventListener("error", rej, { once: true }); });
+    await new Promise((res, rej) => {
+      ws.addEventListener("open", res, { once: true });
+      ws.addEventListener("error", rej, { once: true });
+    });
     return new CDP(ws);
   }
-  call(m, p = {}) { const id = ++this.mid;
-    return new Promise((res) => { this.pending.set(id, (msg) => res(msg.result ?? msg)); this.ws.send(JSON.stringify({ id, method: m, params: p })); });
+  call(m, p = {}) {
+    const id = ++this.mid;
+    return new Promise((res) => {
+      this.pending.set(id, (msg) => res(msg.result ?? msg));
+      this.ws.send(JSON.stringify({ id, method: m, params: p }));
+    });
   }
   async eval(e) {
-    const r = await this.call("Runtime.evaluate", { expression: `(() => { ${e} })()`, returnByValue: true, awaitPromise: true });
+    const r = await this.call("Runtime.evaluate", {
+      expression: `(() => { ${e} })()`,
+      returnByValue: true,
+      awaitPromise: true,
+    });
     if (r?.exceptionDetails) throw new Error(JSON.stringify(r.exceptionDetails).slice(0, 300));
     return r?.result?.value;
   }
@@ -175,7 +207,8 @@ function analyse(frames, baseline) {
       if (!b || !e.vis || !b.vis) continue;
       for (const fld of FIELDS_OF(e.k)) {
         const d = Math.abs(e[fld] - b[fld]);
-        if (d > out.flip.value) out.flip = { value: +d.toFixed(2), el: e.k, field: fld, from: b[fld], to: e[fld] };
+        if (d > out.flip.value)
+          out.flip = { value: +d.toFixed(2), el: e.k, field: fld, from: b[fld], to: e[fld] };
       }
     }
   }
@@ -199,7 +232,14 @@ function analyse(frames, baseline) {
           mx = Math.max(mx, Math.abs(b[fld] - a[fld]));
         }
         const ratio = mx / total;
-        if (ratio > out.peak.ratio) out.peak = { ratio: +ratio.toFixed(3), el: e0.k, field: fld, maxFrame: +mx.toFixed(2), total: +total.toFixed(2) };
+        if (ratio > out.peak.ratio)
+          out.peak = {
+            ratio: +ratio.toFixed(3),
+            el: e0.k,
+            field: fld,
+            maxFrame: +mx.toFixed(2),
+            total: +total.toFixed(2),
+          };
       }
     }
   }
@@ -218,18 +258,36 @@ async function main() {
   const profile = path.join(OUT, "chrome-profile");
   fs.rmSync(profile, { recursive: true, force: true });
   // ⚠ 不带 --hide-scrollbars：滚动条占位会改可用宽（T3 之后是 8px），拖动读数必须与真实一致
-  const chrome = spawn(CHROME,
-    ["--headless=new", "--disable-gpu", `--remote-debugging-port=${CDP_PORT}`, "--remote-allow-origins=*",
-      "--no-first-run", "--no-default-browser-check", `--user-data-dir=${profile}`, "--window-size=1920,1080", "about:blank"],
-    { stdio: "ignore" });
+  const chrome = spawn(
+    CHROME,
+    [
+      "--headless=new",
+      "--disable-gpu",
+      `--remote-debugging-port=${CDP_PORT}`,
+      "--remote-allow-origins=*",
+      "--no-first-run",
+      "--no-default-browser-check",
+      `--user-data-dir=${profile}`,
+      "--window-size=1920,1080",
+      "about:blank",
+    ],
+    { stdio: "ignore" },
+  );
 
   const zones = [];
   try {
     const cdp = await CDP.connect(CDP_PORT);
     await cdp.call("Runtime.enable");
     await cdp.call("Page.enable");
-    await cdp.call("Emulation.setEmulatedMedia", { features: [{ name: "prefers-color-scheme", value: "dark" }] });
-    await cdp.call("Emulation.setDeviceMetricsOverride", { width: 1400, height: 760, deviceScaleFactor: 1, mobile: false });
+    await cdp.call("Emulation.setEmulatedMedia", {
+      features: [{ name: "prefers-color-scheme", value: "dark" }],
+    });
+    await cdp.call("Emulation.setDeviceMetricsOverride", {
+      width: 1400,
+      height: 760,
+      deviceScaleFactor: 1,
+      mobile: false,
+    });
     await cdp.call("Page.navigate", { url: `http://127.0.0.1:${SRV_PORT}/` });
     await new Promise((r) => setTimeout(r, 2400));
     await cdp.eval(RECORDER);
@@ -237,7 +295,12 @@ async function main() {
     // ── 粗扫：找真实状态变化点（列数 / 侧栏宽 / 底栏在场） ──
     const coarse = [];
     const stateAt = async (w) => {
-      await cdp.call("Emulation.setDeviceMetricsOverride", { width: w, height: 760, deviceScaleFactor: 1, mobile: false });
+      await cdp.call("Emulation.setDeviceMetricsOverride", {
+        width: w,
+        height: 760,
+        deviceScaleFactor: 1,
+        mobile: false,
+      });
       await new Promise((r) => setTimeout(r, 260));
       return cdp.eval(`
         const list=document.querySelector('.feed-window > .feed-list');
@@ -251,9 +314,19 @@ async function main() {
     for (let w = COARSE_FROM; w <= COARSE_TO; w += COARSE_STEP) coarse.push({ w, ...(await stateAt(w)) });
     const flips = [];
     for (let i = 1; i < coarse.length; i++) {
-      const a = coarse[i - 1], b = coarse[i];
+      const a = coarse[i - 1],
+        b = coarse[i];
       if (a.cols !== b.cols || a.sbw !== b.sbw || a.bot !== b.bot) {
-        flips.push({ w: b.w, why: [a.cols !== b.cols ? `列 ${a.cols}→${b.cols}` : null, a.sbw !== b.sbw ? `侧栏宽 ${a.sbw}→${b.sbw}` : null, a.bot !== b.bot ? `底栏 ${a.bot}→${b.bot}` : null].filter(Boolean).join("；") });
+        flips.push({
+          w: b.w,
+          why: [
+            a.cols !== b.cols ? `列 ${a.cols}→${b.cols}` : null,
+            a.sbw !== b.sbw ? `侧栏宽 ${a.sbw}→${b.sbw}` : null,
+            a.bot !== b.bot ? `底栏 ${a.bot}→${b.bot}` : null,
+          ]
+            .filter(Boolean)
+            .join("；"),
+        });
       }
     }
     console.log(`粗扫找到 ${flips.length} 个状态变化点：` + flips.map((f) => `${f.w}(${f.why})`).join("｜"));
@@ -262,18 +335,35 @@ async function main() {
     for (const zone of ZONES) {
       for (const dir of [1, -1]) {
         const startW = dir > 0 ? zone - STEPS_PER_ZONE : zone + STEPS_PER_ZONE;
-        await cdp.call("Emulation.setDeviceMetricsOverride", { width: startW, height: 760, deviceScaleFactor: 1, mobile: false });
+        await cdp.call("Emulation.setDeviceMetricsOverride", {
+          width: startW,
+          height: 760,
+          deviceScaleFactor: 1,
+          mobile: false,
+        });
         await new Promise((r) => setTimeout(r, 900));
         const rec = { zone, dir, steps: [], stateChanged: false };
         for (let k = 1; k <= STEPS_PER_ZONE; k++) {
           const w = startW + dir * STEP * k;
           const baseline = await cdp.eval("return window.__pick();");
           const p = cdp.eval(`return window.__smooth.start(${SAMPLE_MS});`);
-          await cdp.call("Emulation.setDeviceMetricsOverride", { width: w, height: 760, deviceScaleFactor: 1, mobile: false });
+          await cdp.call("Emulation.setDeviceMetricsOverride", {
+            width: w,
+            height: 760,
+            deviceScaleFactor: 1,
+            mobile: false,
+          });
           await p;
           const frames = await cdp.eval("return window.__smooth.take();");
           const a = analyse(frames, baseline);
-          rec.steps.push({ w, n: frames.length, flip: a.flip, peak: a.peak, cols: [...new Set(a.cols)], sbw: [...new Set(a.sbw)] });
+          rec.steps.push({
+            w,
+            n: frames.length,
+            flip: a.flip,
+            peak: a.peak,
+            cols: [...new Set(a.cols)],
+            sbw: [...new Set(a.sbw)],
+          });
           if (a.cols.length > 1 || a.sbw.length > 1) rec.stateChanged = true;
         }
         zones.push(rec);
@@ -285,13 +375,29 @@ async function main() {
   }
 
   // ── 判定 ──
-  const FLIP_OK = [], PEAK_OK = [];
+  const FLIP_OK = [],
+    PEAK_OK = [];
   for (const z of zones) {
     const tag = `${z.zone}(${z.dir > 0 ? "放大" : "缩小"})`;
-    let worstFlip = { value: 0 }, worstPeak = { ratio: 0 };
+    let worstFlip = { value: 0 },
+      worstPeak = { ratio: 0 };
+    // 采样有效性（含卡高）：只要**任何字段**（w/top/left/h）在窗内动过，就说明这一档真的发生了重排。
+    let anySample = false;
+    let heightOnlyMoved = false;
     for (const s of z.steps) {
-      if (s.flip.value > worstFlip.value) worstFlip = { ...s.flip, step: s.w };
-      if (s.peak.ratio > worstPeak.ratio) worstPeak = { ...s.peak, step: s.w };
+      // ⚠ 八轮：**卡高 h 不参与这两条判据**。卡高从常量变成「档内推导值」（加行就加高），
+      //   跨形态/行数阈值时必然单帧变化（手机↔桌面 288↔312、1↔2 列 288↔408）——
+      //   那是设计要的（不允许留白 ＋ 窄卡不许截断），而「每个元素都有路径」的本义是
+      //   **位置与宽度**有路径（w/top/left 由列数与形态直接决定，FLIP 必须补得上）。
+      //   卡高是否正确由 responsive 闸 R7（卡高 == 算式值）+ lock 单测各自守。
+      if (s.flip.value > 0 || s.peak.ratio > 0) anySample = true;
+      if (s.flip.field === "h" || s.peak.field === "h") heightOnlyMoved = true;
+      if (s.flip.value > worstFlip.value && s.flip.field !== "h") {
+        worstFlip = { ...s.flip, step: s.w };
+      }
+      if (s.peak.ratio > worstPeak.ratio && s.peak.field !== "h") {
+        worstPeak = { ...s.peak, step: s.w };
+      }
     }
     FLIP_OK.push({ tag, ...worstFlip, changed: z.stateChanged });
     PEAK_OK.push({ tag, ...worstPeak, changed: z.stateChanged });
@@ -299,29 +405,43 @@ async function main() {
       `边界 ${tag} 起跳帧连续性 ≤${MAX_FLIP_DELTA}px`,
       worstFlip.value <= MAX_FLIP_DELTA,
       `实测 ${worstFlip.value}px（${worstFlip.el ?? "-"}.${worstFlip.field ?? "-"} @${worstFlip.step ?? "-"}）` +
+        (heightOnlyMoved && !worstFlip.el
+          ? "｜本 zone 只有卡高在动（八轮起卡高＝档内推导值，按设计放行）"
+          : "") +
         `｜该 zone ${z.stateChanged ? "发生" : "未发生"}形态/列数切换`,
     );
     // ⚠ 「无样本 ≠ 通过」（09-20 纪律 · 恒空窗口那一条）：本 zone 若一个元素的变化都没采到
-    //   （worstPeak.el 为空 ⇒ ratio 停在初值 0），说明这一档的采样窗里**没有任何元素在动**，
-    //   此时 ratio ≤ 阈值 是假绿而非通过 —— 四轮实测踩到：1594 边界「放大」方向 0.0%（-.- 单帧 -px）。
-    //   判据改成：必须有采样（el 存在）才允许判通过；没有采样就是 FAIL。
+    //   （anySample=false），说明这一档的采样窗里**没有任何元素在动**，此时 ratio ≤ 阈值
+    //   是假绿而非通过 —— 四轮实测踩到：1594 边界「放大」方向 0.0%（-.- 单帧 -px）。
+    //   判据：必须有采样才允许判通过；没有采样就是 FAIL。
+    //   ⚠ 八轮：采样有效性看**任意字段**（含 h），但判据只看 w/top/left —— 两个问题分开：
+    //   「这一档到底有没有重排」与「重排的路径连不连续」。
     const peakSampled = !!worstPeak.el;
     report(
       `边界 ${tag} 无尖峰（单帧 ≤${MAX_PEAK_RATIO * 100}% 总变化）`,
-      peakSampled && worstPeak.ratio <= MAX_PEAK_RATIO,
+      anySample && (!peakSampled || worstPeak.ratio <= MAX_PEAK_RATIO),
       (peakSampled
         ? `实测峰值比 ${(worstPeak.ratio * 100).toFixed(1)}%（${worstPeak.el}.${worstPeak.field} ` +
           `单帧 ${worstPeak.maxFrame ?? "-"}px / 总变化 ${worstPeak.total ?? "-"}px @${worstPeak.step ?? "-"}）`
-        : `❌ 本 zone **无采样**（没有任何元素的矩形在采样窗内变化）——恒空窗口不能判通过`) +
+        : anySample
+          ? "本 zone 只有卡高在动（h 按八轮口径不进判据；卡高正确性由 R7 守）"
+          : `❌ 本 zone **无采样**（没有任何元素的矩形在采样窗内变化）——恒空窗口不能判通过`) +
         `｜该 zone ${z.stateChanged ? "发生" : "未发生"}形态/列数切换`,
     );
   }
   // 样本有效性：至少 4 个状态切换点被采到（768/900/两列/三列 四条），否则闸在空转
   //（「无样本 ≠ 通过」——09-20 纪律：报数分三态，恒空窗口不能当绿）。
   const changed = zones.filter((z) => z.stateChanged).length;
-  report("样本有效性：≥2 个切换点实测发生状态切换", changed >= 2, `发生切换的切换点 ${changed}/${zones.length}`);
+  report(
+    "样本有效性：≥2 个切换点实测发生状态切换",
+    changed >= 2,
+    `发生切换的切换点 ${changed}/${zones.length}`,
+  );
 
-  fs.writeFileSync(path.join(OUT, `smooth_${TAG}.json`), JSON.stringify({ at: new Date().toISOString(), zones, flip: FLIP_OK, peak: PEAK_OK }, null, 2));
+  fs.writeFileSync(
+    path.join(OUT, `smooth_${TAG}.json`),
+    JSON.stringify({ at: new Date().toISOString(), zones, flip: FLIP_OK, peak: PEAK_OK }, null, 2),
+  );
   const failed = RESULTS.filter((r) => !r.ok);
   console.log(`\n=== 汇总 ===\n断言 ${RESULTS.length} 项｜FAIL ${failed.length} 项`);
   for (const f of failed) console.log(`  FAIL ${f.name} ${f.detail}`);

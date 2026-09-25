@@ -33,19 +33,20 @@ const TAG = (() => {
   return a ? a.slice(6) : new Date().toISOString().replace(/[:.]/g, "-");
 })();
 
-/** 列数翻转对（四轮 2026-09-24：列数规则改成「取卡宽仍 ≥ 653 的最大列数」）。
- *  现在**只有一个桌面门槛**：网格 ≥ 2×653+16 = **1322px**（＝视口 1594）→ 两列；再宽也还是两列
- *  （内容上限 1650 ⇒ 三点五列永不出现）。所以旧的「2↔3 列」两对场景整体退役，
- *  改为跨 1594 的 1↔2 对；另加 768 那条（手机档 ↔ 桌面档）保住跨形态那条边界。
+/** 列数翻转对（八轮 2026-09-25 晚：列数规则改成「取卡宽 ≤ 793 的**最小**列数」）。
+ *  现在**只有一个桌面门槛**：网格 = **793px**（＝视口 1065）→ 超过就两列；再宽也还是两列
+ *  （内容上限 1650 ⇒ 网格封顶 1602 ⇒ 三点五列永不出现）。所以「跨 1594」那两对场景整体退役
+ *  （八轮后 1400/1560/1620/1700 全是 2 列、列数不再翻转 ⇒ 闸会报「翻转未发生」），
+ *  改为跨 **1065** 的 1↔2 对；另加 768 那条（手机档 ↔ 桌面档）保住跨形态那条边界。
  *  ⚠ 门槛值必须与 `feedColsForContentWidth` 同式推导，不许写死到「跨不过去」的档位——
  *    三轮就踩过这个坑（旧档位 1100→1180 跨不过新门槛，闸直接判「列数翻转未发生」）。 */
 const COL_SCENES = [
-  { label: "1→2列(小步跨门槛)", from: 1560, to: 1620 },
-  { label: "2→1列(小步跨门槛)", from: 1620, to: 1560 },
+  { label: "1→2列(小步跨门槛)", from: 1040, to: 1100 },
+  { label: "2→1列(小步跨门槛)", from: 1100, to: 1040 },
   // 大步场景：一次拖过门槛（真实使用里常见的是「把窗口从半屏拉到全屏」），
   // 它比小步更能暴露 FLIP 补差的偏差（位移量大、帧数少）。
-  { label: "1→2列(大步)", from: 1400, to: 1700 },
-  { label: "2→1列(大步)", from: 1700, to: 1400 },
+  { label: "1→2列(大步)", from: 1000, to: 1300 },
+  { label: "2→1列(大步)", from: 1300, to: 1000 },
 ];
 /** 首帧场景：三个代表视口（大/中/小桌面）。 */
 const FIRSTPAINT_VIEWS = [1920, 1275, 1000];
@@ -60,13 +61,22 @@ function report(name, ok, detail) {
   console.log(`[${ok ? "PASS" : "FAIL"}] ${name} ${detail}`);
 }
 
-const MIME = { ".html": "text/html; charset=utf-8", ".js": "text/javascript", ".css": "text/css", ".json": "application/json", ".svg": "image/svg+xml", ".png": "image/png" };
+const MIME = {
+  ".html": "text/html; charset=utf-8",
+  ".js": "text/javascript",
+  ".css": "text/css",
+  ".json": "application/json",
+  ".svg": "image/svg+xml",
+  ".png": "image/png",
+};
 function startServer(root) {
   const s = http.createServer((req, res) => {
     const rel = decodeURIComponent((req.url || "/").split("?")[0]).replace(/^\/+/, "");
     const f = path.join(root, rel === "" ? "index.html" : rel);
     if (!f.startsWith(path.resolve(root)) || !fs.existsSync(f) || fs.statSync(f).isDirectory()) {
-      res.writeHead(404); res.end("nf"); return;
+      res.writeHead(404);
+      res.end("nf");
+      return;
     }
     res.writeHead(200, { "content-type": MIME[path.extname(f)] || "application/octet-stream" });
     res.end(fs.readFileSync(f));
@@ -75,27 +85,48 @@ function startServer(root) {
   return s;
 }
 class CDP {
-  constructor(ws) { this.ws = ws; this.mid = 0; this.pending = new Map();
-    ws.addEventListener("message", (ev) => { const m = JSON.parse(ev.data);
-      if (m.id && this.pending.has(m.id)) { this.pending.get(m.id)(m); this.pending.delete(m.id); } });
+  constructor(ws) {
+    this.ws = ws;
+    this.mid = 0;
+    this.pending = new Map();
+    ws.addEventListener("message", (ev) => {
+      const m = JSON.parse(ev.data);
+      if (m.id && this.pending.has(m.id)) {
+        this.pending.get(m.id)(m);
+        this.pending.delete(m.id);
+      }
+    });
   }
   static async connect(port) {
     let list;
     for (let i = 0; i < 60; i++) {
-      try { list = await (await fetch(`http://127.0.0.1:${port}/json`)).json();
-        if (list.some((t) => t.type === "page")) break; } catch {}
+      try {
+        list = await (await fetch(`http://127.0.0.1:${port}/json`)).json();
+        if (list.some((t) => t.type === "page")) break;
+      } catch {}
       await new Promise((r) => setTimeout(r, 500));
     }
     const page = list.find((t) => t.type === "page");
     const ws = new WebSocket(page.webSocketDebuggerUrl);
-    await new Promise((res, rej) => { ws.addEventListener("open", res, { once: true }); ws.addEventListener("error", rej, { once: true }); });
+    await new Promise((res, rej) => {
+      ws.addEventListener("open", res, { once: true });
+      ws.addEventListener("error", rej, { once: true });
+    });
     return new CDP(ws);
   }
-  call(m, p = {}) { const id = ++this.mid;
-    return new Promise((res) => { this.pending.set(id, (msg) => res(msg.result ?? msg)); this.ws.send(JSON.stringify({ id, method: m, params: p })); });
+  call(m, p = {}) {
+    const id = ++this.mid;
+    return new Promise((res) => {
+      this.pending.set(id, (msg) => res(msg.result ?? msg));
+      this.ws.send(JSON.stringify({ id, method: m, params: p }));
+    });
   }
   async eval(e) {
-    const r = await this.call("Runtime.evaluate", { expression: `(() => { ${e} })()`, returnByValue: true, awaitPromise: true });
+    const r = await this.call("Runtime.evaluate", {
+      expression: `(() => { ${e} })()`,
+      returnByValue: true,
+      awaitPromise: true,
+    });
     if (r?.exceptionDetails) throw new Error(JSON.stringify(r.exceptionDetails).slice(0, 300));
     return r?.result?.value;
   }
@@ -112,9 +143,18 @@ async function main() {
   fs.rmSync(profile, { recursive: true, force: true });
   const chrome = spawn(
     CHROME,
-    ["--headless=new", "--disable-gpu", `--remote-debugging-port=${CDP_PORT}`, "--remote-allow-origins=*",
-     "--no-first-run", "--no-default-browser-check", `--user-data-dir=${profile}`, "--hide-scrollbars",
-     "--window-size=1920,1080", "about:blank"],
+    [
+      "--headless=new",
+      "--disable-gpu",
+      `--remote-debugging-port=${CDP_PORT}`,
+      "--remote-allow-origins=*",
+      "--no-first-run",
+      "--no-default-browser-check",
+      `--user-data-dir=${profile}`,
+      "--hide-scrollbars",
+      "--window-size=1920,1080",
+      "about:blank",
+    ],
     { stdio: "ignore" },
   );
 
@@ -123,14 +163,26 @@ async function main() {
     const cdp = await CDP.connect(CDP_PORT);
     await cdp.call("Runtime.enable");
     await cdp.call("Page.enable");
-    await cdp.call("Emulation.setEmulatedMedia", { features: [{ name: "prefers-color-scheme", value: "dark" }] });
-    await cdp.call("Emulation.setDeviceMetricsOverride", { width: 1400, height: 900, deviceScaleFactor: 1, mobile: false });
+    await cdp.call("Emulation.setEmulatedMedia", {
+      features: [{ name: "prefers-color-scheme", value: "dark" }],
+    });
+    await cdp.call("Emulation.setDeviceMetricsOverride", {
+      width: 1400,
+      height: 900,
+      deviceScaleFactor: 1,
+      mobile: false,
+    });
     await cdp.call("Page.navigate", { url: `http://127.0.0.1:${SRV_PORT}/` });
     await new Promise((r) => setTimeout(r, 2200));
 
     // ── ① 列数翻转场景 ──
     for (const sc of COL_SCENES) {
-      await cdp.call("Emulation.setDeviceMetricsOverride", { width: sc.from, height: 900, deviceScaleFactor: 1, mobile: false });
+      await cdp.call("Emulation.setDeviceMetricsOverride", {
+        width: sc.from,
+        height: 900,
+        deviceScaleFactor: 1,
+        mobile: false,
+      });
       await new Promise((r) => setTimeout(r, 450));
       // 滚过一屏再拖：首屏（scrollTop=0）时首卡 top 不随列数变（行首恒在视口顶），
       // 「304px 跳变」只在滚动态发生（实测 1100 滚 600px 后 1→2 列翻转 top −275→29）。
@@ -153,7 +205,12 @@ async function main() {
         requestAnimationFrame(tick);
         return true;
       `);
-      await cdp.call("Emulation.setDeviceMetricsOverride", { width: sc.to, height: 900, deviceScaleFactor: 1, mobile: false });
+      await cdp.call("Emulation.setDeviceMetricsOverride", {
+        width: sc.to,
+        height: 900,
+        deviceScaleFactor: 1,
+        mobile: false,
+      });
       await new Promise((r) => setTimeout(r, 550));
       await cdp.eval(`window.__seqOn = false; return true;`);
       const seq = (await cdp.eval(`return window.__seq;`)) ?? [];
@@ -195,7 +252,12 @@ async function main() {
 
     // ── ② 首帧列数序列只有一项 ──
     for (const w of FIRSTPAINT_VIEWS) {
-      await cdp.call("Emulation.setDeviceMetricsOverride", { width: w, height: 900, deviceScaleFactor: 1, mobile: false });
+      await cdp.call("Emulation.setDeviceMetricsOverride", {
+        width: w,
+        height: 900,
+        deviceScaleFactor: 1,
+        mobile: false,
+      });
       // 先导航再装采样器：导航会重置 JS 世界，先装会被清掉（实测「无采样」假 FAIL）。
       await cdp.call("Page.navigate", { url: `http://127.0.0.1:${SRV_PORT}/` });
       await cdp.call("Runtime.enable"); // 重新 enable 无害；关键在采样脚本注入要趁渲染前
@@ -229,7 +291,10 @@ async function main() {
     server.close();
   }
 
-  fs.writeFileSync(path.join(OUT, `drag_${TAG}.json`), JSON.stringify({ at: new Date().toISOString(), scenes, results: RESULTS }, null, 2));
+  fs.writeFileSync(
+    path.join(OUT, `drag_${TAG}.json`),
+    JSON.stringify({ at: new Date().toISOString(), scenes, results: RESULTS }, null, 2),
+  );
   const failed = RESULTS.filter((r) => !r.ok);
   console.log(`\n=== 汇总 ===\n断言 ${RESULTS.length} 项｜FAIL ${failed.length} 项`);
   for (const f of failed) console.log(`  FAIL ${f.name} ${f.detail}`);

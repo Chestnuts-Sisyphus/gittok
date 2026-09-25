@@ -465,7 +465,14 @@ def apply_inject(cdp):
 def observe_checklist(cdp):
     """观感清单段：侧栏 880×900（四轮 T3 起是**带文字**形态）+ 矮视口两条滚动条 1200×600。
     两张特写一并落盘——**交付前必须逐张目测**（断言只防回归，不证明好看）。"""
+    # ⚠ 八轮（2026-09-25）：本段之前必须**先重载回首页**。本段接在 nav_shots/extra_view_shots 之后，
+    #   那些检查可能把页面留在「我的」/**创作者页**/Agent 页（整页替换式子页面，那里没有 `.side-item`）。
+    #   八轮实测：880×900 的 12 项侧栏断言全 got None —— 根因不是侧栏坏了，而是页面停在子页面上。
+    #   重载消除这个变量（与 responsive 闸里 Agent 检查前的重载同一处置）。
     apply_inject(cdp)
+    cdp.eval("location.reload(); 1")
+    time.sleep(2.5)
+    apply_inject(cdp)  # reload 冲掉 <style> → 这里必须重新注入
     cdp.call("Emulation.setDeviceMetricsOverride", {"width": 880, "height": 900, "deviceScaleFactor": 1, "mobile": False})
     time.sleep(1.5)
     assert_css(cdp, OBSERVE_CHECKS_SIDEBAR, "观感清单-侧栏带文字（880×900，四轮 T3 新形态）")

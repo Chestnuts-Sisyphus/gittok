@@ -15,22 +15,25 @@ import {
 } from "./feed-payload.ts";
 import { loadCachedText, saveCachedText } from "./feed-cache.ts";
 import {
-  FEED_CARD_HEIGHT,
+  FEED_CARD_HEIGHT_SHORT,
+  FEED_CARD_MAX,
+  FEED_GRID_REF,
   FEED_MOBILE_MAX_WIDTH,
   FEED_REASON_LINES_MIN,
   FEED_ROW_GAP,
   FEED_ROW_HEIGHT,
   FEED_SHORT_MAX_HEIGHT,
   feedCardHeightForHeight,
-  feedCardWidthFor,
+  feedCardShapeFor,
   feedColsForContentWidth,
   feedGridFromMatch,
-  feedReasonLinesForCard,
+  feedTagSlotsForCard,
   feedViewportOf,
   feedWindow,
   isScrollableOverflow,
   nearestScrollRoot,
   sameFeedWindow,
+  type FeedCardShape,
   type FeedWindow,
 } from "./feed-layout.ts";
 import { measureCards as measureCardsFlip, playCardsFlip, type FlipEntry } from "./feed-flip.ts";
@@ -721,13 +724,13 @@ function buildRecommended(
 function useResponsiveCols(rowGap: number): {
   ref: (el: HTMLElement | null) => void;
   cols: number;
-  reasonLines: number;
+  shape: FeedCardShape;
 } {
   const elRef = useRef<HTMLElement | null>(null);
   const [cols, setCols] = useState(1);
-  // 七轮：理由行数（3/4）与列数**同一次测量**里算出来，一起写进 CSS 变量 `--feed-reason-lines`。
-  // 反推规则见 feed-layout.ts 的 FEED_REASON_MAX 注释（1600 档 3 行会截掉 72/837）。
-  const [reasonLines, setReasonLines] = useState(FEED_REASON_LINES_MIN);
+  // 八轮：形态（行数/卡高/标签槽位）与列数**同一次测量**里算出来，一起写进 CSS 变量。
+  // 反推规则见 feed-layout.ts 的 `feedCardShapeFor`（窄卡靠加行保住内容契约，不靠截断）。
+  const [shape, setShape] = useState<FeedCardShape>(() => feedCardShapeFor(0, 1, rowGap));
   // 条件渲染下（搜索空态/收藏夹展开只在特定视图存在），ref 挂上时 effect 已经跑过了——
   // 所以 ref callback 里直接触发首次测量，不能指望 effect。
   const measureRef = useRef<() => void>(() => {});
@@ -736,9 +739,10 @@ function useResponsiveCols(rowGap: number): {
       const el = elRef.current;
       if (!el) return;
       const list = el.querySelector<HTMLElement>(".feed-list") ?? el;
-      const next = feedColsForContentWidth(list.clientWidth, rowGap);
+      const w = list.clientWidth;
+      const next = feedColsForContentWidth(w, rowGap);
       setCols(next);
-      setReasonLines(feedReasonLinesForCard(feedCardWidthFor(list.clientWidth, next, rowGap)));
+      setShape(feedCardShapeFor(w, next, rowGap));
     };
     measureRef.current();
     const ro = new ResizeObserver(() => measureRef.current());
@@ -748,7 +752,7 @@ function useResponsiveCols(rowGap: number): {
   }, [rowGap]);
   return {
     cols,
-    reasonLines,
+    shape,
     ref: (el: HTMLElement | null) => {
       elRef.current = el;
       if (el) measureRef.current();
@@ -761,9 +765,11 @@ function useFeedGrid() {
     () =>
       typeof window !== "undefined" && window.matchMedia(`(max-width: ${FEED_MOBILE_MAX_WIDTH}px)`).matches,
   );
-  // G-11：横屏窄高（≤560）时 CSS 把卡高降到 240，垫片档位必须同步，否则虚拟列表错位
+  // G-11：横屏窄高（≤560）时 CSS 把卡高降到 210，垫片档位必须同步，否则虚拟列表错位。
+  // 八轮起这一档**只是下限保护**：正常档的卡高由 feedCardShapeFor 反推（加行就加高），
+  // 只有窄高档仍固定 210（那一档连视觉带都放不下半张卡，行数被 CSS 压回 2 行）。
   const [cardHeight, setCardHeight] = useState(() =>
-    typeof window === "undefined" ? FEED_CARD_HEIGHT : feedCardHeightForHeight(window.innerHeight),
+    typeof window === "undefined" ? FEED_CARD_HEIGHT_SHORT : feedCardHeightForHeight(window.innerHeight),
   );
   useEffect(() => {
     const mq = window.matchMedia(`(max-width: ${FEED_MOBILE_MAX_WIDTH}px)`);
@@ -822,21 +828,26 @@ function FeedVirtualList({
   //   这是个**潜在的首帧错档**：826 档旧式算 750（<976 → 1 列），实际网格 554（也是 1 列）——
   //   本机逐档核对下来 769–900 的两种算法恰好都得 1 列，所以没暴露；但只要将来该档的
   //   网格越过 976，旧式就会首帧画 1 列、随后 FLIP 跳到 2 列（正是二轮乙1 修掉的那种闪变）。
+  // ── 八轮（2026-09-25）：档内卡片形态与列数**同源同帧** ──
+  //   栗子当日第二次定标准：「不允许出现留白……卡片到 793 就是极限、再长就变两列」。
+  //   ⇒ 列数改由「卡宽 ≤ 793」反解（feedColsForContentWidth），中间带不再退化成带页边距的单列；
+  //     窄下来的卡靠**加行**（摘要 1–2 行、理由 3–7 行）保住内容契约，行数/卡高/标签槽位都由
+  //     `feedCardShapeFor(网格宽, 列数)` 一次算出 —— 一处改动、四样东西跟着走，避免「改了列数忘了卡高」。
+  //   ⚠ ≤768 手机档**不走这套反推**：那一档是既有的「按设计收窄」（卡宽≈视口−48、摘要 18–19 字、
+  //     理由 3 行），六轮 G9① 记的待裁项，本轮不动（≤768 不许破）。
+  const [contentW, setContentW] = useState(() =>
+    typeof window === "undefined" || window.innerWidth <= FEED_MOBILE_MAX_WIDTH
+      ? 0
+      : Math.min(window.innerWidth - 280, FEED_GRID_REF),
+  );
   const [cols, setCols] = useState(() => {
     if (typeof window === "undefined") return gridCols;
     const vw = window.innerWidth;
     if (vw <= FEED_MOBILE_MAX_WIDTH) return 1;
-    // 桌面档只有一个侧栏形态（192 + 24 边距）→ offset 只有一个值
-    return feedColsForContentWidth(vw - 280, rowGap);
-  });
-  // 七轮：理由行数（3/4）与列数**同一次测量**算出来（`--feed-reason-lines`）。
-  // 首帧初值同样按视口宽推（与上面 cols 的初值同一套 offset），避免首帧 3 行、随后跳 4 行。
-  const [reasonLines, setReasonLines] = useState(() => {
-    if (typeof window === "undefined") return FEED_REASON_LINES_MIN;
-    const vw = window.innerWidth;
-    const contentW = vw <= FEED_MOBILE_MAX_WIDTH ? 0 : vw - 280;
-    const c = vw <= FEED_MOBILE_MAX_WIDTH ? 1 : feedColsForContentWidth(contentW, rowGap);
-    return feedReasonLinesForCard(feedCardWidthFor(contentW, c, rowGap));
+    // 桌面档只有一个侧栏形态（192 + 24 边距）→ offset 只有一个值。
+    // ⚠ 首帧估算必须**同时收内容壳上限**（FEED_GRID_REF=1602）：不收的话 1920 档首帧会算成
+    //   3 列（1640/3 = 536 ≤ 793），首测后再跳回 2 列 —— 正是二轮乙1 修掉的那种「首帧画错再跳」。
+    return feedColsForContentWidth(Math.min(vw - 280, FEED_GRID_REF), rowGap);
   });
   // FLIP 的量测根：`.feed-content`（卡片在它内部的 .feed-window 里，频道头/偏好条是它的直接子元素）。
   // 拿不到时退回 .feed-window（只有卡片参与，退化到二轮的行为）。
@@ -852,10 +863,11 @@ function FeedVirtualList({
     const measure = () => {
       const list = wrap.querySelector<HTMLElement>(".feed-list");
       if (!list) return;
-      const next = feedColsForContentWidth(list.clientWidth, rowGap);
-      // 理由行数与列数同源同帧：卡宽 = feedCardWidthFor(网格宽, 列数, 行距)，
-      // 行数 = feedReasonLinesForCard(卡宽)。两者都不是「另拍一个数」，是同一几何量的两种读法。
-      setReasonLines(feedReasonLinesForCard(feedCardWidthFor(list.clientWidth, next, rowGap)));
+      const w = list.clientWidth;
+      const next = feedColsForContentWidth(w, rowGap);
+      // 形态与列数同源同帧：网格宽 + 列数 ⇒ {卡宽, 摘要行数, 理由行数, 卡高, 标签槽位}。
+      // 不做「只改列数、卡高按老值算」这种事——那正是垫片错位/半截卡片的来源。
+      setContentW(w);
       setCols((prev) => {
         if (prev === next) return prev;
         // 列数真的要变：先把旧布局矩形量下来，等 DOM 重排后按 FLIP 补差。
@@ -878,14 +890,37 @@ function FeedVirtualList({
     const wrap = wrapRef.current;
     if (wrap) playCardsFlip(flipRoot(wrap), before);
   });
-  const listKey = `${channel ?? ""}:${cards[0]?.repo ?? ""}:${cards.length}:${cols}:${rowGap}:${cardHeight}`;
+  // 档内形态（唯一读法）：网格宽 + 列数 ⇒ 卡宽/摘要行数/理由行数/卡高/标签槽位。
+  // 两档**不反推**（走既有「按设计收窄」）：
+  //   · ≤768 手机档（卡宽≈视口−48、摘要 18–19 字、理由 3 行 —— 六轮 G9① 待裁）；
+  //   · 窄高档（视口高 ≤560、卡高 210、CSS 把理由压到 2 行 —— G-11 的横屏手机档）。
+  // 这两档的**标签槽位仍按几何算**（与行数无关，纯为「不出现半截 chip」）。
+  const legacyShapeTier =
+    cardHeight === FEED_CARD_HEIGHT_SHORT ||
+    (typeof window !== "undefined" && window.innerWidth <= FEED_MOBILE_MAX_WIDTH);
+  const shape = useMemo(
+    () =>
+      legacyShapeTier
+        ? {
+            cardWidth: Math.min(contentW || 0, FEED_CARD_MAX),
+            summaryLines: 1,
+            reasonLines: FEED_REASON_LINES_MIN,
+            cardHeight,
+            tagSlots: feedTagSlotsForCard(Math.min(contentW || 360, FEED_CARD_MAX)),
+          }
+        : feedCardShapeFor(contentW, cols, rowGap),
+    [legacyShapeTier, contentW, cols, rowGap, cardHeight],
+  );
+  // 窄高档（视口高 ≤560）优先：那一档 CSS 把卡高压到 210，垫片与卡高必须同值。
+  const tierCardHeight = cardHeight === FEED_CARD_HEIGHT_SHORT ? cardHeight : shape.cardHeight;
+  const listKey = `${channel ?? ""}:${cards[0]?.repo ?? ""}:${cards.length}:${cols}:${rowGap}:${tierCardHeight}`;
   const [winKey, setWinKey] = useState(listKey);
   const [win, setWin] = useState<FeedWindow>(() =>
     feedWindow({
       cardCount: cards.length,
       cols,
       rowGap,
-      cardHeight,
+      cardHeight: tierCardHeight,
       listTop: 0,
       viewportHeight: typeof window !== "undefined" ? window.innerHeight : 900,
     }),
@@ -897,7 +932,7 @@ function FeedVirtualList({
         cardCount: cards.length,
         cols,
         rowGap,
-        cardHeight,
+        cardHeight: tierCardHeight,
         listTop: 0,
         viewportHeight: typeof window !== "undefined" ? window.innerHeight : 900,
       }),
@@ -916,7 +951,7 @@ function FeedVirtualList({
         cardCount: cards.length,
         cols,
         rowGap,
-        cardHeight,
+        cardHeight: tierCardHeight,
         listTop,
         viewportHeight,
       });
@@ -939,7 +974,7 @@ function FeedVirtualList({
       window.removeEventListener("resize", onScroll);
       if (raf) cancelAnimationFrame(raf);
     };
-  }, [cards.length, cards[0]?.repo, channel, cols, rowGap, cardHeight]);
+  }, [cards.length, cards[0]?.repo, channel, cols, rowGap, tierCardHeight]);
 
   const visible = cards.slice(win.startIdx, win.endIdx);
 
@@ -965,7 +1000,15 @@ function FeedVirtualList({
       <div
         className="feed-list"
         data-cols={cols}
-        style={{ "--feed-cols": cols, "--feed-reason-lines": reasonLines } as React.CSSProperties}
+        data-sum-lines={shape.summaryLines}
+        style={
+          {
+            "--feed-cols": cols,
+            "--feed-summary-lines": shape.summaryLines,
+            "--feed-reason-lines": shape.reasonLines,
+            "--feed-card-h": `${tierCardHeight}px`,
+          } as React.CSSProperties
+        }
       >
         {visible.map((card) => (
           <FeedCardMemo
@@ -976,6 +1019,7 @@ function FeedVirtualList({
             onOpen={onOpen}
             channel={channel}
             onOpenCreator={onOpenCreator}
+            tagSlots={shape.tagSlots}
           />
         ))}
       </div>
@@ -1049,11 +1093,7 @@ export default function App() {
   const [expandedCols, setExpandedCols] = useState<Record<string, boolean>>({});
   // 二轮 G6：收藏夹展开的卡片网格与主信息流同一条列数反解。多个收藏夹共用同一容器宽
   // （.folder-cards 全宽），列数相同——一个 hook 量「我的页内容区」即可。
-  const {
-    cols: folderCols,
-    reasonLines: folderReasonLines,
-    ref: folderColsRef,
-  } = useResponsiveCols(FEED_ROW_GAP);
+  const { cols: folderCols, shape: folderShape, ref: folderColsRef } = useResponsiveCols(FEED_ROW_GAP);
   const [searchQuery, setSearchQuery] = useState("");
   const [detailCard, setDetailCard] = useState<FeedCard | null>(null);
   const sourceRectRef = useRef<DOMRect | null>(null);
@@ -1651,7 +1691,7 @@ export default function App() {
     [cards],
   );
   // 二轮 G6：热门预览与主信息流同一条列数反解（不再是 CSS auto-fill 的另一套口径）
-  const { cols: hotCols, reasonLines: hotReasonLines, ref: hotColsRef } = useResponsiveCols(FEED_ROW_GAP);
+  const { cols: hotCols, shape: hotShape, ref: hotColsRef } = useResponsiveCols(FEED_ROW_GAP);
 
   // 创作者页项目列表（栈顶 owner 过滤，score 降序）
   const creatorCards = useMemo(() => {
@@ -2006,10 +2046,13 @@ export default function App() {
                                       <div
                                         className="feed-list"
                                         data-cols={folderCols}
+                                        data-sum-lines={folderShape.summaryLines}
                                         style={
                                           {
                                             "--feed-cols": folderCols,
-                                            "--feed-reason-lines": folderReasonLines,
+                                            "--feed-summary-lines": folderShape.summaryLines,
+                                            "--feed-reason-lines": folderShape.reasonLines,
+                                            "--feed-card-h": `${folderShape.cardHeight}px`,
                                           } as React.CSSProperties
                                         }
                                         data-cols-root="folder"
@@ -2022,6 +2065,7 @@ export default function App() {
                                               ignored={dislikedSet.has(card.repo)}
                                               onOpen={handleOpenDetail}
                                               onOpenCreator={openCreator}
+                                              tagSlots={folderShape.tagSlots}
                                             />
                                             <button
                                               className="folder-card-remove"
@@ -2218,10 +2262,13 @@ export default function App() {
                           className="feed-list"
                           ref={hotColsRef}
                           data-cols={hotCols}
+                          data-sum-lines={hotShape.summaryLines}
                           style={
                             {
                               "--feed-cols": hotCols,
-                              "--feed-reason-lines": hotReasonLines,
+                              "--feed-summary-lines": hotShape.summaryLines,
+                              "--feed-reason-lines": hotShape.reasonLines,
+                              "--feed-card-h": `${hotShape.cardHeight}px`,
                             } as React.CSSProperties
                           }
                         >
@@ -2233,6 +2280,7 @@ export default function App() {
                               ignored={dislikedSet.has(card.repo)}
                               onOpen={handleOpenDetail}
                               onOpenCreator={openCreator}
+                              tagSlots={hotShape.tagSlots}
                             />
                           ))}
                         </div>
