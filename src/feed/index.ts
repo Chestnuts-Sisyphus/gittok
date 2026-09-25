@@ -38,7 +38,7 @@ import {
   initTagWeights,
 } from "./personalize.ts";
 import { cardChecks, effLen, detailQualified } from "./checks.ts";
-import { SUMMARY_MIN, SUMMARY_MAX } from "./taxonomy.ts";
+import { SUMMARY_MIN, SUMMARY_MAX, REASON_MIN, REASON_MAX } from "./taxonomy.ts";
 import { cleanV4, isSkeleton, isMirror } from "./stage1.ts";
 import { pack, checkBatch, fixAdjacent } from "./stage2.ts";
 import { ProductionScheduler, parseMatrix } from "./scheduler.ts";
@@ -540,9 +540,12 @@ async function refreshStarsRoundRobin(
 /**
  * detail 兜底：从 detailCn 截取 reason 用内容（零成本，防重评失败丢卡）。
  * 按 \n\n+ 分段，跳过第一段（与 summary 语义重复，实测重叠度高），
- * 从第二段起累计（段落 join 空格），累计到 effLen ≥100 后继续到最近句号（。！？）
- * 或 effLen 130 封顶截断；第二段起总 effLen <100 时并入第一段尾部再截。
- * 返回必须 effLen ≥100，无法兜底返回 null。
+ * 从第二段起累计（段落 join 空格），累计到 String.length ≥ REASON_MIN 后继续到最近句号（。！？）
+ * 或 REASON_MAX 封顶截断；第二段起总长 < REASON_MIN 时并入第一段尾部再截。
+ *
+ * 2026-09-25 六轮：计数口径从 `effLen` 改成 **`String.length`**，与提示词/闸/不变量同侧同值
+ * （上限 REASON_MAX=150 以前从未被这一条兜底尊重过 —— 它按 effLen 130 停，但 length 仍可 >150）。
+ * 返回必须 `reasonWithinContract`，无法兜底返回 null。
  */
 export function fallbackReasonFromDetail(detailCn: string): string | null {
   const segments = detailCn
@@ -551,16 +554,45 @@ export function fallbackReasonFromDetail(detailCn: string): string | null {
     .filter((s) => s.length > 0);
   if (segments.length === 0) return null;
   let body = segments.slice(1).join(" ");
-  if (effLen(body) < 100) body = segments.join(" ");
-  if (effLen(body) < 100) return null;
+  if (body.length < REASON_MIN) body = segments.join(" ");
+  if (body.length < REASON_MIN) return null;
   let acc = "";
   let reached = false;
   for (const ch of body) {
     acc += ch;
-    if (effLen(acc) >= 100) reached = true;
-    if (reached && (/[。！？]/.test(ch) || effLen(acc) >= 130)) break;
+    if (acc.length >= REASON_MIN) reached = true;
+    if (reached && (/[。！？]/.test(ch) || acc.length >= REASON_MAX)) break;
   }
-  return effLen(acc) >= 100 ? acc : null;
+  const cut = fitReason(acc);
+  return reasonWithinContract(cut) ? cut : null;
+}
+
+/**
+ * 把一段文字切进理由契约（`REASON_MIN`–`REASON_MAX` 字）。
+ * 计数口径 = `String.length`（与闸同侧）；切点优先级同 `fitSummary`。
+ * 原文已 ≤REASON_MAX 时原样返回（过短不在本函数补齐 —— 过短只能重写）。
+ */
+export function fitReason(text: string): string {
+  const t = (text ?? "").trim();
+  if (t.length <= REASON_MAX) return t;
+  const win = t.slice(0, REASON_MAX);
+  const lastAt = (re: RegExp, dropTrail: boolean): number => {
+    const m = [...win.matchAll(re)];
+    if (m.length === 0) return -1;
+    const last = m[m.length - 1]!;
+    const at = last.index ?? -1;
+    return dropTrail ? at : at + 1;
+  };
+  const sent = lastAt(/[。！？!?]/g, false);
+  if (sent >= REASON_MIN) return win.slice(0, sent);
+  const clause = lastAt(/[，、；：,;:]/g, true);
+  if (clause >= REASON_MIN) return win.slice(0, clause);
+  return win;
+}
+
+/** 产出的 reason 是否自己就过契约（≥REASON_MIN 且 ≤REASON_MAX）。 */
+export function reasonWithinContract(s: string): boolean {
+  return typeof s === "string" && s.length >= REASON_MIN && s.length <= REASON_MAX;
 }
 
 /**

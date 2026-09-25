@@ -166,7 +166,9 @@ describe("CSS 结构自检（三轮踩过的坑：注释没闭合会把下一条
     // 现在统一走 --motion-fast/base/slow + --ease-*，这条断言把「裸值」钉死为红。
     // 允许：transition: none（锁⑨要求它在 .card.is-open-source 上）；`0s linear` 的 visibility 延迟开关。
     const stripped = cssRaw.replace(/\/\*[\s\S]*?\*\//g, "");
-    const decls = [...stripped.matchAll(/transition:\s*([^;}]+)/g)].map((m) => m[1].replace(/\s+/g, " ").trim());
+    const decls = [...stripped.matchAll(/transition:\s*([^;}]+)/g)].map((m) =>
+      m[1].replace(/\s+/g, " ").trim(),
+    );
     expect(decls.length).toBeGreaterThan(20); // 样本有效性：真扫到了声明（避免正则失效后「恒空窗口」假绿）
     const bare = decls.filter((d) => d !== "none" && /\d*\.?\d+m?s|\d+ms/.test(d.replace(/0s/g, "")));
     expect(bare).toEqual([]);
@@ -213,7 +215,9 @@ describe("卡片铺满轨道（09-25：上限在**内容容器**上，卡片自�
   const feedList = css.match(/\.feed-list\s*\{[^}]+\}/)?.[0] ?? "";
 
   it("轨道 max 保持 1fr（写进轨道会让 auto-fill 改用 max 计数 → 少一列）", () => {
-    expect(feedList).toMatch(/repeat\(\s*auto-fill\s*,\s*minmax\(min\(var\(--feed-col-min\),\s*100%\),\s*1fr\)\s*\)/);
+    expect(feedList).toMatch(
+      /repeat\(\s*auto-fill\s*,\s*minmax\(min\(var\(--feed-col-min\),\s*100%\),\s*1fr\)\s*\)/,
+    );
     expect(feedList).not.toMatch(/minmax\([^)]*var\(--feed-card-max\)/);
   });
 
@@ -231,7 +235,9 @@ describe("卡片铺满轨道（09-25：上限在**内容容器**上，卡片自�
     const cardMaxUses = [...cssNoCommentAll.matchAll(/var\(--feed-card-max\)/g)];
     expect(cardMaxUses.length).toBe(2);
     // 手机档仍是 1fr 占满
-    const mobileBlocks = [...css.matchAll(/@media \(max-width:\s*768px\)\s*\{[\s\S]*?\n\}/g)].map((m) => m[0]);
+    const mobileBlocks = [...css.matchAll(/@media \(max-width:\s*768px\)\s*\{[\s\S]*?\n\}/g)].map(
+      (m) => m[0],
+    );
     const mobileBlock = mobileBlocks.find((b) => /\.feed-list\s*\{/.test(b)) ?? "";
     expect(mobileBlock).toMatch(/\.feed-list\s*\{[^}]*grid-template-columns:\s*1fr/);
   });
@@ -255,9 +261,9 @@ describe("列数（照 CSS auto-fill 同式还原）", () => {
     expect(feedColsForContentWidth(1228)).toBe(1); // 1500 档 → 1 × 1228（铺满，右侧零空档）
     expect(feedColsForContentWidth(1128)).toBe(1); // 1400 档 → 1 × 1128
     expect(feedColsForContentWidth(1003)).toBe(1); // 1275 档 → 1 × 1003
-    expect(feedColsForContentWidth(975)).toBe(1);  // 1240 档（栗子红框那张）→ 1 × 975，无空档
-    expect(feedColsForContentWidth(928)).toBe(1);  // 1200 档 → 1 × 928
-    expect(feedColsForContentWidth(728)).toBe(1);  // 1000 档 → 1 × 728
+    expect(feedColsForContentWidth(975)).toBe(1); // 1240 档（栗子红框那张）→ 1 × 975，无空档
+    expect(feedColsForContentWidth(928)).toBe(1); // 1200 档 → 1 × 928
+    expect(feedColsForContentWidth(728)).toBe(1); // 1000 档 → 1 × 728
     expect(feedColsForContentWidth(0)).toBe(1);
   });
 
@@ -267,7 +273,8 @@ describe("列数（照 CSS auto-fill 同式还原）", () => {
     // 653px 卡宽的一行容量（口径 = floor((卡宽−69)/16.66)，与 G9 表/闸同式）
     expect(Math.floor((FEED_COL_MIN - FEED_CARD_CHROME) / FEED_CHAR_W)).toBe(35);
     // 结构性不变式：多列档卡宽 ≥ 653 ⇒ 任何合规摘要一行读完（R1）；单列档铺满（R2）。
-    const grid = 1602, cols = feedColsForContentWidth(grid);
+    const grid = 1602,
+      cols = feedColsForContentWidth(grid);
     const cardW = (grid - (cols - 1) * FEED_ROW_GAP) / cols;
     expect(cols).toBe(2);
     expect(Math.floor((cardW - FEED_CARD_CHROME) / FEED_CHAR_W)).toBeGreaterThanOrEqual(FEED_SUMMARY_MAX);
@@ -301,10 +308,14 @@ describe("列数（照 CSS auto-fill 同式还原）", () => {
       /@media \(min-width: 769px\) \{[\s\S]*?grid-template-columns:\s*minmax\(0, var\(--feed-card-max\)\)[\s\S]*?\n\}/,
     )?.[0];
     expect(capBlock, "单列档上限块不在（栗子 09-25 那条会失效）").toBeTruthy();
-    expect(capBlock).toMatch(/\.feed-window > \.feed-list\[data-cols="1"\],\s*\n\s*\.feed-list\[data-cols="1"\]\[style\] \{/);
+    expect(capBlock).toMatch(
+      /\.feed-window > \.feed-list\[data-cols="1"\],\s*\n\s*\.feed-list\[data-cols="1"\]\[style\] \{/,
+    );
     expect(capBlock).toMatch(/grid-template-columns:\s*minmax\(0, var\(--feed-card-max\)\)/);
     expect(capBlock).toMatch(/justify-content:\s*center/); // 居中（两侧留量相等，不是左对齐留单侧空）
-    expect(capBlock).toMatch(/\.feed-layout:has\(> \.feed-content > \.feed-window > \.feed-list\[data-cols="1"\]\)/); // 头≡卡
+    expect(capBlock).toMatch(
+      /\.feed-layout:has\(> \.feed-content > \.feed-window > \.feed-list\[data-cols="1"\]\)/,
+    ); // 头≡卡
     // ⚠ 不许用视口断点当开关：断点与 JS 列数切换不同帧 ⇒ 头宽先行跳 530px、FLIP 追不上（实测踩到）
     expect(cssNoCommentAll, "上限不许用视口断点开关（会与列数切换不同帧）").not.toMatch(
       /@media \(min-width: 769px\) and \(max-width: 1593px\)/,
@@ -312,7 +323,9 @@ describe("列数（照 CSS auto-fill 同式还原）", () => {
     expect(FEED_CARD_MAX + 48).toBe(841); // 旧版（内容容器法）的算式，留着当「别走回头路」的注脚
 
     // 正向：主规则仍在（列数＝唯一真源）
-    expect(cssNoCommentAll).toMatch(/grid-template-columns:\s*repeat\(var\(--feed-cols, 1\), minmax\(0, 1fr\)\)/);
+    expect(cssNoCommentAll).toMatch(
+      /grid-template-columns:\s*repeat\(var\(--feed-cols, 1\), minmax\(0, 1fr\)\)/,
+    );
   });
 
   it("列数规则本身没被这条上限改掉（两列下界仍是 1322：单列档的宽度靠内容容器收，不靠加列）", () => {

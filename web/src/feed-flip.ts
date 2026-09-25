@@ -39,11 +39,12 @@ const TARGET_SELECTOR = `${CARD_SELECTOR}, ${SATELLITE_SELECTOR}`;
 
 /** 卡片的定位键：repo 唯一且稳定（虚拟列表 key 也是它）。 */
 function cardKey(card: HTMLElement): string | null {
-  const btn = card.querySelector<HTMLElement>(".repo-owner-btn") ?? card.querySelector<HTMLElement>(".repo-name");
+  const btn =
+    card.querySelector<HTMLElement>(".repo-owner-btn") ?? card.querySelector<HTMLElement>(".repo-name");
   // 卡片在列表里的唯一标识：aria-label 里的 repo（整卡的 DOM 位置拼 key 不稳）。
   const label = card.getAttribute("aria-label") ?? "";
   const m = label.match(/^打开\s+(.+?)\s+详情$/);
-  return m ? m[1] : btn?.textContent ?? null;
+  return m ? m[1] : (btn?.textContent ?? null);
 }
 
 /** 目标的定位键：卡片用 repo，卫星块用固定名（各自至多一个）。 */
@@ -80,7 +81,8 @@ export const measureCards = measureFlip;
  */
 export function playFlip(root: HTMLElement, before: FlipEntry[], duration = FLIP_DURATION): number {
   if (duration <= 0) return 0;
-  if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return 0;
+  if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches)
+    return 0;
   const beforeMap = new Map(before.map((e) => [e.key, e]));
   let played = 0;
   for (const el of Array.from(root.querySelectorAll<HTMLElement>(TARGET_SELECTOR))) {

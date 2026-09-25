@@ -176,7 +176,8 @@ describe("P0a 长度校验（effLen / 重评 / detail 兜底 / pending）", () =
 
     const card = cards.find((c) => c.repo === "new/short");
     expect(card).toBeDefined();
-    expect(effLen(card!.reasonCn)).toBeGreaterThanOrEqual(100);
+    expect(card!.reasonCn.length).toBeGreaterThanOrEqual(100);
+    expect(card!.reasonCn.length).toBeLessThanOrEqual(150);
     // 重评被触发（批量 1 次 + 重评 ≥1 次）
     expect(callCount.n).toBeGreaterThanOrEqual(2);
   });
@@ -195,10 +196,11 @@ describe("P0a 长度校验（effLen / 重评 / detail 兜底 / pending）", () =
     // 被替换为重评的达标内容（含重评补充标记，不含短 reason）
     expect(card!.reasonCn).toContain("重评补充的技术细节与具体能力说明");
     expect(card!.reasonCn).not.toContain(SHORT_REASON);
-    expect(effLen(card!.reasonCn)).toBeGreaterThanOrEqual(100);
+    expect(card!.reasonCn.length).toBeGreaterThanOrEqual(100);
+    expect(card!.reasonCn.length).toBeLessThanOrEqual(150);
   });
 
-  it("重评失败 + 有 detail → detail 第二段兜底（effLen≥100 且跳过第一段）", async () => {
+  it("重评失败 + 有 detail → detail 第二段兜底（String.length 100–150 且跳过第一段）", async () => {
     const detail = [
       "第一段开场白概述：用大白话说清楚这个项目解决什么问题，与摘要内容高度重复，同时介绍了项目的基本架构与设计理念，让读者对项目有一个整体的初步认识，这一段的文字需要写得稍微长一些才能让整体结构看起来更加饱满充实，避免出现段落过短的问题。",
       "第二段核心技术亮点：包含具体的架构设计与优化手段，比如模块化的组件划分、高效的数据处理流程、统一的内存管理机制，以及与其他同类项目相比的独特之处，内容足够详细扎实，让读者能够理解它为什么厉害，这一段文字要写得足够长，超过一百字的等效宽度，让整段介绍显得更加专业可信。",
@@ -214,8 +216,9 @@ describe("P0a 长度校验（effLen / 重评 / detail 兜底 / pending）", () =
 
     const card = cards.find((c) => c.repo === "new/fallback");
     expect(card).toBeDefined();
-    // 兜底值 ≥100 且跳过第一段（与 summary 重复）
-    expect(effLen(card!.reasonCn)).toBeGreaterThanOrEqual(100);
+    // 兜底值落在 100–150（String.length）且跳过第一段（与 summary 重复）
+    expect(card!.reasonCn.length).toBeGreaterThanOrEqual(100);
+    expect(card!.reasonCn.length).toBeLessThanOrEqual(150);
     expect(card!.reasonCn).not.toContain("第一段开场白概述");
     expect(card!.reasonCn).toContain("核心技术亮点");
     // detail 保留
@@ -262,7 +265,8 @@ describe("P0a 长度校验（effLen / 重评 / detail 兜底 / pending）", () =
 
     const card = cards.find((c) => c.repo === "new/ok");
     expect(card).toBeDefined();
-    expect(effLen(card!.reasonCn)).toBeGreaterThanOrEqual(100);
+    expect(card!.reasonCn.length).toBeGreaterThanOrEqual(100);
+    expect(card!.reasonCn.length).toBeLessThanOrEqual(150);
     // 2026-09-06 两段式：正常路径 = 海选批 1 次 + 精评批 1 次；>2 说明触发了重评
     expect(callCount.n).toBe(2);
   });
@@ -367,7 +371,8 @@ describe("P0a 长度校验（effLen / 重评 / detail 兜底 / pending）", () =
     const card = cards.find((c) => c.repo === "new/fallback-shortsum");
     expect(card).toBeDefined();
     // reason 走 detail 第二段兜底达标
-    expect(effLen(card!.reasonCn)).toBeGreaterThanOrEqual(100);
+    expect(card!.reasonCn.length).toBeGreaterThanOrEqual(100);
+    expect(card!.reasonCn.length).toBeLessThanOrEqual(150);
     expect(card!.reasonCn).toContain("核心技术亮点");
     // 关键断言：summary 不再是不达标的短值，而是从 detail 第一段截取的 20-35 字
     expect(card!.summaryCn).not.toBe(SHORT_SUMMARY);

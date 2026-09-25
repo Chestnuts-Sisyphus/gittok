@@ -16,7 +16,16 @@ import type { Fact, RepoForScoring, ScoringResult } from "./types.ts";
 import { buildInputBlock } from "./stage1.ts";
 // 分区判定链与乐趣判据的**唯一定义源**（taxonomy.ts）：prompt 文本、回填脚本、校验脚本
 // 全部 import 同一份常量——v2.2 的教训是 prompts.ts 与回填脚本各写一份链文本，措辞已经漂移。
-import { ZONES, ZONE_RULES_V3, FUN_RULES_V3, FUN_DIMS, SUMMARY_MIN, SUMMARY_MAX } from "./taxonomy.ts";
+import {
+  ZONES,
+  ZONE_RULES_V3,
+  FUN_RULES_V3,
+  FUN_DIMS,
+  SUMMARY_MIN,
+  SUMMARY_MAX,
+  REASON_MIN,
+  REASON_MAX,
+} from "./taxonomy.ts";
 
 /** AI 维度分类候选（扩展为约 28 个精细标签，覆盖 AI/工具/学习/好玩）。
  *  导出：质量对照脚本（scripts/llm-quality-test.mts）用同一份清单校验维度合法性。 */
@@ -154,7 +163,7 @@ ${list}
 - "tags": 3-6 个领域标签，从项目自述参考文档里提取「这个项目做什么领域」的具体名词（如：大语言模型、实时视频处理、家庭能源监控、音乐播放器）。面向人可读、能搜索的领域词，不是形容词、不是热度词、不是"AI""工具"这种空泛词；与 ai_dims 的分工：ai_dims 是气质/类目标签，tags 是领域名词。
 - "facts": 见下方千人千面要求。
 - "summary_cn": 面向完全不了解这个项目的人，用一句话说清它是什么、能做什么、有什么特别之处，${SUMMARY_MIN}-${SUMMARY_MAX} 个汉字（硬性要求：少于 ${SUMMARY_MIN} 字或多于 ${SUMMARY_MAX} 个字都不合格，写完后数一遍字数确认；**计数按字符个数**——英文、数字、空格、标点各算一个字符）。注意：不能和 reason_cn/detail_cn 的内容重复，必须用完全不同的角度和措辞。
-- "reason_cn": 简要介绍，110-130 个汉字（硬性要求：少于 100 字或多于 150 字都不合格，约 3 行，写完后数一遍字数确认）。面向第一次听说它的读者，用他们能懂的话讲清它是什么、解决什么问题、具体能做到什么。可以出现专业概念，但要让外行也读得懂。一段连贯文字，不要用①②③等序号编号，不要重复 summary_cn 的内容。
+- "reason_cn": 简要介绍，110-130 个汉字（硬性要求：少于 ${REASON_MIN} 字或多于 ${REASON_MAX} 字都不合格，约 3 行，写完后数一遍字数确认；**计数按字符个数**——英文、数字、空格、标点各算一个字符）。面向第一次听说它的读者，用他们能懂的话讲清它是什么、解决什么问题、具体能做到什么。可以出现专业概念，但要让外行也读得懂。一段连贯文字，不要用①②③等序号编号，不要重复 summary_cn 的内容。
 - ${DETAIL_SPEC}
 ${QIANREN_SPEC}
 

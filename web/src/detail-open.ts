@@ -271,7 +271,14 @@ export const CLOSE_INPLACE_DURATION = 180;
  */
 export interface SourceLike {
   isConnected: boolean;
-  getBoundingClientRect(): { left: number; top: number; width: number; height: number; right: number; bottom: number };
+  getBoundingClientRect(): {
+    left: number;
+    top: number;
+    width: number;
+    height: number;
+    right: number;
+    bottom: number;
+  };
 }
 
 export function liveBoxIfUsable(

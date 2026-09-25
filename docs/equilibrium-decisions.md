@@ -52,7 +52,7 @@ trending 分支 set 前带回 baseline topics
    const allOwners = new Set(Object.keys(followingUsers).filter(Boolean));
    ```
 
-**验证结果：**
+**验证结果（当时，历史口径）：**
 
 ```bash
 npx tsx scripts/gittok-channel-capacity.ts
@@ -61,12 +61,16 @@ npx tsx scripts/gittok-channel-capacity.ts
 #   x 分区·创意 只有 228 张（要求至少 300）
 ```
 
-**暴露真实问题：**
+**暴露真实问题（当时）：**
 
 - 分区·资源：296 张 < 300（差 4 张）
 - 分区·创意：228 张 < 300（差 72 张）
 
-**状态：** ✅ 已完成，需后续补数据
+**状态：** ✅ 已完成（闸本身）；数据侧后续已补。
+
+> **已于 2026-09-25（五轮 T3）改为屏数口径**：`MIN_REACHABLE = MIN_SCREENS(40) × CARDS_PER_SCREEN`，
+> 每屏张数由版式规则实时算（主流桌面档 2 列 × 3 行 = 6）⇒ **要求至少 240 张**（可推导，不是魔法数）。
+> 历史「要求至少 300」段保留作溯源；现行判据见 `scripts/gittok-channel-capacity.ts`。
 
 ---
 
@@ -405,7 +409,8 @@ node -e "const f=require('./data/feed.json'); const m=new Map(); for(const c of 
 - **2026-09-18**: 初次讨论 topics 抹除问题 → 确定 baseline 带回方案
 - **2026-09-19**: V-C 闸假行暴露 → 扩展 core 集合 + 关注行改读 following.json
 - **2026-09-19**: 等裁决策表建立 → 系统梳理待办事项
+- **2026-09-25**: V-C 现行口径由「要求至少 300」改为「40 屏 × 每屏张数（实时算）= 240」（五轮 T3；本文件 §1.2 历史段已标注）
 
 ---
 
-_本文档版本：v2.2 | 最后更新：2026-09-19 | 作者：Qoder（主开发 Agent）_
+_本文档版本：v2.3 | 最后更新：2026-09-25 | 作者：ZCode（六轮 G6）_

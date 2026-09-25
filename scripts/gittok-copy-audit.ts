@@ -50,7 +50,7 @@ const CATEGORIES: { name: string; match: (f: string) => boolean }[] = [
   { name: "无上手内容", match: (f) => f.includes("未见安装/上手内容") },
   { name: "深度解读偏短", match: (f) => /^深度解读 \d+ 字（硬性要求 500-800/.test(f) },
   { name: "序号模板痕迹", match: (f) => f.includes("模板痕迹") },
-  { name: "简要介绍 effLen<100", match: (f) => f.includes("简要介绍等效长度") },
+  { name: "简要介绍字数不合规", match: (f) => f.startsWith("简要介绍") && f.includes("字（") },
 ];
 
 function arg(name: string): string | null {
@@ -312,7 +312,9 @@ async function main(): Promise<void> {
   const delta = prev?.pool !== undefined ? pool - prev.pool : null;
   console.log(
     `  合格池规模环比 ${delta === null ? "（首跑无基准）" : `${delta >= 0 ? "+" : ""}${delta} 张`}｜本次合格 ${pool} 张` +
-      (prev?.pool !== undefined ? `｜上一跑 ${prev.pool} 张（${prev.at?.slice(0, 16).replace("T", " ")}）` : ""),
+      (prev?.pool !== undefined
+        ? `｜上一跑 ${prev.pool} 张（${prev.at?.slice(0, 16).replace("T", " ")}）`
+        : ""),
   );
   // K-02：facts 覆盖单列环比（专项队列 gittok-facts-backfill.ts 的收益看这一行）
   console.log(

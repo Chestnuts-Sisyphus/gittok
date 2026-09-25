@@ -183,7 +183,8 @@ describe("退场几何（四轮 T8②）", () => {
     const m = closeToCardMotion(mid, layout, card)!;
     expect(m.from).toBe(`translate3d(${140 - 100}px, ${90 - 45}px, 0) scale(${700 / 1200})`);
     // 位移方向仍是「从当前位置向卡片收」，不是从布局盒起跳（那会先瞬移一下）
-    const dxFrom = 140 - 100, dxTo = 340 - 100;
+    const dxFrom = 140 - 100,
+      dxTo = 340 - 100;
     expect(Math.sign(dxTo - dxFrom)).toBe(Math.sign(dxTo - 0));
   });
 
@@ -213,9 +214,27 @@ describe("退场几何（四轮 T8②）", () => {
 
 describe("liveBoxIfUsable（源卡还活着吗）", () => {
   // 结构化替身（node 环境无 DOM）：够 liveBoxIfUsable 用，也照样能表达「已卸载 / 已移出视口」
-  const mk = (rect: Partial<{ left: number; top: number; width: number; height: number; right: number; bottom: number }>, connected = true) => ({
+  const mk = (
+    rect: Partial<{
+      left: number;
+      top: number;
+      width: number;
+      height: number;
+      right: number;
+      bottom: number;
+    }>,
+    connected = true,
+  ) => ({
     isConnected: connected,
-    getBoundingClientRect: () => ({ left: 0, top: 0, width: 100, height: 50, right: 100, bottom: 50, ...rect }),
+    getBoundingClientRect: () => ({
+      left: 0,
+      top: 0,
+      width: 100,
+      height: 50,
+      right: 100,
+      bottom: 50,
+      ...rect,
+    }),
   });
   it("在视口内 → 返回实时矩形（而不是打开时那份快照）", () => {
     const b = liveBoxIfUsable(mk({ left: 200, top: 300, right: 300, bottom: 350 }), 1200, 900);

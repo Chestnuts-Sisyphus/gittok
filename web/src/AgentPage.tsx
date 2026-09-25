@@ -38,7 +38,11 @@ const STATUS_ENDPOINTS: { name: string; url: string; note?: string }[] = [
   { name: "卡片列表", url: "./data/feed.json", note: `约 ${FEED_JSON_MB}` },
   { name: "卡片详情表", url: "./data/feed-details.json" },
   { name: "今日日报", url: "./digests/latest/ai-cli.md" },
-  { name: "MCP 单文件（CDN）", url: "https://cdn.jsdelivr.net/gh/Chestnuts-Sisyphus/gittok@master/mcp-gittok/dist/index.js", note: "782KB，零依赖" },
+  {
+    name: "MCP 单文件（CDN）",
+    url: "https://cdn.jsdelivr.net/gh/Chestnuts-Sisyphus/gittok@master/mcp-gittok/dist/index.js",
+    note: "782KB，零依赖",
+  },
 ];
 
 interface EndpointStatus {
@@ -225,7 +229,10 @@ export function AgentPage() {
             }
             links={[
               { label: "说明文档", href: `${SITE}/agent/SKILL.md` },
-              { label: "GitHub 完整包", href: "https://github.com/Chestnuts-Sisyphus/gittok/tree/master/skills/gittok" },
+              {
+                label: "GitHub 完整包",
+                href: "https://github.com/Chestnuts-Sisyphus/gittok/tree/master/skills/gittok",
+              },
             ]}
           />
 
@@ -241,20 +248,25 @@ export function AgentPage() {
               <code>
                 <span className="agent-cmd"># 下载单文件（782KB，零依赖）</span>
                 {"\n"}
-                curl -fsSL -o gittok-mcp.mjs \
-                {"\n  "}https://cdn.jsdelivr.net/gh/Chestnuts-Sisyphus/gittok@master/mcp-gittok/dist/index.js
+                curl -fsSL -o gittok-mcp.mjs \{"\n  "}
+                https://cdn.jsdelivr.net/gh/Chestnuts-Sisyphus/gittok@master/mcp-gittok/dist/index.js
                 {"\n\n"}
                 node gittok-mcp.mjs --selftest
                 {"\n\n"}
                 <span className="agent-cmd"># 客户端里这样配置：</span>
                 {"\n"}
                 {"{"}"mcpServers": {"{"}"gittok": {"{"}"command": "node",
-                {"\n  "}"args": ["/path/to/gittok-mcp.mjs"]{"}"}{"}"}{"}"}
+                {"\n  "}"args": ["/path/to/gittok-mcp.mjs"]{"}"}
+                {"}"}
+                {"}"}
               </code>
             }
             links={[
               { label: "MCP 说明", href: `${SITE}/agent/MCP.md` },
-              { label: "单文件下载", href: "https://cdn.jsdelivr.net/gh/Chestnuts-Sisyphus/gittok@master/mcp-gittok/dist/index.js" },
+              {
+                label: "单文件下载",
+                href: "https://cdn.jsdelivr.net/gh/Chestnuts-Sisyphus/gittok@master/mcp-gittok/dist/index.js",
+              },
             ]}
           />
 
@@ -274,8 +286,7 @@ export function AgentPage() {
                 {"\n\n"}
                 <span className="agent-cmd"># 命令行预览（只取前 2000 字节）</span>
                 {"\n"}
-                curl -fsSL {SITE}/feed.xml \
-                {"\n  "}| head -c 2000
+                curl -fsSL {SITE}/feed.xml \{"\n  "}| head -c 2000
               </code>
             }
             links={[{ label: "feed.xml", href: `${SITE}/feed.xml` }]}
@@ -327,7 +338,12 @@ export function AgentPage() {
             </span>
             <ChevronRight size={15} />
           </a>
-          <a className="agent-resource" href={`${SITE}/agent/API.md`} target="_blank" rel="noopener noreferrer">
+          <a
+            className="agent-resource"
+            href={`${SITE}/agent/API.md`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <BookOpen size={16} />
             <span>
               <b>API 文档</b>
@@ -335,7 +351,12 @@ export function AgentPage() {
             </span>
             <ChevronRight size={15} />
           </a>
-          <a className="agent-resource" href={`${SITE}/digests/latest/ai-cli.md`} target="_blank" rel="noopener noreferrer">
+          <a
+            className="agent-resource"
+            href={`${SITE}/digests/latest/ai-cli.md`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <Bot size={16} />
             <span>
               <b>AI 日报</b>

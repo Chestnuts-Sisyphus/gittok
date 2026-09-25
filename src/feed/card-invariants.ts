@@ -15,7 +15,7 @@
  *   if (!r.ok) throw new Error(...)   // 管道在写盘前自断
  */
 
-import { ZONES, FUN_DIMS, SUMMARY_MIN, SUMMARY_MAX } from "./taxonomy.ts";
+import { ZONES, FUN_DIMS, SUMMARY_MIN, SUMMARY_MAX, REASON_MIN, REASON_MAX } from "./taxonomy.ts";
 
 /**
  * 硬性字段：**管道每轮必然产出**的字段（缺 = 管道坏了 / 缓存白名单漏了 → 拒绝提交）。
@@ -165,6 +165,15 @@ export function checkCardInvariants(
       // 2026-09-24 该欠账已清零（全库 2932 张逐张核过），且生成端那处口径漂移也一并修好，
       // 所以这条线现在如实反映产出质量：不合规的文案不允许再进库。
       add(repo, "summaryCn", `字数 ${summary.length} 不在 ${SUMMARY_MIN}-${SUMMARY_MAX}`);
+    }
+    const reason = c["reasonCn"];
+    if (
+      typeof reason === "string" &&
+      reason.length > 0 &&
+      (reason.length < REASON_MIN || reason.length > REASON_MAX)
+    ) {
+      // 六轮 G2：与提示词同侧同值（String.length 100–150）。原先只检下限且用 effLen。
+      add(repo, "reasonCn", `字数 ${reason.length} 不在 ${REASON_MIN}-${REASON_MAX}`);
     }
   }
 

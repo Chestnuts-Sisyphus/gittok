@@ -339,7 +339,9 @@ button {
   opacity: 0;
   transform: translateY(10px);
   transition:
-    opacity var(--motion-base) var(--ease-soft), transform var(--motion-base) var(--ease-geometry), display var(--motion-base) allow-discrete;
+    opacity var(--motion-base) var(--ease-soft),
+    transform var(--motion-base) var(--ease-geometry),
+    display var(--motion-base) allow-discrete;
 }
 @media (max-width: 768px) {
   @starting-style {
@@ -632,7 +634,8 @@ button {
      这条过渡只服务「抽屉/手机档」的显隐；保留是为了不错过将来任何一次「侧栏宽度变化」，
      且它不参与列数反解（导航列不折行，锁①的本义） */
   transition:
-    max-width var(--motion-base) var(--ease-geometry), opacity var(--motion-base) var(--ease-soft);
+    max-width var(--motion-base) var(--ease-geometry),
+    opacity var(--motion-base) var(--ease-soft);
 }
 
 /* 内容区：流式贴侧栏右缘（不居中），`max-width: var(--max-width)`（1650px，与顶栏同口径）。
@@ -643,12 +646,15 @@ button {
    **单列时轨道就是整个内容宽 → 卡片铺满 → 头与卡天然对齐、没有空档**；
    多列时每张卡铺满自己的轨道，轨道的左右外缘就是网格的左右外缘 → 头与卡也天然对齐。
    ⇒ 于是「按列数分流的 max-width」与「收轨道 + 左对齐」两条规则**双双删除**：
-     卡片宽度只由列数决定，没有任何上限常量；对齐是布局的**结果**，不再是需要维护的补丁。
-   全站内容区宽度口径：顶栏 1650（--max-width）｜feed 1650（本处，同口径）｜创作者页/详情弹层/Agent 页 1200。
-   ── 三轮 T6（G10 第一项）：口径**维持**（feed 跟顶栏同口径才不出现右侧越拉越大的空档；
-      创作者页/详情弹层/Agent 页是定宽阅读版式，各有其 1200 的成文口径）。
+     卡片宽度只由列数决定；对齐是布局的**结果**，不再是需要维护的补丁。
+   全站内容区宽度口径：
+     · 顶栏 / `.feed-content` 外壳：1650（--max-width）——「壳」同口径，不出现右侧越拉越大的空档；
+     · **单列档的卡/头**：另有上限 793（由 `data-cols="1"` 驱动收轨道，见下方 @media 块）——
+       09-25 栗子「按这个来」后，单列档**卡片**不再铺满 1650 壳，而是居中 793；
+       所以「feed 跟顶栏同口径」现在只指**壳**，不指卡宽（六轮乙B6/G10① 重写，不再是「确认」）。
+     · 创作者页 / 详情弹层 / Agent 页：1200（定宽阅读版式）。
    ── 三轮 T6（G10 第二项）：**首屏减载不做**。触发条件写死在此：**单屏卡片数 >24 或
-      首屏 JS 执行 >1.2s** 时再回来做。 */
+      首屏 JS 执行 >1.2s** 时再回来做（09-25 复核：单屏卡片数实测 6 张，触发条件未到）。 */
 .feed-content {
   flex: 1;
   min-width: 0;
@@ -719,7 +725,8 @@ button {
   font-weight: 600;
   cursor: pointer;
   transition:
-    border-color var(--motion-fast) var(--ease-soft), background var(--motion-fast) var(--ease-soft);
+    border-color var(--motion-fast) var(--ease-soft),
+    background var(--motion-fast) var(--ease-soft);
 }
 .pref-options button:hover {
   border-color: var(--accent);
@@ -762,10 +769,14 @@ button {
 }
 
 /* 主信息流：列数只认 `--feed-cols`（App 按 feedColsForContentWidth 反解后写进来）——
-   卡片宽度因此永远落在 [420, 700]，超上限就加列、低于下限就减列，没有固定宽度。
+   卡片宽度因此永远落在「列数规则」决定的区间；超上限就加列、低于下限就减列。
    二轮 G6（2026-09-23）：次级列表（搜索页热门预览、收藏夹展开）也由 useResponsiveCols
-   反解后写进**同一个变量**，走同一条规则——同一视口两处列数/卡宽一致，
-   不再是 auto-fill 的另一套口径（实测 1600 档主 2×653 vs 预览 3×502 的分叉就此消除）。
+   反解后写进**同一个变量 `--feed-cols`**，走同一条「按容器宽反解列数」的规则
+   （不再是 auto-fill 的另一套算法）。
+   ⚠ 六轮 G3（2026-09-25）实话校正：同一视口下两处**列数/卡宽可以不一致**——
+     因为容器宽不同。主信息流带侧栏（1500×900 实测 listW≈1228 → 1 列 × 793），
+     搜索空态热门预览无侧栏（同视口 listW≈1396 → 2 列 × 690）。
+     「同一条反解函数」≠「同视口同列数」；同列数只在容器宽落在同一档时成立。
    注意 React 对 style 对象会同时落 `style` 属性字符串，`[style]` 存在性选择即可；
    主信息流 `.feed-window >` 继续单独命中（它有虚拟垫片兄弟节点，结构不同）。 */
 .feed-window > .feed-list,
@@ -798,7 +809,9 @@ button {
   }
   /* ② 频道头/偏好条/状态行：与卡片同宽同位（头 ≡ 卡；它们是 flex 盒子不是轨道，单独给上限）。
         选择器挂在 `.feed-layout >` 上 ⇒ 只作用主信息流，不动我的页/搜索页的其它容器。 */
-  .feed-layout:has(> .feed-content > .feed-window > .feed-list[data-cols="1"]) > .feed-content > .channel-head,
+  .feed-layout:has(> .feed-content > .feed-window > .feed-list[data-cols="1"])
+    > .feed-content
+    > .channel-head,
   .feed-layout:has(> .feed-content > .feed-window > .feed-list[data-cols="1"]) > .feed-content > .pref-prompt,
   .feed-layout:has(> .feed-content > .feed-window > .feed-list[data-cols="1"]) > .feed-content > .status {
     max-width: var(--feed-card-max);
@@ -806,13 +819,8 @@ button {
   }
 }
 
-/* 主信息流：列数只认 `--feed-cols`（App 按 feedColsForContentWidth 反解后写进来）——
-   卡片宽度因此永远落在 [420, 700]，超上限就加列、低于下限就减列，没有固定宽度。
-   二轮 G6（2026-09-23）：次级列表（搜索页热门预览、收藏夹展开）也由 useResponsiveCols
-   反解后写进**同一个变量**，走同一条规则——同一视口两处列数/卡宽一致，
-   不再是 auto-fill 的另一套口径（实测 1600 档主 2×653 vs 预览 3×502 的分叉就此消除）。
-   注意 React 对 style 对象会同时落 `style` 属性字符串，`[style]` 存在性选择即可；
-   主信息流 `.feed-window >` 继续单独命中（它有虚拟垫片兄弟节点，结构不同）。 */
+/* （重复选择器块：与上方主信息流规则同值；六轮 G3 口径见上方注释——
+   「同一反解函数」≠「同视口同列数」，预览无侧栏时可能多一列。） */
 .feed-window > .feed-list,
 .feed-list[style] {
   grid-template-columns: repeat(var(--feed-cols, 1), minmax(0, 1fr));
@@ -880,7 +888,9 @@ button {
   box-sizing: border-box;
   box-shadow: var(--glass-highlight-top), var(--glass-highlight-bottom), var(--glass-shadow);
   transition:
-    transform var(--motion-base) var(--ease-geometry), border-color var(--motion-fast) var(--ease-soft), background var(--motion-fast) var(--ease-soft);
+    transform var(--motion-base) var(--ease-geometry),
+    border-color var(--motion-fast) var(--ease-soft),
+    background var(--motion-fast) var(--ease-soft);
   position: relative;
   overflow: hidden;
   cursor: pointer;
@@ -1966,9 +1976,10 @@ button {
 .search-creators {
   margin-bottom: 28px;
 }
-/* 二轮 G6（2026-09-23）：搜索空态与主信息流**同一内容口径**——
-   上限同 --max-width、内距同 24px。热门预览的网格由此与主信息流同宽
-   （旧况预览走 .main 直接内距 20px，1600 档比主信息流宽出 84px → 卡宽对不齐）。 */
+/* 二轮 G6（2026-09-23）：搜索空态与主信息流**同一内容区上限**——
+   上限同 --max-width、内距同 24px（旧况预览走 .main 直接内距 20px，比主信息流宽出一截）。
+   ⚠ 六轮 G3（2026-09-25）：内容区上限同 ≠ 列数同。预览页**无侧栏**，可用宽更大，
+   同视口可能比主信息流多一列（1500×900 实测：主 1×793 / 预览 2×690）。这是容器差，不是 bug。 */
 .search-empty-unified {
   max-width: var(--max-width);
   padding: 20px 24px 32px;
@@ -2188,7 +2199,8 @@ button {
     border-right: 1px solid rgba(255, 255, 255, 0.08);
     transform: translateX(-100%);
     transition:
-      transform var(--motion-base) var(--ease-geometry), visibility 0s linear var(--motion-base);
+      transform var(--motion-base) var(--ease-geometry),
+      visibility 0s linear var(--motion-base);
     /* G-12：关闭态此前仍可被 Tab 进去（只靠 transform 移出视口）→ 补 visibility 收掉焦点可达性，
        延迟与滑出动画同时长是为了不打断它；打开态下面那条把延迟清零。 */
     visibility: hidden;
@@ -2201,7 +2213,8 @@ button {
     transform: translateX(0);
     visibility: visible;
     transition:
-      transform var(--motion-base) var(--ease-geometry), visibility 0s linear 0s;
+      transform var(--motion-base) var(--ease-geometry),
+      visibility 0s linear 0s;
   }
   /* 抽屉内频道项触控目标（≥44px） */
   .drawer .side-item {

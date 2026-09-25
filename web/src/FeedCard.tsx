@@ -1,5 +1,6 @@
 import { memo, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
-import type { FeedCard as Card, Collection } from "./types.ts";import {
+import type { FeedCard as Card, Collection } from "./types.ts";
+import {
   ExternalLink,
   Heart,
   Star,
@@ -415,7 +416,12 @@ export function CardDetail({
     // 首帧即动（锁⑩）：playCloseMotion 内部同步写 from 再 animate，中间不落笔。
     // 退场时把源卡一起反向淡回来（栗子：「退场动画的结尾出现了卡片原有位置闪现」）——
     // 只在这张卡真的可见时才做（live 非空）；回退案里源卡已经不可用，没有可交接的对象。
-    const { card: anim, fade, revealAnim, dim } = playCloseMotion(
+    const {
+      card: anim,
+      fade,
+      revealAnim,
+      dim,
+    } = playCloseMotion(
       panel,
       overlayRef.current,
       motion,
@@ -661,7 +667,11 @@ export function CardDetail({
   );
 
   return (
-    <div ref={overlayRef} className={`detail-overlay${fromCard ? " is-from-card" : ""}`} onClick={requestClose}>
+    <div
+      ref={overlayRef}
+      className={`detail-overlay${fromCard ? " is-from-card" : ""}`}
+      onClick={requestClose}
+    >
       <div
         ref={panelRef}
         className={`detail-mover${fromCard ? " is-from-card" : ""}`}

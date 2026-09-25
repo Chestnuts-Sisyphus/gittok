@@ -1,14 +1,13 @@
 {
-  "updatedAt": "2026-09-24T16:19:03.203Z",
+  "updatedAt": "2026-09-25T04:40:43.309Z",
   "lanes": {
     "zhipu": {
       "key": "zhipu",
-      "calls": 2718,
-      "ok": 2135,
+      "calls": 2727,
+      "ok": 2144,
       "lastError": "Error: summary-fix 2 张 超时 90000ms",
-      "lastClass": "network",
-      "updatedAt": "2026-09-24T16:05:41.099Z",
-      "retiredUntil": "2026-09-24T16:35:41.099Z"
+      "lastClass": "ok",
+      "updatedAt": "2026-09-25T04:40:43.309Z"
     },
     "agnes": {
       "key": "agnes",

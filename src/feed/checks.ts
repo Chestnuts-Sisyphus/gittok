@@ -11,7 +11,7 @@
 
 import type { ScoringResult } from "./types.ts";
 import { validateScoringResult } from "./prompts.ts";
-import { SUMMARY_MIN, SUMMARY_MAX } from "./taxonomy.ts";
+import { SUMMARY_MIN, SUMMARY_MAX, REASON_MIN, REASON_MAX } from "./taxonomy.ts";
 import { checkG6Time, checkG8Promo } from "./stage1.ts";
 import { longestCommonRun } from "./stage2.ts";
 
@@ -74,13 +74,17 @@ export function cardChecks(sc: ScoringResult, doc?: string): GateFails {
   const fails: string[] = [];
 
   // G1 长度（P0a + 站点铁律）
-  // 口径 = `taxonomy.ts` 的 SUMMARY_MIN/SUMMARY_MAX（唯一定义源）＋ **String.length**（不是 effLen）。
-  // 2026-09-24 五轮溯源：这两个字面量原先是散着写的，生成端兜底函数按 effLen 收 35、这里按 length 判 35，
-  // 于是全库 418 张「生成端认为合规、闸认为超字」的卡漏出去（其中 400 张正是那个兜底函数的产物）。
+  // 摘要：taxonomy SUMMARY_MIN/MAX + String.length（五轮闭环）。
+  // 理由：taxonomy REASON_MIN/MAX + String.length（六轮闭环）。
+  // 2026-09-25 六轮溯源：提示词早写「少于 100 或多于 150 都不合格」，但本处原先只判
+  // `effLen(r) < 100`——**上限从未检过** ⇒ 全库 518 张 >150 漏出去；卡宽收到 793 后
+  // 每行 53 汉字 × 3 行 = 容量 159，于是 43 张露出省略号。现与提示词同侧同值。
   if (!(s.length >= SUMMARY_MIN && s.length <= SUMMARY_MAX)) {
     fails.push(`一句话描述 ${s.length} 字（硬性要求 ${SUMMARY_MIN}-${SUMMARY_MAX} 汉字）`);
   }
-  if (effLen(r) < 100) fails.push(`简要介绍等效长度 ${effLen(r).toFixed(0)}（要求约 3 行，effLen≥100）`);
+  if (!(r.length >= REASON_MIN && r.length <= REASON_MAX)) {
+    fails.push(`简要介绍 ${r.length} 字（硬性要求 ${REASON_MIN}-${REASON_MAX} 汉字）`);
+  }
   if (d.length < 500) fails.push(`深度解读 ${d.length} 字（硬性要求 500-800 字）`);
   else if (d.length > 900) fails.push(`深度解读 ${d.length} 字（超过 800 字上限，收一收）`);
 

@@ -743,7 +743,8 @@ function useResponsiveCols(rowGap: number): { ref: (el: HTMLElement | null) => v
   };
 }
 
-function useFeedGrid() {  const [mobile, setMobile] = useState(
+function useFeedGrid() {
+  const [mobile, setMobile] = useState(
     () =>
       typeof window !== "undefined" && window.matchMedia(`(max-width: ${FEED_MOBILE_MAX_WIDTH}px)`).matches,
   );
@@ -1930,76 +1931,76 @@ export default function App() {
 
                         <div ref={folderColsRef} data-cols-root="folders">
                           {collections.map((col) => {
-                          const expanded = expandedCols[col.id] ?? false;
-                          const colCards = expanded
-                            ? col.repos
-                                .map((repo) => col.snapshots?.[repo] ?? cardByRepo.get(repo))
-                                .filter((c): c is FeedCard => !!c)
-                            : [];
-                          return (
-                            <div key={col.id} className="collection-folder">
-                              <div
-                                className="folder-header"
-                                onClick={() =>
-                                  setExpandedCols((prev) => ({ ...prev, [col.id]: !prev[col.id] }))
-                                }
-                              >
-                                <span className={`folder-chevron${expanded ? " open" : ""}`}>
-                                  <ChevronRight size={14} />
-                                </span>
-                                <span className="folder-icon">
-                                  <Folder size={18} />
-                                </span>
-                                <span className="folder-name">{col.name}</span>
-                                <span className="folder-count">({col.repos.length}个)</span>
-                                <button
-                                  className="folder-delete"
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    handleDeleteCollection(col.id);
-                                  }}
-                                  title="删除收藏夹"
+                            const expanded = expandedCols[col.id] ?? false;
+                            const colCards = expanded
+                              ? col.repos
+                                  .map((repo) => col.snapshots?.[repo] ?? cardByRepo.get(repo))
+                                  .filter((c): c is FeedCard => !!c)
+                              : [];
+                            return (
+                              <div key={col.id} className="collection-folder">
+                                <div
+                                  className="folder-header"
+                                  onClick={() =>
+                                    setExpandedCols((prev) => ({ ...prev, [col.id]: !prev[col.id] }))
+                                  }
                                 >
-                                  <Trash2 size={16} />
-                                </button>
-                              </div>
-                              {expanded && (
-                                <div className="folder-cards">
-                                  {colCards.length === 0 && (
-                                    <p className="folder-empty">暂未匹配到项目卡片（数据可能已更新）</p>
-                                  )}
-                                  {colCards.length > 0 && (
-                                    <div
-                                      className="feed-list"
-                                      data-cols={folderCols}
-                                      style={{ "--feed-cols": folderCols } as React.CSSProperties}
-                                      data-cols-root="folder"
-                                    >
-                                      {colCards.map((card) => (
-                                        <div key={card.repo} className="folder-card-wrapper">
-                                          <FeedCardMemo
-                                            card={card}
-                                            liked={feedback.likes.includes(card.repo)}
-                                            ignored={dislikedSet.has(card.repo)}
-                                            onOpen={handleOpenDetail}
-                                            onOpenCreator={openCreator}
-                                          />
-                                          <button
-                                            className="folder-card-remove"
-                                            onClick={() => handleRemoveFromCollection(col.id, card.repo)}
-                                            title="移出收藏夹"
-                                          >
-                                            <X size={16} />
-                                          </button>
-                                        </div>
-                                      ))}
-                                    </div>
-                                  )}
+                                  <span className={`folder-chevron${expanded ? " open" : ""}`}>
+                                    <ChevronRight size={14} />
+                                  </span>
+                                  <span className="folder-icon">
+                                    <Folder size={18} />
+                                  </span>
+                                  <span className="folder-name">{col.name}</span>
+                                  <span className="folder-count">({col.repos.length}个)</span>
+                                  <button
+                                    className="folder-delete"
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      handleDeleteCollection(col.id);
+                                    }}
+                                    title="删除收藏夹"
+                                  >
+                                    <Trash2 size={16} />
+                                  </button>
                                 </div>
-                              )}
-                            </div>
-                          );
-                        })}
+                                {expanded && (
+                                  <div className="folder-cards">
+                                    {colCards.length === 0 && (
+                                      <p className="folder-empty">暂未匹配到项目卡片（数据可能已更新）</p>
+                                    )}
+                                    {colCards.length > 0 && (
+                                      <div
+                                        className="feed-list"
+                                        data-cols={folderCols}
+                                        style={{ "--feed-cols": folderCols } as React.CSSProperties}
+                                        data-cols-root="folder"
+                                      >
+                                        {colCards.map((card) => (
+                                          <div key={card.repo} className="folder-card-wrapper">
+                                            <FeedCardMemo
+                                              card={card}
+                                              liked={feedback.likes.includes(card.repo)}
+                                              ignored={dislikedSet.has(card.repo)}
+                                              onOpen={handleOpenDetail}
+                                              onOpenCreator={openCreator}
+                                            />
+                                            <button
+                                              className="folder-card-remove"
+                                              onClick={() => handleRemoveFromCollection(col.id, card.repo)}
+                                              title="移出收藏夹"
+                                            >
+                                              <X size={16} />
+                                            </button>
+                                          </div>
+                                        ))}
+                                      </div>
+                                    )}
+                                  </div>
+                                )}
+                              </div>
+                            );
+                          })}
                         </div>
 
                         <button className="collection-create-btn" onClick={handleCreateCollection}>

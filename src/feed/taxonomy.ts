@@ -272,3 +272,17 @@ export const FUN_DIMS_FIELD = "fun_dims";
  */
 export const SUMMARY_MIN = 20;
 export const SUMMARY_MAX = 35;
+
+/**
+ * 简要介绍（`reasonCn`）的字数契约：100–150。
+ *
+ * 提示词写作目标是 110–130；硬性不合格线是「少于 100 或多于 150」。
+ * 计数口径 = **`String.length`**（与摘要契约同侧同值；不用 `effLen`）。
+ *
+ * 2026-09-25 六轮实证：闸原先只判 `effLen(r) < 100`（下限），**上限从未检过** ⇒
+ * 全库 518 张 >150 字漏出去；卡宽收到 793 后每行 53 汉字 × 3 行 = 容量 159，
+ * 于是其中 43 张露出省略号。容量 159 ≥ 上限 150 ⇒ 收进契约后省略号结构性消失。
+ * 凡改本常量，必须同时改：提示词插值、`checks.cardChecks` G1、`card-invariants`、生成端校验。
+ */
+export const REASON_MIN = 100;
+export const REASON_MAX = 150;
