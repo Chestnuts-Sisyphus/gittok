@@ -23,7 +23,9 @@ const lens = bad.map((c) => String(c["reasonCn"]).length).sort((a, b) => a - b);
 console.log(`线上 ${url}`);
 console.log(`  卡片 ${cards.length} 张｜**断句违约 ${bad.length} 张**（口径＝taxonomy.endsWithSentenceEnd）`);
 for (const c of bad.slice(0, 5)) {
-  console.log(`  · ${String(c["repo"])}（${String(c["reasonCn"]).length} 字）…${String(c["reasonCn"]).trim().slice(-24)}`);
+  console.log(
+    `  · ${String(c["repo"])}（${String(c["reasonCn"]).length} 字）…${String(c["reasonCn"]).trim().slice(-24)}`,
+  );
 }
 console.log(`  长度分布：${lens.length ? `min ${lens[0]} / max ${lens.at(-1)}` : "（无）"}`);
 process.exit(bad.length === 0 ? 0 : 1);
