@@ -17,12 +17,15 @@ import { loadCachedText, saveCachedText } from "./feed-cache.ts";
 import {
   FEED_CARD_HEIGHT,
   FEED_MOBILE_MAX_WIDTH,
+  FEED_REASON_LINES_MIN,
   FEED_ROW_GAP,
   FEED_ROW_HEIGHT,
   FEED_SHORT_MAX_HEIGHT,
   feedCardHeightForHeight,
+  feedCardWidthFor,
   feedColsForContentWidth,
   feedGridFromMatch,
+  feedReasonLinesForCard,
   feedViewportOf,
   feedWindow,
   isScrollableOverflow,
@@ -715,9 +718,16 @@ function buildRecommended(
  * 反解、写进同一个 `--feed-cols`；CSS 用 `.feed-list[style*="--feed-cols"]` 不行——直接给容器
  * 加 style 即可，`.feed-window >` 那条主规则继续只管虚拟列表。
  */
-function useResponsiveCols(rowGap: number): { ref: (el: HTMLElement | null) => void; cols: number } {
+function useResponsiveCols(rowGap: number): {
+  ref: (el: HTMLElement | null) => void;
+  cols: number;
+  reasonLines: number;
+} {
   const elRef = useRef<HTMLElement | null>(null);
   const [cols, setCols] = useState(1);
+  // 七轮：理由行数（3/4）与列数**同一次测量**里算出来，一起写进 CSS 变量 `--feed-reason-lines`。
+  // 反推规则见 feed-layout.ts 的 FEED_REASON_MAX 注释（1600 档 3 行会截掉 72/837）。
+  const [reasonLines, setReasonLines] = useState(FEED_REASON_LINES_MIN);
   // 条件渲染下（搜索空态/收藏夹展开只在特定视图存在），ref 挂上时 effect 已经跑过了——
   // 所以 ref callback 里直接触发首次测量，不能指望 effect。
   const measureRef = useRef<() => void>(() => {});
@@ -726,7 +736,9 @@ function useResponsiveCols(rowGap: number): { ref: (el: HTMLElement | null) => v
       const el = elRef.current;
       if (!el) return;
       const list = el.querySelector<HTMLElement>(".feed-list") ?? el;
-      setCols(feedColsForContentWidth(list.clientWidth, rowGap));
+      const next = feedColsForContentWidth(list.clientWidth, rowGap);
+      setCols(next);
+      setReasonLines(feedReasonLinesForCard(feedCardWidthFor(list.clientWidth, next, rowGap)));
     };
     measureRef.current();
     const ro = new ResizeObserver(() => measureRef.current());
@@ -736,6 +748,7 @@ function useResponsiveCols(rowGap: number): { ref: (el: HTMLElement | null) => v
   }, [rowGap]);
   return {
     cols,
+    reasonLines,
     ref: (el: HTMLElement | null) => {
       elRef.current = el;
       if (el) measureRef.current();
@@ -816,6 +829,15 @@ function FeedVirtualList({
     // 桌面档只有一个侧栏形态（192 + 24 边距）→ offset 只有一个值
     return feedColsForContentWidth(vw - 280, rowGap);
   });
+  // 七轮：理由行数（3/4）与列数**同一次测量**算出来（`--feed-reason-lines`）。
+  // 首帧初值同样按视口宽推（与上面 cols 的初值同一套 offset），避免首帧 3 行、随后跳 4 行。
+  const [reasonLines, setReasonLines] = useState(() => {
+    if (typeof window === "undefined") return FEED_REASON_LINES_MIN;
+    const vw = window.innerWidth;
+    const contentW = vw <= FEED_MOBILE_MAX_WIDTH ? 0 : vw - 280;
+    const c = vw <= FEED_MOBILE_MAX_WIDTH ? 1 : feedColsForContentWidth(contentW, rowGap);
+    return feedReasonLinesForCard(feedCardWidthFor(contentW, c, rowGap));
+  });
   // FLIP 的量测根：`.feed-content`（卡片在它内部的 .feed-window 里，频道头/偏好条是它的直接子元素）。
   // 拿不到时退回 .feed-window（只有卡片参与，退化到二轮的行为）。
   const flipRoot = (el: HTMLElement): HTMLElement => el.closest<HTMLElement>(".feed-content") ?? el;
@@ -831,6 +853,9 @@ function FeedVirtualList({
       const list = wrap.querySelector<HTMLElement>(".feed-list");
       if (!list) return;
       const next = feedColsForContentWidth(list.clientWidth, rowGap);
+      // 理由行数与列数同源同帧：卡宽 = feedCardWidthFor(网格宽, 列数, 行距)，
+      // 行数 = feedReasonLinesForCard(卡宽)。两者都不是「另拍一个数」，是同一几何量的两种读法。
+      setReasonLines(feedReasonLinesForCard(feedCardWidthFor(list.clientWidth, next, rowGap)));
       setCols((prev) => {
         if (prev === next) return prev;
         // 列数真的要变：先把旧布局矩形量下来，等 DOM 重排后按 FLIP 补差。
@@ -937,7 +962,11 @@ function FeedVirtualList({
           四轮 T1（乙B2）：此前 CSS 靠 `[style*="--feed-cols: 1"]` 匹配 React 序列化出的
           `--feed-cols: 1;` 字符串——依赖「含空格」这一个隐含约定，序列化策略一变就静默失效。
           `--feed-cols` 保留：它是 CSS 变量，主规则按它取轨道数，JS 垫片也读它。 */}
-      <div className="feed-list" data-cols={cols} style={{ "--feed-cols": cols } as React.CSSProperties}>
+      <div
+        className="feed-list"
+        data-cols={cols}
+        style={{ "--feed-cols": cols, "--feed-reason-lines": reasonLines } as React.CSSProperties}
+      >
         {visible.map((card) => (
           <FeedCardMemo
             key={card.repo}
@@ -1020,7 +1049,11 @@ export default function App() {
   const [expandedCols, setExpandedCols] = useState<Record<string, boolean>>({});
   // 二轮 G6：收藏夹展开的卡片网格与主信息流同一条列数反解。多个收藏夹共用同一容器宽
   // （.folder-cards 全宽），列数相同——一个 hook 量「我的页内容区」即可。
-  const { cols: folderCols, ref: folderColsRef } = useResponsiveCols(FEED_ROW_GAP);
+  const {
+    cols: folderCols,
+    reasonLines: folderReasonLines,
+    ref: folderColsRef,
+  } = useResponsiveCols(FEED_ROW_GAP);
   const [searchQuery, setSearchQuery] = useState("");
   const [detailCard, setDetailCard] = useState<FeedCard | null>(null);
   const sourceRectRef = useRef<DOMRect | null>(null);
@@ -1618,7 +1651,7 @@ export default function App() {
     [cards],
   );
   // 二轮 G6：热门预览与主信息流同一条列数反解（不再是 CSS auto-fill 的另一套口径）
-  const { cols: hotCols, ref: hotColsRef } = useResponsiveCols(FEED_ROW_GAP);
+  const { cols: hotCols, reasonLines: hotReasonLines, ref: hotColsRef } = useResponsiveCols(FEED_ROW_GAP);
 
   // 创作者页项目列表（栈顶 owner 过滤，score 降序）
   const creatorCards = useMemo(() => {
@@ -1973,7 +2006,12 @@ export default function App() {
                                       <div
                                         className="feed-list"
                                         data-cols={folderCols}
-                                        style={{ "--feed-cols": folderCols } as React.CSSProperties}
+                                        style={
+                                          {
+                                            "--feed-cols": folderCols,
+                                            "--feed-reason-lines": folderReasonLines,
+                                          } as React.CSSProperties
+                                        }
                                         data-cols-root="folder"
                                       >
                                         {colCards.map((card) => (
@@ -2180,7 +2218,12 @@ export default function App() {
                           className="feed-list"
                           ref={hotColsRef}
                           data-cols={hotCols}
-                          style={{ "--feed-cols": hotCols } as React.CSSProperties}
+                          style={
+                            {
+                              "--feed-cols": hotCols,
+                              "--feed-reason-lines": hotReasonLines,
+                            } as React.CSSProperties
+                          }
                         >
                           {hotPreview.map((card) => (
                             <FeedCardMemo

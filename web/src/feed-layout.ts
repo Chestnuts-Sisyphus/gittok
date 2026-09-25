@@ -20,13 +20,24 @@ export const FEED_MOBILE_MAX_WIDTH = 768;
  *     · 卡宽由它反推：一行放下 35 字所需的**最小卡宽** = 35×16.66 + 69 = **652.1 → 653px**。
  *     · 列数规则随之改写：取「卡宽仍 ≥ 653」的**最大**列数（旧规则是「最少列数使卡宽 ≤700」）。
  *       结果是：2 列及以上时，任何合规摘要都必然一行放得下；只有屏幕窄到给不出 653px 卡才退 1 列。
- *     · 单列档不再是「铺满」：09-25 栗子指着两列档那张卡说「单列卡片的极限宽度按这个来」
+ *     · 单列档不再是「铺满轨道」：09-25 栗子指着两列档那张卡说「单列卡片的极限宽度按这个来」
  *       ⇒ 单列档卡宽上限 = 两列档在参照档下的卡宽 = **793**（见 FEED_CARD_MAX 与 styles.css
- *       的 `--feed-card-max`）；超出的宽度变成**对称页边距**（内容是居中窄列）。
- *       （09-24 那条「不许留空档」的口径被这条**局部取代**：空档仍是禁止的——轨道里不留空，
- *        宽度上限由**内容容器**承担，不是把卡片限宽后丢在轨道左边。）
+ *       的 `--feed-card-max`）。
+ *       ⚠ 2026-09-25 七轮「空隙口径合成」——三条历史口径在**中间带**（793 < 内容宽 < 2×653+16）
+ *         几何上不可兼得，这里记定论与依据（规格＝`GitTok-七轮-空隙口径合成规格-20260925.md`）：
+ *           · 卡宽 ≤793（09-25 栗子指令）＋ 内容契约不截断（摘要 20–35 一行、理由 100–150 三行，
+ *             〇块第 7 条「内容契约优先于版式」）⇒ 卡宽只能落在 **[653, 793]**；
+ *           · 中间带里 2 列给出的卡宽是 389–653 ⇒ 摘要被截（实测 606 档 4.7%、432 档 80%）、
+ *             理由被截（实测 606 档 38.8%）；1 列给出的卡宽是 793 ⇒ 剩余宽度**必然**成为两侧留白
+ *             （最宽 264px/侧）。⇒ 三条口径**不可同时成立**，「提前升 2 列消灭空隙」实测被否。
+ *           · 定版：**轨道里不留空**（卡宽 = 轨道宽，09-24 那条继续成立）＋轨道宽度上限由内容
+ *             容器承担（793）＋余量作**对称页边距**；并把理由行数按卡宽反推（见 FEED_REASON_MAX），
+ *             把 2 列窄档的省略号收掉（实测 1600 档 72/837 → 0）。
+ *           · 未尽事项：中间带余量本身**消不掉**（要消就得放弃 793 或放弃内容契约），
+ *             三条可选口径与代价见规格文件第三节，等栗子裁。
  *  ⚠ `--feed-col-min` 与 `FEED_COL_MIN` 仍是双写契约（漂移会让虚拟列表垫片按错列数算高度）；
- *    `--feed-card-max` 与 `FEED_CARD_MAX` 同理（由 lock 单测钉住）。 */
+ *    `--feed-card-max` 与 `FEED_CARD_MAX` 同理；`--feed-reason-lines` 与 FEED_REASON_MAX 一族的
+ *    反推值同理（都由 lock 单测钉住）。 */
 /** 摘要一行的**内容契约**：上限 35 个汉字（＝提示词里的硬性要求）。 */
 export const FEED_SUMMARY_MAX = 35;
 /** 实测单字宽（17px 根字号、700 字重；与 G9 表「一行容量 = floor((卡宽−69)/16.66)」同式）。 */
@@ -49,6 +60,34 @@ export const FEED_GRID_REF = 1602;
 export const FEED_CARD_MAX = Math.floor((FEED_GRID_REF - FEED_ROW_GAP) / 2);
 /** 单列档内容容器上限 = 卡宽上限 + 内容衬距（24×2）——CSS 侧写的就是这个算式。 */
 export const FEED_CONTENT_MAX_1COL = FEED_CARD_MAX + 48;
+/** ── 理由契约 → **显示行数**（2026-09-25 七轮）─────────────────────────────────
+ *  理由的内容契约是 100–150 字（`REASON_MIN/MAX`，与摘要同为内容侧契约，且是**硬闸**）；
+ *  显示侧原本固定 3 行（styles.css `.reason-clamped` 的 `-webkit-line-clamp: 3`）——
+ *  实测**只对卡宽 ≥766 成立**。全库 837 张扫整条信息流的实测（`D:/tmp/gt-layout/r7/scan-*.json`）：
+ *    · 卡宽 793（单列档 / 1920 两列）→ 3 行 0/837 被截；
+ *    · 卡宽 706（1700 两列）        → 3 行 **7/837 被截**（0.8%）；
+ *    · 卡宽 656（1600 两列）        → 3 行 **72/837 被截**（8.6%）；
+ *    · 卡宽 606（若提前升 2 列）    → 3 行 324/836 被截（38.8%），给第 4 行 → 0 被截。
+ *  根因：3 行容量 = 3 × floor((卡宽 − chrome) / 理由单字宽)，只对宽卡够。
+ *  ⇒ 显示行数由**内容契约反推**：`lines = ceil(REASON_MAX / floor((卡宽 − chrome) / 理由单字宽))`；
+ *    下限 3（不因反推把宽卡的行数压低）、上限 4（**288 卡高的物理上限**：第 4 行吃掉底部
+ *    27px 余量后实测「可见撑破 0/837」，第 5 行会溢出卡壳——`D:/tmp/gt-layout/r7/overflow-*.json`）。
+ *  阈值：卡宽 ≥766 ⇒ 3 行；[599, 766) ⇒ 4 行；<599（手机档）保持 3 行——那是既有的
+ *    「按设计收窄」（与摘要 19<20 同类，见六轮 G9①，待他裁），本轮不动（≤768 不许破）。
+ *  ⚠ 与 styles.css 的 `--feed-reason-lines` 双写（由 lock 单测钉住，同 --feed-card-max 的做法）。 */
+export const FEED_REASON_MAX = 150;
+/** 理由单字宽 = 摘要单字宽 × 字号比（0.82rem ÷ 0.98rem）＝ 16.66 × 0.8367 ≈ **13.94**。
+ *  实测区间 13.7–14.5（见上表三档反算），取推导值 13.94（区间内、且是可推导而非拍的数字）。 */
+export const FEED_REASON_CHAR_W = FEED_CHAR_W * (0.82 / 0.98);
+export const FEED_REASON_LINES_MIN = 3;
+export const FEED_REASON_LINES_MAX = 4;
+/** 理由**能完整显示**所需的最小卡宽：让**上限 4 行**装下 REASON_MAX 字所需的卡宽 =
+ *  chrome + ceil(150/4) × 单字宽 = 69 + 38 × 13.94 ≈ **599**。
+ *  窄于它的档（手机档）在 288 卡高里**物理上**装不下 150 字 ⇒ 沿用既有 3 行、
+ *  被截照实记数（responsive 闸里记 SKIP 而不是 PASS，见脚本 FEED_REASON_MAX 注释）。 */
+export const FEED_REASON_FIT_MIN_CARD_W = Math.ceil(
+  FEED_CARD_CHROME + Math.ceil(FEED_REASON_MAX / FEED_REASON_LINES_MAX) * FEED_REASON_CHAR_W,
+);
 export const FEED_SHORT_MAX_HEIGHT = 560;
 export const FEED_CARD_HEIGHT_SHORT = 210;
 
@@ -92,6 +131,10 @@ export function feedColsForWidth(width: number): number {
  *   取「卡宽仍 ≥ FEED_COL_MIN（一行放得下 35 字）」的**最大**列数；给不出两列就 1 列
  *   （卡宽此时由**内容容器**在单列档收窄到 ≤ FEED_CARD_MAX，见 styles.css 的 `--feed-card-max`）。
  * 下界来自内容契约（35 字 → 653px）；上界（793）来自「单列档卡宽不得超过两列档的卡宽」这条 09-25 口径。
+ * ⚠ 上面 09-23 那句「任何窗口都不要大片空隙**或**过大卡片」在 09-25 追加 793 上限之后**只能二选一**：
+ *   内容宽 ∈ (793, 1322) 时，给 793 的卡就留余量（最宽 264px/侧），给 2 列就把卡压到 653 以下 ≙ 摘要/理由被截
+ *   （实测 606 档：摘要 4.7%、理由 38.8%）。七轮定版＝**保内容契约 + 保 793**，余量作对称页边距；
+ *   三条口径的代价表与待裁项见 `GitTok-七轮-空隙口径合成规格-20260925.md`。
  * 参考的另一组可读区间（22–38 汉字）见下面 FEED_COL_MIN 的取值史。
  *   下限 480px＝24 汉字（2026-09-23 傍晚由 420 上调，见 FEED_COL_MIN 的取值史）、
  *   上限 700px＝37 汉字（区间内、且低于 WCAG 的 40）。
@@ -106,7 +149,11 @@ export function feedColsForContentWidth(contentWidth: number, rowGap: number = F
   // 取「卡宽仍 ≥ FEED_COL_MIN（＝一行放得下 35 字的卡宽）」的**最大**列数。
   // 为什么是最大而不是最少：栗子 09-24「在卡片是两列及以上的时候说明屏幕有足够的宽度，
   // 这个时候应该保证所有摘要都能全部展示出来」——列数只能加到一个"摘要仍然读得完整"的上限为止；
-  // 能两列就别三列（三列会让卡宽掉到 35 字以下 ≙ 摘要被截），屏幕不够宽就老实一列铺满（不留空档）。
+  // 能两列就别三列（三列会让卡宽掉到 35 字以下 ≙ 摘要被截）。
+  // ⚠ 2026-09-25 七轮订正：FEED_COL_MIN=653 是**下界**，不是「这条规则只管到哪」——
+  //   给不出 653 就退 1 列，而**单列档的卡宽另有上限 793**（见 FEED_CARD_MAX），
+  //   于是内容宽在 (793, 2×653+16) 这段时，轨道里仍然只有 793 宽的卡、余量成为对称页边距。
+  //   旧注释写「屏幕不够宽就老实一列铺满（不留空档）」——**与实现不符**（单列档不铺满），七轮删。
   let cols = 1;
   while (widthAt(cols + 1) >= FEED_COL_MIN) cols++;
   return cols;
@@ -114,6 +161,33 @@ export function feedColsForContentWidth(contentWidth: number, rowGap: number = F
 
 export function feedRowGapForWidth(width: number): number {
   return width <= FEED_MOBILE_MAX_WIDTH ? FEED_ROW_GAP_MOBILE : FEED_ROW_GAP;
+}
+
+/**
+ * 某个内容宽 + 列数下，**卡片实际有多宽**（＝CSS 计算值的 JS 同式）。
+ * 这是「卡宽」的**唯一算式**：列数规则、理由行数、L 形闸的期望值都从这里取，
+ * 不要再各写一份（同一几何量只许有一个真源）。
+ *   · 多列档：轨道 = (内容宽 − (n−1)×行距) / n，卡片 width:100% 铺满它 ⇒ 卡宽 = 轨道宽；
+ *   · 单列档：CSS 用 `minmax(0, var(--feed-card-max))` 收轨道 ⇒ 卡宽 = min(内容宽, 793)。
+ */
+export function feedCardWidthFor(contentWidth: number, cols: number, rowGap: number = FEED_ROW_GAP): number {
+  const n = Math.max(1, cols | 0);
+  if (!(contentWidth > 0)) return 0;
+  const track = (contentWidth - (n - 1) * rowGap) / n;
+  return n === 1 ? Math.min(track, FEED_CARD_MAX) : track;
+}
+
+/**
+ * 某卡宽下，理由要几行才能把 100–150 字的契约整段放完（推导见 `FEED_REASON_MAX` 上方注释）。
+ * 卡宽 < FEED_REASON_FIT_MIN_CARD_W(599) 的档（手机档）在 288 卡高里装不下 150 字，
+ * 沿用既有 3 行（=既有的「按设计收窄」，待裁），**不按契约反推**。
+ */
+export function feedReasonLinesForCard(cardWidth: number): number {
+  if (!(cardWidth >= FEED_REASON_FIT_MIN_CARD_W)) return FEED_REASON_LINES_MIN;
+  const perLine = Math.floor((cardWidth - FEED_CARD_CHROME) / FEED_REASON_CHAR_W);
+  if (!(perLine > 0)) return FEED_REASON_LINES_MIN;
+  const need = Math.ceil(FEED_REASON_MAX / perLine);
+  return Math.min(FEED_REASON_LINES_MAX, Math.max(FEED_REASON_LINES_MIN, need));
 }
 
 export function feedWindow(opts: {

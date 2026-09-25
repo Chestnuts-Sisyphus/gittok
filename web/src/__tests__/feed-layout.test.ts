@@ -12,6 +12,11 @@ import {
   FEED_CHAR_W,
   FEED_COL_MIN,
   FEED_GRID_REF,
+  FEED_REASON_CHAR_W,
+  FEED_REASON_FIT_MIN_CARD_W,
+  FEED_REASON_LINES_MAX,
+  FEED_REASON_LINES_MIN,
+  FEED_REASON_MAX,
   FEED_SUMMARY_MAX,
   FEED_SHORT_MAX_HEIGHT,
   FEED_COLS_DESKTOP,
@@ -20,9 +25,11 @@ import {
   FEED_ROW_GAP,
   FEED_ROW_GAP_MOBILE,
   FEED_ROW_HEIGHT,
+  feedCardWidthFor,
   feedColsForContentWidth,
   feedColsForWidth,
   feedGridFromMatch,
+  feedReasonLinesForCard,
   feedRowGapForWidth,
   feedViewportOf,
   feedWindow,
@@ -359,5 +366,55 @@ describe("侧栏形态（四轮 T3/T2：朱子 09-24 图3「有空间却没有�
     expect(sb).toMatch(/scrollbar-width:\s*auto/);
     expect(cssNoComment).toMatch(/\.sidebar::-webkit-scrollbar\s*\{[^}]*width:\s*0/);
     expect(cssNoComment).not.toMatch(/scrollbar-width:\s*none/);
+  });
+});
+
+describe("理由显示行数（2026-09-25 七轮：由 150 字契约 + 卡宽反推，补 1600 档 72/837 被截的漏网）", () => {
+  const cssRaw = readFileSync(resolve("web/src/styles.css"), "utf8");
+  const cssNoComment = cssRaw.replace(/\/\*[\s\S]*?\*\//g, "");
+
+  it("行数由内容契约反推：4 行装不下就 3 行，装不下 150 字就别硬塞", () => {
+    expect(FEED_REASON_MAX).toBe(150);
+    expect(FEED_REASON_LINES_MIN).toBe(3);
+    expect(FEED_REASON_LINES_MAX).toBe(4);
+    // 单字宽来自字号比（0.82rem/0.98rem），不是另拍的数
+    expect(FEED_REASON_CHAR_W).toBeCloseTo(FEED_CHAR_W * (0.82 / 0.98), 6);
+    // 反推的三档（与 09-25 全库实测一致：793→3 行、706/656→4 行、599 是 4 行的物理下界）
+    expect(feedReasonLinesForCard(793)).toBe(3); // 单列档 / 1920 两列：实测 0/837 被截
+    expect(feedReasonLinesForCard(766)).toBe(3); // 3 行下界：floor((766−69)/13.94)=50 ⇒ ceil(150/50)=3
+    expect(feedReasonLinesForCard(765)).toBe(4);
+    expect(feedReasonLinesForCard(706)).toBe(4); // 1700 两列：改前 7/837 被截
+    expect(feedReasonLinesForCard(656)).toBe(4); // 1600 两列：改前 72/837 被截（8.6%）
+    expect(feedReasonLinesForCard(628)).toBe(4); // 900×800：闸实测 12 张里被截 1 张
+    expect(feedReasonLinesForCard(599)).toBe(4); // 4 行的物理下界
+    expect(feedReasonLinesForCard(598)).toBe(3); // 更窄（手机档）：装不下 150 字，保留既有 3 行
+    expect(feedReasonLinesForCard(358)).toBe(3); // 手机档：既有「按设计收窄」（六轮 G9① 待裁）
+    // 4 行的物理下界是推导出来的：chrome + ceil(150/4) × 单字宽
+    expect(FEED_REASON_FIT_MIN_CARD_W).toBe(
+      Math.ceil(FEED_CARD_CHROME + Math.ceil(FEED_REASON_MAX / FEED_REASON_LINES_MAX) * FEED_REASON_CHAR_W),
+    );
+    expect(FEED_REASON_FIT_MIN_CARD_W).toBe(599);
+  });
+
+  it("卡宽算式是唯一真源：多列铺满轨道、单列收在 793 上限内", () => {
+    expect(feedCardWidthFor(1602, 2, FEED_ROW_GAP)).toBe(793); // 参照档两列
+    expect(feedCardWidthFor(1328, 2, FEED_ROW_GAP)).toBe(656); // 1600 档两列（实测卡宽 656）
+    expect(feedCardWidthFor(1228, 1, FEED_ROW_GAP)).toBe(793); // 1500 档单列：min(1228, 793)
+    expect(feedCardWidthFor(728, 1, FEED_ROW_GAP)).toBe(728); // 1000 档单列：网格 < 上限 ⇒ 铺满轨道
+    expect(feedCardWidthFor(0, 1, FEED_ROW_GAP)).toBe(0);
+  });
+
+  it("CSS ↔ JS 双写同值：--feed-reason-lines 是行数的唯一开关（不许再写死 3 行）", () => {
+    const reasonBlock = cssNoComment.match(/\.reason-clamped\s*\{([^}]*)\}/)?.[1] ?? "";
+    expect(reasonBlock, "styles.css 里没有 .reason-clamped").toBeTruthy();
+    expect(reasonBlock).toMatch(/-webkit-line-clamp:\s*var\(--feed-reason-lines,\s*3\)/);
+    expect(reasonBlock).toMatch(/min-height:\s*calc\(var\(--feed-reason-lines,\s*3\)\s*\*\s*1\.7em\)/);
+    // 不许再出现写死的 3 行（那正是 1600 档被截的根因）
+    expect(reasonBlock).not.toMatch(/-webkit-line-clamp:\s*3\s*;/);
+    // 窄高档（≤560、卡高 210）必须把行数压回 2，且**同时**压 --feed-reason-lines——
+    // 否则桌面档算出的 4 行会在这个媒体查询里继续生效，行数槽位与卡高对不上
+    const shortBlock = cssNoComment.match(/@media \(max-height: 560px\)\s*\{([\s\S]*?)\n\}/)?.[1] ?? "";
+    expect(shortBlock).toMatch(/-webkit-line-clamp:\s*2/);
+    expect(shortBlock).toMatch(/--feed-reason-lines:\s*2/);
   });
 });
