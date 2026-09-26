@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest";
 import {
   CLOSE_DURATION,
   CLOSE_EASING,
+  CLOSE_FADE_FRACTION,
   CLOSE_INPLACE_DURATION,
   OPEN_DURATION,
   OPEN_EASING,
@@ -200,14 +201,17 @@ describe("退场几何（四轮 T8②）", () => {
     expect(closeInPlaceMotion(layout, { ...layout, width: 0 })).toBeNull();
   });
 
-  it("时长与曲线：退场比入场短（NN/g 0.67–0.83 区间）、曲线是加速型且与入场 spring 不同", () => {
+  it("时长与曲线：退场比入场略短、曲线是**减速型**（落地可读）且不复用入场 spring", () => {
     const ratio = CLOSE_DURATION / OPEN_DURATION;
     expect(ratio).toBeGreaterThanOrEqual(0.6);
-    expect(ratio).toBeLessThanOrEqual(0.85);
-    // 增量：这是「退场不拖沓」的判据来源——入场 280ms 是弹簧，退场用独立曲线（不能复用弹簧，
-    // 它的 1.011 超调在「离开」语义里会被读成弹一下再走）
-    expect(CLOSE_EASING).toBe("cubic-bezier(0.2, 0, 1, 0.9)");
-    expect(CLOSE_EASING).not.toBe(OPEN_EASING);
+    expect(ratio).toBeLessThanOrEqual(0.9);
+    // ⚠ 2026-09-26 订正（栗子实测反馈：「退场像直接消散了，没有回到卡片位置的感觉」）：
+    //   四轮那版是 200ms + **加速型** `cubic-bezier(0.2,0,1,0.9)` + 末段 40% 淡出 ——
+    //   三者叠加把「往回走」抹掉了（落地时速度最大、且最后 80ms 是半透明鬼影在飞）。
+    //   现在：240ms、**减速型**（与 `@keyframes detailEnter` 同一条站内既有曲线）、淡出只留最后 20%。
+    expect(CLOSE_EASING).toBe("cubic-bezier(0.22, 0.61, 0.36, 1)");
+    expect(CLOSE_EASING).not.toBe(OPEN_EASING); // 仍不复用弹簧（其 1.011 超调在离开语义里＝弹一下再走）
+    expect(CLOSE_FADE_FRACTION).toBeLessThanOrEqual(0.25); // 淡出不许再吃掉「落地」那一段
     expect(CLOSE_INPLACE_DURATION).toBeLessThanOrEqual(CLOSE_DURATION);
   });
 });

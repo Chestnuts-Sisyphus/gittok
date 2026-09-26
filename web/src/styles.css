@@ -915,6 +915,11 @@ button {
   position: relative;
   overflow: hidden;
   cursor: pointer;
+  /* ⚠ 2026-09-26：这里曾试过「卡内 flex + space-between，把余量摊进各段之间」——
+     实测**无效**：理由块的 `min-height`（按契约上限 R 行算）先把余量吃光了，卡级根本没有余量可分；
+     要真摊开就得连 `min-height` 一起撤，那会动到「档内骨架对齐」这条更硬的要求。
+     ⇒ 回退成原样，把「窄档槽位余量」作为一个**设计题**写进十轮任务书（根因是八轮的列数规则
+     把 1074–1191 视口压成 406 宽卡：理由 7 行槽位 vs 实际 5 行 ⇒ 两行空白）。 */
 }
 
 .card.is-open-source,
@@ -1132,6 +1137,16 @@ button {
   -webkit-line-clamp: var(--feed-summary-lines, 2);
   min-height: calc(var(--feed-summary-lines, 2) * 1.5em + 16px);
   max-height: calc(var(--feed-summary-lines, 2) * 1.5em + 16px);
+  /* 同 `.reason-clamped`：多行槽位里只占 1 行的短摘要（该档 2 行 × 每行 20–30 字，而摘要下限 20 字）
+     会把第 2 行留成**一整条空的 accent 条**——2026-09-26 同因同治：文字在槽位里垂直居中，
+     空档摊成上下各半行 ⇒ 读成「条的内衬」而不是「底下少了一行」。 */
+  -webkit-box-pack: center;
+  /* **行间配平**：默认折行是「贪心填满第 1 行」，于是 24 字 / 每行 22 字的摘要会在第 2 行
+     只剩 1–2 个字（栗子 09-26 红框那张左边的卡就是「…知识图谱底 / 座」），既是「空隙」又是
+     「不优雅」。`text-wrap: balance` 把两行配成 12+12 ⇒ 第 2 行被填满、没有孤儿行。
+     ⚠ 它只**重新分配**行内断点、不改变「装不装得下」这件事：装得下的仍装得下（R6 = 0 截的判据不变），
+     装不下的仍会被 clamp 抓到（闸会红，不会静默变截断）。Chrome 111+ 支持。 */
+  text-wrap: balance;
 }
 
 /* 理由（**行数按卡宽反推 3–7 行**：行数真源＝web/src/feed-layout.ts 的 `feedCardShapeFor()`，
@@ -1149,6 +1164,15 @@ button {
   -webkit-line-clamp: var(--feed-reason-lines, 3);
   -webkit-box-orient: vertical;
   overflow: hidden;
+  /* ── 2026-09-26：槽位里剩下的那**一整行空白**要摊平 ──────────────────────────────
+     槽位（min-height）是按**契约上限 150 字**算的行数（=R），而多数理由只占 2 行 ⇒ 块里剩下
+     一整行（23.7px）的空档，就在 ★ 那一行正上方＝栗子圈出来的「空行」。
+     判据不是「该不该有槽位」（档内对齐必须留槽位），而是**空档不许读成「少了一行」**：
+     把文字在槽位里**垂直居中** ⇒ 空档摊成上下各半行（~12px），观感是「这块留白是设计」而不是
+     「这行丢了」。`-webkit-box-pack` 正是 `display:-webkit-box` 家族的水平/垂直对齐属性，
+     一行搞定、不动 clamp、不动槽位高度、不动任何闸的判据（行数/0 截/卡高全不变）。
+     ⚠ 同类处置在摘要 2 行槽位（`[data-sum-lines="2"]`）上同因同治，见那条规则。 */
+  -webkit-box-pack: center;
 }
 
 /* 元信息条 */

@@ -238,13 +238,24 @@ export function afterPaint(cb: () => void): () => void {
    而且还要符合我们网站的整体审美风格」）
 
    ── 定版规格（先规格后实现；两版实拍对比见 D:/tmp/gt-layout/r4/exit/）──
-   ① **时长 200ms**＝入场 280ms 的 0.71×。依据：NN/g《Animation Duration》
+   ① **时长 240ms**（入场 280ms 的 0.86×）。依据：NN/g《Animation Duration》
       「appearing/entering 需要比 disappearing/exiting 略长——弹窗出现 300ms，消失 200–250ms」，
-      且同文把模态类变化的推荐带定在 200–300ms、>500ms 开始像拖拽。0.71 落在 200/300 的区间内。
-   ② **曲线用加速型** `cubic-bezier(0.2, 0, 1, 0.9)`（IBM Carbon 的 `motion(exit, productive)`），
+      且同文把模态类变化的推荐带定在 200–300ms、>500ms 开始像拖拽。
+      ⚠ **2026-09-26 订正（栗子实测反馈，推翻四轮的 200ms＝0.71×）**：他点出「退场完全不如打开动画，
+      像是直接消散了，没有让我感觉它从全屏详情丝滑流畅地回到卡片本身的位置」。
+      复核四轮那版的三个参数叠在一起，恰好把「往回走」这件事**抹掉了**：
+        · **加速型曲线**（`cubic-bezier(0.2,0,1,0.9)`）——起手快、**落地时速度最大**，
+          眼睛跟不到「到达」；入场是弹簧（落地减速 + 微超调）＝有「落定感」，两者语义相反 ⇒ 观感割裂；
+        · **飞行末段 40% 透明度归零**（为躲「React 卸载晚 113ms 时迷你弹层停在卡上」那条实拍缺陷）——
+          于是最后 80ms 是一块**半透明的鬼影**在最快地飞 ✗ 这就是「消散」的直源；
+        · 200ms 本身偏短，「全屏 → 卡片」这么大的位移没有可读的行程。
+      ⇒ 订正为：**落地减速**（沿用站内既有 `detailEaseOut`，与 `@keyframes detailEnter` 同一条）、
+      240ms、**淡出只留最后 20%**（48ms 内完成交接，仍然挡住那个 113ms 的卸载窗口）。
+      落地那一刻面板的几何 = 源卡实时矩形（精确逆，③）⇒ 面板与卡片重合，交接不可见。
+   ② **曲线用** `detailEaseOut`＝`cubic-bezier(0.22, 0.61, 0.36, 1)`（站内既有、`detailEnter` 同款），
       **不复用入场的 spring**：spring 有 1.011 的超调（`OPEN_EASING` 实测），超调在「离开」语义上
-      会被读成「弹一下再走」＝栗子点名的「拖沓」；入场用 spring（到达感）、退场用加速（离开感），
-      两条语义分工，仍是同一套时间语言。
+      会被读成「弹一下再走」＝栗子点名的「拖沓」；入场用 spring（到达感 + 微超调）、
+      退场用**减速型** ease-out（到达感、无超调），两条语义都落在「落定」上，仍是同一套时间语言。
    ③ **几何＝入场的精确逆**：translate3d + **单参数** scale（锁⑤禁非等比），transformOrigin top left。
       起点取**当前可见盒**（含正在飞的 transform，于是「打开动画没跑完就按 Esc」也能无缝接上），
       终点取**源卡实时矩形**（锁⑦：读 DOM 不读视口估算）。
@@ -255,10 +266,15 @@ export function afterPaint(cb: () => void): () => void {
       **禁** `commitStyles`（锁⑥）与 View Transition（锁③）；飞行期沿用 `is-flying`
       （`.detail-card` 只许 `overflow:hidden` 藏条、槽位靠 `scrollbar-gutter:stable` 留着，锁②）。
    ══════════════════════════════════════════════════════════════════════════ */
-export const CLOSE_DURATION = 200;
-export const CLOSE_EASING = "cubic-bezier(0.2, 0, 1, 0.9)";
+export const CLOSE_DURATION = 240;
+/** 退场曲线：**减速型**（落地慢下来）。与 `@keyframes detailEnter` 同一条，站内既有、不新造。 */
+export const CLOSE_EASING = "cubic-bezier(0.22, 0.61, 0.36, 1)";
 /** 回退案（源卡不可用）：原地收束。略短于飞回——它没有位移要交代，只把一个「消失」说清楚。 */
 export const CLOSE_INPLACE_DURATION = 180;
+/** 面板淡出的**占比**：只在最后 20% 化掉（48ms）。前 80% 全程不透明 ⇒ 「同一块东西在往回走」
+ *  看得见；末段仍留一段淡出，挡住 React 卸载（实测 313ms）晚于动画的那 100+ms。
+ *  ⚠ 四轮那版是 40%（80ms 的半透明鬼影在最快地飞）——那正是栗子说的「消散」。 */
+export const CLOSE_FADE_FRACTION = 0.2;
 
 /**
  * 源卡还活着吗？活着且与视口相交 → 返回它的**实时**矩形；否则 null（调用方走回退案）。
@@ -356,12 +372,15 @@ export function playCloseMotion(
   const now = document.timeline?.currentTime;
   if (now != null) card.startTime = now;
 
-  // 前 60% 保持不透明（让人看清「同一块东西在往回走」），后 40% 化掉（落地不留残影）。
+  // 前 80% 保持不透明（让人看清「同一块东西在往回走」，且**落地那一下是实体**），
+  // 后 20% 化掉（交接给源卡，落地不留残影）。
   // ⚠ 这里用「delay + 短时淡出」两条独立参数，**不**用带 offset 的三关键帧：
   //   实测（`D:/tmp/gt-layout/r4/exit/轨迹.json`）三关键帧在 Chromium 里没有按 offset 分段——
   //   透明度从第 3 帧（~46ms / 进度 0.6）就已经掉到 0.58，等于整段都在淡出，
-  //   "往回走"这件事几乎看不见。换成 delay 语义无歧义：120ms 内一动不动，最后 80ms 化掉。
-  const fadeMs = Math.round(duration * 0.4);
+  //   "往回走"这件事几乎看不见。换成 delay 语义无歧义。
+  // ⚠ 2026-09-26 订正：占比从 40% 收到 20%（见 CLOSE_FADE_FRACTION 注释）——
+  //   40% 时最后 80ms 是半透明鬼影在最快地飞，观感就是栗子说的「直接消散」。
+  const fadeMs = Math.round(duration * CLOSE_FADE_FRACTION);
   const fadeTiming: KeyframeAnimationOptions = {
     duration: fadeMs,
     delay: duration - fadeMs,
