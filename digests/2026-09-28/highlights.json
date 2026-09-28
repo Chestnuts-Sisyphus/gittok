@@ -1,4 +1,24 @@
 {
-  "zh": {},
-  "en": {}
+  "zh": {
+    "ai-weekly": [
+      "Anthropic Claude破解黎曼猜想，证明率提升至67.2%",
+      "Claude Code Skills生态爆发，Web3审计领跑社区PR",
+      "hindsight项目一周暴涨4463星，Agent记忆成热点",
+      "VoiceStudio语音合成获3060星，本地合成受追捧",
+      "OpenAI Codex连续发布5个alpha版本修复回归bug",
+      "Kimi Code CLI正式告别Python，全面迁移TypeScript",
+      "NanoBot修复WebUI草稿丢失，清理703行冗余代码",
+      "OpenAI成立数学与AI顾问组，渗透垂直场景战略"
+    ]
+  },
+  "en": {
+    "ai-weekly": [
+      "Claude proves 67.2% Riemann zeros bound",
+      "Google ax hits 11,400 stars at #1 Trending",
+      "Hindsight agent memory hits 37k stars",
+      "OpenAI Codex ships v0.157.0 with 5 alphas",
+      "Paperclip reaches 89k stars for agent mgmt",
+      "Kimi Code CLI fully migrates to TypeScript"
+    ]
+  }
 }
