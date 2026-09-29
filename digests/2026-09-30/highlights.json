@@ -1,0 +1,86 @@
+{
+  "zh": {
+    "ai-cli": [
+      "OpenAI Codex 默认集成 GPT-6.1 Sol，但 Windows 终端窗口反复闪烁",
+      "GitHub Copilot CLI 修复 MCP OAuth 登录与企业级兼容性问题",
+      "OpenCode v2.0.16 爆发式内存泄漏与数据库无限增长争议",
+      "Pi 集成 GPT-6.1 Sol，引入 Codemode 与 MCP 支持但存在上下文溢出",
+      "Qwen Code 发布 Managed Agent D1-D3 阶段交付",
+      "Claude Code Skills 与 DeepSeek TUI 列入生态覆盖"
+    ],
+    "ai-agents": [
+      "PicoClaw UI 性能压力大，聚焦 Agent 思考过程可视化反馈",
+      "IronClaw 发布 v1.4.1，讨论远程边缘节点支持",
+      "NanoClaw 高质量修复 arm64 环境报错问题",
+      "NullClaw MemCode 插件化，探索跨设备记忆同步",
+      "LobsterAI 中活跃，进行技术债务清理",
+      "Moltis 处于极低活跃维护状态"
+    ],
+    "ai-trending": [
+      "VoiceStudio 单日新增 4712 Stars，统治本地化语音克隆榜单",
+      "OpenClaw 主打全平台系统级操作与自动化",
+      "Hindsight 突破 4.2k Stars，专注 Agent 记忆自学习",
+      "Paperclip 现象级爆发，提供企业级 Agent 管理看板",
+      "趋势转向端侧多模态落地与生产力级协同",
+      "开源项目从单兵作战向企业级多智能体演进"
+    ],
+    "ai-arxiv": [
+      "Telescopic LM 通过随机前缀监督降低模型部署成本",
+      "Looped MoE 设计提升推理效率与参数利用率",
+      "自适应循环 Transformer 改善长推理计算证据",
+      "测试时个性化对齐通过因子化排序模型实现",
+      "原生反思机制让统一模型学会自我修复",
+      "KV-streams 解决长时程智能体 GPU 显存瓶颈"
+    ],
+    "ai-hf": [
+      "Qwen3.8-27B 下载量超 700 万，性能与规模突出",
+      "Qwen-Image-2.1 下载量最高，覆盖图像生成全流程",
+      "Lightricks LTX-2.5 图像到视频生成能力竞争力强",
+      "Qwen3.8-Flash-Next 轻量化模型下载量高",
+      "ZDTaichu5.0-9B 覆盖图像理解与空间推理",
+      "Edge0 Audio8-ASR-Infinite 高性能语音识别模型"
+    ],
+    "ai-community": [
+      "AWS Bedrock Agent 贷款流程通过策略实现硬拦截与审计",
+      "Meta 提示注入检测器 1% 误报率揭示工具局限性",
+      "RAG 失败多数是路由问题而非模型问题",
+      "Agent 静默泄露数据三周引发责任归属讨论",
+      "DigitalOcean Managed Agents 验证暂停/恢复记忆留存",
+      "同态加密与机器学习结合引发社区关注"
+    ]
+  },
+  "en": {
+    "ai-cli": [
+      "Claude Code Skills summary generation failed.",
+      "OpenAI Codex releases rust-v0.159.1 with GPT-6.1 Sol default",
+      "OpenAI Codex fixes Windows terminal flashing regressions",
+      "OpenAI Codex enhances multi-agent V2/Ultra reasoning support",
+      "Gemini CLI added to AI CLI Tools Community Digest",
+      "GitHub Copilot CLI, Kimi Code, and Qwen Code listed in digest"
+    ],
+    "ai-agents": [
+      "OpenClaw ecosystem digest covers 13 projects",
+      "NanoBot sees 41 PR updates and 5 open issues",
+      "NanoBot fixes Codex discovery filtering bug",
+      "NanoBot adds catalog-backed Reasoning effort feature",
+      "OpenClaw Deep Dive summary generation failed.",
+      "Cross-Ecosystem Comparison section available"
+    ],
+    "ai-trending": [
+      "VoiceStudio leads AI Infrastructure with 47,985 stars",
+      "Local LLM infrastructure sees massive surge today",
+      "Hindsight leads AI Agents with 42,792 stars",
+      "VectifyAI introduces Vectorless reasoning for RAG",
+      "Agent Economy maturing with memory management tools",
+      "OpenShell Rust runtime focuses on autonomous AI agents"
+    ],
+    "ai-community": [
+      "Dev.to: Exposing codebase to AI introduced security vulnerabilities",
+      "AWS builders: AI Agent Governance on Bedrock compliance",
+      "Dev.to: Ethical gray area of AI accountability",
+      "Lobste.rs: Cultural shift around functional programming in ML",
+      "Dev.to: Synthetic multi-agent environments for testing",
+      "Dev.to: Redacting PII for regulatory compliance"
+    ]
+  }
+}
