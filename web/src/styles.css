@@ -1130,22 +1130,33 @@ button {
   max-height: calc(1 * 1.5em + 16px);
 }
 /* 多行档（窄卡靠加行不靠省略号）：去掉 nowrap（要换行）、clamp 与 min/max-height 同步到 N 行
-   （块高固定 ⇒ 同行卡片对齐）。N 由 `--feed-summary-lines` 给（九轮：1–3 行）。 */
+   （块高固定 ⇒ 同行卡片对齐）。N 由 `--feed-summary-lines` 给（九轮：1–3 行）。
+   ── 2026-09-30（十一轮）：槽位垂直居中「真生效」重构 ──────────────────────────────
+   09-26 版把居中写在 `-webkit-box-pack: center` 上，但 Chrome 早已把 `-webkit-box`（computed）
+   归一成 flow-root（H-01 口径注 09-25 已记录）⇒ box-pack 对它是 **no-op**：占 1 行的摘要在
+   2 行槽里仍然顶格，空档整条沉在下方（甲A2 的「空 accent 条」其实一直没被居中治住，只是被
+   balance 的行间配平掩盖了大半）。现在：外层 flex column + justify-content:center **真居中**；
+   clamp 与 balance 挪到内层 `.clamp-text`（-webkit-box 家族照旧，Chrome 归一后走现代
+   line-clamp，行为与旧版一致）。文字块占满槽位时居中即无位移；不满时空档摊成上下各半行。 */
 .feed-list[data-sum-lines="2"] .summary,
 .feed-list[data-sum-lines="3"] .summary {
   white-space: normal;
-  -webkit-line-clamp: var(--feed-summary-lines, 2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   min-height: calc(var(--feed-summary-lines, 2) * 1.5em + 16px);
   max-height: calc(var(--feed-summary-lines, 2) * 1.5em + 16px);
-  /* 同 `.reason-clamped`：多行槽位里只占 1 行的短摘要（该档 2 行 × 每行 20–30 字，而摘要下限 20 字）
-     会把第 2 行留成**一整条空的 accent 条**——2026-09-26 同因同治：文字在槽位里垂直居中，
-     空档摊成上下各半行 ⇒ 读成「条的内衬」而不是「底下少了一行」。 */
-  -webkit-box-pack: center;
-  /* **行间配平**：默认折行是「贪心填满第 1 行」，于是 24 字 / 每行 22 字的摘要会在第 2 行
-     只剩 1–2 个字（栗子 09-26 红框那张左边的卡就是「…知识图谱底 / 座」），既是「空隙」又是
-     「不优雅」。`text-wrap: balance` 把两行配成 12+12 ⇒ 第 2 行被填满、没有孤儿行。
-     ⚠ 它只**重新分配**行内断点、不改变「装不装得下」这件事：装得下的仍装得下（R6 = 0 截的判据不变），
-     装不下的仍会被 clamp 抓到（闸会红，不会静默变截断）。Chrome 111+ 支持。 */
+}
+/* 内层 clamp + **行间配平**（balance 只重新分配行内断点、不改变「装不装得下」：
+   装得下的仍装得下（R6 = 0 截判据不变），装不下的仍被 clamp 抓到（闸会红，不会静默变截断）。
+   Chrome 111+ 支持 balance。）
+   ⚠ S=1 档不走这里：base .summary 的 nowrap + ellipsis 保持原样，内层 span 只是行内内容。 */
+.feed-list[data-sum-lines="2"] .summary .clamp-text,
+.feed-list[data-sum-lines="3"] .summary .clamp-text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: var(--feed-summary-lines, 2);
+  overflow: hidden;
   text-wrap: balance;
 }
 
@@ -1160,19 +1171,25 @@ button {
   min-height: calc(var(--feed-reason-lines, 3) * 1.7em);
   color: var(--text-secondary);
   margin-bottom: 10px;
-  display: -webkit-box;
-  -webkit-line-clamp: var(--feed-reason-lines, 3);
-  -webkit-box-orient: vertical;
+  /* ── 2026-09-30（十一轮）：槽位垂直居中「真生效」重构 ──────────────────────────────
+     槽位（min-height）按**契约上限 150 字**算行数（=R），而全库理由 p50 只占 2 行（793 档实测
+     33.2% 的卡）⇒ 块里剩下的整行（23.7px）空档原本沉在 ★ 行正上方。09-26 版试图用
+     `-webkit-box-pack: center` 居中，但 Chrome 早已把 `-webkit-box`（computed）归一成
+     flow-root（H-01 口径注 09-25 已记录）⇒ box-pack 是 **no-op**——09-26 栗子红框的「空行」
+     与 09-30 的「异常空隙还是没解决」都是它：2 行理由卡到 ★ 行实测 **39.4px**（3 行卡 15.7px）。
+     现在：外层 flex column + justify-content:center **真居中**（三行卡占满槽位无位移；
+     两行卡空档摊成上下各 ~12px）；clamp 挪到内层 `.clamp-text`（-webkit-box 家族照旧，
+     Chrome 归一后走现代 line-clamp，行为与旧版一致）。槽位高度/行数/0 截判据全不变。 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   overflow: hidden;
-  /* ── 2026-09-26：槽位里剩下的那**一整行空白**要摊平 ──────────────────────────────
-     槽位（min-height）是按**契约上限 150 字**算的行数（=R），而多数理由只占 2 行 ⇒ 块里剩下
-     一整行（23.7px）的空档，就在 ★ 那一行正上方＝栗子圈出来的「空行」。
-     判据不是「该不该有槽位」（档内对齐必须留槽位），而是**空档不许读成「少了一行」**：
-     把文字在槽位里**垂直居中** ⇒ 空档摊成上下各半行（~12px），观感是「这块留白是设计」而不是
-     「这行丢了」。`-webkit-box-pack` 正是 `display:-webkit-box` 家族的水平/垂直对齐属性，
-     一行搞定、不动 clamp、不动槽位高度、不动任何闸的判据（行数/0 截/卡高全不变）。
-     ⚠ 同类处置在摘要 2 行槽位（`[data-sum-lines="2"]`）上同因同治，见那条规则。 */
-  -webkit-box-pack: center;
+}
+.reason-clamped .clamp-text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: var(--feed-reason-lines, 3);
+  overflow: hidden;
 }
 
 /* 元信息条 */
@@ -3319,9 +3336,10 @@ button {
     --feed-card-h: 210px;
   }
   .reason-clamped {
-    -webkit-line-clamp: 2;
-    /* 窄高档压回 2 行：行数真源是**元素自己**的这份声明（直接命中 > 从 .feed-list 继承），
-       否则桌面列数档的 4 行会在这个媒体查询里继续生效（卡高只剩 210，4 行必溢出）。 */
+    /* 窄高档压回 2 行：行数真源是**这一份 var 声明**（直接命中 > 从 .feed-list 继承），
+       否则桌面列数档的 4 行会在这个媒体查询里继续生效（卡高只剩 210，4 行必溢出）。
+       ⚠ 2026-09-30（十一轮）：clamp 本体已迁到内层 .clamp-text（读同一个 var），
+       这里不再直接写 -webkit-line-clamp（外层是 flex，写了也是死声明）。 */
     --feed-reason-lines: 2;
   }
   .main {

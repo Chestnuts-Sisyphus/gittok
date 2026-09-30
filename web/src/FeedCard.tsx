@@ -270,10 +270,21 @@ function FeedCardComponent({
         </div>
       </div>
 
-      {/* 始终渲染：空内容靠 min-height 占位 2 行，保证全站卡片高度一致 */}
-      <p className="summary">{card.summaryCn}</p>
+      {/* 始终渲染：空内容靠 min-height 占位 2 行，保证全站卡片高度一致。
+          ⚠ 2026-09-30（十一轮）：文字包进 .clamp-text 内层——槽位垂直居中真生效的前提。
+            旧版把居中写在 -webkit-box-pack 上，但 Chrome 早已把 -webkit-box（computed）归一成
+            flow-root（H-01 口径注 09-25 已记录）⇒ box-pack 一直是 no-op，空档原样沉在 ★ 行上方
+            （09-30 栗子红框：2 行理由卡到 ★ 行实测 39.4px）。现在外层管「槽位 + 居中」、
+            内层管「clamp」，见 styles.css 的 .reason-clamped / .summary 两块注释。 */}
+      <p className="summary">
+        <span className="clamp-text">{card.summaryCn}</span>
+      </p>
 
-      {reason && <p className="reason-clamped">{reason}</p>}
+      {reason && (
+        <p className="reason-clamped">
+          <span className="clamp-text">{reason}</span>
+        </p>
+      )}
 
       <div className="card-meta">
         <span className="meta-item stars" title={`${card.stars} stars`}>

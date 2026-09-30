@@ -575,12 +575,20 @@ describe("理由显示行数（2026-09-25 七轮：由 150 字契约 + 卡宽反
   });
 
   it("CSS ↔ JS 双写同值：三个变量是档内形态的唯一开关", () => {
-    const reasonBlock = cssNoComment.match(/\.reason-clamped\s*\{([^}]*)\}/)?.[1] ?? "";
-    expect(reasonBlock, "styles.css 里没有 .reason-clamped").toBeTruthy();
-    expect(reasonBlock).toMatch(/-webkit-line-clamp:\s*var\(--feed-reason-lines,\s*3\)/);
-    expect(reasonBlock).toMatch(/min-height:\s*calc\(var\(--feed-reason-lines,\s*3\)\s*\*\s*1\.7em\)/);
+    // 2026-09-30（十一轮）架构：外层 .reason-clamped 管「槽位 + 垂直居中」，
+    // clamp 本体在内层 .reason-clamped .clamp-text（-webkit-box 在 Chrome 归一 flow-root 后
+    // 真 clamp 生效处；09-26 版的 -webkit-box-pack:center 因此一直是 no-op＝栗子红框空带）。
+    const reasonOuter = cssNoComment.match(/\.reason-clamped\s*\{([^}]*)\}/)?.[1] ?? "";
+    expect(reasonOuter, "styles.css 里没有 .reason-clamped").toBeTruthy();
+    expect(reasonOuter).toMatch(/min-height:\s*calc\(var\(--feed-reason-lines,\s*3\)\s*\*\s*1\.7em\)/);
+    expect(reasonOuter).toMatch(/display:\s*flex/);
+    expect(reasonOuter).toMatch(/justify-content:\s*center/);
+    expect(reasonOuter, "外层不许再挂 clamp（死声明）").not.toMatch(/-webkit-line-clamp/);
+    const reasonInner = cssNoComment.match(/\.reason-clamped\s+\.clamp-text\s*\{([^}]*)\}/)?.[1] ?? "";
+    expect(reasonInner, "styles.css 里没有 .reason-clamped .clamp-text").toBeTruthy();
+    expect(reasonInner).toMatch(/-webkit-line-clamp:\s*var\(--feed-reason-lines,\s*3\)/);
     // 不许再出现写死的 3 行（那正是 1600 档被截的根因）
-    expect(reasonBlock).not.toMatch(/-webkit-line-clamp:\s*3\s*;/);
+    expect(reasonInner).not.toMatch(/-webkit-line-clamp:\s*3\s*;/);
     // 摘要多行档：由 data-sum-lines 属性切（与列数同一帧），块高固定 ⇒ 同行卡片对齐。
     // 九轮起档数到 3（只有 <349 视口的手机用得到），所以选择器是「2 或 3」；行数读 CSS 变量。
     expect(cssNoComment).toMatch(
@@ -591,8 +599,16 @@ describe("理由显示行数（2026-09-25 七轮：由 150 字契约 + 卡宽反
         /\.feed-list\[data-sum-lines="2"\]\s*\.summary,\s*\n?\.feed-list\[data-sum-lines="3"\]\s*\.summary\s*\{([^}]*)\}/,
       )?.[1] ?? "";
     expect(sum2).toMatch(/white-space:\s*normal/);
-    expect(sum2).toMatch(/-webkit-line-clamp:\s*var\(--feed-summary-lines,\s*2\)/);
+    expect(sum2).toMatch(/display:\s*flex/);
+    expect(sum2).toMatch(/justify-content:\s*center/);
     expect(sum2).toMatch(/min-height:\s*calc\(var\(--feed-summary-lines,\s*2\)\s*\*\s*1\.5em\s*\+\s*16px\)/);
+    const sum2Inner =
+      cssNoComment.match(
+        /\.feed-list\[data-sum-lines="2"\]\s*\.summary\s+\.clamp-text,\s*\n?\.feed-list\[data-sum-lines="3"\]\s*\.summary\s+\.clamp-text\s*\{([^}]*)\}/,
+      )?.[1] ?? "";
+    expect(sum2Inner, "摘要多行档缺内层 clamp").toBeTruthy();
+    expect(sum2Inner).toMatch(/-webkit-line-clamp:\s*var\(--feed-summary-lines,\s*2\)/);
+    expect(sum2Inner).toMatch(/text-wrap:\s*balance/);
     // 九轮：摘要字号必须来自 CSS 变量（流式真源在 feed-layout.ts，CSS 不许再写死 0.98rem）——
     // 手机档媒体查询里那条 `.summary { font-size: 0.92rem }` 已删（它会压过变量 ⇒ 形态与实渲不一致）。
     const sumBase = cssNoComment.match(/^\.summary\s*\{([^}]*)\}/m)?.[1] ?? "";
@@ -604,11 +620,11 @@ describe("理由显示行数（2026-09-25 七轮：由 150 字契约 + 卡宽反
     expect(hardCodedMobileSummaryFont, "≤768 里又写死了 .summary 字号 ⇒ 会压过 --feed-summary-font").toEqual(
       [],
     );
-    // 窄高档（≤560、卡高 210）必须把行数压回 2，且**同时**压 --feed-reason-lines——
-    // 否则桌面档算出的 7 行会在这个媒体查询里继续生效，行数槽位与卡高对不上
+    // 窄高档（≤560、卡高 210）必须把行数压回 2——var 是唯一开关（clamp 本体在内层读同一个 var）；
+    // 外层不再直接写 -webkit-line-clamp（flex 上是死声明）
     const shortBlock = cssNoComment.match(/@media \(max-height: 560px\)\s*\{([\s\S]*?)\n\}/)?.[1] ?? "";
-    expect(shortBlock).toMatch(/-webkit-line-clamp:\s*2/);
     expect(shortBlock).toMatch(/--feed-reason-lines:\s*2/);
+    expect(shortBlock).not.toMatch(/-webkit-line-clamp/);
   });
 
   it("九轮：`+N` 片也占一个槽位（八轮把它漏在预算外 ⇒ 1343 档 9/837 张标签行换行）", () => {

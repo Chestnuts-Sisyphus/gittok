@@ -384,8 +384,13 @@ window.__gt = {
           if(inside){ visible++; vtops.add(Math.round(q.top)); }
         }
       }
-      const clampRaw=getComputedStyle(el).webkitLineClamp;
-      const clamp=clampRaw && clampRaw!=='none' ? Number(clampRaw) : 0;
+      // 2026-09-30（十一轮）：clamp 本体迁到内层 .clamp-text（-webkit-box 在 Chrome 归一为
+      // flow-root 后，真 clamp 生效处＝内层），读它的计算值；外层只管槽位与居中。
+      // ⚠ S=1 档的 clamp 仍在外层（base .summary），内层是裸 span ⇒ 内层 none 时回退外层。
+      const clampEl = el.querySelector(".clamp-text");
+      const clampRawI = clampEl ? getComputedStyle(clampEl).webkitLineClamp : "none";
+      const clampRaw = clampRawI && clampRawI !== "none" ? clampRawI : getComputedStyle(el).webkitLineClamp;
+      const clamp = clampRaw && clampRaw !== "none" ? Number(clampRaw) : 0;
       return { total, visible, lines: tops.size, visibleLines: vtops.size, clamp,
                clipped: vtops.size < tops.size, width: Math.round(r.width), height: Math.round(r.height) };
     });
@@ -499,6 +504,10 @@ window.__gt = {
   summaryLock(sel, limit){
     return [...document.querySelectorAll(sel)].slice(0, limit ?? 8).map((el)=>{
       const cs=getComputedStyle(el);
+      // 2026-09-30（十一轮）：clamp 生效处在内层 .clamp-text（-webkit-box 归一 flow-root 后
+      // 真 clamp 生效处），排版的 clamp/overflow 从内层读；盒体（max/min/boxH）仍归外层槽位。
+      const inner=el.querySelector('.clamp-text');
+      const csT=inner? getComputedStyle(inner): cs;
       const rect=el.getBoundingClientRect();
       const px=(v)=>{const n=parseFloat(v); return Number.isFinite(n)? +n.toFixed(1) : null;};
       const lineH=parseFloat(cs.lineHeight)||0;
@@ -525,8 +534,11 @@ window.__gt = {
           }
         }
       }
-      return { display: cs.display, clamp: String(cs.webkitLineClamp), overflow: cs.overflow,
-               whiteSpace: cs.whiteSpace, textOverflow: cs.textOverflow,
+      return { display: cs.display,
+        // ⚠ S=1 档的 clamp 在外层（base .summary）、S≥2 在内层——内层 none 时回退外层。
+        clamp: String(csT.webkitLineClamp !== "none" ? csT.webkitLineClamp : cs.webkitLineClamp),
+        overflow: cs.overflow,
+        whiteSpace: cs.whiteSpace, textOverflow: cs.textOverflow,
                maxH: cs.maxHeight==='none'? null : px(cs.maxHeight),
                minH: cs.minHeight==='none'? null : px(cs.minHeight),
                oneLine: +(lineH+padY).toFixed(1), lineH: +lineH.toFixed(1), padY: +padY.toFixed(1),
@@ -693,7 +705,8 @@ async function checkView(cdp, view) {
             // 七轮 R5：理由**被截**要在**全部在 DOM 的卡**上数（不是抽样 12 张）——
             // scrollHeight > clientHeight 是 clamp/overflow:hidden 的确定性判据，且比 Range 逐字快。
             // 分母照实记进读数（〇块第 6 条：无样本 ≠ 通过；这里是「有几张就说几张」）。
-            rAll: (()=>{ const els=[...document.querySelectorAll('.reason-clamped')];
+            // 2026-09-30（十一轮）：clamp 生效处在内层 .clamp-text（外层管槽位居中），量它。
+            rAll: (()=>{ const els=[...document.querySelectorAll('.reason-clamped .clamp-text')];
               const clip=els.filter(el=>el.scrollHeight>el.clientHeight+1);
               return { n: els.length, clipped: clip.length,
                        lines: [...new Set(els.map(el=>{const lh=parseFloat(getComputedStyle(el).lineHeight)||1;
@@ -715,7 +728,7 @@ async function checkView(cdp, view) {
             //（栗子「不允许出现留白」的延伸），而**算术上看不出来**（行数/卡高都"对"）。
             sumBlank: (()=>{ const out=[];
               for(const s of document.querySelectorAll('.summary')){
-                const t=s.firstChild; if(!t||t.nodeType!==3) continue;
+                if(!s.textContent) continue; // 空占位卡（min-height 撑 2 行的那类）没有可量的文本
                 const cs=getComputedStyle(s); const lh=parseFloat(cs.lineHeight)||1;
                 const pad=parseFloat(cs.paddingTop)+parseFloat(cs.paddingBottom);
                 const rg=document.createRange(); rg.selectNodeContents(s);
