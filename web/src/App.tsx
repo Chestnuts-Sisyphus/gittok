@@ -809,6 +809,19 @@ interface FeedVirtualListProps {
   onExpose?: (repos: string[]) => void;
 }
 
+/** 十一轮：把「会不会改变渲染」折成一个签名——卡宽取整/S/R/卡高/标签槽位/摘要字号。
+ *  resize 的 RO 每 tick 都会跑 measure，签名不变就不再 setState（防全量重渲风暴）。 */
+function feedShapeSig(s: {
+  cardWidth: number;
+  summaryLines: number;
+  reasonLines: number;
+  cardHeight: number;
+  tagSlots: number;
+  summaryFontPx: number;
+}): string {
+  return `${Math.round(s.cardWidth)}|${s.summaryLines}|${s.reasonLines}|${s.cardHeight}|${s.tagSlots}|${s.summaryFontPx.toFixed(2)}`;
+}
+
 function FeedVirtualList({
   cards,
   likedSet,
@@ -824,6 +837,9 @@ function FeedVirtualList({
   // 档位常数（chrome / 理由行数上限）与列数同源：手机档换一套几何常数（见 feedTierMetricsFor）。
   const { chrome, reasonLinesMax } = feedTierMetricsFor(mobile);
   const wrapRef = useRef<HTMLDivElement>(null);
+  // 十一轮：形态签名缓存——resize 的 RO 每 tick 都跑 measure，签名不变就不再 setState
+  //（渲染宽由 CSS 轨道天然跟手；state 只在卡宽/行数/卡高真变时更新，见下方 measure 注释）。
+  const shapeSigRef = useRef("");
   // G-10 / 2026-09-23 第四版：列数是**单一真源**——由本组件量出网格可用宽、按 feedColsForContentWidth
   // 反解（规则见 feed-layout.ts：卡宽落在 [460, 793]——十轮 T1 加下限，压到 460 以下回单列收对称页边距），
   // 然后同时喂给两处：① CSS 变量 `--feed-cols`（.feed-list 的轨道数）② 这里的垫片计算。
@@ -886,6 +902,15 @@ function FeedVirtualList({
       const next = feedColsForContentWidth(w, rowGap);
       // 形态与列数同源同帧：网格宽 + 列数 ⇒ {卡宽, 摘要行数, 理由行数, 卡高, 标签槽位}。
       // 不做「只改列数、卡高按老值算」这种事——那正是垫片错位/半截卡片的来源。
+      // ── 2026-09-30（十一轮）：形态签名不变就不再 setState ──────────────────────────
+      //   栗子「整体页面加载、所有动画都很卡」的主嫌疑之一：resize 的**每一个 tick** 都
+      //   无条件 setContentW(w) ⇒ shape memo 重算 + FeedVirtualList 全量重渲，拖窗口时
+      //   一秒几十次（setCols 有 prev===next 守卫、setContentW 一直裸奔）。
+      //   修法：把「会不会改变渲染」折成一个签名（卡宽取整/S/R/卡高/标签槽位/字号），
+      //   签名不变直接 return——渲染宽由 CSS 轨道天然跟手，state 只在形态真变时更新。
+      const sig = feedShapeSig(feedCardShapeFor(w, next, rowGap, chrome, reasonLinesMax));
+      if (sig === shapeSigRef.current) return;
+      shapeSigRef.current = sig;
       setContentW(w);
       setCols((prev) => {
         if (prev === next) return prev;
@@ -900,7 +925,7 @@ function FeedVirtualList({
     const ro = new ResizeObserver(measure);
     ro.observe(wrap);
     return () => ro.disconnect();
-  }, [rowGap]);
+  }, [rowGap, chrome, reasonLinesMax]);
   // 列数落进 DOM 后的同一帧：用上一步量的旧矩形做 FLIP 补差（Last→Invert→Play）。
   useLayoutEffect(() => {
     const before = beforeRef.current;
