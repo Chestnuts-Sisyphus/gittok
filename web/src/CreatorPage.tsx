@@ -94,17 +94,20 @@ export function CreatorPage({
             <p>该创作者暂无入库项目</p>
           </div>
         ) : (
-          <div className="feed-list">
-            {projects.map((card) => (
-              <FeedCardMemo
-                key={card.repo}
-                card={card}
-                liked={likedSet.has(card.repo)}
-                ignored={dislikedSet.has(card.repo)}
-                onOpen={onOpen}
-                onOpenCreator={onOpenCreator}
-              />
-            ))}
+          <div className="feed-list" data-cols="1" style={{ "--feed-cols": 1 } as React.CSSProperties}>
+            {/* 十二轮：.feed-list 已改列式容器——创作者页只有一列，仍走同一结构（单列 .feed-col） */}
+            <div className="feed-col">
+              {projects.map((card) => (
+                <FeedCardMemo
+                  key={card.repo}
+                  card={card}
+                  liked={likedSet.has(card.repo)}
+                  ignored={dislikedSet.has(card.repo)}
+                  onOpen={onOpen}
+                  onOpenCreator={onOpenCreator}
+                />
+              ))}
+            </div>
           </div>
         )}
       </div>

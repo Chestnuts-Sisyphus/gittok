@@ -36,8 +36,9 @@ export const FLIP_DURATION = 220;
  *  drag 闸 T4 判据（速度单调收敛＋末帧速度→0＋两列同相位同族）钉住这条语义。 */
 export const FLIP_EASING = "cubic-bezier(0.22, 0.61, 0.36, 1)";
 
-/** 卡片：虚拟列表的直接子元素（`.feed-window-pad` 垫片没有卡标识，会被跳过）。 */
-const CARD_SELECTOR = ".feed-window > .feed-list > .card";
+/** 卡片：列式瀑布流的直接子元素（十二轮：`.feed-list > .feed-col > .card`；
+ *  `.feed-window-pad` 垫片没有卡标识，会被跳过）。 */
+const CARD_SELECTOR = ".feed-window > .feed-list > .feed-col > .card";
 /** 卫星块：与列数同源变宽的块级元素，和卡片共用一套补差。 */
 const SATELLITE_SELECTOR = ".feed-content > .channel-head, .feed-content > .pref-prompt";
 const TARGET_SELECTOR = `${CARD_SELECTOR}, ${SATELLITE_SELECTOR}`;

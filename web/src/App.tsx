@@ -6,32 +6,24 @@ import { CreatorPage } from "./CreatorPage.tsx";
 import { AgentPage } from "./AgentPage.tsx";
 import { weightedSearch } from "./search.ts";
 import { loadSafe, saveDual, migrateLegacyKeys } from "./storage.ts";
-import {
-  mergeDetail,
-  prefetchFeedDetails,
-  warmFeedDetails,
-  getFeedDetailsIfReady,
-  diffDetailKeys,
-} from "./feed-payload.ts";
+import { mergeDetail, prefetchFeedDetails, getFeedDetailsIfReady } from "./feed-payload.ts";
 import { loadCachedText, saveCachedText } from "./feed-cache.ts";
 import {
-  FEED_CARD_HEIGHT_SHORT,
   FEED_GRID_REF,
   FEED_MOBILE_MAX_WIDTH,
-  FEED_ROW_HEIGHT,
-  FEED_SHORT_MAX_HEIGHT,
-  feedCardHeightForHeight,
   feedCardShapeFor,
   feedColsForContentWidth,
   feedGridFromMatch,
   feedTierMetricsFor,
   feedViewportOf,
-  feedWindow,
+  feedColWindowFromPrefix,
+  buildColumnIndex,
+  estCardHeightFor,
+  sameColWindows,
   isScrollableOverflow,
   nearestScrollRoot,
-  sameFeedWindow,
   type FeedCardShape,
-  type FeedWindow,
+  type FeedColWindow,
 } from "./feed-layout.ts";
 import { measureCards as measureCardsFlip, playCardsFlip, type FlipEntry } from "./feed-flip.ts";
 import {
@@ -724,15 +716,13 @@ function useResponsiveCols(): {
   shape: FeedCardShape;
 } {
   const mobile = useIsMobile();
-  const { rowGap, chrome, reasonLinesMax } = feedTierMetricsFor(mobile);
+  const { rowGap, chrome } = feedTierMetricsFor(mobile);
   const elRef = useRef<HTMLElement | null>(null);
   const [cols, setCols] = useState(1);
-  // 八轮：形态（行数/卡高/标签槽位）与列数**同一次测量**里算出来，一起写进 CSS 变量。
-  // 九轮：手机档（≤768）也走同一条反推（chrome 61 / 理由上限 10），不再有「按设计收窄」那支。
-  // 反推规则见 feed-layout.ts 的 `feedCardShapeFor`（窄卡靠加行保住内容契约，不靠截断）。
-  const [shape, setShape] = useState<FeedCardShape>(() =>
-    feedCardShapeFor(0, 1, rowGap, chrome, reasonLinesMax),
-  );
+  // 八轮：形态与列数**同一次测量**里算出来，一起写进 CSS 变量。
+  // 九轮：手机档（≤768）也走同一条反推（chrome 61），不再有「按设计收窄」那支。
+  // 十二轮：形态只剩（卡宽/摘要字号/标签槽位）——卡高＝内容自然高度，不再由算式产出。
+  const [shape, setShape] = useState<FeedCardShape>(() => feedCardShapeFor(0, 1, rowGap, chrome));
   // 条件渲染下（搜索空态/收藏夹展开只在特定视图存在），ref 挂上时 effect 已经跑过了——
   // 所以 ref callback 里直接触发首次测量，不能指望 effect。
   const measureRef = useRef<() => void>(() => {});
@@ -744,14 +734,14 @@ function useResponsiveCols(): {
       const w = list.clientWidth;
       const next = feedColsForContentWidth(w, rowGap);
       setCols(next);
-      setShape(feedCardShapeFor(w, next, rowGap, chrome, reasonLinesMax));
+      setShape(feedCardShapeFor(w, next, rowGap, chrome));
     };
     measureRef.current();
     const ro = new ResizeObserver(() => measureRef.current());
     if (elRef.current) ro.observe(elRef.current);
     const roRef = ro;
     return () => roRef.disconnect();
-  }, [rowGap, chrome, reasonLinesMax]);
+  }, [rowGap, chrome]);
   return {
     cols,
     shape,
@@ -781,19 +771,8 @@ function useIsMobile(): boolean {
 
 function useFeedGrid() {
   const mobile = useIsMobile();
-  // G-11：横屏窄高（≤560）时 CSS 把卡高降到 210，垫片档位必须同步，否则虚拟列表错位。
-  // 八轮起这一档**只是下限保护**：正常档的卡高由 feedCardShapeFor 反推（加行就加高），
-  // 只有窄高档仍固定 210（那一档连视觉带都放不下半张卡，行数被 CSS 压回 2 行）。
-  const [cardHeight, setCardHeight] = useState(() =>
-    typeof window === "undefined" ? FEED_CARD_HEIGHT_SHORT : feedCardHeightForHeight(window.innerHeight),
-  );
-  useEffect(() => {
-    const shortQ = window.matchMedia(`(max-height: ${FEED_SHORT_MAX_HEIGHT}px)`);
-    const onHeight = () => setCardHeight(feedCardHeightForHeight(window.innerHeight));
-    shortQ.addEventListener("change", onHeight);
-    return () => shortQ.removeEventListener("change", onHeight);
-  }, []);
-  return { ...feedGridFromMatch(mobile), cardHeight, mobile };
+  // 十二轮：窄高档（≤560）的「卡高压 210」特例随定高一并退场——自然高度本身就是该档的正确值。
+  return { ...feedGridFromMatch(mobile), mobile };
 }
 
 interface FeedVirtualListProps {
@@ -809,18 +788,14 @@ interface FeedVirtualListProps {
   onExpose?: (repos: string[]) => void;
 }
 
-/** 十一轮：把「会不会改变渲染」折成一个签名——卡宽取整/S/R/卡高/标签槽位/摘要字号。
- *  resize 的 RO 每 tick 都会跑 measure，签名不变就不再 setState（防全量重渲风暴）。 */
-function feedShapeSig(s: {
-  cardWidth: number;
-  summaryLines: number;
-  reasonLines: number;
-  cardHeight: number;
-  tagSlots: number;
-  summaryFontPx: number;
-}): string {
-  return `${Math.round(s.cardWidth)}|${s.summaryLines}|${s.reasonLines}|${s.cardHeight}|${s.tagSlots}|${s.summaryFontPx.toFixed(2)}`;
+/** 十一轮：把「会不会改变渲染」折成一个签名——resize 的 RO 每 tick 都跑 measure，
+ *  签名不变就不再 setState（防全量重渲风暴）。十二轮：卡高/行数退场（自然高度），
+ *  签名只剩卡宽取整/标签槽位/摘要字号。 */
+function feedShapeSig(s: { cardWidth: number; tagSlots: number; summaryFontPx: number }): string {
+  return `${Math.round(s.cardWidth)}|${s.tagSlots}|${s.summaryFontPx.toFixed(2)}`;
 }
+
+const EMPTY_COL_WIN: FeedColWindow = { startIdx: 0, endIdx: 0, topPad: 0, bottomPad: 0 };
 
 function FeedVirtualList({
   cards,
@@ -833,38 +808,22 @@ function FeedVirtualList({
   entering = false,
   onExpose,
 }: FeedVirtualListProps) {
-  const { cols: gridCols, rowGap, cardHeight, mobile } = useFeedGrid();
-  // 档位常数（chrome / 理由行数上限）与列数同源：手机档换一套几何常数（见 feedTierMetricsFor）。
-  const { chrome, reasonLinesMax } = feedTierMetricsFor(mobile);
+  const { cols: gridCols, rowGap, mobile } = useFeedGrid();
+  // 档位常数（chrome）与列数同源：手机档换一套几何常数（见 feedTierMetricsFor）。
+  const { chrome } = feedTierMetricsFor(mobile);
   const wrapRef = useRef<HTMLDivElement>(null);
   // 十一轮：形态签名缓存——resize 的 RO 每 tick 都跑 measure，签名不变就不再 setState
-  //（渲染宽由 CSS 轨道天然跟手；state 只在卡宽/行数/卡高真变时更新，见下方 measure 注释）。
+  //（渲染宽由 CSS 列宽算式天然跟手；state 只在卡宽/槽位/字号真变时更新）。
   const shapeSigRef = useRef("");
   // G-10 / 2026-09-23 第四版：列数是**单一真源**——由本组件量出网格可用宽、按 feedColsForContentWidth
-  // 反解（规则见 feed-layout.ts：卡宽落在 [460, 793]——十轮 T1 加下限，压到 460 以下回单列收对称页边距），
-  // 然后同时喂给两处：① CSS 变量 `--feed-cols`（.feed-list 的轨道数）② 这里的垫片计算。
-  // 这样 CSS 与 JS 不再各存一份列宽常量（旧版双写常量的漂移会让垫片错位，见 2026-09-22 乙4）。
+  // 反解（规则见 feed-layout.ts：卡宽落在 [460, 793]），然后同时喂给两处：
+  // ① CSS 变量 `--feed-cols`（.feed-list 的列宽算式）② 瀑布流入列（i%K）。
   // 二轮甲2/乙1（2026-09-23）：首帧列数**初值直接由视口宽按同一套门槛算出**——
   // 可用宽 ≈ 视口 − 侧栏(216) − 内距(48) − 滚动条槽(8)。
-  // ── 2026-09-24 四轮 T3：offset 的分档**必须跟着形态走** ──
-  //   改前是 `vw <= 900 ? 76 : 280`——76 是已删除的 icon-only rail 的缩进（64＋12）。
-  //   rail 删除后 769–900 与 >900 同形态（192 侧栏 + 24 边距），所以那一档也要用 280。
-  //   这是个**潜在的首帧错档**：826 档旧式算 750（<976 → 1 列），实际网格 554（也是 1 列）——
-  //   本机逐档核对下来 769–900 的两种算法恰好都得 1 列，所以没暴露；但只要将来该档的
-  //   网格越过 976，旧式就会首帧画 1 列、随后 FLIP 跳到 2 列（正是二轮乙1 修掉的那种闪变）。
-  // ── 八轮（2026-09-25）：档内卡片形态与列数**同源同帧** ──
-  //   栗子当日第二次定标准：「不允许出现留白……卡片到 793 就是极限、再长就变两列」。
-  //   ⇒ 列数改由「卡宽 ≤ 793」反解（feedColsForContentWidth），中间带不再退化成带页边距的单列；
-  //     窄下来的卡靠**加行**（摘要 1–2 行、理由 3–7 行）保住内容契约，行数/卡高/标签槽位都由
-  //     `feedCardShapeFor(网格宽, 列数)` 一次算出 —— 一处改动、四样东西跟着走，避免「改了列数忘了卡高」。
-  // ── 九轮（2026-09-25 第二轮）：**手机档也走同一算式**，两处「按设计收窄」被取消 ──
-  //   八轮把 ≤768 排除在自适应之外（「那一档是既有设计，≤768 不许破」），代价是实测**每张卡都截断**：
-  //   390 档摘要被截 808/837（一行只放 18 字 < 契约下限 20）、理由被截 837/837（3 行 ≈60 字 < 100）。
-  //   ⇒ 按〇块 7（内容契约优先于版式）与 13（窄卡的代价选「加行」不选「截断」）收口成**纳入自适应**：
-  //     手机档与桌面档共用 `feedCardShapeFor`，只换三个几何常数（feedTierMetricsFor）。
-  //     实测（390 档）：摘要 2 行（每行 18 字 ⇒ 36 ≥ 35，0 截）、理由 8 行、卡高 447 ⇒ 可视带 790 放得下。
-  //   ⚠ 手机档的首帧估算也要给值（旧版给 0 ⇒ 首帧会按 0 宽算出 3 行摘要 + 最小字号，再跳回来）：
-  //     卡宽 = 视口 − 32（.main 内距 12×2 + 滚动条槽 8，本机实测 358@390 / 728@760）。
+  // ── 2026-09-24 四轮 T3：offset 的分档**必须跟着形态走**（历史：76 是已删 icon-rail 的缩进）──
+  // ── 八轮（2026-09-25）：形态与列数**同源同帧**（列数规则见 feed-layout.ts 注释）──
+  // ── 九轮（2026-09-25 第二轮）：**手机档也走同一算式**（首帧估算给值，防「首帧画错再跳」）──
+  // ── 十轮 T1：offset 收正为 272；门槛移到网格 936 后 8px 误差会闪变，实测定案 ──
   const [contentW, setContentW] = useState(() =>
     typeof window === "undefined"
       ? 0
@@ -876,12 +835,6 @@ function FeedVirtualList({
     if (typeof window === "undefined") return gridCols;
     const vw = window.innerWidth;
     if (vw <= FEED_MOBILE_MAX_WIDTH) return 1;
-    // 桌面档只有一个侧栏形态（192 + 24 边距）→ offset 只有一个值。
-    // ⚠ 首帧估算必须**同时收内容壳上限**（FEED_GRID_REF=1602）：不收的话 1920 档首帧会算成
-    //   3 列（1640/3 = 536 ≤ 793），首测后再跳回 2 列 —— 正是二轮乙1 修掉的那种「首帧画错再跳」。
-    // ⚠ 十轮 T1：offset 从 280 收正为 272（侧栏 216 + 内距 48 + 滚动条槽 8，实测 1200 档网格 928
-    //   = 1200−272）。八轮时代 1↔2 门槛在网格 793，8px 的估算误差跨不过门槛；十轮门槛移到
-    //   网格 936（=视口 1208），再差 8px 就会出现「视口 1208–1215 首帧画 1 列、首测跳 2 列」的闪变。
     return feedColsForContentWidth(Math.min(vw - 272, FEED_GRID_REF), rowGap);
   });
   // FLIP 的量测根：`.feed-content`（卡片在它内部的 .feed-window 里，频道头/偏好条是它的直接子元素）。
@@ -900,15 +853,9 @@ function FeedVirtualList({
       if (!list) return;
       const w = list.clientWidth;
       const next = feedColsForContentWidth(w, rowGap);
-      // 形态与列数同源同帧：网格宽 + 列数 ⇒ {卡宽, 摘要行数, 理由行数, 卡高, 标签槽位}。
-      // 不做「只改列数、卡高按老值算」这种事——那正是垫片错位/半截卡片的来源。
-      // ── 2026-09-30（十一轮）：形态签名不变就不再 setState ──────────────────────────
-      //   栗子「整体页面加载、所有动画都很卡」的主嫌疑之一：resize 的**每一个 tick** 都
-      //   无条件 setContentW(w) ⇒ shape memo 重算 + FeedVirtualList 全量重渲，拖窗口时
-      //   一秒几十次（setCols 有 prev===next 守卫、setContentW 一直裸奔）。
-      //   修法：把「会不会改变渲染」折成一个签名（卡宽取整/S/R/卡高/标签槽位/字号），
-      //   签名不变直接 return——渲染宽由 CSS 轨道天然跟手，state 只在形态真变时更新。
-      const sig = feedShapeSig(feedCardShapeFor(w, next, rowGap, chrome, reasonLinesMax));
+      // 形态与列数同源同帧：网格宽 + 列数 ⇒ {卡宽, 摘要字号, 标签槽位}。
+      // ── 2026-09-30（十一轮）：形态签名不变就不再 setState（防 resize 重渲风暴）──
+      const sig = feedShapeSig(feedCardShapeFor(w, next, rowGap, chrome));
       if (sig === shapeSigRef.current) return;
       shapeSigRef.current = sig;
       setContentW(w);
@@ -925,7 +872,7 @@ function FeedVirtualList({
     const ro = new ResizeObserver(measure);
     ro.observe(wrap);
     return () => ro.disconnect();
-  }, [rowGap, chrome, reasonLinesMax]);
+  }, [rowGap, chrome]);
   // 列数落进 DOM 后的同一帧：用上一步量的旧矩形做 FLIP 补差（Last→Invert→Play）。
   useLayoutEffect(() => {
     const before = beforeRef.current;
@@ -934,58 +881,66 @@ function FeedVirtualList({
     const wrap = wrapRef.current;
     if (wrap) playCardsFlip(flipRoot(wrap), before);
   });
-  // 档内形态（唯一读法）：网格宽 + 列数 + 档位常数 ⇒ 卡宽/摘要字号/摘要行数/理由行数/卡高/标签槽位。
-  // 九轮起只有**窄高档**（视口高 ≤560、G-11 的横屏手机）这一支还会覆盖卡高：CSS 把卡高压到 210
-  // 并把理由 clamp 到 2 行（那一档连可视带都放不下半张卡）。其余档（含手机档）全部走同一算式。
-  const shape = useMemo(() => {
-    const s = feedCardShapeFor(contentW, cols, rowGap, chrome, reasonLinesMax);
-    return cardHeight === FEED_CARD_HEIGHT_SHORT ? { ...s, cardHeight } : s;
-  }, [contentW, cols, rowGap, chrome, reasonLinesMax, cardHeight]);
-  // 窄高档（视口高 ≤560）优先：那一档 CSS 把卡高压到 210，垫片与卡高必须同值。
-  const tierCardHeight = shape.cardHeight;
-  const listKey = `${channel ?? ""}:${cards[0]?.repo ?? ""}:${cards.length}:${cols}:${rowGap}:${tierCardHeight}`;
-  const [winKey, setWinKey] = useState(listKey);
-  const [win, setWin] = useState<FeedWindow>(() =>
-    feedWindow({
-      cardCount: cards.length,
-      cols,
-      rowGap,
-      cardHeight: tierCardHeight,
-      listTop: 0,
-      viewportHeight: typeof window !== "undefined" ? window.innerHeight : 900,
-    }),
+  // ── 十二轮：列式瀑布流（Chrome 153 无 grid masonry ⇒ JS 列式）──────────────────
+  // 档内形态（唯一读法）：网格宽 + 列数 ⇒ 卡宽/摘要字号/标签槽位。卡高＝内容自然高度。
+  const shape = useMemo(
+    () => feedCardShapeFor(contentW, cols, rowGap, chrome),
+    [contentW, cols, rowGap, chrome],
   );
-  if (winKey !== listKey) {
-    setWinKey(listKey);
-    setWin(
-      feedWindow({
-        cardCount: cards.length,
-        cols,
-        rowGap,
-        cardHeight: tierCardHeight,
-        listTop: 0,
-        viewportHeight: typeof window !== "undefined" ? window.innerHeight : 900,
-      }),
-    );
+  const cardWidth = shape.cardWidth;
+  // 高度缓存：渲染后实测回填（键=repo）；卡宽代际变了整体失效（老高度全部作废）。
+  const measuredRef = useRef(new Map<string, number>());
+  const measuredGenRef = useRef(-1);
+  const [heightGen, setHeightGen] = useState(0);
+  if (measuredGenRef.current !== Math.round(cardWidth)) {
+    measuredGenRef.current = Math.round(cardWidth);
+    measuredRef.current = new Map();
   }
-
+  // 列式布局：i%K 轮转入列（近序性：卡 i+1 不会跑到卡 i 上方远处）+ 列内前缀和
+  //（测量优先、estCardHeightFor 估算兜底；heightGen bump = 实测回填 ⇒ 前缀重算）。
+  const layout = useMemo(() => {
+    const colIdx = buildColumnIndex(cards.length, cols);
+    const cache = measuredRef.current;
+    const prefix = colIdx.map((idxs) => {
+      const p = new Array<number>(idxs.length + 1);
+      p[0] = 0;
+      for (let k = 0; k < idxs.length; k++) {
+        const card = cards[idxs[k]];
+        const h =
+          cache.get(card.repo) ??
+          estCardHeightFor({ summary: card.summaryCn ?? "", reason: card.reasonCn ?? "" }, cardWidth, chrome);
+        p[k + 1] = p[k] + h + rowGap;
+      }
+      return p;
+    });
+    return { colIdx, prefix };
+    // measuredRef/heightGen 故意不进 deps：cache 在 ref 里，heightGen 变化即重算（见下）。
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cards, cols, cardWidth, chrome, rowGap, heightGen]);
+  const listKey = `${channel ?? ""}:${cards[0]?.repo ?? ""}:${cards.length}:${cols}:${rowGap}:${Math.round(cardWidth)}`;
+  const [winKey, setWinKey] = useState(listKey);
+  const initWin = () =>
+    layout.prefix.map((p) =>
+      feedColWindowFromPrefix(p, 0, typeof window !== "undefined" ? window.innerHeight : 900),
+    );
+  const [win, setWin] = useState<FeedColWindow[]>(initWin);
+  if (winKey !== listKey) {
+    // 数据/频道/列数/卡宽变了：窗口按新布局重置（滚动位置由调用方复位）。
+    setWinKey(listKey);
+    setWin(initWin());
+  }
+  // 滚动/resize → 每列对前缀和二分出窗口（overscan ≈3 屏）。
   useEffect(() => {
     const el = wrapRef.current;
     if (!el) return;
     const root = nearestScrollRoot(el);
     const update = () => {
-      const list = wrapRef.current;
-      if (!list) return;
-      const { listTop, viewportHeight } = feedViewportOf(list, root);
-      const next = feedWindow({
-        cardCount: cards.length,
-        cols,
-        rowGap,
-        cardHeight: tierCardHeight,
-        listTop,
-        viewportHeight,
-      });
-      setWin((prev) => (sameFeedWindow(prev, next) ? prev : next));
+      const wrap = wrapRef.current;
+      if (!wrap) return;
+      const { listTop, viewportHeight } = feedViewportOf(wrap, root);
+      const viewTop = -listTop;
+      const next = layout.prefix.map((p) => feedColWindowFromPrefix(p, viewTop, viewTop + viewportHeight));
+      setWin((prev) => (sameColWindows(prev, next) ? prev : next));
     };
     let raf = 0;
     const onScroll = () => {
@@ -1004,61 +959,150 @@ function FeedVirtualList({
       window.removeEventListener("resize", onScroll);
       if (raf) cancelAnimationFrame(raf);
     };
-  }, [cards.length, cards[0]?.repo, channel, cols, rowGap, tierCardHeight]);
+  }, [layout, listKey]);
+  // ── 实测回填 + 滚动锚定（绘制前完成，肉眼无跳）────────────────────────────────
+  // 每次渲染后读每张在 DOM 的卡的真实盒高；与缓存差 >0.5px 就回填并 bump heightGen。
+  // 回填会改列内前缀（尤其视口上方的卡从估算换实测）⇒ 先记「视口顶压住的那张卡」为锚，
+  // 下一帧用锚点新旧顶偏移的差值补偿 scrollTop。
+  const anchorRef = useRef<{ repo: string; top: number } | null>(null);
+  useLayoutEffect(() => {
+    const wrap = wrapRef.current;
+    if (!wrap) return;
+    // ① 补偿上一轮回填造成的位移（若有）。
+    const anchor = anchorRef.current;
+    if (anchor) {
+      anchorRef.current = null;
+      let newTop: number | null = null;
+      outer: for (let c = 0; c < layout.colIdx.length; c++) {
+        const idxs = layout.colIdx[c];
+        for (let k = 0; k < idxs.length; k++) {
+          if (cards[idxs[k]].repo === anchor.repo) {
+            newTop = layout.prefix[c][k];
+            break outer;
+          }
+        }
+      }
+      if (newTop !== null) {
+        const delta = newTop - anchor.top;
+        if (Math.abs(delta) >= 0.5) {
+          const root = nearestScrollRoot(wrap);
+          if (root instanceof Window) window.scrollBy(0, delta);
+          else root.scrollTop += delta;
+        }
+      }
+    }
+    // ② 量本帧所有在 DOM 的卡。
+    const els = wrap.querySelectorAll<HTMLElement>(".feed-list > .feed-col > .card");
+    let changed = false;
+    for (const el of els) {
+      const repo = el.dataset.repo;
+      if (!repo) continue;
+      const h = el.getBoundingClientRect().height;
+      const prev = measuredRef.current.get(repo);
+      if (prev === undefined || Math.abs(prev - h) > 0.5) {
+        measuredRef.current.set(repo, h);
+        changed = true;
+      }
+    }
+    if (!changed) return;
+    // ③ 记锚卡（各列最后一张顶边 ≤ 视口顶的卡里，顶偏移最大者＝最贴近视口顶）再 bump。
+    const root = nearestScrollRoot(wrap);
+    const { listTop } = feedViewportOf(wrap, root);
+    const viewTop = -listTop;
+    let best: { repo: string; top: number } | null = null;
+    for (let c = 0; c < layout.colIdx.length; c++) {
+      const p = layout.prefix[c];
+      const n = p.length - 1;
+      if (n <= 0) continue;
+      let lo = 0;
+      let hi = n - 1;
+      let pos = 0;
+      while (lo <= hi) {
+        const mid = (lo + hi) >> 1;
+        if (p[mid] <= viewTop) {
+          pos = mid;
+          lo = mid + 1;
+        } else {
+          hi = mid - 1;
+        }
+      }
+      const idx = layout.colIdx[c][pos];
+      if (idx === undefined) continue;
+      const cand = { repo: cards[idx].repo, top: p[pos] };
+      if (!best || cand.top > best.top) best = cand;
+    }
+    if (best) anchorRef.current = best;
+    setHeightGen((g) => g + 1);
+  });
+  // 数据换了：清掉不在新数据里的缓存条目（防长会话内存涨）。
+  useEffect(() => {
+    const keep = new Set(cards.map((c) => c.repo));
+    const m = measuredRef.current;
+    for (const key of Array.from(m.keys())) if (!keep.has(key)) m.delete(key);
+  }, [cards]);
 
-  const visible = cards.slice(win.startIdx, win.endIdx);
+  const visibleWin = layout.colIdx.map((_, c) => win[c] ?? EMPTY_COL_WIN);
+  // 窗口内卡的并集（列内切片按列游走，rank 序 = 各列拼起来排序）。
+  const visibleIdx: number[] = [];
+  layout.colIdx.forEach((idxs, c) => {
+    const w = visibleWin[c];
+    for (const idx of idxs.slice(w.startIdx, w.endIdx)) visibleIdx.push(idx);
+  });
+  visibleIdx.sort((a, b) => a - b);
 
   // 曝光即看过：渲染窗口内的卡上报父组件记 seen（降权依据）。
   // key=窗口位次+频道+首卡：滚动/切频道/数据变化时增量触发，不依赖 onExpose 引用稳定。
-  const exposedKey = `${channel ?? ""}:${cards[0]?.repo ?? ""}:${cards.length}:${win.startIdx}:${win.endIdx}`;
+  const exposedKey = `${listKey}:${visibleWin.map((w) => `${w.startIdx}:${w.endIdx}`).join("|")}`;
   const onExposeRef = useRef(onExpose);
   onExposeRef.current = onExpose;
   useEffect(() => {
-    if (!onExposeRef.current || win.endIdx <= win.startIdx) return;
-    onExposeRef.current(cards.slice(win.startIdx, win.endIdx).map((c) => c.repo));
-  }, [exposedKey, cards, win.startIdx, win.endIdx]);
+    if (!onExposeRef.current || visibleIdx.length === 0) return;
+    onExposeRef.current(visibleIdx.map((idx) => cards[idx].repo));
+    // visibleIdx 每渲染重算（内容不变时同值），以 exposedKey 为触发键。
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [exposedKey]);
 
   return (
     <div ref={wrapRef} className={entering ? "feed-window channel-entering" : "feed-window"}>
-      {win.topPad > 0 && (
-        <div className="feed-window-pad" style={{ height: win.topPad }} aria-hidden="true" />
-      )}
       {/* data-cols：列数分流用**显式属性**（CSS 侧 `[data-cols="1"]` 读它）。
-          四轮 T1（乙B2）：此前 CSS 靠 `[style*="--feed-cols: 1"]` 匹配 React 序列化出的
-          `--feed-cols: 1;` 字符串——依赖「含空格」这一个隐含约定，序列化策略一变就静默失效。
-          `--feed-cols` 保留：它是 CSS 变量，主规则按它取轨道数，JS 垫片也读它。 */}
+          `--feed-cols` 保留：它是 CSS 变量，.feed-col 的列宽算式按它取列数，JS 入列也读它。
+          十二轮：只有摘要字号还需要 JS 写（流式）；卡高/行数变量随槽位退场。 */}
       <div
         className="feed-list"
         data-cols={cols}
-        data-sum-lines={shape.summaryLines}
         style={
           {
             "--feed-cols": cols,
-            // 九轮：摘要字号随卡宽流式收缩（0.98→0.81rem）——写 px 而不是 rem，因为真源是
-            // feedSummaryShapeForCard 的算式（卡宽→字号），CSS 只负责照做，别再各写一份。
             "--feed-summary-font": `${shape.summaryFontPx}px`,
-            "--feed-summary-lines": shape.summaryLines,
-            "--feed-reason-lines": shape.reasonLines,
-            "--feed-card-h": `${tierCardHeight}px`,
           } as React.CSSProperties
         }
       >
-        {visible.map((card) => (
-          <FeedCardMemo
-            key={card.repo}
-            card={card}
-            liked={likedSet.has(card.repo)}
-            ignored={dislikedSet.has(card.repo)}
-            onOpen={onOpen}
-            channel={channel}
-            onOpenCreator={onOpenCreator}
-            tagSlots={shape.tagSlots}
-          />
-        ))}
+        {layout.colIdx.map((idxs, c) => {
+          const w = visibleWin[c];
+          return (
+            <div className="feed-col" key={c}>
+              {w.topPad > 0 && (
+                <div className="feed-window-pad" style={{ height: w.topPad }} aria-hidden="true" />
+              )}
+              {idxs.slice(w.startIdx, w.endIdx).map((idx) => (
+                <FeedCardMemo
+                  key={cards[idx].repo}
+                  card={cards[idx]}
+                  liked={likedSet.has(cards[idx].repo)}
+                  ignored={dislikedSet.has(cards[idx].repo)}
+                  onOpen={onOpen}
+                  channel={channel}
+                  onOpenCreator={onOpenCreator}
+                  tagSlots={shape.tagSlots}
+                />
+              ))}
+              {w.bottomPad > 0 && (
+                <div className="feed-window-pad" style={{ height: w.bottomPad }} aria-hidden="true" />
+              )}
+            </div>
+          );
+        })}
       </div>
-      {win.bottomPad > 0 && (
-        <div className="feed-window-pad" style={{ height: win.bottomPad }} aria-hidden="true" />
-      )}
       {onEndHint && <div className="section-end-hint">{onEndHint}</div>}
     </div>
   );
@@ -1153,27 +1197,15 @@ export default function App() {
 
   // 加载 feed.json：同日 IndexedDB 缓存命中 → 缓存文本立即渲染（秒开），后台再拉最新
   // 版本校验，有变化才热替换（2026-09-05 加载提速：数据每天 digest 一次，日内刷新几乎全命中）
+  // ── 十二轮 T3「按需详情」：boot 不再预热 5.6MB 的 feed-details.json（旧 warmFeedDetails +
+  //    idle prefetch 已删）——详情表只在**首次打开详情**时拉取（弹层即时开、detailCn 到位补渲、
+  //    看门狗与同日 IndexedDB 缓存延续，见 feed-payload.ts / handleOpenDetail）。
+  //    冷启动载荷从此只剩列表 4.6MB（raw）≈1.2MB（gzip）。
   useEffect(() => {
     let cancelled = false;
-    const idle = window.requestIdleCallback
-      ? (cb: () => void) => window.requestIdleCallback(cb)
-      : (cb: () => void) => window.setTimeout(cb, 2000);
     const applyData = (data: FeedCard[]) => {
       setCards((Array.isArray(data) ? data : []).map(normalizeCard));
       setLoading(false);
-    };
-    const warmDetails = (list: FeedCard[]) => {
-      warmFeedDetails();
-      idle(() => {
-        void prefetchFeedDetails().then((details) => {
-          const missing = diffDetailKeys(list, details);
-          if (missing.length > 0) {
-            console.warn(
-              `[feed-details] ${missing.length} 张卡在详情表缺键（深度解读将静默缺失）：${missing.slice(0, 10).join("、")}`,
-            );
-          }
-        });
-      });
     };
     (async () => {
       const cachedText = await loadCachedText("feed");
@@ -1182,7 +1214,6 @@ export default function App() {
         try {
           const list = JSON.parse(cachedText) as FeedCard[];
           applyData(list);
-          warmDetails(list);
         } catch {
           /* 缓存损坏 → 落回网络路径 */
         }
@@ -1196,7 +1227,6 @@ export default function App() {
           void saveCachedText("feed", text);
           const list = JSON.parse(text) as FeedCard[];
           applyData(list);
-          warmDetails(list);
         }
       } catch (err: unknown) {
         // 缓存已渲染时后台刷新失败静默（旧数据可刷）；无缓存才报错
@@ -1238,7 +1268,8 @@ export default function App() {
           : (document.scrollingElement as HTMLElement | null);
       if (!scroller) return;
       e.preventDefault();
-      scroller.scrollBy({ top: rows * FEED_ROW_HEIGHT, behavior: "auto" });
+      // 十二轮：卡高自然化后「行高」不再是真源——按滚动口实际高度翻页（PageDown=3 屏、空格=1 屏）。
+      scroller.scrollBy({ top: rows * scroller.clientHeight * 0.85, behavior: "auto" });
     };
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
@@ -1442,6 +1473,11 @@ export default function App() {
     setDetailCard(card);
     void prefetchFeedDetails().then((details) => {
       setDetailCard((prev) => (prev && prev.repo === card.repo ? mergeDetail(prev, details) : prev));
+      // G-04 可观测性（十二轮自 boot 预热处迁来，按需详情的伴生检查）：这张卡在详情表缺键
+      // ⇒ 深度解读会静默缺失，至少让控制台知道（原来 boot 清点全表，现在逐次打开时查当前卡）。
+      if (!details?.[card.repo]) {
+        console.warn(`[feed-details] ${card.repo} 在详情表缺键（深度解读将静默缺失）`);
+      }
     });
   }, []);
 
@@ -2079,35 +2115,41 @@ export default function App() {
                                       <div
                                         className="feed-list"
                                         data-cols={folderCols}
-                                        data-sum-lines={folderShape.summaryLines}
                                         style={
                                           {
                                             "--feed-cols": folderCols,
                                             "--feed-summary-font": `${folderShape.summaryFontPx}px`,
-                                            "--feed-summary-lines": folderShape.summaryLines,
-                                            "--feed-reason-lines": folderShape.reasonLines,
-                                            "--feed-card-h": `${folderShape.cardHeight}px`,
                                           } as React.CSSProperties
                                         }
                                         data-cols-root="folder"
                                       >
-                                        {colCards.map((card) => (
-                                          <div key={card.repo} className="folder-card-wrapper">
-                                            <FeedCardMemo
-                                              card={card}
-                                              liked={feedback.likes.includes(card.repo)}
-                                              ignored={dislikedSet.has(card.repo)}
-                                              onOpen={handleOpenDetail}
-                                              onOpenCreator={openCreator}
-                                              tagSlots={folderShape.tagSlots}
-                                            />
-                                            <button
-                                              className="folder-card-remove"
-                                              onClick={() => handleRemoveFromCollection(col.id, card.repo)}
-                                              title="移出收藏夹"
-                                            >
-                                              <X size={16} />
-                                            </button>
+                                        {/* 十二轮：列式容器——i%K 轮转入列（与主信息流同构） */}
+                                        {buildColumnIndex(colCards.length, folderCols).map((idxs, c) => (
+                                          <div className="feed-col" key={c}>
+                                            {idxs.map((i) => {
+                                              const card = colCards[i];
+                                              return (
+                                                <div key={card.repo} className="folder-card-wrapper">
+                                                  <FeedCardMemo
+                                                    card={card}
+                                                    liked={feedback.likes.includes(card.repo)}
+                                                    ignored={dislikedSet.has(card.repo)}
+                                                    onOpen={handleOpenDetail}
+                                                    onOpenCreator={openCreator}
+                                                    tagSlots={folderShape.tagSlots}
+                                                  />
+                                                  <button
+                                                    className="folder-card-remove"
+                                                    onClick={() =>
+                                                      handleRemoveFromCollection(col.id, card.repo)
+                                                    }
+                                                    title="移出收藏夹"
+                                                  >
+                                                    <X size={16} />
+                                                  </button>
+                                                </div>
+                                              );
+                                            })}
                                           </div>
                                         ))}
                                       </div>
@@ -2296,27 +2338,31 @@ export default function App() {
                           className="feed-list"
                           ref={hotColsRef}
                           data-cols={hotCols}
-                          data-sum-lines={hotShape.summaryLines}
                           style={
                             {
                               "--feed-cols": hotCols,
                               "--feed-summary-font": `${hotShape.summaryFontPx}px`,
-                              "--feed-summary-lines": hotShape.summaryLines,
-                              "--feed-reason-lines": hotShape.reasonLines,
-                              "--feed-card-h": `${hotShape.cardHeight}px`,
                             } as React.CSSProperties
                           }
                         >
-                          {hotPreview.map((card) => (
-                            <FeedCardMemo
-                              key={card.repo}
-                              card={card}
-                              liked={feedback.likes.includes(card.repo)}
-                              ignored={dislikedSet.has(card.repo)}
-                              onOpen={handleOpenDetail}
-                              onOpenCreator={openCreator}
-                              tagSlots={hotShape.tagSlots}
-                            />
+                          {/* 十二轮：列式容器——i%K 轮转入列（与主信息流同构） */}
+                          {buildColumnIndex(hotPreview.length, hotCols).map((idxs, c) => (
+                            <div className="feed-col" key={c}>
+                              {idxs.map((i) => {
+                                const card = hotPreview[i];
+                                return (
+                                  <FeedCardMemo
+                                    key={card.repo}
+                                    card={card}
+                                    liked={feedback.likes.includes(card.repo)}
+                                    ignored={dislikedSet.has(card.repo)}
+                                    onOpen={handleOpenDetail}
+                                    onOpenCreator={openCreator}
+                                    tagSlots={hotShape.tagSlots}
+                                  />
+                                );
+                              })}
+                            </div>
                           ))}
                         </div>
                       </div>

@@ -1,7 +1,7 @@
 {
   "version": "recopy:v6-copy+facts:1",
   "createdAt": "2026-09-17T12:12:22.618Z",
-  "updatedAt": "2026-09-30T10:07:40.043Z",
+  "updatedAt": "2026-09-30T17:42:22.917Z",
   "done": {
     "coollabsio/coolify": {
       "at": "2026-09-17T12:38:24.902Z",
@@ -557,6 +557,16 @@
       "at": "2026-09-30T09:32:33.585Z",
       "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
       "tries": 1
+    },
+    "semantic-release/semantic-release": {
+      "at": "2026-09-30T17:24:19.918Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "tries": 5
+    },
+    "Anil-matcha/Open-Generative-AI": {
+      "at": "2026-09-30T17:36:02.164Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "tries": 4
     }
   },
   "failed": {
@@ -677,14 +687,12 @@
       "tries": 4
     },
     "sherlock-project/sherlock": {
-      "at": "2026-09-19T10:02:28.339Z",
+      "at": "2026-09-30T17:33:23.709Z",
       "lane": "zhipu:glm-4.7-flash",
       "fails": [
-        "简要介绍等效长度 77（要求约 3 行，effLen≥100）",
-        "深度解读 425 字（硬性要求 500-800 字）",
-        "深度解读 1 段（要求 3-5 段）"
+        "facts[2] source 不在参考文档：不在参考文档"
       ],
-      "tries": 3
+      "tries": 4
     },
     "ever-co/ever-gauzy": {
       "at": "2026-09-19T10:05:11.851Z",
@@ -798,33 +806,15 @@
       ],
       "tries": 6
     },
-    "semantic-release/semantic-release": {
-      "at": "2026-09-30T10:05:48.691Z",
-      "lane": "zhipu:glm-4.7-flash",
-      "fails": [
-        "简要介绍 185 字（硬性要求 100-150 汉字）"
-      ],
-      "tries": 4
-    },
-    "Anil-matcha/Open-Generative-AI": {
-      "at": "2026-09-20T07:39:22.665Z",
-      "lane": "zhipu:glm-4.7-flash",
-      "fails": [
-        "深度解读 396 字（硬性要求 500-800 字）",
-        "深度解读 1 段（要求 3-5 段）"
-      ],
-      "tries": 3
-    },
     "0xDE57/SpaceProject": {
-      "at": "2026-09-30T10:06:20.992Z",
+      "at": "2026-09-30T17:28:44.654Z",
       "lane": "zhipu:glm-4.7-flash",
       "fails": [
-        "一句话描述 15 字（硬性要求 20-35 汉字）",
-        "简要介绍 76 字（硬性要求 100-150 汉字）",
-        "深度解读 244 字（硬性要求 500-800 字）",
+        "深度解读 300 字（硬性要求 500-800 字）",
         "深度解读 1 段（要求 3-5 段）"
       ],
-      "tries": 4
+      "tries": 5,
+      "noReadme": true
     },
     "sxyazi/yazi": {
       "at": "2026-09-20T05:30:12.176Z",
@@ -857,12 +847,15 @@
       "tries": 1
     },
     "docling-project/docling": {
-      "at": "2026-09-20T07:53:00.498Z",
+      "at": "2026-09-30T17:39:47.331Z",
       "lane": "zhipu:glm-4.7-flash",
       "fails": [
+        "简要介绍 97 字（硬性要求 100-150 汉字）",
+        "深度解读 356 字（硬性要求 500-800 字）",
+        "深度解读 1 段（要求 3-5 段）",
         "facts[1] source 不在参考文档：不在参考文档"
       ],
-      "tries": 3
+      "tries": 4
     },
     "ChromeDevTools/chrome-devtools-mcp": {
       "at": "2026-09-20T06:01:16.274Z",
@@ -876,15 +869,13 @@
       "tries": 1
     },
     "trycua/cua": {
-      "at": "2026-09-20T08:15:53.716Z",
+      "at": "2026-09-30T17:42:22.917Z",
       "lane": "zhipu:glm-4.7-flash",
       "fails": [
-        "简要介绍等效长度 93（要求约 3 行，effLen≥100）",
-        "深度解读 382 字（硬性要求 500-800 字）",
-        "深度解读 1 段（要求 3-5 段）",
-        "facts[2] source 不在参考文档：不在参考文档"
+        "深度解读 388 字（硬性要求 500-800 字）",
+        "深度解读 1 段（要求 3-5 段）"
       ],
-      "tries": 3
+      "tries": 4
     },
     "ArchiveBox/ArchiveBox": {
       "at": "2026-09-20T07:50:06.622Z",

@@ -63,8 +63,8 @@ describe("打开动效回归锁（修一项不准把旧伤带回来）", () => {
     expect(feedCard).toMatch(/playOpenMotion/);
   });
 
-  it("信息流用锁高垫片窗口，不无限追加 DOM，不强制 idle parse", () => {
-    expect(app).toMatch(/feedWindow/);
+  it("信息流用列式窗口虚拟化（十二轮：feedColWindowFromPrefix），不无限追加 DOM，不强制 idle parse", () => {
+    expect(app).toMatch(/feedColWindowFromPrefix/);
     expect(app).not.toMatch(/timeout:\s*600/);
     expect(app).not.toMatch(/IntersectionObserver/);
     expect(css).not.toMatch(/content-visibility:\s*auto/);

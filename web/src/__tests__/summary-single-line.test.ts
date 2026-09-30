@@ -6,17 +6,19 @@ import { resolve } from "node:path";
 import { describe, it, expect } from "vitest";
 
 /**
- * H-01 / H-02：卡片外部「一句话」必须**在任何内核里都只占一行**的源码级契约。
+ * .summary 摘要块的**源码级契约**（十二轮改版，2026-10-01）。
  *
- * 立论更正（2026-09-19 实测，栗子第四次反馈 + 他给的截图）：
- * 原先的定案是「现代内核有 `-webkit-line-clamp:1` 就物理不可能两行，唯一路径是不支持 clamp 的旧内核折行外溢」——
- * **这条被本机截图推翻**：Chrome 下 clamp:1 与 `max-height` 同用时，第二行的字顶照样会被画进裁切线内
- * （截图 `D:/tmp/h02_summary_now.png`，「智能」两字被削掉半截；改后对照 `D:/tmp/h02_summary_fix2.png`）。
- * 真正的根治是让第二行**根本不被排版**：`white-space: nowrap` + `text-overflow: ellipsis`（所有内核都认），
- * `max-height` 与 clamp 三行保留作第二道锁。本册把这三件事一起钉住。
+ * 历史（防复踩，别把锁写回去）：
+ * · H-01/H-02 时代（09-19）：摘要锁一行——clamp:1 + nowrap + ellipsis + max/min-height 槽位。
+ * · 九轮～十一轮：槽位按档分流（data-sum-lines 1–3 行）、流式字号、槽内垂直居中。
+ * · **十二轮（块八，栗子口径）**：「卡片几行其实没有太大所谓……定死没有意义，我的意思是
+ *   别有空隙」⇒ 槽位（min/max-height）、clamp、nowrap/ellipsis **全部退场**，文字自然流：
+ *   摘要 ≤35 字（内容契约）＋ 流式字号（0.98→0.81rem）＋ 自然换行 ⇒ 永不截断、0 死空间
+ *   （R-D1 闸钉卡盒高 = 内容栈高）。text-wrap: balance 保留（多行时配平断点＝优雅）。
  *
- * 适配闸（`scripts/gittok-responsive-check.mjs`）里有对应的 computed 版断言（含「半行外露」判据），
- * 但那条**不在 CI 里跑**——删锁要在合并前被拦住，只能靠这里。两份判据同一事实源：styles.css。
+ * 本册钉住的是「退场必须退干净」：谁把定高/槽位/clamp 加回 .summary，这里红。
+ * 适配闸（scripts/gittok-responsive-check.mjs）里有对应的 computed 版断言（R-D1 全 DOM），
+ * 两份判据同一事实源：styles.css。
  */
 function summaryBlock(): string {
   const css = readFileSync(resolve("web/src/styles.css"), "utf8");
@@ -25,8 +27,15 @@ function summaryBlock(): string {
   return m[1];
 }
 
+function reasonBlock(): string {
+  const css = readFileSync(resolve("web/src/styles.css"), "utf8");
+  const m = css.match(/^\.reason-clamped\s*\{([^}]*)\}/m);
+  if (!m) throw new Error("styles.css 里找不到 .reason-clamped 规则块");
+  return m[1];
+}
+
 function decl(block: string, prop: string): string | null {
-  // 先剥注释：属性可能跟在 /* ... */ 之后而不与 `;` 相邻（防御锁那条就是这么写的）
+  // 先剥注释：属性可能跟在 /* ... */ 之后而不与 `;` 相邻
   const stripped = block.replace(/\/\*[\s\S]*?\*\//g, "");
   for (const d of stripped.split(";")) {
     const m = d.match(/^\s*([\w-]+)\s*:\s*(\S[\s\S]*)$/);
@@ -35,36 +44,29 @@ function decl(block: string, prop: string): string | null {
   return null;
 }
 
-describe(".summary 一句话单行防御锁（H-01 / 栗子 09-19 四报症状的兜底）", () => {
+describe(".summary 摘要块自然流契约（十二轮块八：几行没有太大所谓，别有空隙）", () => {
   const block = summaryBlock();
 
-  it("clamp 本体三件在场：-webkit-box + line-clamp:1 + overflow:hidden", () => {
-    expect(decl(block, "display")).toBe("-webkit-box");
-    expect(decl(block, "-webkit-line-clamp")).toBe("1");
-    expect(decl(block, "overflow")).toBe("hidden");
+  it("槽位/钳制退干净：无 min/max-height、无 -webkit-line-clamp、无 nowrap/ellipsis（谁加回来谁红）", () => {
+    expect(decl(block, "min-height"), "min-height 槽位回潮 = 死空间回潮（R-D1 会红）").toBeNull();
+    expect(decl(block, "max-height"), "max-height 槽位回潮 = 截断回潮").toBeNull();
+    expect(decl(block, "-webkit-line-clamp"), "clamp 回潮 = 定行数回潮").toBeNull();
+    expect(decl(block, "white-space"), "nowrap 回潮 = 超契约摘要被省略号硬截").toBeNull();
+    expect(decl(block, "text-overflow"), "ellipsis 回潮 = 硬裁回潮").toBeNull();
   });
 
-  it("根治路径在场：white-space:nowrap + text-overflow:ellipsis（第二行根本不被排版，跨内核一致）", () => {
-    expect(decl(block, "white-space"), "nowrap 被删 → 超长句会排第二行，裁切线里会留半行字顶").toBe("nowrap");
-    expect(decl(block, "text-overflow"), "ellipsis 被删 → 变成硬裁一半句子、没有省略号").toBe("ellipsis");
+  it("优雅件在场：text-wrap: balance（多行配平断点）+ 流式字号变量 --feed-summary-font", () => {
+    expect(decl(block, "text-wrap")).toBe("balance");
+    expect(decl(block, "font-size")).toBe("var(--feed-summary-font, 0.98rem)");
   });
+});
 
-  it("防御锁在场且与 min-height 同值（盒高钉死在一行，旧内核折行也溢不进下一行）", () => {
-    const max = decl(block, "max-height");
-    const min = decl(block, "min-height");
-    expect(max, "max-height 被删掉了——旧内核折行外溢的防御锁失效").toBeTruthy();
-    expect(max).toBe(min);
-  });
+describe(".reason-clamped 理由块自然流契约（十二轮：行数/槽位真源退役）", () => {
+  const block = reasonBlock();
 
-  it("max/min-height 的算式与自身的 line-height、padding 对得上（改了行高忘了改锁也拦）", () => {
-    const lock = decl(block, "max-height")!;
-    const parsed = lock.match(/^calc\(\s*(\d+)\s*\*\s*([\d.]+)em\s*\+\s*(\d+)px\s*\)$/);
-    expect(parsed, `锁的写法不符合 calc(N * <lineHeight>em + <paddingY>px)：${lock}`).not.toBeNull();
-    const [, clampLines, lhEm, padPx] = parsed!;
-    expect(clampLines).toBe(decl(block, "-webkit-line-clamp"));
-    expect(Number(lhEm)).toBe(Number(decl(block, "line-height")));
-    const pad = decl(block, "padding")!.split(/\s+/).map(parseFloat);
-    const padY = pad[0] + (pad.length >= 3 ? pad[2] : pad[0]);
-    expect(Number(padPx)).toBe(padY);
+  it("槽位退干净：无 min-height（按 150 字上限算行数的槽位正是三轮「异常空隙」的根因）", () => {
+    expect(decl(block, "min-height"), "min-height 槽位回潮 = 09-26～09-30 空档问题复发").toBeNull();
+    expect(decl(block, "-webkit-line-clamp")).toBeNull();
+    expect(decl(block, "line-height"), "行高 1.7 是理由块排版的几何依据").toBe("1.7");
   });
 });

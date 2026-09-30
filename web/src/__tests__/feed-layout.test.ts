@@ -7,61 +7,59 @@ import { describe, it, expect } from "vitest";
 import {
   FEED_CARD_CHROME,
   FEED_CARD_CHROME_MOBILE,
-  FEED_CARD_FIXED_H,
-  FEED_CARD_HEIGHT,
-  FEED_CARD_HEIGHT_SHORT,
   FEED_CARD_MAX,
   FEED_CARD_MIN,
   FEED_CHAR_W,
   FEED_COL_MIN,
   FEED_GRID_REF,
   FEED_REASON_CHAR_W,
-  FEED_REASON_FIT_MIN_CARD_W,
-  FEED_REASON_LINES_MAX,
-  FEED_REASON_LINES_MAX_MOBILE,
-  FEED_REASON_LINES_MIN,
   FEED_REASON_MAX,
-  FEED_REASON_LINE_H,
   FEED_SUMMARY_FONT_PX_MAX,
   FEED_SUMMARY_FONT_PX_MIN,
-  FEED_SUMMARY_LINE_H,
   FEED_SUMMARY_LINES_MAX,
   FEED_SUMMARY_MAX,
-  FEED_SHORT_MAX_HEIGHT,
   FEED_COLS_DESKTOP,
   FEED_MOBILE_MAX_WIDTH,
-  FEED_OVERSCAN_ROWS,
+  FEED_OVERSCAN_PX,
   FEED_ROW_GAP,
   FEED_ROW_GAP_MOBILE,
   FEED_ROW_HEIGHT,
+  buildColumnIndex,
+  estCardHeightFor,
   feedCardShapeFor,
   feedCardWidthFor,
+  feedColWindowFromPrefix,
   feedColsForContentWidth,
   feedColsForWidth,
   feedGridFromMatch,
-  feedReasonLinesForCard,
   feedRowGapForWidth,
   feedSummaryLinesForCard,
   feedSummaryShapeForCard,
+  feedTagSlotsForCard,
   feedTierMetricsFor,
   feedViewportOf,
-  feedWindow,
   isScrollableOverflow,
-  sameFeedWindow,
+  sameColWindows,
 } from "../feed-layout.ts";
 
-describe("feed 行高契约", () => {
-  it("行高 = 卡高 + 行距（与 CSS 锁高一致）", () => {
-    expect(FEED_CARD_HEIGHT).toBe(288);
+// ── 十二轮（2026-10-01，块八）：瀑布流重构 ─────────────────────────────────────────
+// 栗子口径：「卡片几行其实没有太大所谓，卡片多高其实也没有太大所谓，就是因为宽度会变，
+// 所以其实定死没有意义，我的意思是别有空隙你懂吗。」
+// ⇒ 卡高＝内容自然高度（FEED_CARD_HEIGHT/FEED_CARD_FIXED_H/feedWindow 行制窗口全部退役）；
+//   布局＝JS 列式瀑布流（K 等宽列、i%K 轮转入列、列内累计偏移虚拟化）。
+//   本册把新架构的几何契约钉住；旧架构的锁（行高/槽位/卡高算式）按块八判废。
+
+describe("feed 几何常量", () => {
+  it("行距与断点不变；FEED_ROW_HEIGHT 降级为「参照估算口径」（容量工具的启发式，不再是布局真源）", () => {
     expect(FEED_ROW_GAP).toBe(16);
     expect(FEED_ROW_GAP_MOBILE).toBe(12);
-    expect(FEED_ROW_HEIGHT).toBe(304);
     expect(FEED_MOBILE_MAX_WIDTH).toBe(768);
+    expect(FEED_ROW_HEIGHT).toBe(288 + FEED_ROW_GAP);
   });
 });
 
 describe("feedGridFromMatch", () => {
-  it("桌面两列 16 间距，窄屏一列 12 间距", () => {
+  it("桌面两列 16 间距，窄屏一列 12 间距（卡高不再由 JS 出）", () => {
     expect(feedGridFromMatch(false)).toEqual({ cols: 2, rowGap: 16 });
     expect(feedGridFromMatch(true)).toEqual({ cols: 1, rowGap: 12 });
     expect(feedColsForWidth(768)).toBe(1);
@@ -71,76 +69,108 @@ describe("feedGridFromMatch", () => {
   });
 });
 
-describe("feedWindow", () => {
-  it("未滚动时只挂视口 + overscan，上面不垫", () => {
-    const w = feedWindow({
-      cardCount: 100,
-      cols: FEED_COLS_DESKTOP,
-      rowGap: FEED_ROW_GAP,
-      listTop: 0,
-      viewportHeight: 900,
-      overscanRows: 2,
-    });
-    expect(w.startRow).toBe(0);
+describe("列式瀑布流：入列（i%K 轮转）", () => {
+  it("卡 i 进列 i%K；列内保持 rank 升序（近序性：卡 i+1 不会跑到卡 i 上方远处）", () => {
+    expect(buildColumnIndex(7, 3)).toEqual([
+      [0, 3, 6],
+      [1, 4],
+      [2, 5],
+    ]);
+    expect(buildColumnIndex(4, 2)).toEqual([
+      [0, 2],
+      [1, 3],
+    ]);
+    expect(buildColumnIndex(5, 1)).toEqual([[0, 1, 2, 3, 4]]);
+  });
+  it("空列表给 K 条空列；cols 钳到 ≥1（0 视口宽等异常输入回单列）", () => {
+    expect(buildColumnIndex(0, 3)).toEqual([[], [], []]);
+    expect(buildColumnIndex(2, 0)).toEqual([[0, 1]]);
+  });
+});
+
+describe("列式瀑布流：列内累计偏移窗口（feedColWindowFromPrefix）", () => {
+  // 统一卡高 h=100、行距 gap=16 ⇒ prefix = [0, 116, 232, ...]
+  const h = 100;
+  const gap = 16;
+  const n = 50;
+  const prefix = [0];
+  for (let k = 0; k < n; k++) prefix.push(prefix[k] + h + gap);
+
+  it("未滚动：窗口从头开始，上面不垫", () => {
+    const w = feedColWindowFromPrefix(prefix, 0, 900, 200);
     expect(w.startIdx).toBe(0);
     expect(w.topPad).toBe(0);
-    expect(w.endRow).toBe(Math.ceil(900 / 304) + 2);
-    expect(w.endIdx).toBe(w.endRow * 2);
-    expect(w.bottomPad).toBe((50 - w.endRow) * 304);
+    expect(w.endIdx).toBe(Math.floor((900 + 200) / (h + gap)) + 1);
+    expect(w.bottomPad).toBe(prefix[n] - prefix[w.endIdx]);
   });
 
-  it("滚过 10 行后上面垫精确高度，切片从中间开始", () => {
-    const w = feedWindow({
-      cardCount: 100,
-      cols: 2,
-      rowGap: 16,
-      listTop: -3040,
-      viewportHeight: 900,
-      overscanRows: 2,
+  it("滚到中段：切片从中间开始，topPad = 首卡顶偏移", () => {
+    const viewTop = 20 * (h + gap);
+    const w = feedColWindowFromPrefix(prefix, viewTop, viewTop + 900, 200);
+    expect(w.startIdx).toBe(18); // 卡 18 底边(19×116=2204) > 2320−200=2120 ⇒ 从 18 起
+    expect(w.topPad).toBe(prefix[18]);
+    expect(w.endIdx).toBeGreaterThan(w.startIdx);
+    expect(w.bottomPad).toBe(prefix[n] - prefix[w.endIdx]);
+  });
+
+  it("垫片 + 可见卡 = 列总高（构造恒等式）", () => {
+    for (const viewTop of [0, 500, 2000, 4500, 5600]) {
+      const w = feedColWindowFromPrefix(prefix, viewTop, viewTop + 900, 200);
+      const visibleH = w.endIdx > w.startIdx ? prefix[w.endIdx] - prefix[w.startIdx] : 0;
+      expect(w.topPad + visibleH + w.bottomPad + gap).toBe(prefix[n] + gap);
+    }
+  });
+
+  it("滚过末尾：窗口收在最后一卡，bottomPad=0", () => {
+    const w = feedColWindowFromPrefix(prefix, prefix[n], prefix[n] + 900, 200);
+    expect(w.endIdx).toBe(n);
+    expect(w.bottomPad).toBe(0);
+  });
+
+  it("空列不垫、不切片；overscan 缺省 = FEED_OVERSCAN_PX（≈3 屏语义延续）", () => {
+    expect(feedColWindowFromPrefix([0], 0, 900)).toEqual({
+      startIdx: 0,
+      endIdx: 0,
+      topPad: 0,
+      bottomPad: 0,
     });
-    expect(w.startRow).toBe(8);
-    expect(w.startIdx).toBe(16);
-    expect(w.topPad).toBe(8 * 304);
-    expect(w.endRow).toBe(15);
-    expect(w.bottomPad).toBe(35 * 304);
+    expect(FEED_OVERSCAN_PX).toBe(3000);
   });
 
-  it("垫片 + 可见行 = 总滚动高（不含最后一行多余 gap）", () => {
-    const w = feedWindow({
-      cardCount: 87,
-      cols: 2,
-      rowGap: 16,
-      listTop: -1200,
-      viewportHeight: 800,
-    });
-    const rowCount = Math.ceil(87 / 2);
-    const visibleRows = w.endRow - w.startRow;
-    expect(w.topPad + visibleRows * 304 + w.bottomPad).toBe(rowCount * 304);
-    expect(FEED_OVERSCAN_ROWS).toBe(10);
-  });
-
-  it("空列表不垫、不切片", () => {
+  it("sameColWindows 逐列比较切片与垫片", () => {
+    const a: ReturnType<typeof feedColWindowFromPrefix>[] = [
+      { startIdx: 0, endIdx: 5, topPad: 0, bottomPad: 100 },
+      { startIdx: 1, endIdx: 6, topPad: 116, bottomPad: 50 },
+    ];
     expect(
-      feedWindow({
-        cardCount: 0,
-        cols: 2,
-        rowGap: 16,
-        listTop: 0,
-        viewportHeight: 900,
-      }),
-    ).toEqual({ startRow: 0, endRow: 0, startIdx: 0, endIdx: 0, topPad: 0, bottomPad: 0 });
+      sameColWindows(
+        a,
+        a.map((w) => ({ ...w })),
+      ),
+    ).toBe(true);
+    expect(sameColWindows(a, [a[0], { ...a[1], startIdx: 2 }])).toBe(false);
+    expect(sameColWindows(a, [a[0]])).toBe(false);
   });
+});
 
-  it("sameFeedWindow 只看切片和垫片", () => {
-    const a = feedWindow({
-      cardCount: 40,
-      cols: 2,
-      rowGap: 16,
-      listTop: 0,
-      viewportHeight: 900,
-    });
-    expect(sameFeedWindow(a, { ...a })).toBe(true);
-    expect(sameFeedWindow(a, { ...a, startIdx: a.startIdx + 2 })).toBe(false);
+describe("estCardHeightFor（未测量卡的估算兜底）", () => {
+  const short = { summary: "一句话摘要", reason: "短理由" };
+  const long = {
+    summary: "七".repeat(35),
+    reason: "八".repeat(150),
+  };
+  it("内容越长越高；恒为正且数量级合理（固定件 ≈ 154 + 文本块）", () => {
+    const hShort = estCardHeightFor(short, 793);
+    const hLong = estCardHeightFor(long, 793);
+    expect(hShort).toBeGreaterThan(150);
+    expect(hLong).toBeGreaterThan(hShort);
+    // 契约满载（35+150 字）在标准字号 793 宽下：摘要 1 行 + 理由 3 行 ⇒ 与旧版 288 同数量级
+    expect(hLong).toBeLessThan(600);
+  });
+  it("同内容卡越窄越高（每行容量变小 ⇒ 行数变多）", () => {
+    const wide = estCardHeightFor(long, 793);
+    const narrow = estCardHeightFor(long, 494);
+    expect(narrow).toBeGreaterThanOrEqual(wide);
   });
 });
 
@@ -181,9 +211,7 @@ describe("CSS 结构自检（三轮踩过的坑：注释没闭合会把下一条
     expect((stripped.match(/\{/g) ?? []).length).toBe((stripped.match(/\}/g) ?? []).length);
   });
   it("全站 transition 不许出现裸时长（必须走 motion token）", () => {
-    // 三轮 T1 验收②：改前 38 处 `transition:` 里混着 0.15/0.2/0.25/0.28/0.3s——
-    // 同一个交互在不同元素上快慢不一，是「过渡不丝滑」的观感来源之一。
-    // 现在统一走 --motion-fast/base/slow + --ease-*，这条断言把「裸值」钉死为红。
+    // 三轮 T1 验收②：同一个交互在不同元素上快慢不一，是「过渡不丝滑」的观感来源之一。
     // 允许：transition: none（锁⑨要求它在 .card.is-open-source 上）；`0s linear` 的 visibility 延迟开关。
     const stripped = cssRaw.replace(/\/\*[\s\S]*?\*\//g, "");
     const decls = [...stripped.matchAll(/transition:\s*([^;}]+)/g)].map((m) =>
@@ -195,178 +223,105 @@ describe("CSS 结构自检（三轮踩过的坑：注释没闭合会把下一条
   });
 
   it("注释外不出现中文破折号行（＝注释漏闭合的指纹）", () => {
-    // 三轮实伤：新写的一段 `── … ──` 落在注释的 `*/` 之后 → 浏览器把这段文字当成选择器，
-    // 紧跟着的 `.feed-content { … }` 整条被吞 → 内容区宽度/内距全失效（实测网格 1602→1650、
-    // 卡宽 523→539、拖动闸四条列数翻转全丢）。这条断言是那次的直接指纹。
+    // 三轮实伤：`── … ──` 落在注释的 `*/` 之后 → 浏览器把这段文字当成选择器，紧跟着的规则整条被吞。
     const stripped = cssRaw.replace(/\/\*[\s\S]*?\*\//g, "");
     const stray = stripped.split("\n").filter((l) => l.includes("──") && !l.trim().startsWith("//"));
     expect(stray).toEqual([]);
   });
 });
 
-describe("双写契约（CSS 与 JS 常量不许漂）", () => {
-  const cssRaw = readFileSync(resolve("web/src/styles.css"), "utf8");
-  it("--feed-col-min === FEED_COL_MIN（G-10 列数最小宽）", () => {
-    const cssMin = Number(cssRaw.match(/--feed-col-min:\s*(\d+)px/)?.[1]);
-    expect(cssMin).toBe(FEED_COL_MIN);
-  });
-  it("--feed-col-min === FEED_COL_MIN（由摘要契约反推；--feed-card-max 与其同值成对）", () => {
-    // 四轮曾把「卡宽上限」整个删除（那时单列档要铺满）。09-25 栗子改口「单列卡片的极限宽度按这个来」
-    // ⇒ 上限回来了，但**机制在内容侧**（见下面那条锁），所以 CSS 里 --feed-card-max 是**必须存在**的，
-    // 且必须与 JS 常量同值。
-    const cssMin = Number(cssRaw.match(/--feed-col-min:\s*(\d+)px/)?.[1]);
-    const cssMax = Number(cssRaw.match(/--feed-card-max:\s*(\d+)px/)?.[1]);
-    expect(cssMin).toBe(FEED_COL_MIN);
-    expect(cssMax).toBe(FEED_CARD_MAX);
-  });
-  it("--feed-card-h === FEED_CARD_HEIGHT；窄高档 --feed-card-h === FEED_CARD_HEIGHT_SHORT", () => {
-    const vars = [...cssRaw.matchAll(/--feed-card-h:\s*(\d+)px/g)].map((m) => Number(m[1]));
-    expect(vars).toContain(FEED_CARD_HEIGHT);
-    expect(vars).toContain(FEED_CARD_HEIGHT_SHORT);
-    const shortBlock = cssRaw.match(/@media \(max-height: (\d+)px\)[\s\S]*?\}/);
-    expect(Number(shortBlock?.[1])).toBe(FEED_SHORT_MAX_HEIGHT);
-  });
-});
-
-describe("卡片铺满轨道（09-25：上限在**内容容器**上，卡片自身仍铺满）", () => {
+describe("双写契约（CSS 与 JS 常量不许漂；十二轮退场变量必须退干净）", () => {
   const cssRaw = readFileSync(resolve("web/src/styles.css"), "utf8");
   const css = cssRaw.replace(/\/\*[\s\S]*?\*\//g, "");
-  const cssNoCommentAll = css;
-  const feedList = css.match(/\.feed-list\s*\{[^}]+\}/)?.[0] ?? "";
-
-  it("轨道 max 保持 1fr（写进轨道会让 auto-fill 改用 max 计数 → 少一列）", () => {
-    expect(feedList).toMatch(
-      /repeat\(\s*auto-fill\s*,\s*minmax\(min\(var\(--feed-col-min\),\s*100%\),\s*1fr\)\s*\)/,
-    );
-    expect(feedList).not.toMatch(/minmax\([^)]*var\(--feed-card-max\)/);
+  it("--feed-card-max === FEED_CARD_MAX（单列档列宽上限，JS 同式）", () => {
+    const cssMax = Number(css.match(/--feed-card-max:\s*(\d+)px/)?.[1]);
+    expect(cssMax).toBe(FEED_CARD_MAX);
   });
-
-  it("卡片**铺满自己的轨道**（卡宽 = 轨道宽；上限落在内容容器，不在卡片）", () => {
-    // 09-25 栗子两条合起来的新口径：
-    //   · 「单列卡片的极限宽度按这个来」（＝两列档那张卡 = 793）⇒ 上限回来了；
-    //   · 09-24 的「（红框）这种空隙不允许出现」仍然算数 ⇒ **轨道内不留空**：卡仍是 width:100%。
-    // 两者能同时成立，靠的是把上限写在**内容容器**（.feed-content 的 max-width）而不是卡片身上：
-    // 容器一窄，轨道与卡一起变窄，头/偏好条天然同宽。卡片自身一旦挂 max-width 就会回到
-    // 「轨道 1fr + 卡限宽」那种「轨道里留空」的形状——2026-09-25 那条回归锁守的就是这件事。
-    const base = css.match(/\.feed-list\s*>\s*\.card\s*\{([^}]*)\}/)?.[1] ?? "";
-    expect(base).toMatch(/width:\s*100%/); // 不带它会塌成 max-content（历史实测 36px）
-    expect(base).not.toMatch(/max-width/); // 上限在**轨道**身上，不在卡片身上
-    // 上限只许出现在两处：①单列档的轨道（minmax 上限）②单列档的头/偏好条/状态行（共用一个声明）
-    const cardMaxUses = [...cssNoCommentAll.matchAll(/var\(--feed-card-max\)/g)];
-    expect(cardMaxUses.length).toBe(2);
-    // 手机档仍是 1fr 占满
-    const mobileBlocks = [...css.matchAll(/@media \(max-width:\s*768px\)\s*\{[\s\S]*?\n\}/g)].map(
-      (m) => m[0],
-    );
-    const mobileBlock = mobileBlocks.find((b) => /\.feed-list\s*\{/.test(b)) ?? "";
-    expect(mobileBlock).toMatch(/\.feed-list\s*\{[^}]*grid-template-columns:\s*1fr/);
+  it("定高/槽位时代的变量退场：--feed-card-h / --feed-col-min / --feed-summary-lines / --feed-reason-lines 不许再出现", () => {
+    // 谁把定高（--feed-card-h）或行数槽位（--feed-*-lines）加回 CSS，这里红——
+    // 它们是「卡高算式/槽位空档」时代的开关，块八判废（规格十二轮追加 §一.2）。
+    expect(css).not.toMatch(/--feed-card-h\s*:/);
+    expect(css).not.toMatch(/--feed-col-min\s*:/);
+    expect(css).not.toMatch(/--feed-summary-lines\s*:/);
+    expect(css).not.toMatch(/--feed-reason-lines\s*:/);
+  });
+  it("手机档行距 12px 仍在（--feed-row-gap @≤768）", () => {
+    expect(css).toMatch(/--feed-row-gap:\s*12px/);
   });
 });
 
-describe("列数（照 CSS auto-fill 同式还原）", () => {
-  const cssRawCols = readFileSync(resolve("web/src/styles.css"), "utf8");
-  const cssNoCommentAll = cssRawCols.replace(/\/\*[\s\S]*?\*\//g, "");
-  it("列数反解（十轮规则：卡宽落在 [460, 793] 的最小列数 ⇒ 两列 <460 回单列收对称页边距）", () => {
+describe("列式容器（.feed-list/.feed-col 的结构契约）", () => {
+  const cssRaw = readFileSync(resolve("web/src/styles.css"), "utf8");
+  const css = cssRaw.replace(/\/\*[\s\S]*?\*\//g, "");
+
+  it(".feed-list = 横向 flex + 居中 + 行距 gap；列宽算式与 feedCardWidthFor 同式", () => {
+    const feedList = css.match(/^\.feed-list\s*\{([^}]*)\}/m)?.[1] ?? "";
+    expect(feedList).toMatch(/display:\s*flex/);
+    expect(feedList).toMatch(/justify-content:\s*center/);
+    expect(feedList).toMatch(/gap:\s*var\(--feed-row-gap\)/);
+    const col = css.match(/\.feed-list\s*>\s*\.feed-col\s*\{([^}]*)\}/)?.[1] ?? "";
+    expect(col).toMatch(
+      /width:\s*calc\(\(100%\s*-\s*\(var\(--feed-cols,\s*1\)\s*-\s*1\)\s*\*\s*var\(--feed-row-gap\)\)\s*\/\s*var\(--feed-cols,\s*1\)\)/,
+    );
+    expect(col).toMatch(/min-width:\s*0/);
+    expect(col).toMatch(/flex-direction:\s*column/);
+    // 旧 grid 语义不许回流（瀑布流列由 flex 承担）
+    expect(css).not.toMatch(/\.feed-list[^{]*\{[^}]*grid-template-columns/);
+  });
+
+  it("卡片铺满自己的列（卡宽 = 列宽）：.feed-col .card { width:100% }；.card 不许有 height/定高", () => {
+    const cardInCol = css.match(/\.feed-col\s+\.card\s*\{([^}]*)\}/)?.[1] ?? "";
+    expect(cardInCol).toMatch(/width:\s*100%/);
+    const card = css.match(/^\.card\s*\{([^}]*)\}/m)?.[1] ?? "";
+    expect(card, "卡片不许再锁高（块八：该多高就多高）").not.toMatch(/(^|[^-])height:\s/);
+    expect(card).toMatch(/overflow:\s*hidden/); // BFC：子 margin 不穿出 ⇒ R-D1 的 0 死空间由构造保证
+    // 上限只许落在列（单列档）与头/偏好条上，不许落在卡片身上
+    expect(card).not.toMatch(/max-width/);
+    expect(css, "不许用 justify-self 把卡片挤到一边（四轮红框那条的根因）").not.toMatch(
+      /justify-self:\s*(start|end|left|right)/,
+    );
+  });
+
+  it("单列档上限开关：data-cols 属性驱动 + @media(≥769) 收列宽 793 + 头≡卡（旧三版教训不回潮）", () => {
+    const capBlock = css.match(
+      /@media \(min-width: 769px\) \{[\s\S]*?\.feed-list\[data-cols="1"\] > \.feed-col[\s\S]*?\n\}/,
+    )?.[0];
+    expect(capBlock, "单列档上限块不在（栗子 09-25 那条会失效）").toBeTruthy();
+    expect(capBlock).toMatch(/max-width:\s*var\(--feed-card-max\)/);
+    expect(capBlock).toMatch(
+      /\.feed-layout:has\(> \.feed-content > \.feed-window > \.feed-list\[data-cols="1"\]\)/,
+    ); // 头≡卡
+    // ⚠ 不许用视口断点当开关：断点与 JS 列数切换不同帧 ⇒ 头宽先行跳、FLIP 追不上（实测踩到）
+    expect(css).not.toMatch(/@media \(min-width: 769px\) and \(max-width: 1593px\)/);
+  });
+
+  it("槽位时代的机制退干净：data-sum-lines 分流与 .clamp-text 不许再出现", () => {
+    expect(css).not.toMatch(/data-sum-lines/);
+    expect(css).not.toMatch(/\.clamp-text/);
+    const src = readFileSync(resolve("web/src/FeedCard.tsx"), "utf8").replace(/\/\*[\s\S]*?\*\//g, "");
+    expect(src, "FeedCard 里不许再包 .clamp-text（摘要/理由直接自然流）").not.toMatch(/clamp-text/);
+    expect(src, "卡片必须带 data-repo（虚拟列表实测回填的定位键）").toMatch(/data-repo=\{card\.repo\}/);
+  });
+});
+
+describe("列数（十轮定案规则原样：卡宽 ∈ [460, 793] 的最小列数）", () => {
+  it("列数反解全档可复算", () => {
     // 阈值来源：上限 793 ＝ 两列档在参照档（1920）下的单卡宽；下限 460 ＝ K-11 一行容量 24 字同源档。
     expect(FEED_CARD_MAX).toBe(793);
     expect(FEED_CARD_MIN).toBe(460);
     expect(FEED_SUMMARY_MAX).toBe(35);
     expect(FEED_COL_MIN).toBe(Math.ceil(FEED_SUMMARY_MAX * FEED_CHAR_W + FEED_CARD_CHROME));
     // 实测档位（本机 dist 逐档读计算值，见 scripts/gittok-responsive-check.mjs 的 EXPECT 表）
-    expect(feedColsForContentWidth(1602)).toBe(2); // 1920/2560 档 → 2 列 × 793（43 字）
-    expect(feedColsForContentWidth(1472)).toBe(2); // 1744 档 → 2 × 728
-    expect(feedColsForContentWidth(1428)).toBe(2); // 1700 档 → 2 × 706
+    expect(feedColsForContentWidth(1602)).toBe(2); // 1920/2560 档 → 2 列 × 793
     expect(feedColsForContentWidth(1328)).toBe(2); // 1600 档 → 2 × 656
-    expect(feedColsForContentWidth(1228)).toBe(2); // 1500 档 → 2 × 606
-    expect(feedColsForContentWidth(1128)).toBe(2); // 1400 档 → 2 × 556
     expect(feedColsForContentWidth(1003)).toBe(2); // 1275 档 → 2 × 494
-    expect(feedColsForContentWidth(975)).toBe(2); // 1240 档 → 2 × 480
     expect(feedColsForContentWidth(936)).toBe(2); // 十轮门槛：两列恰好 460（网格 936 ＝ 视口 1208）
-    expect(feedColsForContentWidth(935)).toBe(1); // 459.5 < 460 ⇒ 回单列 793（页边距 71/侧）
-    expect(feedColsForContentWidth(928)).toBe(1); // 1200 档 → 1 × 793（八轮是 2×456＝两整行空白）
-    expect(feedColsForContentWidth(828)).toBe(1); // 1100 档 → 1 × 793（八轮是 2×406）
-    expect(feedColsForContentWidth(794)).toBe(1); // 2 列 389 < 460 ⇒ 单列（页边距 0.5/侧）
+    expect(feedColsForContentWidth(935)).toBe(1); // 459.5 < 460 ⇒ 回单列 793
     expect(feedColsForContentWidth(793)).toBe(1); // 恰好 793 ⇒ 单列（卡宽 = 网格 = 793）
-    expect(feedColsForContentWidth(728)).toBe(1); // 1000 档 → 1 × 728
     expect(feedColsForContentWidth(0)).toBe(1);
   });
 
-  it("摘要契约（20–35 字）是布局的第一性依据：653px 卡宽 → 一行恰好 35 字", () => {
-    // 上限出处：src/feed/prompts.ts 的评分提示词「20-35 个汉字（硬性要求）」，不是本轮新造的数。
-    expect(FEED_SUMMARY_MAX).toBe(35);
-    // 653px 卡宽的一行容量（口径 = floor((卡宽−69)/16.66)，与 G9 表/闸同式）
-    expect(Math.floor((FEED_COL_MIN - FEED_CARD_CHROME) / FEED_CHAR_W)).toBe(35);
-    // 结构性不变式：多列档卡宽 ≥ 653 ⇒ 任何合规摘要一行读完（R1）；单列档铺满（R2）。
-    const grid = 1602,
-      cols = feedColsForContentWidth(grid);
-    const cardW = (grid - (cols - 1) * FEED_ROW_GAP) / cols;
-    expect(cols).toBe(2);
-    expect(Math.floor((cardW - FEED_CARD_CHROME) / FEED_CHAR_W)).toBeGreaterThanOrEqual(FEED_SUMMARY_MAX);
-  });
-
-  it("单列档卡宽上限 = 两列档卡宽（09-25 栗子「按这个来」）：机制在**内容侧**，卡片自身仍铺满", () => {
-    // ── 口径来历（2026-09-25 五轮）─────────────────────────────────────────────
-    // 栗子配两张图：「这个太长了，我理想的单列卡片的极限宽度应该在第二张图片左右」
-    // →「更正一下，我理想的单列卡片极限宽度应该按这个来」（红框圈的是**两列档里的那张卡**）。
-    // ⇒ 单列档卡宽上限 = 两列档在参照档（1920×1080、内容网格 FEED_GRID_REF=1602）下的单卡宽。
-    expect(FEED_CARD_MAX).toBe(793);
-    expect(FEED_CARD_MAX).toBe(Math.floor((FEED_GRID_REF - FEED_ROW_GAP) / 2)); // 推导，不是拍的
-    expect(feedColsForContentWidth(FEED_GRID_REF)).toBe(2); // 参照档确实是两列 ⇒ 793 就是它的卡宽
-    expect(FEED_CARD_MAX).toBeGreaterThan(FEED_COL_MIN); // 上限必须 ≥ 下限，否则规则自相矛盾
-
-    // ── 双写契约：JS 常量 ↔ CSS token（漂移会让闸的读数与改版的人都对不上）──
-    const cssNum = cssNoCommentAll.match(/--feed-card-max:\s*(\d+)px/);
-    expect(cssNum?.[1], "styles.css 里没有 --feed-card-max").toBeTruthy();
-    expect(Number(cssNum?.[1])).toBe(FEED_CARD_MAX);
-
-    // ── 机制在**内容侧**：卡片不许挂 max-width（那是四轮删掉的「轨道 1fr + 卡限宽」形状）──
-    const cardBlock = cssNoCommentAll.match(/\.feed-list > \.card\s*\{([^}]*)\}/)?.[1] ?? "";
-    expect(cardBlock).toMatch(/width:\s*100%/);
-    expect(cardBlock, "卡片身上不许出现 max-width（限宽要落在内容容器上）").not.toMatch(/max-width/);
-    expect(cssNoCommentAll, "不许用 justify-self 把卡片挤到一边（四轮红框那条的根因）").not.toMatch(
-      /justify-self:\s*(start|end|left|right)/,
-    );
-
-    // 开关必须是 **data-cols 属性**（与 JS 的列数同一帧），且只对 ≥769 生效
-    const capBlock = cssNoCommentAll.match(
-      /@media \(min-width: 769px\) \{[\s\S]*?grid-template-columns:\s*minmax\(0, var\(--feed-card-max\)\)[\s\S]*?\n\}/,
-    )?.[0];
-    expect(capBlock, "单列档上限块不在（栗子 09-25 那条会失效）").toBeTruthy();
-    expect(capBlock).toMatch(
-      /\.feed-window > \.feed-list\[data-cols="1"\],\s*\n\s*\.feed-list\[data-cols="1"\]\[style\] \{/,
-    );
-    expect(capBlock).toMatch(/grid-template-columns:\s*minmax\(0, var\(--feed-card-max\)\)/);
-    expect(capBlock).toMatch(/justify-content:\s*center/); // 居中（两侧留量相等，不是左对齐留单侧空）
-    expect(capBlock).toMatch(
-      /\.feed-layout:has\(> \.feed-content > \.feed-window > \.feed-list\[data-cols="1"\]\)/,
-    ); // 头≡卡
-    // ⚠ 不许用视口断点当开关：断点与 JS 列数切换不同帧 ⇒ 头宽先行跳 530px、FLIP 追不上（实测踩到）
-    expect(cssNoCommentAll, "上限不许用视口断点开关（会与列数切换不同帧）").not.toMatch(
-      /@media \(min-width: 769px\) and \(max-width: 1593px\)/,
-    );
-    expect(FEED_CARD_MAX + 48).toBe(841); // 旧版（内容容器法）的算式，留着当「别走回头路」的注脚
-
-    // 正向：主规则仍在（列数＝唯一真源）
-    expect(cssNoCommentAll).toMatch(
-      /grid-template-columns:\s*repeat\(var\(--feed-cols, 1\), minmax\(0, 1fr\)\)/,
-    );
-  });
-
-  it("十轮：列数规则补下限 460 —— 两列 <460 回单列，换回对称页边距（丁D1：破了八轮哪条口径、换回什么）", () => {
-    // 栗子八轮原话「不允许出现留白……再长就要变成两列」在 1074–1191 视口产出了**更差的留白**：
-    // 2×406–456 的理由槽位按 150 字上限算 6–7 行、实排只有 4–5 行 ⇒ 块内 47.4px＝两整行空白
-    // （甲A1，`node D:/tmp/gt-r10-reasongap.mjs` 可复跑；r11 实拍 >36px 占比 1100 档 90%）。
-    // 十轮裁定（候选 460/500/556 实拍对照，M500/556 会把 1275/1343 页边距炸到 105/139 ⇒ 否决）：
-    // 卡宽必须落在 [460, 793]；两列给不出 ≥460 的卡就回单列 793，余量成**对称**页边距 ≤71.5px/侧。
-    expect(FEED_CARD_MIN).toBe(460);
-    expect(feedColsForContentWidth(793)).toBe(1); // 网格 ≤793：单列铺满（八轮口径不变）
-    expect(feedColsForContentWidth(794)).toBe(1); // 两列 389 < 460 ⇒ 回单列（页边距 0.5/侧）
-    expect(feedColsForContentWidth(935)).toBe(1); // 459.5 < 460 ⇒ 回单列（页边距 71/侧）
-    expect(feedColsForContentWidth(936)).toBe(2); // 门槛：两列恰好 460 ⇒ 两列（网格 936 ＝ 视口 1208）
-    expect(feedColsForContentWidth(1322)).toBe(2);
-    expect(feedColsForContentWidth(1602)).toBe(2); // 参照档仍是两列 793
-    // 全档三条不变式：① 卡宽 ≤ 上限；② 两列档**轨道铺满网格（零留白）**；
-    // ③ 单列回退档（网格 ∈ (793, 936)）卡宽 = 793、页边距 = (网格−793)/2 ≤ 71.5 且由 CSS 居中对称。
+  it("全档三条不变式：卡宽 ≤ 上限；两列档零留白；单列档卡宽 = min(网格, 793)", () => {
     for (const w of [793, 794, 828, 900, 935, 936, 1003, 1128, 1228, 1328, 1428, 1602]) {
       const n = feedColsForContentWidth(w);
       const cardW = feedCardWidthFor(w, n, FEED_ROW_GAP);
@@ -380,67 +335,37 @@ describe("列数（照 CSS auto-fill 同式还原）", () => {
     }
   });
 
-  it("九轮：档内形态（摘要字号 f / 行数 S / 理由行数 R / 卡高 H / 标签槽位 T）逐档可复算", () => {
-    // 这八档是闸里真实存在的档（内容宽 → 列数 → 卡宽），数值＝本机实测（responsive 读数一致）。
-    // 九轮把摘要**字号**也纳入形态：1400/1500 两档从「2 行槽位 + 16.66px」变成「1 行 + 流式字号」，
-    // 空白带因此归零（实测 1500 档 796/837 → 0/837、1400 档 688/837 → 0/837）。
-    const table: Array<[number, number, number, number, number, number, number, number]> = [
-      // 内容宽, 列数, 卡宽, 摘要行, 字号(px), 理由行, 卡高, 标签槽位
-      [1602, 2, 793, 1, 16.66, 3, 288, 8], // 参照档（1920/2560 两列）——字号封顶在 0.98rem
-      [1428, 2, 706, 1, 16.66, 4, 312, 7],
-      [1328, 2, 656, 1, 16.66, 4, 312, 6], // 1600 档（一行容量恰好 35 字）
-      [1228, 2, 606, 1, 15.3429, 4, 310, 6], // 1500 档（八轮起两列；九轮流式字号 → 1 行）
-      [1128, 2, 556, 1, 13.9143, 5, 331, 5], // 1400 档（临界档：再窄 5px 就掉回 2 行）
-      [1003, 2, 494, 2, 16.66, 5, 360, 4], // 1275 档（一行只放 30 字 → 2 行槽位，字号仍标准）
-      [928, 1, 793, 1, 16.66, 3, 288, 8], // 1200 档（十轮 T1 起回单列 793：八轮是 2×456 空两行）
-      [828, 1, 793, 1, 16.66, 3, 288, 8], // 1100 档（十轮 T1 起回单列 793：八轮是 2×407 空两行）
-      [728, 1, 728, 1, 16.66, 4, 312, 7], // 1000 档（≤793 ⇒ 单列铺满；卡宽 728 时理由也要 4 行）
+  it("单列档上限 = 两列档在参照档下的单卡宽（09-25 栗子「按这个来」，推导而非拍的）", () => {
+    expect(FEED_CARD_MAX).toBe(Math.floor((FEED_GRID_REF - FEED_ROW_GAP) / 2));
+    expect(feedColsForContentWidth(FEED_GRID_REF)).toBe(2);
+    expect(FEED_CARD_MAX).toBeGreaterThan(FEED_COL_MIN);
+  });
+});
+
+describe("档内形态（十二轮改版：只有 字号 f / 标签槽位 T；行数与卡高退役）", () => {
+  it("形态逐档可复算：卡宽 + 流式字号 + 标签槽位（不含卡高/行数）", () => {
+    const table: Array<[number, number, number, number, number]> = [
+      // 内容宽, 列数, 卡宽, 字号(px), 标签槽位
+      [1602, 2, 793, 16.66, 8], // 参照档（1920/2560 两列）——字号封顶在 0.98rem
+      [1328, 2, 656, 16.66, 6], // 1600 档（一行容量恰好 35 字）
+      [1128, 2, 556, 13.9143, 5], // 1400 档（临界档：字号触到下界附近）
+      [1003, 2, 494, 16.66, 4], // 1275 档（一行只放 30 字 ⇒ 自然换 2 行，字号仍标准）
+      [928, 1, 793, 16.66, 8], // 1200 档（十轮 T1 起回单列 793）
+      [728, 1, 728, 16.66, 7], // 1000 档（≤793 ⇒ 单列铺满）
     ];
-    for (const [w, cols, cardW, S, font, R, H, T] of table) {
+    for (const [w, cols, cardW, font, T] of table) {
       const s = feedCardShapeFor(w, cols, FEED_ROW_GAP);
       expect(Math.round(s.cardWidth), `内容宽 ${w} 卡宽`).toBe(cardW);
-      expect(s.summaryLines, `内容宽 ${w} 摘要行数`).toBe(S);
       expect(s.summaryFontPx, `内容宽 ${w} 摘要字号`).toBeCloseTo(font, 3);
-      expect(s.reasonLines, `内容宽 ${w} 理由行数`).toBe(R);
-      expect(s.cardHeight, `内容宽 ${w} 卡高`).toBe(H);
       expect(s.tagSlots, `内容宽 ${w} 标签槽位`).toBe(T);
+      expect((s as unknown as Record<string, unknown>).cardHeight, "卡高不许再由算式产出").toBeUndefined();
     }
-    // 卡高与行数同源：H = 固定部分 + S×(1.5×字号) + R×23.7 —— 加行只加行高、**卡底余量恒 27px**
-    //（旧七轮版靠「吃掉余量」加行，各档节奏不齐 —— 栗子「不够优雅流畅统一」那条就是它）。
-    // 27px 余量本身由浏览器探针守：各档 tags 底 + 27 = 卡高（九轮实测 1500 档 27.3 / 1400 档 26.8）。
-    for (const [w, cols] of [
-      [1602, 2],
-      [1228, 2],
-      [828, 1],
-      [2200, 2],
-    ] as Array<[number, number]>) {
-      const s = feedCardShapeFor(w, cols, FEED_ROW_GAP);
-      expect(s.cardHeight).toBe(
-        Math.round(
-          FEED_CARD_FIXED_H + s.summaryLines * 1.5 * s.summaryFontPx + s.reasonLines * FEED_REASON_LINE_H,
-        ),
-      );
-    }
-    // 标准字号下与八轮那版**逐像素等价**（防有人把基准 288 改坏：S=1/R=3 ⇒ 288）
-    expect(Math.round(FEED_CARD_FIXED_H + 1 * FEED_SUMMARY_LINE_H + 3 * FEED_REASON_LINE_H)).toBe(
-      FEED_CARD_HEIGHT,
-    );
-    // 一字之差的分界：内容宽 ≥ 35×13.77 = 482（卡宽 551）⇒ 1 行；再窄 ⇒ 2 行（靠加行不靠省略号）
-    expect(feedSummaryShapeForCard(551).lines).toBe(1);
-    expect(feedSummaryShapeForCard(550).lines).toBe(2);
-    // 门槛处的字号＝恰好把 35 字塞满一行（482/35），略高于下界；下界本身由更窄的档触到
-    expect(feedSummaryShapeForCard(551).fontPx).toBeCloseTo((551 - FEED_CARD_CHROME) / FEED_SUMMARY_MAX, 6);
-    expect(feedSummaryShapeForCard(551).fontPx).toBeGreaterThanOrEqual(FEED_SUMMARY_FONT_PX_MIN);
-    // 最窄档（内容宽 794 ⇒ 2 列 ×389）理由仍放得下 150 字 ⇒ 列数规则与理由上限自洽
-    expect(feedReasonLinesForCard(389)).toBe(FEED_REASON_LINES_MAX);
-    expect(FEED_REASON_FIT_MIN_CARD_W).toBeLessThanOrEqual(389);
   });
 
-  it("九轮：流式字号三条不变量（上限 0.98rem / 下限 0.81rem / 全档槽位容量 ≥ 35 字）", () => {
+  it("流式字号三条不变量（上限 0.98rem / 下限 0.81rem / 行数中间量保证 35 字装得下）", () => {
     expect(FEED_SUMMARY_FONT_PX_MAX).toBeCloseTo(16.66, 6);
     expect(FEED_SUMMARY_FONT_PX_MIN).toBeCloseTo(13.77, 6);
     expect(FEED_SUMMARY_LINES_MAX).toBe(3);
-    // 全档（桌面：卡宽 389–793；手机：卡宽 288–736）字号在区间内、槽位容量 ≥ 契约上限 35
     const widths = [288, 320, 358, 389, 406, 456, 494, 528, 556, 606, 656, 706, 728, 736, 793];
     for (const w of widths) {
       for (const chrome of [FEED_CARD_CHROME, FEED_CARD_CHROME_MOBILE]) {
@@ -449,7 +374,6 @@ describe("列数（照 CSS auto-fill 同式还原）", () => {
           FEED_SUMMARY_FONT_PX_MIN - 1e-9,
         );
         expect(s.fontPx).toBeLessThanOrEqual(FEED_SUMMARY_FONT_PX_MAX + 1e-9);
-        // 汉字按 1em 估（实测单字宽 == 字号）⇒ 每行容量 = floor(内容宽/字号)
         const perLine = Math.floor((w - chrome) / s.fontPx);
         expect(
           s.lines * perLine,
@@ -457,182 +381,31 @@ describe("列数（照 CSS auto-fill 同式还原）", () => {
         ).toBeGreaterThanOrEqual(FEED_SUMMARY_MAX);
       }
     }
-    // 手机档：chrome 61（.card 内距 16）+ 理由上限 10（最窄 320 视口的 288 卡宽要 10 行）
+    expect(feedSummaryLinesForCard(653)).toBe(1);
+    expect(feedSummaryLinesForCard(551)).toBe(1); // 流式门槛：卡宽 551 仍一行 35 字
+    expect(feedSummaryLinesForCard(550)).toBe(2);
+  });
+
+  it("手机档常数（chrome 61）与档位打包", () => {
     expect(FEED_CARD_CHROME_MOBILE).toBe(61);
-    expect(FEED_REASON_LINES_MAX_MOBILE).toBe(10);
     expect(feedTierMetricsFor(true)).toEqual({
       rowGap: FEED_ROW_GAP_MOBILE,
       chrome: FEED_CARD_CHROME_MOBILE,
-      reasonLinesMax: FEED_REASON_LINES_MAX_MOBILE,
     });
-    expect(feedTierMetricsFor(false)).toEqual({
-      rowGap: FEED_ROW_GAP,
-      chrome: FEED_CARD_CHROME,
-      reasonLinesMax: FEED_REASON_LINES_MAX,
-    });
-    // 手机档逐档（本机实测：390 档内容宽 297 ⇒ 2 行 × 18 字；760 档内容宽 667 ⇒ 1 行 40 字）
-    const m390 = feedCardShapeFor(
-      358,
-      1,
-      FEED_ROW_GAP_MOBILE,
-      FEED_CARD_CHROME_MOBILE,
-      FEED_REASON_LINES_MAX_MOBILE,
-    );
-    expect(m390.summaryLines).toBe(2);
-    expect(m390.summaryFontPx).toBeCloseTo(16.5, 3);
-    expect(m390.reasonLines).toBe(8);
-    expect(m390.cardHeight).toBe(431);
-    const m760 = feedCardShapeFor(
-      728,
-      1,
-      FEED_ROW_GAP_MOBILE,
-      FEED_CARD_CHROME_MOBILE,
-      FEED_REASON_LINES_MAX_MOBILE,
-    );
-    expect(m760.summaryLines).toBe(1);
-    expect(m760.summaryFontPx).toBeCloseTo(16.66, 3);
-    expect(m760.reasonLines).toBe(4);
-    expect(m760.cardHeight).toBe(312);
-  });
-
-  it("列数规则与摘要上限的关系（旧口径的注脚，防止有人把 1322 门槛写回来）", () => {
-    // 旧口径「两列需要 1322px」是「卡宽 ≥653（标准字号下一行放下 35 字）」推出来的；八轮改成上限
-    // 驱动后 653 不再是列数门槛；九轮流式字号又把「1 行门槛」从 653 压到 **551**。
-    expect(FEED_COL_MIN).toBe(653);
-    expect(feedSummaryLinesForCard(653)).toBe(1);
-    expect(feedSummaryLinesForCard(652)).toBe(1); // 九轮起 652 也能 1 行（字号收到 15.4px）
-    expect(feedSummaryLinesForCard(551)).toBe(1); // 门槛本身
-    expect(feedSummaryLinesForCard(550)).toBe(2); // 门槛下沿
+    expect(feedTierMetricsFor(false)).toEqual({ rowGap: FEED_ROW_GAP, chrome: FEED_CARD_CHROME });
   });
 });
 
-describe("侧栏形态（四轮 T3/T2：朱子 09-24 图3「有空间却没有中文」＋图2「滚动条不够优雅」）", () => {
-  const cssRaw = readFileSync(resolve("web/src/styles.css"), "utf8");
-  const cssNoComment = cssRaw.replace(/\/\*[\s\S]*?\*\//g, "");
-
-  it("不许再出现把导航文字收成 0 宽的规则（icon-only rail 的机制，图3 的根因）", () => {
-    // 三轮那条 rail 靠 `.side-text { max-width: 0; opacity: 0 }` 把 9 项文字全部收掉
-    // （实测 769–900 全档文字宽 0）。四轮 T3 删除该形态 ⇒ 这条规则不许再回来。
-    // ⚠ 这是源码级锁；「每一项真的有中文」由 scripts/gittok-responsive-check.mjs 读 DOM 实测
-    //   （`itemsWithZeroText === 0`）与视觉闸的观感清单共同守。
-    const sideTextBlocks = [...cssNoComment.matchAll(/\.side-text\s*\{([^}]*)\}/g)].map((m) => m[1]);
-    expect(sideTextBlocks.length).toBeGreaterThan(0); // 样本有效性：真扫到了这条规则
-    const collapsed = sideTextBlocks.filter((b) => /max-width:\s*0(px)?\b/.test(b));
-    expect(collapsed).toEqual([]);
-  });
-
-  it("侧栏一律不出条 + 底缘渐隐（四轮 T2 定版），且不落 scrollbar-width:none（锁①）", () => {
-    // 定版依据：两版注入截图对比（D:/tmp/gt-layout/r4/设计pass/inj-t2v1.json 不出条 /
-    // inj-t2v2.json 内缩 20px）——取「不出条 + 底缘渐隐」：导航列不参与折行。
-    const sb = cssNoComment.match(/\.sidebar\s*\{([^}]*)\}/)?.[1] ?? "";
-    expect(sb).toMatch(/mask-image:\s*linear-gradient/);
-    expect(sb).toMatch(/scrollbar-width:\s*auto/);
-    expect(cssNoComment).toMatch(/\.sidebar::-webkit-scrollbar\s*\{[^}]*width:\s*0/);
-    expect(cssNoComment).not.toMatch(/scrollbar-width:\s*none/);
-  });
-});
-
-describe("理由显示行数（2026-09-25 七轮：由 150 字契约 + 卡宽反推，补 1600 档 72/837 被截的漏网）", () => {
-  const cssRaw = readFileSync(resolve("web/src/styles.css"), "utf8");
-  const cssNoComment = cssRaw.replace(/\/\*[\s\S]*?\*\//g, "");
-
-  it("行数由内容契约反推：3–7 行，窄卡靠加行而不是靠省略号（八轮扩到 7 行）", () => {
-    expect(FEED_REASON_MAX).toBe(150);
-    expect(FEED_REASON_LINES_MIN).toBe(3);
-    expect(FEED_REASON_LINES_MAX).toBe(7);
-    // 单字宽来自字号比（0.82rem/0.98rem），不是另拍的数
-    expect(FEED_REASON_CHAR_W).toBeCloseTo(FEED_CHAR_W * (0.82 / 0.98), 6);
-    // 逐档（与八轮全库实测一致：793→3 行、656→4、606→4、556→5、406→7）
-    expect(feedReasonLinesForCard(793)).toBe(3);
-    expect(feedReasonLinesForCard(766)).toBe(3); // 3 行下界：floor((766−69)/13.94)=50 ⇒ ceil(150/50)=3
-    expect(feedReasonLinesForCard(765)).toBe(4);
-    expect(feedReasonLinesForCard(706)).toBe(4);
-    expect(feedReasonLinesForCard(656)).toBe(4); // 1600 档（改前 3 行会截掉 72/837 = 8.6%）
-    expect(feedReasonLinesForCard(606)).toBe(4);
-    expect(feedReasonLinesForCard(556)).toBe(5);
-    expect(feedReasonLinesForCard(442)).toBe(6);
-    expect(feedReasonLinesForCard(406)).toBe(7);
-    expect(feedReasonLinesForCard(389)).toBe(7); // 最窄档（内容宽 794 的两列）
-    // 桌面档的 358 仍按公式给 8 行 → 被桌面上限 7 截住；**手机档**（chrome 61 / 上限 10）给 8 行
-    //（九轮：手机档纳入自适应，理由不再固定 3 行 ⇒ 390 档 837/837 被截 → 0）。
-    expect(feedReasonLinesForCard(358)).toBe(7);
-    expect(feedReasonLinesForCard(358, FEED_CARD_CHROME_MOBILE, FEED_REASON_LINES_MAX_MOBILE)).toBe(8);
-    expect(feedReasonLinesForCard(288, FEED_CARD_CHROME_MOBILE, FEED_REASON_LINES_MAX_MOBILE)).toBe(10);
-    // 7 行的物理下界是推导出来的：chrome + ceil(150/7) × 单字宽 ≈ 376 ≤ 389 ⇒ 恒装得下
-    expect(FEED_REASON_FIT_MIN_CARD_W).toBe(
-      Math.ceil(FEED_CARD_CHROME + Math.ceil(FEED_REASON_MAX / FEED_REASON_LINES_MAX) * FEED_REASON_CHAR_W),
-    );
-    expect(FEED_REASON_FIT_MIN_CARD_W).toBe(376);
-  });
-
-  it("卡宽算式是唯一真源：多列铺满轨道、单列不超过 793", () => {
-    expect(feedCardWidthFor(1602, 2, FEED_ROW_GAP)).toBe(793); // 参照档两列
-    expect(feedCardWidthFor(1328, 2, FEED_ROW_GAP)).toBe(656); // 1600 档两列（实测卡宽 656）
-    expect(feedCardWidthFor(1228, 2, FEED_ROW_GAP)).toBe(606); // 1500 档（八轮起两列，实测 606）
-    expect(feedCardWidthFor(728, 1, FEED_ROW_GAP)).toBe(728); // 1000 档单列：网格 < 上限 ⇒ 铺满轨道
-    expect(feedCardWidthFor(793, 1, FEED_ROW_GAP)).toBe(793); // 恰好在门槛上
-    expect(feedCardWidthFor(0, 1, FEED_ROW_GAP)).toBe(0);
-  });
-
-  it("CSS ↔ JS 双写同值：三个变量是档内形态的唯一开关", () => {
-    // 2026-09-30（十一轮）架构：外层 .reason-clamped 管「槽位 + 垂直居中」，
-    // clamp 本体在内层 .reason-clamped .clamp-text（-webkit-box 在 Chrome 归一 flow-root 后
-    // 真 clamp 生效处；09-26 版的 -webkit-box-pack:center 因此一直是 no-op＝栗子红框空带）。
-    const reasonOuter = cssNoComment.match(/\.reason-clamped\s*\{([^}]*)\}/)?.[1] ?? "";
-    expect(reasonOuter, "styles.css 里没有 .reason-clamped").toBeTruthy();
-    expect(reasonOuter).toMatch(/min-height:\s*calc\(var\(--feed-reason-lines,\s*3\)\s*\*\s*1\.7em\)/);
-    expect(reasonOuter).toMatch(/display:\s*flex/);
-    expect(reasonOuter).toMatch(/justify-content:\s*center/);
-    expect(reasonOuter, "外层不许再挂 clamp（死声明）").not.toMatch(/-webkit-line-clamp/);
-    const reasonInner = cssNoComment.match(/\.reason-clamped\s+\.clamp-text\s*\{([^}]*)\}/)?.[1] ?? "";
-    expect(reasonInner, "styles.css 里没有 .reason-clamped .clamp-text").toBeTruthy();
-    expect(reasonInner).toMatch(/-webkit-line-clamp:\s*var\(--feed-reason-lines,\s*3\)/);
-    // 不许再出现写死的 3 行（那正是 1600 档被截的根因）
-    expect(reasonInner).not.toMatch(/-webkit-line-clamp:\s*3\s*;/);
-    // 摘要多行档：由 data-sum-lines 属性切（与列数同一帧），块高固定 ⇒ 同行卡片对齐。
-    // 九轮起档数到 3（只有 <349 视口的手机用得到），所以选择器是「2 或 3」；行数读 CSS 变量。
-    expect(cssNoComment).toMatch(
-      /\.feed-list\[data-sum-lines="2"\]\s*\.summary,\s*\n?\.feed-list\[data-sum-lines="3"\]\s*\.summary\s*\{/,
-    );
-    const sum2 =
-      cssNoComment.match(
-        /\.feed-list\[data-sum-lines="2"\]\s*\.summary,\s*\n?\.feed-list\[data-sum-lines="3"\]\s*\.summary\s*\{([^}]*)\}/,
-      )?.[1] ?? "";
-    expect(sum2).toMatch(/white-space:\s*normal/);
-    expect(sum2).toMatch(/display:\s*flex/);
-    expect(sum2).toMatch(/justify-content:\s*center/);
-    expect(sum2).toMatch(/min-height:\s*calc\(var\(--feed-summary-lines,\s*2\)\s*\*\s*1\.5em\s*\+\s*16px\)/);
-    const sum2Inner =
-      cssNoComment.match(
-        /\.feed-list\[data-sum-lines="2"\]\s*\.summary\s+\.clamp-text,\s*\n?\.feed-list\[data-sum-lines="3"\]\s*\.summary\s+\.clamp-text\s*\{([^}]*)\}/,
-      )?.[1] ?? "";
-    expect(sum2Inner, "摘要多行档缺内层 clamp").toBeTruthy();
-    expect(sum2Inner).toMatch(/-webkit-line-clamp:\s*var\(--feed-summary-lines,\s*2\)/);
-    expect(sum2Inner).toMatch(/text-wrap:\s*balance/);
-    // 九轮：摘要字号必须来自 CSS 变量（流式真源在 feed-layout.ts，CSS 不许再写死 0.98rem）——
-    // 手机档媒体查询里那条 `.summary { font-size: 0.92rem }` 已删（它会压过变量 ⇒ 形态与实渲不一致）。
-    const sumBase = cssNoComment.match(/^\.summary\s*\{([^}]*)\}/m)?.[1] ?? "";
-    expect(sumBase).toMatch(/font-size:\s*var\(--feed-summary-font,\s*0\.98rem\)/);
-    const mobileBlocks = [...cssNoComment.matchAll(/@media \(max-width: 768px\)\s*\{([\s\S]*?)\n\}/g)].map(
-      (m) => m[1],
-    );
-    const hardCodedMobileSummaryFont = mobileBlocks.filter((b) => /\.summary\s*\{[^}]*font-size/.test(b));
-    expect(hardCodedMobileSummaryFont, "≤768 里又写死了 .summary 字号 ⇒ 会压过 --feed-summary-font").toEqual(
-      [],
-    );
-    // 窄高档（≤560、卡高 210）必须把行数压回 2——var 是唯一开关（clamp 本体在内层读同一个 var）；
-    // 外层不再直接写 -webkit-line-clamp（flex 上是死声明）
-    const shortBlock = cssNoComment.match(/@media \(max-height: 560px\)\s*\{([\s\S]*?)\n\}/)?.[1] ?? "";
-    expect(shortBlock).toMatch(/--feed-reason-lines:\s*2/);
-    expect(shortBlock).not.toMatch(/-webkit-line-clamp/);
+describe("标签槽位（八～九轮机制原样：槽位预算 + `+N` 让位）", () => {
+  it("槽位估算逐档可复算", () => {
+    expect(feedTagSlotsForCard(793)).toBe(8);
+    expect(feedTagSlotsForCard(494)).toBe(4);
+    expect(feedTagSlotsForCard(358, FEED_CARD_CHROME_MOBILE)).toBe(3);
   });
 
   it("九轮：`+N` 片也占一个槽位（八轮把它漏在预算外 ⇒ 1343 档 9/837 张标签行换行）", () => {
-    // 根因（实测 `D:/tmp/gt-layout/r9/slot-tag-1343x900.json`）：`.card-tags` 原来渲染「槽位个标签
-    // **再加**一片 `+N`」= slots+1 片，而估算 `floor(内容宽/88)` 只预算了 slots 片 ⇒ 6 片合计
-    // 467–539px 撞上 486px 容器而换行。九轮改成「要出 `+N` 就先让出一个槽位」。
-    // 本条是**源码级锁**（本仓没有 React 渲染测试）：真实渲染片数与换行由 responsive 闸的
-    // R7（`tagSlotsUsed ≤ 槽位`、`tagWrapRows` 全 1）与全库探针守。
+    // 本条是**源码级锁**（本仓没有 React 渲染测试）：真实渲染片数与换行由 responsive 闸
+    // 的标签断言（tagSlotsUsed ≤ 槽位、tagWrapRows 全 1）与全库探针守。
     const src = readFileSync(resolve("web/src/FeedCard.tsx"), "utf8");
     expect(src, "FeedCard 里找不到「要出 +N 就先让一个槽位」的算式").toMatch(
       /truncated\s*\?\s*Math\.max\(0,\s*tagSlots\s*-\s*1\)\s*:\s*tagSlots/,
@@ -640,5 +413,12 @@ describe("理由显示行数（2026-09-25 七轮：由 150 字契约 + 卡宽反
     expect(src, "`+N` 的计数必须按实际渲染的片数算（不许再按槽位数算）").toMatch(
       /card\.tags\.length\s*-\s*shownTags\.length/,
     );
+  });
+});
+
+describe("理由契约（内容侧，硬闸）：显示侧退场后只剩估算用常数", () => {
+  it("REASON_MAX=150 与单字宽推导不变（estCardHeightFor 的行数推算依据）", () => {
+    expect(FEED_REASON_MAX).toBe(150);
+    expect(FEED_REASON_CHAR_W).toBeCloseTo(FEED_CHAR_W * (0.82 / 0.98), 6);
   });
 });

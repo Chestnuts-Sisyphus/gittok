@@ -195,7 +195,7 @@ async function main() {
         window.__seqOn = true;
         const tick = () => {
           const l=document.querySelector('.feed-window > .feed-list');
-          const cards=document.querySelectorAll('.feed-window > .feed-list > .card');
+          const cards=document.querySelectorAll('.feed-window .feed-col > .card');
           const c=cards[0];
           if(l&&c){
             const r=c.getBoundingClientRect();
@@ -203,7 +203,8 @@ async function main() {
             // 首卡只缩宽，top 恒定，速度判据放在 card2 上才有非零信号）
             const c2=cards[1];
             const r2=c2? c2.getBoundingClientRect(): null;
-            window.__seq.push({ cols: getComputedStyle(l).gridTemplateColumns.split(' ').filter(Boolean).length,
+            // 十二轮：列数从 .feed-col 实测（.feed-list 已是横向 flex，grid 轨道退场）
+            window.__seq.push({ cols: document.querySelectorAll('.feed-list > .feed-col').length,
               tf: c.style.transform||"", tf2: c2? (c2.style.transform||"") : null,
               cardW: Math.round(r.width), cardLeft: Math.round(r.left), cardTop: Math.round(r.top),
               cardW2: r2? Math.round(r2.width): null, cardTop2: r2? Math.round(r2.top): null,
@@ -269,11 +270,14 @@ async function main() {
       //   e3 两列同相位同族（仅 1→2）：第二卡 transform 与首卡同帧进场（≤2 帧）＋
       //     两条归一化进度（card1 宽度 / card2 top）逐帧偏差 ≤0.12（同 easing ⇒ 同进度）。
       const act = seq.filter((s) => s.tf && s.tf !== "" && s.tf !== "none");
-      let e1 = null, e2 = null, e3 = null;
+      let e1 = null,
+        e2 = null,
+        e3 = null;
       if (act.length >= 4) {
         const d = [];
         for (let i = 1; i < act.length; i++) {
-          const a = act[i - 1], b = act[i];
+          const a = act[i - 1],
+            b = act[i];
           d.push(
             b.cardTop2 != null && a.cardTop2 != null
               ? Math.abs(b.cardTop2 - a.cardTop2)
@@ -284,16 +288,21 @@ async function main() {
         const k = Math.max(1, Math.floor(d.length * 0.25));
         const headMax = Math.max(...d.slice(0, k), 0);
         const tailMax = Math.max(...d.slice(-k), 0);
-        e1 = { lastDelta: d[d.length - 1] ?? 0, maxDelta: dMax,
-          pass: dMax >= 4 && (d[d.length - 1] ?? 0) <= dMax * 0.35 };
+        e1 = {
+          lastDelta: d[d.length - 1] ?? 0,
+          maxDelta: dMax,
+          pass: dMax >= 4 && (d[d.length - 1] ?? 0) <= dMax * 0.35,
+        };
         e2 = { headMax, tailMax, pass: dMax >= 4 && tailMax < headMax + 1e-6 };
       }
       if (sc.label.startsWith("1→2") && act.length >= 4) {
         const firstTf = seq.findIndex((s) => s.tf && s.tf !== "" && s.tf !== "none");
         const firstTf2 = seq.findIndex((s) => s.tf2 && s.tf2 !== "" && s.tf2 !== "none");
         const startGap = firstTf2 >= 0 ? firstTf2 - firstTf : null;
-        const w0 = act[0].cardW, w1 = act[act.length - 1].cardW;
-        const t0 = act[0].cardTop2, t1 = act[act.length - 1].cardTop2;
+        const w0 = act[0].cardW,
+          w1 = act[act.length - 1].cardW;
+        const t0 = act[0].cardTop2,
+          t1 = act[act.length - 1].cardTop2;
         let maxDev = null;
         if (w1 !== w0 && t1 != null && t0 != null && t1 !== t0) {
           maxDev = 0;
@@ -303,13 +312,18 @@ async function main() {
             maxDev = Math.max(maxDev, Math.abs(p1 - p2));
           }
         }
-        e3 = { startGapFrames: startGap, progressMaxDev: maxDev == null ? null : +maxDev.toFixed(3),
-          pass: startGap != null && Math.abs(startGap) <= 2 && maxDev != null && maxDev <= 0.12 };
+        e3 = {
+          startGapFrames: startGap,
+          progressMaxDev: maxDev == null ? null : +maxDev.toFixed(3),
+          pass: startGap != null && Math.abs(startGap) <= 2 && maxDev != null && maxDev <= 0.12,
+        };
       }
       report(
         `${sc.label} T4·e1 末帧速度→0（落定减速语义）`,
         !!e1?.pass,
-        e1 ? `card2 末帧位移 ${e1.lastDelta}px / 全段最大 ${e1.maxDelta}px（判据 ≤35% 且 ≥4px 位移样本）｜ease=cubic-bezier(0.22,.61,.36,1)` : "在场帧不足（<4），不判",
+        e1
+          ? `card2 末帧位移 ${e1.lastDelta}px / 全段最大 ${e1.maxDelta}px（判据 ≤35% 且 ≥4px 位移样本）｜ease=cubic-bezier(0.22,.61,.36,1)`
+          : "在场帧不足（<4），不判",
       );
       report(
         `${sc.label} T4·e2 速度单调收敛（无「最快在落地」）`,
@@ -320,10 +334,23 @@ async function main() {
         report(
           `${sc.label} T4·e3 两列同相位同族（同帧进场＋归一进度逐帧相等）`,
           !!e3?.pass,
-          e3 ? `进场帧差 ${e3.startGapFrames}（判据 ≤2）｜进度曲线最大偏差 ${e3.progressMaxDev}（判据 ≤0.12）` : "在场帧不足或无位移样本，不判",
+          e3
+            ? `进场帧差 ${e3.startGapFrames}（判据 ≤2）｜进度曲线最大偏差 ${e3.progressMaxDev}（判据 ≤0.12）`
+            : "在场帧不足或无位移样本，不判",
         );
       }
-      scenes.push({ scene: sc.label, from: sc.from, to: sc.to, seq, maxTopJump, tfFrames, endClean, e1, e2, e3 });
+      scenes.push({
+        scene: sc.label,
+        from: sc.from,
+        to: sc.to,
+        seq,
+        maxTopJump,
+        tfFrames,
+        endClean,
+        e1,
+        e2,
+        e3,
+      });
     }
 
     // ── ② 首帧列数序列只有一项 ──

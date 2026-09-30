@@ -96,19 +96,9 @@
   --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.12), 0 0 0 1px var(--card-border);
   --max-width: 1650px;
   --font-serif: "Lora", "Noto Serif SC", "Times New Roman", "Songti SC", "SimSun", serif;
-  --feed-card-h: 288px;
+  /* 十二轮：`--feed-card-h`（288px 定高）退场——卡高＝内容自然高度（块八口径）。
+     `--feed-col-min`（653px）随 auto-fill 兜底轨道一并退役（列宽算式只认 --feed-cols）。 */
   --feed-row-gap: 16px;
-  /* ── 列宽常量：由**摘要契约**反推（2026-09-24 四轮，栗子定标准）──────────────────
-     栗子原话：「我们必须定好摘要必须小于的字数，然后把所有摘要大于这个字数的都重写」＋
-     「在卡片是两列及以上的时候说明屏幕有足够的宽度，这个时候应该保证所有摘要都能全部展示出来」
-     ＋「只要当宽度小于一列的时候，才应该被迫减少摘要的显示宽度」＋（红框）「这种空隙不允许出现」。
-     第一性依据＝**一句话能不能一行读完**：摘要上限是站内既有标准（`src/feed/prompts.ts:156`
-     的 20–35 个汉字硬性要求），一行放下 35 字需 35×16.66+69 = 652.1 → **653px**。
-     ⇒ 列数取「卡宽仍 ≥ 653」的**最大**列数（见 feed-layout.ts 的 feedColsForContentWidth）；
-        于是 2 列及以上时合规摘要必然一行放得下。
-     与 web/src/feed-layout.ts 的 FEED_COL_MIN 双写（漂移会让虚拟列表垫片按错列数算高度）。
-     ⚠ ≤768 手机档仍由 `grid-template-columns: 1fr` 铺满（那才是「宽度小于一列」的情形）。 */
-  --feed-col-min: 653px;
   /* ── 单列档卡宽上限（2026-09-25 五轮追加，栗子定标准）──────────────────────────
      栗子原话（配两张图）：「这个太长了，我理想的单列卡片的极限宽度应该在第二张图片左右」
      →「更正一下，我理想的单列卡片极限宽度应该按这个来」（红框圈的是**两列档里的那张卡**）。
@@ -747,73 +737,45 @@ button {
   color: var(--text);
 }
 
-/* --- 两列卡片网格 --- */
+/* --- 卡片列表：JS 列式瀑布流（十二轮，2026-10-01）────────────────────────────────
+   栗子口径（块八）：「卡片几行其实没有太大所谓，卡片多高其实也没有太大所谓，就是因为宽度会变，
+   所以其实定死没有意义，我的意思是别有空隙你懂吗。」
+   · Chrome 153 实测不支持 grid masonry（探针 D:/tmp/gt-masonry-probe.mjs）⇒ **JS 列式**：
+     `.feed-list` 是横向 flex（K 条等宽列，K＝--feed-cols，唯一真源仍是 feedColsForContentWidth），
+     每条 `.feed-col` 是纵向 flex——卡片 i%K 轮转入列、列内自然堆叠（行距=gap）。
+   · **卡高＝内容自然高度**：卡片不再锁高（`--feed-card-h` 退场），「该多高就多高」；
+     「别有空隙」由卡内 0 死空间（responsive 闸 R-D1）与列内零空档（构造使然）共同保证。
+   · 旧 grid 轨道语义（auto-fill 兜底 / repeat(var(--feed-cols), minmax(0,1fr))）整体退役：
+     列宽算式 `calc((100% − (K−1)×gap)/K)` 与 feedCardWidthFor 同式，单一真源不变。 */
 .feed-window-pad {
   pointer-events: none;
 }
 .feed-list {
-  display: grid;
-  /* G-10：原 `repeat(2, 1fr)` 死写两列 → 769–1200 每列仅约 310px，20-35 字的一句话放不下。
-     2026-09-23 第四版：**列数改由 JS 单一真源决定**（App 把 feedColsForContentWidth 的结果写进
-     `--feed-cols`；规则＝「先取让卡片不超上限 700px 的最少列数，若会把卡片压到下限 420px 以下再减一列」）。
-     为什么不再用 `repeat(auto-fill, minmax(min(--feed-col-min,100%),1fr))`：
-       auto-fill 只会按 min 取「**最多**列」，卡片于是被一路压窄（实测 1600 档会排成三列各 430px＝21 汉字，
-       而按「卡片宽度落在 420–700」反解只用两列各 652px＝36 汉字 —— 内容与观感都更好）；
-       而且那个写法要求 CSS/JS 双写同一个常量（漂移就会让虚拟列表垫片错位，2026-09-22 乙4 那条）。
-       改单一真源后：**CSS 不再有列宽常量**，`.feed-list` 只认 `--feed-cols`（缺省 1 列兜底）。
-     ⚠ `minmax(0, 1fr)` 的 0 下限是必需的：默认 auto 下限会让长内容把轨道撑破（横向溢出）。
-     ≤768 手机档仍由下面的媒体查询写死 1fr（占满整行是既有设计）。
-     ⚠ 这条是**兜底**（收藏夹展开、搜索页热门预览这两处次级列表仍用它）；
-     主信息流另有更精确的一条（见下面的 `.feed-window > .feed-list`）。 */
-  grid-template-columns: repeat(auto-fill, minmax(min(var(--feed-col-min), 100%), 1fr));
+  display: flex;
+  justify-content: center;
+  gap: var(--feed-row-gap);
+}
+/* 等宽列：宽度算式与 feedCardWidthFor 同式（列 = (内容宽 − (K−1)×gap)/K）。
+   min-width:0 防 flex 子项被长内容撑破；卡片 width:100% 铺满列 ⇒ 「卡宽 = 列宽」不变量不变。 */
+.feed-list > .feed-col {
+  flex: 0 0 auto;
+  width: calc((100% - (var(--feed-cols, 1) - 1) * var(--feed-row-gap)) / var(--feed-cols, 1));
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
   gap: var(--feed-row-gap);
 }
 
-/* 主信息流：列数只认 `--feed-cols`（App 按 feedColsForContentWidth 反解后写进来）——
-   卡片宽度因此永远落在「列数规则」决定的区间；超上限就加列、低于下限就减列。
-   二轮 G6（2026-09-23）：次级列表（搜索页热门预览、收藏夹展开）也由 useResponsiveCols
-   反解后写进**同一个变量 `--feed-cols`**，走同一条「按容器宽反解列数」的规则
-   （不再是 auto-fill 的另一套算法）。
-   ⚠ 六轮 G3（2026-09-25）实话校正：同一视口下两处**列数/卡宽可以不一致**——
-     因为容器宽不同。主信息流带侧栏（1500×900 实测 listW≈1228 → 1 列 × 793），
-     搜索空态热门预览无侧栏（同视口 listW≈1396 → 2 列 × 690）。
-     「同一条反解函数」≠「同视口同列数」；同列数只在容器宽落在同一档时成立。
-   注意 React 对 style 对象会同时落 `style` 属性字符串，`[style]` 存在性选择即可；
-   主信息流 `.feed-window >` 继续单独命中（它有虚拟垫片兄弟节点，结构不同）。 */
-.feed-window > .feed-list,
-.feed-list[style] {
-  grid-template-columns: repeat(var(--feed-cols, 1), minmax(0, 1fr));
-}
-
-/* ── 单列档：卡宽上限收到 793（2026-09-25 五轮，栗子「按这个来」）───────────────
-   口径：**单列档的卡宽上限 = 两列档在参照档（1920×1080、内容网格 1602）下的单卡宽** = 793px。
-   ⚠ 七轮（09-25）合成的完整口径（改这块之前先读）：
-     ① 卡宽 = 轨道宽（卡片 width:100%）；② 单列档轨道 = min(网格, 793) ⇒ **轨道里不留空**；
-     ③ 轨道之外的余量 = 对称页边距（`justify-content: center`），**消不掉**：
-        给 2 列 ⇒ 卡宽 389–653 < 653 ⇒ 摘要/理由被截（实测 606 档 4.7%/38.8%）；
-        给铺满 ⇒ 回到栗子否掉的「太长了」。三条口径不可兼得，本轮选「保契约 + 保 793」。
-     ④ 余量宽度（deadZone）逐档记在 responsive 闸的读数里，不再当作「不存在」；
-        规格与待裁项见 `docs/七轮-空隙口径合成规格-20260925.md`。
-   机制：**收轨道 + 收头宽**，都由 JS 写下的 `data-cols="1"` 这一个属性驱动。
-   为什么必须是「同一个属性驱动」（本机实测迭代了四版才定，把三条否决理由记在这里防复踩）：
-     · 版 1（`:has(.feed-list[data-cols=1])` 收 `.feed-content` 的 max-width）：**自锁**——
-       列数由 `.feed-list` 的实测宽反解，一收窄就量到 793 ⇒ 判 1 列 ⇒ 继续收 ⇒ 宽窗口永远回不到两列
-       （实测 1920 档卡宽 793、列数 1）。
-     · 版 2（改成视口断点 `≤1593`）：不自锁了，但断点与 JS 的列数切换**不同帧**——
-       头宽在 CSS 断点那一帧先跳 530px，而卡片 FLIP 要等 JS 判完列数才补差 ⇒ 头没有路径，smooth 闸红。
-     · 版 3（给 `max-width` 加 transition）：更糟——`margin-inline:auto` 让容器 x 一帧走完 264px，
-       卡片宽出现 131% 单帧尖峰（过渡与 FLIP 抢同一段时间，正是四轮注释警告过的那件事）。
-     ⇒ 定版：**属性驱动 + 收轨道**。属性由 React 在 `data-cols` 上写，与列数**同一帧**变化，
-       于是轨道、头、卡片全在同一次重排里换挡，而 FLIP 的 before/after 正好覆盖这一帧 ⇒ 每个元素都有路径。
-       收轨道不会改 `.feed-list` 自己的 clientWidth（它仍是网格盒宽）⇒ 反解列数时读到的还是**可用宽**，
-       自锁问题从机制上不存在（版 1 的根因）。
-   ⚠ 只对 ≥769 生效：≤768 手机档仍是「卡宽 = 视口 − 内距」的占满型设计（那时网格 ≤ 820，上限不会咬住）。 */
+/* ── 单列档：列宽上限收到 793（2026-09-25 五轮，栗子「按这个来」）───────────────
+   口径沿袭七轮合成（读旧版注释可知三版迭代史）：单列档列宽 = min(网格, 793)，
+   轨道里不留空，余量 = 对称页边距（.feed-list 的 justify-content: center）。
+   机制仍是「同一个属性驱动」：data-cols 由 React 写、与列数同帧变化，
+   FLIP 的 before/after 正好覆盖这一帧 ⇒ 每个元素都有路径（版 1–3 的教训不再复述）。
+   ⚠ 只对 ≥769 生效：≤768 手机档仍是「卡宽 = 视口 − 内距」的占满型设计。 */
 @media (min-width: 769px) {
-  /* ① 轨道：单列档只留一条 793 的轨道并居中（卡片仍 width:100% 铺满它 ⇒ 「卡宽 = 轨道宽」不变量不变） */
-  .feed-window > .feed-list[data-cols="1"],
-  .feed-list[data-cols="1"][style] {
-    grid-template-columns: minmax(0, var(--feed-card-max));
-    justify-content: center;
+  .feed-window > .feed-list[data-cols="1"] > .feed-col,
+  .feed-list[data-cols="1"][style] > .feed-col {
+    max-width: var(--feed-card-max);
   }
   /* ② 频道头/偏好条/状态行：与卡片同宽同位（头 ≡ 卡；它们是 flex 盒子不是轨道，单独给上限）。
         选择器挂在 `.feed-layout >` 上 ⇒ 只作用主信息流，不动我的页/搜索页的其它容器。 */
@@ -827,34 +789,12 @@ button {
   }
 }
 
-/* （重复选择器块：与上方主信息流规则同值；六轮 G3 口径见上方注释——
-   「同一反解函数」≠「同视口同列数」，预览无侧栏时可能多一列。） */
-.feed-window > .feed-list,
-.feed-list[style] {
-  grid-template-columns: repeat(var(--feed-cols, 1), minmax(0, 1fr));
-}
-
-/* 卡片铺满自己的轨道（2026-09-24 四轮定、2026-09-25 七轮复述同真）：
-   卡宽 = 轨道宽。轨道宽由两处决定：
-   · 多列档：`repeat(var(--feed-cols), minmax(0,1fr))` ⇒ 轨道 = (网格 − (n−1)gap)/n，
-     列数规则保证它 ≥ FEED_COL_MIN(653)；
-   · 单列档：`minmax(0, var(--feed-card-max))`（见上方 @media 块）⇒ 轨道 = **min(网格, 793)**
-     ⇒ 轨道里不留空，卡片严丝合缝铺满它（09-24 栗子红框那条继续成立）。
-   ── 2026-09-25 七轮订正（旧注释作废，别再写回去）──
-   上一版这里写的是「**没有卡宽上限这个概念了**」，并声称「单列档：轨道 = 整个内容宽 → 卡片铺满
-   → 右侧不留空档」。**两句都已不成立**：09-25 栗子加了单列卡宽上限 793（`--feed-card-max`），
-   所以单列档**不**铺满整个内容宽；铺满的是**那条 793 的轨道**，轨道之外的余量是对称页边距。
-   为什么余量消不掉（七轮实测，别再用「居中/左对齐/铺满」三招之一去糊）：
-     · 单列档给 793 ⇒ 余量 = 网格 − 793（最宽 264px/侧）；
-     · 改 2 列 ⇒ 卡宽 (网格−16)/2 = 389–653 < 653 ⇒ **摘要被截**（606 档 4.7%、432 档 80%）
-       且理由也截（606 档 38.8%）——与「两列及以上必须全展示」的 09-24 口径和硬闸都冲突；
-     · 取消 793 让卡宽跟网格 ⇒ 回到栗子 09-25 否掉的「太长了」（1600 档实测 1228）。
-   ⇒ 三条口径**几何上不可兼得**，本轮选择「保内容契约 + 保 793」，余量作对称页边距。
-   规格与代价表：`docs/七轮-空隙口径合成规格-20260925.md`；闸读数里逐档记 deadZone。
-   ⚠ `width: 100%` 必须有：不带它时 grid item 会收缩成 max-content（历史实测塌成 36px）。
-   ⚠ 不再需要 `max-width` / `justify-self`：上限由**轨道**承担（`minmax(0, var(--feed-card-max))`），
-     卡片身上没有 max-width —— 「卡宽 = 轨道宽」这条不变量因此成立。 */
-.feed-list > .card {
+/* 卡片铺满自己的列（十二轮改选择器：卡在 .feed-col 里）：
+   · 多列档：列 = (网格 − (n−1)gap)/n，列数规则保证卡宽 ≥ 460（十轮 T1 下限）；
+   · 单列档：列 max-width: 793 ⇒ 卡宽 = min(网格, 793)，余量成对称页边距。
+   ⚠ `width: 100%` 必须有：不带它时 flex item 的卡片会收缩成 max-content。
+   ⚠ 用后代选择器（不是 `>`）：收藏夹展开的卡片外面还包一层 .folder-card-wrapper。 */
+.feed-col .card {
   width: 100%;
 }
 
@@ -905,7 +845,9 @@ button {
   border: 1px solid var(--glass-border);
   border-radius: 18px;
   padding: 20px;
-  height: var(--feed-card-h);
+  /* 十二轮（块八）：**卡高＝内容自然高度**——`height: var(--feed-card-h)` 定高退场，
+     「该多高就多高」；0 死空间由构造保证（没有槽位就没有空档可填），
+     responsive 闸 R-D1（卡盒高 − 内容栈高 ≤ 4px）钉住，谁把槽位/min-height 加回来谁红。 */
   box-sizing: border-box;
   box-shadow: var(--glass-highlight-top), var(--glass-highlight-bottom), var(--glass-shadow);
   transition:
@@ -915,11 +857,6 @@ button {
   position: relative;
   overflow: hidden;
   cursor: pointer;
-  /* ⚠ 2026-09-26：这里曾试过「卡内 flex + space-between，把余量摊进各段之间」——
-     实测**无效**：理由块的 `min-height`（按契约上限 R 行算）先把余量吃光了，卡级根本没有余量可分；
-     要真摊开就得连 `min-height` 一起撤，那会动到「档内骨架对齐」这条更硬的要求。
-     ⇒ 回退成原样，把「窄档槽位余量」作为一个**设计题**写进十轮任务书（根因是八轮的列数规则
-     把 1074–1191 视口压成 406 宽卡：理由 7 行槽位 vs 实际 5 行 ⇒ 两行空白）。 */
 }
 
 .card.is-open-source,
@@ -1099,11 +1036,11 @@ button {
   gap: 3px;
 }
 
-/* 通俗概括（**字号与行数都由卡宽反推**：窄档字号从 0.98rem 流式收到 0.81rem 把「一行 35 字」
-   的档位下推到卡宽 551；还放不下就加行（1–3 行）。真源＝feed-layout.ts 的 `feedSummaryShapeForCard`，
-   由 App 写进 `--feed-summary-font`（px，不是 rem —— 算式按 px 出值）/ `--feed-summary-lines`。
-   ⚠ 块的 min/max-height 用 em：字号一变，1 行/2 行的槽位高跟着变，不再需要 CSS 各写一份 px。
-   ⚠ 与理由段共用「档内块高固定」原则：同档所有卡的行数一致 ⇒ 卡片彼此对齐、无参差。 */
+/* 通俗概括（**字号由卡宽反推、流式收缩**：窄档字号从 0.98rem 流式收到 0.81rem 把「一行 35 字」
+   的档位下推到卡宽 551；还放不下就**自然换行**——十二轮（块八）起「几行没有太大所谓」，
+   槽位（min/max-height）、clamp、S=1 的 nowrap+ellipsis 全部退场，文字自然流。
+   真源＝feed-layout.ts 的 `feedSummaryShapeForCard`，由 App 写进 `--feed-summary-font`（px）。
+   text-wrap: balance 保留：多行时配平行内断点（优雅），单行无副作用。 */
 .summary {
   font-size: var(--feed-summary-font, 0.98rem);
   font-weight: 700;
@@ -1111,85 +1048,23 @@ button {
   color: var(--text);
   margin-bottom: 8px;
   padding: 8px 12px;
-  min-height: calc(1 * 1.5em + 16px);
   background: linear-gradient(135deg, var(--accent-light), transparent);
   border-left: 3px solid var(--accent);
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  /* 单行截断的第二道锁（09-19 栗子第四次反馈 + 他给的截图实测出来的真因）：
-     原先以为「现代内核有 -webkit-line-clamp 就不可能两行」，实测**推翻**——
-     Chrome 下 clamp:1 与 max-height 同用时，第二行的字顶仍会被画进裁切线内（截图
-     D:/tmp/h02_summary_now.png 里「智能」被削掉一半），观感正是「一行空间里变两行」。
-     改走所有内核都认的路径：white-space:nowrap 让第二行**根本不被排版**，
-     text-overflow:ellipsis 负责省略号；上面的 clamp 三行保留（支持它的内核行为不变）。 */
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  max-height: calc(1 * 1.5em + 16px);
-}
-/* 多行档（窄卡靠加行不靠省略号）：去掉 nowrap（要换行）、clamp 与 min/max-height 同步到 N 行
-   （块高固定 ⇒ 同行卡片对齐）。N 由 `--feed-summary-lines` 给（九轮：1–3 行）。
-   ── 2026-09-30（十一轮）：槽位垂直居中「真生效」重构 ──────────────────────────────
-   09-26 版把居中写在 `-webkit-box-pack: center` 上，但 Chrome 早已把 `-webkit-box`（computed）
-   归一成 flow-root（H-01 口径注 09-25 已记录）⇒ box-pack 对它是 **no-op**：占 1 行的摘要在
-   2 行槽里仍然顶格，空档整条沉在下方（甲A2 的「空 accent 条」其实一直没被居中治住，只是被
-   balance 的行间配平掩盖了大半）。现在：外层 flex column + justify-content:center **真居中**；
-   clamp 与 balance 挪到内层 `.clamp-text`（-webkit-box 家族照旧，Chrome 归一后走现代
-   line-clamp，行为与旧版一致）。文字块占满槽位时居中即无位移；不满时空档摊成上下各半行。 */
-.feed-list[data-sum-lines="2"] .summary,
-.feed-list[data-sum-lines="3"] .summary {
-  white-space: normal;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: calc(var(--feed-summary-lines, 2) * 1.5em + 16px);
-  max-height: calc(var(--feed-summary-lines, 2) * 1.5em + 16px);
-}
-/* 内层 clamp + **行间配平**（balance 只重新分配行内断点、不改变「装不装得下」：
-   装得下的仍装得下（R6 = 0 截判据不变），装不下的仍被 clamp 抓到（闸会红，不会静默变截断）。
-   Chrome 111+ 支持 balance。）
-   ⚠ S=1 档不走这里：base .summary 的 nowrap + ellipsis 保持原样，内层 span 只是行内内容。 */
-.feed-list[data-sum-lines="2"] .summary .clamp-text,
-.feed-list[data-sum-lines="3"] .summary .clamp-text {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: var(--feed-summary-lines, 2);
-  overflow: hidden;
   text-wrap: balance;
+  overflow-wrap: break-word;
 }
 
-/* 理由（**行数按卡宽反推 3–7 行**：行数真源＝web/src/feed-layout.ts 的 `feedCardShapeFor()`，
-   由 App 写进 `--feed-reason-lines`，八轮起还会同步把卡高写进 `--feed-card-h`——**加行就加卡高**，
-   不再靠吃掉卡底余量（七轮那版 4 行会把底部余量从 27px 挤到 3px，各档节奏不齐 ⇒ 栗子「不够统一」）。
-   `min-height` 跟着行数走：不然同档里行数不同的卡，元信息/标签行会错开（行高仍由 --feed-card-h 锁死）。
-   ⚠ `--feed-reason-lines` 与 FEED_REASON_MAX 一族双写，由 lock 单测钉住。 */
+/* 理由（十二轮起**全文自然流**）：内容契约 100–150 字是内容侧硬闸（`src/feed/checks.ts` G1 族）；
+   显示侧不再有行数/槽位/clamp——「该几行就几行」（块八：几行没有太大所谓，别有空隙）。
+   旧版 `min-height` 槽位（按 150 字上限算行数）与 p50 只占 2 行的结构性差，正是 09-26～09-30
+   三轮「异常空隙」的根因（规格十一轮追加 §五）；槽位退场即无此物。 */
 .reason-clamped {
   font-size: 0.82rem;
   line-height: 1.7;
-  min-height: calc(var(--feed-reason-lines, 3) * 1.7em);
   color: var(--text-secondary);
   margin-bottom: 10px;
-  /* ── 2026-09-30（十一轮）：槽位垂直居中「真生效」重构 ──────────────────────────────
-     槽位（min-height）按**契约上限 150 字**算行数（=R），而全库理由 p50 只占 2 行（793 档实测
-     33.2% 的卡）⇒ 块里剩下的整行（23.7px）空档原本沉在 ★ 行正上方。09-26 版试图用
-     `-webkit-box-pack: center` 居中，但 Chrome 早已把 `-webkit-box`（computed）归一成
-     flow-root（H-01 口径注 09-25 已记录）⇒ box-pack 是 **no-op**——09-26 栗子红框的「空行」
-     与 09-30 的「异常空隙还是没解决」都是它：2 行理由卡到 ★ 行实测 **39.4px**（3 行卡 15.7px）。
-     现在：外层 flex column + justify-content:center **真居中**（三行卡占满槽位无位移；
-     两行卡空档摊成上下各 ~12px）；clamp 挪到内层 `.clamp-text`（-webkit-box 家族照旧，
-     Chrome 归一后走现代 line-clamp，行为与旧版一致）。槽位高度/行数/0 截判据全不变。 */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  overflow: hidden;
-}
-.reason-clamped .clamp-text {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: var(--feed-reason-lines, 3);
-  overflow: hidden;
+  overflow-wrap: break-word;
 }
 
 /* 元信息条 */
@@ -2210,7 +2085,8 @@ button {
     padding: 12px 0;
   }
   .feed-list {
-    grid-template-columns: 1fr;
+    /* 十二轮：手机档只收紧行距（12px）；列宽由 .feed-col 的算式天然为 100%（K=1），
+       「占满整行是既有设计」由算式自动成立，不再需要 grid 覆写。 */
     --feed-row-gap: 12px;
   }
   .card {
@@ -3327,21 +3203,10 @@ button {
 }
 
 /* --- G-11 / RESP-05：窄高档（横屏手机）---
-   667×375 实测可视带只有 267px < 卡高 288px，整屏放不下半张卡。降卡高并把解读收到 2 行。
-   ⚠ --feed-card-h 与 web/src/feed-layout.ts 的 FEED_CARD_HEIGHT_SHORT 双写：
-   虚拟列表按「(卡高 + 行距) × 行数」算垫片，只改 CSS 会立刻错位。 */
+   667×375 实测可视带只有 267px。十二轮前这里锁卡高 210 + 理由 2 行；
+   定高退场后**自然高度**本身就是该档的正确值（该多高多高，滚动到达），
+   本媒体查询只保留留白收紧。 */
 @media (max-height: 560px) {
-  :root {
-    /* 实测 667×375 首卡顶 103px、可视带下沿 321px → 只剩 218px，240 仍放不下，收到 210 */
-    --feed-card-h: 210px;
-  }
-  .reason-clamped {
-    /* 窄高档压回 2 行：行数真源是**这一份 var 声明**（直接命中 > 从 .feed-list 继承），
-       否则桌面列数档的 4 行会在这个媒体查询里继续生效（卡高只剩 210，4 行必溢出）。
-       ⚠ 2026-09-30（十一轮）：clamp 本体已迁到内层 .clamp-text（读同一个 var），
-       这里不再直接写 -webkit-line-clamp（外层是 flex，写了也是死声明）。 */
-    --feed-reason-lines: 2;
-  }
   .main {
     padding-top: 8px;
   }

@@ -174,10 +174,11 @@ const RECORDER = `
       const fc = document.querySelector('.feed-content');
       add('feedContent', fc);
       add('cue', document.querySelector('.feed-content > .channel-head, .feed-content > .pref-prompt'));
-      add('card1', document.querySelector('.feed-window > .feed-list > .card'));
+      add('card1', document.querySelector('.feed-window .feed-col > .card'));
       add('bottomBar', document.querySelector('.bottom-bar'));
       const list = document.querySelector('.feed-window > .feed-list');
-      out.push({ k: 'cols', x: list ? getComputedStyle(list).gridTemplateColumns.split(' ').filter(Boolean).length : 0, y: 0, w: 0, h: 0, vis: 0 });
+      // 十二轮：列数从 .feed-col 实测（.feed-list 已是横向 flex，grid 轨道退场）
+      out.push({ k: 'cols', x: document.querySelectorAll('.feed-list > .feed-col').length, y: 0, w: 0, h: 0, vis: 0 });
       out.push({ k: 'sbw', x: sb ? Math.round(sb.getBoundingClientRect().width) : 0, y: 0, w: 0, h: 0, vis: 0 });
       return out;
     };
@@ -257,12 +258,20 @@ function analyse(frames, baseline) {
           }
           let lastActive = 0;
           for (let i = deltas.length - 1; i >= 0; i--) {
-            if (deltas[i] > 0.5) { lastActive = deltas[i]; break; }
+            if (deltas[i] > 0.5) {
+              lastActive = deltas[i];
+              break;
+            }
           }
           const endRatio = mx > 0 ? lastActive / mx : 0;
           if (endRatio > (out.tail?.ratio ?? 0))
-            out.tail = { ratio: +endRatio.toFixed(3), el: e0.k, field: fld,
-              lastActive: +lastActive.toFixed(2), maxFrame: +mx.toFixed(2) };
+            out.tail = {
+              ratio: +endRatio.toFixed(3),
+              el: e0.k,
+              field: fld,
+              lastActive: +lastActive.toFixed(2),
+              maxFrame: +mx.toFixed(2),
+            };
         }
       }
     }
@@ -330,7 +339,7 @@ async function main() {
         const list=document.querySelector('.feed-window > .feed-list');
         const sb=document.querySelector('.sidebar');
         const bb=document.querySelector('.bottom-bar');
-        return { cols: list? getComputedStyle(list).gridTemplateColumns.split(' ').filter(Boolean).length: 0,
+        return { cols: document.querySelectorAll('.feed-list > .feed-col').length,
                  sbw: sb? Math.round(sb.getBoundingClientRect().width): 0,
                  bot: bb? (getComputedStyle(bb).display!=='none' ? 1:0): 0 };
       `);
@@ -458,7 +467,7 @@ async function main() {
       !tailSampled || worstTail.ratio <= TAIL_RATIO_MAX,
       tailSampled
         ? `实测末帧比 ${(worstTail.ratio * 100).toFixed(1)}%（${worstTail.el}.${worstTail.field} ` +
-          `末帧 ${worstTail.lastActive}px / 峰值帧 ${worstTail.maxFrame}px @${worstTail.step ?? "-"})`
+            `末帧 ${worstTail.lastActive}px / 峰值帧 ${worstTail.maxFrame}px @${worstTail.step ?? "-"})`
         : "本 zone 无 ≥12px 的动画轨迹（不判；β 段已说明原因）",
     );
     report(

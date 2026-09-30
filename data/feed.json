@@ -11948,9 +11948,9 @@
     "owner": "semantic-release",
     "name": "semantic-release",
     "desc": "📦🚀 Fully automated version management and package publishing",
-    "summaryCn": "自动帮你管理版本号和发包发布的瑞士军刀，彻底告别手动发版",
-    "reasonCn": "它自动分析git提交记录，根据commit内容判断下一个版本号，还能直接发布到npm等包管理器。支持语义化版本，配置灵活，可集成到CI/CD流程中。告别手动改package.json版本号的时代，让发包变得自动化、无脑化，是开源项目维护者的必备神器。",
-    "detailCn": "简单来说，semantic-release解决了开源和商业化项目中一个让人头疼的问题——版本管理和发包。以前发新版本，你得手动改package.json里的版本号，然后打tag，再手动上传到npm，每一步都可能出错，还容易忘。现在有了它，整个流程全自动。\n\n技术上，它通过分析git提交记录来智能判断版本号。你的commit信息遵循Conventional Commits规范，比如fix:修复登录bug、feat:新增用户头像功能，它就能自动识别并计算出下一个版本是1.0.1还是1.1.0。还支持插件系统，可以扩展发布逻辑，比如发布到npm、GitHub Release、Slack通知等。\n\n安装使用也很简单。在项目里运行npm install --save-dev semantic-release，然后配置CI/CD平台的pipeline，在push代码到main分支时触发。一行命令就能搞定，或者用npx semantic-release在本地测试。\n\n适合所有需要频繁发布npm包的个人开发者和团队，尤其是开源项目维护者。如果你的项目经常迭代，不想每次手动版本号，这个工具绝对值得试试。\n\n社区方面，23k+ star，持续活跃维护，插件生态非常丰富，有几十种官方和社区插件可选。相比人工发版或传统工具如npm version，它更智能更可靠，是现代化的发包标准方案。",
+    "summaryCn": "全自动化的版本管理与发布工具，按语义化规范自动发布。",
+    "reasonCn": "这个项目能自动确定下一个版本号并生成发布说明，严格遵循语义化版本规范，通过自动化流程发布到 NPM。它把版本号从人类情绪中剥离出来，让版本变更的影响清晰传达给使用者。开发者用它就能把版本发布变成一次运行命令，无需手动改号、写说明或操作仓库。",
+    "detailCn": "semantic-release 是一款自动化版本管理工具，它解决了软件开发中繁琐的版本发布流程。传统流程中，开发者需要手动判断版本号、编写变更日志并操作仓库进行发布，这个过程不仅费时还容易出错。semantic-release 通过自动化流程，把从确定版本号到发布包的整个工作流统一管理起来。\n\n这个工具的核心亮点在于严格遵循语义化版本规范。它根据代码库中的提交记录（如修复错误、新增功能、破坏性变更）自动计算出下一个版本号，避免了人为判断的随意性。同时，它能自动生成格式规范的发布说明，让使用者清楚了解每个版本具体带来了哪些变化。此外，它还能自动将包发布到 NPM 等包管理平台，彻底释放了开发者的生产力。\n\n安装和使用非常简单。用户需要先在项目中安装 semantic-release，并配置好相关的 CI/CD 环境，比如 GitHub Actions 或 Travis CI。配置完成后，每次向代码库提交代码时，semantic-release 就会自动运行，根据提交信息完成版本号升级、发布说明生成和包发布等一系列操作。整个过程对开发者透明，无需人工干预。\n\n它非常适合所有使用语义化版本规范的 JavaScript 开发者，尤其是那些在团队中协作、需要统一发布流程的项目。无论是个人开源项目还是企业内部组件库，都可以通过它来建立标准化的发布体系。对于追求开发效率和版本规范的开发者来说，它能显著减少重复劳动，让版本发布变得像提交代码一样简单。",
     "stars": 24068,
     "starGrowth": 2,
     "createdAt": "2014-09-15T16:18:28Z",
@@ -12028,7 +12028,13 @@
     "category": "tool",
     "momentum": [],
     "fromOfficial": false,
-    "heatScore": 0
+    "heatScore": 0,
+    "facts": [
+      {
+        "claim": "自动生成变更日志并发布到 NPM",
+        "source": "automates the whole package release workflow including: determining the next version number, generating the release notes, and publishing the package."
+      }
+    ]
   },
   {
     "repo": "grafana/grafana",
@@ -146598,9 +146604,9 @@
     "owner": "Anil-matcha",
     "name": "Open-Generative-AI",
     "desc": "Unrestricted Open-source alternative to AI video platforms — Free AI image &amp; video generation studio with 600+ models (Flux, Midjourney, Kling, Sora, Veo). No content filters. Self-hosted, MIT licensed.",
-    "summaryCn": "500多个AI模型随便用，免费自托管的图像视频生成工厂",
-    "reasonCn": "这个项目把Flux、Midjourney、Kling、Sora等500多个主流AI模型打包成一个可自托管的平台，完全免费且无内容过滤。你可以像搭积木一样在本地部署AI图像和视频生成服务，隐私安全，不受第三方平台限制，是当前开源AI创作领域最全面的解决方案之一。",
-    "detailCn": "简单来说，这个项目就像是一个把500多个AI创意工具塞进一个盒子的神奇装置。以前你想用Midjourney生成图片得付费，想试试Kling做视频还得排队，现在这一切都免费了，而且部署在你自己的服务器上，想怎么用就怎么用，完全不用担心数据泄露或内容被审查的问题。\n\n从技术架构来看，这个项目构建了一个完整的一站式AI创作平台。它集成了包括Flux、SDXL、Kling、Sora、Veo在内的500多个主流开源模型，涵盖图像生成、视频生成、图像编辑等多个方向。核心亮点在于它是一个完全自托管的方案，所有计算都在你自己的服务器上运行，数据不经过任何第三方。项目采用现代化的前后端分离架构，前端提供类似Midjourney的优雅交互界面，后端支持多模型并行推理，还能通过API与其他系统集成。与Stable Diffusion WebUI这类单一模型工具相比，这个平台最大的优势是模型选择极其丰富，而且全部免费。\n\n安装部署需要一定的技术基础。首先你需要一台配置较高的服务器，建议至少16GB内存和较好的GPU。项目提供了Docker部署方式，clone代码后运行docker-compose up -d即可快速启动。安装完成后，你可以在Web界面中选择不同的模型，配置生成参数，然后直接生成图像或视频。项目还支持多用户管理和权限控制，适合团队共享使用。\n\n这个项目特别适合内容创作者、设计师、自媒体运营人员，以及任何对AI创作感兴趣的人。如果你经常需要生成图片但受限于付费订阅，或者你需要批量生成素材用于视频制作，这个平台能极大提升你的工作效率。对于AI技术爱好者来说，这也是一个了解和学习多种前沿AI模型的绝佳 playground。\n\n项目的社区活跃度非常高，GitHub star已经超过25800，说明大量用户已经在实际使用。项目持续更新，不断添加新的模型和支持的功能。由于采用MIT开源协议，任何人都可以自由使用、修改和分发。与Midjourney、DALL-E等商业产品相比，这个项目的核心优势在于免费和无内容限制，对于追求创作自由的用户来说，这是一个革命性的选择。",
+    "summaryCn": "集成400+开源模型，可生成视频图像的跨模态AI平台。",
+    "reasonCn": "这是一个完全开源的视频生成平台，集成了400多个顶尖的开源模型，支持文本、图像生成视频以及唇形同步等功能。它打破了传统AI视频平台的封闭生态，允许用户在本地部署，生成无内容过滤的图像与视频内容，是寻找替代Sora等商业产品的理想选择。",
+    "detailCn": "Open Generative AI 是一个旨在提供无限制、开源AI视频生成体验的项目，其核心优势在于拥有庞大的模型库。该项目声称整合了400多个最先进的开源模型，分布在14个工作室中，用户可以跨越这些模型库进行创作，而无需担心内容过滤或订阅费用。\n\n该项目的首要亮点在于其模型生态的丰富性与开放性。与许多需要特定API密钥或订阅费用的商业平台不同，这里提供了400+个模型的选择。这意味着用户可以根据不同的需求，自由切换使用不同风格或能力的模型，极大地扩展了创作的可能性。这种对模型库的全面覆盖，让普通用户也能接触到前沿的AI生成能力，而无需成为算法专家。\n\n在功能层面，它不仅局限于传统的文本生成图像，还覆盖了图像生成视频、唇形同步以及多种创意工具。对于内容创作者来说，这种跨模态的能力意味着从灵感到成片的工作流可以更加流畅。特别是唇形同步功能，为视频制作提供了额外的技术支持，使得生成的内容更加生动。用户可以通过提供的MuAPI接口，方便地将这些功能集成到自己的应用中，实现快速落地。\n\n安装和使用上，项目支持本地部署，不需要依赖庞大的云服务基础设施。根据项目文档，用户可以从仓库获取具体的安装方式。这种部署方式不仅保护了用户的数据隐私，也为那些希望完全掌控生成过程的开发者提供了灵活性。项目还提供了白标化方案，允许开发者将其作为自己的品牌产品进行销售，这意味着它不仅能用于个人创作，也具备商业落地的潜力。适合对AI生成技术感兴趣的开发者、内容创作者，以及希望构建自有AI服务的企业用户。",
     "stars": 29407,
     "starGrowth": 58,
     "createdAt": "2023-05-09T14:12:37Z",
@@ -146790,7 +146796,17 @@
       "daily"
     ],
     "fromOfficial": false,
-    "heatScore": 0.17991695854728465
+    "heatScore": 0.17991695854728465,
+    "facts": [
+      {
+        "claim": "覆盖400+开源模型，无内容过滤。",
+        "source": "Generate AI images and videos using 400+ state-of-the-art models across 14 studios — no content filters"
+      },
+      {
+        "claim": "提供白标化方案，支持自主定价。",
+        "source": "spin up a fully white-labeled version of this app — your logo, your colors, your custom domain, your own pricing"
+      }
+    ]
   },
   {
     "repo": "MewPurPur/GodSVG",
