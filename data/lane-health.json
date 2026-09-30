@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-09-25T20:13:49.064Z",
+  "updatedAt": "2026-09-30T10:07:40.042Z",
   "lanes": {
     "zhipu": {
       "key": "zhipu",
-      "calls": 3217,
-      "ok": 2602,
-      "lastError": "Error: reason-fix 4 张 超时 120000ms",
+      "calls": 3276,
+      "ok": 2658,
+      "lastError": "Error: recopy wwebjs/whatsapp-web.js 超时 240000ms",
       "lastClass": "ok",
-      "updatedAt": "2026-09-25T20:13:49.064Z"
+      "updatedAt": "2026-09-30T10:07:40.041Z"
     },
     "agnes": {
       "key": "agnes",
@@ -79,12 +79,11 @@
     },
     "modelscope": {
       "key": "modelscope",
-      "calls": 587,
-      "ok": 248,
+      "calls": 595,
+      "ok": 256,
       "lastError": "Error: reason-fix 4 张 超时 120000ms",
-      "lastClass": "network",
-      "updatedAt": "2026-09-25T19:33:17.685Z",
-      "retiredUntil": "2026-09-25T20:03:17.685Z"
+      "lastClass": "ok",
+      "updatedAt": "2026-09-30T09:58:34.103Z"
     },
     "spark": {
       "key": "spark",

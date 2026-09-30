@@ -825,11 +825,7 @@ function FeedVirtualList({
   const { chrome, reasonLinesMax } = feedTierMetricsFor(mobile);
   const wrapRef = useRef<HTMLDivElement>(null);
   // G-10 / 2026-09-23 第四版：列数是**单一真源**——由本组件量出网格可用宽、按 feedColsForContentWidth
-  // 反解（规则：先取让卡片不超上限 700px 的最少列数，若会把卡片压到下限 420px 以下再减一列），
-  // 然后同时喂给两处：① CSS 变量 `--feed-cols`（.feed-list 的轨道数）② 这里的垫片计算。
-  // 这样 CSS 与 JS 不再各存一份列宽常量（旧版双写常量的漂移会让垫片错位，见 2026-09-22 乙4）。
-  // G-10 / 2026-09-23 第四版：列数是**单一真源**——由本组件量出网格可用宽、按 feedColsForContentWidth
-  // 反解（规则：先取让卡片不超上限 700px 的最少列数，若会把卡片压到下限 420px 以下再减一列），
+  // 反解（规则见 feed-layout.ts：卡宽落在 [460, 793]——十轮 T1 加下限，压到 460 以下回单列收对称页边距），
   // 然后同时喂给两处：① CSS 变量 `--feed-cols`（.feed-list 的轨道数）② 这里的垫片计算。
   // 这样 CSS 与 JS 不再各存一份列宽常量（旧版双写常量的漂移会让垫片错位，见 2026-09-22 乙4）。
   // 二轮甲2/乙1（2026-09-23）：首帧列数**初值直接由视口宽按同一套门槛算出**——
@@ -858,7 +854,7 @@ function FeedVirtualList({
       ? 0
       : window.innerWidth <= FEED_MOBILE_MAX_WIDTH
         ? Math.max(0, window.innerWidth - 32)
-        : Math.min(window.innerWidth - 280, FEED_GRID_REF),
+        : Math.min(window.innerWidth - 272, FEED_GRID_REF),
   );
   const [cols, setCols] = useState(() => {
     if (typeof window === "undefined") return gridCols;
@@ -867,7 +863,10 @@ function FeedVirtualList({
     // 桌面档只有一个侧栏形态（192 + 24 边距）→ offset 只有一个值。
     // ⚠ 首帧估算必须**同时收内容壳上限**（FEED_GRID_REF=1602）：不收的话 1920 档首帧会算成
     //   3 列（1640/3 = 536 ≤ 793），首测后再跳回 2 列 —— 正是二轮乙1 修掉的那种「首帧画错再跳」。
-    return feedColsForContentWidth(Math.min(vw - 280, FEED_GRID_REF), rowGap);
+    // ⚠ 十轮 T1：offset 从 280 收正为 272（侧栏 216 + 内距 48 + 滚动条槽 8，实测 1200 档网格 928
+    //   = 1200−272）。八轮时代 1↔2 门槛在网格 793，8px 的估算误差跨不过门槛；十轮门槛移到
+    //   网格 936（=视口 1208），再差 8px 就会出现「视口 1208–1215 首帧画 1 列、首测跳 2 列」的闪变。
+    return feedColsForContentWidth(Math.min(vw - 272, FEED_GRID_REF), rowGap);
   });
   // FLIP 的量测根：`.feed-content`（卡片在它内部的 .feed-window 里，频道头/偏好条是它的直接子元素）。
   // 拿不到时退回 .feed-window（只有卡片参与，退化到二轮的行为）。

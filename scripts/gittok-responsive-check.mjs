@@ -112,6 +112,9 @@ const FEED_COL_MIN = 653;
  *    栗子：「不允许出现留白……卡片到 793 就是极限、再长就要变成两列」⇒ 取最小 n 使卡宽 ≤793。
  *    于是 794–1602 的内容宽一律两列（卡宽 389–793），**中间带的对称页边距归零**。 */
 const FEED_CARD_MAX = 793;
+/** 卡宽**下限**（2026-09-26 十轮 T1）：与 web/src/feed-layout.ts 的 FEED_CARD_MIN 同值（460，
+ *  ＝ K-11 一行容量下限 24 字的同源档）。两列会把卡压到 460 以下时列数规则退回单列。 */
+const FEED_CARD_MIN = 460;
 /** 档内形态（摘要字号 f / 行数 S / 理由行数 R / 卡高 H / 标签槽位 T）：与 web/src/feed-layout.ts 的
  *  `feedCardShapeFor` 同式（双写，lock 单测钉住）。九轮（2026-09-25）起摘要**字号**也进算式。 */
 const FEED_SUMMARY_MAX = 35;
@@ -182,9 +185,14 @@ function feedTagSlotsExpected(cardW, chrome = FEED_CARD_CHROME) {
 function feedColsExpected(contentW, gap = 16) {
   if (!(contentW > 0)) return 1;
   const at = (n) => (contentW - (n - 1) * gap) / n;
-  let n = 1;
-  while (at(n) > FEED_CARD_MAX) n++;
-  return n;
+  // 十轮 T1 镜像（与 web/src/feed-layout.ts 的 feedColsForContentWidth 同式，lock 单测钉住）：
+  // 取最小 n 使卡宽落在 [FEED_CARD_MIN, FEED_CARD_MAX]；n=1 只在网格 ≤793 时成立，
+  // 三列都给不出合规卡宽时回 1（CSS 收轨道到 min(网格,793)，余量成对称页边距）。
+  for (let n = 1; n <= 3; n++) {
+    const w = n === 1 ? contentW : at(n);
+    if (w <= FEED_CARD_MAX && w >= FEED_CARD_MIN) return n;
+  }
+  return 1;
 }
 const FEED_SHORT_MAX_HEIGHT = 560;
 const FEED_CAPACITY_MIN = 24;
@@ -193,7 +201,12 @@ const FEED_CAPACITY_MIN = 24;
  *  由 feedSummaryLinesExpected 一族从卡宽反推——**表格与算式互为校验**：
  *  算式给出期望、实测给出读数，两边对不上就红（防「只改表格」或「只改算式」的单边漂移）。
  *  ⚠ 1100/1200/1275/1343/1400 这五档在八轮从「1 列 793 + 两侧页边距」变成「2 列 406–556」——
- *    这正是栗子「不允许出现留白，再长就要变成两列」那条指令的落点。 */
+ *    这正是栗子「不允许出现留白，再长就要变成两列」那条指令的落点。
+ *  ⚠ 十轮 T1（2026-09-26，栗子「很多改动导致观感甚至不如以前了」的清算）：八轮把 1100/1200
+ *    压成 2×406/456，理由槽位按上限算 7/6 行、实排只有 5/4 行 ⇒ 块内 47.4px＝两整行空白（甲A1）。
+ *    列数规则补上下限 460：这两档**退回 1 列 793**（八轮前的形态），余量成 ≤71.5px/侧 的对称页边距；
+ *    1275/1343/1400 仍两列（2×494/528/556 均 ≥460）。候选 460/500/556 的实拍对照见
+ *    `D:/tmp/gt-layout/r11/scan-*.json`（M500/556 会把 1275/1343 也踢成单列、页边距 105/139 ⇒ 否决）。 */
 const EXPECT_DESKTOP = {
   "2560x1080": { cols: 2, cardW: 793, capMin: 43, capMax: 43 },
   "1920x1080": { cols: 2, cardW: 793, capMin: 43, capMax: 43 },
@@ -203,8 +216,10 @@ const EXPECT_DESKTOP = {
   "1400x900": { cols: 2, cardW: 556, capMin: 35, capMax: 35 },
   "1343x900": { cols: 2, cardW: 528, capMin: 27, capMax: 27 },
   "1275x900": { cols: 2, cardW: 494, capMin: 25, capMax: 25 },
-  "1200x900": { cols: 2, cardW: 456, capMin: 23, capMax: 23 },
-  "1100x800": { cols: 2, cardW: 406, capMin: 20, capMax: 20 },
+  // 十轮 T1：八轮的 2×456/406（理由槽 6/7 行 vs 实排 4/5 行 ⇒ 两整行空白）退回单列 793。
+  // 一行容量 43 ＝ floor((793−69)/16.66)，与 1920/2560 两列档同卡宽同容量。
+  "1200x900": { cols: 1, cardW: 793, capMin: 43, capMax: 43 },
+  "1100x800": { cols: 1, cardW: 793, capMin: 43, capMax: 43 },
   "1000x800": { cols: 1, cardW: 728, capMin: 39, capMax: 39 },
   "900x800": { cols: 1, cardW: 628, capMin: 35, capMax: 35 },
   // 844×390 是 mobile:true 但 w>768 —— CSS 媒体查询按**宽度**走，844 用桌面栅格。
@@ -753,18 +768,30 @@ async function checkView(cdp, view) {
     // 栗子原话：「首先不允许出现留白……那个卡片长度就是卡片极限长度了，再长就要变成两列」。
     // 判据：n × 卡宽 + (n−1) × 行距 == 网格宽（±1.5px）⇒ 卡片右缘必须抵住网格右缘，
     //       deadZone（网格 − 卡片占用）必须为 0。七轮那种「1 列 793 + 两侧对称页边距」在这里直接红。
+    // ── 2026-09-26 十轮 T1 修订（丁D1「破了哪条口径、换回什么」必须写明）─────────────
+    // 八轮版 R0 判「全档零留白」，但八轮规则在 1074–1191 视口把卡压成 2×406–456，
+    // 理由槽位空出**两整行 47.4px**（甲A1，栗子：「观感甚至不如以前」）——轨道内零留白换来
+    // 块内更大留白，正是丁D2 禁止的「拆东墙补西墙」。十轮口径：**零留白只约束两列档与
+    // 网格 ≤793 的单列档**；两列 <460 的回退档（网格 ∈ (793,936)）换回对称页边距 ≤71.5px/侧
+    // （由下一条 R4b 锁），块内不再有空行。
+    const isFallback1Col = m.cols === 1 && m.gridW > FEED_CARD_MAX;
     const used =
       Math.round(m.cardW) * m.cols + (m.cols - 1) * Math.round(m.gridW > 0 ? (m.rowGap ?? 16) : 16);
     const deadZone = Math.max(0, Math.round(m.gridW - used));
-    const r0 = Math.abs(used - m.gridW) <= 1.5;
+    const r0 = isFallback1Col ? true : Math.abs(used - m.gridW) <= 1.5;
     READINGS[view.key] = { ...m, usedWidth: used, deadZone };
     report(
       view.key,
-      "R0 零留白：n×卡宽 + (n−1)×行距 == 网格宽（栗子「不允许出现留白」，八轮新增）",
+      isFallback1Col
+        ? "R0 零留白（十轮 T1 修订：单列回退档豁免，改由 R4b 锁对称页边距）"
+        : "R0 零留白：n×卡宽 + (n−1)×行距 == 网格宽（栗子「不允许出现留白」，八轮新增）",
       r0,
-      `列数 ${m.cols}｜卡宽 ${Math.round(m.cardW)}px ⇒ 占用 ${used}px vs 网格 ${m.gridW}px｜` +
-        `**留白 ${deadZone}px**（判据 ≤1.5）｜` +
-        `改前实测：1500 档 1 列 793 在 1228 网格里 ⇒ 留白 435px（栗子红框那两处）`,
+      isFallback1Col
+        ? `列数 1｜卡宽 ${Math.round(m.cardW)}px vs 网格 ${m.gridW}px ⇒ 页边距 ${deadZone}px 对称分两侧（≤71.5px/侧，R4b 锁）｜` +
+          `豁免依据：八轮在此档产出 2×406–456＝块内两整行空白（甲A1），十轮裁定页边距 ≤ 块内空行`
+        : `列数 ${m.cols}｜卡宽 ${Math.round(m.cardW)}px ⇒ 占用 ${used}px vs 网格 ${m.gridW}px｜` +
+          `**留白 ${deadZone}px**（判据 ≤1.5）｜` +
+          `改前实测：1500 档 1 列 793 在 1228 网格里 ⇒ 留白 435px（栗子红框那两处）`,
     );
     // ── 2026-09-25 七轮 R4（八轮改写）：卡宽必须 ≤ 793，且**单列档不许再收窄** ──
     // 八轮起列数由上限反解 ⇒ 单列只在网格 ≤793 时出现，那时卡宽 == 网格（收敛成 R0 的特例）。
@@ -778,6 +805,20 @@ async function checkView(cdp, view) {
       `卡宽 ${Math.round(m.cardW)}px（上限 ${FEED_CARD_MAX}px）｜列数 ${m.cols}｜网格 ${m.gridW}px｜左余 ${slackL} 右余 ${slackR}` +
         `｜改前实测：1500 档卡宽 1228（栗子：「这个太长了」）；左对齐 700 留 296px 右空档（栗子 09-24：「这种空隙不允许出现」）`,
     );
+    // ── 2026-09-26 十轮 T1：单列**回退档**的页边距必须对称且 ≤72px/侧（丁D2「整场留白预算」）──
+    // 列数规则退回单列的条件是「两列会把卡压到 460 以下」⇒ 网格 <936 ⇒ 页边距 = (网格−793)/2 < 71.5。
+    // 不对称（左对齐）是栗子 09-24 明确否掉的形态；>72 说明 460 门槛被改坏（在别处造出大留白）。
+    if (m.cols === 1 && m.gridW > FEED_CARD_MAX) {
+      const mL = m.cardLeftInGrid;
+      const mR = m.gridW - m.cardLeftInGrid - m.cardW;
+      report(
+        view.key,
+        "R4b 单列回退档页边距对称且 ≤72px/侧（十轮 T1/丁D2）",
+        Math.abs(mL - mR) <= 1.5 && mL <= 72,
+        `左 ${Number(mL.toFixed(1))} / 右 ${Number(mR.toFixed(1))}（网格 ${m.gridW} − 卡 ${Math.round(m.cardW)}）｜` +
+          `规则：两列卡宽 <460 才回单列 ⇒ 网格 <936 ⇒ 页边距 <71.5px/侧`,
+      );
+    }
     // R5/R6/R7（档内形态）与 mobile/desktop 无关，统一放到 if/else 之后判 —— 九轮起手机档也判。
     const exp = EXPECT_DESKTOP[view.key];
     // ── 2026-09-24 四轮 R1（八轮改判据）：**卡宽 ≤ 793 且列数 = 算式值** ──
@@ -787,10 +828,10 @@ async function checkView(cdp, view) {
     const colsExp = feedColsExpected(m.gridW, m.rowGap ?? 16);
     report(
       view.key,
-      `R1 列数 = 上限反解（卡宽 ≤${FEED_CARD_MAX} 的最小列数）`,
+      `R1 列数 = 上下限反解（卡宽 ∈ [${FEED_CARD_MIN}, ${FEED_CARD_MAX}] 的最小列数）`,
       m.cols === colsExp,
       `列数 ${m.cols}（算式 ${colsExp}）｜网格 ${m.gridW}px，卡宽 ${Math.round(m.cardW)}px｜` +
-        `算式：取最小 n 使 (网格−(n−1)×16)/n ≤ ${FEED_CARD_MAX} ⇒ 中间带一律两列（零留白）`,
+        `算式：取最小 n 使卡宽落在 [${FEED_CARD_MIN}, ${FEED_CARD_MAX}]；两列 <460 回单列（十轮 T1）`,
     );
     report(
       view.key,

@@ -240,6 +240,30 @@ function analyse(frames, baseline) {
             maxFrame: +mx.toFixed(2),
             total: +total.toFixed(2),
           };
+        // ── 2026-09-26 十轮 T4：**末帧速度→0**（同一条轨迹上的收尾判据）——
+        //   取「最后一个还在动的帧」（位移 >0.5px）的位移与该轨迹最大帧位移之比：
+        //   落定减速曲线（FLIP_EASING＝cubic-bezier(0.22,.61,.36,1)）末帧趋零 ⇒ 比值小；
+        //   硬切（一帧跳完）末帧＝峰值 ⇒ 比值 1.0。与 β（峰在中段与否）互补：
+        //   β 管「没有单帧跳完」，末帧比管「落地不是戛然而止/失速」。
+        //   ⚠ h 字段不进本判据（与 β 同一口径）：卡高跨档是布局跳变（三轮 scale(sx,1) 取舍），
+        //   它的 ratio 恒 1.0 会**遮蔽** transform 轨迹的真实末帧比（out.tail 只留最大者）。
+        if (total >= 12 && fld !== "h") {
+          const deltas = [];
+          for (let i = 1; i < frames.length; i++) {
+            const a = frames[i - 1].s.find((x) => x.k === e0.k);
+            const b = frames[i].s.find((x) => x.k === e0.k);
+            if (!a || !b || !a.vis || !b.vis) continue;
+            deltas.push(Math.abs(b[fld] - a[fld]));
+          }
+          let lastActive = 0;
+          for (let i = deltas.length - 1; i >= 0; i--) {
+            if (deltas[i] > 0.5) { lastActive = deltas[i]; break; }
+          }
+          const endRatio = mx > 0 ? lastActive / mx : 0;
+          if (endRatio > (out.tail?.ratio ?? 0))
+            out.tail = { ratio: +endRatio.toFixed(3), el: e0.k, field: fld,
+              lastActive: +lastActive.toFixed(2), maxFrame: +mx.toFixed(2) };
+        }
       }
     }
   }
@@ -361,6 +385,7 @@ async function main() {
             n: frames.length,
             flip: a.flip,
             peak: a.peak,
+            tail: a.tail,
             cols: [...new Set(a.cols)],
             sbw: [...new Set(a.sbw)],
           });
@@ -380,7 +405,8 @@ async function main() {
   for (const z of zones) {
     const tag = `${z.zone}(${z.dir > 0 ? "放大" : "缩小"})`;
     let worstFlip = { value: 0 },
-      worstPeak = { ratio: 0 };
+      worstPeak = { ratio: 0 },
+      worstTail = { ratio: 0 };
     // 采样有效性（含卡高）：只要**任何字段**（w/top/left/h）在窗内动过，就说明这一档真的发生了重排。
     let anySample = false;
     let heightOnlyMoved = false;
@@ -397,6 +423,10 @@ async function main() {
       }
       if (s.peak.ratio > worstPeak.ratio && s.peak.field !== "h") {
         worstPeak = { ...s.peak, step: s.w };
+      }
+      // 十轮 T4：末帧速度比（只在有真实动画轨迹的 step 上取最差）
+      if (s.tail && s.tail.ratio > worstTail.ratio && s.tail.field !== "h") {
+        worstTail = { ...s.tail, step: s.w };
       }
     }
     FLIP_OK.push({ tag, ...worstFlip, changed: z.stateChanged });
@@ -417,6 +447,20 @@ async function main() {
     //   ⚠ 八轮：采样有效性看**任意字段**（含 h），但判据只看 w/top/left —— 两个问题分开：
     //   「这一档到底有没有重排」与「重排的路径连不连续」。
     const peakSampled = !!worstPeak.el;
+    // ── 2026-09-26 十轮 T4：末帧速度→0（与 drag 闸 e1 同一条语义）────────────────
+    // 只在有真实动画轨迹（≥12px 总变化，与 β 同一门槛）的 zone 上判；轨迹末帧（>0.5px
+    // 的最后一个位移）≤ 峰值帧位移 ×0.35。FLIP_EASING 换成落定减速曲线后本条应全绿；
+    // 若某条轨迹末帧仍接近峰值帧（比值 →1），说明那条过渡是硬切/匀速收尾。
+    const TAIL_RATIO_MAX = 0.35;
+    const tailSampled = !!worstTail.el;
+    report(
+      `边界 ${tag} T4·末帧速度→0（末帧位移 ≤${TAIL_RATIO_MAX * 100}% 峰值帧）`,
+      !tailSampled || worstTail.ratio <= TAIL_RATIO_MAX,
+      tailSampled
+        ? `实测末帧比 ${(worstTail.ratio * 100).toFixed(1)}%（${worstTail.el}.${worstTail.field} ` +
+          `末帧 ${worstTail.lastActive}px / 峰值帧 ${worstTail.maxFrame}px @${worstTail.step ?? "-"})`
+        : "本 zone 无 ≥12px 的动画轨迹（不判；β 段已说明原因）",
+    );
     report(
       `边界 ${tag} 无尖峰（单帧 ≤${MAX_PEAK_RATIO * 100}% 总变化）`,
       anySample && (!peakSampled || worstPeak.ratio <= MAX_PEAK_RATIO),

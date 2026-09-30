@@ -28,8 +28,13 @@
 /** 布局过渡时长（ms）。150–300ms 区间中段偏短：拖动是连续操作，快才跟手。 */
 export const FLIP_DURATION = 220;
 
-/** 单条目标过渡的缓动：cubic-bezier(0.2, 0.8, 0.2, 1)（快出缓停，无过冲）。与 CSS 的 --ease-soft 同支。 */
-export const FLIP_EASING = "cubic-bezier(0.4, 0, 0.2, 1)";
+/** 单条目标过渡的缓动。⚠ 2026-09-26 十轮 T4③ 订正：原值 `cubic-bezier(0.4,0,0.2,1)`（缓入缓出、
+ *  中段最快——速度峰在中间，「到达」那一下是失速感）与本注释写的「快出缓停」**不符**（历史笔误），
+ *  也与打开动画（detailEnter 的落定减速族）不同族——栗子④「单列变两列的动画看着也没有那么丝滑流畅」
+ *  的机制其一。改为 `cubic-bezier(0.22, 0.61, 0.36, 1)`：与 CLOSE_EASING 同一条落定减速曲线
+ *  （起步最快、末段速度→0，「落地」可感），时间语言与弹层开合统一（乙B4 的方向）。
+ *  drag 闸 T4 判据（速度单调收敛＋末帧速度→0＋两列同相位同族）钉住这条语义。 */
+export const FLIP_EASING = "cubic-bezier(0.22, 0.61, 0.36, 1)";
 
 /** 卡片：虚拟列表的直接子元素（`.feed-window-pad` 垫片没有卡标识，会被跳过）。 */
 const CARD_SELECTOR = ".feed-window > .feed-list > .card";

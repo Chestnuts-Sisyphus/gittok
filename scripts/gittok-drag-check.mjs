@@ -7,7 +7,10 @@
  *   ① 列数翻转处首卡 top 跳变 ≤8px（锚点保持——FLIP 补差的直接后果）；
  *   ② 列数翻转处有过渡在场（翻转后 300ms 内出现非空 transform，时长 ≥150ms）；
  *   ③ 首帧列数序列只有一项（首帧初值由视口算出，ResizeObserver 首次校正应是 no-op）；
- *   ④ 无横向溢出贯穿全程。
+ *   ④ 无横向溢出贯穿全程；
+ *   ⑤ T4（十轮 2026-09-26）翻转的**速度连续性**：末帧速度→0 ＋ 速度单调收敛（无「最快在落地」）
+ *     ＋ 1→2 场景两列同相位同族（第二卡与首卡同帧进场、逐帧位移成常数比）——
+ *     配套把 FLIP_EASING 从缓入缓出换成与打开动画同族的落定减速曲线（web/src/feed-flip.ts）。
  *
  * 用法：
  *   pnpm drag:check                          # 全场景
@@ -33,16 +36,15 @@ const TAG = (() => {
   return a ? a.slice(6) : new Date().toISOString().replace(/[:.]/g, "-");
 })();
 
-/** 列数翻转对（八轮 2026-09-25 晚：列数规则改成「取卡宽 ≤ 793 的**最小**列数」）。
- *  现在**只有一个桌面门槛**：网格 = **793px**（＝视口 1065）→ 超过就两列；再宽也还是两列
- *  （内容上限 1650 ⇒ 网格封顶 1602 ⇒ 三点五列永不出现）。所以「跨 1594」那两对场景整体退役
- *  （八轮后 1400/1560/1620/1700 全是 2 列、列数不再翻转 ⇒ 闸会报「翻转未发生」），
- *  改为跨 **1065** 的 1↔2 对；另加 768 那条（手机档 ↔ 桌面档）保住跨形态那条边界。
+/** 列数翻转对（十轮 T1 2026-09-26：列数规则补**下限 460**——两列把卡压到 460 以下回单列）。
+ *  桌面门槛从八轮的网格 793（＝视口 1065）移到**网格 936**（＝2×460+16，视口 ≈1208）：
+ *  网格 <936 回 1 列 793（对称页边距 ≤71.5px/侧），≥936 两列。再宽也还是两列
+ *  （内容上限 1650 ⇒ 网格封顶 1602 ⇒ 三列永不出现）。
  *  ⚠ 门槛值必须与 `feedColsForContentWidth` 同式推导，不许写死到「跨不过去」的档位——
  *    三轮就踩过这个坑（旧档位 1100→1180 跨不过新门槛，闸直接判「列数翻转未发生」）。 */
 const COL_SCENES = [
-  { label: "1→2列(小步跨门槛)", from: 1040, to: 1100 },
-  { label: "2→1列(小步跨门槛)", from: 1100, to: 1040 },
+  { label: "1→2列(小步跨门槛)", from: 1180, to: 1240 },
+  { label: "2→1列(小步跨门槛)", from: 1240, to: 1180 },
   // 大步场景：一次拖过门槛（真实使用里常见的是「把窗口从半屏拉到全屏」），
   // 它比小步更能暴露 FLIP 补差的偏差（位移量大、帧数少）。
   { label: "1→2列(大步)", from: 1000, to: 1300 },
@@ -193,11 +195,18 @@ async function main() {
         window.__seqOn = true;
         const tick = () => {
           const l=document.querySelector('.feed-window > .feed-list');
-          const c=document.querySelector('.feed-window > .feed-list > .card');
+          const cards=document.querySelectorAll('.feed-window > .feed-list > .card');
+          const c=cards[0];
           if(l&&c){
             const r=c.getBoundingClientRect();
+            // 十轮 T4：第二张卡同帧采样（1↔2 翻转时真正在动 top 的是它——行交换；
+            // 首卡只缩宽，top 恒定，速度判据放在 card2 上才有非零信号）
+            const c2=cards[1];
+            const r2=c2? c2.getBoundingClientRect(): null;
             window.__seq.push({ cols: getComputedStyle(l).gridTemplateColumns.split(' ').filter(Boolean).length,
-              tf: c.style.transform||"", cardW: Math.round(r.width), cardTop: Math.round(r.top),
+              tf: c.style.transform||"", tf2: c2? (c2.style.transform||"") : null,
+              cardW: Math.round(r.width), cardLeft: Math.round(r.left), cardTop: Math.round(r.top),
+              cardW2: r2? Math.round(r2.width): null, cardTop2: r2? Math.round(r2.top): null,
               t: Math.round(performance.now()) });
           }
           if(window.__seqOn) requestAnimationFrame(tick);
@@ -247,7 +256,74 @@ async function main() {
         tfFrames >= TRANSITION_MIN_FRAMES,
         `非空 transform ${tfFrames} 帧｜结束清空 ${endClean}`,
       );
-      scenes.push({ scene: sc.label, from: sc.from, to: sc.to, seq, maxTopJump, tfFrames, endClean });
+      // ── 2026-09-26 十轮 T4：翻转的**速度连续性**（栗子④「单列变两列的动画看着也没有那么丝滑流畅」）──
+      // 三判据，全部从同一份逐帧序列推（rAF 采样 ≈16.7ms/帧），可复跑。运动量的选取：
+      // 翻转中真正动 top 的是**第二张卡**（行交换：1→2 它从第 2 行升到第 1 行，2→1 反之），
+      // 首卡只缩宽、top 恒定 ⇒ 速度曲线（e1/e2）取 card2 的逐帧 top 位移；
+      // 同族/同相位（e3）用两条归一化进度曲线对比：card1 的宽度（缩放）与 card2 的 top
+      // 都在同一部 FLIP 动画里，同 easing 同相位 ⇒ 逐帧进度相等。
+      //   e1 末帧速度→0：card2 最后一个在场帧位移 ≤ 全段最大位移的 35%
+      //     （落定减速曲线 cubic-bezier(0.22,.61,.36,1) 的末帧必然趋零；硬切/中段峰值会远超）；
+      //   e2 速度单调收敛（无「最快在落地」）：末 25% 段最大帧位移 < 首 25% 段
+      //     ——四轮 T8 抓到的「半透明鬼影在最快地飞」就是违反本条的加速型曲线；
+      //   e3 两列同相位同族（仅 1→2）：第二卡 transform 与首卡同帧进场（≤2 帧）＋
+      //     两条归一化进度（card1 宽度 / card2 top）逐帧偏差 ≤0.12（同 easing ⇒ 同进度）。
+      const act = seq.filter((s) => s.tf && s.tf !== "" && s.tf !== "none");
+      let e1 = null, e2 = null, e3 = null;
+      if (act.length >= 4) {
+        const d = [];
+        for (let i = 1; i < act.length; i++) {
+          const a = act[i - 1], b = act[i];
+          d.push(
+            b.cardTop2 != null && a.cardTop2 != null
+              ? Math.abs(b.cardTop2 - a.cardTop2)
+              : Math.abs(b.cardTop - a.cardTop),
+          );
+        }
+        const dMax = Math.max(...d, 0);
+        const k = Math.max(1, Math.floor(d.length * 0.25));
+        const headMax = Math.max(...d.slice(0, k), 0);
+        const tailMax = Math.max(...d.slice(-k), 0);
+        e1 = { lastDelta: d[d.length - 1] ?? 0, maxDelta: dMax,
+          pass: dMax >= 4 && (d[d.length - 1] ?? 0) <= dMax * 0.35 };
+        e2 = { headMax, tailMax, pass: dMax >= 4 && tailMax < headMax + 1e-6 };
+      }
+      if (sc.label.startsWith("1→2") && act.length >= 4) {
+        const firstTf = seq.findIndex((s) => s.tf && s.tf !== "" && s.tf !== "none");
+        const firstTf2 = seq.findIndex((s) => s.tf2 && s.tf2 !== "" && s.tf2 !== "none");
+        const startGap = firstTf2 >= 0 ? firstTf2 - firstTf : null;
+        const w0 = act[0].cardW, w1 = act[act.length - 1].cardW;
+        const t0 = act[0].cardTop2, t1 = act[act.length - 1].cardTop2;
+        let maxDev = null;
+        if (w1 !== w0 && t1 != null && t0 != null && t1 !== t0) {
+          maxDev = 0;
+          for (let i = 0; i < act.length; i++) {
+            const p1 = (act[i].cardW - w0) / (w1 - w0);
+            const p2 = (act[i].cardTop2 - t0) / (t1 - t0);
+            maxDev = Math.max(maxDev, Math.abs(p1 - p2));
+          }
+        }
+        e3 = { startGapFrames: startGap, progressMaxDev: maxDev == null ? null : +maxDev.toFixed(3),
+          pass: startGap != null && Math.abs(startGap) <= 2 && maxDev != null && maxDev <= 0.12 };
+      }
+      report(
+        `${sc.label} T4·e1 末帧速度→0（落定减速语义）`,
+        !!e1?.pass,
+        e1 ? `card2 末帧位移 ${e1.lastDelta}px / 全段最大 ${e1.maxDelta}px（判据 ≤35% 且 ≥4px 位移样本）｜ease=cubic-bezier(0.22,.61,.36,1)` : "在场帧不足（<4），不判",
+      );
+      report(
+        `${sc.label} T4·e2 速度单调收敛（无「最快在落地」）`,
+        !!e2?.pass,
+        e2 ? `首 25% 段最大帧位移 ${e2.headMax}px vs 末 25% 段 ${e2.tailMax}px` : "在场帧不足（<4），不判",
+      );
+      if (sc.label.startsWith("1→2")) {
+        report(
+          `${sc.label} T4·e3 两列同相位同族（同帧进场＋归一进度逐帧相等）`,
+          !!e3?.pass,
+          e3 ? `进场帧差 ${e3.startGapFrames}（判据 ≤2）｜进度曲线最大偏差 ${e3.progressMaxDev}（判据 ≤0.12）` : "在场帧不足或无位移样本，不判",
+        );
+      }
+      scenes.push({ scene: sc.label, from: sc.from, to: sc.to, seq, maxTopJump, tfFrames, endClean, e1, e2, e3 });
     }
 
     // ── ② 首帧列数序列只有一项 ──
