@@ -372,6 +372,73 @@ async function main() {
       });
     }
 
+    // ── ③ 连续拖动（同列数宽度扫掠）：主线程不许出 >50ms 长任务（十三轮 T-anim）──────
+    // 栗子 10-01：「整体调整窗口的时候动画丝毫不流畅，非常卡顿闪现」。三个机械放大器已拆
+    // （字号跨档重排→恒定；测量缓存清空→等比缩放；锚点跨代补偿→代际签名）；本场景把
+    // 「连续拖动零长任务」闸化（主线程阻塞才是「卡顿」的可测本体；内容重排导致的视口位移
+    // 由浏览器 scroll anchoring 保阅读位置，属合法行为，见十轮追加的改判）。
+    {
+      await cdp.call("Emulation.setDeviceMetricsOverride", {
+        width: 1300,
+        height: 900,
+        deviceScaleFactor: 1,
+        mobile: false,
+      });
+      await cdp.call("Page.navigate", { url: `http://127.0.0.1:${SRV_PORT}/` });
+      await new Promise((r) => setTimeout(r, 2200));
+      await cdp.eval(`document.querySelector('.app-body').scrollTop = 2000; return true;`);
+      await new Promise((r) => setTimeout(r, 300));
+      await cdp.eval(`
+          window.__lt = []; window.__sweep = [];
+          try { new PerformanceObserver((l) => { for (const e of l.getEntries()) window.__lt.push(Math.round(e.duration)); }).observe({ entryTypes: ['longtask'] }); } catch (e) {}
+          window.__on = true;
+          const tick = () => {
+            let vp = null;
+            for (const c of document.querySelectorAll('.feed-list .card')) {
+              const r = c.getBoundingClientRect();
+              if (r.bottom < 60 || r.top > 420) continue;
+              if (!vp || Math.abs(r.top - 150) < Math.abs(vp.top - 150)) vp = { top: r.top };
+            }
+            if (vp) window.__sweep.push({ top: Math.round(vp.top), scroll: Math.round(document.querySelector('.app-body').scrollTop), t: Math.round(performance.now()) });
+            if (window.__on) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+          return true;
+      `);
+      for (let w = 1300; w >= 1240; w -= 8) {
+        await cdp.call("Emulation.setDeviceMetricsOverride", {
+          width: w,
+          height: 900,
+          deviceScaleFactor: 1,
+          mobile: false,
+        });
+        await new Promise((r) => setTimeout(r, 16));
+      }
+      await new Promise((r) => setTimeout(r, 400));
+      await cdp.eval(`window.__on = false; return true;`);
+      const lt = (await cdp.eval(`return window.__lt;`)) ?? [];
+      const sweep = (await cdp.eval(`return window.__sweep;`)) ?? [];
+      const big = lt.filter((d) => d > 50);
+      let fps = 0;
+      if (sweep.length >= 3) {
+        const dur = sweep[sweep.length - 1].t - sweep[0].t;
+        fps = dur > 0 ? (sweep.length / dur) * 1000 : 0;
+      }
+      report(
+        "连续拖动 1300→1240（同列数扫掠）零 >50ms 长任务（十三轮 T-anim）",
+        big.length === 0 && sweep.length >= 5,
+        `longtask ${lt.length} 个（>50ms 的 ${big.length} 个${big.length ? "：" + big.join("/") : ""}）｜采样帧 ${sweep.length}｜≈${fps.toFixed(0)}fps｜` +
+          `放大器清账：字号恒定（十三轮）＋测量缓存等比缩放＋锚点代际签名`,
+      );
+      scenes.push({
+        scene: "连续拖动扫掠",
+        lt: lt.length,
+        big: big.length,
+        fps: +fps.toFixed(0),
+        frames: sweep.length,
+      });
+    }
+
     // ── ② 首帧列数序列只有一项 ──
     for (const w of FIRSTPAINT_VIEWS) {
       await cdp.call("Emulation.setDeviceMetricsOverride", {
@@ -387,9 +454,9 @@ async function main() {
         source: `
           window.__colsSeq = [];
           const tick = () => {
-            const l = document.querySelector('.feed-window > .feed-list');
-            if (l) {
-              const n = getComputedStyle(l).gridTemplateColumns.split(' ').filter(Boolean).length;
+            // 十二轮：列数从 .feed-col 实测（.feed-list 已是横向 flex，grid 轨道退场）
+            const n = document.querySelectorAll('.feed-list > .feed-col').length;
+            if (n > 0) {
               const last = window.__colsSeq[window.__colsSeq.length-1];
               if (!last || last.n !== n) window.__colsSeq.push({ n, t: Math.round(performance.now()) });
             }

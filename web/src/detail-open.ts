@@ -337,6 +337,31 @@ export function closeInPlaceMotion(current: Box, layout: Box) {
   };
 }
 
+/**
+ * ⭐ 十三轮（2026-10-01，栗子：「终止点看着像是缩小的全景然后突然割裂闪现变成卡片本身」）：
+ * **收底裁切**（container-transform 的关键一步）。旧退场只把面板**等比**缩到卡宽——
+ * 面板比卡高得多，缩完仍是一块「卡宽×超高」的全景，再靠末段淡出让位给卡片 ⇒
+ * 眼睛看到的是「全景化掉 → 卡片冒出来」＝割裂的直源。
+ * 修法：给面板补一条 **clip-path 收底**动画，可见区从整块面板收窄到「终点变换下
+ * 恰好等于源卡矩形」的局部窗口（transform-origin top left + 终点 translate 把面板左上
+ * 对齐卡左上 ⇒ 该窗口 = `inset(0, 0, layout.height − dest.height/sTo, 0)`）。
+ * t=1 时刻面板的**可见几何 == 卡片矩形**（同位同宽同高）⇒ 卸载与卡片显形都不再产生
+ * 位移突变；末段淡出只负责窗口内的**内容交接**（详情内容 → 卡片内容）。
+ */
+export interface CloseClip {
+  /** 终态下被裁掉的底部高度（面板局部坐标，px）。 */
+  bottomInsetPx: number;
+}
+export function closeClipMotion(layout: Box, dest: Box): CloseClip | null {
+  const sTo = dest.width / layout.width;
+  if (!Number.isFinite(sTo) || sTo <= 0) return null;
+  const visibleH = dest.height / sTo;
+  const inset = layout.height - visibleH;
+  // 面板本来就不比卡高（极端小视口）⇒ 没有底要收，裁切无意义。
+  if (!Number.isFinite(inset) || inset <= 1) return null;
+  return { bottomInsetPx: Math.round(inset) };
+}
+
 /** 面板 + 遮罩同一条时间线跑退场；返回面板动画（调用方等它 finished 再卸 DOM）。
  *
  * ⚠ 「落地上还要化掉」这条是**实拍抓出来的**（四轮 T8② 逐帧胶片 `D:/tmp/gt-layout/r4/exit/screencast/`）：
@@ -360,7 +385,8 @@ export function playCloseMotion(
   motion: OpenMotion,
   duration = CLOSE_DURATION,
   reveal?: HTMLElement | null,
-): { card: Animation; fade: Animation; revealAnim?: Animation; dim?: Animation } {
+  clip?: CloseClip | null,
+): { card: Animation; fade: Animation; clipAnim?: Animation; revealAnim?: Animation; dim?: Animation } {
   panel.style.transformOrigin = "top left";
   panel.style.transform = motion.from;
   const timing: KeyframeAnimationOptions = {
@@ -371,6 +397,25 @@ export function playCloseMotion(
   const card = panel.animate([{ transform: motion.from }, { transform: motion.to }], timing);
   const now = document.timeline?.currentTime;
   if (now != null) card.startTime = now;
+
+  // ⭐ 十三轮：收底裁切与飞行同一条时间线（同 duration/easing）——可见区随飞行同步收窄，
+  // 落地时面板可见部分恰好是源卡矩形（closeClipMotion 的注释里有完整几何推导）。
+  // fill: "forwards" 让裁切顶到卸载为止（与 transform 同族的卸载窗口问题，同一种解法）。
+  let clipAnim: Animation | undefined;
+  if (clip && typeof panel.animate === "function") {
+    try {
+      clipAnim = panel.animate(
+        [
+          { clipPath: "inset(0px 0px 0px 0px round 24px)" },
+          { clipPath: `inset(0px 0px ${clip.bottomInsetPx}px 0px round 18px)` },
+        ],
+        timing,
+      );
+      if (now != null) clipAnim.startTime = now;
+    } catch {
+      clipAnim = undefined;
+    }
+  }
 
   // 前 80% 保持不透明（让人看清「同一块东西在往回走」，且**落地那一下是实体**），
   // 后 20% 化掉（交接给源卡，落地不留残影）。
@@ -413,5 +458,5 @@ export function playCloseMotion(
       dim = undefined;
     }
   }
-  return { card, fade, revealAnim, dim };
+  return { card, fade, clipAnim, revealAnim, dim };
 }

@@ -14,13 +14,11 @@ export const FEED_COLS_MOBILE = 1;
 export const FEED_MOBILE_MAX_WIDTH = 768;
 /** ── 摘要契约 → 布局反推（2026-09-24 四轮，栗子定标准）────────────────────────────
  *  摘要上限是**站内既有标准**：`src/feed/prompts.ts:156` 的评分提示词原文 `summary_cn` 20–35 个汉字。
- *  · 卡宽上限由它反推：**标准字号**（0.98rem）下一行放下 35 字所需的最小卡宽 = 35×16.66 + 69
- *    = **652.1 → 653px**（＝ FEED_COL_MIN）。
- *  · 九轮起摘要字样**流式**收缩（0.98→0.81rem）⇒「一行读完 35 字」的门槛从 653 降到 **551px**。
- *  · 单列档卡宽上限 = 两列档在参照档下的卡宽 = **793**（见 FEED_CARD_MAX 与 styles.css 的
- *    `--feed-card-max`）。
- *  ⚠ `--feed-col-min` 与 `FEED_COL_MIN` 仍是双写契约；`--feed-card-max` 与 `FEED_CARD_MAX` 同理
- *    （都由 lock 单测钉住）。 */
+ *  · 一行放下 35 字所需的最小卡宽 = 35×16.66 + 69 = **652.1 → 653px**（＝ FEED_COL_MIN）。
+ *  · 十三轮起摘要字号**恒定 0.98rem**（流式收缩退役），「一行读完」的门槛恒为 653；
+ *    窄卡摘要自然换行（瀑布流卡高自由），不再是缺陷。
+ *  · `FEED_CARD_MAX`(793) 十三轮起**只约束多列档的列数反解**（单列卡宽 = 网格宽铺满，
+ *    见 feedCardWidthFor）。 */
 /** 摘要一行的**内容契约**：上限 35 个汉字（＝提示词里的硬性要求）。 */
 export const FEED_SUMMARY_MAX = 35;
 /** 实测单字宽（17px 根字号、700 字重；与 G9 表「一行容量 = floor((卡宽−69)/16.66)」同式）。 */
@@ -30,15 +28,14 @@ export const FEED_CARD_CHROME = 69;
 export const FEED_COL_MIN = Math.ceil(FEED_SUMMARY_MAX * FEED_CHAR_W + FEED_CARD_CHROME);
 /** 参照档的内容网格宽（1920×1080；＝壳上限 1866 − 侧栏 192 − 左右内距，本机实测 1602）。 */
 export const FEED_GRID_REF = 1602;
-/** 单列档卡宽**上限**（2026-09-25 五轮，栗子：「我理想的单列卡片的极限宽度应该按这个来」）：
- *  (FEED_GRID_REF − FEED_ROW_GAP) / 2 = (1602 − 16) / 2 = **793**。
- *  ⚠ 与 styles.css 的 `--feed-card-max` 双写（由 lock 单测钉住）；单列档由 CSS 在**内容侧**收窄实现。 */
+/** **多列档单卡宽上界**（2026-09-25 五轮立；十三轮起语义收窄）：两列档在参照档下的单卡宽
+ *  = (1602 − 16) / 2 = **793**。列数反解取「最小 n 使卡宽 ≤793」。
+ *  ⚠ 十三轮起它**不再收单列档**——单列卡宽 = 网格宽（栗子 10-01「两侧空隙不允许」，
+ *  09-25「单列极限 793」与十轮 R4b 页边距口径作废，丁D1 登记见规格十三轮追加）。 */
 export const FEED_CARD_MAX = Math.floor((FEED_GRID_REF - FEED_ROW_GAP) / 2);
 /** 卡宽**下限**（2026-09-26 十轮 T1）：两列把卡压到 460 以下时退回单列。
  *  出处＝K-11 的一行容量下限 24 汉字（24×16.66+69 ≈ 469，取整档 460）。 */
 export const FEED_CARD_MIN = 460;
-/** 单列档内容容器上限 = 卡宽上限 + 内容衬距（24×2）——CSS 侧写的就是这个算式。 */
-export const FEED_CONTENT_MAX_1COL = FEED_CARD_MAX + 48;
 /** ── 理由契约（内容侧，硬闸）：100–150 字（REASON_MIN/MAX，`src/feed/checks.ts` G1 族）。
  *  十二轮起理由**不再有显示行数/槽位**——全文自然流展示（块八：几行没有太大所谓）。
  *  这两个常量只服务**估算器**（estCardHeightFor 的行数推算）与内容闸，不再是布局真源。 */
@@ -51,9 +48,12 @@ export const FEED_REASON_LINE_H = FEED_REASON_CHAR_W * 1.7;
 export const FEED_SUMMARY_LINE_RATIO = 1.5;
 export const FEED_SUMMARY_PAD_Y = 16;
 
-/** ── 档内卡片形态（十二轮改版）：卡宽 ⇒ (摘要字号 f, 标签槽位 T) ─────────────────────
- *  · 摘要字号：**流式**（窄档 0.98→0.81rem，让「一行 35 字」下探到卡宽 551）——保留，
- *    它服务可读性，与定高无关；行数不再被钳制（自然换行，块八「几行无所谓」）。
+/** ── 档内卡片形态（十三轮改版）：卡宽 ⇒ (摘要字号 f, 标签槽位 T) ─────────────────────
+ *  · 摘要字号：**恒定 0.98rem**（十三轮，2026-10-01 栗子「某些宽度字体异常变小」清算）——
+ *    流式字号（0.98→0.81rem 随卡宽收缩）的唯一目的是「保一行 35 字」消槽位空白带；槽位已随
+ *    十二轮退场，字号恒定后窄卡摘要自然多排一行＝灵活（块八），字号全站统一＝统一。
+ *    实测旧机制的非单调性：1400 档（556 卡）字号 13.91px 反而比 1275 档（494 卡）的 16.66 小
+ *    ——「宽卡字更小」，观感即「某些宽度字体异常变小」（`D:/tmp/gt-r15-font.mjs` 可复跑）。
  *  · 标签槽位：`floor((卡宽−chrome)/88)` 截到 [2,8]，其余折进 `+N` —— 让标签行**永不换行**
  *    （`.card-tags` 26px 定高 + overflow:hidden 的防半截 chip 机制不变；chip 自身填满该行，
  *    不是死空间）。 */
@@ -63,30 +63,9 @@ export const FEED_TAG_SLOTS_MAX = 8;
 
 /** 根字号：styles.css 的 `html { font-size: 17px }`。所有 rem↔px 换算都用它，别按 16 算。 */
 export const FEED_ROOT_FONT_PX = 17;
-/** 摘要字号上界（＝0.98rem 标准字号）与下界 0.81rem（推导史见 git blame 九轮版注释）。 */
-export const FEED_SUMMARY_FONT_PX_MAX = 0.98 * FEED_ROOT_FONT_PX; // 16.66
-export const FEED_SUMMARY_FONT_PX_MIN = 0.81 * FEED_ROOT_FONT_PX; // 13.77
+/** 摘要字号＝**全站恒定 0.98rem**（十三轮起不再随卡宽流式收缩；推导史见 git blame 九轮版注释）。 */
+export const FEED_SUMMARY_FONT_PX = 0.98 * FEED_ROOT_FONT_PX; // 16.66
 export const FEED_SUMMARY_LINES_MAX = 3;
-
-/** 摘要字号形态：一行放得下 35 字就 1 行的字号，放不下收缩字号（下限 0.81rem），再窄就换行。
- *  十二轮起返回值里的 `lines` 只是**字号推导的中间量**，不再进 CSS（无槽位、无 clamp）。 */
-export function feedSummaryShapeForCard(
-  cardWidth: number,
-  chrome: number = FEED_CARD_CHROME,
-): { fontPx: number; lines: number } {
-  const innerW = Math.max(0, cardWidth - chrome);
-  for (let lines = 1; lines <= FEED_SUMMARY_LINES_MAX; lines++) {
-    const perLine = Math.ceil(FEED_SUMMARY_MAX / lines);
-    const fontPx = Math.min(FEED_SUMMARY_FONT_PX_MAX, innerW / perLine);
-    if (fontPx >= FEED_SUMMARY_FONT_PX_MIN) return { fontPx, lines };
-  }
-  return { fontPx: FEED_SUMMARY_FONT_PX_MIN, lines: FEED_SUMMARY_LINES_MAX };
-}
-
-/** 摘要行数：`feedSummaryShapeForCard` 的行数（字号推导的中间量；十二轮起不进 CSS）。 */
-export function feedSummaryLinesForCard(cardWidth: number, chrome: number = FEED_CARD_CHROME): number {
-  return feedSummaryShapeForCard(cardWidth, chrome).lines;
-}
 
 /** 标签槽位：估算每片约 88px（实测 chip 50–110px，取偏保守值）⇒ 整行放得下、不换行、不半截。 */
 export function feedTagSlotsForCard(cardWidth: number, chrome: number = FEED_CARD_CHROME): number {
@@ -95,10 +74,10 @@ export function feedTagSlotsForCard(cardWidth: number, chrome: number = FEED_CAR
 }
 
 /** 档内卡片形态（**唯一读法**）：网格宽 + 列数 ⇒ 卡宽 / 摘要字号 / 标签槽位。
- *  十二轮起**不含卡高/行数**——卡高＝内容自然高度，由浏览器排版决定（0 死空间由闸钉住）。 */
+ *  卡高＝内容自然高度（浏览器排版，0 死空间由闸钉住）；摘要字号＝全站恒定（见上）。 */
 export interface FeedCardShape {
   cardWidth: number;
-  /** 摘要字号（px）：窄档收缩（流式），宽档 = 0.98rem。 */
+  /** 摘要字号（px）：十三轮起恒定 0.98rem（流式收缩已退役）。 */
   summaryFontPx: number;
   tagSlots: number;
 }
@@ -111,7 +90,7 @@ export function feedCardShapeFor(
   const cardWidth = feedCardWidthFor(contentWidth, cols, rowGap);
   return {
     cardWidth,
-    summaryFontPx: feedSummaryShapeForCard(cardWidth, chrome).fontPx,
+    summaryFontPx: FEED_SUMMARY_FONT_PX,
     tagSlots: feedTagSlotsForCard(cardWidth, chrome),
   };
 }
@@ -128,7 +107,7 @@ export function estCardHeightFor(
   text: { summary: string; reason: string },
   cardWidth: number,
   chrome: number = FEED_CARD_CHROME,
-  summaryFontPx: number = feedSummaryShapeForCard(cardWidth, chrome).fontPx,
+  summaryFontPx: number = FEED_SUMMARY_FONT_PX,
 ): number {
   const innerW = Math.max(1, cardWidth - chrome);
   const sumPerLine = Math.max(1, Math.floor(innerW / Math.max(1, summaryFontPx)));
@@ -237,9 +216,11 @@ export function feedColsForWidth(width: number): number {
 /**
  * 2026-09-25 八轮（栗子当日第二次定标准）：**列数由「卡宽不得超过 793」反解**——
  *   「首先不允许出现留白……第一张图片的那个卡片长度就是卡片极限长度了，再长就要变成两列」。
- * 2026-09-26 十轮 T1：**补上下限 460**——两列会把卡压到 460 以下时退回单列
- *   （单列档卡宽 = min(网格, 793)，余量成左右对称页边距）。
- * 十二轮：**规则原样不变**（块八只动「高」，不动「宽」）；它同时是瀑布流的列数 K。
+ * 2026-09-26 十轮 T1：**补上下限 460**——两列会把卡压到 460 以下时退回单列。
+ * 2026-10-01 十三轮：**单列档铺满网格**（卡宽 = 网格宽，793 不再收单列）——栗子「两侧的
+ *   空隙不允许，以后不允许再看到」⇒ 网格 ∈ (793, 936) 的回退段从「单列 793 + 对称页边距」
+ *   改为「单列铺满」（最多 935px，比 793 长 18%）；丁D1 登记＝破 09-25「单列极限 793」
+ *   与十轮 R4b 页边距口径，换「全档零页边距」。
  *
  * ⚠ 单一真源：本函数是列数的**唯一**来源，App 把结果写进 CSS 变量 `--feed-cols`
  * （`.feed-list` 的列宽算式读它），瀑布流入列也用同一个值。
@@ -279,13 +260,15 @@ export function feedTierMetricsFor(mobile: boolean): { rowGap: number; chrome: n
 /**
  * 某个内容宽 + 列数下，**卡片实际有多宽**（＝CSS 计算值的 JS 同式）。
  *   · 多列档：列 = (内容宽 − (n−1)×行距) / n，列内卡片 width:100% ⇒ 卡宽 = 列宽；
- *   · 单列档：CSS 用 `max-width: var(--feed-card-max)` 收 ⇒ 卡宽 = min(内容宽, 793)。
+ *   · 单列档：**卡宽 = 网格宽（铺满）**——十三轮起 793 上限不再收单列（栗子 10-01：
+ *     「两侧的空隙不允许，以后不允许再看到」；旧口径 09-25「单列极限 793」与十轮 R4b
+ *     「回退档页边距 ≤72px/侧」一并作废，丁D1 登记见规格十三轮追加）。
+ *     793 保留为**多列档单卡宽上界**（feedColsForContentWidth 的列数反解用）。
  */
 export function feedCardWidthFor(contentWidth: number, cols: number, rowGap: number = FEED_ROW_GAP): number {
   const n = Math.max(1, cols | 0);
   if (!(contentWidth > 0)) return 0;
-  const track = (contentWidth - (n - 1) * rowGap) / n;
-  return n === 1 ? Math.min(track, FEED_CARD_MAX) : track;
+  return (contentWidth - (n - 1) * rowGap) / n;
 }
 
 /** overflow-y:auto/scroll 才是真正的滚动口；visible/hidden 只是裁切。 */

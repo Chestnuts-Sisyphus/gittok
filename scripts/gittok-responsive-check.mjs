@@ -131,32 +131,18 @@ const FEED_REASON_LINES_MAX_MOBILE = 10;
 const FEED_TAG_SLOT_PX = 88;
 const FEED_TAG_SLOTS_MIN = 2;
 const FEED_TAG_SLOTS_MAX = 8;
-/** 摘要流式字号上下界（九轮）：上界＝八轮标准字号 0.98rem；下界 0.81rem 让「一行 35 字」的档位
- *  从卡宽 653 下移到 **551**（35×13.77+69），1400 档（556）因此从 2 行槽位变成 1 行、空白带消失。 */
-const FEED_SUMMARY_FONT_PX_MAX = 0.98 * 17;
-const FEED_SUMMARY_FONT_PX_MIN = 0.81 * 17;
-const FEED_SUMMARY_LINES_MAX = 3;
+/** 摘要字号＝**全站恒定 0.98rem**（十三轮 2026-10-01，与 web/src/feed-layout.ts 的
+ *  FEED_SUMMARY_FONT_PX 同值）：流式收缩退役——旧机制的非单调性（1400 档 556 卡 13.91px
+ *  < 1275 档 494 卡 16.66px＝「宽卡字更小」）正是栗子「某些宽度字体异常变小」的机制。 */
+const FEED_SUMMARY_FONT_PX = 0.98 * 17;
 /** 档位常数：桌面 / 手机各一套（与 feed-layout.ts 的 feedTierMetricsFor 同式）。 */
 function feedTierMetrics(view) {
   return view.w <= 768
     ? { chrome: FEED_CARD_CHROME_MOBILE, reasonMax: FEED_REASON_LINES_MAX_MOBILE }
     : { chrome: FEED_CARD_CHROME, reasonMax: FEED_REASON_LINES_MAX };
 }
-/** 摘要形态（字号 + 行数）：一行放得下 35 字就 1 行，放不下就加行；字号在 [MIN, MAX] 里随卡宽收缩。 */
-function feedSummaryShapeExpected(cardW, chrome = FEED_CARD_CHROME) {
-  const innerW = Math.max(0, cardW - chrome);
-  for (let lines = 1; lines <= FEED_SUMMARY_LINES_MAX; lines++) {
-    const perLine = Math.ceil(FEED_SUMMARY_MAX / lines);
-    const fontPx = Math.min(FEED_SUMMARY_FONT_PX_MAX, innerW / perLine);
-    if (fontPx >= FEED_SUMMARY_FONT_PX_MIN) return { fontPx, lines };
-  }
-  return { fontPx: FEED_SUMMARY_FONT_PX_MIN, lines: FEED_SUMMARY_LINES_MAX };
-}
-function feedSummaryLinesExpected(cardW, chrome = FEED_CARD_CHROME) {
-  return feedSummaryShapeExpected(cardW, chrome).lines;
-}
-function feedSummaryFontExpected(cardW, chrome = FEED_CARD_CHROME) {
-  return feedSummaryShapeExpected(cardW, chrome).fontPx;
+function feedSummaryFontExpected() {
+  return FEED_SUMMARY_FONT_PX;
 }
 function feedTagSlotsExpected(cardW, chrome = FEED_CARD_CHROME) {
   return Math.min(
@@ -169,8 +155,8 @@ function feedColsExpected(contentW, gap = 16) {
   if (!(contentW > 0)) return 1;
   const at = (n) => (contentW - (n - 1) * gap) / n;
   // 十轮 T1 镜像（与 web/src/feed-layout.ts 的 feedColsForContentWidth 同式，lock 单测钉住）：
-  // 取最小 n 使卡宽落在 [FEED_CARD_MIN, FEED_CARD_MAX]；n=1 只在网格 ≤793 时成立，
-  // 三列都给不出合规卡宽时回 1（CSS 收轨道到 min(网格,793)，余量成对称页边距）。
+  // 取最小 n 使卡宽落在 [FEED_CARD_MIN, FEED_CARD_MAX]；n=1 只在网格 ≤793 时成立。
+  // 十三轮：回退单列（网格 794–935）**铺满网格**，不再有页边距。
   for (let n = 1; n <= 3; n++) {
     const w = n === 1 ? contentW : at(n);
     if (w <= FEED_CARD_MAX && w >= FEED_CARD_MIN) return n;
@@ -215,34 +201,27 @@ function feedCardHeightMaxExpected(cardW, chrome = FEED_CARD_CHROME) {
     ) + HMAX_SLACK
   );
 }
-/** ── 逐档预期表（八轮重排：列数改由「卡宽 ≤793」反解，中间带一律两列）──────────────
- *  数值＝本机实测（±1.5px 容差）；每档还带**档内形态**（摘要行数 S / 理由行数 R / 卡高 H / 标签槽位 T），
- *  由 feedSummaryLinesExpected 一族从卡宽反推——**表格与算式互为校验**：
- *  算式给出期望、实测给出读数，两边对不上就红（防「只改表格」或「只改算式」的单边漂移）。
- *  ⚠ 1100/1200/1275/1343/1400 这五档在八轮从「1 列 793 + 两侧页边距」变成「2 列 406–556」——
- *    这正是栗子「不允许出现留白，再长就要变成两列」那条指令的落点。
- *  ⚠ 十轮 T1（2026-09-26，栗子「很多改动导致观感甚至不如以前了」的清算）：八轮把 1100/1200
- *    压成 2×406/456，理由槽位按上限算 7/6 行、实排只有 5/4 行 ⇒ 块内 47.4px＝两整行空白（甲A1）。
- *    列数规则补上下限 460：这两档**退回 1 列 793**（八轮前的形态），余量成 ≤71.5px/侧 的对称页边距；
- *    1275/1343/1400 仍两列（2×494/528/556 均 ≥460）。候选 460/500/556 的实拍对照见
- *    `D:/tmp/gt-layout/r11/scan-*.json`（M500/556 会把 1275/1343 也踢成单列、页边距 105/139 ⇒ 否决）。 */
+/** ── 逐档预期表（十三轮重排，2026-10-01）────────────────────────────────────────
+ *  列数规则不变（卡宽 ∈ [460,793] 的最小列数）；**单列档卡宽 = 网格宽（铺满，十三轮）**——
+ *  1200/1100 两档从「1×793 + 页边距 67.5/17.5px/侧」改为「1×928/828 零页边距」
+ *  （栗子「两侧的空隙不允许，以后不允许再看到」）。容量＝floor((卡宽−69)/16.66)。
+ *  ⚠ 摘要字号十三轮起恒 16.66px（流式收缩退役）：1400 档容量从 35 回落到 29（556 卡）——
+ *    摘要在该档自然换 2 行（瀑布流卡高自由），不再是缺陷。 */
 const EXPECT_DESKTOP = {
   "2560x1080": { cols: 2, cardW: 793, capMin: 43, capMax: 43 },
   "1920x1080": { cols: 2, cardW: 793, capMin: 43, capMax: 43 },
   "1600x900": { cols: 2, cardW: 656, capMin: 35, capMax: 35 },
-  // 九轮：1400/900/844x390 三档的**一行容量从 29/33/30 升到 35** —— 摘要字号流式收缩后
-  // 「一行放得下 35 字」在这些档也成立了（1400 卡宽 556 ⇒ 字号 13.91px、900 卡宽 628 ⇒ 15.97px）。
-  "1400x900": { cols: 2, cardW: 556, capMin: 35, capMax: 35 },
+  // 1400 档（556 卡）：十三轮字号恒定 ⇒ 一行容量 29（旧流式字号时代虚高到 35）。
+  "1400x900": { cols: 2, cardW: 556, capMin: 29, capMax: 29 },
   "1343x900": { cols: 2, cardW: 528, capMin: 27, capMax: 27 },
   "1275x900": { cols: 2, cardW: 494, capMin: 25, capMax: 25 },
-  // 十轮 T1：八轮的 2×456/406（理由槽 6/7 行 vs 实排 4/5 行 ⇒ 两整行空白）退回单列 793。
-  // 一行容量 43 ＝ floor((793−69)/16.66)，与 1920/2560 两列档同卡宽同容量。
-  "1200x900": { cols: 1, cardW: 793, capMin: 43, capMax: 43 },
-  "1100x800": { cols: 1, cardW: 793, capMin: 43, capMax: 43 },
+  // 十三轮：1200/1100 单列铺满（793 上限不再收单列）；容量 = floor((网格−69)/16.66)。
+  "1200x900": { cols: 1, cardW: 928, capMin: 51, capMax: 51 },
+  "1100x800": { cols: 1, cardW: 828, capMin: 45, capMax: 45 },
   "1000x800": { cols: 1, cardW: 728, capMin: 39, capMax: 39 },
-  "900x800": { cols: 1, cardW: 628, capMin: 35, capMax: 35 },
+  "900x800": { cols: 1, cardW: 628, capMin: 33, capMax: 33 },
   // 844×390 是 mobile:true 但 w>768 —— CSS 媒体查询按**宽度**走，844 用桌面栅格。
-  "844x390": { cols: 1, cardW: 572, capMin: 35, capMax: 35 },
+  "844x390": { cols: 1, cardW: 572, capMin: 30, capMax: 30 },
 };
 
 /** 每档侧栏/底栏/tabs 的期望命中档（照 styles.css 现状：仅 480/768/900 三档宽度断点）。 */
@@ -785,8 +764,8 @@ async function checkView(cdp, view) {
               const colsN = colEls.length;
               const gap = parseFloat(lcs?.columnGap||'0')||0;
               if (colsN > 1) return Math.abs(m0 - (list.clientWidth-(colsN-1)*gap)/colsN) <= 1.5;
-              // 单列档（>769）：列 max-width 收 793、居中（2026-09-25 起；余量成对称页边距）
-              return Math.abs(m0 - Math.min(list.clientWidth, ${FEED_CARD_MAX})) <= 1.5;
+              // 单列档（>769）：十三轮起**铺满网格**（793 上限不再收单列，「两侧空隙不允许」）
+              return Math.abs(m0 - list.clientWidth) <= 1.5;
             })(),
             ruleVars: (()=>{ if (!list) return null; const c=getComputedStyle(list); return {
               colsVar: c.getPropertyValue('--feed-cols').trim(),
@@ -799,61 +778,37 @@ async function checkView(cdp, view) {
   // 单列档「频道头与卡片左右缘对齐」：判左右缘各 ≤4px（浮动取整余量）
   const cueAlignsCard = m.cueDelta !== null && m.cueDelta <= 4 && m.cueRightDelta <= 4;
   if (view.w > 768) {
-    // ── 2026-09-25 八轮 R0（新，直接锁栗子那条指令）：**零留白** —— 轨道铺满网格 ──
-    // 栗子原话：「首先不允许出现留白……那个卡片长度就是卡片极限长度了，再长就要变成两列」。
-    // 判据：n × 卡宽 + (n−1) × 行距 == 网格宽（±1.5px）⇒ 卡片右缘必须抵住网格右缘，
-    //       deadZone（网格 − 卡片占用）必须为 0。七轮那种「1 列 793 + 两侧对称页边距」在这里直接红。
-    // ── 2026-09-26 十轮 T1 修订（丁D1「破了哪条口径、换回什么」必须写明）─────────────
-    // 八轮版 R0 判「全档零留白」，但八轮规则在 1074–1191 视口把卡压成 2×406–456，
-    // 理由槽位空出**两整行 47.4px**（甲A1，栗子：「观感甚至不如以前」）——轨道内零留白换来
-    // 块内更大留白，正是丁D2 禁止的「拆东墙补西墙」。十轮口径：**零留白只约束两列档与
-    // 网格 ≤793 的单列档**；两列 <460 的回退档（网格 ∈ (793,936)）换回对称页边距 ≤71.5px/侧
-    // （由下一条 R4b 锁），块内不再有空行。
-    const isFallback1Col = m.cols === 1 && m.gridW > FEED_CARD_MAX;
+    // ── 2026-09-25 八轮 R0：**零留白** —— 轨道铺满网格 ─────────────────────────────
+    // 判据：n × 卡宽 + (n−1) × 行距 == 网格宽（±1.5px）⇒ 卡片右缘必须抵住网格右缘。
+    // ── 2026-10-01 十三轮：**全档 R0**（十轮的「单列回退档豁免 + R4b 页边距」作废）─────
+    // 栗子：「某种宽度下出现空隙……这种两侧的空隙不允许，以后不允许再看到」⇒ 网格 ∈ (793,936)
+    // 的回退段从「单列 793 + 对称页边距」改为「单列铺满」（丁D1：破 09-25「单列极限 793」，
+    // 换「全档零页边距」；793 保留为多列档列数反解上界）。
     const used =
       Math.round(m.cardW) * m.cols + (m.cols - 1) * Math.round(m.gridW > 0 ? (m.rowGap ?? 16) : 16);
     const deadZone = Math.max(0, Math.round(m.gridW - used));
-    const r0 = isFallback1Col ? true : Math.abs(used - m.gridW) <= 1.5;
+    const r0 = Math.abs(used - m.gridW) <= 1.5;
     READINGS[view.key] = { ...m, usedWidth: used, deadZone };
     report(
       view.key,
-      isFallback1Col
-        ? "R0 零留白（十轮 T1 修订：单列回退档豁免，改由 R4b 锁对称页边距）"
-        : "R0 零留白：n×卡宽 + (n−1)×行距 == 网格宽（栗子「不允许出现留白」，八轮新增）",
+      "R0 零留白：n×卡宽 + (n−1)×行距 == 网格宽（**全档含单列**，十三轮：两侧空隙零容忍）",
       r0,
-      isFallback1Col
-        ? `列数 1｜卡宽 ${Math.round(m.cardW)}px vs 网格 ${m.gridW}px ⇒ 页边距 ${deadZone}px 对称分两侧（≤71.5px/侧，R4b 锁）｜` +
-            `豁免依据：八轮在此档产出 2×406–456＝块内两整行空白（甲A1），十轮裁定页边距 ≤ 块内空行`
-        : `列数 ${m.cols}｜卡宽 ${Math.round(m.cardW)}px ⇒ 占用 ${used}px vs 网格 ${m.gridW}px｜` +
-            `**留白 ${deadZone}px**（判据 ≤1.5）｜` +
-            `改前实测：1500 档 1 列 793 在 1228 网格里 ⇒ 留白 435px（栗子红框那两处）`,
+      `列数 ${m.cols}｜卡宽 ${Math.round(m.cardW)}px ⇒ 占用 ${used}px vs 网格 ${m.gridW}px｜` +
+        `**留白 ${deadZone}px**（判据 ≤1.5）｜` +
+        `改前实测：1200 档 1 列 793 在 928 网格 ⇒ 页边距 67.5px/侧（栗子 10-01 红框），十三轮铺满后 0`,
     );
-    // ── 2026-09-25 七轮 R4（八轮改写）：卡宽必须 ≤ 793，且**单列档不许再收窄** ──
-    // 八轮起列数由上限反解 ⇒ 单列只在网格 ≤793 时出现，那时卡宽 == 网格（收敛成 R0 的特例）。
-    // 这里保留「上限」这一半：防有人把 793 改大（卡又变长）或把单列收窄（又造留白）。
+    // ── R4（十三轮改判）：**多列档**卡宽 ≤ 793；单列档卡宽 == 网格宽（铺满）────────────
     const slackL = m.cardLeftInGrid;
     const slackR = Math.round(m.gridW - m.cardLeftInGrid - m.cardW);
     report(
       view.key,
-      `R4 卡宽 ≤ ${FEED_CARD_MAX}px（八轮：上限成为全档列数依据）`,
-      m.cardW <= FEED_CARD_MAX + 1.5,
-      `卡宽 ${Math.round(m.cardW)}px（上限 ${FEED_CARD_MAX}px）｜列数 ${m.cols}｜网格 ${m.gridW}px｜左余 ${slackL} 右余 ${slackR}` +
-        `｜改前实测：1500 档卡宽 1228（栗子：「这个太长了」）；左对齐 700 留 296px 右空档（栗子 09-24：「这种空隙不允许出现」）`,
+      m.cols >= 2
+        ? `R4 多列档卡宽 ≤ ${FEED_CARD_MAX}px（列数反解上界）`
+        : `R4 单列档卡宽 == 网格宽（十三轮铺满；793 不再收单列）`,
+      m.cols >= 2 ? m.cardW <= FEED_CARD_MAX + 1.5 : Math.abs(m.cardW - m.gridW) <= 1.5,
+      `卡宽 ${Math.round(m.cardW)}px${m.cols >= 2 ? `（上限 ${FEED_CARD_MAX}px）` : `（网格 ${m.gridW}px）`}｜列数 ${m.cols}｜左余 ${slackL} 右余 ${slackR}` +
+        `｜丁D1：破 09-25「单列极限 793」（栗子 10-01「两侧空隙不允许」），793 保留为多列档列数反解上界`,
     );
-    // ── 2026-09-26 十轮 T1：单列**回退档**的页边距必须对称且 ≤72px/侧（丁D2「整场留白预算」）──
-    // 列数规则退回单列的条件是「两列会把卡压到 460 以下」⇒ 网格 <936 ⇒ 页边距 = (网格−793)/2 < 71.5。
-    // 不对称（左对齐）是栗子 09-24 明确否掉的形态；>72 说明 460 门槛被改坏（在别处造出大留白）。
-    if (m.cols === 1 && m.gridW > FEED_CARD_MAX) {
-      const mL = m.cardLeftInGrid;
-      const mR = m.gridW - m.cardLeftInGrid - m.cardW;
-      report(
-        view.key,
-        "R4b 单列回退档页边距对称且 ≤72px/侧（十轮 T1/丁D2）",
-        Math.abs(mL - mR) <= 1.5 && mL <= 72,
-        `左 ${Number(mL.toFixed(1))} / 右 ${Number(mR.toFixed(1))}（网格 ${m.gridW} − 卡 ${Math.round(m.cardW)}）｜` +
-          `规则：两列卡宽 <460 才回单列 ⇒ 网格 <936 ⇒ 页边距 <71.5px/侧`,
-      );
-    }
     // R5/R6/R7（档内形态）与 mobile/desktop 无关，统一放到 if/else 之后判 —— 九轮起手机档也判。
     const exp = EXPECT_DESKTOP[view.key];
     // ── 2026-09-24 四轮 R1（八轮改判据）：**卡宽 ≤ 793 且列数 = 算式值** ──
@@ -884,7 +839,7 @@ async function checkView(cdp, view) {
         (m.cols === 1
           ? m.cueDelta === null
             ? "本档无频道头/偏好条可测（不判）"
-            : `实测 左缘差 ${m.cueDelta}px、右缘差 ${m.cueRightDelta}px → ${cueAlignsCard ? `对齐 ✓（条与卡同宽 ${Math.round(m.cardW)}px；09-25 起单列档的卡宽上限由**内容容器**承担，超出部分变成左右对称的页边距）` : "❌ 卡片与上面的条错位"}`
+            : `实测 左缘差 ${m.cueDelta}px、右缘差 ${m.cueRightDelta}px → ${cueAlignsCard ? `对齐 ✓（条与卡同宽 ${Math.round(m.cardW)}px；十三轮起单列铺满网格，头≡卡=网格宽）` : "❌ 卡片与上面的条错位"}`
           : `多列填满行 ✓`),
     );
     // ── 2026-09-24 四轮 T5（甲A1 / 乙B5）+ 四轮 R3：**头/偏好条 == 网格宽（全档）** ──

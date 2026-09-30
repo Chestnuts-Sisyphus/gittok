@@ -55,9 +55,9 @@ describe(".summary 摘要块自然流契约（十二轮块八：几行没有太�
     expect(decl(block, "text-overflow"), "ellipsis 回潮 = 硬裁回潮").toBeNull();
   });
 
-  it("优雅件在场：text-wrap: balance（多行配平断点）+ 流式字号变量 --feed-summary-font", () => {
+  it("优雅件在场：text-wrap: balance（多行配平断点）+ 字号恒定 0.98rem（十三轮：流式变量退役）", () => {
     expect(decl(block, "text-wrap")).toBe("balance");
-    expect(decl(block, "font-size")).toBe("var(--feed-summary-font, 0.98rem)");
+    expect(decl(block, "font-size")).toBe("0.98rem");
   });
 });
 

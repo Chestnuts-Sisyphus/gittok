@@ -17,6 +17,7 @@ import {
 import {
   CLOSE_DURATION,
   CLOSE_INPLACE_DURATION,
+  closeClipMotion,
   closeInPlaceMotion,
   closeToCardMotion,
   destBoxFromElement,
@@ -429,6 +430,9 @@ export function CardDetail({
     // 首帧即动（锁⑩）：playCloseMotion 内部同步写 from 再 animate，中间不落笔。
     // 退场时把源卡一起反向淡回来（栗子：「退场动画的结尾出现了卡片原有位置闪现」）——
     // 只在这张卡真的可见时才做（live 非空）；回退案里源卡已经不可用，没有可交接的对象。
+    // ⭐ 十三轮：live 在场时补「收底裁切」——面板可见区随飞行收窄，落地 = 源卡矩形逐像素
+    //（栗子：「终止点看着像是缩小的全景然后突然割裂闪现变成卡片本身」的根治）。
+    const clip = live ? closeClipMotion(layout, live) : null;
     const {
       card: anim,
       fade,
@@ -440,6 +444,7 @@ export function CardDetail({
       motion,
       live ? CLOSE_DURATION : CLOSE_INPLACE_DURATION,
       live ? sourceEl : null,
+      clip,
     );
     const done = () => {
       panel.classList.remove("is-flying");

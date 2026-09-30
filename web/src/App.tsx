@@ -888,13 +888,38 @@ function FeedVirtualList({
     [contentW, cols, rowGap, chrome],
   );
   const cardWidth = shape.cardWidth;
-  // 高度缓存：渲染后实测回填（键=repo）；卡宽代际变了整体失效（老高度全部作废）。
-  const measuredRef = useRef(new Map<string, number>());
+  // 高度缓存：渲染后实测回填（键=repo）。⭐ 十三轮改「**缩放**」不「清空」：
+  //   旧版在卡宽代际切换时把整个缓存清掉 ⇒ 宽度拖动的每一 tick 都要先按**估算**渲染一帧
+  //   （垫片偏差 = 视口上方各卡的估算误差累加，十几 px 级）再被实测拉回——两次渲染两次跳，
+  //   正是栗子「拖动卡顿闪现」的机制之一。现在：代际切换时把每条实测高度按
+  //   `est(新宽)/est(旧宽)` 等比缩放（估算器对同一张卡是可复算纯函数），垫片在切换帧
+  //   就近乎正确（缩放残差 = 估算模型的非线性误差，个位 px），随后实测回填收敛。
+  interface MeasuredEntry {
+    h: number;
+    est: number;
+  }
+  const measuredRef = useRef(new Map<string, MeasuredEntry>());
   const measuredGenRef = useRef(-1);
   const [heightGen, setHeightGen] = useState(0);
+  // repo → card 查找表（缩放回填用；cards 换批才重建）。
+  const cardByRepoLocal = useMemo(() => new Map(cards.map((c) => [c.repo, c])), [cards]);
   if (measuredGenRef.current !== Math.round(cardWidth)) {
+    if (measuredGenRef.current > 0) {
+      for (const [repo, entry] of measuredRef.current) {
+        const card = cardByRepoLocal.get(repo);
+        if (!card) continue;
+        const estNew = estCardHeightFor(
+          { summary: card.summaryCn ?? "", reason: card.reasonCn ?? "" },
+          cardWidth,
+          chrome,
+        );
+        if (entry.est > 0 && estNew > 0) {
+          entry.h = Math.max(80, (entry.h / entry.est) * estNew);
+          entry.est = estNew;
+        }
+      }
+    }
     measuredGenRef.current = Math.round(cardWidth);
-    measuredRef.current = new Map();
   }
   // 列式布局：i%K 轮转入列（近序性：卡 i+1 不会跑到卡 i 上方远处）+ 列内前缀和
   //（测量优先、estCardHeightFor 估算兜底；heightGen bump = 实测回填 ⇒ 前缀重算）。
@@ -906,8 +931,9 @@ function FeedVirtualList({
       p[0] = 0;
       for (let k = 0; k < idxs.length; k++) {
         const card = cards[idxs[k]];
+        const entry = cache.get(card.repo);
         const h =
-          cache.get(card.repo) ??
+          entry?.h ??
           estCardHeightFor({ summary: card.summaryCn ?? "", reason: card.reasonCn ?? "" }, cardWidth, chrome);
         p[k + 1] = p[k] + h + rowGap;
       }
@@ -998,16 +1024,20 @@ function FeedVirtualList({
         }
       }
     }
-    // ② 量本帧所有在 DOM 的卡。
+    // ② 量本帧所有在 DOM 的卡（连同当时的估算值一起存，宽度代际切换时按比例缩放）。
     const els = wrap.querySelectorAll<HTMLElement>(".feed-list > .feed-col > .card");
     let changed = false;
     for (const el of els) {
       const repo = el.dataset.repo;
       if (!repo) continue;
       const h = el.getBoundingClientRect().height;
+      const card = cardByRepoLocal.get(repo);
+      const est = card
+        ? estCardHeightFor({ summary: card.summaryCn ?? "", reason: card.reasonCn ?? "" }, cardWidth, chrome)
+        : h;
       const prev = measuredRef.current.get(repo);
-      if (prev === undefined || Math.abs(prev - h) > 0.5) {
-        measuredRef.current.set(repo, h);
+      if (prev === undefined || Math.abs(prev.h - h) > 0.5 || Math.abs(prev.est - est) > 0.5) {
+        measuredRef.current.set(repo, { h, est });
         changed = true;
       }
     }
@@ -1073,17 +1103,8 @@ function FeedVirtualList({
     <div ref={wrapRef} className={entering ? "feed-window channel-entering" : "feed-window"}>
       {/* data-cols：列数分流用**显式属性**（CSS 侧 `[data-cols="1"]` 读它）。
           `--feed-cols` 保留：它是 CSS 变量，.feed-col 的列宽算式按它取列数，JS 入列也读它。
-          十二轮：只有摘要字号还需要 JS 写（流式）；卡高/行数变量随槽位退场。 */}
-      <div
-        className="feed-list"
-        data-cols={cols}
-        style={
-          {
-            "--feed-cols": cols,
-            "--feed-summary-font": `${shape.summaryFontPx}px`,
-          } as React.CSSProperties
-        }
-      >
+          十三轮：摘要字号恒定 0.98rem（CSS 字面量），JS 不再写任何形态变量。 */}
+      <div className="feed-list" data-cols={cols} style={{ "--feed-cols": cols } as React.CSSProperties}>
         {layout.colIdx.map((idxs, c) => {
           const w = visibleWin[c];
           return (
@@ -2122,12 +2143,7 @@ export default function App() {
                                       <div
                                         className="feed-list"
                                         data-cols={folderCols}
-                                        style={
-                                          {
-                                            "--feed-cols": folderCols,
-                                            "--feed-summary-font": `${folderShape.summaryFontPx}px`,
-                                          } as React.CSSProperties
-                                        }
+                                        style={{ "--feed-cols": folderCols } as React.CSSProperties}
                                         data-cols-root="folder"
                                       >
                                         {/* 十二轮：列式容器——i%K 轮转入列（与主信息流同构） */}
@@ -2345,12 +2361,7 @@ export default function App() {
                           className="feed-list"
                           ref={hotColsRef}
                           data-cols={hotCols}
-                          style={
-                            {
-                              "--feed-cols": hotCols,
-                              "--feed-summary-font": `${hotShape.summaryFontPx}px`,
-                            } as React.CSSProperties
-                          }
+                          style={{ "--feed-cols": hotCols } as React.CSSProperties}
                         >
                           {/* 十二轮：列式容器——i%K 轮转入列（与主信息流同构） */}
                           {buildColumnIndex(hotPreview.length, hotCols).map((idxs, c) => (
