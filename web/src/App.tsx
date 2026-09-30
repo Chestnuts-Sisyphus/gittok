@@ -964,30 +964,37 @@ function FeedVirtualList({
   // 每次渲染后读每张在 DOM 的卡的真实盒高；与缓存差 >0.5px 就回填并 bump heightGen。
   // 回填会改列内前缀（尤其视口上方的卡从估算换实测）⇒ 先记「视口顶压住的那张卡」为锚，
   // 下一帧用锚点新旧顶偏移的差值补偿 scrollTop。
-  const anchorRef = useRef<{ repo: string; top: number } | null>(null);
+  // ⚠ 补偿只服务「同一布局代际内的估算→实测收敛」。代际＝卡宽×列数（measuredGen×cols）：
+  //   列数翻转/宽度换档时布局**合法重排**（卡片换列、位置按新算式落位），视口稳定由 FLIP
+  //   逐卡补差负责，**不许**再动 scrollTop——否则翻转帧整个视口被平移一次（CI drag 闸
+  //   「首卡 top 跳变 26px」的根因，2026-10-01 修：锚点带代际签名，跨代不补偿）。
+  const anchorRef = useRef<{ repo: string; top: number; gen: string } | null>(null);
+  const layoutGen = `${measuredGenRef.current}x${cols}`;
   useLayoutEffect(() => {
     const wrap = wrapRef.current;
     if (!wrap) return;
-    // ① 补偿上一轮回填造成的位移（若有）。
+    // ① 补偿上一轮回填造成的位移（仅同代际；跨代际＝翻版重排，跳过）。
     const anchor = anchorRef.current;
     if (anchor) {
       anchorRef.current = null;
-      let newTop: number | null = null;
-      outer: for (let c = 0; c < layout.colIdx.length; c++) {
-        const idxs = layout.colIdx[c];
-        for (let k = 0; k < idxs.length; k++) {
-          if (cards[idxs[k]].repo === anchor.repo) {
-            newTop = layout.prefix[c][k];
-            break outer;
+      if (anchor.gen === layoutGen) {
+        let newTop: number | null = null;
+        outer: for (let c = 0; c < layout.colIdx.length; c++) {
+          const idxs = layout.colIdx[c];
+          for (let k = 0; k < idxs.length; k++) {
+            if (cards[idxs[k]].repo === anchor.repo) {
+              newTop = layout.prefix[c][k];
+              break outer;
+            }
           }
         }
-      }
-      if (newTop !== null) {
-        const delta = newTop - anchor.top;
-        if (Math.abs(delta) >= 0.5) {
-          const root = nearestScrollRoot(wrap);
-          if (root instanceof Window) window.scrollBy(0, delta);
-          else root.scrollTop += delta;
+        if (newTop !== null) {
+          const delta = newTop - anchor.top;
+          if (Math.abs(delta) >= 0.5) {
+            const root = nearestScrollRoot(wrap);
+            if (root instanceof Window) window.scrollBy(0, delta);
+            else root.scrollTop += delta;
+          }
         }
       }
     }
@@ -1009,7 +1016,7 @@ function FeedVirtualList({
     const root = nearestScrollRoot(wrap);
     const { listTop } = feedViewportOf(wrap, root);
     const viewTop = -listTop;
-    let best: { repo: string; top: number } | null = null;
+    let best: { repo: string; top: number; gen: string } | null = null;
     for (let c = 0; c < layout.colIdx.length; c++) {
       const p = layout.prefix[c];
       const n = p.length - 1;
@@ -1019,7 +1026,7 @@ function FeedVirtualList({
       let pos = 0;
       while (lo <= hi) {
         const mid = (lo + hi) >> 1;
-        if (p[mid] <= viewTop) {
+        if ((p[mid] ?? 0) <= viewTop) {
           pos = mid;
           lo = mid + 1;
         } else {
@@ -1028,7 +1035,7 @@ function FeedVirtualList({
       }
       const idx = layout.colIdx[c][pos];
       if (idx === undefined) continue;
-      const cand = { repo: cards[idx].repo, top: p[pos] };
+      const cand = { repo: cards[idx].repo, top: p[pos], gen: layoutGen };
       if (!best || cand.top > best.top) best = cand;
     }
     if (best) anchorRef.current = best;

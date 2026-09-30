@@ -204,9 +204,12 @@ async function main() {
             const c2=cards[1];
             const r2=c2? c2.getBoundingClientRect(): null;
             // 十二轮：列数从 .feed-col 实测（.feed-list 已是横向 flex，grid 轨道退场）
+            // cardTopInList = 首卡「列表内」顶偏移（滚动无关）——垫片/前缀正确性的直接信号。
             window.__seq.push({ cols: document.querySelectorAll('.feed-list > .feed-col').length,
               tf: c.style.transform||"", tf2: c2? (c2.style.transform||"") : null,
               cardW: Math.round(r.width), cardLeft: Math.round(r.left), cardTop: Math.round(r.top),
+              cardTopInList: Math.round(r.top - l.getBoundingClientRect().top),
+              scroll: Math.round(document.querySelector('.app-body').scrollTop),
               cardW2: r2? Math.round(r2.width): null, cardTop2: r2? Math.round(r2.top): null,
               t: Math.round(performance.now()) });
           }
@@ -231,15 +234,30 @@ async function main() {
       //   ② transform 在场段：非空 transform 帧出现即算「补差已接管」，之后 top 的变化都是
       //      动画本体（93px/s 的收敛滑移是 FLIP 播放，不是跳变）。
       const flipIdx = seq.findIndex((s, i) => i > 0 && s.cols !== seq[i - 1].cols);
+      // ── 2026-10-01 十二轮改判（丁D1：破了哪条口径、换回什么）────────────────────────
+      // 破：十轮的「翻转帧首卡**视口** top 跳变 ≤8px」。它的前提是卡高冻结（锁高 288 时代
+      //     宽变不改任何高度 ⇒ 视口顶天然稳定）。卡高自然化后「宽变→卡内容重排变高」是
+      //     设计意图，浏览器 **scroll anchoring** 会随之调 scrollTop 保住阅读位置（诊断
+      //     `D:/tmp/gt-r14-diag.mjs` 实锤：scrollTop 600→623 发生在列数还是 2 的帧，
+      //     首卡列表内 top 恒 0）——视口 top 里混进了浏览器级合法调节，不能再当布局信号。
+      // 换：①「首卡**列表内** top 跳变 ≤8px」＝垫片/前缀正确性（滚动无关，破绽 300px 级
+      //     仍会被它抓到）；②视口 top 跳变与 scrollTop 降级为读数（不判红）。
+      let maxInListJump = 0;
       let maxTopJump = 0;
       if (flipIdx > 0) {
         let i = flipIdx + 1;
         while (i < seq.length && seq[i].cardW === seq[flipIdx].cardW && !(seq[i].tf && seq[i].tf !== "")) {
           maxTopJump = Math.max(maxTopJump, Math.abs(seq[i].cardTop - seq[i - 1].cardTop));
+          maxInListJump = Math.max(maxInListJump, Math.abs(seq[i].cardTopInList - seq[i - 1].cardTopInList));
           i++;
         }
         maxTopJump = Math.max(maxTopJump, Math.abs(seq[flipIdx].cardTop - seq[flipIdx - 1].cardTop));
+        maxInListJump = Math.max(
+          maxInListJump,
+          Math.abs(seq[flipIdx].cardTopInList - seq[flipIdx - 1].cardTopInList),
+        );
       }
+      const scrollShift = seq.length > 1 ? Math.abs(seq[seq.length - 1].scroll - seq[0].scroll) : 0;
       const tfFrames = seq.filter((s) => s.tf && s.tf !== "" && s.tf !== "none").length;
       const endClean = seq.length > 0 && (!seq[seq.length - 1].tf || seq[seq.length - 1].tf === "");
       report(
@@ -248,9 +266,10 @@ async function main() {
         `${sc.from}→${sc.to} 列数序列 ${[...new Set(seq.map((s) => s.cols))].join("→")}`,
       );
       report(
-        `${sc.label} 首卡 top 跳变 ≤${MAX_TOP_JUMP}px`,
-        maxTopJump <= MAX_TOP_JUMP,
-        `实测最大跳变 ${maxTopJump}px（无过渡重排通常 300px+）`,
+        `${sc.label} 首卡列表内 top 稳定 ≤${MAX_TOP_JUMP}px（十二轮改判：垫片/前缀正确性，滚动无关）`,
+        maxInListJump <= MAX_TOP_JUMP,
+        `列表内跳变 ${maxInListJump}px｜视口 top 跳变 ${maxTopJump}px（读数：含 scroll anchoring 的合法调节，本场 scrollTop 移 ${scrollShift}px）｜` +
+          `改判依据：卡高自然化后「宽变→高变」是设计意图，视口 top 混入浏览器 scroll anchoring（D:/tmp/gt-r14-diag.mjs 实锤），布局破绽（300px 级）仍被本条抓到`,
       );
       report(
         `${sc.label} 过渡在场（≥${TRANSITION_MIN_FRAMES} 帧非空 transform）`,
