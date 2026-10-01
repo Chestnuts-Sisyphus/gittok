@@ -449,7 +449,8 @@ export function CardDetail({
       void dim?.finished.catch(() => {});
       return;
     }
-    // 主路径：container-transform。①replica（真卡片）从面板可见盒出发；②面板降级为背景
+    // 主路径：container-transform（十六轮乙路线）。①replica（真卡片）布局一步落在源卡盒、
+    // 以 transform 从面板可见盒飞回 identity（零重排）；②面板降级为背景
     // 幽灵（transform 继续收缩 + 全程匀权淡出）；③replica finished ⇒ onClose——同一次
     // 提交里 overlay（含 replica）卸载、源卡摘掉 is-open-source 显形，像素连续。
     const cm = closeContainerMotion(current, live);
@@ -465,29 +466,20 @@ export function CardDetail({
     void dim?.finished.catch(() => {});
   }, [onClose, reduceMotion, sourceEl]);
 
-  // replica 落位动画（布局属性 left/top/width = 每帧真实重排，内容按目标宽度重排）。
-  // ⚠ 交给 rAF 起跑：setReplicaMotion 的 commit 里 replica 首帧必须先以 from 盒静态落位
-  //（style 即 from 值），下一帧再起 WAAPI——否则首帧直接跳 to（fill:forwards 的 from 不保险）。
+  // replica 飞行动画（十六轮乙路线：**只动 transform**——布局一步落在源卡盒、内容只按卡宽
+  // 折一次行，动画窗零重排 ⇒ 不再有「字因卡片变化不停移动」；规格见 detail-open.ts）。
+  // ⚠ 交给 rAF 起跑：setReplicaMotion 的 commit 里 replica 首帧必须先以 from 变换静态落位
+  //（内联 style 即 from 值），下一帧再起 WAAPI——否则首帧直接跳 to（fill:forwards 的 from 不保险）。
   useLayoutEffect(() => {
     if (!replicaMotion || !replicaRef.current) return;
     const el = replicaRef.current;
     let anim: Animation | null = null;
     const raf = requestAnimationFrame(() => {
-      anim = el.animate(
-        [
-          {
-            left: `${replicaMotion.from.left}px`,
-            top: `${replicaMotion.from.top}px`,
-            width: `${replicaMotion.from.width}px`,
-          },
-          {
-            left: `${replicaMotion.to.left}px`,
-            top: `${replicaMotion.to.top}px`,
-            width: `${replicaMotion.to.width}px`,
-          },
-        ],
-        { duration: CLOSE_DURATION, easing: CLOSE_EASING, fill: "forwards" },
-      );
+      anim = el.animate([{ transform: replicaMotion.from }, { transform: replicaMotion.to }], {
+        duration: CLOSE_DURATION,
+        easing: CLOSE_EASING,
+        fill: "forwards",
+      });
       replicaAnimRef.current = anim;
       void anim.finished.then(
         () => {
@@ -747,17 +739,20 @@ export function CardDetail({
           {content}
         </div>
       </div>
-      {/* ⭐ 十四轮 container-transform：关闭时飞回卡片的「那一块」＝真卡片 replica。
+      {/* ⭐ 十四轮 container-transform＋十六轮乙路线：关闭时飞回卡片的「那一块」＝真卡片 replica。
           同一 FeedCardMemo 同源渲染（同数据同 tagSlots）＋同源样式 ⇒ t=1 像素==列表里的真卡，
-          卸载交接在像素上不可感知（v1~v3「缩小的详情页+交接」的根治，规格见 detail-open.ts）。 */}
+          卸载交接在像素上不可感知（v1~v3「缩小的详情页+交接」的根治，规格见 detail-open.ts）。
+          乙路线：布局一步落在源卡盒（box=卡位卡宽，内容只按卡宽折一次行），飞行只动 transform
+          ——动画窗零重排，字不再移动。 */}
       {replicaMotion && (
         <div
           ref={replicaRef}
           className="close-replica"
           style={{
-            left: `${replicaMotion.from.left}px`,
-            top: `${replicaMotion.from.top}px`,
-            width: `${replicaMotion.from.width}px`,
+            left: `${replicaMotion.box.left}px`,
+            top: `${replicaMotion.box.top}px`,
+            width: `${replicaMotion.box.width}px`,
+            transform: replicaMotion.from,
           }}
           onClick={(e) => e.stopPropagation()}
           aria-hidden="true"
@@ -767,7 +762,7 @@ export function CardDetail({
             liked={liked}
             ignored={false}
             onOpen={() => {}}
-            tagSlots={feedTagSlotsForCard(replicaMotion.to.width)}
+            tagSlots={feedTagSlotsForCard(replicaMotion.box.width)}
           />
         </div>
       )}

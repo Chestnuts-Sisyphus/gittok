@@ -202,19 +202,33 @@ describe("退场几何（四轮 T8②）", () => {
     expect(closeInPlaceMotion(layout, { ...layout, width: 0 })).toBeNull();
   });
 
-  it("closeContainerMotion（十四轮 container-transform）：replica 从面板可见盒收敛到源卡实时矩形", () => {
-    // 先 import：顶部按需补（见文件头 import 列表）
-    const m = closeContainerMotion({ left: 360, top: 54, width: 1200, height: 945 }, card)!;
-    expect(m.from).toEqual({ left: 360, top: 54, width: 1200 });
-    expect(m.to).toEqual({ left: card.left, top: card.top, width: card.width });
-    // 高度不进动画（卡片高度=内容自然高度，宽度收敛时由内容重排决定）——防有人把它加回去
-    expect("height" in m.from).toBe(false);
-    expect("height" in m.to).toBe(false);
-    // Esc 抢跑（入场没跑完就关）：from = 当时的可见盒
+  it("closeContainerMotion（十六轮乙路线）：布局一步落在源卡盒，transform 从面板可见盒飞回 identity（零重排）", () => {
+    // 解析 from 的 translate3d/scale，还原「首帧视觉盒」——它必须恰等于面板可见盒
+    const visualBoxOf = (m: { box: { left: number; top: number; width: number }; from: string }) => {
+      const mm = /translate3d\((-?[\d.]+)px, (-?[\d.]+)px, 0\) scale\((-?[\d.]+)\)/.exec(m.from)!;
+      return {
+        left: m.box.left + Number(mm[1]),
+        top: m.box.top + Number(mm[2]),
+        width: m.box.width * Number(mm[3]),
+      };
+    };
+    const current = { left: 360, top: 54, width: 1200, height: 945 };
+    const m = closeContainerMotion(current, card)!;
+    // 布局盒＝源卡实时盒（一步定位，动画期间永不改动——零重排的根）
+    expect(m.box).toEqual({ left: card.left, top: card.top, width: card.width });
+    // 首帧视觉盒 == 面板可见盒（左/顶/宽逐值）——零重排飞行的几何前提
+    expect(visualBoxOf(m)).toEqual({ left: current.left, top: current.top, width: current.width });
+    // 终点 identity ⇒ 视觉盒＝布局盒＝真卡盒（t=1 像素=真卡像素）
+    expect(m.to).toBe("translate3d(0px, 0px, 0) scale(1)");
+    // 动画只许动 transform：box 是唯一布局输入，且高度不进任何东西（内容自然高）
+    expect("height" in m.box).toBe(false);
+    // Esc 抢跑（入场没跑完就关）：from 从当时可见盒反推，布局盒仍是卡盒
     const mid = closeContainerMotion({ left: 140, top: 90, width: 700, height: 470 }, card)!;
-    expect(mid.from.width).toBe(700);
+    expect(mid.box).toEqual({ left: card.left, top: card.top, width: card.width });
+    expect(visualBoxOf(mid)).toEqual({ left: 140, top: 90, width: 700 });
     // 非法尺寸 → null（走回退案）
     expect(closeContainerMotion({ left: 0, top: 0, width: 0, height: 0 }, card)).toBeNull();
+    expect(closeContainerMotion(current, { ...card, width: 0 })).toBeNull();
     expect(
       closeContainerMotion({ left: 1, top: 1, width: 100, height: 100 }, { ...card, width: NaN }),
     ).toBeNull();

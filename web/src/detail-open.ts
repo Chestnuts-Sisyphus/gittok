@@ -355,19 +355,48 @@ export function closeInPlaceMotion(current: Box, layout: Box) {
  * 丁D1：破 v3「clip 收底」（几何对、内容错），换「内容对、几何逐帧收敛」。
  */
 export interface CloseContainerMotion {
-  from: { left: number; top: number; width: number };
-  to: { left: number; top: number; width: number };
+  /** replica 的**布局盒**＝源卡实时盒：一步定位，动画期间永不改动——零重排的根。 */
+  box: { left: number; top: number; width: number };
+  /** 初始 transform：把布局在卡盒上的 replica 视觉上盖住面板**当前可见盒**（内联 style 即 from 值）。 */
+  from: string;
+  /** 终点 transform：identity ⇒ 视觉盒＝布局盒＝真卡盒（t=1 像素=真卡像素）。 */
+  to: string;
 }
-/** replica 的布局动画两端：起点=面板**当前可见盒**（含在飞 transform，Esc 抢跑也能接上），
- *  终点=源卡**实时矩形**（锁⑦：读 DOM 不读估算）。任一端非法尺寸 → null（调用方走回退案）。 */
+/**
+ * ⭐ 十六轮（2026-10-02，栗子验收 v4 整体通过、唯一新问题「关闭时字因卡片变化不停移动→眼花」）——
+ * **乙路线：transform 飞行，零重排**。
+ *
+ * 考证结论（双源实锤）：字移动＝十四轮那版布局动画（left/top/width 走 WAAPI）**逐帧重折行**——
+ * real 真机 trace Layout 46 次/110 帧、headless 17 次/38 帧，两种刷新率下「每帧一次 reflow」
+ * 双双自洽；帧率无辜（rAF p50=5.5ms 零掉帧=空闲基线）。甲调参**灭不了**（A/B 实证 Layout 次数
+ * 不随曲线/时长变，17/19 恒定）。
+ *
+ * ⇒ 乙定案：replica **一步定位在源卡实时盒**（box=dest，布局宽=卡宽，内容只按卡宽折一次行、
+ *   从此永不重折），初始 transform 把它视觉上盖住面板当前可见盒（translate=面板左上−卡左上、
+ *   scale=面板宽/卡宽，transform-origin: top left），WAAPI 只动 **transform** → identity。
+ *   每一帧都是同一份排版的等比缩放 = 没有字移动；t=1 视觉盒=布局盒=真卡盒 ⇒ 末帧像素=真卡像素
+ *   （五轮抗战的末帧无缝交接保全）。
+ *   ⚠ 〇16-2 不可能三角（几何连续＋字号连续＋零重排不可兼得）：乙牺牲的是「内容以面板宽度
+ *   展开的起始帧」（改为卡内容放大起始），保全几何连续＋末帧字号连续＋零重排。
+ *   已知风险（真机复验重点）：①起始帧=卡内容放大 S₀≈面板宽/卡宽 覆盖面板——与已验收的打开
+ *   动画首帧（详情内容缩于卡矩形）严格对称；②飞行早期文本轻微发虚（transform 光栅化）随缩放锐化。
+ *   两者被否 → 回退序降级甲-S2（280ms＋--ease-standard），不自行发明第三方案。
+ *
+ * 两端：起点=面板**当前可见盒**（含在飞 transform，Esc 抢跑也能接上——getBoundingClientRect
+ * 给的就是视觉盒，scale=当前宽/卡宽、translate=当前左上−卡左上 直接反推），
+ * 终点=源卡**实时矩形**（锁⑦：读 DOM 不读估算）。任一端非法尺寸 → null（调用方走回退案）。
+ */
 export function closeContainerMotion(current: Box, dest: Box): CloseContainerMotion | null {
   for (const b of [current, dest]) {
     if (!Number.isFinite(b.left) || !Number.isFinite(b.top) || !Number.isFinite(b.width) || b.width <= 0)
       return null;
   }
+  const s = current.width / dest.width;
+  if (!Number.isFinite(s) || s <= 0) return null;
   return {
-    from: { left: current.left, top: current.top, width: current.width },
-    to: { left: dest.left, top: dest.top, width: dest.width },
+    box: { left: dest.left, top: dest.top, width: dest.width },
+    from: `translate3d(${current.left - dest.left}px, ${current.top - dest.top}px, 0) scale(${s})`,
+    to: "translate3d(0px, 0px, 0) scale(1)",
   };
 }
 

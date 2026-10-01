@@ -160,6 +160,11 @@ jobs:
           CHROME_PATH: /usr/bin/google-chrome
         run: node scripts/gittok-smooth-check.mjs
 
+      - name: Motion reflow gate（16-13：动画窗 Layout 增量=0——α 动画属性 ⊆{transform,opacity}·β 布局坐标逐帧恒定·γ trace 动画窗零 Layout·δ 末帧视觉盒=源卡盒）
+        env:
+          CHROME_PATH: /usr/bin/google-chrome
+        run: node scripts/gittok-motion-reflow-check.mjs
+
       - name: Visual acceptance gate（视觉断言 + 观感清单段（侧栏带文字 12 项/滚动条 3 项/侧栏不出条）+ 11 张截图；帧率在本 job 降为信息项）
         run: |
           pip install websocket-client
