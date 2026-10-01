@@ -338,28 +338,37 @@ export function closeInPlaceMotion(current: Box, layout: Box) {
 }
 
 /**
- * ⭐ 十三轮（2026-10-01，栗子：「终止点看着像是缩小的全景然后突然割裂闪现变成卡片本身」）：
- * **收底裁切**（container-transform 的关键一步）。旧退场只把面板**等比**缩到卡宽——
- * 面板比卡高得多，缩完仍是一块「卡宽×超高」的全景，再靠末段淡出让位给卡片 ⇒
- * 眼睛看到的是「全景化掉 → 卡片冒出来」＝割裂的直源。
- * 修法：给面板补一条 **clip-path 收底**动画，可见区从整块面板收窄到「终点变换下
- * 恰好等于源卡矩形」的局部窗口（transform-origin top left + 终点 translate 把面板左上
- * 对齐卡左上 ⇒ 该窗口 = `inset(0, 0, layout.height − dest.height/sTo, 0)`）。
- * t=1 时刻面板的**可见几何 == 卡片矩形**（同位同宽同高）⇒ 卸载与卡片显形都不再产生
- * 位移突变；末段淡出只负责窗口内的**内容交接**（详情内容 → 卡片内容）。
+ * ⭐ 十四轮（2026-10-01 晚，栗子第 4 次打回：「终止点看着像是缩小的全景然后突然割裂闪现
+ * 变成卡片本身……问题从来没有被解决」）——**container-transform 收场**。
+ *
+ * 考证结论（为什么 v1~v3 都没治住）：历代修法（reveal 反向淡入 / 淡出占比调参 / clip 收底）
+ * 全都在打磨「面板这一块」——但**末帧像素永远是缩小的详情页**，与真卡之间必然存在一次
+ * 「详情内容 → 卡片内容」的内容切换；几何再精确，切换本身就是他看到的「割裂闪现」。
+ * 开启动画之所以被认可，是因为它**离开**卡片时用户刚点过那张卡、注意力在「打开」上；
+ * 关闭则相反——眼睛盯着回来的卡片，末帧不是卡片 = 假。
+ *
+ * ⇒ v4 定案：飞回去的那一块**必须本来就是卡片**。面板降级为**背景幽灵**（整体溶解），
+ * 一张**真卡片组件**（FeedCard 同源渲染，同数据同 props）从面板矩形**布局动画**收敛到
+ * 源卡矩形（left/top/width 走 WAAPI 布局属性 = 每帧真实重排；字号恒定后 1200 宽卡与
+ * 详情页字号一致 ⇒ 早期交叉过渡无字号跳变）；**t=1 时刻 replica 的像素 == 真卡的像素**
+ * （同一组件同一宽度同一位置渲染）⇒ 卸载交接在像素上不可感知。
+ * 丁D1：破 v3「clip 收底」（几何对、内容错），换「内容对、几何逐帧收敛」。
  */
-export interface CloseClip {
-  /** 终态下被裁掉的底部高度（面板局部坐标，px）。 */
-  bottomInsetPx: number;
+export interface CloseContainerMotion {
+  from: { left: number; top: number; width: number };
+  to: { left: number; top: number; width: number };
 }
-export function closeClipMotion(layout: Box, dest: Box): CloseClip | null {
-  const sTo = dest.width / layout.width;
-  if (!Number.isFinite(sTo) || sTo <= 0) return null;
-  const visibleH = dest.height / sTo;
-  const inset = layout.height - visibleH;
-  // 面板本来就不比卡高（极端小视口）⇒ 没有底要收，裁切无意义。
-  if (!Number.isFinite(inset) || inset <= 1) return null;
-  return { bottomInsetPx: Math.round(inset) };
+/** replica 的布局动画两端：起点=面板**当前可见盒**（含在飞 transform，Esc 抢跑也能接上），
+ *  终点=源卡**实时矩形**（锁⑦：读 DOM 不读估算）。任一端非法尺寸 → null（调用方走回退案）。 */
+export function closeContainerMotion(current: Box, dest: Box): CloseContainerMotion | null {
+  for (const b of [current, dest]) {
+    if (!Number.isFinite(b.left) || !Number.isFinite(b.top) || !Number.isFinite(b.width) || b.width <= 0)
+      return null;
+  }
+  return {
+    from: { left: current.left, top: current.top, width: current.width },
+    to: { left: dest.left, top: dest.top, width: dest.width },
+  };
 }
 
 /** 面板 + 遮罩同一条时间线跑退场；返回面板动画（调用方等它 finished 再卸 DOM）。
@@ -378,15 +387,16 @@ export function closeClipMotion(layout: Box, dest: Box): CloseClip | null {
  *   修法：把源卡的显形也做成一段过渡——`reveal` 参数接一个元素，让它与面板的化掉**同一窗口**
  *   反向淡入（面板 1→0、卡片 0→1），于是"弹层落回卡片"是一次交接而不是一次跳变。
  *   动画用 `fill: "forwards"` 顶住 CSS 的 `opacity:0`；调用方在摘掉 class 的**同一帧**取消它
- *   （否则残留的 fill 会在下次打开时把卡片顶成可见——锁⑧同族的坑）。 */
+ *   （否则残留的 fill 会在下次打开时把卡片顶成可见——锁⑧同族的坑）。
+ *   ⚠ 2026-10-01 十四轮：本函数降级为**回退案**专用（源卡不可用时的原地收束）；主路径见
+ *   closeContainerMotion + FeedCard 的 replica（面板作为幽灵的整体溶解用 playCloseGhostMotion）。 */
 export function playCloseMotion(
   panel: HTMLElement,
   overlay: HTMLElement | null,
   motion: OpenMotion,
   duration = CLOSE_DURATION,
   reveal?: HTMLElement | null,
-  clip?: CloseClip | null,
-): { card: Animation; fade: Animation; clipAnim?: Animation; revealAnim?: Animation; dim?: Animation } {
+): { card: Animation; fade: Animation; revealAnim?: Animation; dim?: Animation } {
   panel.style.transformOrigin = "top left";
   panel.style.transform = motion.from;
   const timing: KeyframeAnimationOptions = {
@@ -397,25 +407,6 @@ export function playCloseMotion(
   const card = panel.animate([{ transform: motion.from }, { transform: motion.to }], timing);
   const now = document.timeline?.currentTime;
   if (now != null) card.startTime = now;
-
-  // ⭐ 十三轮：收底裁切与飞行同一条时间线（同 duration/easing）——可见区随飞行同步收窄，
-  // 落地时面板可见部分恰好是源卡矩形（closeClipMotion 的注释里有完整几何推导）。
-  // fill: "forwards" 让裁切顶到卸载为止（与 transform 同族的卸载窗口问题，同一种解法）。
-  let clipAnim: Animation | undefined;
-  if (clip && typeof panel.animate === "function") {
-    try {
-      clipAnim = panel.animate(
-        [
-          { clipPath: "inset(0px 0px 0px 0px round 24px)" },
-          { clipPath: `inset(0px 0px ${clip.bottomInsetPx}px 0px round 18px)` },
-        ],
-        timing,
-      );
-      if (now != null) clipAnim.startTime = now;
-    } catch {
-      clipAnim = undefined;
-    }
-  }
 
   // 前 80% 保持不透明（让人看清「同一块东西在往回走」，且**落地那一下是实体**），
   // 后 20% 化掉（交接给源卡，落地不留残影）。
@@ -458,5 +449,46 @@ export function playCloseMotion(
       dim = undefined;
     }
   }
-  return { card, fade, clipAnim, revealAnim, dim };
+  return { card, fade, revealAnim, dim };
+}
+
+/**
+ * ⭐ 十四轮：**背景幽灵**——面板整体溶解（transform 继续收缩 + 透明度**全程匀权**淡出）。
+ * 与 playCloseMotion（末段 20% 淡出）的区别：主路径（container-transform）里眼睛盯的是
+ * 上层那张不透明的 replica 卡片，面板只是「详情页在蒸发」的背景；匀权淡出不会产生
+ * 「半透明鬼影在最快地飞」（那是末段集中淡出 + 速度峰叠加的产物，09-26 实拍判过死）。
+ * 遮罩 dim 与面板同一条时间线。 */
+export function playCloseGhostMotion(
+  panel: HTMLElement,
+  overlay: HTMLElement | null,
+  motion: OpenMotion,
+  duration = CLOSE_DURATION,
+): { card: Animation; fade: Animation; dim?: Animation } {
+  panel.style.transformOrigin = "top left";
+  panel.style.transform = motion.from;
+  const timing: KeyframeAnimationOptions = {
+    duration,
+    easing: CLOSE_EASING,
+    fill: "forwards",
+  };
+  const card = panel.animate([{ transform: motion.from }, { transform: motion.to }], timing);
+  const now = document.timeline?.currentTime;
+  if (now != null) card.startTime = now;
+  const fade = panel.animate([{ opacity: 1 }, { opacity: 0 }], timing);
+  if (now != null) fade.startTime = now;
+  let dim: Animation | undefined;
+  if (overlay && typeof overlay.animate === "function") {
+    try {
+      overlay.classList.add("is-open-playing");
+      dim = overlay.animate([{ opacity: 1 }, { opacity: 0 }], {
+        ...timing,
+        fill: "both",
+        pseudoElement: "::before",
+      });
+      if (now != null) dim.startTime = now;
+    } catch {
+      dim = undefined;
+    }
+  }
+  return { card, fade, dim };
 }

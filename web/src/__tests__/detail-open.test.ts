@@ -11,6 +11,7 @@ import {
   OPEN_SPRING_RESPONSE,
   OPEN_SPRING_SAMPLES,
   afterPaint,
+  closeContainerMotion,
   closeInPlaceMotion,
   closeToCardMotion,
   destBoxFromElement,
@@ -199,6 +200,24 @@ describe("退场几何（四轮 T8②）", () => {
   it("非法尺寸返回 null（不许对 0 宽做除法，NaN 会让整条 transform 作废）", () => {
     expect(closeToCardMotion(layout, { ...layout, width: 0 }, card)).toBeNull();
     expect(closeInPlaceMotion(layout, { ...layout, width: 0 })).toBeNull();
+  });
+
+  it("closeContainerMotion（十四轮 container-transform）：replica 从面板可见盒收敛到源卡实时矩形", () => {
+    // 先 import：顶部按需补（见文件头 import 列表）
+    const m = closeContainerMotion({ left: 360, top: 54, width: 1200, height: 945 }, card)!;
+    expect(m.from).toEqual({ left: 360, top: 54, width: 1200 });
+    expect(m.to).toEqual({ left: card.left, top: card.top, width: card.width });
+    // 高度不进动画（卡片高度=内容自然高度，宽度收敛时由内容重排决定）——防有人把它加回去
+    expect("height" in m.from).toBe(false);
+    expect("height" in m.to).toBe(false);
+    // Esc 抢跑（入场没跑完就关）：from = 当时的可见盒
+    const mid = closeContainerMotion({ left: 140, top: 90, width: 700, height: 470 }, card)!;
+    expect(mid.from.width).toBe(700);
+    // 非法尺寸 → null（走回退案）
+    expect(closeContainerMotion({ left: 0, top: 0, width: 0, height: 0 }, card)).toBeNull();
+    expect(
+      closeContainerMotion({ left: 1, top: 1, width: 100, height: 100 }, { ...card, width: NaN }),
+    ).toBeNull();
   });
 
   it("时长与曲线：退场比入场略短、曲线是**减速型**（落地可读）且不复用入场 spring", () => {

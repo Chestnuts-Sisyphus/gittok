@@ -1143,6 +1143,17 @@ button {
   contain: paint;
 }
 
+/* ⭐ 十四轮 container-transform：关闭时飞回卡片的「那一块」＝真卡片 replica（FeedCard 同源渲染）。
+   fixed 定位 + WAAPI 布局动画（left/top/width，每帧真实重排——内容按目标宽度重排，
+   字号恒定后与详情页字号一致 ⇒ 早期交叉过渡无字号跳变）；z-index 压过 .detail-mover(1)，
+   t=1 像素 == 列表里的真卡 ⇒ 卸载交接不可感知。pointer-events:none：飞行 240ms 内点击
+   落到 overlay（正常关闭语义），replica 只是一条视觉轨道。 */
+.close-replica {
+  position: fixed;
+  z-index: 2;
+  pointer-events: none;
+}
+
 .detail-card {
   background: var(--detail-card-bg);
   border-radius: 20px;

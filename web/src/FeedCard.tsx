@@ -16,17 +16,21 @@ import {
 } from "./icons.tsx";
 import {
   CLOSE_DURATION,
+  CLOSE_EASING,
   CLOSE_INPLACE_DURATION,
-  closeClipMotion,
+  closeContainerMotion,
   closeInPlaceMotion,
   closeToCardMotion,
   destBoxFromElement,
   isVisibleOpenMotion,
   liveBoxIfUsable,
   openFromCard,
+  playCloseGhostMotion,
   playCloseMotion,
   playOpenMotion,
+  type CloseContainerMotion,
 } from "./detail-open.ts";
+import { feedTagSlotsForCard } from "./feed-layout.ts";
 
 // ---------------------------------------------------------------------------
 // 工具函数
@@ -406,6 +410,12 @@ export function CardDetail({
    * ⚠ 读当前可见盒必须在 `cancel()` **之前**，否则读到的是布局盒（没有在飞 transform 的位置）。
    */
   const closingRef = useRef(false);
+  // ⭐ 十四轮 container-transform：关闭时飞回去的「那一块」是一张**真卡片**（FeedCard 同源
+  // 渲染），从面板矩形布局动画收敛到源卡矩形——末帧像素=卡片像素，交接不再可感知
+  //（规格见 detail-open.ts 的 closeContainerMotion 注释；v1~v3 的「缩小的全景+交接」全部退役）。
+  const [replicaMotion, setReplicaMotion] = useState<CloseContainerMotion | null>(null);
+  const replicaRef = useRef<HTMLDivElement>(null);
+  const replicaAnimRef = useRef<Animation | null>(null);
   const requestClose = useCallback(() => {
     const panel = panelRef.current;
     if (closingRef.current) return;
@@ -417,49 +427,82 @@ export function CardDetail({
     const current = panel.getBoundingClientRect(); // 含可能还在飞的 transform
     const layout = destBoxFromElement(panel); // 无 transform 的布局盒（所有位移都相对它表达）
     const live = liveBoxIfUsable(sourceEl, window.innerWidth, window.innerHeight);
-    const motion = live ? closeToCardMotion(current, layout, live) : closeInPlaceMotion(current, layout);
     panel.getAnimations().forEach((a) => a.cancel());
     overlayRef.current?.getAnimations().forEach((a) => a.cancel());
     const cardEl = panel.querySelector(".detail-card");
     panel.classList.add("is-flying");
     cardEl?.classList.add("is-flying");
-    if (!motion) {
+    if (!live) {
+      // 回退案（源卡已被卸载/移出视口）：原地收束——没有可交接的对象，replica 无从落地。
+      const inplace = closeInPlaceMotion(current, layout);
+      if (!inplace) {
+        onClose();
+        return;
+      }
+      const {
+        card: anim,
+        fade,
+        dim,
+      } = playCloseMotion(panel, overlayRef.current, inplace, CLOSE_INPLACE_DURATION);
+      void anim.finished.then(onClose, onClose);
+      void fade.finished.catch(() => {});
+      void dim?.finished.catch(() => {});
+      return;
+    }
+    // 主路径：container-transform。①replica（真卡片）从面板可见盒出发；②面板降级为背景
+    // 幽灵（transform 继续收缩 + 全程匀权淡出）；③replica finished ⇒ onClose——同一次
+    // 提交里 overlay（含 replica）卸载、源卡摘掉 is-open-source 显形，像素连续。
+    const cm = closeContainerMotion(current, live);
+    const ghost = closeToCardMotion(current, layout, live);
+    if (!cm || !ghost) {
       onClose();
       return;
     }
-    // 首帧即动（锁⑩）：playCloseMotion 内部同步写 from 再 animate，中间不落笔。
-    // 退场时把源卡一起反向淡回来（栗子：「退场动画的结尾出现了卡片原有位置闪现」）——
-    // 只在这张卡真的可见时才做（live 非空）；回退案里源卡已经不可用，没有可交接的对象。
-    // ⭐ 十三轮：live 在场时补「收底裁切」——面板可见区随飞行收窄，落地 = 源卡矩形逐像素
-    //（栗子：「终止点看着像是缩小的全景然后突然割裂闪现变成卡片本身」的根治）。
-    const clip = live ? closeClipMotion(layout, live) : null;
-    const {
-      card: anim,
-      fade,
-      revealAnim,
-      dim,
-    } = playCloseMotion(
-      panel,
-      overlayRef.current,
-      motion,
-      live ? CLOSE_DURATION : CLOSE_INPLACE_DURATION,
-      live ? sourceEl : null,
-      clip,
-    );
-    const done = () => {
-      panel.classList.remove("is-flying");
-      cardEl?.classList.remove("is-flying");
-      panel.style.transform = "";
-      // ⚠ 顺序要紧：先 onClose()（内部摘掉源卡的 `is-open-source`，CSS 即刻把 opacity 还给卡片），
-      // 再取消 reveal 的 fill —— 同一帧内完成，所以看不到任何跳变；
-      // 反过来（先取消再摘 class）会让卡片有几率闪一帧 opacity:0（class 还在）。
-      onClose();
-      revealAnim?.cancel();
-    };
-    void anim.finished.then(done, done);
+    setReplicaMotion(cm);
+    const { card: gh, fade, dim } = playCloseGhostMotion(panel, overlayRef.current, ghost, CLOSE_DURATION);
+    void gh.finished.catch(() => {});
     void fade.finished.catch(() => {});
     void dim?.finished.catch(() => {});
   }, [onClose, reduceMotion, sourceEl]);
+
+  // replica 落位动画（布局属性 left/top/width = 每帧真实重排，内容按目标宽度重排）。
+  // ⚠ 交给 rAF 起跑：setReplicaMotion 的 commit 里 replica 首帧必须先以 from 盒静态落位
+  //（style 即 from 值），下一帧再起 WAAPI——否则首帧直接跳 to（fill:forwards 的 from 不保险）。
+  useLayoutEffect(() => {
+    if (!replicaMotion || !replicaRef.current) return;
+    const el = replicaRef.current;
+    let anim: Animation | null = null;
+    const raf = requestAnimationFrame(() => {
+      anim = el.animate(
+        [
+          {
+            left: `${replicaMotion.from.left}px`,
+            top: `${replicaMotion.from.top}px`,
+            width: `${replicaMotion.from.width}px`,
+          },
+          {
+            left: `${replicaMotion.to.left}px`,
+            top: `${replicaMotion.to.top}px`,
+            width: `${replicaMotion.to.width}px`,
+          },
+        ],
+        { duration: CLOSE_DURATION, easing: CLOSE_EASING, fill: "forwards" },
+      );
+      replicaAnimRef.current = anim;
+      void anim.finished.then(
+        () => {
+          // t=1：replica 像素 == 真卡像素。onClose 同一次提交里卸 overlay + 源卡显形
+          //（closeDetail 先摘 class 再 setState，同步），交接在像素上不可感知。
+          onClose();
+        },
+        () => {},
+      );
+    });
+    return () => {
+      cancelAnimationFrame(raf);
+      anim?.cancel();
+    };
+  }, [replicaMotion, onClose]);
 
   // Esc ＝「关掉它回列表」，与点 X、点遮罩同一条路径（同一条退场）。
   // 四轮溯源：App.tsx 原先那条「ESC 立刻关弹窗，不播反向收回」的注释是 b55bca5 描述
@@ -704,6 +747,30 @@ export function CardDetail({
           {content}
         </div>
       </div>
+      {/* ⭐ 十四轮 container-transform：关闭时飞回卡片的「那一块」＝真卡片 replica。
+          同一 FeedCardMemo 同源渲染（同数据同 tagSlots）＋同源样式 ⇒ t=1 像素==列表里的真卡，
+          卸载交接在像素上不可感知（v1~v3「缩小的详情页+交接」的根治，规格见 detail-open.ts）。 */}
+      {replicaMotion && (
+        <div
+          ref={replicaRef}
+          className="close-replica"
+          style={{
+            left: `${replicaMotion.from.left}px`,
+            top: `${replicaMotion.from.top}px`,
+            width: `${replicaMotion.from.width}px`,
+          }}
+          onClick={(e) => e.stopPropagation()}
+          aria-hidden="true"
+        >
+          <FeedCardMemo
+            card={card}
+            liked={liked}
+            ignored={false}
+            onOpen={() => {}}
+            tagSlots={feedTagSlotsForCard(replicaMotion.to.width)}
+          />
+        </div>
+      )}
     </div>
   );
 }
