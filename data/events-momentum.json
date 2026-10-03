@@ -1,312 +1,256 @@
 {
-  "windowStart": "2026-10-02T23:25:17.677Z",
-  "windowEnd": "2026-10-02T23:45:17.707Z",
-  "polls": 40,
-  "eventsSeen": 3958,
-  "watchEvents": 67,
-  "createEvents": 230,
+  "windowStart": "2026-10-03T22:32:50.092Z",
+  "windowEnd": "2026-10-03T22:42:50.848Z",
+  "polls": 20,
+  "eventsSeen": 1976,
+  "watchEvents": 36,
+  "createEvents": 110,
   "topWatched": [
     {
-      "repo": "YuriRDev/elosys",
-      "stars": 2
+      "repo": "saawant12/orbit-store-ps5",
+      "stars": 1
+    },
+    {
+      "repo": "databricks/unity-gateway",
+      "stars": 1
+    },
+    {
+      "repo": "anteloc/ldraw-nova",
+      "stars": 1
+    },
+    {
+      "repo": "kixcz/My-Portfolio",
+      "stars": 1
+    },
+    {
+      "repo": "warpdotdev-demos/cloud-factory-demo",
+      "stars": 1
+    },
+    {
+      "repo": "pysunday/rs-reverse",
+      "stars": 1
+    },
+    {
+      "repo": "storytold/photocraft",
+      "stars": 1
+    },
+    {
+      "repo": "zschmook/m3u-web-picker",
+      "stars": 1
+    },
+    {
+      "repo": "qiin2333/moonlight-qt",
+      "stars": 1
+    },
+    {
+      "repo": "obra/superpowers",
+      "stars": 1
+    },
+    {
+      "repo": "OffGridPete/Fieldwatch",
+      "stars": 1
+    },
+    {
+      "repo": "mufeedvh/code2prompt",
+      "stars": 1
+    },
+    {
+      "repo": "neka-nat/freecad-mcp",
+      "stars": 1
+    },
+    {
+      "repo": "naman-n-choudhary/Three-Statement-Financial-Model",
+      "stars": 1
+    },
+    {
+      "repo": "OpenCut-app/OpenCut",
+      "stars": 1
+    },
+    {
+      "repo": "apimartf/image-api-gateway-id",
+      "stars": 1
+    },
+    {
+      "repo": "ThinkWatchProject/ThinkWatch-Lite",
+      "stars": 1
+    },
+    {
+      "repo": "light-and-ray/awesome-alternative-uis-for-comfyui",
+      "stars": 1
+    },
+    {
+      "repo": "NangoHQ/nango",
+      "stars": 1
+    },
+    {
+      "repo": "Und3rf10w/kali-anonsurf",
+      "stars": 1
+    },
+    {
+      "repo": "stephenschoettler/hermes-lcm",
+      "stars": 1
+    },
+    {
+      "repo": "ItsCharged/unblokked",
+      "stars": 1
+    },
+    {
+      "repo": "mahdidavoodi7/react-native-wifi-aware",
+      "stars": 1
+    },
+    {
+      "repo": "twistedsignal/prism",
+      "stars": 1
+    },
+    {
+      "repo": "vercel-labs/webreel",
+      "stars": 1
+    },
+    {
+      "repo": "torvalds/linux",
+      "stars": 1
+    },
+    {
+      "repo": "yu-lab-vt/AQuA",
+      "stars": 1
+    },
+    {
+      "repo": "hardbeat920/monocode",
+      "stars": 1
+    },
+    {
+      "repo": "apimarth5a/ai-api-router-cheap-ja",
+      "stars": 1
+    },
+    {
+      "repo": "mtzhmw3-sketch/AhMyth",
+      "stars": 1
+    },
+    {
+      "repo": "anthropics/financial-services",
+      "stars": 1
+    },
+    {
+      "repo": "hudl/open-data",
+      "stars": 1
+    },
+    {
+      "repo": "kixcz/rn-profile-page-activity",
+      "stars": 1
+    },
+    {
+      "repo": "elizfab/portal-dev",
+      "stars": 1
+    },
+    {
+      "repo": "etaHEN/etaHEN",
+      "stars": 1
     },
     {
       "repo": "DietrichGebert/ponytail",
-      "stars": 2
-    },
-    {
-      "repo": "home-operations/kritika",
-      "stars": 2
-    },
-    {
-      "repo": "Textualize/textual",
-      "stars": 1
-    },
-    {
-      "repo": "harry0703/MoneyPrinterTurbo",
-      "stars": 1
-    },
-    {
-      "repo": "iconify/icon-sets",
-      "stars": 1
-    },
-    {
-      "repo": "cybervisi0n/pokeplatinum",
-      "stars": 1
-    },
-    {
-      "repo": "rehan-remade/universal-modder",
-      "stars": 1
-    },
-    {
-      "repo": "Platane/snk",
-      "stars": 1
-    },
-    {
-      "repo": "pablostanley/yoinks",
-      "stars": 1
-    },
-    {
-      "repo": "usestrix/strix",
-      "stars": 1
-    },
-    {
-      "repo": "Effect-TS/effect",
-      "stars": 1
-    },
-    {
-      "repo": "yt-dlp/yt-dlp",
-      "stars": 1
-    },
-    {
-      "repo": "science-learner/ScienceFlow",
-      "stars": 1
-    },
-    {
-      "repo": "himdo/Fable-2-Recomp",
-      "stars": 1
-    },
-    {
-      "repo": "jarrodwatts/claude-delegator",
-      "stars": 1
-    },
-    {
-      "repo": "elliotttate/Wind-Waker-Recomp",
-      "stars": 1
-    },
-    {
-      "repo": "ManimCommunity/manim",
-      "stars": 1
-    },
-    {
-      "repo": "constverum/ProxyBroker",
-      "stars": 1
-    },
-    {
-      "repo": "YueKnowWho/bella_beat_case_study",
-      "stars": 1
-    },
-    {
-      "repo": "ayghri/i-have-adhd",
-      "stars": 1
-    },
-    {
-      "repo": "tazzshoppersperustock-ctrl/C-C-MODA",
-      "stars": 1
-    },
-    {
-      "repo": "Sqooky/OptimizationLock",
-      "stars": 1
-    },
-    {
-      "repo": "Doral-dev/Mini-Ransomware-Demostracion-Python",
-      "stars": 1
-    },
-    {
-      "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
-      "stars": 1
-    },
-    {
-      "repo": "juma-sayeh/PS5-Game-Compressor",
-      "stars": 1
-    },
-    {
-      "repo": "flamingo-stack/openframe-oss-lib",
-      "stars": 1
-    },
-    {
-      "repo": "nv-tlabs/ardy",
-      "stars": 1
-    },
-    {
-      "repo": "ESPARGOS/esp-sdr",
-      "stars": 1
-    },
-    {
-      "repo": "antirez/ds4",
-      "stars": 1
-    },
-    {
-      "repo": "Windecay/SimpAI_Studio",
-      "stars": 1
-    },
-    {
-      "repo": "mvanhorn/cli-printing-press",
-      "stars": 1
-    },
-    {
-      "repo": "mksglu/context-mode",
-      "stars": 1
-    },
-    {
-      "repo": "ntfargo/Relapse-Exploit",
-      "stars": 1
-    },
-    {
-      "repo": "jeffvli/feishin",
-      "stars": 1
-    },
-    {
-      "repo": "danyuchn/asd-ste100-skill",
-      "stars": 1
-    },
-    {
-      "repo": "awesome-selfhosted/awesome-selfhosted",
-      "stars": 1
-    },
-    {
-      "repo": "NovelAI/kymo",
-      "stars": 1
-    },
-    {
-      "repo": "Taewan-P/gpt_mobile",
-      "stars": 1
-    },
-    {
-      "repo": "umami-software/umami",
-      "stars": 1
-    },
-    {
-      "repo": "adrianojlt/clipx",
-      "stars": 1
-    },
-    {
-      "repo": "kvcache-ai/AgentENV",
-      "stars": 1
-    },
-    {
-      "repo": "elder-plinius/T3MP3ST",
-      "stars": 1
-    },
-    {
-      "repo": "Mantovani-a/Hop-Escalator",
-      "stars": 1
-    },
-    {
-      "repo": "openstreetmap/openstreetmap-website",
-      "stars": 1
-    },
-    {
-      "repo": "Garionhk/GoKuk",
-      "stars": 1
-    },
-    {
-      "repo": "logicog/RTLPlayground",
-      "stars": 1
-    },
-    {
-      "repo": "ChenlizheMe/Infernux",
-      "stars": 1
-    },
-    {
-      "repo": "claudioguareschi/opnsense-dashboard-plus",
-      "stars": 1
-    },
-    {
-      "repo": "atomchild411/iris-guest-tools",
       "stars": 1
     }
   ],
   "newRepos": [
-    "hseshadr/assay",
-    "lilia-r/projet_roulot_lilia",
-    "mumesz/jlhov",
-    "benjaguti1015-crypto/fidelidad-benja",
-    "certenIO/certen-validator",
-    "UOR-Foundation/uor-r4",
-    "david-systemtech/agent-harness-ci",
-    "Rockyzera/SocialConnect-API-Teste-para-a-avalia-o",
-    "Stefani0504/pata-amiga-projeto",
-    "ya27hw/animu",
-    "Alberto97/OUILookup",
-    "DeptoITD/SCR-DIAG-REP",
-    "franz1981/netty",
-    "BigBashChess/brainpower-education",
-    "xauendevs/xauendevs-astro",
-    "gravitee-io/gravitee-resource-oauth2-provider-am",
-    "JTvH-13/ECON-630-Week-6-Assignment",
-    "maxsainz2000/Jules_Project",
-    "outerbrim/xwing-dashboard",
-    "leeex1/Quillan-Ronin",
-    "dhruva-nu/cylist",
-    "sreekar028/AI-Fruit-Cutter",
-    "nikesh1812006-ui/STEP_SEMESTER_3",
-    "Zcg2021/omlx",
-    "benbaichmankass/Metis-Insights",
-    "vlang/c2v",
-    "copick/copick-torch",
-    "desertcanvasart-dotcom/travel-ops-pro",
-    "hamedniroomand/edgefit",
-    "binetouguey3s/sen-suivi",
-    "FreeForCharity/FFC-EX-thebirf.org",
-    "chisalecolli/speed-browser",
-    "runtipi/runtipi-appstore",
-    "trento-project/wanda",
-    "Bhijan-KC/Project-ig",
-    "mrguyperson/berlin_weather",
-    "StatFunGen/qQTLR",
-    "chromium-full-mirror/v8_v8",
-    "norobbc-wq/wer-bin-ich",
-    "chrismaghuhn/duoforge",
-    "GabrielaNik-qa/QA-Portfolio",
-    "iamgideonidoko/kact",
-    "R3n3n/dabudlawrwlaraw",
-    "777genius/universal-agent-plugins",
-    "tadoku/tadoku",
-    "fabi200123/coriolis",
-    "wisam-makki-salim/cic-ynu-family-transfer",
-    "owlsalt-sketch/owlsalt-sketch.github.io",
-    "hambaliFadib/ai-work-infrastructure",
-    "lamontaes/Political-Game-Git",
-    "catofkili/shushugo-app",
-    "abhishekjha199870/Finance-and-Banking-Dashboard-",
-    "Aecomputerengineer01/JaabBar-Ice-Redeem",
-    "phlax/toolshed",
-    "billshartson/Tritowers-Solver",
-    "pytorch/pytorch",
-    "jonutzv/lively-wolf-3311",
-    "llnl-asr/dftracer-agents",
-    "andyprevalsky/agent-c9517fdb",
-    "ajaykumarreddya3-sys/Encapsulation-project",
-    "moabdelnasser-123/Mohamed--Portfolio",
-    "CGI-SE-Trusted-Services/certservice-messages",
-    "stevenorko/LLVM",
-    "koagekvhsvgyyd/ohhsb",
-    "perceptra-eu/perceptra-site",
-    "leqdrzdjpftjzg/gzray",
-    "LU-KELVIN938/codex-bass-coach",
-    "zxxvtwesoeflhv/ofrz",
-    "ericksouzaaraujo48-stack/calculadora-descontos-xunit",
-    "jpj-youtube-ai/nbcc",
-    "Astralcircle/wire",
-    "itismyfield/AgentDesk",
-    "anandnavn/excercism",
-    "spoud/kafka-cost-control",
-    "muzawwied/Clinqoo.",
-    "sourcebastion/sourcebastion-scanner",
-    "EasySchedule/belmont-news-blogs",
-    "dylanfetch/openttd-rust",
-    "basheer421/agent-office",
-    "garretrerumgal/agile-wolf-6252",
-    "pantalasa/backend",
-    "aws-aemilia-pdx/Github-PR-Commit-Integration-Test-DoNotTouch-GitHubAutoBuildPrPreviewCanaryTest-v2-beta-us-west-2",
-    "NEWSLabNTU/nano-ros",
-    "Rodgers31/audit_app",
-    "aviskaar/zorp",
-    "rashal83/opbea",
-    "Louiavison2/order-gd8ahh",
-    "kmmuzahid/graft",
-    "manishkumarmewar/booknest",
-    "abtuater/mpjqe",
-    "tagawasak557/chat-bot-v1",
-    "0mickey9/skills-introduction-to-github",
-    "tudiapps/scoop-bucket",
-    "jalldesigner8/aftm",
-    "josealexisbarrioscastellanos-afk/2NLIDTS-Jos-Barrios-09-pilapy",
-    "ramischenk/xgec",
-    "mrodrigues-ads/projeto-ong",
-    "Patricgfale/61354",
-    "brshood/JobSeekrrr",
-    "Jogdshaw/LML242"
+    "founder94/ECHO-MVP-",
+    "VZsolt23/WhatsInMyMind",
+    "Hariprasath-V-S/portfolio",
+    "lukleh/besedy",
+    "Arsh08-gif/neetcode-submissions",
+    "wasd75412-ctrl/7B-v3",
+    "jondgoodwin/cone",
+    "Educlaudo/Educlaudo",
+    "elenaviter/app-ecosystem",
+    "timmrkz/framefairy",
+    "chernoslivcs-eng/kitchen-os",
+    "Inqudium/tabellarium",
+    "xkxvqs3qtq4/documents-a749c8f8",
+    "HomeEspressoLab/homeespressolab.github.io",
+    "elleflane2043/my-web",
+    "Nataliab765/update-subscription-svcwamcg",
+    "SaiNayakk/sprout-identity",
+    "AlexaDeWit/Saerskriven",
+    "nngo2/airbnb-prediction-app",
+    "btclib-org/btclib-wallet",
+    "derekwisong/datui",
+    "MiKuOS-main/dnkill",
+    "larspohlmann/simple-feed-reader",
+    "amitkote4909/Dr.malkar-hospital",
+    "vkyinkol/hvwd",
+    "leeguooooo/chrome-use",
+    "Rov-Waff/pickcat-api-collection",
+    "erniecohen/dafny",
+    "thiernoyunus/record-iphone",
+    "Coolsammy52/azuredrop-capstone-g5-c8",
+    "Adnan-Zulfiqar/ds-platform",
+    "develbresez32/hydf",
+    "coffeyvidzro/monogo",
+    "podhmo/minigo",
+    "manisha160505/HP-Acoount-Intelligence",
+    "ocakbusra/turkishtradelawyers",
+    "slemke/keycloak-testcontainer",
+    "asherholden/mini-project",
+    "valeramannanov-design/yangi-taxi-build",
+    "vaclavik-xyz/microCAM",
+    "EricCrosson/dotfiles",
+    "akiko-11/bookshelf-app",
+    "CraigHutchinson/Crucible",
+    "Truly-Depressed-Developers/hackyeah2026",
+    "RoyMan810/seecat",
+    "Dmitriy-DE/stalker-save-editor-rs",
+    "sudosubin/agents.nix",
+    "rishid/dotfiles",
+    "Olawande-samuel/portfolio",
+    "artificial-hedge/dipcatcher",
+    "ankunding2006/invc_new_student",
+    "arjun-atan/dbsn",
+    "xlSigma/xlsigma-website",
+    "alfredozau/vdvt",
+    "jonathascosta/jonathas.net",
+    "kinqsradiollc/Orbyn",
+    "dashpay/grovedb",
+    "openctemio/openctem",
+    "sanketgautam/abhijeet-rawat.github.io",
+    "sidhxntt/rudder",
+    "OlyForge3D/PrintFarmer",
+    "calmquartz20/dgel",
+    "solar-delta10/ikmt",
+    "khanhtung14/He_thong_ban_hang_va_kho",
+    "Ysuke11/claude-workspace-1",
+    "ultra-sierra93/yxqve",
+    "rapha2010/acessibilidade",
+    "thedrow/devenv4monorepo",
+    "pboachie/zrotext",
+    "andreww2012/typescript-project-template",
+    "Jack-Hewson/personal-site",
+    "Alishahmed123/payment-confirmation-0jpdvl",
+    "flarchive/ernestdefoe-giveaways",
+    "Micka420-collab/hive",
+    "simplex-chat/simplexmq",
+    "aparker09/yodh",
+    "ice1x/drevo",
+    "UGOCHUKWU1124/nuts-platform",
+    "josephfrazier/reported-web",
+    "Avinash-dev-beep/Intelligent-Queue-Management-System",
+    "AkiEga/vscode-extension-tree",
+    "trusovn/sdd",
+    "smclarthd/kuzc",
+    "GabrielVianaNunes/Developer-Black-Box",
+    "valesordev/andara.valesordev.com",
+    "cloveclovedev/cumin-works",
+    "Ven0m0/Revanced-auto",
+    "choyun1/sonore",
+    "alexn171/sbied",
+    "sb32445/llama.cpp",
+    "profilepush-ai/profilepush",
+    "MSHND/notespace",
+    "smormah/vsift",
+    "stuttgart-things/ansible",
+    "Charlieatson12/payment-verification-tn21vt",
+    "zgw494294-blip/solo-gsb-d76b6862-3cabe9af-dc4e-55c1-9486-8195cb166046",
+    "Simple-With-Us/CodeCaps",
+    "aws-aemilia-nrt/Github-PR-Commit-Integration-Test-DoNotTouch-Gith-RB7P4TGB-v2-prod-ap-northeast-1",
+    "zhengyunqq/sioyek",
+    "sshssmartlab46th/SMARTLAB_THE-CUP"
   ]
 }
