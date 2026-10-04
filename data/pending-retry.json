@@ -1,5 +1,37 @@
 [
   {
+    "repo": "0b5vr/wavenerd",
+    "desc": "GLSL music live coding environment",
+    "stars": 108,
+    "language": "TypeScript",
+    "topics": [
+      "synthesizer"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2020-05-30T20:44:33Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-03T18:38:06Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "13atm01/GRUB-Theme",
+    "desc": "GRUB Themes with the theme from the anime The Quintessential Quintuplets, Fate Series, Lycoris Recoil, VTuber, Game Doki Doki Literature Club, and Touhou Project :computer: :heart:",
+    "stars": 522,
+    "language": "Shell",
+    "topics": [
+      "anime"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2021-05-20T18:44:19Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-15T19:56:44Z",
+    "retryCount": 1
+  },
+  {
     "repo": "1N-i/Sort-algorithms",
     "desc": "Python Sorting Algorithms, Benchmarks & Rendering",
     "stars": 3,
@@ -10,25 +42,9 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-09-10T23:41:40Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-04T02:33:26Z",
-    "retryCount": 5
-  },
-  {
-    "repo": "43PR/dotfiles",
-    "desc": "Hyprland + Quickshell Setup for Arch-based distributions ",
-    "stars": 1045,
-    "language": "QML",
-    "topics": [
-      "design"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-07-14T01:06:02Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-03T23:48:03Z",
     "retryCount": 6
   },
   {
@@ -42,64 +58,94 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2025-04-14T21:40:21Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-29T20:27:10Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
-    "repo": "abersheeran/kui",
-    "desc": "An easy-to-use web framework. Supports both WSGI and ASGI modes. Gevent or asyncio, this is the question.",
-    "stars": 297,
+    "repo": "738/awesome-devbook",
+    "desc": "",
+    "stars": 1000,
+    "language": "",
+    "topics": [],
+    "source": "tier",
+    "starGrowth": 0,
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-04T18:14:15.614Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "ad-si/awesome-music-production",
+    "desc": "A curated list of software, services, and resources to create and distribute music",
+    "stars": 1511,
+    "language": "",
+    "topics": [
+      "synthesizer"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2016-03-14T14:48:08Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-23T08:31:13Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "adenaufal/anti-slop-writing",
+    "desc": "Stop your AI from writing like AI. A universal system prompt eliminating every known LLM style tell — works with Claude Code, Gemini CLI, Codex CLI, Copilot, Cursor, and any web AI.",
+    "stars": 143,
     "language": "Python",
     "topics": [
-      "web-framework"
+      "writing"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2019-06-14T07:39:36Z",
+    "createdAt": "2026-02-28T19:45:28Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-23T08:32:58Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "AdamlucYee/ForTheEmperor-",
-    "desc": "以帝皇之名，肃清你的桌面！非官方战锤 40K 主题 Windows 桌宠，支持八大战团皮肤、像素风角色与专属粒子动画。右键选择「以帝皇之名处决」，星际战士将奔向目标文件，完成攻击后将其移入回收站。角色图由 AI 生成，视觉参考与素材来源见 README。",
-    "stars": 7,
-    "language": "C#",
-    "topics": [
-      "virtual-pet"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-09-16T09:39:18Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-20T06:21:35Z",
-    "retryCount": 6
+    "ts": "2026-09-27T04:56:07Z",
+    "retryCount": 1
   },
   {
     "repo": "adeshpande3/LSTM-Sentiment-Analysis",
     "desc": "",
-    "stars": 1006,
+    "stars": 1007,
     "language": "Jupyter Notebook",
     "topics": [],
     "source": "search",
-    "starGrowth": 0,
-    "silentRounds": 0,
+    "starGrowth": 1,
+    "createdAt": "2017-06-08T21:51:43Z",
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-04T12:03:00.739Z",
-    "retryCount": 2
+    "retryCount": 3
+  },
+  {
+    "repo": "adityakumar3cs28-debug/Precision-Point-Dart",
+    "desc": "Professional Dart Aim Trainer 2026: Precision Shooting Practice Tool",
+    "stars": 56,
+    "language": "HTML",
+    "topics": [
+      "pygame"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-09-21T20:43:24Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-04T15:05:05Z",
+    "retryCount": 1
   },
   {
     "repo": "Agents365-ai/video-podcast-maker",
     "desc": "",
-    "stars": 1646,
+    "stars": 1650,
     "language": "Python",
     "topics": [],
     "source": "search",
-    "starGrowth": 6,
+    "starGrowth": 4,
     "createdAt": "2026-02-16T14:15:27Z",
     "silentRounds": 0,
     "bigbros": [],
@@ -117,10 +163,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-06-14T11:47:28Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-04T06:52:26Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "ak811/pacman-search-agent",
@@ -133,10 +179,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2022-12-03T13:06:35Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-22T19:31:16Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "alevizio/globestudio",
@@ -149,10 +195,26 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-05-14T23:18:50Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-03T20:47:34Z",
-    "retryCount": 5
+    "retryCount": 6
+  },
+  {
+    "repo": "alexgreensh/anidoodle",
+    "desc": "Art and animation, written as code. Illustrations, loops, interactive web art, launch-videos and scored films in dozens of styles, identical on every render.",
+    "stars": 783,
+    "language": "TypeScript",
+    "topics": [
+      "creative-coding"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-09-22T11:20:47Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-04T15:19:15Z",
+    "retryCount": 1
   },
   {
     "repo": "AlexKay28/triz",
@@ -165,10 +227,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-09-14T15:01:04Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-14T15:15:01Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "Alia5/SISR",
@@ -181,10 +243,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2025-11-23T15:22:17Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-30T20:56:49Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "Alpha-Park/genpark-adsr-envelope-wavetable-synth-skill",
@@ -197,25 +259,25 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-09-28T04:07:47Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-28T04:15:11Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
-    "repo": "autonomous-ai/openharness",
-    "desc": "The ultimate harness for coding agents and beyond. All your agents. All your machines. One command center. Start with code, then follow your curiosity and build across disciplines: CAD, circuits, robots, games and music.",
-    "stars": 1083,
-    "language": "Dart",
+    "repo": "am102841-code/Dungeon-Platformer",
+    "desc": "🏰 ⚔️ A dungeon-themed platformer with many levels, and music. ",
+    "stars": 6,
+    "language": "Python",
     "topics": [
-      "esp32"
+      "pygame"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2026-08-04T07:53:15Z",
+    "createdAt": "2025-11-15T20:14:35Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-04T17:53:04Z",
+    "ts": "2026-09-20T23:59:27Z",
     "retryCount": 1
   },
   {
@@ -229,7 +291,7 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-06-03T21:21:42Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-01T06:14:48Z",
     "retryCount": 1
@@ -250,13 +312,13 @@
   {
     "repo": "chubbyguan/chubbyskills",
     "desc": "把中文全渠道内容（抖音 / B站 / 小红书 / 公众号 / X / 播客）采集进个人知识库的 14 个 AI Skill：图文存图、视频转文字稿、字幕优先免 GPU、RSS/YouTube 订阅调度与每日情报简报，附带知识库 MCP server。｜ Ingest Chinese content into your personal knowledge base — image/video routing, subtitle-first transcription, feed subscriptions with daily digests, and a KB MCP server.",
-    "stars": 1169,
+    "stars": 1171,
     "language": "Python",
     "topics": [
       "podcast"
     ],
     "source": "search",
-    "starGrowth": 0,
+    "starGrowth": 2,
     "createdAt": "2026-06-08T09:22:13Z",
     "silentRounds": 0,
     "bigbros": [],
@@ -272,7 +334,7 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2021-01-29T15:16:07Z",
-    "silentRounds": 5,
+    "silentRounds": 6,
     "bigbros": [],
     "ts": "2026-09-29T00:20:24.882Z",
     "retryCount": 1
@@ -288,7 +350,7 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2023-04-30T20:23:50Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-27T03:30:23Z",
     "retryCount": 1
@@ -304,7 +366,7 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-05-16T17:14:13Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-04T07:14:17Z",
     "retryCount": 1
@@ -318,40 +380,40 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2023-09-12T22:30:49Z",
-    "silentRounds": 3,
+    "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-09-30T23:37:45.729Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "datawhalechina/base-llm",
     "desc": "",
-    "stars": 1063,
+    "stars": 1064,
     "language": "Jupyter Notebook",
     "topics": [
       "tutorial"
     ],
     "source": "search",
-    "starGrowth": 38,
+    "starGrowth": 1,
     "createdAt": "2025-08-19T03:48:20Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-03T16:00:10.335Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "dgreenheck/webgpu-claude-skill",
     "desc": "",
-    "stars": 1225,
+    "stars": 1226,
     "language": "JavaScript",
     "topics": [],
     "source": "search",
     "starGrowth": 1,
     "createdAt": "2026-01-23T02:51:19Z",
-    "silentRounds": 2,
+    "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-09-30T23:37:45.729Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "dralkh/seerai",
@@ -364,7 +426,7 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2025-12-10T18:38:02Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-23T17:41:10Z",
     "retryCount": 1
@@ -380,10 +442,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2023-07-09T02:28:31Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-04T02:46:22Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "facebookarchive/C3D",
@@ -394,10 +456,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2015-04-10T04:48:11Z",
-    "silentRounds": 3,
+    "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-09-30T23:37:45.729Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "facebookresearch/meta-agents-research-environments",
@@ -410,10 +472,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2025-09-11T10:00:28Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-30T22:56:10Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "FailproofAI/failproofai",
@@ -424,9 +486,9 @@
       "ai-agent"
     ],
     "source": "search",
-    "starGrowth": 1,
+    "starGrowth": 0,
     "createdAt": "2026-04-06T01:56:39Z",
-    "silentRounds": 1,
+    "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-02T16:04:04Z",
     "retryCount": 1
@@ -434,18 +496,18 @@
   {
     "repo": "feder-cr/invisible_playwright_mcp",
     "desc": "Playwright MCP server undetected by anti-bots and captchas: AI agent browses the web on anti-detect stealth Firefox, Python, undetected browser automation, scraping, computer use.",
-    "stars": 31769,
+    "stars": 31772,
     "language": "Python",
     "topics": [
       "ai-agent"
     ],
     "source": "search",
-    "starGrowth": 0,
+    "starGrowth": 3,
     "createdAt": "2024-08-04T12:15:06Z",
-    "silentRounds": 1,
+    "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-04T11:42:01Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "fnnx-ai/scikit-llm",
@@ -456,7 +518,7 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2023-05-12T18:09:40Z",
-    "silentRounds": 2,
+    "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-01T05:03:37.245Z",
     "retryCount": 1
@@ -472,10 +534,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-09-20T00:05:17Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-22T07:45:31Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "gesteves/lightroom-alt-text-plugin",
@@ -488,10 +550,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2024-06-15T16:00:32Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-30T14:16:34Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "google-research/magvit",
@@ -500,9 +562,9 @@
     "language": "Python",
     "topics": [],
     "source": "search",
-    "starGrowth": 1,
+    "starGrowth": 0,
     "createdAt": "2022-12-01T00:09:33Z",
-    "silentRounds": 1,
+    "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-03T19:11:49.109Z",
     "retryCount": 1
@@ -516,7 +578,7 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2020-01-25T00:59:50Z",
-    "silentRounds": 2,
+    "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-02T19:15:44.102Z",
     "retryCount": 1
@@ -528,9 +590,9 @@
     "language": "",
     "topics": [],
     "source": "search",
-    "starGrowth": 1,
+    "starGrowth": 0,
     "createdAt": "2023-03-01T17:10:19Z",
-    "silentRounds": 1,
+    "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-02T23:52:36.769Z",
     "retryCount": 1
@@ -544,23 +606,23 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2017-06-08T21:04:19Z",
-    "silentRounds": 3,
+    "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-09-30T23:37:45.729Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "heyixuan2/bambu-studio-ai",
     "desc": "Bambu Lab AI (Bambu Studio AI): agent skill for 3D printing on Bambu Lab. Finds models on MakerWorld & Printables, generates or designs them in CAD, checks printability, hands them to Bambu Studio and reads printer/AMS status. For Claude Code, Codex, Cursor, Gemini CLI and any SKILL.md agent. Featured in 我的拓竹 Skill 大赏.",
-    "stars": 215,
+    "stars": 216,
     "language": "Python",
     "topics": [
       "3d-printing"
     ],
     "source": "search",
-    "starGrowth": 0,
+    "starGrowth": 1,
     "createdAt": "2026-03-02T08:42:20Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-19T16:39:44Z",
     "retryCount": 1
@@ -568,13 +630,13 @@
   {
     "repo": "i-am-bee/agentstack",
     "desc": "",
-    "stars": 1164,
+    "stars": 1165,
     "language": "Python",
     "topics": [],
     "source": "search",
-    "starGrowth": 0,
+    "starGrowth": 1,
     "createdAt": "2025-01-27T17:21:19Z",
-    "silentRounds": 2,
+    "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-09-30T23:37:45.729Z",
     "retryCount": 1
@@ -590,10 +652,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-03-03T18:02:16Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-02T21:10:03Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "iwangjian/Paper-Reading-ConvAI",
@@ -604,7 +666,7 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2018-07-19T13:41:01Z",
-    "silentRounds": 1,
+    "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-02T23:52:36.769Z",
     "retryCount": 1
@@ -618,7 +680,7 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2021-02-28T16:25:03Z",
-    "silentRounds": 5,
+    "silentRounds": 6,
     "bigbros": [],
     "ts": "2026-09-29T00:20:24.882Z",
     "retryCount": 1
@@ -626,7 +688,7 @@
   {
     "repo": "kvcache-ai/ktransformers",
     "desc": "",
-    "stars": 19559,
+    "stars": 19561,
     "language": "Python",
     "topics": [],
     "source": "search",
@@ -648,7 +710,7 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2024-01-04T02:21:13Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-02T17:55:21Z",
     "retryCount": 1
@@ -662,38 +724,38 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2024-11-04T23:17:31Z",
-    "silentRounds": 1,
+    "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-01T23:57:50.719Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "langchain-ai/langgraph-swarm-py",
     "desc": "",
-    "stars": 1574,
+    "stars": 1573,
     "language": "Python",
     "topics": [],
     "source": "search",
-    "starGrowth": 2,
+    "starGrowth": 0,
     "createdAt": "2025-02-19T15:50:25Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-26T22:37:46.703Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "LearnPrompt/LearnPrompt",
     "desc": "",
-    "stars": 2673,
+    "stars": 2675,
     "language": "MDX",
     "topics": [],
     "source": "search",
-    "starGrowth": 0,
+    "starGrowth": 2,
     "createdAt": "2023-04-23T06:51:33Z",
-    "silentRounds": 2,
+    "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-21T19:19:33.440Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "Li-Evan/Bloom",
@@ -706,26 +768,26 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-03-10T14:59:27Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-17T07:51:09Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "LibreChat-AI/LibreChat",
     "desc": "Enhanced ChatGPT Clone: Features Agents, MCP, Skills, DeepSeek, Anthropic, AWS, OpenAI, Responses API, Azure, Groq, o1, GPT-5, Mistral, OpenRouter, Vertex AI, Gemini, Artifacts, AI model switching, message search, Code Interpreter, langchain, DALL-E-3, OpenAPI Actions, Functions, Secure Multi-User Auth, Presets, open-source for self-hosting. Active",
-    "stars": 45225,
+    "stars": 45260,
     "language": "TypeScript",
     "topics": [
       "ai"
     ],
     "source": "search",
-    "starGrowth": 4,
+    "starGrowth": 35,
     "createdAt": "2023-02-12T01:06:52Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-04T17:42:49Z",
-    "retryCount": 1
+    "ts": "2026-10-04T18:10:59Z",
+    "retryCount": 2
   },
   {
     "repo": "liuyuan-pal/SyncDreamer",
@@ -734,12 +796,12 @@
     "language": "Python",
     "topics": [],
     "source": "search",
-    "starGrowth": 2,
+    "starGrowth": 0,
     "createdAt": "2023-09-05T11:38:11Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-02T23:52:36.769Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Liyuze0422/EarShot",
@@ -752,10 +814,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-09-12T16:28:51Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-22T01:47:09Z",
-    "retryCount": 5
+    "retryCount": 1
   },
   {
     "repo": "maccman/juggernaut",
@@ -766,10 +828,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2010-09-03T11:46:02Z",
-    "silentRounds": 9,
+    "silentRounds": 10,
     "bigbros": [],
     "ts": "2026-09-25T23:11:47.497Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "mali9527/claude-code-full-guide-for-beginners",
@@ -782,7 +844,7 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-04-20T01:50:45Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-04T15:34:06Z",
     "retryCount": 1
@@ -798,10 +860,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-09-23T22:16:59Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-02T19:19:03Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "MehmetGoekce/llm-wiki",
@@ -814,10 +876,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-04-08T07:25:45Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-28T20:14:30Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "MemeCrafters/meme-generator",
@@ -826,12 +888,12 @@
     "language": "Python",
     "topics": [],
     "source": "search",
-    "starGrowth": 5,
+    "starGrowth": 0,
     "createdAt": "2023-02-10T09:36:32Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-03T16:00:10.335Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "microsoft/vscode-copilot-release",
@@ -842,10 +904,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2023-04-18T18:01:01Z",
-    "silentRounds": 1,
+    "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-03T16:00:10.335Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "mrifqidaffaaditya/WA-AKG",
@@ -863,32 +925,32 @@
   {
     "repo": "mvschwarz/openrig",
     "desc": "Build your own network of agents from Claude Code, Codex and Pi: persistent teams with roles, shared context and owned work.",
-    "stars": 4643,
+    "stars": 4908,
     "language": "TypeScript",
     "topics": [],
     "source": "trending",
-    "starGrowth": 598,
+    "starGrowth": 265,
     "createdAt": "2026-04-01T06:22:40Z",
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-03T20:18:45.482Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "nokia-applied-research/AnyJev",
     "desc": "Turn any LLM into a Jev-style decision model: typed decisions, real probabilities, no training. (continue updating, welcome any issue and PR request)",
-    "stars": 1024,
+    "stars": 1033,
     "language": "Python",
     "topics": [
       "transformers"
     ],
     "source": "search",
-    "starGrowth": 3,
+    "starGrowth": 9,
     "createdAt": "2026-09-21T05:55:40Z",
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-02T02:42:49Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "openai/openai-realtime-api-beta",
@@ -897,45 +959,45 @@
     "language": "JavaScript",
     "topics": [],
     "source": "search",
-    "starGrowth": 2,
+    "starGrowth": 0,
     "createdAt": "2024-09-30T21:11:38Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-03T16:00:10.335Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "openbq-org/OpenBB",
     "desc": "Open Data Platform for analysts, quants and AI agents.",
-    "stars": 73807,
+    "stars": 73843,
     "language": "Python",
     "topics": [
       "ai",
       "ml"
     ],
     "source": "search",
-    "starGrowth": 3,
+    "starGrowth": 36,
     "createdAt": "2020-12-20T10:46:38Z",
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-02T04:55:27Z",
-    "retryCount": 5
+    "retryCount": 1
   },
   {
     "repo": "poco-ai/poco-claw",
     "desc": "A more beautiful and easier-to-use alternative to OpenClaw. It features a nicer Web UI, built-in IM support, a sandboxed runtime and channel-based team collaboration. Under the hood, it is powered by a Claude Code–based agent.",
-    "stars": 1353,
+    "stars": 1354,
     "language": "Python",
     "topics": [
       "chatbot"
     ],
     "source": "search",
-    "starGrowth": 0,
+    "starGrowth": 1,
     "createdAt": "2026-01-08T10:48:17Z",
-    "silentRounds": 1,
+    "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-09-22T11:40:26Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "samwhosung/benilla",
@@ -953,13 +1015,13 @@
   {
     "repo": "TTPlanetPig/Comfyui_TTP_Toolset",
     "desc": "",
-    "stars": 1041,
+    "stars": 1042,
     "language": "Python",
     "topics": [],
     "source": "search",
-    "starGrowth": 3,
+    "starGrowth": 1,
     "createdAt": "2024-08-17T14:49:53Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-03T11:22:00.959Z",
     "retryCount": 1
@@ -975,7 +1037,7 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2024-12-02T14:22:50Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-24T14:34:50Z",
     "retryCount": 1
@@ -991,10 +1053,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-04-25T01:45:48Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-02T12:53:04Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "wilbowes/EchoMuse",
@@ -1012,18 +1074,18 @@
   {
     "repo": "with-pebbly/aseprite-ai-artist",
     "desc": "Your coding agent paints pixel art in the Aseprite window you already have open. MCP server + skills for Claude Code, omp, Codex, Gemini CLI and Cursor — draws, looks at its work, animates and exports. Gallery and benchmark: pixeli.pebbly.space",
-    "stars": 48,
+    "stars": 51,
     "language": "TypeScript",
     "topics": [
       "pixel-art"
     ],
     "source": "search",
-    "starGrowth": 0,
+    "starGrowth": 3,
     "createdAt": "2026-09-08T09:41:33Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-04T17:48:33Z",
-    "retryCount": 3
+    "ts": "2026-10-04T17:59:41Z",
+    "retryCount": 1
   },
   {
     "repo": "yapi1994/FH6-OMNI-TRAINER",
@@ -1036,7 +1098,7 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-09-21T21:19:43Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-04T16:49:18Z",
     "retryCount": 1
