@@ -13,7 +13,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-03T18:38:06Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "13atm01/GRUB-Theme",
@@ -29,39 +29,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-15T19:56:44Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "43PR/dotfiles",
+    "desc": "Hyprland + Quickshell Setup for Arch-based distributions ",
+    "stars": 1088,
+    "language": "QML",
+    "topics": [
+      "design"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-07-14T01:06:02Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-03T23:48:03Z",
     "retryCount": 1
-  },
-  {
-    "repo": "1N-i/Sort-algorithms",
-    "desc": "Python Sorting Algorithms, Benchmarks & Rendering",
-    "stars": 3,
-    "language": "Python",
-    "topics": [
-      "pygame"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-09-10T23:41:40Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-04T02:33:26Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "5w14/craftmine-dailies",
-    "desc": "A mod that adds daily runs to Minecraft's craftmine snapshot (25w14craftmine) ",
-    "stars": 3,
-    "language": "Java",
-    "topics": [
-      "roguelike"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2025-04-14T21:40:21Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-09-29T20:27:10Z",
-    "retryCount": 6
   },
   {
     "repo": "738/awesome-devbook",
@@ -69,12 +53,12 @@
     "stars": 1000,
     "language": "",
     "topics": [],
-    "source": "tier",
+    "source": "search",
     "starGrowth": 0,
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-04T18:14:15.614Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "ad-si/awesome-music-production",
@@ -90,6 +74,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-23T08:31:13Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "AdamlucYee/ForTheEmperor-",
+    "desc": "以帝皇之名，肃清你的桌面！非官方战锤 40K 主题 Windows 桌宠，支持八大战团皮肤、像素风角色与专属粒子动画。右键选择「以帝皇之名处决」，星际战士将奔向目标文件，完成攻击后将其移入回收站。角色图由 AI 生成，视觉参考与素材来源见 README。",
+    "stars": 7,
+    "language": "C#",
+    "topics": [
+      "virtual-pet"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-09-16T09:39:18Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-20T06:21:35Z",
     "retryCount": 1
   },
   {
@@ -106,7 +106,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-27T04:56:07Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "adeshpande3/LSTM-Sentiment-Analysis",
@@ -120,7 +120,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-04T12:03:00.739Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "adityakumar3cs28-debug/Precision-Point-Dart",
@@ -135,8 +135,8 @@
     "createdAt": "2026-09-21T20:43:24Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-04T15:05:05Z",
-    "retryCount": 1
+    "ts": "2026-10-04T18:56:33Z",
+    "retryCount": 2
   },
   {
     "repo": "Agents365-ai/video-podcast-maker",
@@ -153,54 +153,6 @@
     "retryCount": 1
   },
   {
-    "repo": "AhJxs/so-novel-rs",
-    "desc": "小说下载｜网文下载 | 网络小说",
-    "stars": 12,
-    "language": "Rust",
-    "topics": [
-      "ebook"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-06-14T11:47:28Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-04T06:52:26Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "ak811/pacman-search-agent",
-    "desc": "BFS/DFS/UCS/A* search agent with admissible Manhattan/Euclidean heuristics and a Pygame visualizer",
-    "stars": 2,
-    "language": "Python",
-    "topics": [
-      "pygame"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2022-12-03T13:06:35Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-09-22T19:31:16Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "alevizio/globestudio",
-    "desc": "Open-source dotted maps and animated 3D globes for designers. 21 looks, PNG, SVG, WebM, MP4 and GIF export, embeds, a React component, a Figma plugin and an MCP server. MIT.",
-    "stars": 12,
-    "language": "JavaScript",
-    "topics": [
-      "generative-art"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-05-14T23:18:50Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-03T20:47:34Z",
-    "retryCount": 6
-  },
-  {
     "repo": "alexgreensh/anidoodle",
     "desc": "Art and animation, written as code. Illustrations, loops, interactive web art, launch-videos and scored films in dozens of styles, identical on every render.",
     "stars": 783,
@@ -213,56 +165,8 @@
     "createdAt": "2026-09-22T11:20:47Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-04T15:19:15Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "AlexKay28/triz",
-    "desc": "TRIZ: a self-contained course in the Theory of Inventive Problem Solving — from the first contradiction to a full ARIZ run; includes TRIZ for software and AI engineering",
-    "stars": 0,
-    "language": "",
-    "topics": [
-      "textbook"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-09-14T15:01:04Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-09-14T15:15:01Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "Alia5/SISR",
-    "desc": "SISR (Steam Input System Redirector; pronounced \"scissor\") is a tool that allows users to redirect Steam Input configurations to a system level, either on localhost or even over the network.",
-    "stars": 867,
-    "language": "Go",
-    "topics": [
-      "emulator"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2025-11-23T15:22:17Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-09-30T20:56:49Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "Alpha-Park/genpark-adsr-envelope-wavetable-synth-skill",
-    "desc": "ADSR envelope state machine and band-limited wavetable synthesizer for tone and waveform synthesis.",
-    "stars": 7,
-    "language": "Python",
-    "topics": [
-      "synthesizer"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-09-28T04:07:47Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-09-28T04:15:11Z",
-    "retryCount": 6
+    "ts": "2026-10-04T18:58:35Z",
+    "retryCount": 2
   },
   {
     "repo": "am102841-code/Dungeon-Platformer",
@@ -278,6 +182,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-20T23:59:27Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "anup-a/svgwave",
+    "desc": "SVG Wave is a tiny, free and beautiful SVG gradient waves generator for your next design.",
+    "stars": 727,
+    "language": "JavaScript",
+    "topics": [
+      "design"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2020-10-05T06:07:25Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-04T18:38:15Z",
     "retryCount": 1
   },
   {
@@ -297,6 +217,22 @@
     "retryCount": 1
   },
   {
+    "repo": "beita6969/ScienceClaw",
+    "desc": "🔬🦞 A self-evolving AI research colleague for scientists. 285 skills, zero hallucination, persistent memory.",
+    "stars": 906,
+    "language": "TypeScript",
+    "topics": [
+      "bioinformatics"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-03-11T12:17:51Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-04T20:26:07Z",
+    "retryCount": 1
+  },
+  {
     "repo": "Bennettxai/FounderOS-DEMO",
     "desc": "An open-source, single-operator business command center: run a one-person operated company as AI-assisted departments (comms, funnel, social, finances, agents, and a knowledge graph) from one live dashboard.",
     "stars": 952,
@@ -307,6 +243,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-04T12:03:00.739Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "binji/smolnes",
+    "desc": "NES emulator in <5000 bytes of C",
+    "stars": 794,
+    "language": "C",
+    "topics": [
+      "emulator"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2022-10-28T15:51:09Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-04T19:23:48Z",
     "retryCount": 1
   },
   {
@@ -323,7 +275,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-04T09:28:41Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "d-li14/involution",
@@ -399,7 +351,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-03T16:00:10.335Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "dgreenheck/webgpu-claude-skill",
@@ -432,22 +384,6 @@
     "retryCount": 1
   },
   {
-    "repo": "epsilla-cloud/vectordb",
-    "desc": "A high performance Vector Database leveraging parallel graph computing",
-    "stars": 875,
-    "language": "C++",
-    "topics": [
-      "vector-db"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2023-07-09T02:28:31Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-04T02:46:22Z",
-    "retryCount": 4
-  },
-  {
     "repo": "facebookarchive/C3D",
     "desc": "",
     "stars": 1182,
@@ -475,7 +411,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-30T22:56:10Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "FailproofAI/failproofai",
@@ -507,7 +443,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-04T11:42:01Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "fnnx-ai/scikit-llm",
@@ -537,7 +473,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-22T07:45:31Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "gesteves/lightroom-alt-text-plugin",
@@ -553,7 +489,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-30T14:16:34Z",
-    "retryCount": 6
+    "retryCount": 1
   },
   {
     "repo": "google-research/magvit",
@@ -581,7 +517,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-02T19:15:44.102Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "google/dreambooth",
@@ -595,7 +531,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-02T23:52:36.769Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "google/lullaby",
@@ -609,7 +545,7 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-09-30T23:37:45.729Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "heyixuan2/bambu-studio-ai",
@@ -639,7 +575,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-09-30T23:37:45.729Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "iblai/os",
@@ -655,7 +591,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-02T21:10:03Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "iwangjian/Paper-Reading-ConvAI",
@@ -669,6 +605,22 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-02T23:52:36.769Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "IzzoSol/FL-STUDIO-AI",
+    "desc": "An AI beat maker and music-production engine — an MCP server for Claude Code, a REST API and a browser DAW. Generate grooves, progressions and full arrangements from Python, and drive it from FL Studio.",
+    "stars": 7,
+    "language": "Python",
+    "topics": [
+      "synthesizer"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-05-29T15:02:36Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-04T19:16:01Z",
     "retryCount": 1
   },
   {
@@ -683,6 +635,38 @@
     "silentRounds": 6,
     "bigbros": [],
     "ts": "2026-09-29T00:20:24.882Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "jnthas/clockwise",
+    "desc": "do-it-yourself, full-featured and smart wall clock device",
+    "stars": 694,
+    "language": "C++",
+    "topics": [
+      "arduino"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2020-11-04T01:32:54Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-04T20:13:47Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "kuanysh228/moodfly",
+    "desc": "Муха-питомец со спайковой моделью настоящего мозга дрозофилы: дрессировка словами, мутации, бои",
+    "stars": 0,
+    "language": "Python",
+    "topics": [
+      "virtual-pet"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-01T23:53:50Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-03T13:44:45Z",
     "retryCount": 1
   },
   {
@@ -697,7 +681,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-13T22:08:09.499Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "kyegomez/MultiModalMamba",
@@ -713,7 +697,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-02T17:55:21Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "langchain-ai/agent-inbox",
@@ -727,7 +711,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-01T23:57:50.719Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "langchain-ai/langgraph-swarm-py",
@@ -741,7 +725,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-26T22:37:46.703Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "LearnPrompt/LearnPrompt",
@@ -755,7 +739,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-21T19:19:33.440Z",
-    "retryCount": 5
+    "retryCount": 1
   },
   {
     "repo": "Li-Evan/Bloom",
@@ -771,7 +755,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-17T07:51:09Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "LibreChat-AI/LibreChat",
@@ -786,8 +770,8 @@
     "createdAt": "2023-02-12T01:06:52Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-04T18:10:59Z",
-    "retryCount": 2
+    "ts": "2026-10-04T20:29:52Z",
+    "retryCount": 3
   },
   {
     "repo": "liuyuan-pal/SyncDreamer",
@@ -801,7 +785,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-02T23:52:36.769Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "Liyuze0422/EarShot",
@@ -817,7 +801,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-22T01:47:09Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "maccman/juggernaut",
@@ -831,7 +815,7 @@
     "silentRounds": 10,
     "bigbros": [],
     "ts": "2026-09-25T23:11:47.497Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "mali9527/claude-code-full-guide-for-beginners",
@@ -847,7 +831,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-04T15:34:06Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Mas-inx/lumen-ai-video-editor",
@@ -863,23 +847,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-02T19:19:03Z",
-    "retryCount": 5
-  },
-  {
-    "repo": "MehmetGoekce/llm-wiki",
-    "desc": "Build Karpathy's LLM Wiki with Claude Code. L1/L2 cache architecture. Logseq + Obsidian support.",
-    "stars": 147,
-    "language": "Shell",
-    "topics": [
-      "knowledge-management"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-04-08T07:25:45Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-09-28T20:14:30Z",
-    "retryCount": 6
+    "retryCount": 1
   },
   {
     "repo": "MemeCrafters/meme-generator",
@@ -893,7 +861,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-03T16:00:10.335Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "microsoft/vscode-copilot-release",
@@ -907,7 +875,23 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-03T16:00:10.335Z",
-    "retryCount": 2
+    "retryCount": 1
+  },
+  {
+    "repo": "moonlin1213/cove-pet-nest",
+    "desc": "Cove 灵宠屋：把日常对话攒成粮食，和 AI 一起照顾宠物，根据相处信号孵化神秘灵宠。A local pet room with MCP and HTTP.",
+    "stars": 0,
+    "language": "Python",
+    "topics": [
+      "virtual-pet"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-03T06:40:06Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-03T07:24:37Z",
+    "retryCount": 1
   },
   {
     "repo": "mrifqidaffaaditya/WA-AKG",
@@ -934,7 +918,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-03T20:18:45.482Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "nokia-applied-research/AnyJev",
@@ -950,21 +934,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-02T02:42:49Z",
-    "retryCount": 3
-  },
-  {
-    "repo": "openai/openai-realtime-api-beta",
-    "desc": "",
-    "stars": 1018,
-    "language": "JavaScript",
-    "topics": [],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2024-09-30T21:11:38Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-03T16:00:10.335Z",
-    "retryCount": 1
+    "retryCount": 4
   },
   {
     "repo": "openbq-org/OpenBB",
@@ -997,7 +967,23 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-09-22T11:40:26Z",
-    "retryCount": 4
+    "retryCount": 5
+  },
+  {
+    "repo": "pychess/pychess-variants",
+    "desc": "Chess variants server ",
+    "stars": 313,
+    "language": "Python",
+    "topics": [
+      "chess"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2019-04-29T12:34:26Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-04T19:31:40Z",
+    "retryCount": 1
   },
   {
     "repo": "samwhosung/benilla",
@@ -1011,6 +997,22 @@
     "bigbros": [],
     "ts": "2026-10-03T22:45:30.081Z",
     "retryCount": 3
+  },
+  {
+    "repo": "thussenthan/onigiri-kitchen",
+    "desc": "A cozy pixel-art restaurant, pomodoro timer and shop cat for Anki. A companion to the Onigiri add-on.",
+    "stars": 0,
+    "language": "JavaScript",
+    "topics": [
+      "virtual-pet"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-09-26T02:42:57Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-04T13:40:21Z",
+    "retryCount": 1
   },
   {
     "repo": "TTPlanetPig/Comfyui_TTP_Toolset",
@@ -1043,22 +1045,6 @@
     "retryCount": 1
   },
   {
-    "repo": "w1ne/darktable-mcp",
-    "desc": "MCP server for darktable: let Claude and other AI clients rate, tag, import, export and edit RAW photos",
-    "stars": 13,
-    "language": "Python",
-    "topics": [
-      "photography"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-04-25T01:45:48Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-02T12:53:04Z",
-    "retryCount": 1
-  },
-  {
     "repo": "wilbowes/EchoMuse",
     "desc": "Alexa replacement and controller for Echo Dot 2nd Generation device.",
     "stars": 1020,
@@ -1084,8 +1070,8 @@
     "createdAt": "2026-09-08T09:41:33Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-04T17:59:41Z",
-    "retryCount": 1
+    "ts": "2026-10-04T20:08:02Z",
+    "retryCount": 2
   },
   {
     "repo": "yapi1994/FH6-OMNI-TRAINER",
@@ -1100,8 +1086,8 @@
     "createdAt": "2026-09-21T21:19:43Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-10-04T16:49:18Z",
-    "retryCount": 1
+    "ts": "2026-10-04T19:57:07Z",
+    "retryCount": 2
   },
   {
     "repo": "ys-ll/uniterm",
