@@ -1270,6 +1270,17 @@ button {
   font-weight: 700;
 }
 
+/* 十八轮（18-10 CI 红定位）：详情头 repo 行在长名卡（如 microsoft/graphrag）＋极窄视口/回退
+   字体下会裸溢出——基础 .repo-owner/.repo-name 的 nowrap 是为 feed 卡头配的（那里有
+   .repo-link 的 max-width:100% 收缩链），详情头没有宽度约束链，nowrap＝溢出无解。
+   实测 220px 强缩复现 .detail-header 溢出；320 档 CI 随机首卡撞长名即红（scrollWidth 303/270）。
+   修＝详情头内允许断行（owner/name 不再 nowrap），feed 卡头不动。 */
+.detail-repo .repo-owner,
+.detail-repo .repo-name {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
 .detail-repo .repo-name {
   color: var(--accent-text);
 }
