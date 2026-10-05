@@ -1,6 +1,6 @@
 {
   "version": "reason-fix:G1+T4:1",
-  "updatedAt": "2026-09-26T10:49:19.953Z",
+  "updatedAt": "2026-10-05T11:16:06.148Z",
   "done": {
     "go-gitea/gitea": {
       "at": "2026-09-25T13:47:18.902Z",
@@ -4047,46 +4047,654 @@
       "from": 150,
       "to": 139,
       "reason": "这是一个面向机器人学习领域的统一数据集，旨在解决各机构数据格式不统一的问题。它通过 RLDS 标准整合了来自不同机器人的海量数据，使机器能以一致结构理解动作与状态。该资源库还提供了详尽元数据和在线 Notebook，让用户无需搭建本地环境即可快速验证数据，从而降低模型训练门槛。"
+    },
+    "locationtech/geomesa": {
+      "at": "2026-10-05T11:04:48.293Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 150,
+      "to": 111,
+      "reason": "GeoMesa 是运行在 Accumulo、HBase 等分布式数据库上的时空数据管理系统，它通过构建高效的时空索引机制，解决了海量空间数据存储与查询的性能瓶颈，并能通过 OGC 协议对接各类 GIS 客户端实现互联互通。"
+    },
+    "diffusionstudio/core": {
+      "at": "2026-10-05T11:04:48.294Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 150,
+      "to": 113,
+      "reason": "Diffusion Studio Core 是一个基于 TypeScript 的浏览器视频引擎，它利用 WebCodecs 和 Canvas2D 提供了类似专业非编软件的编辑能力，支持在网页端直接进行视频的合成与硬件加速处理。"
+    },
+    "zhyocean/MyBlog": {
+      "at": "2026-10-05T11:04:52.571Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 150,
+      "to": 117,
+      "reason": "这是一个基于 SpringBoot 的全栈博客系统，它不仅包含前台文章展示，还具备完整的后台管理功能，支持文章的增删改查及访客统计，其详尽的开发文档能帮助初学者理解从架构到 Bug 修复的全过程，是学习 Java 开发的优秀实战案例。"
+    },
+    "m-ou-se/rust-atomics-and-locks": {
+      "at": "2026-10-05T11:04:52.571Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 150,
+      "to": 118,
+      "reason": "这是一个基于 Rust 语言的并发编程教程代码库，它通过严谨的章节划分复现了《Rust Atomics and Locks》中的所有技术概念，涵盖了从线程创建到原子操作与内存屏障的各类示例，能帮助开发者掌握编写安全高效多线程代码的方法。"
+    },
+    "addy-dclxvi/i3-starterpack": {
+      "at": "2026-10-05T11:04:52.571Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 150,
+      "to": 112,
+      "reason": "这是一套为 Linux 平铺式窗口管理器 i3 量身打造的精简配置合集，它只包含约 140 行核心代码，不依赖任何第三方脚本，完全基于官方标准软件包构建，能为追求高效稳定桌面体验的用户提供一套简单易读且兼容性极佳的配置方案。"
+    },
+    "gaowenliang/imu_utils": {
+      "at": "2026-10-05T11:04:52.571Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 150,
+      "to": 103,
+      "reason": "这是一个基于 ROS 的 IMU 传感器噪声分析工具，它利用艾伦方差法对 IMU 进行“体检”，通过采集长时间静态数据并绘制曲线，帮助用户量化分析量化噪声与角度随机游走等指标，从而有效提升机器人的定位精度。"
+    },
+    "PardCode/CPP-3D-Game-Tutorial-Series": {
+      "at": "2026-10-05T11:04:56.123Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 150,
+      "to": 102,
+      "reason": "这套 C++ 3D 游戏教程系列剥离了商业引擎封装，直接基于 Win32 API 和底层图形学构建游戏引擎。它详细阐述了渲染管线与数学库的实现原理，帮助开发者从零开始理解图形学逻辑并掌握核心游戏开发技术。"
+    },
+    "GitHub-Laziji/VBlog": {
+      "at": "2026-10-05T11:04:56.123Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 150,
+      "to": 112,
+      "reason": "VBlog 将博客托管在 GitHub Pages 上，数据存储于 Gist，实现了无需后端的个人博客系统。它集成了 Element UI 和 Vant 组件库，通过调用 API 实现动态发布文章，确保了多端适配与数据掌控。"
+    },
+    "Anil-matcha/open-dots": {
+      "at": "2026-10-05T11:05:00.333Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 150,
+      "to": 129,
+      "reason": "Open Dots 是一款开源且自托管的 AI 代理工作区，旨在提供类似 Meta Muse 等商业产品的体验，同时赋予用户对数据的完全控制权。它通过内置的“受治理操作网关”和审批机制，允许 AI 在用户授权下执行计算机任务，从而在本地安全地管理各类连接器。"
+    },
+    "QwenLM/Qwen-AgentWorld": {
+      "at": "2026-10-05T11:05:00.333Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 150,
+      "to": 140,
+      "reason": "Qwen-AgentWorld 是通义团队发布的一套 AI 智能体模型与评测基准，用于评估模型在特定场景下的实际能力。该项目提供了从 4B 到 35B 等多种参数规模的模型权重，支持在 Hugging Face 和 ModelScope 平台上直接下载，为开发者提供了丰富的选择。"
+    },
+    "bytechefhq/bytechef": {
+      "at": "2026-10-05T11:05:00.333Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 150,
+      "to": 124,
+      "reason": "ByteChef 是一个集成了工作流自动化与 API 集成的企业级自托管平台，旨在解决 AI 智能体与自动化工具碎片化导致的管理混乱。它提供统一的编排层，支持在受监管环境中运行，具备完善的权限控制和审计能力，非常适合需要处理多步骤跨应用任务的场景。"
+    },
+    "microsoft/onnxruntime-genai": {
+      "at": "2026-10-05T11:05:00.333Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 150,
+      "to": 121,
+      "reason": "ONNX Runtime GenAI 是微软推出的高性能大语言模型推理引擎，专为在边缘设备上运行而优化。它通过精细化的生成循环和键值缓存管理，大幅提升了模型前处理、推理计算及后处理的效率，并已成为 Windows ML 等生态工具的底层支撑。"
+    },
+    "aimeos/ai-woocommerce": {
+      "at": "2026-10-05T11:06:49.182Z",
+      "lane": "zhipu:glm-4.7-flash",
+      "from": 150,
+      "to": 110,
+      "reason": "ai-woocommerce 是一个用于将 WooCommerce 电商数据迁移至 Aimeos 框架的自动化工具，能够解决两个系统间数据结构差异导致的迁移难题，帮助开发者快速搭建基于 Laravel 的高性能电商系统。"
+    },
+    "IndieKKY/bilibili-subtitle": {
+      "at": "2026-10-05T11:11:00.293Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 124,
+      "reason": "该浏览器扩展自动抓取视频字幕并显示为列表，点击句子即可跳转对应画面，方便回顾知识点。它还支持复制或下载多格式字幕，内置翻译和总结功能，能快速提取长视频要点。更可接入本地Ollama模型，配置服务器地址和模型名后即可离线完成AI处理，兼顾效率与隐私。"
+    },
+    "lively-community/lively": {
+      "at": "2026-10-05T11:11:00.293Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 132,
+      "reason": "这是一款基于WinUI 3的开源动态壁纸工具，可将视频或Live2D序列帧设为壁纸，并能感知硬件状态。按下Tab键可暂停渲染释放资源，适合配置一般的电脑。开发者还能利用其API读取CPU占用或音频图谱，让壁纸根据系统负载或音乐节奏自动变换，实现桌面自动化交互效果。"
+    },
+    "mvschwarz/openrig": {
+      "at": "2026-10-05T11:11:00.293Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 132,
+      "reason": "这个框架把Claude Code、Codex等AI编程助手封装成可协作的智能体团队。用户通过YAML配置定义领队和专家角色，领队接收任务后自动拆解并分配子任务，汇总关键节点供人工决策。它消除多终端会话的碎片化，让复杂工程开发变为与单一领队的对话，大幅提升协作效率。"
+    },
+    "theZiz/aha": {
+      "at": "2026-10-05T11:11:05.027Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 115,
+      "reason": "aha 是一款终端工具，能将 ANSI 彩色输出直接转为带样式的 HTML 页面。它解决了命令行文档难以在浏览器中阅读的问题，让帮助信息、文件列表等以原色彩呈现。用户通过管道组合命令即可生成带黑色或粉色背景的网页，方便分享与存档。"
+    },
+    "yize8888/maotai": {
+      "at": "2026-10-05T11:11:05.028Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 107,
+      "reason": "maotai 是基于 Node.js 的自动化预约脚本，针对正则和 i茅台平台实现定时精准申报。它通过逆向接口替代手动点击，降低因网速或手速导致的失败率，需依赖青龙面板运行并配置相应授权信息。项目仅供个人学习参考。"
+    },
+    "elonlit/Genesis": {
+      "at": "2026-10-05T11:11:05.028Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 106,
+      "reason": "Genesis 是一款用古希伯来字母作为符号集的编程语言，属于解释型、过程式且图灵完备的设计。它让代码拥有古卷般的视觉体验，同时具备完整的控制流、子程序调用和数据结构能力，吸引对语言史或多元编程实践感兴趣的极客。"
+    },
+    "lucidrains/byol-pytorch": {
+      "at": "2026-10-05T11:11:05.028Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 118,
+      "reason": "byol-pytorch 是 BYOL 自监督学习算法的 PyTorch 实现，无需负样本即可从无标签图像中训练神经网络。它提供模块化接口，让研究者轻松将 ResNet 等网络接入自监督流程，在减少标注依赖的同时获得稳健的图像特征表示。"
+    },
+    "danijar/dreamerv2": {
+      "at": "2026-10-05T11:11:26.358Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 139,
+      "reason": "DreamerV2 是一个基于世界模型的强化学习项目，让智能体在离散的想象环境中训练策略，无需繁琐的像素特征提取。它擅长处理 Atari 游戏等复杂视觉任务，比传统无模型方法学习更快。项目提供全部 55 款游戏的表现数据和单 GPU 训练方案，适合研究多任务通用性和机器人决策。"
+    },
+    "gaasedelen/tenet": {
+      "at": "2026-10-05T11:11:26.358Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 139,
+      "reason": "Tenet 是一款深度集成于 IDA Pro 的逆向工程插件，专注于执行轨迹的分析与探索。它帮助逆向人员摆脱传统线性反汇编视图，以更自然的界面穿梭于代码流，从而理解复杂执行路径。处理经过混淆或加固的二进制时，Tenet 能有效提取隐藏逻辑，对研究攻击向量和未文档化行为十分有用。"
+    },
+    "Jingyi-Wu-Richael/rachel-digital-human-production": {
+      "at": "2026-10-05T11:11:26.358Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 141,
+      "reason": "该项目将数字人视频制作转化为可重复的 Codex 自动化流程，通过严格资产验证避免无效 API 开销。它串联 MiniMax 语音克隆与 HeyGen 口型同步，并内置预览先行机制：先产出 15 秒样片供审批，确认后才生成完整 1080p 视频，大幅降低错误成本，适合批量内容生产。"
+    },
+    "moses-smt/mosesdecoder": {
+      "at": "2026-10-05T11:11:26.358Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 136,
+      "reason": "Moses 是基于 C++ 实现的经典统计机器翻译解码器，依赖短语表和重排模型完成翻译。它长期沿用 KenLM 的高效语言模型代码，至今在离线或低资源场景中仍有应用。项目纯熟地整合了外部依赖，在 Ubuntu 22.04 上可按既有指引装配运行，适合语言学研究与教学使用。"
+    },
+    "omoindrot/tensorflow-triplet-loss": {
+      "at": "2026-10-05T11:11:47.064Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 112,
+      "reason": "这是一个面向度量学习与计算机视觉任务的TensorFlow开源库，专门解决三元组损失函数实现低效的问题。它支持在线三元组挖掘，能在每个训练批次内直接筛选有效样本，从而避免离线生成带来的存储开销，并显著提升模型训练速度与精度。"
+    },
+    "Vaan21th/daemonkey-agent": {
+      "at": "2026-10-05T11:11:47.064Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 111,
+      "reason": "这是一个跑在本地电脑上的AI伴侣守护进程，具备独立长期记忆能力。它会在首次对话时把你的信息写入硬盘，之后即使更换模型也能记住你。它支持后台文档处理、定时任务执行，还能以桌宠形态互动，并随使用逐渐学会你的偏好，主动分担工作。"
+    },
+    "Azure-Samples/chat-with-your-data-solution-accelerator": {
+      "at": "2026-10-05T11:11:47.064Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 115,
+      "reason": "这是一个面向企业知识库的RAG解决方案加速器，帮助用户从海量非结构化文档中快速获得有据可查的答案。它通过Azure DevOps一键部署，自动搭建向量数据库与API网关，并在回答时附带引用来源，显著降低法律、金融场景下的幻觉风险。"
+    },
+    "greyhaven-ai/autocontext": {
+      "at": "2026-10-05T11:11:47.065Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 116,
+      "reason": "这是一个让AI Agent积累经验并持续改进的框架。它通过递归自我评估，在任务执行中自动保留有效策略、剔除无效路径，使Agent越用越聪明。它还会生成完整痕迹、报告和Playbook，并可输出本地模型训练数据集，让经验沉淀为己所用。"
+    },
+    "aitorzip/DeepGTAV": {
+      "at": "2026-10-05T11:11:52.389Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 146,
+      "reason": "DeepGTAV v2 是一款将游戏《侠盗猎车手 V》改造为自动驾驶视觉研究环境的插件。它解决真实驾驶数据采集成本高、风险大的问题，让研究者直接在游戏开放世界中安放摄像头传感器，持续获取视觉流数据以训练和测试模型。使用时需确保游戏版本不高于 1.0.1180.2，并配合特定文件配置即可运行。"
+    },
+    "uluckyXH/OpenMOSS": {
+      "at": "2026-10-05T11:11:57.246Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 132,
+      "reason": "OpenMOSS 将“公司”的组织概念映射到 AI Agent 运行时，让多个角色分工协作：规划者制定策略，执行者处理任务，审查者把控质量，巡查者负责运维。它通过闭环质量控制机制驳回不合格交付物，并自动修复卡住或异常的 Agent，从而处理需多步协作的复杂工作流。"
+    },
+    "DLYuanGod/TinyGPT-V": {
+      "at": "2026-10-05T11:11:57.246Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 141,
+      "reason": "TinyGPT-V 是一个基于 Phi-2 的小型多模态视觉语言模型，旨在让看图对话能力摆脱对高算力硬件的依赖。它通过精心设计的训练策略对齐图像编码器与语言模型，使模型能理解图片并回答相关问题。你无需本地部署，即可在 Hugging Face 在线 Demo 中直接体验其识别效果。"
+    },
+    "tensorlayer/HyperPose": {
+      "at": "2026-10-05T11:11:57.246Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 149,
+      "reason": "HyperPose 是一个重写底层引擎的姿态估计框架，通过流水线并行、TensorRT 推理及 CPU/GPU 混合调度，可达到经典框架 OpenPose 等 10 倍的处理速度。它尤其适合边缘计算场景，能在 Jetson 或低配 GPU 服务器上智能分配任务，同时监控几十路摄像头并维持流畅帧率。"
+    },
+    "datawhalechina/hugging-multi-agent": {
+      "at": "2026-10-05T11:11:57.246Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 141,
+      "reason": "hugging-multi-agent 是一套基于 MetaGPT 框架的多智能体开发教程，面向希望深入代码层面的开发者。它从宏观架构到微观实现全链路拆解，帮助读者理解并实践将人类工作流抽象为标准化流程的理念。通过阅读源码并掌握异步编程，学习者可根据业务需求实现智能体的个性化定制。"
+    },
+    "Gourieff/ComfyUI-ReActor": {
+      "at": "2026-10-05T11:12:02.581Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 137,
+      "reason": "这是ComfyUI的换脸节点扩展，在图像生成流程中直接实现快速换脸，并自带安全过滤避免滥用。它新增的帧增强节点整合DLSS 5技术，既能提升整体画质，也能按蒙版只优化面部区域。隔离宿主模式让节点与ComfyUI的CUDA上下文互不干扰，不会引发显存冲突，装好后即可稳定使用。"
+    },
+    "TheExplainthis/ChatGPT-Line-Bot": {
+      "at": "2026-10-05T11:12:02.581Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 145,
+      "reason": "这个项目把GPT-3.5-Turbo、Whisper和DALL·E 2接入Line聊天软件，让你在对话框里直接对话、语音输入或生成图片。它还能自动总结YouTube影片和新闻资讯的要点，借助Whisper服务实现语音转文字，使交流更高效。无需离开Line，就能获得多模态AI助手的完整体验。"
+    },
+    "869413421/ai-moive-studio": {
+      "at": "2026-10-05T11:12:02.581Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 140,
+      "reason": "AICON是开源的AI视频创作工作台，用无限画布替代传统时间线，让你自由串联小说、剧本、角色和分镜节点。它能自动拆解剧本里的角色与场景，生成参考图、关键帧和过渡视频，还可按章节配图、配音和字幕，合成完整解说视频后对接Bilibili发布。原生支持Docker自部署，本地即可搭建。"
+    },
+    "ATH-MaaS/Awesome-Unified-Multimodal-Models": {
+      "at": "2026-10-05T11:12:02.581Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 137,
+      "reason": "这份资源列表由阿里达摩院等维护，系统梳理2023至2025年发布的统一多模态模型，帮你快速掌握技术演进脉络。其特色是对Any-to-Any模型做特殊标注，这类模型能处理文本、图像、音频、视频和语音的任意组合输入与输出。配以图解时间线，直观展示代表性工作的架构创新与出现顺序。"
+    },
+    "CSSLab/maia-chess": {
+      "at": "2026-10-05T11:12:07.207Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 149,
+      "to": 137,
+      "reason": "Maia Chess 是一组模拟人类不同水平下棋风格的国际象棋 AI 引擎。它利用人类棋谱训练模型，而非单纯追求绝对最优解，从而在教学中提供逼真对手。最新 Maia-3 采用 Chessformer 架构，以更少参数精确刻画从初学者到强业余选手的棋风，兼顾低算力与高拟真度。"
+    },
+    "allenai/objaverse-xl": {
+      "at": "2026-10-05T11:12:07.207Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 129,
+      "reason": "Objaverse-XL 是包含超千万个 3D 物体的开放数据集，规模较前代提升十倍以上。该数据支撑了 Zero123-XL 模型的训练，使其在零样本条件下能对素描、卡通等非真实图像进行新颖视角合成，展现出抽象的视觉理解能力，为 3D 生成领域奠定数据基础。"
+    },
+    "ssbuild/chatglm_finetuning": {
+      "at": "2026-10-05T11:12:07.207Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 119,
+      "reason": "该工具包以深度训练为核心理念，提供高度封装的脚本，支持对 ChatGLM 系列模型进行全参数或 LoRA 低资源微调。它兼容 GLM-4-9B 等多版本，附带专用推理脚本便于微调前后对比评估，并针对依赖安装提供国内镜像方案，降低定制门槛。"
+    },
+    "autonomousvision/unimatch": {
+      "at": "2026-10-05T11:12:07.207Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 130,
+      "reason": "UniMatch 是一个统一的光流估计、立体匹配与深度预测框架，通过全局匹配与 1D 注意力技术在高分辨率下保持高效运算。它在多个国际基准测试中表现领先，并提供 Colab 示例便于快速验证，可与 DepthSplat 等模型联动处理多视图场景，减少维护成本。"
+    },
+    "cgarciae/pypeln": {
+      "at": "2026-10-05T11:12:21.239Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 131,
+      "reason": "专为中等规模数据任务设计的轻量级Python并发库，填补了单线程处理与Spark等重型框架之间的空白。它提供统一API，让开发者能用相同接口构建多进程、多线程或异步管道，并根据CPU或IO密集特性灵活切换并发模型，无需重写业务逻辑，降低并行编程的学习和迁移成本。"
+    },
+    "ExtropyIO/defi-bot": {
+      "at": "2026-10-05T11:12:21.239Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 139,
+      "reason": "一份定格于过去技术阶段的DeFi套利教学代码，因1inch和DyDx等底层协议接口变更已无法直接运行，但恰好成为学习历史实现的优质标本。它完整展示如何在以太坊上监听去中心化交易所价差并执行买卖，让Solidity开发者直观理解跨协议交互、滑点保护和超时处理等风控机制的代码落地。"
+    },
+    "andrewning/sortphotos": {
+      "at": "2026-10-05T11:12:21.239Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 128,
+      "reason": "基于Python的命令行照片整理工具，解决媒体文件长期积累后的目录混乱问题。它借助ExifTool读取照片和视频的元数据，提取拍摄时间后自动生成年、月、日结构的文件夹树。支持复制或移动两种操作模式，方便用户在确认无误前保留原始文件，实现安全高效的批量归档。"
+    },
+    "dulnan/lazy-brush": {
+      "at": "2026-10-05T11:12:26.101Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 120,
+      "reason": "lazy-brush 是一个前端创意库，通过引入“惰性区域”数学模型解决画布绘图的抖动问题。它不直接渲染图像，而是计算画刷位置，使线条呈现弹簧或绳索跟随的流畅质感。项目附带演示应用，用一条可视化绳索连接指针与画刷，让抽象的数学效果直观可感。"
+    },
+    "KaiDMML/FakeNewsNet": {
+      "at": "2026-10-05T11:12:26.102Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 128,
+      "reason": "FakeNewsNet 是一个面向虚假新闻传播研究的大型数据集，并配套分析与可视化工具。它遵守平台隐私政策，排除敏感互动信息，为学术研究提供统一基准。研究者可借助 FakeNewsTracker 完成数据清洗与展示，从而快速理解谣言在社交网络中的扩散机制。"
+    },
+    "flutter-it/get_it": {
+      "at": "2026-10-05T11:12:26.102Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 149,
+      "reason": "get_it 是 Dart 和 Flutter 的依赖注入库，允许开发者在应用启动阶段注册所有业务对象，随后在任意位置按名称直接引用。它避免了在 Widget 树中层层传递 BuildContext，以常数级时间完成对象查找，且无需代码生成，既清晰又高效，并极大简化了单元测试中的 Mock 注入。"
+    },
+    "mitchellh/gon": {
+      "at": "2026-10-05T11:12:31.054Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 142,
+      "reason": "gon是一个专门用于macOS二进制文件签名与公证的Go语言工具，解决Apple强制要求下软件分发前的认证问题。它不仅能处理Go程序，也支持Rust、C++等任何语言编译出的二进制文件，并提供独立的CLI命令和Go Library两种使用方式，方便手动操作或集成到CI/CD流水线中。"
+    },
+    "NVlabs/sionna": {
+      "at": "2026-10-05T11:12:31.055Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 145,
+      "reason": "Sionna是一个面向无线通信研究的开源仿真库，将复杂的射线追踪和物理层算法标准化，帮助科研人员在数分钟内完成原本需要数周的实验。其模块化架构包含Sionna RT组件加速无线电传播建模，以及PHY和SYS包覆盖从链路到系统级别的全链路模拟，适用于5G/6G、光通信等场景的算法验证与开发。"
+    },
+    "Rainbow-Dreamer/musicpy": {
+      "at": "2026-10-05T11:12:31.055Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 128,
+      "reason": "Musicpy是一个基于Python的音乐编程语言，通过乐理和算法让你用代码实现复杂的音乐创作与运算。它能定义和弦进程、旋律和节奏，自动生成符合调性规则的伴奏，并分析和声、调式等理论逻辑。这个库为作曲、实验性电子音乐及音乐算法研究提供了数据驱动的创作环境。"
+    },
+    "kana/vim-textobj-user": {
+      "at": "2026-10-05T11:12:31.055Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 122,
+      "reason": "这个Vim插件允许你通过声明式方式自定义文本对象，免去处理边界条件的繁琐步骤。你可以定义日期、成对标签等自定义块为文本对象，用正则或脚本函数精准选择修改，让编辑器更符合个人习惯，尤其适用于处理带规律性的配置文件或日志数据，显著提升文本编辑效率。"
+    },
+    "lunasec-io/lunasec": {
+      "at": "2026-10-05T11:12:35.476Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 106,
+      "reason": "LunaSec 是一个自托管的依赖安全监控平台，用 Web 控制台持续跟踪项目依赖状态，并动态比对漏洞数据库。一旦引入的版本存在 CVE，它会立即高亮显示并关联具体依赖路径，帮助安全团队快速定位和修复供应链风险。"
+    },
+    "Twigpine/openclaude": {
+      "at": "2026-10-05T11:12:35.476Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 134,
+      "reason": "OpenClaude 是一款运行在终端里的多模型 AI 编程代理，支持 OpenAI 兼容 API、Gemini、Ollama 等多种后端，让你摆脱单一厂商绑定。它通过统一提示词接口和 MCP 工具调用协议，把补全、架构设计等能力整合进一个工作流，保护敏感代码不外传。"
+    },
+    "akien-mga/dynadungeons": {
+      "at": "2026-10-05T11:12:35.476Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 121,
+      "reason": "DynaDungeons 是一个用 Godot 引擎制作的炸弹人克隆游戏，支持最多四人本地多人联机，再现了放置炸弹、炸墙消灭对手的经典玩法。项目使用 CC BY 3.0 素材，采用本地对战设计，是作者为了演示节点系统与信号机制而做的学习样板。"
+    },
+    "jezweb/claude-skills": {
+      "at": "2026-10-05T11:12:35.476Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 130,
+      "reason": "claude-skills 是一套专为 Claude Code 设计的生产级技能包，包含十个插件模块，覆盖构建、部署、前端、文档等核心领域。每个技能通过食谱引导模型产出可触知的项目骨架、资产或文档，并把规划类技能拆分到独立框架，让执行层工作流更轻量、目标明确。"
+    },
+    "Robinson-AI-Lab/FridayOS1.0": {
+      "at": "2026-10-05T11:12:40.308Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 140,
+      "reason": "FridayOS 1.0 是鲁滨逊实验室的开源实践项目，旨在将“第二大脑”落地为能主动思考的 Agent OS。它通过 AI 对知识进行语义拆解与归类，在需要时主动调取或串联信息，并借助 Agent 自动化执行特性推进工作计划，让知识沉淀与执行力深度结合，适合知识密集型工作场景。"
+    },
+    "liyiteng/AlohaMini": {
+      "at": "2026-10-05T11:12:40.308Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 148,
+      "reason": "AlohaMini2 是一款开源具身智能机器人，利用桌面级 3D 打印机即可制作机身，物料成本控制在 1000 美元以内。它具备 6+1 自由度，末端负载 1 公斤，操作半径 52 厘米，足以完成日常物品抓取与装配，并通过与 LeRobot 框架集成，让个人研究者能在家中搭建小型具身智能实验室。"
+    },
+    "abertsch72/unlimiformer": {
+      "at": "2026-10-05T11:12:45.504Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 124,
+      "reason": "这是让Transformer模型直接处理超长文本的方案。传统模型面对数万token时内存会爆炸，该项目把编码器状态存入检索库，解码时按需取回参与计算，绕开算力瓶颈。用户可直接套用已训练模型做长文档问答或摘要，也能针对性微调提升效果，无需从头预训练。"
+    },
+    "kijai/ComfyUI-Hunyuan3DWrapper": {
+      "at": "2026-10-05T11:12:45.504Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 127,
+      "reason": "该项目把腾讯Hunyuan3D-2模型封装进ComfyUI节点，让你在图形化界面里完成3D生成，免去命令行配置依赖的麻烦。它预置了转换好的safetensors权重，并附带编译版光栅化器，安装顺畅、预览实时。适合数字艺术家或开发者快速产出三维模型与纹理。"
+    },
+    "VOICEVOX/voicevox_core": {
+      "at": "2026-10-05T11:12:45.504Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 134,
+      "reason": "这是VOICEVOX语音合成软件的高性能核心引擎，完全用Rust重写，专门负责耗时最长的神经网络推理。相比Python版本，它能高效处理并发和长文本，在低配机器上也能流畅运行。仓库直接提供Windows、Linux、macOS的预编译库和C API，方便其他语言集成。"
+    },
+    "sb-ai-lab/LightAutoML": {
+      "at": "2026-10-05T11:12:49.675Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 122,
+      "reason": "LightAutoML（LAMA）是一个自动化机器学习平台，让你用几行代码或可视化拼装模块的方式完成从数据预处理、特征选择到模型训练的全流程。它既提供开箱即用的预设方案，也保留灵活定制的空间，适合数据科学家、分析师以及初学者快速构建高性能模型。"
+    },
+    "langchain-ai/deepagentsjs": {
+      "at": "2026-10-05T11:12:49.676Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 114,
+      "reason": "Deep Agents是一个智能体开发框架，内置了写TODO列表、文件读写、搜索等默认操作，让你接入模型后即可运行。它还支持将复杂任务拆解为子代理在隔离上下文中执行，自动管理长期记忆与逻辑连贯性，从而大幅简化Agent构建流程。"
+    },
+    "n8n-io/n8n-hosting": {
+      "at": "2026-10-05T11:13:04.194Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 146,
+      "reason": "这是面向生产环境的n8n部署配置仓库，核心是官方Helm Chart，解决云原生环境中高可用和横向扩展问题。它提供数据库（如PostgreSQL、MSSQL）和队列模式的权威配置参考，团队可直接采用推荐的资源限制、连接策略及Redis队列设置，让n8n在Kubernetes上按预期稳定运行。"
+    },
+    "Macro-Deck-App/Macro-Deck": {
+      "at": "2026-10-05T11:13:04.195Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 126,
+      "reason": "这个项目能把手机或平板变成触控宏按键板，集中管理常用命令、脚本和媒体控制。它支持按场景定制布局和文件夹，按钮之外还有滑动调音、媒体信息、天气等小部件。新版跨平台出色，Windows、macOS或Linux均可作为宿主，经本地网络与移动端客户端流畅协作。"
+    },
+    "OpenSparX/MasterAgent": {
+      "at": "2026-10-05T11:13:14.378Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 147,
+      "reason": "MasterAgent 是一个以 C++17 编写、完全在设备端运行的 AI Agent 运行时，可在高通 NPU 上实现亚 100 毫秒延迟，且不依赖云端。它通过先规则校验再送模型推理的方式，降低幻觉风险，并支持内存或 SQLite 两种状态管理，帮助开发者可靠地掌控 Agent 生命周期。"
+    },
+    "NVlabs/InstantSplat": {
+      "at": "2026-10-05T11:13:14.378Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 131,
+      "reason": "InstantSplat 是一个能利用极少量照片在几秒钟内重建三维场景的高效渲染框架。它深度集成 3D 高斯泼溅、2D 高斯泼溅及 Mip-Splatting 等多种算法，用户可按场景切换渲染方案，在处理复杂几何或光照变化时保持高质量画面，适用于科研与工业建模。"
+    },
+    "AlibabaResearch/DAMO-ConvAI": {
+      "at": "2026-10-05T11:13:14.378Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 121,
+      "reason": "这是达摩院对话式人工智能团队的开源仓库，汇集了他们在 ACL、EMNLP、NeurIPS 等顶会上发表的多项研究代码，涵盖任务型与开放域对话、语义解析和 SQL 生成等方向。研究者可克隆并直接运行这些算法，在自身项目中复刻或优化前沿对话技术。"
+    },
+    "piiswrong/deep3d": {
+      "at": "2026-10-05T11:13:14.379Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 129,
+      "reason": "Deep3D 提供了一套基于 MXNet 的完整代码，用卷积神经网络处理 2D 视频帧并预测对应深度，从而自动生成 3D 效果，免去大量手工标注与渲染。使用前需安装 MXNet 并开启 CUDA 与 cuDNN 支持，适合电影后期、VR 内容创作及视觉研究。"
+    },
+    "coreylynch/async-rl": {
+      "at": "2026-10-05T11:13:39.913Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 132,
+      "reason": "这是异步深度强化学习的经典实现，源于A3C论文，专为解决传统DQN依赖经验回放导致内存占用过高的问题。它通过并行Actor-Learner线程维持训练稳定性，在4GB内存的MacBook上即可流畅运行，代码清晰划分模型与交互模块，适合研究强化学习算法的入门与复现。"
+    },
+    "suyiiyii/AutoGLM-GUI": {
+      "at": "2026-10-05T11:13:39.914Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 142,
+      "reason": "AutoGLM-GUI是一款面向Android的AI自动化工具，能将手机重复操作交给云端定时执行，如签到或周期性检查。它支持Cron风格计划任务，对话历史全程留存，打断响应快于1秒。配合Docker一键部署和模拟器自动识别，可轻松管理多台设备，实现7×24小时无人值守的智能助手体验。"
+    },
+    "ABexit/ASR-LLM-TTS": {
+      "at": "2026-10-05T11:13:39.914Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 131,
+      "reason": "这是一个本地化的语音交互AI助手，通过声纹识别确保只有录过音的本人能下达指令，避免旁人误触。系统还支持自定义拼音式唤醒词，如将“zhan qi lai”设为启动口令，并将语音识别与指令逻辑解耦，大幅提升交互自由度与私密性，适合追求个性化与专属体验的语音控制场景。"
+    },
+    "diodiogod/TTS-Audio-Suite": {
+      "at": "2026-10-05T11:13:44.724Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 125,
+      "reason": "这是一套面向 ComfyUI 的音频创作套件，解决生态中语音工具分散且技术老旧的问题。它模块化集成 ChatterboxTTS、F5-TTS、Higgs Audio 等众多引擎，并原生支持 RVC 模型训练，让声音克隆与语音合成都可在统一界面中完成。"
+    },
+    "stanford-oval/WikiChat": {
+      "at": "2026-10-05T11:13:44.724Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 116,
+      "reason": "它阻止 AI 编造事实，通过检索维基百科来生成有据可查的回答。项目支持免费搜索 API 快速上手，也能自建 Qdrant 索引并上传至 Hugging Face Hub 共享，兼顾便捷与隐私，适合对答案可靠性要求高的多用户部署场景。"
+    },
+    "AIRLegend/aitrack": {
+      "at": "2026-10-05T11:13:44.724Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 107,
+      "reason": "它用神经网络将普通网络摄像头变成头部追踪设备，为模拟游戏提供沉浸体验，无需昂贵硬件。程序可远程运行，通过标准管道把数据传给 Opentrack，从而在弱光或戴眼镜时也能稳定地将抬头、转头动作映射到飞行与赛车游戏中。"
+    },
+    "zjunlp/KnowLM": {
+      "at": "2026-10-05T11:13:44.724Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 101,
+      "reason": "它构建了打通数据、预训练、微调到知识增强的大模型框架，缓解垂直领域的幻觉问题。内置 ZhiXi 和 OneKE 等即装即用模型，并可与 DeepKE 配合处理信息抽取，让知识图谱与语言模型能力协同落地。"
+    },
+    "doggy8088/github-copilot-configs": {
+      "at": "2026-10-05T11:13:54.047Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 138,
+      "reason": "这是一份由资深技术教育者整理的 GitHub Copilot 公开配置库，旨在解决团队因忽视深层参数配置而导致的 AI 辅助效果不佳问题。它基于大量对比测试，提供了系统提示词、工具调用权限等最佳实践，并针对 Agent 模式进行了专项解析，按入门、进阶、专家分级给出配置建议。"
+    },
+    "poco-ai/poco-claw": {
+      "at": "2026-10-05T11:13:54.047Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 129,
+      "reason": "Poco 是 OpenClaw 的替代方案，旨在将 AI 代理嵌入日常协作沟通中。它提供美观的 Web 界面、内置即时通讯支持，能在频道中响应并追踪待办事项。其核心是安全沙箱系统，所有任务在隔离容器内运行，可安全安装依赖、修改配置或执行指令而不污染本地环境。"
+    },
+    "code-kern-ai/refinery": {
+      "at": "2026-10-05T11:14:09.203Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 139,
+      "reason": "Refinery 是一款针对 NLP 团队的数据管理工具，将训练数据当作软件工件来对待，提供版本控制、质量检查和测试覆盖。它专为数据噪声多或标注预算有限的场景设计，能自动识别数据集中的不一致性，量化每条数据对模型性能的边际贡献，帮助团队优先挑选高价值样本进行标注，避免资源浪费。"
+    },
+    "EvolvingLMMs-Lab/LLaVA-OneVision-2": {
+      "at": "2026-10-05T11:14:23.367Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 135,
+      "reason": "这是一个完全开放的多模态视觉语言模型框架，旨在让开发者摆脱云端黑盒限制。它提供可下载的权重、公开数据集和技术报告，方便你在自备硬件上复刻或改进模型。项目还附带在线体验空间和Codec Playground，能直观展示图像如何转化为Token，帮助理解视觉模型的底层运作。"
+    },
+    "ashishpatel26/Treasure-of-Transformers": {
+      "at": "2026-10-05T11:14:23.367Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 130,
+      "reason": "这是一个面向自然语言处理与深度学习研究者的资源导航仓库，本身不训练模型，而是精选大量Transformer架构及变体的实现代码和解读文章。它特别收录了中、韩等多语言的技术博文，并建议配合翻译工具阅读，让非英语开发者也能接触全球社区的多元思路，大幅节省搜索时间。"
+    },
+    "satellite-image-deep-learning/datasets": {
+      "at": "2026-10-05T11:14:23.367Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 145,
+      "reason": "遥感数据体积庞大且分散在多个平台，寻找特定数据集十分费力。该项目以统一列表形式集成了主流学术基准和工程级地理空间数据源，涵盖AWS Open Data、Planetary Computer等平台。它提供多光谱、时间序列等多种影像类型，方便研究者快速定位并下载训练所需数据，显著降低查找门槛。"
+    },
+    "NVlabs/DG-Net": {
+      "at": "2026-10-05T11:15:23.522Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 134,
+      "reason": "DG-Net 是一个行人再识别模型，通过联合判别与生成学习，既优化特征表达又增强特征多样性，尤其在跨域场景下表现突出。项目提供完整训练脚本、预训练权重和评估代码，配合 prepare.sh、train.py 与 evaluate.py，用户可轻松准备数据、训练并评估。"
+    },
+    "googleapis/js-genai": {
+      "at": "2026-10-05T11:15:23.522Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 148,
+      "reason": "js-genai 是面向 JavaScript 和 TypeScript 开发者的 Gemini API 官方 SDK，免去手动构造 HTTP 请求的麻烦，封装了内容生成、智能对话等能力。它内置自动函数调用优化，并要求 Node.js 22 以上环境，确保开发者高效接入最新的生成式 AI 模型。"
+    },
+    "black-forest-labs/flux2": {
+      "at": "2026-10-05T11:15:54.761Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 133,
+      "reason": "FLUX.2 是 Black Forest Labs 开放权重的图像生成与编辑模型系列，仓库提供最小推理代码库，支持文本生成图像及多参考图引导的风格、构图控制。模型包含 320 亿参数的 dev 版本追求高精度，以及主打消费级 GPU 快速推理的 klein 系列。"
+    },
+    "LAION-AI/CLAP": {
+      "at": "2026-10-05T11:15:54.761Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 126,
+      "reason": "CLAP 利用对比语言-音频预训练，将音频与文本映射到共享语义空间，实现以文找音、以音配文等跨模态交互。仓库提供面向音乐、语音优化的预训练权重，开发者可直接加载特征用于检索、分类或生成，且已集成至 HuggingFace Transformers 库。"
+    },
+    "liucongg/ChatGLM-Finetuning": {
+      "at": "2026-10-05T11:15:54.761Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 136,
+      "reason": "该项目为 ChatGLM 系列大模型提供底层实现的微调代码，涵盖 Freeze、LoRA、P-Tuning 与全量参数训练链路，并集成梯度检查点、DeepSpeed Zero-3 与 offload 等显存优化，使单张消费级 GPU 也能完成微调，同时缓解灾难性遗忘问题。"
+    },
+    "facebookresearch/deepcluster": {
+      "at": "2026-10-05T11:16:06.093Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 113,
+      "reason": "这是 Facebook 开源的 DeepCluster 无监督学习方法代码。它通过聚类产生伪标签来训练视觉模型，让模型无需人工标注即可学习图像特征。仓库还提及了改进版 DeepCluster-v2 和 SwAV 两个后续成果。"
+    },
+    "pollen-robotics/reachy_mini": {
+      "at": "2026-10-05T11:16:06.093Z",
+      "lane": "custom:modelscope:deepseek-ai/DeepSeek-V4-Flash-0731",
+      "from": 150,
+      "to": 115,
+      "reason": "Reachy Mini 是面向开发者的开源机器人，支持深入修改 Python 代码和硬件结构。它集成 Hugging Face 应用商店，可直接安装语音对话、手势跟随等 AI 功能，让非专业用户也能轻松体验将模型部署到实体机器人。"
     }
   },
   "failed": {
-    "n8n-io/n8n-hosting": {
-      "at": "2026-09-26T10:48:57.289Z",
-      "tries": 1,
+    "mattkrick/meatier": {
+      "at": "2026-10-05T11:16:03.526Z",
+      "tries": 11,
       "why": [
-        "89 字不在 100-150",
+        "248 字不在 100-150",
         "字数仍不合规"
       ]
     },
-    "addy-dclxvi/i3-starterpack": {
-      "at": "2026-09-26T10:48:57.289Z",
-      "tries": 1,
+    "facebookresearch/HyperAgents": {
+      "at": "2026-10-05T11:16:03.526Z",
+      "tries": 5,
       "why": [
-        "78 字不在 100-150",
+        "219 字不在 100-150",
         "字数仍不合规"
       ]
     },
-    "TheExplainthis/ChatGPT-Line-Bot": {
-      "at": "2026-09-26T10:48:57.289Z",
-      "tries": 1,
+    "TencentARC/MotionCtrl": {
+      "at": "2026-10-05T11:16:03.526Z",
+      "tries": 5,
       "why": [
-        "87 字不在 100-150",
+        "228 字不在 100-150",
         "字数仍不合规"
       ]
     },
-    "googleapis/js-genai": {
-      "at": "2026-09-26T10:49:19.907Z",
-      "tries": 1,
+    "micytao/vllm-playground": {
+      "at": "2026-10-05T11:16:03.526Z",
+      "tries": 6,
       "why": [
-        "174 字不在 100-150",
-        "字数仍不合规"
-      ]
-    },
-    "black-forest-labs/flux2": {
-      "at": "2026-09-26T10:49:19.907Z",
-      "tries": 1,
-      "why": [
-        "153 字不在 100-150",
+        "242 字不在 100-150",
         "字数仍不合规"
       ]
     }
