@@ -70,3 +70,27 @@ describe("打开动效回归锁（修一项不准把旧伤带回来）", () => {
     expect(css).not.toMatch(/content-visibility:\s*auto/);
   });
 });
+
+describe("关闭动效十八轮锁（副本同源克隆＋幽灵前段快消）", () => {
+  const feedCardCode = feedCard.replace(/\/\*[\s\S]*?\*\//g, "");
+
+  it("副本禁回手工枚举 props 老路：close-replica 里不许再渲染 FeedCardMemo", () => {
+    // 十七轮探针实锤：枚举必漏（漏 channel/onOpenCreator、ignored 硬编码 false）⇒
+    // 频道徽章/owner 按钮交接后才「闪现」（复验问题①根因）。谁把 <FeedCardMemo 加回
+    // close-replica 谁红。
+    expect(feedCardCode).not.toMatch(/<FeedCardMemo/);
+  });
+
+  it("副本＝源卡 DOM 快照克隆：cloneNode→剥隐身类→replaceChildren 注入", () => {
+    expect(feedCardCode).toMatch(/cloneNode\(true\)/);
+    expect(feedCardCode).toMatch(/classList\.remove\("is-open-source"\)/);
+    expect(feedCardCode).toMatch(/replaceChildren\(snap\)/);
+  });
+
+  it("幽灵淡出收窄到前 1/3（闪影取证定案参数，禁改回全程淡出）", () => {
+    expect(open).toMatch(/CLOSE_GHOST_FADE_FRACTION = 1 \/ 3/);
+    expect(open).toMatch(
+      /ghostFadeMs = Math\.max\(1, Math\.round\(duration \* CLOSE_GHOST_FADE_FRACTION\)\)/,
+    );
+  });
+});

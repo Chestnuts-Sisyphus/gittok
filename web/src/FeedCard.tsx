@@ -30,7 +30,8 @@ import {
   playOpenMotion,
   type CloseContainerMotion,
 } from "./detail-open.ts";
-import { feedTagSlotsForCard } from "./feed-layout.ts";
+// 十八轮：副本改源卡 DOM 快照克隆后本文件不再按卡宽反推槽位（feedTagSlotsForCard 移除；
+// 克隆自带源卡的槽位结果，见 close-replica 注释）。
 
 // ---------------------------------------------------------------------------
 // 工具函数
@@ -473,6 +474,17 @@ export function CardDetail({
   useLayoutEffect(() => {
     if (!replicaMotion || !replicaRef.current) return;
     const el = replicaRef.current;
+    // ⭐ 十八轮：副本＝**源卡 DOM 快照克隆**（cloneNode → 剥 is-open-source 隐形态＋根内联
+    // style 残留 → replaceChildren），不再人工枚举 props 重渲染——枚举必漏（十七轮探针实锤：
+    // 漏 channel/onOpenCreator、ignored 硬编码 false ⇒ 频道徽章/owner 按钮交接后才「闪现」，
+    // 复验问题①根因）。源卡本就按卡宽渲染 ⇒ 克隆的 tagSlots/徽章/owner 天然与真卡一致，
+    // ε（副本==真卡）由构造保证。必须在 rAF 起跑前同步注入：commit 后首帧绘制即完整卡内容。
+    const snap = sourceEl?.cloneNode(true) as HTMLElement | null;
+    if (snap) {
+      snap.classList.remove("is-open-source");
+      snap.removeAttribute("style");
+      el.replaceChildren(snap);
+    }
     let anim: Animation | null = null;
     const raf = requestAnimationFrame(() => {
       anim = el.animate([{ transform: replicaMotion.from }, { transform: replicaMotion.to }], {
@@ -494,7 +506,7 @@ export function CardDetail({
       cancelAnimationFrame(raf);
       anim?.cancel();
     };
-  }, [replicaMotion, onClose]);
+  }, [replicaMotion, onClose, sourceEl]);
 
   // Esc ＝「关掉它回列表」，与点 X、点遮罩同一条路径（同一条退场）。
   // 四轮溯源：App.tsx 原先那条「ESC 立刻关弹窗，不播反向收回」的注释是 b55bca5 描述
@@ -740,10 +752,10 @@ export function CardDetail({
         </div>
       </div>
       {/* ⭐ 十四轮 container-transform＋十六轮乙路线：关闭时飞回卡片的「那一块」＝真卡片 replica。
-          同一 FeedCardMemo 同源渲染（同数据同 tagSlots）＋同源样式 ⇒ t=1 像素==列表里的真卡，
-          卸载交接在像素上不可感知（v1~v3「缩小的详情页+交接」的根治，规格见 detail-open.ts）。
-          乙路线：布局一步落在源卡盒（box=卡位卡宽，内容只按卡宽折一次行），飞行只动 transform
-          ——动画窗零重排，字不再移动。 */}
+          ⭐ 十八轮改版：容器内**不**再渲染 FeedCardMemo（人工枚举 props 必漏——十七轮实锤漏
+          channel/onOpenCreator、ignored 硬编码 false，频道徽章交接后才闪现）；改为上面的
+          useLayoutEffect 里注入**源卡 DOM 快照克隆**，像素级同源。乙路线机制零改动：
+          布局一步落在源卡盒（box=卡位卡宽），飞行只动 transform——动画窗零重排。 */}
       {replicaMotion && (
         <div
           ref={replicaRef}
@@ -756,15 +768,7 @@ export function CardDetail({
           }}
           onClick={(e) => e.stopPropagation()}
           aria-hidden="true"
-        >
-          <FeedCardMemo
-            card={card}
-            liked={liked}
-            ignored={false}
-            onOpen={() => {}}
-            tagSlots={feedTagSlotsForCard(replicaMotion.box.width)}
-          />
-        </div>
+        />
       )}
     </div>
   );

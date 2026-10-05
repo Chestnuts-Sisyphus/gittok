@@ -275,6 +275,13 @@ export const CLOSE_INPLACE_DURATION = 180;
  *  看得见；末段仍留一段淡出，挡住 React 卸载（实测 313ms）晚于动画的那 100+ms。
  *  ⚠ 四轮那版是 40%（80ms 的半透明鬼影在最快地飞）——那正是栗子说的「消散」。 */
 export const CLOSE_FADE_FRACTION = 0.2;
+/** ⭐ 十八轮：**背景幽灵**淡出的时长占比——只在前 1/3（240ms→80ms）化完。
+ *  取证定案（《GitTok-十八轮-闪影取证报告-20261002.md》）：真机减速摄影实锤「闪影」主因＝
+ *  双内容重叠——幽灵 op>0.28 达 80ms（≥5 帧）、>0.1 达 144ms（≥9 帧），副本玻璃底
+ *  （--glass-gradient 透 10–14%）透出幽灵正文＋副本下缘条带直达幽灵正文。收到前 1/3 后
+ *  残留窗 ≈2 帧、透卡叠影 1 帧内消隐。快消在**前段**，与「末段集中淡出」（v1 消散，
+ *  09-26 判死）方向相反，不触防复走表；t=1 时幽灵早已归零，末帧交接像素零变化。 */
+export const CLOSE_GHOST_FADE_FRACTION = 1 / 3;
 
 /**
  * 源卡还活着吗？活着且与视口相交 → 返回它的**实时**矩形；否则 null（调用方走回退案）。
@@ -482,10 +489,13 @@ export function playCloseMotion(
 }
 
 /**
- * ⭐ 十四轮：**背景幽灵**——面板整体溶解（transform 继续收缩 + 透明度**全程匀权**淡出）。
+ * ⭐ 十四轮：**背景幽灵**——面板整体溶解（transform 继续收缩 + 透明度淡出）。
  * 与 playCloseMotion（末段 20% 淡出）的区别：主路径（container-transform）里眼睛盯的是
- * 上层那张不透明的 replica 卡片，面板只是「详情页在蒸发」的背景；匀权淡出不会产生
+ * 上层那张 replica 卡片，面板只是「详情页在蒸发」的背景；全程淡出不会产生
  * 「半透明鬼影在最快地飞」（那是末段集中淡出 + 速度峰叠加的产物，09-26 实拍判过死）。
+ * ⭐ 十八轮：淡出窗从全程收到**前 1/3**（CLOSE_GHOST_FADE_FRACTION）——真机减速摄影定案
+ * 「闪影」主因是双内容重叠（幽灵正文的透卡叠影＋卡下条带在全程淡出下可感 7–9 帧），
+ * 幽灵只在前 1/3 可见即消隐（参数依据见 CLOSE_GHOST_FADE_FRACTION 注释与取证报告）。
  * 遮罩 dim 与面板同一条时间线。 */
 export function playCloseGhostMotion(
   panel: HTMLElement,
@@ -503,7 +513,8 @@ export function playCloseGhostMotion(
   const card = panel.animate([{ transform: motion.from }, { transform: motion.to }], timing);
   const now = document.timeline?.currentTime;
   if (now != null) card.startTime = now;
-  const fade = panel.animate([{ opacity: 1 }, { opacity: 0 }], timing);
+  const ghostFadeMs = Math.max(1, Math.round(duration * CLOSE_GHOST_FADE_FRACTION));
+  const fade = panel.animate([{ opacity: 1 }, { opacity: 0 }], { ...timing, duration: ghostFadeMs });
   if (now != null) fade.startTime = now;
   let dim: Animation | undefined;
   if (overlay && typeof overlay.animate === "function") {

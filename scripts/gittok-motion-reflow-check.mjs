@@ -18,6 +18,10 @@
  *     计数 == 0。对照口径：v4 现役该窗 44 次（D:/tmp/gt-layout/r16/real/ 复算可得）。
  *   δ 末帧像素连续（close 场景）：飞行物末帧视觉盒 == 源卡实时盒 ±0.5px（像素交接不破，
  *     十四轮五轮抗战的成果不许丢）。
+ *   ε 交接同源（十八轮，2026-10-05）：飞行窗内副本内容 == 真卡内容——innerHTML 逐字节相等、
+ *     .card-badge 数相等、owner 元素同标签。根治「副本靠人工枚举 props 重建必漏」（十七轮探针
+ *     实锤：徽章 0vs1、owner SPANvsBUTTON、innerHTML 2442vs2826 ⇒ 复验问题①频道徽章交接后才
+ *     「闪现」）；十八轮副本改源卡 DOM 快照克隆后此判据由构造保证，闸防回归（禁回手工枚举老路）。
  *
  * 场景：关闭 ×2（P0 主对象）＋打开 ×1（对照——打开动画同为 transform 类，顺带受 α/β/γ 保护）。
  * 用法：pnpm motion:check ｜ node scripts/gittok-motion-reflow-check.mjs --tag=xxx
@@ -316,6 +320,26 @@ async function main() {
         await trace.start();
         await cdp.eval(`window.__motion.start('${sc.rootSel}'); return true;`);
         await realClick(cdp, sc.clickSel);
+        // ε 交接同源（close 场景）：副本只在飞行 240ms 内存在——点击后立即轮询抓首个在场
+        // 样本，与仍处 is-open-source 的源卡逐项对账（源卡在交接提交前一直挂着该类，可按
+        // 类引用采样；末帧「类移除与卸载之间的微任务窗」失明问题只影响 END 采样，不影响这里）。
+        let eps = null;
+        if (sc.open) {
+          for (let i = 0; i < 40 && !eps; i++) {
+            eps = await cdp
+              .eval(`
+                const rep = document.querySelector('.close-replica > .card');
+                const src = document.querySelector('.feed-col > .card.is-open-source');
+                if (!rep || !src) return null;
+                const badges = (el) => el.querySelectorAll('.card-badge').length;
+                const ownerTag = (el) => el.querySelector('.repo-owner-btn')?.tagName || null;
+                return { inner: rep.innerHTML === src.innerHTML, repLen: rep.innerHTML.length, srcLen: src.innerHTML.length,
+                         repBadges: badges(rep), srcBadges: badges(src), repOwner: ownerTag(rep), srcOwner: ownerTag(src) };
+              `)
+              .catch(() => null);
+            if (!eps) await new Promise((r) => setTimeout(r, 15));
+          }
+        }
         await new Promise((r) => setTimeout(r, 900));
         const frames = await cdp.eval(`return window.__motion.stop();`);
         let evs = [];
@@ -375,6 +399,15 @@ async function main() {
             `δ ${tag} 末帧视觉盒==源卡实时盒 ±0.5px`,
             !!d && d.l <= 0.5 && d.t <= 0.5 && d.w <= 0.5 && d.h <= 0.5,
             d ? `Δ=${JSON.stringify(d)}` : "无对照盒",
+          );
+
+          // ε 交接同源：副本内容==真卡（innerHTML 逐字节＋徽章数＋owner 标签）
+          report(
+            `ε ${tag} 副本内容==真卡（innerHTML/徽章/owner）`,
+            !!eps && eps.inner && eps.repBadges === eps.srcBadges && eps.repOwner === eps.srcOwner,
+            eps
+              ? `innerHTML ${eps.repLen}vs${eps.srcLen}｜徽章 ${eps.repBadges}vs${eps.srcBadges}｜owner ${eps.repOwner || "-"}vs${eps.srcOwner || "-"}`
+              : "未抓到飞行窗样本（副本缺席或轮询未命中）",
           );
         }
       }
