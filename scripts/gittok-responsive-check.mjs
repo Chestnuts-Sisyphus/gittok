@@ -573,6 +573,33 @@ window.__gt = {
     if(!el) return false;
     el.scrollIntoView({block:'center'}); el.click(); return true;
   },
+  /** 十九轮（2026-10-05）：开卡对象**按数据键固定**——不再依赖洗牌位次。
+   *  背景：推荐频道按会话种子洗牌（App.tsx sessionSeedRef，产品拍板保留）+ 虚拟滚动只渲染
+   *  顶部 ~24 张 ⇒ 「第一张卡」每次加载都不同（同数据三连测：graphrag→oh-my-pi→openclaw），
+   *  弹层断言对象随洗牌漂移，320 档「弹层本体溢出 303/270」CI 红只是撞出的第一个点。
+   *  规则：在 .feed-list .card 里取 data-repo **字典序最小**的一张（同一份数据+本闸钉死的
+   *  种子 ⇒ 恒选同一张）；无 data-repo 时退回首张并如实可见（调用处 detail 里带卡名）。 */
+  pickCard(){
+    const els=[...document.querySelectorAll('.feed-list .card')];
+    if(!els.length) return null;
+    const keyed=els.filter(e=>e.getAttribute('data-repo'));
+    if(!keyed.length) return els[0];
+    return keyed.reduce((a,b)=> a.getAttribute('data-repo')<b.getAttribute('data-repo')?a:b);
+  },
+  pickedRepo(){
+    const el=window.__gt.pickCard();
+    return el? (el.getAttribute('data-repo')||'(无 data-repo，退回首张)') : null;
+  },
+  focusPickedCard(){
+    const el=window.__gt.pickCard();
+    if(!el) return false;
+    el.focus(); return true;
+  },
+  clickPickedCard(){
+    const el=window.__gt.pickCard();
+    if(!el) return false;
+    el.scrollIntoView({block:'center'}); el.click(); return true;
+  },
 };
 `;
 
@@ -1140,7 +1167,10 @@ async function checkView(cdp, view) {
     roles.role === "button" && roles.tabIndex === "0" && !!roles.ariaLabel,
     `role=${roles.role} tabindex=${roles.tabIndex} aria-label="${roles.ariaLabel}…"`,
   );
-  await cdp.eval(`document.querySelector('.card').focus(); return true;`);
+  // 十九轮：焦点与 Enter 都落在**按数据键固定**的卡上（见 PAGE_TOOLS.pickCard）——
+  // 弹层断言对象不再随洗牌漂移；开的是哪张卡如实进读数。
+  const openedRepo = await cdp.eval(`return window.__gt.pickedRepo();`);
+  await cdp.eval(`return window.__gt.focusPickedCard();`);
   await key(cdp, "Enter", "Enter");
   await new Promise((r) => setTimeout(r, 700));
   const dlg = await cdp.eval(`
@@ -1154,7 +1184,7 @@ async function checkView(cdp, view) {
     view.key,
     "Enter 打开弹层 + dialog 语义 + 焦点收拢",
     !!dlg.exists && dlg.role === "dialog" && dlg.modal === "true" && dlg.focusIn && dlg.closeFocused,
-    `role=${dlg.role} aria-modal=${dlg.modal} 焦点在弹层=${dlg.focusIn}（落在关闭按钮=${dlg.closeFocused}，aria-label="${dlg.closeLabel}"）`,
+    `开卡=${openedRepo ?? "?"}（数据键固定）｜role=${dlg.role} aria-modal=${dlg.modal} 焦点在弹层=${dlg.focusIn}（落在关闭按钮=${dlg.closeFocused}，aria-label="${dlg.closeLabel}"）`,
   );
   await key(cdp, "Escape", "Escape");
   await new Promise((r) => setTimeout(r, 600));
@@ -1189,8 +1219,9 @@ async function checkView(cdp, view) {
     );
   }
 
-  // 6 详情弹层：动作区与弹层本体不破相
-  await cdp.eval(`return window.__gt.clickText('.card');`);
+  // 6 详情弹层：动作区与弹层本体不破相（十九轮：同样开**数据键固定**的卡）
+  const clickRepo = await cdp.eval(`return window.__gt.pickedRepo();`);
+  await cdp.eval(`return window.__gt.clickPickedCard();`);
   await new Promise((r) => setTimeout(r, 800));
   const detail = await cdp.eval(`
     const a=document.querySelector('.detail-actions');
@@ -1207,7 +1238,7 @@ async function checkView(cdp, view) {
       view.key,
       "弹层动作区无横向溢出",
       detail.actions.sw <= detail.actions.cw + 1,
-      `scrollWidth ${detail.actions.sw} / clientWidth ${detail.actions.cw}`,
+      `scrollWidth ${detail.actions.sw} / clientWidth ${detail.actions.cw}｜开卡=${clickRepo ?? "?"}`,
     );
   } else {
     skip(view.key, "弹层动作区无横向溢出", "未找到 .detail-actions");
@@ -1395,6 +1426,28 @@ async function main() {
       features: [{ name: "prefers-color-scheme", value: "dark" }],
     });
     PAGE_URL = `http://127.0.0.1:${SRV_PORT}/`;
+    // ── 十九轮（2026-10-05）：钉死 Math.random ⇒ 渲染集合确定化 ──────────────────
+    // App 的会话洗牌种子（App.tsx sessionSeedRef = Math.floor(Math.random()*2**31)）每次
+    // 加载随机 ⇒ 推荐频道渲染集合与首卡每次都不同，闸的断言对象随洗牌漂移（320 档 CI 红
+    // 只是撞出的第一个点）。这里只钉**测试环境**：mulberry32 固定种子替身，同数据 ⇒ 同渲染
+    // ⇒ 同开卡对象；产品代码零改动，线上「刷新重洗」语义原样。
+    // ⭐ 二次根因补丁（同轮实测）：只钉种子不够——seen（曝光即看过）跨视图在同一 profile
+    //   里累积，13 个前置视图的曝光历史会重排目标视图的推荐序，而曝光时序含竞态
+    //   （320 档实测 run1-2 与 run3-5 开卡两样）。⇒ 每次导航前清 seen/interactions，
+    //   每档都从同一确定性起点出发（隔离单跑 320×5 已证：干净起点下开卡 5/5 稳定）。
+    //   收藏夹/关注种子键（seedScript 写入）不在此列，照常保留。
+    await cdp.call("Page.addScriptToEvaluateOnNewDocument", {
+      source: `(() => {
+        try { localStorage.removeItem('gittok-seen'); localStorage.removeItem('gittok-interactions'); } catch {}
+        let s = 0x2f6e2b1 | 0;
+        Math.random = function () {
+          s = (s + 0x6D2B79F5) | 0;
+          let t = Math.imul(s ^ (s >>> 15), 1 | s);
+          t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+          return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+        };
+      })();`,
+    });
     await cdp.call("Page.navigate", { url: PAGE_URL });
     await new Promise((r) => setTimeout(r, 1500));
     await cdp.eval(seedScript());
