@@ -1,4 +1,22 @@
 {
-  "zh": {},
-  "en": {}
+  "zh": {
+    "ai-weekly": [
+      "Claude Sonnet 5.5 发布，HN 单日报 532 分/359 评论",
+      "Anthropic 目标 Claude Code 年底覆盖 50% 研发人员",
+      "FTC 对 OpenAI、Anthropic 等 AI 巨头发起反垄断调查",
+      "Codex v0.160.0 正式版：新增全屏粘贴、任务历史浏览",
+      "OpenClaw v2026.9.7：518 次提交 2818 个 PR 但内存泄漏",
+      "OpenCode v20.16 内存泄漏成风暴，147 评论热议"
+    ]
+  },
+  "en": {
+    "ai-weekly": [
+      "OpenAI Codex v0.160.0 stable released",
+      "FTC probes Anthropic and OpenAI for antitrust",
+      "Anthropic's 'Claude-shaped science' paradigm released",
+      "NVIDIA OpenShell hits 14K stars for agent security",
+      "VoiceStudio hits 51K stars as ElevenLabs alternative",
+      "OpenClaw v2026.9.8 fixes SQLite WAL bloat on Windows"
+    ]
+  }
 }
