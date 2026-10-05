@@ -87,6 +87,9 @@ const VIEWS = [
   { key: "760x900", w: 760, h: 900, mobile: true },
   { key: "700x900", w: 700, h: 900, mobile: true },
   { key: "390x844", w: 390, h: 844, mobile: true },
+  // ⭐ 十八轮（17-7）：最小手机档入闸——320 是 Android small/老 iPhone SE 的竖屏宽，
+  // ≤768 的通用断言（占满 88%、头≡卡、单列、侧栏塌缩、底栏在场）对它一并生效。
+  { key: "320x568", w: 320, h: 568, mobile: true },
   { key: "844x390", w: 844, h: 390, mobile: true },
   { key: "667x375", w: 667, h: 375, mobile: true },
 ];
