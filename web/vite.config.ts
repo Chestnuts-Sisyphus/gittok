@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { defineConfig, type Plugin } from "vite";
 import react from "@vitejs/plugin-react";
-import { splitFeedPayload } from "./src/payload-split.ts";
+import { splitFeedPayload, detailShardPath, detailShardBody } from "./src/payload-split.ts";
 import { cardCopyOk, type CopyOkCard } from "../src/feed/copy-ok.ts";
 
 /**
@@ -77,6 +77,39 @@ function prepareFeedPlugin(): Plugin {
       fs.writeFileSync(listPath, JSON.stringify(list));
       fs.writeFileSync(detailsPath, JSON.stringify(details));
 
+      // 二十轮 C3（2026-10-06）：详情**单卡分片**——点击只拉所需一片（p50 ≈1.7KB），
+      // 替代「点击等 5.96MB 整表」。有 detailCn 发正文分片，无 detailCn 发墓碑
+      // {"detailCn":null}（确认缺失一次请求有答案）。构建期随 data/feed.json 再生，
+      // 目录入 .gitignore（不进仓库，与 feed-details.json 的「构建产物」属性一致）。
+      // 路径安全：repo 键来自数据管道，落盘前仍做字符白名单（GitHub owner/repo 名
+      // 只含字母数字 - _ .）＋ 解析结果必须落在 detailsDir 内，越界即跳过该卡（fail-closed）。
+      const detailsDir = path.join(outDir, "details");
+      const safeSeg = (seg: string) => /^[A-Za-z0-9._-]+$/.test(seg) && !seg.startsWith(".");
+      let shardCount = 0;
+      let shardBytes = 0;
+      let shardSkipped = 0;
+      fs.mkdirSync(detailsDir, { recursive: true });
+      for (const card of cards as Array<{ repo: string; detailCn?: string }>) {
+        const [owner, name, ...rest] = card.repo.split("/");
+        if (!owner || !name || rest.length > 0 || !safeSeg(owner) || !safeSeg(name)) {
+          shardSkipped++;
+          continue;
+        }
+        const cn = typeof card.detailCn === "string" && card.detailCn.length > 0 ? card.detailCn : null;
+        const body = detailShardBody(cn);
+        const abs = path.resolve(detailsDir, owner, `${name}.json`);
+        if (!abs.startsWith(detailsDir + path.sep)) {
+          shardSkipped++;
+          continue;
+        }
+        fs.mkdirSync(path.dirname(abs), { recursive: true });
+        fs.writeFileSync(abs, body);
+        shardCount++;
+        shardBytes += Buffer.byteLength(body);
+      }
+      if (shardSkipped > 0)
+        console.warn(`[prepare-feed] ${shardSkipped} 张卡 repo 键不安全，分片跳过（该卡线上将显式「暂无」）`);
+
       const srcFollowing = path.join(repoRoot, "data", "following.json");
       if (fs.existsSync(srcFollowing)) {
         fs.copyFileSync(srcFollowing, path.join(outDir, "following.json"));
@@ -85,7 +118,7 @@ function prepareFeedPlugin(): Plugin {
       const listBytes = fs.statSync(listPath).size;
       const detailsBytes = fs.statSync(detailsPath).size;
       console.log(
-        `[prepare-feed] ${cards.length} cards: list ${(listBytes / 1024).toFixed(0)}KB, details ${(detailsBytes / 1024).toFixed(0)}KB (source ${(Buffer.byteLength(raw) / 1024).toFixed(0)}KB)`,
+        `[prepare-feed] ${cards.length} cards: list ${(listBytes / 1024).toFixed(0)}KB, details ${(detailsBytes / 1024).toFixed(0)}KB, shards ${shardCount} files ${(shardBytes / 1024).toFixed(0)}KB (source ${(Buffer.byteLength(raw) / 1024).toFixed(0)}KB)`,
       );
     },
   };

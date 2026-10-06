@@ -35,22 +35,49 @@
     <meta name="twitter:image:alt" content="GitTok 信息流界面：左侧频道与分区，右侧中文项目卡片" />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <link rel="preload" href="./data/feed.json" as="fetch" crossorigin />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- 只拉 Lora（拉丁/数字）。Noto Serif SC 走系统字体：Google CSS 会展开 400+ @font-face，卡首屏。
-         异步加载（preload+onload 切换）：国内访问 Google Fonts 慢/超时时不再阻塞首屏渲染，系统 serif 兜底 -->
-    <link
-      rel="preload"
-      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
-      as="style"
-      onload="this.rel = 'stylesheet'"
-    />
-    <noscript>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
-        rel="stylesheet"
-      />
-    </noscript>
+    <!-- 字体本地化（二十轮 N2，2026-10-06 取证后定）：旧走 Google Fonts（preconnect×2 +
+         异步 CSS），线上 trace 实测 fonts.googleapis.com 是第三方冷连接域（600–840ms/域，
+         且国内不可达时 Lora 从未真正加载、永远系统 serif 兜底）。本地化后 Lora（拉丁/数字，
+         latin 子集，OFL 授权见 fonts/LICENSE-OFL.txt）同源随站分发：零第三方域、零额外握手，
+         font-display:swap 与旧行为一致（系统 serif 先渲染、字体到位后换装）。
+         中文仍走系统 Noto Serif SC/宋体栈，样式表 --font-serif 未动。 -->
+    <style>
+      @font-face {
+        font-family: "Lora";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url("./fonts/lora-latin-400-normal.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Lora";
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url("./fonts/lora-latin-500-normal.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Lora";
+        font-style: normal;
+        font-weight: 600;
+        font-display: swap;
+        src: url("./fonts/lora-latin-600-normal.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Lora";
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url("./fonts/lora-latin-700-normal.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Lora";
+        font-style: italic;
+        font-weight: 400;
+        font-display: swap;
+        src: url("./fonts/lora-latin-400-italic.woff2") format("woff2");
+      }
+    </style>
     <title>GitTok — 刷 GitHub 好项目</title>
   </head>
   <body>

@@ -165,6 +165,14 @@ jobs:
           CHROME_PATH: /usr/bin/google-chrome
         run: node scripts/gittok-motion-reflow-check.mjs
 
+      # Detail whole-presentation gate (Round 20 C2): placeholder-first, single whole swap
+      # with transition, explicit "none" state for missing keys, <100ms popup response,
+      # zero boot prefetch, and shard integrity (build pipeline verification).
+      - name: Detail presentation gate（二十轮 C2：占位先行·整体交接至多一次·缺键显式暂无·响应<100ms·boot 零预热·分片完整性）
+        env:
+          CHROME_PATH: /usr/bin/google-chrome
+        run: node scripts/gittok-detail-presentation-check.mjs
+
       - name: Visual acceptance gate（视觉断言 + 观感清单段（侧栏带文字 12 项/滚动条 3 项/侧栏不出条）+ 11 张截图；帧率在本 job 降为信息项）
         run: |
           pip install websocket-client

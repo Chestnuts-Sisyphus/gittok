@@ -32,7 +32,10 @@ function todayStamp(): string {
 }
 
 /** 当日缓存的原始文本；无缓存/非当日/IDB 不可用 → null（调用方走网络路径）。
- *  key：'feed'=列表（首屏）、'details'=详情表（弹窗内容），各自独立缓存同日生效。 */
+ *  key 约定：'feed'=列表（首屏）、'details'=详情整表（legacy 兜底）、
+ *  `d:<repo>`=单卡详情分片（二十轮 C3，同一 store 内以 key 前缀区分）。
+ *  各自独立缓存、同日生效。key 从字面量联合放宽为 string：分片键按 repo 动态生成，
+ *  而超时/事务出口纪律对任意 key 一视同仁。 */
 /**
  * ⚠ 2026-09-24 四轮：**这个 Promise 以前可能永远不 settle**——只有 `req.onsuccess` 与
  * `req.onerror` 两条出口，缺 `tx.onabort`。事务被中断（换版本、连接被浏览器关掉、配额清理）时
@@ -46,7 +49,7 @@ function todayStamp(): string {
  */
 const DB_READ_TIMEOUT_MS = 1200;
 
-export async function loadCachedText(key: "feed" | "details"): Promise<string | null> {
+export async function loadCachedText(key: string): Promise<string | null> {
   try {
     const db = await openDb();
     if (!db) return null;
@@ -79,7 +82,7 @@ export async function loadCachedText(key: "feed" | "details"): Promise<string | 
  *  写入也加超时：3.4M 字符的大对象在慢环境下会长时间不 complete，别让它吊着（返回值无人等，但别留悬挂事务）。 */
 const DB_WRITE_TIMEOUT_MS = 5000;
 
-export async function saveCachedText(key: "feed" | "details", text: string): Promise<void> {
+export async function saveCachedText(key: string, text: string): Promise<void> {
   try {
     const db = await openDb();
     if (!db) return;

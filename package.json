@@ -29,6 +29,7 @@
     "drag:check": "node scripts/gittok-drag-check.mjs",
     "smooth:check": "node scripts/gittok-smooth-check.mjs",
     "motion:check": "node scripts/gittok-motion-reflow-check.mjs",
+    "detail:check": "node scripts/gittok-detail-presentation-check.mjs",
     "prepare": "husky"
   },
   "dependencies": {

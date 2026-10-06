@@ -49,10 +49,30 @@ const TAG = (() => {
 
 /** α 的禁集：动画窗内任何动画都不许碰这些（合成器属性之外＝逐帧重排的机制来源）。 */
 const FORBID_PROPS = new Set([
-  "left", "top", "right", "bottom", "width", "height", "margin", "margin-top", "margin-left",
-  "padding", "padding-top", "padding-left", "font-size", "line-height", "letter-spacing",
-  "word-spacing", "border-width", "gap", "flex-basis", "grid-template-columns", "column-count",
-  "text-indent", "word-break", "overflow-wrap",
+  "left",
+  "top",
+  "right",
+  "bottom",
+  "width",
+  "height",
+  "margin",
+  "margin-top",
+  "margin-left",
+  "padding",
+  "padding-top",
+  "padding-left",
+  "font-size",
+  "line-height",
+  "letter-spacing",
+  "word-spacing",
+  "border-width",
+  "gap",
+  "flex-basis",
+  "grid-template-columns",
+  "column-count",
+  "text-indent",
+  "word-break",
+  "overflow-wrap",
 ]);
 /** γ 的动画窗（相对 click 的 ms）：60Hz/165Hz 下均严格含全部飞行帧、避开 mount/finished 两次边界提交。
  *  依据：16-3 实测 close 三次 trial 的 Layout 全部落在 [1.0,1.7]（replica mount 提交）与
@@ -228,14 +248,28 @@ async function realClick(cdp, selector) {
     `const el = document.querySelector('${selector}'); if (!el) return null; const b = el.getBoundingClientRect(); return { x: Math.round(b.left + b.width / 2), y: Math.round(b.top + b.height / 2) };`,
   );
   if (!r) throw new Error(`找不到 ${selector}`);
-  await cdp.call("Input.dispatchMouseEvent", { type: "mousePressed", x: r.x, y: r.y, button: "left", clickCount: 1 });
-  await cdp.call("Input.dispatchMouseEvent", { type: "mouseReleased", x: r.x, y: r.y, button: "left", clickCount: 1 });
+  await cdp.call("Input.dispatchMouseEvent", {
+    type: "mousePressed",
+    x: r.x,
+    y: r.y,
+    button: "left",
+    clickCount: 1,
+  });
+  await cdp.call("Input.dispatchMouseEvent", {
+    type: "mouseReleased",
+    x: r.x,
+    y: r.y,
+    button: "left",
+    clickCount: 1,
+  });
 }
 
 /** γ：动画窗 Layout 计数。窗锚＝trace 内最后一次 EventDispatch(click) 的 ts。 */
 function layoutInWindow(evs, fromMs, toMs) {
   const xs = evs.filter((e) => e.ph === "X" && typeof e.dur === "number");
-  const clicks = xs.filter((e) => e.name === "EventDispatch" && e.args?.data && /click/i.test(e.args.data.type || ""));
+  const clicks = xs.filter(
+    (e) => e.name === "EventDispatch" && e.args?.data && /click/i.test(e.args.data.type || ""),
+  );
   if (!clicks.length) return { error: "trace 内无 EventDispatch(click)——锚点缺失，判据不成立" };
   const anchor = clicks[clicks.length - 1].ts;
   const layouts = xs.filter((e) => e.name === "Layout");
@@ -292,22 +326,44 @@ async function main() {
     });
     await cdp.call("Page.navigate", { url: `http://127.0.0.1:${SRV_PORT}/` });
     for (let i = 0; i < 60; i++) {
-      const n = await cdp.eval(`return document.querySelectorAll('.feed-col > .card').length;`).catch(() => 0);
+      const n = await cdp
+        .eval(`return document.querySelectorAll('.feed-col > .card').length;`)
+        .catch(() => 0);
       if (n >= 4) break;
       await new Promise((r) => setTimeout(r, 500));
     }
+    // 二十轮字体本地化后：Lora woff2 到货会触发一次 font-display:swap 换装重排——
+    // 那是首访的一次性事件，不属运动重排判据的管辖区。场景前等 fonts.ready，
+    // 否则换装 Layout 会随机落进 γ 窗 [30,230]ms 造成假红。
+    await cdp.eval(`return document.fonts.ready.then(() => document.fonts.status);`).catch(() => "loaded");
     await cdp.eval(RECORDER);
 
     const scenarios = [
-      { name: "关闭", open: true, clickSel: ".detail-close", rootSel: ".close-replica", endSel: ".feed-col > .card", trials: 2 },
-      { name: "打开", open: false, clickSel: ".feed-col > .card", rootSel: ".detail-mover", endSel: ".detail-mover", trials: 1 },
+      {
+        name: "关闭",
+        open: true,
+        clickSel: ".detail-close",
+        rootSel: ".close-replica",
+        endSel: ".feed-col > .card",
+        trials: 2,
+      },
+      {
+        name: "打开",
+        open: false,
+        clickSel: ".feed-col > .card",
+        rootSel: ".detail-mover",
+        endSel: ".detail-mover",
+        trials: 1,
+      },
     ];
 
     for (const sc of scenarios) {
       for (let trial = 0; trial < sc.trials; trial++) {
         const tag = `${sc.name}-${trial}`;
         if (sc.open) {
-          await cdp.eval(`(() => { const c = document.querySelectorAll('.feed-col > .card')[0]; if (c) c.click(); return true; })()`);
+          await cdp.eval(
+            `(() => { const c = document.querySelectorAll('.feed-col > .card')[0]; if (c) c.click(); return true; })()`,
+          );
           await new Promise((r) => setTimeout(r, 1200));
           // 关闭前：源卡实时盒（δ 的对照物）
           var liveBox = await cdp.eval(`
@@ -327,7 +383,8 @@ async function main() {
         if (sc.open) {
           for (let i = 0; i < 40 && !eps; i++) {
             eps = await cdp
-              .eval(`
+              .eval(
+                `
                 const rep = document.querySelector('.close-replica > .card');
                 const src = document.querySelector('.feed-col > .card.is-open-source');
                 if (!rep || !src) return null;
@@ -335,7 +392,8 @@ async function main() {
                 const ownerTag = (el) => el.querySelector('.repo-owner-btn')?.tagName || null;
                 return { inner: rep.innerHTML === src.innerHTML, repLen: rep.innerHTML.length, srcLen: src.innerHTML.length,
                          repBadges: badges(rep), srcBadges: badges(src), repOwner: ownerTag(rep), srcOwner: ownerTag(src) };
-              `)
+              `,
+              )
               .catch(() => null);
             if (!eps) await new Promise((r) => setTimeout(r, 15));
           }
@@ -352,7 +410,11 @@ async function main() {
         fs.writeFileSync(path.join(OUT, `frames-${tag}.json`), JSON.stringify(frames, null, 1), "utf8");
 
         // 样本有效性
-        report(`${tag} 样本有效性（飞行帧 ≥${MIN_REPLICA_FRAMES}）`, frames.length >= MIN_REPLICA_FRAMES, `实测 ${frames.length} 帧`);
+        report(
+          `${tag} 样本有效性（飞行帧 ≥${MIN_REPLICA_FRAMES}）`,
+          frames.length >= MIN_REPLICA_FRAMES,
+          `实测 ${frames.length} 帧`,
+        );
 
         // α 机制选型：动画窗内所有在跑动画的被动画属性 ⊆ {transform, opacity}
         const union = new Map();
@@ -369,15 +431,25 @@ async function main() {
         );
 
         // β 零重排：布局盒＋内容排版坐标逐帧恒定
-        let layDrift = 0, partDrift = 0;
+        let layDrift = 0,
+          partDrift = 0;
         const f0 = frames[0];
         for (const f of frames) {
           layDrift = Math.max(layDrift, diffMax(f.lay, f0.lay, ["l", "t", "w", "h"]));
           for (let i = 0; i < Math.min(f.parts.length, f0.parts.length); i++)
-            for (let j = 1; j <= 4; j++) partDrift = Math.max(partDrift, Math.abs((f.parts[i]?.[j] ?? 0) - (f0.parts[i]?.[j] ?? 0)));
+            for (let j = 1; j <= 4; j++)
+              partDrift = Math.max(partDrift, Math.abs((f.parts[i]?.[j] ?? 0) - (f0.parts[i]?.[j] ?? 0)));
         }
-        report(`β ${tag} 飞行物布局盒逐帧恒定（零重排）`, frames.length > 1 && layDrift === 0, `布局漂移最大=${layDrift}px`);
-        report(`β ${tag} 内容排版坐标逐帧恒定（字不动）`, frames.length > 1 && partDrift === 0, `内容布局漂移最大=${partDrift}px`);
+        report(
+          `β ${tag} 飞行物布局盒逐帧恒定（零重排）`,
+          frames.length > 1 && layDrift === 0,
+          `布局漂移最大=${layDrift}px`,
+        );
+        report(
+          `β ${tag} 内容排版坐标逐帧恒定（字不动）`,
+          frames.length > 1 && partDrift === 0,
+          `内容布局漂移最大=${partDrift}px`,
+        );
 
         // γ 动画窗 Layout 增量=0（trace 直读）
         const g = layoutInWindow(evs, WIN_FROM_MS, WIN_TO_MS);
@@ -394,7 +466,15 @@ async function main() {
         // δ 末帧像素连续（close 场景）
         if (sc.open) {
           const last = frames[frames.length - 1];
-          const d = last && liveBox ? { l: Math.abs(last.vis.l - liveBox.l), t: Math.abs(last.vis.t - liveBox.t), w: Math.abs(last.vis.w - liveBox.w), h: Math.abs(last.vis.h - liveBox.h) } : null;
+          const d =
+            last && liveBox
+              ? {
+                  l: Math.abs(last.vis.l - liveBox.l),
+                  t: Math.abs(last.vis.t - liveBox.t),
+                  w: Math.abs(last.vis.w - liveBox.w),
+                  h: Math.abs(last.vis.h - liveBox.h),
+                }
+              : null;
           report(
             `δ ${tag} 末帧视觉盒==源卡实时盒 ±0.5px`,
             !!d && d.l <= 0.5 && d.t <= 0.5 && d.w <= 0.5 && d.h <= 0.5,

@@ -318,11 +318,94 @@ function FeedCardComponent({
 export const FeedCardMemo = memo(FeedCardComponent);
 
 // ---------------------------------------------------------------------------
+// 深度解读槽（二十轮 N1「详情内容必须作为整体展现」，2026-10-06）
+// ---------------------------------------------------------------------------
+
+/**
+ * 旧实现是 `{card.detailCn && (…)}` 条件渲染：数据到位后区块**从无到有插入**，
+ * 下方 meta 被一下推下去＝栗子指认的「先加载出来其他东西，然后深度解读才闪现」。
+ *
+ * 新编排（占位＋整体交接，响应性不牺牲——弹层照旧即时开）：
+ *   - pending：槽位在「深度解读」声明位渲染占位（解读加载中），区块**永远不在场⇄缺席间跳**；
+ *   - 到位：先在 useLayoutEffect 里把槽从骨架高度**过渡**到内容实测高度（height 一次性
+ *     过渡，禁逐帧重排的机制裸奔——这是交接的一Shot布局过渡，非飞行动画窗），内容随后
+ *     `detail-swap-in`（transform+opacity，α 合规）整体淡入；交接全程只发生这一次；
+ *   - missing（分片墓碑/整表均无此键）：显式「暂无深度解读」，灭 E2 的静默缺失；
+ *   - 首帧即 ready（内存命中/快照卡）：静态呈现，零动画零交接。
+ * 高度实测不受打开飞行 transform 影响：offsetHeight 是布局值，面板在飞也量得准。
+ */
+type DeepState = "ready" | "pending" | "missing";
+
+function DeepReadSlot({ text, state }: { text?: string; state: DeepState }) {
+  const showContent = state === "ready" && typeof text === "string" && text.length > 0;
+  // 本挂载周期里出现过占位吗？出现过 ⇒ 内容是「交接而来」，要动画；首帧就有 ⇒ 静态。
+  const sawPendingRef = useRef(false);
+  if (state === "pending") sawPendingRef.current = true;
+  const viaSwap = sawPendingRef.current;
+  const slotRef = useRef<HTMLDivElement>(null);
+  const pendingHeightRef = useRef<number | null>(null);
+  const contentRef = useRef<HTMLParagraphElement>(null);
+
+  // 占位期间每笔提交记下骨架实时高度（交接动画的起点）。
+  useLayoutEffect(() => {
+    if (state !== "pending") return;
+    pendingHeightRef.current = slotRef.current?.offsetHeight ?? null;
+  }, [state, showContent]);
+
+  // 交接：槽高从骨架高过渡到内容实测高（内容经由 swap 到位且确实更高才需要）。
+  useLayoutEffect(() => {
+    if (!showContent || !viaSwap) return;
+    const slot = slotRef.current;
+    const content = contentRef.current;
+    if (!slot || !content) return;
+    const from = pendingHeightRef.current;
+    const to = content.offsetHeight;
+    if (from == null || !(to > from)) return;
+    slot.style.height = `${from}px`;
+    void slot.offsetHeight; // 把 from 锁进布局，height 过渡才有起点
+    slot.style.transition = "height 200ms cubic-bezier(0.22, 0.61, 0.36, 1)";
+    const raf = requestAnimationFrame(() => {
+      slot.style.height = `${to}px`;
+    });
+    const settle = setTimeout(() => {
+      slot.style.transition = "";
+      slot.style.height = ""; // 归还 auto：之后的字号/折行变化仍自然重排
+    }, 240);
+    return () => {
+      cancelAnimationFrame(raf);
+      clearTimeout(settle);
+      slot.style.transition = "";
+      slot.style.height = "";
+    };
+  }, [showContent, viaSwap]);
+
+  return (
+    <div ref={slotRef} className="detail-deep-slot">
+      {showContent ? (
+        <p ref={contentRef} className={`detail-detail${viaSwap ? " detail-swap-in" : ""}`}>
+          {text}
+        </p>
+      ) : state === "missing" ? (
+        <p className={`detail-detail-empty${viaSwap ? " detail-swap-in" : ""}`}>暂无深度解读</p>
+      ) : (
+        <div className="detail-detail-loading" role="status" aria-live="polite">
+          <span className="detail-loading-dot" aria-hidden="true" />
+          解读加载中…
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
 // 详情弹窗组件
 // ---------------------------------------------------------------------------
 
 interface DetailProps {
   card: Card;
+  /** 深度解读槽呈现代码（二十轮 N1）：ready=内容在场、pending=占位（解读加载中）、
+   *  missing=显式「暂无深度解读」。card.detailCn 在场时恒为 ready（App 侧已保证）。 */
+  detailState: "ready" | "pending" | "missing";
   liked: boolean;
   disliked: boolean;
   collections: Collection[];
@@ -338,6 +421,7 @@ interface DetailProps {
 
 export function CardDetail({
   card,
+  detailState,
   liked,
   disliked,
   collections,
@@ -614,12 +698,8 @@ export function CardDetail({
         </>
       )}
 
-      {card.detailCn && (
-        <>
-          <div className="detail-label">深度解读</div>
-          <p className="detail-detail">{card.detailCn}</p>
-        </>
-      )}
+      <div className="detail-label">深度解读</div>
+      <DeepReadSlot text={card.detailCn} state={card.detailCn ? "ready" : detailState} />
 
       <div className="detail-meta">
         <span className="meta-item stars" title={`${card.stars} stars`}>

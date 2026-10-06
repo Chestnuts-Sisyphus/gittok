@@ -44,8 +44,10 @@ data/trending-snapshot.json
 # vite prepare-feed 构建产物（六轮 G8）：从 data/feed.json 拆出的列表/详情表，
 # 每次 npm run build / vite 都会重写；跟踪它只会污染 git status。
 # 保留 feed.sample.json 作无源文件时的兜底；clone 后跑一次 build/dev 即生成。
+# 二十轮 C3：details/＝详情单卡分片（每 repo 一文件，3400+），同为构建产物不入仓。
 web/public/data/feed.json
 web/public/data/feed-details.json
+web/public/data/details/
 web/public/data/following.json
 
 # v3 提升流水线的上一版快照（字段回退闸对照用；体积与 feed.json 同量级，不入仓）

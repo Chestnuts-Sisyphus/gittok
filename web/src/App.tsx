@@ -6,7 +6,7 @@ import { CreatorPage } from "./CreatorPage.tsx";
 import { AgentPage } from "./AgentPage.tsx";
 import { weightedSearch } from "./search.ts";
 import { loadSafe, saveDual, migrateLegacyKeys } from "./storage.ts";
-import { mergeDetail, prefetchFeedDetails, getFeedDetailsIfReady } from "./feed-payload.ts";
+import { withRepoDetail, resolveRepoDetail, getRepoDetailIfReady } from "./feed-payload.ts";
 import { loadCachedText, saveCachedText } from "./feed-cache.ts";
 import {
   FEED_GRID_REF,
@@ -734,7 +734,12 @@ function useResponsiveCols(): {
       const w = list.clientWidth;
       const next = feedColsForContentWidth(w, rowGap);
       setCols(next);
-      setShape(feedCardShapeFor(w, next, rowGap, chrome));
+      setShape((prev) => {
+        const nextShape = feedCardShapeFor(w, next, rowGap, chrome);
+        // 形状逐字段相等就还旧引用：setShape 每次都给新对象 = 永不 bail = 重渲染风暴
+        //（搜索空态实测打出 React #185 整树卸载白屏，见本 hook 尾注）。
+        return shallowEqShape(prev, nextShape) ? prev : nextShape;
+      });
     };
     measureRef.current();
     const ro = new ResizeObserver(() => measureRef.current());
@@ -742,14 +747,21 @@ function useResponsiveCols(): {
     const roRef = ro;
     return () => roRef.disconnect();
   }, [rowGap, chrome]);
-  return {
-    cols,
-    shape,
-    ref: (el: HTMLElement | null) => {
-      elRef.current = el;
-      if (el) measureRef.current();
-    },
-  };
+  // ⭐ 二十轮实修（2026-10-06，线上旧 bundle 同样复现的既有生产 bug）：ref 必须 **useCallback 稳定**。
+  // 旧实现每渲染返回一个新箭头 → React 每渲染 detach/reattach → 重挂即 measure → setShape(新对象)
+  // → 再渲染 → 再重挂……在内联渲染的子树（搜索空态 `.search-empty-unified`）里这就是死循环，
+  // 打满嵌套更新上限后 React #185 把整棵 App 卸掉（现象：点开「搜索」页整页白屏）。
+  // 主信息流此前不炸只是因为它的 ref 消费者被 memo 挡住了——同一颗雷埋在全站任何内联消费者脚下。
+  const ref = useCallback((el: HTMLElement | null) => {
+    elRef.current = el;
+    if (el) measureRef.current();
+  }, []);
+  return { cols, shape, ref };
+}
+
+/** FeedCardShape 逐字段相等（防 setShape 新对象风暴的 bail 判据；字段集与 feed-layout 对齐）。 */
+function shallowEqShape(a: FeedCardShape, b: FeedCardShape): boolean {
+  return a.cardWidth === b.cardWidth && a.summaryFontPx === b.summaryFontPx && a.tagSlots === b.tagSlots;
 }
 
 /** 手机档（≤768）的**唯一**真源：列数、行距、chrome、理由行数上限都吃它。
@@ -1201,6 +1213,12 @@ export default function App() {
   const { cols: folderCols, shape: folderShape, ref: folderColsRef } = useResponsiveCols();
   const [searchQuery, setSearchQuery] = useState("");
   const [detailCard, setDetailCard] = useState<FeedCard | null>(null);
+  // ── 二十轮 N1「详情整体呈现」（2026-10-06，栗子：深度解读不许后到闪现）──
+  // detailState 是弹层「深度解读」槽的呈现代码：pending=占位（解读加载中）、
+  // ready=内容、missing=显式「暂无」。它只描述当前打开的这张卡；
+  // 换卡/关闭由 detailOpenRepoRef 守卫（迟到的分片响应不许写进别人的弹层）。
+  const [detailState, setDetailState] = useState<"pending" | "ready" | "missing">("ready");
+  const detailOpenRepoRef = useRef<string | null>(null);
   const sourceRectRef = useRef<DOMRect | null>(null);
   const sourceElRef = useRef<HTMLElement | null>(null);
   const appBodyRef = useRef<HTMLDivElement>(null);
@@ -1220,6 +1238,7 @@ export default function App() {
   const closeDetail = useCallback(() => {
     sourceElRef.current?.classList.remove("is-open-source");
     sourceElRef.current = null;
+    detailOpenRepoRef.current = null;
     setDetailCard(null);
   }, []);
 
@@ -1477,34 +1496,47 @@ export default function App() {
     } else {
       window.setTimeout(persistSeen, 500);
     }
-    const ready = getFeedDetailsIfReady();
-    if (ready) {
-      setDetailCard(mergeDetail(card, ready));
+    detailOpenRepoRef.current = card.repo;
+    // 快照卡（收藏夹留存）可能自带 detailCn：内容已在卡上，首帧即终态。
+    if (card.detailCn) {
+      setDetailState("ready");
+      setDetailCard(card);
+      return;
+    }
+    const ready = getRepoDetailIfReady(card.repo);
+    if (ready !== undefined) {
+      // 同步命中（内存缓存，含确认缺失）：弹层首帧就是终态，没有任何交接。
+      setDetailState(ready === null ? "missing" : "ready");
+      setDetailCard(ready === null ? card : withRepoDetail(card, ready));
       return;
     }
     // ── 五轮 T1（线上实测的根因就在这里）───────────────────────────────────────────
-    // 症状：线上点卡片 → 卡片立刻隐形、弹层**长期不出现**、无报错（本地同 bundle 正常）。
+    // 症状：线上点卡片 → 卡片立刻隐形、弹层**长期不出现**、无报错。
     // 实测（`D:/tmp/gt-r5-open-live.mjs`，线上冷 profile）：弹层**确实会开**，但要等
     // **105.4 秒**——那一刻正是 `feed-details.json` 下载完的时刻；同一张卡在数据就位后再点
     // 只要 **107ms**。此前「弹层从不出现」的结论来自 3.5s 的观察窗，是探针窗口太短。
     // 所以根因不是渲染被挡住，而是：**点击路径在等一个 5.2MB 的详情表下载**，
     // 而源卡已经被标成隐形 ⇒ 用户看到的就是「点一下卡片没了，什么都没打开」。
-    // 这台机器到 GH Pages 的带宽下 `feed.json`（4.4MB 压缩）就要 55.8s、详情表 105.3s，
-    // 三个并发请求（预热 + 两个看门狗）还在互相抢同一条窄带。
     //
-    // 修法：**点击立刻开弹层**（用列表卡自身的数据），详情表到位后再补 `detailCn`。
-    // 为什么这样就够：`CardDetail` 的「深度解读」本来就是 `card.detailCn && …` 条件渲染，
-    // 缺它时弹层是**可见的降级**（简要介绍/元信息/动作区都在），不是残缺空块；
-    // 补上来的那次更新走同一个 `key={detailCard.repo}` ⇒ 不重挂、不重播入场动画
-    // （入场的 `to` 是 identity，面板布局盒变化不会让落点偏）。
-    // 这也是 `feed-cache.ts` 里那句话的同一条纪律：**慢的只是提速手段，它不该拖住功能**。
+    // 修法（保序不变）：**点击立刻开弹层**（用列表卡自身的数据），任何 await 之前。
+    // ── 二十轮 N1（2026-10-06，栗子「详情内容必须作为整体展现」）────────────────────
+    // 五轮的取舍有个副作用：detailCn 到位后「从无到有插入」（补渲无交接）＝他说的
+    // 「先加载出来其他东西，然后深度解读才闪现」。正解不是回退成「等数据才开弹层」，
+    // 而是编排：**开弹层（即时）→ 深度解读槽位占位 → 数据到位整体交接（高度过渡＋淡入）**。
+    // 数据侧同族件（C3）：整表 5.96MB 拆成单卡分片（p50 ≈1.7KB），点击只拉所需一片；
+    // 同日 IndexedDB 分片缓存语义不变（feed-payload.ts）。缺键卡显式「暂无深度解读」，
+    // 灭掉 E2 的静默缺失。呈现判据已闸化（scripts/gittok-detail-presentation-check.mjs）。
     setDetailCard(card);
-    void prefetchFeedDetails().then((details) => {
-      setDetailCard((prev) => (prev && prev.repo === card.repo ? mergeDetail(prev, details) : prev));
-      // G-04 可观测性（十二轮自 boot 预热处迁来，按需详情的伴生检查）：这张卡在详情表缺键
-      // ⇒ 深度解读会静默缺失，至少让控制台知道（原来 boot 清点全表，现在逐次打开时查当前卡）。
-      if (!details?.[card.repo]) {
-        console.warn(`[feed-details] ${card.repo} 在详情表缺键（深度解读将静默缺失）`);
+    setDetailState("pending");
+    void resolveRepoDetail(card.repo).then((detailCn) => {
+      // 迟到的响应守卫：用户可能已关闭或换看了别的卡——不许写进别人的弹层。
+      if (detailOpenRepoRef.current !== card.repo) return;
+      setDetailState(detailCn === null ? "missing" : "ready");
+      setDetailCard((prev) => (prev && prev.repo === card.repo ? withRepoDetail(prev, detailCn) : prev));
+      // G-04 可观测性（十二轮自 boot 预热处迁来，按需详情的伴生检查）：分片与整表都无此键
+      // ⇒ 深度解读确认缺失；UI 有显式「暂无」态，控制台仍记账以便管道侧追查。
+      if (detailCn === null) {
+        console.warn(`[feed-details] ${card.repo} 缺深度解读（分片墓碑/整表均无此键）`);
       }
     });
   }, []);
@@ -2495,6 +2527,7 @@ export default function App() {
         <CardDetail
           key={detailCard.repo}
           card={detailCard}
+          detailState={detailState}
           liked={feedback.likes.includes(detailCard.repo)}
           disliked={feedback.dislikes.includes(detailCard.repo)}
           collections={collections}
