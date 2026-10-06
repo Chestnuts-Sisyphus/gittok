@@ -577,6 +577,11 @@ async function main() {
         .some(c => { const r = c.getAttribute('data-repo'); return r && !${JSON.stringify([...visibleRepos])}.includes(r.toLowerCase()); })`,
       { until: (v) => v === true, interval: 100, timeout: 15000 },
     );
+    // 等滚动引发的虚拟化窗口更新/实测回填落定再点击：<100ms 口径量的是「点击→弹层」，
+    // 不是「滚动重排中段的点击」（CI 首战实锤 147ms 假红＝大滚动后立即点击撞 measure
+    // 周期，与旧闸「mount 期首点击假红」同族；P2 已在稳定信息流上钉过同一口径）。
+    // 等待窗内预取的兜底链照常工作（分片 500→整表 one-flight 回填内存）。
+    await new Promise((r) => setTimeout(r, 1200));
     const t7 = Date.now();
     const repo7 = await cdp.eval(
       `return Array.from(document.querySelectorAll('.feed-col > .card'))
