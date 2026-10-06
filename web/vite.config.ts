@@ -83,6 +83,9 @@ function prepareFeedPlugin(): Plugin {
       // 目录入 .gitignore（不进仓库，与 feed-details.json 的「构建产物」属性一致）。
       // 路径安全：repo 键来自数据管道，落盘前仍做字符白名单（GitHub owner/repo 名
       // 只含字母数字 - _ .）＋ 解析结果必须落在 detailsDir 内，越界即跳过该卡（fail-closed）。
+      // ⚠ 路径必须经 detailShardPath（小写规范键，与运行时取数/闸对账三方同源）——
+      // 首版在这里用 split 段原始大小写拼路径，Windows 大小写不敏感让本地闸全绿，
+      // Linux 真机（CI/线上）上凡名带大写的分片全部 404（CI P0 当场拦下 missing=1359）。
       const detailsDir = path.join(outDir, "details");
       const safeSeg = (seg: string) => /^[A-Za-z0-9._-]+$/.test(seg) && !seg.startsWith(".");
       let shardCount = 0;
@@ -97,8 +100,10 @@ function prepareFeedPlugin(): Plugin {
         }
         const cn = typeof card.detailCn === "string" && card.detailCn.length > 0 ? card.detailCn : null;
         const body = detailShardBody(cn);
-        const abs = path.resolve(detailsDir, owner, `${name}.json`);
-        if (!abs.startsWith(detailsDir + path.sep)) {
+        // detailShardPath 的契约是「相对 data/ 目录」（返回 details/<owner>/<name>.json），
+        // 基准必须用 outDir（=public/data），不是 detailsDir——否则拼出 details/details/ 双层。
+        const abs = path.resolve(outDir, detailShardPath(card.repo));
+        if (!abs.startsWith(path.resolve(outDir, "details") + path.sep)) {
           shardSkipped++;
           continue;
         }

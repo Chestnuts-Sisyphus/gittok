@@ -69,14 +69,25 @@ function checkShardIntegrity() {
     if (!groupCn.has(key)) groupCn.set(key, new Set());
     if (cn !== null) groupCn.get(key).add(cn);
   }
+  // ⚠ 存在性检查必须**精确大小写**（readdir 逐项比对，不许 existsSync）：Windows/macOS
+  // 文件系统大小写不敏感，existsSync 会把大小写漂移的文件当成对的——首版发射器用原始
+  // 大小写命名、运行时按小写取，本地闸全绿、Linux 线上 1359 片 404，就是这么漏过去的。
+  const dirCache = new Map();
+  const exactCaseExists = (owner, file) => {
+    if (!dirCache.has(owner)) {
+      const d = path.join(DIST, "data", "details", owner);
+      dirCache.set(owner, fs.existsSync(d) ? fs.readdirSync(d) : []);
+    }
+    return dirCache.get(owner).includes(file);
+  };
   for (const [key, cns] of groupCn) {
     const [owner, name] = key.split("/");
     if (!owner || !name || !safeSeg(owner) || !safeSeg(name)) continue;
-    const p = path.join(DIST, "data", "details", owner, `${name}.json`);
-    if (!fs.existsSync(p)) {
+    if (!exactCaseExists(owner, `${name}.json`)) {
       missing++;
       continue;
     }
+    const p = path.join(DIST, "data", "details", owner, `${name}.json`);
     const body = JSON.parse(fs.readFileSync(p, "utf8"));
     const groupOk =
       body.detailCn === null
@@ -454,6 +465,9 @@ async function main() {
       interval: 100,
       timeout: 15000,
     });
+    // 等挂载/虚拟化落定再点：切回首页后的首点击撞 mount 期会假红 P2 的 <100ms 口径
+    //（P2 已在稳定信息流上单独钉过；这里只考「分片故障不拖住弹层」）。
+    await new Promise((r) => setTimeout(r, 1200));
     const t7 = Date.now();
     const repo7 = await cdp.eval(
       `return Array.from(document.querySelectorAll('.feed-col > .card'))
