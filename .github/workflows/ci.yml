@@ -165,13 +165,22 @@ jobs:
           CHROME_PATH: /usr/bin/google-chrome
         run: node scripts/gittok-motion-reflow-check.mjs
 
-      # Detail whole-presentation gate (Round 20 C2): placeholder-first, single whole swap
-      # with transition, explicit "none" state for missing keys, <100ms popup response,
-      # zero boot prefetch, and shard integrity (build pipeline verification).
-      - name: Detail presentation gate（二十轮 C2：占位先行·整体交接至多一次·缺键显式暂无·响应<100ms·boot 零预热·分片完整性）
+      # Detail whole-presentation gate (Round 20 C2, rewritten Round 21 N6): visible = fetchable
+      # (idle prefetch of viewport shards, first-frame-complete on click), placeholder as fallback
+      # only, whole swap once, explicit "none" state, shard integrity, boot zero critical-path
+      # warmup, collection path regression + zero uncaught exceptions (N5 ErrorBoundary era).
+      - name: Detail presentation gate（二十轮 C2 立闸＋二十一轮 N6/N5 重写：可视即可取·占位仅兜底·整体交接恰一次·缺键显式暂无·boot 零关键路径预热·分片完整性·收藏路径回归·零未捕获异常）
         env:
           CHROME_PATH: /usr/bin/google-chrome
         run: node scripts/gittok-detail-presentation-check.mjs
+
+      # Service Worker gate (Round 21 N4②): precache registration, zero-network second visit
+      # (with HTTP cache disabled), versioned-cache invalidation (stale cache cleaned on
+      # activate), offline shell opens, data/* passthrough (no second source of truth).
+      - name: Service Worker gate（二十一轮 N4②：预缓存落位·二次访问 0 网络·版本化失效清旧缓存·离线可开·数据放行）
+        env:
+          CHROME_PATH: /usr/bin/google-chrome
+        run: node scripts/gittok-sw-check.mjs
 
       - name: Visual acceptance gate（视觉断言 + 观感清单段（侧栏带文字 12 项/滚动条 3 项/侧栏不出条）+ 11 张截图；帧率在本 job 降为信息项）
         run: |

@@ -35,13 +35,92 @@
     <meta name="twitter:image:alt" content="GitTok 信息流界面：左侧频道与分区，右侧中文项目卡片" />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <link rel="preload" href="./data/feed.json" as="fetch" crossorigin />
-    <!-- 字体本地化（二十轮 N2，2026-10-06 取证后定）：旧走 Google Fonts（preconnect×2 +
-         异步 CSS），线上 trace 实测 fonts.googleapis.com 是第三方冷连接域（600–840ms/域，
-         且国内不可达时 Lora 从未真正加载、永远系统 serif 兜底）。本地化后 Lora（拉丁/数字，
-         latin 子集，OFL 授权见 fonts/LICENSE-OFL.txt）同源随站分发：零第三方域、零额外握手，
-         font-display:swap 与旧行为一致（系统 serif 先渲染、字体到位后换装）。
-         中文仍走系统 Noto Serif SC/宋体栈，样式表 --font-serif 未动。 -->
+    <!-- 主字重预加载（二十一轮 N3/N4⑤）：Lora 400 是全站正文的主用字面。preload 让 woff2
+         在解析 HTML 时就开跑（与 CSS/JS 并行），把 swap 时刻尽量提前；宽度零跳变由下面的
+         metric fallback 兜底（preload 只缩短换装窗，不消灭重排）。字体 preload 必须带
+         crossorigin（同源也要，fetch 凭据语义要求）。 -->
+    <link rel="preload" href="./fonts/lora-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <!-- 字体本地化（二十轮 N2）＋度量对齐兜底（二十一轮 N3/N4⑤，2026-10-06 实测）。
+         N3 症状＝「打开我的/首页整体宽度变一下」：Lora woff2 线上 max-age=600 → 隔 10min
+         的每次访问必重新下载 → font-display:swap 换装 → 全站拉丁/数字宽度重排（探针实测
+         306→300px 跳一帧，与 fonts.loadingdone 同窗，全时间线仅此一跳）。
+         正解＝给换装两侧同宽度：声明与 Lora **度量对齐**的本地兜底面（size-adjust 按实测
+         比例缩放本地字体），换装只换字形轮廓、不换任何 advance width ⇒ 零 reflow。
+         实测比例（本机 headless，100px 三串均值，Lora宽/源字体宽）：
+           NSC 族 400:96.25% / 500:95.73% / 600:95.24% / 700:94.26%（本机装了 Noto Serif SC，
+             是 --font-serif 里 swap 前的真实 latin 渲染者——比 TNR 更宽，这正是跳变方向
+             「变窄」的原因）；
+           TNR 族 400:110.93% / 500:111.80% / 600:107.57% / 700:108.40%（干净 Windows 无
+             NSC 时的 pre-swap 渲染者；600/700 用 TNR Bold）。
+         unicode-range 限定 latin：中文一根手指都不动（CJK 永远走 Noto Serif SC/宋体栈，
+         换装前后一致）。栈序＝每个兜底面紧贴其 local 源家族之前：源家族缺装的机器
+         local() 失败 → 该兜底面整体跳过 → 落到下一族（无 NSC 的机器自动走 TNR 族）。
+         行高全部显式（styles.css 零 normal）⇒ 纵向度量不参与行盒，无需 ascent/descent 覆写。 -->
     <style>
+      @font-face {
+        font-family: "Lora FB NSC";
+        font-style: normal;
+        font-weight: 400;
+        size-adjust: 96.25%;
+        src: local("Noto Serif SC");
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      @font-face {
+        font-family: "Lora FB NSC";
+        font-style: normal;
+        font-weight: 500;
+        size-adjust: 95.73%;
+        src: local("Noto Serif SC");
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      @font-face {
+        font-family: "Lora FB NSC";
+        font-style: normal;
+        font-weight: 600;
+        size-adjust: 95.24%;
+        src: local("Noto Serif SC");
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      @font-face {
+        font-family: "Lora FB NSC";
+        font-style: normal;
+        font-weight: 700;
+        size-adjust: 94.26%;
+        src: local("Noto Serif SC");
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      @font-face {
+        font-family: "Lora FB TNR";
+        font-style: normal;
+        font-weight: 400;
+        size-adjust: 110.93%;
+        src: local("Times New Roman");
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      @font-face {
+        font-family: "Lora FB TNR";
+        font-style: normal;
+        font-weight: 500;
+        size-adjust: 111.8%;
+        src: local("Times New Roman");
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      @font-face {
+        font-family: "Lora FB TNR";
+        font-style: normal;
+        font-weight: 600;
+        size-adjust: 107.57%;
+        src: local("Times New Roman Bold"), local("Times New Roman");
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      @font-face {
+        font-family: "Lora FB TNR";
+        font-style: normal;
+        font-weight: 700;
+        size-adjust: 108.4%;
+        src: local("Times New Roman Bold"), local("Times New Roman");
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
       @font-face {
         font-family: "Lora";
         font-style: normal;

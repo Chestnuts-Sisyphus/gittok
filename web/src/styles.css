@@ -95,7 +95,12 @@
     0 0 24px rgba(99, 102, 241, 0.08);
   --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.12), 0 0 0 1px var(--card-border);
   --max-width: 1650px;
-  --font-serif: "Lora", "Noto Serif SC", "Times New Roman", "Songti SC", "SimSun", serif;
+  /* N3（二十一轮）：栈里插入两个度量对齐兜底面（声明在 index.html，含实测 size-adjust）。
+     每个兜底面紧贴其 local 源家族之前：Lora 未到时 latin 先用「源字形×Lora 宽度」渲染，
+     换装零 reflow；unicode-range 限定 latin，中文路径原样；缺源字族的机器 local() 失败
+     自动跳过该兜底面。 */
+  --font-serif:
+    "Lora", "Lora FB NSC", "Noto Serif SC", "Lora FB TNR", "Times New Roman", "Songti SC", "SimSun", serif;
   /* 十二轮：`--feed-card-h`（288px 定高）退场——卡高＝内容自然高度（块八口径）。
      `--feed-col-min`（653px）随 auto-fill 兜底轨道一并退役（列宽算式只认 --feed-cols）。 */
   --feed-row-gap: 16px;
@@ -3300,4 +3305,50 @@ button {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* ── ErrorBoundary 可恢复错误 UI（二十一轮 N5，2026-10-06）──
+   渲染崩溃的兜底呈现：可读、可恢复（重试/刷新），永不整树卸载紫屏。
+   配色全部取主题变量，深底单暖点缀语义不变。 */
+.crash-fallback {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  max-width: 560px;
+  margin: 12vh auto;
+  padding: 24px 28px;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  background: var(--card-bg);
+}
+.crash-fallback-overlay {
+  margin: 10vh auto;
+  max-width: 420px;
+}
+.crash-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 0;
+}
+.crash-message {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  word-break: break-all;
+  margin: 0;
+}
+.crash-actions {
+  display: flex;
+  gap: 10px;
+}
+.crash-actions button {
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--card-border-hover);
+  background: transparent;
+  color: inherit;
+}
+.crash-actions button:hover {
+  background: rgba(255, 255, 255, 0.06);
 }

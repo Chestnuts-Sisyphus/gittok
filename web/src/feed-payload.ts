@@ -71,6 +71,32 @@ export function resolveRepoDetail(repo: string): Promise<string | null> {
   return p;
 }
 
+/* ═══ 可视即可取（二十一轮 N6，2026-10-06，栗子「点开卡片不能才加载」）═══
+ * 分片单片 p50 ≈1.7KB：可视区卡片在 idle 时批量预取（调用方=FeedVirtualList，
+ * 预取清单就是虚拟化渲染窗口 visibleIdx，不需要 IntersectionObserver），点击可视卡时
+ * memory 已同步命中 ⇒ 弹层首帧即完整内容；占位只兜底「预取未及」的竞态路径。
+ * 纪律：boot 零**关键路径**预热不回退——本 API 只由调用方在 idle 调度，构建/首屏
+ * 关键路径上没有任何详情请求（detail 闸 P1 钉「首卡绘制前 0 详情请求」）。 */
+
+/** 预取并发上限：分片极小，限并发只为不在弱网上挤占 feed.json 的带宽窗口。 */
+const PREFETCH_CONCURRENCY = 6;
+
+/** 批量预取：跳过已在内存/在飞的 repo，限并发逐个 resolve（结果落同一会话内存）。 */
+export function prefetchRepoDetails(repos: readonly string[]): void {
+  const todo = repos.filter((r) => memory.get(r) === undefined && !inflight.has(r));
+  let cursor = 0;
+  const workers = Array.from({ length: Math.min(PREFETCH_CONCURRENCY, todo.length) }, async () => {
+    while (cursor < todo.length) {
+      const repo = todo[cursor++];
+      // resolveRepoDetail 自带内存/在飞合流：预取与点击并发到同一 repo 也只发一次请求
+      await resolveRepoDetail(repo).catch(() => null);
+    }
+  });
+  void Promise.all(workers).catch(() => {
+    /* 预取尽力而为：失败 repos 已由 resolveRepoDetail 落 memory（null/缺失），点击走兜底 */
+  });
+}
+
 async function fetchRepoDetail(repo: string): Promise<string | null> {
   // ① 同日 IDB 分片缓存：命中即回（详情数据每天 digest 一次，日内点击零网络等待）。
   //    后台 revalidate 供当日 drip 补写场景，只更新缓存/内存，调用方拿到的值不再变。

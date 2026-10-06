@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import crypto from "node:crypto";
 import { defineConfig, type Plugin } from "vite";
 import react from "@vitejs/plugin-react";
 import { splitFeedPayload, detailShardPath, detailShardBody } from "./src/payload-split.ts";
@@ -129,10 +130,133 @@ function prepareFeedPlugin(): Plugin {
   };
 }
 
+/* ═══ Service Worker 预缓存生成（二十一轮 N4②「无感加载」，2026-10-06）═══
+ * closeBundle 时扫描 dist 构建产物 → 生成 dist/sw.js（内容含预缓存清单＋版本哈希）。
+ * 预缓存面＝带内容指纹的构建产物（assets/*.js|css）＋ 同源静态件（fonts/*.woff2、favicon.svg）。
+ * **明确不预缓存**：index.html（导航走 network-first，新部署立即生效，缓存只作离线兜底）、
+ * data/*（新鲜度归应用层同日 IndexedDB 语义，SW 不做第二套缓存真源）、
+ * digests/、agent/、feed.xml、manifest.json（公开接口按 HTTP 缓存语义走）。
+ * 失效策略＝版本化缓存名：清单内容 sha256 → 缓存名 `gittok-precache-<hash>`；任何部署产物
+ * 变化 ⇒ 新缓存名 ⇒ activate 删除全部旧 `gittok-*` 缓存；hash 资产 URL 本身自带指纹，
+ * sw.js 自身被 HTTP 缓存 max-age=600 拖后时，cache-first 未命中的新资产也会走网络并回填
+ * （自愈窗 ≤10min）。判据闸：scripts/gittok-sw-check.mjs（二次访问 0 网络/离线可开/旧缓存清理/
+ * 数据放行四条）。 */
+function swPrecachePlugin(): Plugin {
+  return {
+    name: "sw-precache",
+    apply: "build",
+    closeBundle() {
+      const distDir = path.resolve(__dirname, "dist");
+      if (!fs.existsSync(path.join(distDir, "index.html"))) {
+        console.warn("[sw-precache] dist/index.html 不存在，跳过 SW 生成");
+        return;
+      }
+      // 目录名是固定白名单（assets/fonts），文件名经 readdirSync 取自构建产物本身（无外部输入）。
+      const files: string[] = [];
+      for (const dir of ["assets", "fonts"]) {
+        const d = path.join(distDir, dir);
+        if (!fs.existsSync(d)) continue;
+        for (const f of fs.readdirSync(d)) {
+          if (dir === "assets" && !/\.(js|css)$/.test(f)) continue;
+          if (dir === "fonts" && !/\.(woff2?|ttf)$/.test(f)) continue;
+          files.push(`./${dir}/${f}`);
+        }
+      }
+      if (fs.existsSync(path.join(distDir, "favicon.svg"))) files.push("./favicon.svg");
+      // index.html 必须入预缓存：导航虽走 network-first，但离线/网络故障时 SW 的回退
+      // 只能落到缓存壳——不预缓存它，离线 reload 就是无壳白屏（sw 闸会拦这一条）。
+      if (fs.existsSync(path.join(distDir, "index.html"))) files.unshift("./index.html");
+      files.sort();
+      const version = crypto
+        .createHash("sha256")
+        .update(JSON.stringify(files))
+        .digest("hex")
+        .slice(0, 16);
+      const sw = `/* GitTok Service Worker —— 构建期生成（vite swPrecachePlugin），勿手改。
+ * 二十一轮 N4②「无感加载」（2026-10-06）：静态壳层预缓存 → 二次访问 0 网络等待。
+ * 失效策略＝版本化缓存名（gittok-precache-…）：部署产物一变即换名，
+ * activate 清全部旧 gittok-* 缓存；导航请求 network-first（新部署立即生效）。
+ * 数据类请求（data/* 等）**一律放行**：新鲜度归应用层同日 IndexedDB 语义（feed-cache.ts），
+ * SW 不做第二套数据真源。 */
+const VERSION = "${version}";
+const PRECACHE = "gittok-precache-" + VERSION;
+const PRECACHE_URLS = ${JSON.stringify(files)};
+const SHELL = "index.html";
+
+self.addEventListener("install", (event) => {
+  event.waitUntil((async () => {
+    const cache = await caches.open(PRECACHE);
+    await cache.addAll(PRECACHE_URLS);
+    await self.skipWaiting();
+  })());
+});
+
+self.addEventListener("activate", (event) => {
+  event.waitUntil((async () => {
+    const names = await caches.keys();
+    await Promise.all(
+      names.filter((n) => n.startsWith("gittok-") && n !== PRECACHE).map((n) => caches.delete(n)),
+    );
+    await self.clients.claim();
+  })());
+});
+
+const isShellAsset = (url) =>
+  url.pathname.includes("/assets/") ||
+  url.pathname.includes("/fonts/") ||
+  url.pathname.endsWith("/favicon.svg");
+
+self.addEventListener("fetch", (event) => {
+  const req = event.request;
+  if (req.method !== "GET") return;
+  const url = new URL(req.url);
+  if (url.origin !== self.location.origin) return;
+  if (req.mode === "navigate") {
+    event.respondWith(
+      (async () => {
+        try {
+          const fresh = await fetch(req);
+          const cache = await caches.open(PRECACHE);
+          cache.put(SHELL, fresh.clone()).catch(() => {});
+          return fresh;
+        } catch (err) {
+          const cache = await caches.open(PRECACHE);
+          return (await cache.match(SHELL)) || (await cache.match("./index.html")) || Response.error();
+        }
+      })(),
+    );
+    return;
+  }
+  if (isShellAsset(url)) {
+    event.respondWith(
+      (async () => {
+        const cache = await caches.open(PRECACHE);
+        const hit = await cache.match(req);
+        if (hit) return hit;
+        const fresh = await fetch(req);
+        if (fresh && fresh.ok) cache.put(req, fresh.clone()).catch(() => {});
+        return fresh;
+      })(),
+    );
+    return;
+  }
+  /* 其余（data/*、agent/*、digests/*、feed.xml、manifest.json、sw.js）：放行 */
+});
+`;
+      fs.writeFileSync(path.join(distDir, "sw.js"), sw);
+      console.log(`[sw-precache] sw.js 生成：${files.length} 个预缓存件，版本 ${version}`);
+    },
+  };
+}
+
 // base: "./" 让构建产物用相对路径，适配 GitHub Pages 子路径部署
 export default defineConfig({
-  plugins: [react(), prepareFeedPlugin()],
+  plugins: [react(), prepareFeedPlugin(), swPrecachePlugin()],
   base: "./",
+  define: {
+    // 构建标识：boot 日志 + N5 复验协议第一步「先看 bundle 新旧」（main.tsx 消费）
+    __BUILD_ID__: JSON.stringify(`b${new Date().toISOString().replace(/[-:T.Z]/g, "").slice(0, 14)}`),
+  },
   build: {
     outDir: "dist",
     emptyOutDir: true,
