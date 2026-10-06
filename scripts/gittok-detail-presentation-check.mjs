@@ -513,6 +513,10 @@ async function main() {
       interval: 100,
       timeout: 15000,
     });
+    // 等预取链落定再点击（与 P7 同族教训，CI 实锤 257ms 假红）：缺键卡的预取走
+    // 「分片 404→整表兜底」，整表 5.9MB 的 JSON.parse 是主线程阻塞任务——点击渲染
+    // 排在它后面会把弹层拖过 <100ms。落定后内存=确认缺失，点击首帧即「暂无」。
+    await new Promise((r) => setTimeout(r, 1500));
     const t6 = Date.now();
     await cdp.eval(
       `(() => { document.querySelector('[data-repo="${GATE_MISSING_REPO}"]').click(); return 1; })()`,
