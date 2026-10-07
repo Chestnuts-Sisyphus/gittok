@@ -150,6 +150,16 @@ node skills/gittok/scripts/hotspots.mjs --limit 12    # from a clone
 
 Full field reference, ranking semantics and etiquette: [`docs/API.md`](./docs/API.md).
 
+### Loading behavior (Service Worker & prefetch) — data endpoints unaffected
+
+The site pre-caches its shell via a build-generated Service Worker (`sw.js`): fingerprinted
+`assets/*`, `fonts/*`, `index.html`, `favicon.svg` only. **All `data/*`, `digests/*`, `feed.xml`,
+`manifest.json` requests pass straight through to the network** — the SW never serves a second,
+stale copy of the feed. In the browser, the app also prefetches detail shards for **currently
+visible cards** during idle time ("visible = fetchable"), which is site behavior only and does not
+change the shard API. Same-day IndexedDB caching is app-layer and expires naturally. See
+[`docs/API.md`](./docs/API.md) § 站点加载行为.
+
 ## 🎯 What does "Tok" mean?
 
 GitTok is not a fullscreen clone of TikTok. **"Tok" is the feeling**: browsing GitHub projects should be as fun and addictive as scrolling short videos. GitTok delivers that with an algorithm-driven card feed — personalized recommendations, Chinese summaries for every project, and fresh picks every day. Swipe through GitHub like short videos, with the density of a real feed.

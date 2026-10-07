@@ -14,6 +14,7 @@ Hugging Face、Dev.to、Lobste.rs、Anthropic/OpenAI 官方站等 10+ 源，由 
 | 卡片列表 | `https://chestnuts-sisyphus.github.io/gittok/data/feed.json` | JSON 数组 | 站点首屏用的轻量列表（不含 `detailCn`），约 4.9 MiB（5,107,850 字节，2026-09-22 实测） |
 | 卡片详情表 | `https://chestnuts-sisyphus.github.io/gittok/data/feed-details.json` | JSON 对象 | `{ "owner/name": detailCn }` 映射，按需取长文 |
 | 卡片详情分片 | `https://chestnuts-sisyphus.github.io/gittok/data/details/<owner>/<name>.json` | JSON 对象 | **单卡长文**（二十轮 C3）：`{"detailCn": "…"}`；无长文为墓碑 `{"detailCn": null}`；路径两段**小写**。一次只取一个项目 ≈2KB，代替整表 5.9MB |
+| 推荐头片 | `https://chestnuts-sisyphus.github.io/gittok/data/feed-head.json` | JSON 数组 | 推荐频道 baseline top-256（二十二-0 冷路径头片，与站点同一份排序实现的头部切片）。站点冷启动自用件；agent 可当「今日推荐头部」快照用 |
 | 卡片列表（全量单文件） | `https://cdn.jsdelivr.net/gh/Chestnuts-Sisyphus/gittok@master/data/feed.json` | JSON 数组 | 仓库源文件：**自带 `detailCn`**、字段最全；大陆直连比站点快（实测 1.8MB/s vs 121KB/s） |
 | RSS | `https://chestnuts-sisyphus.github.io/gittok/feed.xml` | RSS 2.0 | 日报条目流 |
 | 日报索引 | `https://chestnuts-sisyphus.github.io/gittok/manifest.json` | JSON | `dates[] → reports[]`，日报文件清单 |
@@ -23,6 +24,23 @@ Hugging Face、Dev.to、Lobste.rs、Anthropic/OpenAI 官方站等 10+ 源，由 
 
 镜像规则：GitHub Pages 供 `data/*.json`、`manifest.json`、`feed.xml`；
 仓库文件（`digests/*.md`、`mcp-gittok/*`、`skills/*`）走 jsDelivr 或 raw（raw 在部分网络不可达，优先 jsDelivr）。
+
+## 站点加载行为（SW 与预取）——数据接口语义不变
+
+站点浏览器端有两层加载优化，**都不改变上表任何数据接口的语义**，agent 消费方不受影响：
+
+- **Service Worker（壳层预缓存）**：构建期生成 `sw.js`，只预缓存带指纹的壳资产
+  （`assets/*.js|css`、`fonts/*`、`index.html`、`favicon.svg`）。`data/*`、`digests/*`、`feed.xml`、
+  `manifest.json` 一律**放行到网络**——SW 不做第二套数据真源，「缓存里有一份旧 feed」的情况不存在。
+  导航请求 network-first：每次部署立即到达（旧标签页至多一次硬刷新即可换到新壳）。
+- **详情分片预取（仅浏览器内）**：站点会把**当前视口可见卡**的详情分片在 idle 时批量预取
+  （可视即可取，P0 体验标准：点开卡片即见全文）。这是站点自发行为，不改变分片接口本身；
+  用 `curl`/脚本直接取分片与站点行为互不影响。
+- **应用层同日缓存**：浏览器把 `feed.json`/详情分片按「当天」存 IndexedDB 加速二次访问；
+  新鲜度以服务端为准，日内多次部署次日自然过期。
+
+若发现「请求没到服务端」的疑似问题，先看是不是 SW/HTTP 缓存层（导航刷新或硬刷新可排除）；
+SW 对数据类请求只放行不改写，不存在吞请求的路径（有闸锁定该行为）。
 
 ## 快速开始
 
