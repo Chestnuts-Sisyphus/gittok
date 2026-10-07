@@ -9,18 +9,18 @@ Hugging Face、Dev.to、Lobste.rs、Anthropic/OpenAI 官方站等 10+ 源，由 
 
 ## 接口总表
 
-| 接口 | 地址 | 格式 | 说明 |
-|---|---|---|---|
-| 卡片列表 | `https://chestnuts-sisyphus.github.io/gittok/data/feed.json` | JSON 数组 | 站点首屏用的轻量列表（不含 `detailCn`），约 4.9 MiB（5,107,850 字节，2026-09-22 实测） |
-| 卡片详情表 | `https://chestnuts-sisyphus.github.io/gittok/data/feed-details.json` | JSON 对象 | `{ "owner/name": detailCn }` 映射，按需取长文 |
-| 卡片详情分片 | `https://chestnuts-sisyphus.github.io/gittok/data/details/<owner>/<name>.json` | JSON 对象 | **单卡长文**（二十轮 C3）：`{"detailCn": "…"}`；无长文为墓碑 `{"detailCn": null}`；路径两段**小写**。一次只取一个项目 ≈2KB，代替整表 5.9MB |
-| 推荐头片 | `https://chestnuts-sisyphus.github.io/gittok/data/feed-head.json` | JSON 数组 | 推荐频道 baseline top-256（二十二-0 冷路径头片，与站点同一份排序实现的头部切片）。站点冷启动自用件；agent 可当「今日推荐头部」快照用 |
-| 卡片列表（全量单文件） | `https://cdn.jsdelivr.net/gh/Chestnuts-Sisyphus/gittok@master/data/feed.json` | JSON 数组 | 仓库源文件：**自带 `detailCn`**、字段最全；大陆直连比站点快（实测 1.8MB/s vs 121KB/s） |
-| RSS | `https://chestnuts-sisyphus.github.io/gittok/feed.xml` | RSS 2.0 | 日报条目流 |
-| 日报索引 | `https://chestnuts-sisyphus.github.io/gittok/manifest.json` | JSON | `dates[] → reports[]`，日报文件清单 |
-| 日报正文 | `https://cdn.jsdelivr.net/gh/Chestnuts-Sisyphus/gittok@master/digests/<YYYY-MM-DD>/<name>.md` | Markdown | 日报 markdown **只随仓库发布**（站点上是网页渲染，`/digests/*.md` 会 404） |
-| 站点 | `https://chestnuts-sisyphus.github.io/gittok/` | HTML | 卡片流应用（人用） |
-| 发现文件 | `https://chestnuts-sisyphus.github.io/gittok/llms.txt` | text/plain | 给 agent 的入口索引（llmstxt.org 规范） |
+| 接口                   | 地址                                                                                          | 格式       | 说明                                                                                                                                       |
+| ---------------------- | --------------------------------------------------------------------------------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| 卡片列表               | `https://chestnuts-sisyphus.github.io/gittok/data/feed.json`                                  | JSON 数组  | 站点首屏用的轻量列表（不含 `detailCn`），约 4.9 MiB（5,107,850 字节，2026-09-22 实测）                                                     |
+| 卡片详情表             | `https://chestnuts-sisyphus.github.io/gittok/data/feed-details.json`                          | JSON 对象  | `{ "owner/name": detailCn }` 映射，按需取长文                                                                                              |
+| 卡片详情分片           | `https://chestnuts-sisyphus.github.io/gittok/data/details/<owner>/<name>.json`                | JSON 对象  | **单卡长文**（二十轮 C3）：`{"detailCn": "…"}`；无长文为墓碑 `{"detailCn": null}`；路径两段**小写**。一次只取一个项目 ≈2KB，代替整表 5.9MB |
+| 推荐头片               | `https://chestnuts-sisyphus.github.io/gittok/data/feed-head.json`                             | JSON 数组  | 推荐频道 baseline top-256（二十二-0 冷路径头片，与站点同一份排序实现的头部切片）。站点冷启动自用件；agent 可当「今日推荐头部」快照用       |
+| 卡片列表（全量单文件） | `https://cdn.jsdelivr.net/gh/Chestnuts-Sisyphus/gittok@master/data/feed.json`                 | JSON 数组  | 仓库源文件：**自带 `detailCn`**、字段最全；大陆直连比站点快（实测 1.8MB/s vs 121KB/s）                                                     |
+| RSS                    | `https://chestnuts-sisyphus.github.io/gittok/feed.xml`                                        | RSS 2.0    | 日报条目流                                                                                                                                 |
+| 日报索引               | `https://chestnuts-sisyphus.github.io/gittok/manifest.json`                                   | JSON       | `dates[] → reports[]`，日报文件清单                                                                                                        |
+| 日报正文               | `https://cdn.jsdelivr.net/gh/Chestnuts-Sisyphus/gittok@master/digests/<YYYY-MM-DD>/<name>.md` | Markdown   | 日报 markdown **只随仓库发布**（站点上是网页渲染，`/digests/*.md` 会 404）                                                                 |
+| 站点                   | `https://chestnuts-sisyphus.github.io/gittok/`                                                | HTML       | 卡片流应用（人用）                                                                                                                         |
+| 发现文件               | `https://chestnuts-sisyphus.github.io/gittok/llms.txt`                                        | text/plain | 给 agent 的入口索引（llmstxt.org 规范）                                                                                                    |
 
 镜像规则：GitHub Pages 供 `data/*.json`、`manifest.json`、`feed.xml`；
 仓库文件（`digests/*.md`、`mcp-gittok/*`、`skills/*`）走 jsDelivr 或 raw（raw 在部分网络不可达，优先 jsDelivr）。
@@ -73,32 +73,33 @@ curl -s https://cdn.jsdelivr.net/gh/Chestnuts-Sisyphus/gittok@master/digests/202
 
 ## 卡片字段（列表接口）
 
-| 字段 | 类型 | 说明 |
-|---|---|---|
-| `repo` | string | `owner/name`，全库唯一键 |
-| `url` | string | GitHub 仓库地址 |
-| `owner` / `name` | string | 拆分字段（搜索用） |
-| `desc` | string | 仓库原始英文描述 |
-| `summaryCn` | string | 一句话中文概括（LLM 写，大白话） |
-| `reasonCn` | string | 两三行中文简介（LLM 写，含术语） |
-| `detailCn` | string | 中文长文详情；**站点列表已剥离**，用详情表或全量单文件取 |
-| `stars` | number | 当前 star 数 |
-| `starGrowth` | number | 近期涨星（站点热门频道依据） |
-| `zone` | string | 内容分区：`AI` / `资源` / `工具` / `创意` |
-| `funScore` | number | 乐趣强度 0–1（乐趣频道依据；0 = 纯工具向） |
-| `heatScore` | number | 时效热度分（每日频道依据；涨得快优先） |
-| `createdAt` | string | 仓库建仓时间（ISO 8601） |
-| `pushedAt` | string | 这张卡**入库/刷新**时间（ISO 8601，判断「今天新收录」用这个） |
-| `language` | string | 主语言 |
-| `topics` | string[] | GitHub topics |
-| `aiDims` | string[] | LLM 多维度标签 |
+| 字段             | 类型     | 说明                                                          |
+| ---------------- | -------- | ------------------------------------------------------------- |
+| `repo`           | string   | `owner/name`，全库唯一键                                      |
+| `url`            | string   | GitHub 仓库地址                                               |
+| `owner` / `name` | string   | 拆分字段（搜索用）                                            |
+| `desc`           | string   | 仓库原始英文描述                                              |
+| `summaryCn`      | string   | 一句话中文概括（LLM 写，大白话）                              |
+| `reasonCn`       | string   | 两三行中文简介（LLM 写，含术语）                              |
+| `detailCn`       | string   | 中文长文详情；**站点列表已剥离**，用详情表或全量单文件取      |
+| `stars`          | number   | 当前 star 数                                                  |
+| `starGrowth`     | number   | 近期涨星（站点热门频道依据）                                  |
+| `zone`           | string   | 内容分区：`AI` / `资源` / `工具` / `创意`                     |
+| `funScore`       | number   | 乐趣强度 0–1（乐趣频道依据；0 = 纯工具向）                    |
+| `heatScore`      | number   | 时效热度分（每日频道依据；涨得快优先）                        |
+| `createdAt`      | string   | 仓库建仓时间（ISO 8601）                                      |
+| `pushedAt`       | string   | 这张卡**入库/刷新**时间（ISO 8601，判断「今天新收录」用这个） |
+| `language`       | string   | 主语言                                                        |
+| `topics`         | string[] | GitHub topics                                                 |
+| `aiDims`         | string[] | LLM 多维度标签                                                |
 
 站点列表会额外剥掉两批字段：
+
 1. `bigbros` / `aiDim` / `score`——历史遗留死字段（前者是盖章退役残留，中者与 `aiDims[0]` 重复，后者组装时恒 0）；
 2. `funDims` / `facts` / `zoneReason` / `funReason` / `funScoreSource` / `zoneSource` / `legacyZone` / `legacyFunScore`
    ——判定中间产物与溯源标记（2026-09-23 起剥；站点一屏都不展示。实测站点列表 gzip 由 1,380,144 B → 1,209,026 B，−12.4%）。
-需要这些字段就用上面的「全量单文件」或仓库 `data/feed.json`（**源文件一个字段都不少**，瘦身只发生在构建产物里）。
-上表列出的字段（含 `pushedAt`）在站点列表中**保证在场**——剥掉的字段都不在表内。
+   需要这些字段就用上面的「全量单文件」或仓库 `data/feed.json`（**源文件一个字段都不少**，瘦身只发生在构建产物里）。
+   上表列出的字段（含 `pushedAt`）在站点列表中**保证在场**——剥掉的字段都不在表内。
 
 ## 排序与搜索语义（与站点一致）
 
