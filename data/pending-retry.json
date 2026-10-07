@@ -13,7 +13,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-03T18:38:06Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "1yefuwang1/vectorlite",
@@ -28,8 +28,8 @@
     "createdAt": "2023-10-07T06:18:07Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-07T04:32:57Z",
-    "retryCount": 1
+    "ts": "2026-10-07T08:20:55Z",
+    "retryCount": 2
   },
   {
     "repo": "2776709994/my-interview",
@@ -48,6 +48,22 @@
     "retryCount": 1
   },
   {
+    "repo": "5w14/craftmine-dailies",
+    "desc": "A mod that adds daily runs to Minecraft's craftmine snapshot (25w14craftmine) ",
+    "stars": 3,
+    "language": "Java",
+    "topics": [
+      "roguelike"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2025-04-14T21:40:21Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-29T20:27:10Z",
+    "retryCount": 1
+  },
+  {
     "repo": "738/awesome-devbook",
     "desc": "",
     "stars": 1000,
@@ -58,7 +74,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-07T00:12:41.438Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "AbdullahbinAmin/aws-devops-book",
@@ -89,7 +105,7 @@
     "createdAt": "2026-10-06T12:29:18Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-10-06T15:23:17Z",
+    "ts": "2026-10-07T12:06:55Z",
     "retryCount": 1
   },
   {
@@ -107,7 +123,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-05T10:58:10Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "adambenhassen/ryanair-mcp",
@@ -123,7 +139,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-16T17:24:49Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "AdamlucYee/ForTheEmperor-",
@@ -139,7 +155,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-20T06:21:35Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "adenaufal/anti-slop-writing",
@@ -155,7 +171,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-27T04:56:07Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "adityakumar3cs28-debug/Precision-Point-Dart",
@@ -170,8 +186,24 @@
     "createdAt": "2026-09-21T20:43:24Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-07T01:58:21Z",
-    "retryCount": 2
+    "ts": "2026-10-07T08:15:43Z",
+    "retryCount": 3
+  },
+  {
+    "repo": "adongwanai/learn-workbuddy",
+    "desc": "从 0 复刻 WorkBuddy-style 桌面 AI 助手 Harness：24 章 Python 教程，覆盖 Agent Loop、工具调用、记忆系统、Sidecar、沙盒审计、DeepSeek/OpenAI 评测轨迹",
+    "stars": 406,
+    "language": "Python",
+    "topics": [
+      "tutorial"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-07-08T09:00:56Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-06T06:07:19Z",
+    "retryCount": 1
   },
   {
     "repo": "Agents365-ai/video-podcast-maker",
@@ -185,7 +217,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-26T17:52:47.721Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "ak811/pacman-search-agent",
@@ -204,6 +236,22 @@
     "retryCount": 1
   },
   {
+    "repo": "akharroubi/3D-Data-Essentials",
+    "desc": "3D DATA PROCESSING AND MODELING ESSENTIALS: A curated collection of tools, literature, courses, and datasets for mastering 3D point cloud technology.",
+    "stars": 60,
+    "language": "",
+    "topics": [
+      "course"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2023-12-21T09:25:52Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-07T08:43:18Z",
+    "retryCount": 1
+  },
+  {
     "repo": "AlexanderFabisch/distance3d",
     "desc": "Distance computation and collision detection in 3D.",
     "stars": 81,
@@ -217,7 +265,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-05T14:33:39Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "alexgreensh/anidoodle",
@@ -225,7 +273,8 @@
     "stars": 827,
     "language": "TypeScript",
     "topics": [
-      "creative-coding"
+      "creative-coding",
+      "generative-art"
     ],
     "source": "search",
     "starGrowth": 0,
@@ -233,7 +282,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-05T12:24:20Z",
-    "retryCount": 2
+    "retryCount": 3
+  },
+  {
+    "repo": "Alia5/SISR",
+    "desc": "SISR (Steam Input System Redirector; pronounced \"scissor\") is a tool that allows users to redirect Steam Input configurations to a system level, either on localhost or even over the network.",
+    "stars": 869,
+    "language": "Go",
+    "topics": [
+      "emulator"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2025-11-23T15:22:17Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-30T20:56:49Z",
+    "retryCount": 1
   },
   {
     "repo": "Alndaly/Mosael",
@@ -248,8 +313,8 @@
     "createdAt": "2026-07-16T12:52:55Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-10-07T04:44:07Z",
-    "retryCount": 3
+    "ts": "2026-10-07T12:56:35Z",
+    "retryCount": 4
   },
   {
     "repo": "alperkah/grafik-ve-animasyon",
@@ -265,7 +330,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-06T13:27:46Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "andreypfau/mcrs",
@@ -281,7 +346,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-05T04:11:35Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "anetonline/ANetDRAW",
@@ -297,7 +362,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-30T13:13:37Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "AntonioND/gbt-player",
@@ -329,7 +394,23 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-09-07T18:10:07Z",
-    "retryCount": 5
+    "retryCount": 6
+  },
+  {
+    "repo": "arashThr/radioDaal",
+    "desc": "Radio Daal podcast website",
+    "stars": 20,
+    "language": "HTML",
+    "topics": [
+      "podcast"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2017-02-17T12:14:13Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-07T10:15:00Z",
+    "retryCount": 1
   },
   {
     "repo": "azat-io/pinbook",
@@ -345,7 +426,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-29T09:56:37Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "bagidea/bagidea-office",
@@ -361,7 +442,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-05T17:23:20Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "beita6969/ScienceClaw",
@@ -376,8 +457,8 @@
     "createdAt": "2026-03-11T12:17:51Z",
     "silentRounds": 2,
     "bigbros": [],
-    "ts": "2026-10-06T19:34:58Z",
-    "retryCount": 3
+    "ts": "2026-10-07T10:57:24Z",
+    "retryCount": 4
   },
   {
     "repo": "belliedmonkey/belliedmonkey-translator",
@@ -392,7 +473,7 @@
     "createdAt": "2026-07-04T04:53:28Z",
     "silentRounds": 2,
     "bigbros": [],
-    "ts": "2026-10-07T04:33:48Z",
+    "ts": "2026-10-07T11:35:07Z",
     "retryCount": 1
   },
   {
@@ -423,6 +504,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-07T05:05:22Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "blycr/PlantsVsZombiesRH_tool",
+    "desc": "植物大战僵尸融合版 3.8.1 修改器与辅助工具 | PVZ Fusion 3.8.1 Trainer & Helper Tool",
+    "stars": 10,
+    "language": "C#",
+    "topics": [
+      "cheatsheet"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-05-31T20:38:00Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-07T12:39:51Z",
     "retryCount": 1
   },
   {
@@ -452,7 +549,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-06T19:52:34Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "castle-queenside/clavus",
@@ -500,7 +597,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-06T07:08:55Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "cicloid/awesome-fm-1",
@@ -516,7 +613,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-05T23:32:27Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "COMS30117-Deep-Learning/labsheets",
@@ -532,7 +629,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-06T15:07:18Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "cth9191/animate",
@@ -551,6 +648,22 @@
     "retryCount": 1
   },
   {
+    "repo": "cubxxw/RemoteAI-Nomads",
+    "desc": "🌍 数字游民实战指南 | Digital Nomad Guide — 全球签证矩阵、城市生活成本、远程工作平台、跨境收款、中国人社保医保攻略。25+ 国内基地 · 12 国签证对比。Remote work, visas, cost-of-living & finance for digital nomads.",
+    "stars": 79,
+    "language": "",
+    "topics": [
+      "travel"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2024-10-23T13:12:56Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-07T08:06:57Z",
+    "retryCount": 1
+  },
+  {
     "repo": "cyanheads/national-parks-mcp-server",
     "desc": "Plan US National Park Service trips — find parks, check alerts and closures, find campgrounds, and browse things to do and events via the NPS Data API. STDIO or Streamable HTTP.",
     "stars": 2,
@@ -564,7 +677,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-24T05:50:37Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "CylnaNangong/NGYY_ENG_Dataset",
@@ -580,7 +693,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-06T18:38:48Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "d-li14/involution",
@@ -626,7 +739,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-27T03:30:23Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "DaoyuanLi2816/can-i-finetune-this",
@@ -656,7 +769,7 @@
     "silentRounds": 6,
     "bigbros": [],
     "ts": "2026-09-30T23:37:45.729Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "datawhalechina/base-llm",
@@ -672,23 +785,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-03T16:00:10.335Z",
-    "retryCount": 4
-  },
-  {
-    "repo": "dbl8005/repos-and-dungeons",
-    "desc": "Watch Claude Code explore your repo as a live pixel dungeon. Folders are rooms, unread code is fog, failing tests are monsters. Local, open source.",
-    "stars": 5,
-    "language": "TypeScript",
-    "topics": [
-      "roguelike"
-    ],
-    "source": "search",
-    "starGrowth": 1,
-    "createdAt": "2026-10-06T07:30:12Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-06T07:30:28Z",
-    "retryCount": 6
+    "retryCount": 1
   },
   {
     "repo": "DDD27433/openbachelors-roguelike",
@@ -704,7 +801,23 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-06T05:59:01Z",
-    "retryCount": 5
+    "retryCount": 6
+  },
+  {
+    "repo": "debanjanm/Hands-OnLLM",
+    "desc": "Practical projects and experiments with large language models, focusing on fine-tuning, prompting, evaluation, and real-world use cases.",
+    "stars": 1,
+    "language": "Jupyter Notebook",
+    "topics": [
+      "llm-model"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2023-08-01T15:33:11Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-06T04:49:25Z",
+    "retryCount": 1
   },
   {
     "repo": "devbaj-stastny-jakub/better-grill",
@@ -719,7 +832,7 @@
     "createdAt": "2026-09-23T00:41:47Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-09-27T16:38:14Z",
+    "ts": "2026-10-07T12:36:48Z",
     "retryCount": 1
   },
   {
@@ -734,7 +847,7 @@
     "silentRounds": 5,
     "bigbros": [],
     "ts": "2026-09-30T23:37:45.729Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "djayuffe/neon-vectors-amiga-cracktro-aga-v5",
@@ -750,6 +863,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-01T20:33:14Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "Emmi-AI/noether",
+    "desc": "Deep-Learning framework for Engineering AI. Built on transformer building blocks, it delivers the full engineering stack, allowing teams to build,  train, and operate industrial simulation models across engineering verticals.",
+    "stars": 245,
+    "language": "Python",
+    "topics": [
+      "transformers"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-01-05T12:13:45Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-07T11:29:46Z",
     "retryCount": 1
   },
   {
@@ -766,6 +895,19 @@
     "retryCount": 1
   },
   {
+    "repo": "fabio-rovai/open-ontologies",
+    "desc": "Plan, apply and roll back changes to a production ontology, with a blast radius report and a proof an auditor can re-check.",
+    "stars": 859,
+    "language": "Rust",
+    "topics": [],
+    "source": "trending",
+    "starGrowth": 110,
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-07T12:59:04.111Z",
+    "retryCount": 1
+  },
+  {
     "repo": "facebookarchive/C3D",
     "desc": "",
     "stars": 1182,
@@ -777,7 +919,7 @@
     "silentRounds": 6,
     "bigbros": [],
     "ts": "2026-09-30T23:37:45.729Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "FailproofAI/failproofai",
@@ -792,8 +934,24 @@
     "createdAt": "2026-04-06T01:56:39Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-05T21:12:39Z",
-    "retryCount": 4
+    "ts": "2026-10-07T09:43:48Z",
+    "retryCount": 5
+  },
+  {
+    "repo": "feder-cr/dots",
+    "desc": "Open-source, self-hosted alternative to OpenAI Dots, Meta Muse, Grok Bot, Manus Cue and Claude Cowork. AI agents that each own a computer on your PC and browse on a stealth Firefox undetected by anti-bots. Any model on OpenRouter.",
+    "stars": 31784,
+    "language": "TypeScript",
+    "topics": [
+      "ai-agent"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2024-08-04T12:15:06Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-07T11:34:19Z",
+    "retryCount": 1
   },
   {
     "repo": "gantasmo/theDAW-XR",
@@ -809,7 +967,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-06T04:42:43Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "gcy6630/city-food-map-skill",
@@ -825,7 +983,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-29T07:51:52Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "gelijunge22-code/novel-app",
@@ -841,7 +999,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-09-22T07:45:31Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "golanlevin/p5.plotSvg",
@@ -849,7 +1007,8 @@
     "stars": 208,
     "language": "JavaScript",
     "topics": [
-      "creative-coding"
+      "creative-coding",
+      "generative-art"
     ],
     "source": "search",
     "starGrowth": 0,
@@ -857,7 +1016,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-07T05:00:17Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "google/lullaby",
@@ -871,7 +1030,20 @@
     "silentRounds": 6,
     "bigbros": [],
     "ts": "2026-09-30T23:37:45.729Z",
-    "retryCount": 2
+    "retryCount": 3
+  },
+  {
+    "repo": "grafana/gcx",
+    "desc": "A CLI for managing Grafana and Grafana Cloud resources. Optimized for agentic usage.",
+    "stars": 771,
+    "language": "Go",
+    "topics": [],
+    "source": "trending",
+    "starGrowth": 1,
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-07T12:59:04.111Z",
+    "retryCount": 1
   },
   {
     "repo": "gymcoach-app/gymcoach",
@@ -886,8 +1058,40 @@
     "createdAt": "2026-05-27T08:09:02Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-10-05T15:21:54Z",
-    "retryCount": 2
+    "ts": "2026-10-07T09:37:53Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "hexianWeb/lego-stylized-nature",
+    "desc": "A LEGO-style nature exploration world built with Three.js WebGPU.",
+    "stars": 53,
+    "language": "JavaScript",
+    "topics": [
+      "creative-coding"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-06-30T01:11:01Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-07T09:19:53Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "huzjie/chonkforge",
+    "desc": "Native-multimodal 1T sparse-MoE frontier framework (Mistral Large 4 / Le Chonk direction): text+image share one backbone, top-k routing + SwiGLU experts + load-balancing loss, 1M-context sliding-window+global attention, 6-domain benchmarks, FP8/INT4 quantization, sovereign governance. Zero-dependency.",
+    "stars": 0,
+    "language": "Python",
+    "topics": [
+      "llm-model"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-07T05:12:47Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-07T05:14:24Z",
+    "retryCount": 1
   },
   {
     "repo": "hyperknot/openfreemap-styles",
@@ -903,7 +1107,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-06T12:03:12Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "Iamsdt/chess",
@@ -935,6 +1139,22 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-07T01:23:17Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "inseq-team/inseq",
+    "desc": "Interpretability for sequence generation models 🐛 🔍",
+    "stars": 476,
+    "language": "Python",
+    "topics": [
+      "transformers"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2021-09-14T11:34:46Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-07T07:33:02Z",
     "retryCount": 1
   },
   {
@@ -951,7 +1171,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-06T23:04:24Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "interview-ps/InterviewOS",
@@ -966,8 +1186,8 @@
     "createdAt": "2026-10-02T10:03:21Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-10-06T22:22:08Z",
-    "retryCount": 5
+    "ts": "2026-10-07T08:25:05Z",
+    "retryCount": 6
   },
   {
     "repo": "iwangjian/Paper-Reading-ConvAI",
@@ -984,22 +1204,6 @@
     "retryCount": 1
   },
   {
-    "repo": "IWhitebird/Zimacs",
-    "desc": "A Small and Fast Text Editor using raylib written in Zig ⚡",
-    "stars": 3,
-    "language": "Zig",
-    "topics": [
-      "raylib"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2024-10-09T10:39:46Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-29T07:20:24Z",
-    "retryCount": 2
-  },
-  {
     "repo": "IzzoSol/FL-STUDIO-AI",
     "desc": "An AI beat maker and music-production engine — an MCP server for Claude Code, a REST API and a browser DAW. Generate grooves, progressions and full arrangements from Python, and drive it from FL Studio.",
     "stars": 7,
@@ -1014,7 +1218,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-04T19:16:01Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "jevakallio/git-notify",
@@ -1028,6 +1232,38 @@
     "silentRounds": 8,
     "bigbros": [],
     "ts": "2026-09-29T00:20:24.882Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "johnisanerd/Apify-Fuel-Prices-Scraper",
+    "desc": "Fuel Prices API on Apify - Python (uv) + MCP example. Current gas-station fuel prices as clean, structured JSON.",
+    "stars": 3,
+    "language": "Python",
+    "topics": [
+      "travel"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2025-08-22T12:26:31Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-24T18:07:35Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "jpvalery/portfolio",
+    "desc": "Photo Portfolio w/ Next.js + TailwindCSS + Contentful",
+    "stars": 277,
+    "language": "TypeScript",
+    "topics": [
+      "photography"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2019-01-16T00:46:46Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-07T11:58:12Z",
     "retryCount": 1
   },
   {
@@ -1043,8 +1279,8 @@
     "createdAt": "2023-08-25T14:13:15Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-10-07T04:21:03Z",
-    "retryCount": 1
+    "ts": "2026-10-07T12:56:44Z",
+    "retryCount": 2
   },
   {
     "repo": "kvcache-ai/ktransformers",
@@ -1058,7 +1294,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-13T22:08:09.499Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "lambdamikel/CPCDiskAdapter",
@@ -1088,7 +1324,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-21T19:19:33.440Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Leviidev/Husk",
@@ -1103,8 +1339,8 @@
     "createdAt": "2026-09-12T03:08:51Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-07T02:47:45Z",
-    "retryCount": 2
+    "ts": "2026-10-07T11:32:38Z",
+    "retryCount": 1
   },
   {
     "repo": "liyingze07-svg/EffectiveAutoResearch-EAR-",
@@ -1120,7 +1356,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-06T10:19:28Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "llm-d/llm-d-router",
@@ -1133,7 +1369,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-06T13:04:24.792Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "lpaiu-cs/osk-system",
@@ -1148,8 +1384,8 @@
     "createdAt": "2026-05-25T04:31:57Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-07T04:28:54Z",
-    "retryCount": 1
+    "ts": "2026-10-07T07:28:49Z",
+    "retryCount": 2
   },
   {
     "repo": "LukyVj/GSS",
@@ -1164,7 +1400,23 @@
     "createdAt": "2026-09-29T15:21:01Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-06T22:13:33Z",
+    "ts": "2026-10-07T09:16:01Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "lunohodov/awesome-astrophotography",
+    "desc": "A curated list of resources related to astrophotography.",
+    "stars": 163,
+    "language": "",
+    "topics": [
+      "photography"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2022-01-09T17:24:46Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-07T12:49:06Z",
     "retryCount": 1
   },
   {
@@ -1181,23 +1433,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-07T00:46:45Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
-    "repo": "Mastershort/neonplan3d",
-    "desc": "3D floor plan for Home Assistant: draw your home in the built-in editor (rooms, walls, doors, windows, furniture, roof) and see and control lights, covers, windows, climate, media, sensors and cameras live in a neon 3D view – as a sidebar panel and dashboard card.",
-    "stars": 343,
-    "language": "TypeScript",
+    "repo": "mars-tw/anti-gambling-trader-tw",
+    "desc": "免費開源的投資反詐、交易統計與自動化交易程式工具：預設 PaperBroker，提供 14 種券商／交易所選項；交易紀錄分析在本機執行。",
+    "stars": 867,
+    "language": "Python",
     "topics": [
-      "home-automation"
+      "trading"
     ],
     "source": "search",
-    "starGrowth": 5,
-    "createdAt": "2026-09-27T21:31:26Z",
+    "starGrowth": 0,
+    "createdAt": "2026-06-26T02:38:24Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-06T20:22:48Z",
-    "retryCount": 3
+    "ts": "2026-10-07T09:09:35Z",
+    "retryCount": 1
   },
   {
     "repo": "MattisLind/DP2200",
@@ -1229,6 +1481,35 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-07T02:11:52Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "mhouppin/stash-bot",
+    "desc": "Mirror of my Gitlab chess engine project.",
+    "stars": 68,
+    "language": "C",
+    "topics": [
+      "chess"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2020-06-15T19:04:45Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-07T10:22:02Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "MiaAI-Lab/sparkDash",
+    "desc": "sparkDash ⚡ — Multi-DGX Spark Monitoring Dashboard",
+    "stars": 548,
+    "language": "JavaScript",
+    "topics": [],
+    "source": "trending",
+    "starGrowth": 22,
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-07T12:59:04.111Z",
     "retryCount": 1
   },
   {
@@ -1245,7 +1526,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-07T03:33:30Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "morluto/rea",
@@ -1271,7 +1552,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-06T13:04:24.792Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "MsTimaj/Claude_Code_CLI_Cheatsheet",
@@ -1287,6 +1568,22 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-06T15:19:11Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "Nyankomintsu/world-execute-me-lyric-mv",
+    "desc": "world.execute(me); — an unofficial fan-made lyric MV told as a chat with Claude, rendered frame by frame from code. Prompts included; no music or lyrics. 非官方同人歌詞 MV:以程式碼逐幀渲染,附完整提示詞,不含歌曲與歌詞。",
+    "stars": 14,
+    "language": "JavaScript",
+    "topics": [
+      "generative-art"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-06T16:02:51Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-06T16:04:03Z",
     "retryCount": 1
   },
   {
@@ -1303,7 +1600,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-03T14:55:43Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "omlahore/RemoveMacAI",
@@ -1318,7 +1615,23 @@
     "createdAt": "2026-09-29T11:02:39Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-07T00:00:45Z",
+    "ts": "2026-10-07T07:55:38Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "openpodcast/api",
+    "desc": "OpenPodcast API server",
+    "stars": 13,
+    "language": "TypeScript",
+    "topics": [
+      "podcast"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2022-09-21T19:57:39Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-07T12:10:07Z",
     "retryCount": 1
   },
   {
@@ -1335,7 +1648,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-07T02:59:01Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "RhythrosaLabs/BeatMosaic",
@@ -1351,23 +1664,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-06T17:23:08Z",
-    "retryCount": 3
-  },
-  {
-    "repo": "RhythrosaLabs/vst-plugin-creator",
-    "desc": "Browser-based VST3 audio plugin builder — design UIs, add parameters, write DSP code, export JUCE C++ bundles",
-    "stars": 5,
-    "language": "TypeScript",
-    "topics": [
-      "music-production"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-03-08T01:19:11Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-06T22:26:40Z",
-    "retryCount": 1
+    "retryCount": 4
   },
   {
     "repo": "sebattfg/ZeroScript-Free",
@@ -1381,7 +1678,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-05T14:05:45.115Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "serpentsailorcoil/star-wars-galactic-racer-trainer",
@@ -1397,7 +1694,23 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-06T19:40:44Z",
-    "retryCount": 3
+    "retryCount": 4
+  },
+  {
+    "repo": "shader-park/shader-park-core",
+    "desc": "A JavaScript library for creating real-time 2D and 3D shaders. JS -> Shader. https://shaderpark.com/  https://twitter.com/shaderpark",
+    "stars": 825,
+    "language": "JavaScript",
+    "topics": [
+      "creative-coding"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2019-06-17T18:01:01Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-05T14:35:57Z",
+    "retryCount": 1
   },
   {
     "repo": "SimoHypers/limusic",
@@ -1410,7 +1723,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-06T13:04:24.792Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "skipdudes/dynamic-evolution",
@@ -1426,7 +1739,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-09-27T13:00:10Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "skoolkid/pyskool",
@@ -1442,7 +1755,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-06T20:08:58Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "soedinglab/hh-suite",
@@ -1457,8 +1770,8 @@
     "createdAt": "2015-05-04T12:00:48Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-07T01:30:56Z",
-    "retryCount": 1
+    "ts": "2026-10-07T12:30:01Z",
+    "retryCount": 2
   },
   {
     "repo": "SpaceMadness/lunar-unity-console",
@@ -1474,7 +1787,23 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-09-26T02:43:31Z",
-    "retryCount": 3
+    "retryCount": 1
+  },
+  {
+    "repo": "staypossesed/PromptOS",
+    "desc": "Umprompt — an AI prompt-building workspace that turns rough ideas into tool-specific, scored, execution-ready prompts for Claude, Cursor, and ChatGPT.",
+    "stars": 16,
+    "language": "TypeScript",
+    "topics": [
+      "writing"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-05-06T23:46:05Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-07T08:28:36Z",
+    "retryCount": 1
   },
   {
     "repo": "TejaPriyan/TerminalPet",
@@ -1490,7 +1819,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-03T15:48:54Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "theBigGavin/marketingdashboard",
@@ -1506,7 +1835,23 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-28T20:11:15Z",
-    "retryCount": 2
+    "retryCount": 1
+  },
+  {
+    "repo": "threeML/astromodels",
+    "desc": "Spatial and spectral models for astrophysics",
+    "stars": 58,
+    "language": "Python",
+    "topics": [
+      "astronomy"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2015-11-24T00:07:39Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-01T12:48:08Z",
+    "retryCount": 1
   },
   {
     "repo": "timmaurice/lovelace-nina-dwd-card",
@@ -1522,7 +1867,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-04T15:17:54Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "timschmidt/synaps-cad",
@@ -1538,7 +1883,39 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-05T16:52:51Z",
-    "retryCount": 4
+    "retryCount": 5
+  },
+  {
+    "repo": "tomaszs/angular-interview-flashcards-free",
+    "desc": "Free Angular interview flashcards for Anki. 100 cards for senior frontend engineer interviews.",
+    "stars": 4,
+    "language": "",
+    "topics": [
+      "interview"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-09-29T21:34:50Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-29T21:35:09Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "Tommy-2000/dreamTravel",
+    "desc": "Travel booking and social platform built with a Flutter front-end and a Spring Boot back-end that integrates with a Microsoft Azure microservice architecture.",
+    "stars": 2,
+    "language": "Dart",
+    "topics": [
+      "travel"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2025-08-28T13:57:16Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-07T10:07:50Z",
+    "retryCount": 1
   },
   {
     "repo": "TserenTserenov/FMT-exocortex-template",
@@ -1553,8 +1930,8 @@
     "createdAt": "2026-02-10T12:42:33Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-10-06T17:44:52Z",
-    "retryCount": 5
+    "ts": "2026-10-07T07:16:35Z",
+    "retryCount": 1
   },
   {
     "repo": "vbguyny/ws4kp",
@@ -1570,7 +1947,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-06T04:24:24Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "vectordbz/vectordbz",
@@ -1586,7 +1963,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-06T04:50:01Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "VirajMishra1/wander-agent",
@@ -1618,7 +1995,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-06T18:35:41Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "xunguangzlj-cloud/danya-pet",
@@ -1634,7 +2011,23 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-06T05:50:42Z",
-    "retryCount": 5
+    "retryCount": 6
+  },
+  {
+    "repo": "yangqiongai/yangqiong-ai",
+    "desc": "泱穹智能体平台（YangQiong Agent Platform）— 生产级开源 Agent 开发与管理平台",
+    "stars": 0,
+    "language": "Java",
+    "topics": [
+      "llm-model"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-05T04:43:31Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-07T09:14:18Z",
+    "retryCount": 1
   },
   {
     "repo": "yapi1994/FH6-OMNI-TRAINER",
@@ -1649,8 +2042,8 @@
     "createdAt": "2026-09-21T21:19:43Z",
     "silentRounds": 3,
     "bigbros": [],
-    "ts": "2026-10-06T20:05:03Z",
-    "retryCount": 1
+    "ts": "2026-10-07T06:59:53Z",
+    "retryCount": 2
   },
   {
     "repo": "YuvrajSingh-mist/Paper-Replications",
@@ -1666,7 +2059,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-06T22:29:04Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "zeroa234/kurumi-fx-rogue",
@@ -1681,7 +2074,7 @@
     "createdAt": "2026-10-07T03:13:59Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-07T03:33:43Z",
-    "retryCount": 1
+    "ts": "2026-10-07T07:42:23Z",
+    "retryCount": 2
   }
 ]
