@@ -28,6 +28,14 @@
  *   P8 收藏路径回归＋全程零未捕获异常（二十一轮 N5）：我的-收藏夹展开→点卡 → 弹层照开、
  *      内容最终在场；整轮 Runtime.exceptionThrown = 0（ErrorBoundary 在场，渲染崩溃不再
  *      整树卸载紫屏——有崩溃必留 console 证据而不是白屏）。
+ *   P9 主线程长任务（二十二-3）：缺键卡点击路径（含整表兜底解析搬 Worker）无 >50ms 长任务
+ *      （PerformanceObserver 采样）；P6 的落定等待窗相应缩短（1500→500ms）仍绿。
+ *   P10 预取覆盖·收藏夹（二十二-1）：展开网格是直接 markup 卡面，idle 预取落定后点击
+ *      首采样即内容（预取 ⊆ 可视卡集合的通道延伸）。
+ *   P11 预取覆盖·创作者页（二十二-1）：创作者页直接 markup，预取落定后点击首采样即内容。
+ *   P12 预取覆盖·热门预览（二十二-1）：搜索空态热门预览直接 markup，预取落定后点击首采样即内容。
+ *   P13 投毒防护（二十二-2）：分片＋整表全 500 的预取窗后恢复 200——弹层先显占位（不是
+ *      「暂无」= 不投毒），重试链路把内容接进来；重开同卡首采样即内容（内存是干净终态）。
  *
  * 用法：node scripts/gittok-detail-presentation-check.mjs
  * 退出码：有 FAIL → 1。环境变量与既有闸同族：CHROME_PATH / GITTK_REPO / GITTK_DIST /
@@ -59,6 +67,7 @@ const PAGE_RECORDER = `
   window.__detailReqAt = [];
   window.__legacyReqAt = [];
   window.__cardAt = null;
+  window.__longtasks = [];
   const origFetch = window.fetch.bind(window);
   window.fetch = (input, init) => {
     const u = typeof input === "string" ? input : (input && input.url) || "";
@@ -67,6 +76,13 @@ const PAGE_RECORDER = `
     else if (/feed-details\\.json/.test(u)) window.__legacyReqAt.push({ t: now, u });
     return origFetch(input, init);
   };
+  // P9（二十二-3）：主线程 >50ms 长任务采样（buffered 补录观察器建立前的条目）
+  try {
+    const po = new PerformanceObserver((list) => {
+      for (const e of list.getEntries()) window.__longtasks.push({ s: Math.round(e.startTime), d: Math.round(e.duration) });
+    });
+    po.observe({ type: "longtask", buffered: true });
+  } catch {}
   const mo = new MutationObserver(() => {
     if (window.__cardAt === null && document.querySelector(".feed-col > .card")) {
       window.__cardAt = Math.round(performance.now());
@@ -140,8 +156,8 @@ function checkShardIntegrity() {
   );
 }
 
-/* ── 闸服务端：dist 静态 + 分片延迟/故障注入 + 缺键卡注入 ──────────────────────── */
-const serverState = { shardMode: "delay" }; // delay | fail500
+/* ── 闸服务端：dist 静态 + 分片延迟/故障注入 + 整表故障注入 + 缺键卡注入 ─────────── */
+const serverState = { shardMode: "delay", legacyMode: "ok" }; // shardMode: delay | fail500；legacyMode: ok | fail500
 const MIME = {
   ".html": "text/html; charset=utf-8",
   ".js": "text/javascript",
@@ -201,6 +217,17 @@ function startServer(root) {
     if (rel === "data/feed.json") {
       res.writeHead(200, { "content-type": "application/json" });
       res.end(patchedFeedJson());
+      return;
+    }
+    if (rel === "data/feed-details.json") {
+      // P13（二十二-2）：整表故障注入（与分片同时 500 = 预取窗全链路失败）
+      if (serverState.legacyMode === "fail500") {
+        res.writeHead(500);
+        res.end("gate: legacy table down");
+        return;
+      }
+      res.writeHead(200, { "content-type": "application/json" });
+      res.end(fs.readFileSync(f));
       return;
     }
     if (!fs.existsSync(f) || fs.statSync(f).isDirectory()) {
@@ -513,10 +540,11 @@ async function main() {
       interval: 100,
       timeout: 15000,
     });
-    // 等预取链落定再点击（与 P7 同族教训，CI 实锤 257ms 假红）：缺键卡的预取走
-    // 「分片 404→整表兜底」，整表 5.9MB 的 JSON.parse 是主线程阻塞任务——点击渲染
-    // 排在它后面会把弹层拖过 <100ms。落定后内存=确认缺失，点击首帧即「暂无」。
-    await new Promise((r) => setTimeout(r, 1500));
+    // 等预取链落定再点击（口径：缺键卡的预取走「分片 404→整表兜底」）。二十二-3 把
+    // 整表 5.9MB 的 JSON.parse 搬进 Worker 后，主线程不再被解析阻塞——落定等待窗从
+    // 1500ms 收缩到 500ms 仍要全绿（这就是「免等待达标」的闸上证据，判据本身不放宽）。
+    await new Promise((r) => setTimeout(r, 500));
+    await cdp.eval(`window.__markAt = performance.now(); return 1;`);
     const t6 = Date.now();
     await cdp.eval(
       `(() => { document.querySelector('[data-repo="${GATE_MISSING_REPO}"]').click(); return 1; })()`,
@@ -542,6 +570,18 @@ async function main() {
         empty6.value?.empty === true &&
         empty6.value?.fake === false,
       `found=${found6.value} popup=${popup6.elapsed}ms empty=${empty6.value?.empty} fake=${empty6.value?.fake} text=${empty6.value?.text}`,
+    );
+
+    // P9 主线程长任务（二十二-3）：点击→「暂无」落定的整段窗口里无 >50ms 长任务
+    //（整表 5.9MB 解析已在 Worker；主线程长任务是 P6 旧假红的类根源）。
+    const longtasks = (await cdp.eval(`return window.__longtasks`)) || [];
+    const markAt = await cdp.eval(`return window.__markAt`);
+    const inWindow = longtasks.filter((t) => t.s + t.d >= markAt); // 与点击窗重叠即算
+    const worst = inWindow.reduce((m, t) => Math.max(m, t.d), 0);
+    report(
+      "P9 缺键卡点击路径主线程零 >50ms 长任务（整表解析已搬 Worker，二十二-3）",
+      worst <= 50,
+      `观察窗内长任务 ${inWindow.length} 个，最长 ${worst}ms（阈值 50ms）`,
     );
     await cdp.eval(`(() => { document.querySelector('.detail-close').click(); return 1; })()`);
     await new Promise((r) => setTimeout(r, 400));
@@ -689,6 +729,219 @@ async function main() {
       "P8 收藏路径回归＋全程零未捕获异常（N5：弹层照开、内容最终在场、pageErrors=0）",
       !popup8.timeout && popup8.elapsed < 100 && !via8.timeout && (via8.value.len > 0 || via8.value.empty) && pageErrors.length === 0,
       `popup=${popup8.elapsed}ms detail=${via8.timeout ? "TIMEOUT" : via8.value.len > 0 ? via8.value.len + "字@" + via8.elapsed + "ms" : "暂无@" + via8.elapsed + "ms"} pageErrors=${pageErrors.length}${pageErrors.length ? " ⚠" + JSON.stringify(pageErrors.slice(0, 3)) : ""}`,
+    );
+    await cdp.eval(`(() => { document.querySelector('.detail-close').click(); return 1; })()`);
+    await new Promise((r) => setTimeout(r, 300));
+
+    // P10 预取覆盖·收藏夹（二十二-1）：展开网格是直接 markup 卡面（不走 FeedVirtualList），
+    // 挂通用 idle 预取通道。等预取落定后点第二张收藏卡 → 首采样即内容、无占位。
+    await new Promise((r) => setTimeout(r, 800));
+    const second10 = await cdp.eval(
+      `return (document.querySelectorAll('.folder-cards .card')[1] || {}).getAttribute?.('data-repo') ?? null`,
+    );
+    if (!second10) throw new Error("P10 找不到第二张收藏卡");
+    const t10 = Date.now();
+    await cdp.eval(`(() => { document.querySelectorAll('.folder-cards .card')[1].click(); return 1; })()`);
+    const first10 = await poll(
+      cdp,
+      `return { popup: !!document.querySelector('.detail-card'),
+                 content: !!document.querySelector('.detail-deep-slot .detail-detail'),
+                 loading: !!document.querySelector('.detail-deep-slot .detail-detail-loading') }`,
+      { until: (v) => v.popup, interval: 10, timeout: 10000, since: t10 },
+    );
+    report(
+      "P10 预取覆盖·收藏夹（预取落定后点击首采样即内容，可视即可取覆盖直接 markup 卡面）",
+      !first10.timeout && first10.elapsed < 100 && first10.value?.content === true && first10.value?.loading === false,
+      `popup=${first10.elapsed}ms 首采样 content=${first10.value?.content} loading=${first10.value?.loading}`,
+    );
+    await cdp.eval(`(() => { document.querySelector('.detail-close').click(); return 1; })()`);
+    await new Promise((r) => setTimeout(r, 300));
+
+    // P11 预取覆盖·创作者页（二十二-1）：点收藏卡的创作者名进创作者页（直接 markup），
+    // 等预取落定后点该项目卡（就用收藏夹第一张=已知有真实详情内容的卡）→ 首采样即内容。
+    const owner11 = await cdp.eval(
+      `return document.querySelector('.folder-cards .card .repo-owner-btn')?.textContent?.trim() ?? null`,
+    );
+    if (!owner11) throw new Error("P11 找不到创作者入口");
+    const seedRepo11 = colRepos[0];
+    await cdp.eval(`(() => { document.querySelector('.folder-cards .card .repo-owner-btn').click(); return 1; })()`);
+    await poll(cdp, `return document.querySelectorAll('.creator-page .card').length`, {
+      until: (v) => v >= 1,
+      interval: 50,
+      timeout: 10000,
+    });
+    await new Promise((r) => setTimeout(r, 800)); // 创作者页预取落定
+    const t11 = Date.now();
+    await cdp.eval(
+      `(() => { const el = document.querySelector('.creator-page [data-repo="${seedRepo11}"]'); if (!el) throw new Error('seed card absent'); el.click(); return 1; })()`,
+    );
+    const first11 = await poll(
+      cdp,
+      `return { popup: !!document.querySelector('.detail-card'),
+                 content: !!document.querySelector('.detail-deep-slot .detail-detail'),
+                 loading: !!document.querySelector('.detail-deep-slot .detail-detail-loading') }`,
+      { until: (v) => v.popup, interval: 10, timeout: 10000, since: t11 },
+    );
+    report(
+      "P11 预取覆盖·创作者页（预取落定后点击首采样即内容）",
+      !first11.timeout && first11.elapsed < 100 && first11.value?.content === true && first11.value?.loading === false,
+      `creator=${owner11} popup=${first11.elapsed}ms 首采样 content=${first11.value?.content} loading=${first11.value?.loading}`,
+    );
+    await cdp.eval(`(() => { document.querySelector('.detail-close').click(); return 1; })()`);
+    await cdp.eval(`(() => { document.querySelector('.creator-back').click(); return 1; })()`);
+    await new Promise((r) => setTimeout(r, 300));
+
+    // P12 预取覆盖·热门预览（二十二-1）：搜索 tab 空态热门预览（直接 markup），
+    // 等预取落定后点击 → 首采样即内容。
+    await cdp.eval(
+      `(() => {
+        const tabs = Array.from(document.querySelectorAll('.tabs .tab'));
+        const t = tabs.find(b => b.textContent.includes('搜索'));
+        if (t) t.click();
+        return 1;
+      })()`,
+    );
+    await poll(cdp, `return !!document.querySelector('input.search-input')`, {
+      until: (v) => v === true,
+      interval: 50,
+      timeout: 10000,
+    });
+    // 输入框可能带着 P6 的残留 query：清空才会出空态热门预览
+    await cdp.eval(
+      `(() => {
+        const input = document.querySelector('input.search-input');
+        const set = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
+        set.call(input, '');
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+        return 1;
+      })()`,
+    );
+    await poll(cdp, `return document.querySelectorAll('.search-hot .card').length`, {
+      until: (v) => v >= 1,
+      interval: 50,
+      timeout: 10000,
+    });
+    await new Promise((r) => setTimeout(r, 800)); // 热门预览预取落定
+    // 选有真实详情内容的预览卡（node 侧对账，墓碑卡的首采样是「暂无」不是内容）
+    const domHot12 = (await cdp.eval(
+      `return Array.from(document.querySelectorAll('.search-hot .card')).map(c => c.getAttribute('data-repo'))`,
+    )) || [];
+    const repo12 = domHot12.find((r) => r && typeof detailsTable[r] === "string" && detailsTable[r].length > 0);
+    if (!repo12) throw new Error("P12 热门预览里找不到带详情的卡");
+    const t12 = Date.now();
+    await cdp.eval(`(() => { document.querySelector('.search-hot [data-repo="${repo12}"]').click(); return 1; })()`);
+    const first12 = await poll(
+      cdp,
+      `return { popup: !!document.querySelector('.detail-card'),
+                 content: !!document.querySelector('.detail-deep-slot .detail-detail'),
+                 loading: !!document.querySelector('.detail-deep-slot .detail-detail-loading') }`,
+      { until: (v) => v.popup, interval: 10, timeout: 10000, since: t12 },
+    );
+    report(
+      "P12 预取覆盖·热门预览（预取落定后点击首采样即内容）",
+      !first12.timeout && first12.elapsed < 100 && first12.value?.content === true && first12.value?.loading === false,
+      `popup=${first12.elapsed}ms 首采样 content=${first12.value?.content} loading=${first12.value?.loading}`,
+    );
+    await cdp.eval(`(() => { document.querySelector('.detail-close').click(); return 1; })()`);
+    await new Promise((r) => setTimeout(r, 300));
+
+    // P13 投毒防护（二十二-2）：分片＋整表全 500 的预取窗（滚一屏触发新卡预取，全链失败
+    // 且**不落内存**）→ 点击该卡：弹层即时、深度解读槽=占位（不是「暂无」=没有投毒）→
+    // 服务恢复 200 → 重试链路把内容接进来 → 关掉重开首采样即内容（内存是干净终态）。
+    serverState.shardMode = "fail500";
+    serverState.legacyMode = "fail500";
+    await cdp.eval(
+      `(() => {
+        const tabs = Array.from(document.querySelectorAll('.tabs .tab'));
+        const t = tabs.find(b => b.textContent.includes('首页'));
+        if (t) t.click();
+        return 1;
+      })()`,
+    );
+    await poll(cdp, `return document.querySelectorAll('.feed-col > .card').length`, {
+      until: (v) => v >= 4,
+      interval: 100,
+      timeout: 15000,
+    });
+    // 记录滚动前的可见集（这些卡预取已成功=内存已有内容，不能当 P13 的失败样本）
+    const preScroll13 = new Set(
+      (await cdp.eval(
+        `return Array.from(document.querySelectorAll('.feed-col > .card')).map(c => c.getAttribute('data-repo'))`,
+      )) || [],
+    );
+    await cdp.eval(
+      `(() => {
+        const b = document.querySelector('.app-body');
+        const s = b ? getComputedStyle(b).overflowY : 'visible';
+        const el = s && s !== 'visible' ? b : (document.scrollingElement || window);
+        if (el.scrollBy) el.scrollBy(0, window.innerHeight);
+        else window.scrollBy(0, window.innerHeight);
+        return 1;
+      })()`,
+    );
+    await new Promise((r) => setTimeout(r, 1200)); // 新窗卡的预取发向全 500 服务（失败不落内存）
+    // 选卡在 node 侧对账：滚入的新卡（滚动前不可见）且整表里有真实详情内容
+    const detailsTable13 = JSON.parse(fs.readFileSync(path.join(DIST, "data", "feed-details.json"), "utf8"));
+    const domRepos13 = (await cdp.eval(
+      `return Array.from(document.querySelectorAll('.feed-col > .card')).map(c => c.getAttribute('data-repo'))`,
+    )) || [];
+    const repo13 = domRepos13.find(
+      (r) => r && !preScroll13.has(r) && typeof detailsTable13[r] === "string" && detailsTable13[r].length > 0,
+    );
+    if (!repo13) throw new Error("P13 找不到带详情的未预取新卡");
+    const t13 = Date.now();
+    await cdp.eval(`(() => { document.querySelector('[data-repo="${repo13}"]').click(); return 1; })()`);
+    const popup13 = await poll(cdp, `return !!document.querySelector('.detail-card')`, {
+      until: (v) => v === true,
+      interval: 10,
+      timeout: 10000,
+      since: t13,
+    });
+    const phase13 = await poll(
+      cdp,
+      `return { loading: !!document.querySelector('.detail-deep-slot .detail-detail-loading'),
+                 content: !!document.querySelector('.detail-deep-slot .detail-detail'),
+                 empty: !!document.querySelector('.detail-deep-slot .detail-detail-empty') }`,
+      { until: (v) => v.loading || v.content || v.empty, interval: 20, timeout: 8000, since: t13 },
+    );
+    report(
+      "P13 全链失败不投毒（弹层即时、深度解读槽=占位而非「暂无」）",
+      !popup13.timeout &&
+        popup13.elapsed < 100 &&
+        phase13.value?.loading === true &&
+        phase13.value?.empty === false &&
+        phase13.value?.content === false,
+      `popup=${popup13.elapsed}ms ${JSON.stringify(phase13.value)}`,
+    );
+    // 恢复 200 → 重试链路（1.5s 步进、至多 3 次）把内容接进来
+    serverState.shardMode = "delay";
+    serverState.legacyMode = "ok";
+    const via13 = await poll(
+      cdp,
+      `const c=document.querySelector('.detail-deep-slot .detail-detail'); return c ? c.textContent.length : 0`,
+      { until: (v) => v > 0, interval: 200, timeout: 15000, since: t13 },
+    );
+    report(
+      "P13 恢复 200 后重试链路生效（占位→内容整体交接，最终取到内容）",
+      !via13.timeout && via13.value > 0,
+      via13.timeout ? "TIMEOUT" : `${via13.value}字@${via13.elapsed}ms`,
+    );
+    await cdp.eval(`(() => { document.querySelector('.detail-close').click(); return 1; })()`);
+    await new Promise((r) => setTimeout(r, 400));
+    // 重开同卡：内存=干净终态（内容），首采样即内容——证明失败从未被记成缺失
+    const t13b = Date.now();
+    await cdp.eval(`(() => { document.querySelector('[data-repo="${repo13}"]').click(); return 1; })()`);
+    const reopen13 = await poll(
+      cdp,
+      `return { popup: !!document.querySelector('.detail-card'),
+                 content: !!document.querySelector('.detail-deep-slot .detail-detail'),
+                 loading: !!document.querySelector('.detail-deep-slot .detail-detail-loading') }`,
+      { until: (v) => v.popup, interval: 10, timeout: 10000, since: t13b },
+    );
+    report(
+      "P13 重开同卡首采样即内容（失败未落内存，内存终态干净）",
+      !reopen13.timeout && reopen13.elapsed < 100 && reopen13.value?.content === true && reopen13.value?.loading === false,
+      `popup=${reopen13.elapsed}ms 首采样 content=${reopen13.value?.content} loading=${reopen13.value?.loading}`,
     );
   } finally {
     chrome.kill();

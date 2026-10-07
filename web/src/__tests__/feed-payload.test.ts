@@ -202,3 +202,75 @@ describe("详情分片运行时（二十轮 C3）", () => {
     expect(src).toMatch(/AbortSignal\.timeout\(LEGACY_TIMEOUT_MS\)/);
   });
 });
+
+// ---------------------------------------------------------------------------
+// 投毒防护（二十二-2，2026-10-07）：网络失败=未知（不落内存、可重试），
+// 确认缺失（墓碑/整表无键）=null。行为级：mock fetch 走真实代码路径。
+// ---------------------------------------------------------------------------
+import { afterEach, vi } from "vitest";
+import { resolveRepoDetail, getRepoDetailIfReady } from "../feed-payload.ts";
+
+function shardResponse(body: string, status = 200) {
+  return new Response(body, { status });
+}
+
+afterEach(() => {
+  vi.unstubAllGlobals();
+});
+
+describe("resolveRepoDetail 失败语义（二十二-2）", () => {
+  it("分片与整表全网络失败 → Promise 拒绝且内存保持未知（不投毒）；恢复后重试取到内容", async () => {
+    const repo = "poison-test/net-fail";
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async () => {
+        throw new TypeError("Failed to fetch");
+      }),
+    );
+    await expect(resolveRepoDetail(repo)).rejects.toThrow();
+    expect(getRepoDetailIfReady(repo)).toBeUndefined(); // 失败≠确认缺失：内存未落 null
+    // 网络恢复：同 repo 重试成功
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async (url: string | URL) =>
+        String(url).includes("feed-details.json")
+          ? shardResponse(JSON.stringify({ [repo]: "恢复后的深度解读" }))
+          : shardResponse(JSON.stringify({ detailCn: "恢复后的深度解读" })),
+      ),
+    );
+    await expect(resolveRepoDetail(repo)).resolves.toBe("恢复后的深度解读");
+    expect(getRepoDetailIfReady(repo)).toBe("恢复后的深度解读");
+  });
+
+  it("分片 404 → 整表确认无此键 → null（确认缺失落内存）；分片墓碑同理", async () => {
+    const missing = "poison-test/really-missing";
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async (url: string | URL) =>
+        String(url).includes("feed-details.json") ? shardResponse("{}") : shardResponse("nf", 404),
+      ),
+    );
+    await expect(resolveRepoDetail(missing)).resolves.toBeNull();
+    expect(getRepoDetailIfReady(missing)).toBeNull();
+    const tomb = "poison-test/tombstone";
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async () => shardResponse(JSON.stringify({ detailCn: null }))),
+    );
+    await expect(resolveRepoDetail(tomb)).resolves.toBeNull();
+    expect(getRepoDetailIfReady(tomb)).toBeNull();
+  });
+
+  it("分片 5xx → 整表有键 → 内容（部署偏斜韧性不变，且现在 5xx 也不再投毒）", async () => {
+    const repo = "poison-test/skew-recovered";
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async (url: string | URL) =>
+        String(url).includes("feed-details.json")
+          ? shardResponse(JSON.stringify({ [repo]: "整表兜底内容" }))
+          : shardResponse("gate: down", 500),
+      ),
+    );
+    await expect(resolveRepoDetail(repo)).resolves.toBe("整表兜底内容");
+  });
+});

@@ -169,10 +169,23 @@ jobs:
       # (idle prefetch of viewport shards, first-frame-complete on click), placeholder as fallback
       # only, whole swap once, explicit "none" state, shard integrity, boot zero critical-path
       # warmup, collection path regression + zero uncaught exceptions (N5 ErrorBoundary era).
-      - name: Detail presentation gate（二十轮 C2 立闸＋二十一轮 N6/N5 重写：可视即可取·占位仅兜底·整体交接恰一次·缺键显式暂无·boot 零关键路径预热·分片完整性·收藏路径回归·零未捕获异常）
+      # Round 22 adds: longtask-free missing-key click path (P9, legacy table parse moved to a
+      # Worker), prefetch coverage on direct-markup surfaces (P10 collections / P11 creator
+      # page / P12 hot preview), prefetch-failure anti-poisoning with retry chain (P13).
+      - name: Detail presentation gate（二十轮 C2 立闸＋二十一轮 N6/N5 重写＋二十二代 P9-P13：可视即可取·占位仅兜底·整体交接恰一次·缺键显式暂无·boot 零关键路径预热·分片完整性·收藏路径回归·零未捕获异常·点击路径零长任务·预取覆盖三卡面·全链失败不投毒）
         env:
           CHROME_PATH: /usr/bin/google-chrome
         run: node scripts/gittok-detail-presentation-check.mjs
+
+      # Frozen head-slice gate (Round 22 二十二-0): build-time baseline top-256 head (gzip
+      # <= 110KB budget), cold start renders the head before feed.json, head order = session
+      # order, per-frame viewport fingerprint invariant across full-data arrival (zero
+      # re-layout of rendered regions = the hard invariant), tail append-only, and the cold
+      # window never renders a partial order (search stays on the loading state).
+      - name: Head freeze gate（二十二代 二十二-0：冷路径头片 ≤110KB·头片先到先渲染·头片序=会话序·全量到货逐帧零重排·尾部 append-only·冷窗不渲染残缺序）
+        env:
+          CHROME_PATH: /usr/bin/google-chrome
+        run: node scripts/gittok-head-freeze-check.mjs
 
       # Service Worker gate (Round 21 N4②): precache registration, zero-network second visit
       # (with HTTP cache disabled), versioned-cache invalidation (stale cache cleaned on

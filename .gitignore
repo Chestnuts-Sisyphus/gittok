@@ -45,7 +45,9 @@ data/trending-snapshot.json
 # 每次 npm run build / vite 都会重写；跟踪它只会污染 git status。
 # 保留 feed.sample.json 作无源文件时的兜底；clone 后跑一次 build/dev 即生成。
 # 二十轮 C3：details/＝详情单卡分片（每 repo 一文件，3400+），同为构建产物不入仓。
+# 二十二代 二十二-0：feed-head.json＝冻结式头片（推荐 baseline top-256），同不入仓。
 web/public/data/feed.json
+web/public/data/feed-head.json
 web/public/data/feed-details.json
 web/public/data/details/
 web/public/data/following.json

@@ -55,17 +55,24 @@ export function getRepoDetailIfReady(repo: string): string | null | undefined {
   return memory.get(repo);
 }
 
-/** 取单卡详情（内容｜null=确认缺失）。同 repo 并发合流、结果入内存。 */
+/** 取单卡详情（内容｜null=确认缺失）。同 repo 并发合流、结果入内存。
+ *  ⚠ 二十二-2 投毒防护（2026-10-07）：**网络失败不落内存**——失败＝未知（undefined），
+ *  下次点击/预取会重试；只有「确认缺失」（分片墓碑/整表无键）才落 null。
+ *  旧版把 fetch 异常兜底成 null 与确认缺失同型，预取期间网络瞬断会把整窗可视卡
+ *  投毒成「暂无」，网络恢复也不重试。 */
 export function resolveRepoDetail(repo: string): Promise<string | null> {
   const hit = memory.get(repo);
   if (hit !== undefined) return Promise.resolve(hit);
   const running = inflight.get(repo);
   if (running) return running;
   const p = (async () => {
-    const out = await fetchRepoDetail(repo);
-    memory.set(repo, out);
-    inflight.delete(repo);
-    return out;
+    try {
+      const out = await fetchRepoDetail(repo);
+      memory.set(repo, out);
+      return out;
+    } finally {
+      inflight.delete(repo);
+    }
   })();
   inflight.set(repo, p);
   return p;
@@ -81,7 +88,8 @@ export function resolveRepoDetail(repo: string): Promise<string | null> {
 /** 预取并发上限：分片极小，限并发只为不在弱网上挤占 feed.json 的带宽窗口。 */
 const PREFETCH_CONCURRENCY = 6;
 
-/** 批量预取：跳过已在内存/在飞的 repo，限并发逐个 resolve（结果落同一会话内存）。 */
+/** 批量预取：跳过已在内存/在飞的 repo，限并发逐个 resolve（结果落同一会话内存）。
+ *  失败的 repo 保持「未知」（不落内存）——网络恢复后的下次预取/点击会重试。 */
 export function prefetchRepoDetails(repos: readonly string[]): void {
   const todo = repos.filter((r) => memory.get(r) === undefined && !inflight.has(r));
   let cursor = 0;
@@ -93,7 +101,7 @@ export function prefetchRepoDetails(repos: readonly string[]): void {
     }
   });
   void Promise.all(workers).catch(() => {
-    /* 预取尽力而为：失败 repos 已由 resolveRepoDetail 落 memory（null/缺失），点击走兜底 */
+    /* 预取尽力而为：网络失败不落内存（二十二-2），点击时按未知重试 */
   });
 }
 
@@ -150,37 +158,105 @@ async function revalidateRepoDetail(repo: string, cached: string): Promise<void>
 /* ═══ legacy 整表兜底 ═══
  * ⚠ 2026-09-24 五轮 T1 实测（保留的机制教训）：整表下载必须**全页至多一条在飞**——
  * 原先预热＋两个调用点各一条 = 同一份 5.2MB 同时下 3 遍，窄带下互相抢带宽谁都不先到。
- * 结算即清（成功/失败都清）。二十轮起它只服务兜底路径，不再是点击主路径。 */
+ * 结算即清（成功/失败都清）。二十轮起它只服务兜底路径，不再是点击主路径。
+ * ⚠ 二十二-2（2026-10-07）：取数失败**抛错**，不再伪造 "{}"（旧版 catch→"{}" 会把
+ * 网络失败伪装成「空表→键缺席→确认缺失」，正是内存投毒的上游根源）。
+ * ⚠ 二十二-3（2026-10-07）：5.9MB JSON.parse 搬进 Worker（legacy-table-worker.ts），
+ * 主线程只剩收发；Worker 不可用（测试环境/受限 CSP）自动退回主线程解析。 */
 let directPromise: Promise<string> | null = null;
 function fetchDetailsText(): Promise<string> {
   if (!directPromise) {
     directPromise = fetch(DETAILS_URL, { signal: AbortSignal.timeout(LEGACY_TIMEOUT_MS) })
-      .then((r) => (r.ok ? r.text() : "{}"))
-      .catch(() => "{}")
-      .then((text) => {
+      .then((r) => {
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        return r.text();
+      })
+      .finally(() => {
         directPromise = null;
-        return text;
       });
   }
   return directPromise;
+}
+
+/* ── 整表查询（二十二-3）：Worker 解析通道＋主线程兜底 ─────────────────────── */
+let workerRef: Worker | null = null;
+let workerBroken = false;
+let workerSeq = 0;
+const workerPending = new Map<
+  number,
+  { resolve: (v: string | null) => void; reject: (e: Error) => void; timer: ReturnType<typeof setTimeout> }
+>();
+
+function parseLegacyTableOnMain(text: string, repo: string): Promise<string | null> {
+  return Promise.resolve().then(() => {
+    const table = JSON.parse(text) as Record<string, string>;
+    const v = table[repo];
+    return typeof v === "string" && v ? v : null;
+  });
+}
+
+function ensureWorker(): Worker {
+  if (!workerRef) {
+    workerRef = new Worker(new URL("./legacy-table-worker.ts", import.meta.url), { type: "module" });
+    workerRef.addEventListener("message", (ev: MessageEvent) => {
+      const msg = ev.data as { id: number; value?: string | null; error?: string };
+      const pending = workerPending.get(msg.id);
+      if (!pending) return;
+      workerPending.delete(msg.id);
+      clearTimeout(pending.timer);
+      if (typeof msg.error === "string") pending.reject(new Error(`整表 Worker 解析失败: ${msg.error}`));
+      else pending.resolve(msg.value ?? null);
+    });
+    workerRef.addEventListener("error", () => {
+      // Worker 崩了：退回主线程解析，本会话不再尝试（兜底语义不变，只挪解析位置）
+      workerBroken = true;
+      workerRef = null;
+      for (const [, pending] of workerPending) {
+        clearTimeout(pending.timer);
+        pending.reject(new Error("整表 Worker 终止"));
+      }
+      workerPending.clear();
+    });
+  }
+  return workerRef;
+}
+
+/** 整表查询：返回 string=内容、null=确认缺失；文本不可解析=抛错（调用方按失败处理）。 */
+function lookupLegacyTable(text: string, repo: string): Promise<string | null> {
+  if (workerBroken) return parseLegacyTableOnMain(text, repo);
+  try {
+    const w = ensureWorker();
+    const id = ++workerSeq;
+    return new Promise<string | null>((resolve, reject) => {
+      const timer = setTimeout(() => {
+        workerPending.delete(id);
+        reject(new Error("整表 Worker 响应超时"));
+      }, LEGACY_TIMEOUT_MS);
+      workerPending.set(id, { resolve, reject, timer });
+      w.postMessage({ id, text, repo });
+    }).catch((err: unknown) => {
+      // Worker 路径任何失败 → 主线程兜底重试一次（同文本同结果，语义不变）
+      if (workerBroken) return parseLegacyTableOnMain(text, repo);
+      throw err;
+    });
+  } catch {
+    workerBroken = true;
+    return parseLegacyTableOnMain(text, repo);
+  }
 }
 
 async function legacyDetailLookup(repo: string): Promise<string | null> {
   const cached = await loadCachedText("details");
   if (cached) {
     try {
-      const table = JSON.parse(cached) as Record<string, string>;
-      if (typeof table[repo] === "string" && table[repo]) return table[repo];
+      const v = await lookupLegacyTable(cached, repo);
+      // 缓存整表在场且键缺席：仍走一次网络整表核对（drip 日内补写场景），不在此确认缺失
+      if (v !== null) return v;
     } catch {
       /* 缓存损坏 → 走网络 */
     }
   }
+  // 网络失败=未知：抛错向上（resolveRepoDetail 不落内存），绝不在这里降级成「确认缺失」
   const text = await fetchDetailsText();
-  try {
-    const table = JSON.parse(text) as Record<string, string>;
-    const v = table[repo];
-    return typeof v === "string" && v ? v : null;
-  } catch {
-    return null;
-  }
+  return lookupLegacyTable(text, repo);
 }

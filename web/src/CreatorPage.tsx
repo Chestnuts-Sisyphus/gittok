@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, Check, ExternalLink } from "./icons.tsx";
 import { FeedCardMemo, GithubAvatar } from "./FeedCard.tsx";
+import { useIdleDetailPrefetch } from "./use-idle-prefetch.ts";
 import type { FeedCard } from "./types.ts";
 
 // ---------------------------------------------------------------------------
@@ -37,6 +38,9 @@ export function CreatorPage({
   // 关注提示：只在「未关注 → 关注」跃迁时弹出（进页面时已是关注态不打扰）。
   // 气泡锚定在关注按钮正下方（不占文档流、不遮卡片列表），2.5s 自动退场。
   const [followHint, setFollowHint] = useState(false);
+  // 二十二-1 预取覆盖面：创作者页是直接 markup 卡面（不走 FeedVirtualList），
+  // 挂通用 idle 预取通道——点开任一项目卡，深度解读首帧即完整（可视即可取）。
+  useIdleDetailPrefetch(projects.map((c) => c.repo));
   const prevFollowing = useRef(isFollowing);
   useEffect(() => {
     const becameFollowing = isFollowing && !prevFollowing.current;

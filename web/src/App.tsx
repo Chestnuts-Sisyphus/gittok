@@ -7,12 +7,7 @@ import { CreatorPage } from "./CreatorPage.tsx";
 import { AgentPage } from "./AgentPage.tsx";
 import { weightedSearch } from "./search.ts";
 import { loadSafe, saveDual, migrateLegacyKeys } from "./storage.ts";
-import {
-  withRepoDetail,
-  resolveRepoDetail,
-  getRepoDetailIfReady,
-  prefetchRepoDetails,
-} from "./feed-payload.ts";
+import { withRepoDetail, resolveRepoDetail, getRepoDetailIfReady } from "./feed-payload.ts";
 import { loadCachedText, saveCachedText } from "./feed-cache.ts";
 import {
   FEED_GRID_REF,
@@ -63,6 +58,13 @@ import "./styles.css";
 // ---------------------------------------------------------------------------
 
 const FEED_URL = "./data/feed.json";
+/** 冻结式头片（二十二-0，2026-10-07）：冷启动先载它即时渲染推荐频道。
+ *  构建期生成（vite prepareFeedPlugin），与全量同一份排序实现（recommend-baseline），
+ *  gzip ≈107KB（预算 110KB，head-freeze 闸锁）。放 data/ 下 = SW 一律放行（S4 纪律）。 */
+const HEAD_URL = "./data/feed-head.json";
+/** 头片 TTFB 闸比主源紧：它是加速件，3s 拿不到就静默退回「等全量」的旧行为，
+ *  不许拖慢全量的起跑。 */
+const HEAD_TTFB_TIMEOUT_MS = 3000;
 // ── 多源 fallback（二十一轮 N4④，2026-10-06 实测定案）──
 // 主源=站点域名（GitHub Pages）。N4 的「有时候特别慢」直源之一是 Pages 路径偶发滞留
 //（二十轮实测一次 33s 级全同域滞留）。备源=jsDelivr 仓库镜像（全球 CDN，国内可达性好）：
@@ -112,6 +114,10 @@ function canonicalizeFallbackFeed(text: string): string {
   return JSON.stringify(cards);
 }
 const STORAGE_KEY = "gittok-feedback";
+/** 二十二-2 点击路径取数失败的重试参数：3 次退避（1.5s 间隔 ≈4.5s 覆盖窗），
+ *  重试耗尽保持占位（用户关掉重开=新的一次尝试）；「暂无」只属于确认缺失。 */
+const DETAIL_RETRY_ATTEMPTS = 3;
+const DETAIL_RETRY_DELAY_MS = 1500;
 const PREF_KEY = "gittok-preferences";
 const COLLECTIONS_KEY = "gittok-collections";
 const SEEN_KEY = "gittok-seen";
@@ -222,8 +228,11 @@ const SNAPSHOT_CAP = 1000; // 喜欢/收藏快照总条数上限（~1KB/张，1M
 // 频道/分区两轴的唯一定义源抽到 channels-axes.ts（可单测、模块加载即自检 key 唯一性——
 // 2026-09-14 栗子实测发现「乐趣」与「创意」共用 key=fun 导致串台，此为该 bug 的机制性修法）。
 import { applyFeedbackToFun } from "./feedback-score.ts";
-import { diversifyRank } from "../../src/feed/similarity.ts";
-import { keepForRecommend } from "./copy-gate.ts";
+import { useIdleDetailPrefetch } from "./use-idle-prefetch.ts";
+import {
+  buildRecommended as buildRecommendedBaseline,
+  seenPenaltyOf as seenPenaltyBaseline,
+} from "./recommend-baseline.ts";
 import {
   DYNAMIC_SECTIONS,
   CATEGORY_SECTIONS,
@@ -231,14 +240,13 @@ import {
   categoryOfKey,
   sectionZoneOf,
   zoneForCategory,
-  categoryOfZone,
   assertUniqueChannelKeys,
 } from "./channels-axes.ts";
 // 频道价值函数 / 容量 / 配额：**唯一定义源**在服务端 src/feed/channel-policy.ts，前后端共用。
 // 起因（栗子 L8）：v2.2 前后端各写一份，且各自硬编码 60 → 热门池 418 张只展示 60、
 // 全库 2477 张任一频道最多看到 2.4%。这里只 import，不再复制任何一份。
+// （推荐频道排序本体二十二代起在 recommend-baseline.ts，同样共用一份。）
 import {
-  RECOMMEND_PAGE_SIZE,
   hotChannel,
   dailyChannel,
   funChannel,
@@ -247,7 +255,6 @@ import {
   interleaveByCap,
   aiCapCaps,
   funCaps,
-  pagedQuotaMerge,
   zoneOf as zoneOfPolicy,
 } from "../../src/feed/channel-policy.ts";
 
@@ -581,16 +588,9 @@ function applyJitter(
  * 按看过的久远程度平滑衰减（当天 ×0.45 / 3 天内 ×0.65 / 7 天内 ×0.85），
  * 让没看过的自然排前面，看过的仍在流中随时可能回来。
  * seen 的写入点=卡片进入渲染窗口（曝光即看过）+打开详情，跨会话持久化。
+ * （实现在 recommend-baseline.ts，与构建期头片共用一份——二十二代起不许再出现两套排序。）
  */
-function seenPenaltyOf(c: { repo: string }, seen: Record<string, number>, now: number): number {
-  const ts = seen[c.repo];
-  if (!ts) return 1;
-  const days = (now - ts) / 86_400_000;
-  if (days < 1) return 0.45;
-  if (days < 3) return 0.65;
-  if (days < 7) return 0.85;
-  return 1;
-}
+const seenPenaltyOf = seenPenaltyBaseline;
 
 // ---------------------------------------------------------------------------
 // 频道函数 v2.2（标签分区定稿落地：热门动量/每日两段/乐趣 fun_score/四区配额）
@@ -658,35 +658,9 @@ function recapped(cards: FeedCard[], sectionKey: string): FeedCard[] {
 
 // ---------------------------------------------------------------------------
 // 推荐分区 v2.2（个性化四层：L0 池过滤 → L2 多因子分 → L1 已读系数 → L3 显式偏好配额 + L4 隐式微调）
-// 替换旧 tagScore 加权和（weightedCosine 服务端死代码同步作废；「千人百面」边界：领域级可区分）
+// 二十二代起实现本体在 recommend-baseline.ts（构建期头片与运行时共用一份排序，
+// 防「前后端两套排序」的 L8 事故复刻）；这里只留传 now 的薄包装。
 // ---------------------------------------------------------------------------
-
-/** 显式偏好驱动的推荐配额：选区上调 50%，其余三区共享 50%（设置页可改可重置） */
-const PREF_QUOTA: Record<string, [number, number, number, number]> = {
-  ai: [0.5, 0.16, 0.18, 0.16], // [ai, fun, tool, learning]
-  fun: [0.16, 0.5, 0.18, 0.16],
-  tool: [0.16, 0.16, 0.5, 0.18],
-  learning: [0.16, 0.18, 0.16, 0.5],
-};
-const DEFAULT_QUOTA: [number, number, number, number] = [0.4, 0.2, 0.2, 0.2]; // AI:非AI = 2:3（现状 40/20/20/20）
-
-/** 死内容降权（P1 pushedAt 活动度）：超 1 年未更新的高星库 ×0.6；缺 pushedAt 用 ts 近似 */
-function activityFactor(c: FeedCard, now: number): number {
-  const ts = c.pushedAt ?? c.ts;
-  if (!ts) return 1;
-  const days = (now - new Date(ts).getTime()) / 86_400_000;
-  if (days > 365) return 0.6;
-  return 1;
-}
-
-/** L2 多因子分：aiScore 相关度 × 星数增长 × 新鲜度 × 活动度（内容基默认流，0 积累也自洽） */
-function multiFactorScore(c: FeedCard, now: number): number {
-  const ai = c.aiScore ?? 0.5;
-  const growth = 1 + Math.min((c.starGrowth ?? 0) / 50, 1) * 0.35;
-  const daysSince = (now - new Date(c.ts).getTime()) / 86_400_000;
-  const freshness = 0.4 + 0.6 * Math.exp(-daysSince / 7); // 半衰期约 5 天
-  return ai * growth * freshness * activityFactor(c, now);
-}
 
 function buildRecommended(
   cards: FeedCard[],
@@ -694,61 +668,9 @@ function buildRecommended(
   seen: Record<string, number>,
   interactions: Record<string, InteractionRecord>,
   followingSet: ReadonlySet<string> = new Set(),
+  now: number = Date.now(),
 ): FeedCard[] {
-  const now = Date.now();
-  // L0 池过滤：点踩排除；沉寂库退场（真沉寂，收藏豁免）；文案不合格卡剔出推荐池（COPY-08，搜索/直达不受影响）
-  const pool = cards.filter((c) => {
-    if (!keepForRecommend(c)) return false;
-    const inter = interactions[c.repo];
-    if (inter?.type === "dislike") return false;
-    if ((c.silentRounds ?? 0) >= 3 && inter?.type !== "bookmark") return false;
-    return true;
-  });
-  if (pool.length === 0) return [];
-
-  // L2 × L1 合成：多因子分 × 已读系数 + L4 隐式微调（互动加性小 boost，不破坏大序）
-  const scoreOf = (c: FeedCard): number => {
-    const base = multiFactorScore(c, now) * seenPenaltyOf(c, seen, now);
-    const inter = interactions[c.repo];
-    const micro = inter?.type === "like" || inter?.type === "bookmark" ? 0.1 : 0;
-    const followBoost = followingSet.has(c.owner) ? 0.06 : 0; // 关注轻微抬推荐（2026-09-01 关注解耦）
-    return base + micro + followBoost;
-  };
-
-  // 按前端分区键分组（zone 优先，回退 category）
-  const byCat = new Map<string, FeedCard[]>();
-  for (const c of pool) {
-    // 归到存量 category 键（配额表按 category 建索引）：
-    // 新卡有 zone → 用 zone→category 转换；存量卡只有 category → 直接用。
-    const key = c.zone ? (categoryOfZone(c.zone) ?? c.category ?? "tool") : c.category || "tool";
-    if (!byCat.has(key)) byCat.set(key, []);
-    byCat.get(key)!.push(c);
-  }
-
-  // L3 显式偏好配额：preferredZone 驱动（默认 2:3；选区上调 50%）。
-  // 存量兼容：老版本把 category 值（fun/learning…）存进过同一个字段 → 两种写法都译成 category 再查表。
-  const prefCat = preferences.preferredZone
-    ? (categoryOfZone(preferences.preferredZone) ?? preferences.preferredZone)
-    : null;
-  const quota = prefCat ? (PREF_QUOTA[prefCat] ?? DEFAULT_QUOTA) : DEFAULT_QUOTA;
-  // 容量无限（栗子 2026-09-14）：席位模型改成**分页配额合并**——每页按偏好配比分配席位，
-  // 一页填满开下一页，直到池子见底。**不丢任何一张卡**，所以推荐频道也能一直滚到底，
-  // 且每一页都保持偏好配比（旧写法 slice(0, 60) 把尾巴整段砍掉了）。
-  const cats = ["ai", "fun", "tool", "learning"];
-  const quotaMap: Record<string, number> = {};
-  cats.forEach((cat, i) => {
-    quotaMap[cat] = quota[i]!;
-  });
-  const sources = cats.map((cat) => ({
-    key: cat,
-    list: (byCat.get(cat) ?? []).sort((a, b) => scoreOf(b) - scoreOf(a)),
-    scoreOf,
-  }));
-  const merged = pagedQuotaMerge(sources, quotaMap, RECOMMEND_PAGE_SIZE);
-  // E1 接线（2026-09-14）：相似度降权排序——近重复的后来者降权后移，**不排除任何卡**。
-  // 之前 similarity.ts 只是检查器、推荐流看不见相似度，连刷三张「AI 宠物」毫无抵抗力。
-  // 窗口 80 + 短文本词袋 → 2.5k 张池子是毫秒级。
-  return diversifyRank(merged, { scoreOf, penalty: 0.3, window: 80 }).cards;
+  return buildRecommendedBaseline(cards, preferences, seen, interactions, followingSet, now);
 }
 
 // ---------------------------------------------------------------------------
@@ -1170,18 +1092,9 @@ function FeedVirtualList({
   // idle 调度保证 boot 关键路径零详情请求（detail 闸 P1 钉「首卡绘制前 0 请求」）；
   // 单片 p50≈1.7KB、首屏 24 卡≈42KB，boot 载荷不变。预取落定后点击可视卡：内存同步命中
   // ⇒ 弹层首帧即完整内容；占位只兜底「预取未及」的竞态路径（detail 闸 P3）。
-  useEffect(() => {
-    if (visibleIdx.length === 0) return;
-    const repos = visibleIdx.map((idx) => cards[idx].repo);
-    if (typeof window.requestIdleCallback === "function") {
-      const h = window.requestIdleCallback(() => prefetchRepoDetails(repos), { timeout: 1500 });
-      return () => window.cancelIdleCallback(h);
-    }
-    const t = window.setTimeout(() => prefetchRepoDetails(repos), 120);
-    return () => window.clearTimeout(t);
-    // 同 exposedKey 语义：窗口实际变化才重触发；visibleIdx 每渲染重算同值。
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [exposedKey]);
+  // 二十二-1：idle 调度抽成通用通道 useIdleDetailPrefetch——收藏夹/创作者页/热门预览
+  // 三处直接 markup 卡面走同一通道补齐覆盖面。
+  useIdleDetailPrefetch(visibleIdx.map((idx) => cards[idx].repo));
 
   return (
     <div ref={wrapRef} className={entering ? "feed-window channel-entering" : "feed-window"}>
@@ -1240,6 +1153,14 @@ export default function App() {
   // 我的页子视图（喜欢/收藏/关注；关注体系在任务书 B）
   const [meView, setMeView] = useState<"liked" | "collections" | "following">("liked");
   const [cards, setCards] = useState<FeedCard[]>([]);
+  // ── 冻结式头片（二十二-0，2026-10-07）────────────────────────────────────────
+  // headCards＝冷启动先到的 baseline top-256（构建期与运行时同一份排序实现产出）。
+  // frozenRec＝全量到货时安装的「头片冻结序 + 尾部 append」：本会话推荐频道定序就此冻结，
+  // 不再随 memo 重算洗牌——硬不变量＝全量到货零已渲染区重排（会话内定序字面保全）。
+  // 用户主动改偏好/关注时清空 frozenRec（回到原重算管线——那是用户动作，不是数据到货热替换）。
+  const [headCards, setHeadCards] = useState<FeedCard[] | null>(null);
+  const headCardsRef = useRef<FeedCard[] | null>(null);
+  const [frozenRec, setFrozenRec] = useState<FeedCard[] | null>(null);
   const cardByRepo = useMemo(() => {
     const map = new Map<string, FeedCard>();
     for (const c of cards) map.set(c.repo, c);
@@ -1263,16 +1184,24 @@ export default function App() {
     prefsRef.current = next;
     savePreferences(next);
     setPreferences(next);
+    // 冻结式头片：用户主动改偏好 → 解除冻结（回到原重算管线）。这是用户动作，
+    // 不是数据到货热替换，与「全量到货零重排」硬不变量不冲突。
+    setFrozenRec(null);
     setShowPrefPrompt(false);
   };
   const [interactions] = useState<Record<string, InteractionRecord>>(loadInteractions);
   const interactionsRef = useRef(interactions);
   const [collections, setCollections] = useState<Collection[]>(loadCollections);
+  // 到货时刻冻结序计算用的现行值（ref 渲染期同步，与 prefsRef 同一纪律）
+  const collectionsRef = useRef(collections);
+  collectionsRef.current = collections;
   // 关注列表（纯前端，localStorage 持久化；只影响关注频道/我的-关注）
   // 2026-09-01 关注解耦：关注集只认本机 localStorage（不再并入 data/following.json，
   // 路人打开关注为空）；2026-09-05：关注频道只认 owner 匹配，bigbros 全出口退役
   const [following, setFollowing] = useState<string[]>(loadFollowing);
   const followingSet = useMemo(() => new Set(following), [following]);
+  const followingSetRef = useRef(followingSet);
+  followingSetRef.current = followingSet;
   // 创作者页栈（整页替换式子页面：push 进入更深层级，pop 逐级返回；
   // 栈顶即当前创作者页；pop 到空数组回原 tab 原频道——tab/feedChannel 状态不动）
   const [viewStack, setViewStack] = useState<{ owner: string }[]>([]);
@@ -1319,7 +1248,11 @@ export default function App() {
   // ── 十二轮 T3「按需详情」：boot 不再预热 5.6MB 的 feed-details.json（旧 warmFeedDetails +
   //    idle prefetch 已删）——详情表只在**首次打开详情**时拉取（弹层即时开、detailCn 到位补渲、
   //    看门狗与同日 IndexedDB 缓存延续，见 feed-payload.ts / handleOpenDetail）。
-  //    冷启动载荷从此只剩列表 4.6MB（raw）≈1.2MB（gzip）。
+  // ── 冻结式头片（二十二-0，2026-10-07）：冷启动（无同日缓存）先取头片（gzip ≈107KB）
+  //    即时渲染推荐频道——冷路径数据字节从 1.2MB 级降到 ≤110KB 级。顺序取数是有意的：
+  //    头片独享带宽窗口先到（五轮 T1 教训：大小件并行小件饿死），全量随后后台走完
+  //    主源/镜像链；到货时推荐频道装「头片冻结序 + 尾部 append」，与 setCards 同一批
+  //    提交（不存在「先按全量重排再冻结」的中间帧）。
   useEffect(() => {
     let cancelled = false;
     const applyData = (data: FeedCard[]) => {
@@ -1335,6 +1268,23 @@ export default function App() {
           applyData(list);
         } catch {
           /* 缓存损坏 → 落回网络路径 */
+        }
+      }
+      if (!cachedText) {
+        // 冷启动：头片先行。失败静默——它是加速件不是必需件，退回「等全量」的旧行为。
+        try {
+          const headText = await fetchFeedText(HEAD_URL, HEAD_TTFB_TIMEOUT_MS);
+          const headList = JSON.parse(headText) as FeedCard[];
+          if (!cancelled && Array.isArray(headList) && headList.length > 0) {
+            headCardsRef.current = headList.map(normalizeCard);
+            setHeadCards(headCardsRef.current);
+            setLoading(false);
+          }
+        } catch (headErr: unknown) {
+          console.warn(
+            "[gittok] 头片不可用（冷启动等全量，行为同旧）：",
+            headErr instanceof Error ? headErr.message : headErr,
+          );
         }
       }
       // ── 二十一轮 N4④ 多源 fallback：主源 TTFB 滞留 8s / 失败 → jsDelivr 镜像 ──
@@ -1363,7 +1313,35 @@ export default function App() {
           if (fromFallback) text = canonicalizeFallbackFeed(text);
           if (text !== cachedText) {
             void saveCachedText("feed", text);
-            const list = JSON.parse(text) as FeedCard[];
+            const list = (JSON.parse(text) as FeedCard[]).map(normalizeCard);
+            // ── 冻结式头片：冷路径全量到货**不热替换**。推荐频道定序 =
+            //    头片（冻结会话序）+ 尾部（全量会话序剔除头片成员后的相对序，append-only）。
+            //    去重按 repo：保证全量成员恰好出现一次；头片成员次序字面保全。
+            const head = headCardsRef.current;
+            if (head && head.length > 0) {
+              const now = Date.now();
+              const fullRec = applyJitter(
+                buildRecommended(
+                  applyFilter(
+                    list.filter((c) => c.reasonCn && c.reasonCn.length > 0),
+                    seenRef.current,
+                    interactionsRef.current,
+                    collectionsRef.current,
+                  ),
+                  prefsRef.current,
+                  seenRef.current,
+                  interactionsRef.current,
+                  followingSetRef.current,
+                  now,
+                ),
+                sessionSeedRef.current,
+                seenRef.current,
+                now,
+                0.2,
+              );
+              const headSet = new Set(head.map((c) => c.repo));
+              setFrozenRec([...head, ...fullRec.filter((c) => !headSet.has(c.repo))]);
+            }
             applyData(list);
           }
         }
@@ -1626,26 +1604,45 @@ export default function App() {
     // 灭掉 E2 的静默缺失。呈现判据已闸化（scripts/gittok-detail-presentation-check.mjs）。
     setDetailCard(card);
     setDetailState("pending");
-    void resolveRepoDetail(card.repo).then((detailCn) => {
-      // 迟到的响应守卫：用户可能已关闭或换看了别的卡——不许写进别人的弹层。
-      if (detailOpenRepoRef.current !== card.repo) return;
-      setDetailState(detailCn === null ? "missing" : "ready");
-      setDetailCard((prev) => (prev && prev.repo === card.repo ? withRepoDetail(prev, detailCn) : prev));
-      // G-04 可观测性（十二轮自 boot 预热处迁来，按需详情的伴生检查）：分片与整表都无此键
-      // ⇒ 深度解读确认缺失；UI 有显式「暂无」态，控制台仍记账以便管道侧追查。
-      if (detailCn === null) {
-        console.warn(`[feed-details] ${card.repo} 缺深度解读（分片墓碑/整表均无此键）`);
+    // ── 二十二-2 投毒防护（2026-10-07）：resolveRepoDetail 网络失败=未知（不落内存、
+    //    Promise 拒绝）。弹层保持占位 + 有界退避重试——「暂无」只留给确认缺失，
+    //    网络恢复后重试链路把内容接进来（detail 闸 P13 锁行为）。
+    const attemptFetch = async (left: number): Promise<void> => {
+      try {
+        const detailCn = await resolveRepoDetail(card.repo);
+        // 迟到的响应守卫：用户可能已关闭或换看了别的卡——不许写进别人的弹层。
+        if (detailOpenRepoRef.current !== card.repo) return;
+        setDetailState(detailCn === null ? "missing" : "ready");
+        setDetailCard((prev) => (prev && prev.repo === card.repo ? withRepoDetail(prev, detailCn) : prev));
+        // G-04 可观测性（十二轮自 boot 预热处迁来，按需详情的伴生检查）：分片与整表都无此键
+        // ⇒ 深度解读确认缺失；UI 有显式「暂无」态，控制台仍记账以便管道侧追查。
+        if (detailCn === null) {
+          console.warn(`[feed-details] ${card.repo} 缺深度解读（分片墓碑/整表均无此键）`);
+        }
+      } catch (err: unknown) {
+        if (detailOpenRepoRef.current !== card.repo) return;
+        console.warn(
+          `[feed-details] ${card.repo} 取数失败（保持占位${left > 0 ? `，${Math.round(DETAIL_RETRY_DELAY_MS / 1000)}s 后重试` : "，重试窗结束"}）：`,
+          err instanceof Error ? err.message : err,
+        );
+        if (left <= 0) return;
+        await new Promise((r) => setTimeout(r, DETAIL_RETRY_DELAY_MS));
+        if (detailOpenRepoRef.current !== card.repo) return;
+        await attemptFetch(left - 1);
       }
-    });
+    };
+    void attemptFetch(DETAIL_RETRY_ATTEMPTS);
   }, []);
 
-  // 关注/取关（只影响关注频道与我的-关注，不触发 feed 重排）
+  // 关注/取关（影响关注频道与我的-关注；推荐序里 followBoost 随关注集重算）
   const toggleFollow = useCallback((owner: string) => {
     setFollowing((prev) => {
       const next = prev.includes(owner) ? prev.filter((o) => o !== owner) : [...prev, owner];
       saveFollowing(next);
       return next;
     });
+    // 冻结式头片：关注影响推荐序（followBoost）→ 用户动作解除冻结，与改偏好同理
+    setFrozenRec(null);
   }, []);
 
   const openCreator = useCallback(
@@ -1841,20 +1838,36 @@ export default function App() {
   // seenPenaltyOf 平滑衰减（当天 ×0.45/3 天 ×0.65/7 天 ×0.85），自然让位给没看过的，
   // 但仍在流中随时可能回来——推荐/热门/分类乘在抖动骨架上，每日乘在热度分上，关注纯时间序不掺
   // 关注频道豁免空分区过滤：未关注任何人时侧栏仍保留「关注」项，内容区显示引导
+  // ── 冻结式头片（二十二-0）推荐频道三态定序 ──
+  // ① frozenRec（冷路径全量已到货）：头片冻结序＋尾部 append，本会话推荐定序冻结；
+  // ② 冷窗（头片在场、全量未到）：头片 baseline 序即会话序（首访者无偏好＝零软化；
+  //    回访者个性化深度受限＝软化②，docs 待追认；applyFilter 只剔除不重排，序仍冻结）；
+  // ③ 常规（暖路径/头片失败/用户解除冻结）：原个性化管线原样。
   const sections = useMemo(() => {
     const seed = sessionSeedRef.current;
     const now = Date.now();
+    const headOnly =
+      headCards !== null && cards.length === 0
+        ? applyFilter(
+            headCards.filter((c) => c.reasonCn && c.reasonCn.length > 0),
+            seen,
+            interactions,
+            collections,
+          )
+        : null;
     const all = ALL_SECTIONS.map((s) => ({
       ...s,
       cards:
         s.key === "recommended"
-          ? applyJitter(
+          ? (frozenRec ??
+            headOnly ??
+            applyJitter(
               buildRecommended(visibleCards, preferences, seen, interactions, followingSet),
               seed,
               seen,
               now,
               0.2,
-            )
+            ))
           : s.key === "daily" || s.key === "following"
             ? getSectionCards(visibleCards, s.key, followingSet, seen, now, interactions)
             : recapped(
@@ -1869,7 +1882,7 @@ export default function App() {
               ),
     })).filter((s) => s.key === "following" || s.cards.length > 0);
     return all;
-  }, [visibleCards, preferences, seen, interactions, followingSet]);
+  }, [visibleCards, preferences, seen, interactions, followingSet, frozenRec, headCards, cards, collections]);
 
   // 当前频道内容（单频道独立渲染；点踩消失的卡不再渲染）
   const activeSection = useMemo(() => {
@@ -1877,6 +1890,10 @@ export default function App() {
     if (!sec || sec.cards.length === 0) return null;
     return sec;
   }, [sections, feedChannel]);
+
+  // 冻结式头片冷窗（二十二-0）：头片已渲染、全量未到。此窗口里只有推荐频道有数据——
+  // 其他频道/搜索保持加载态（不渲染残缺序，验收④），推荐频道照常可刷可点。
+  const coldHeadOnly = !loading && !error && headCards !== null && cards.length === 0;
 
   // 喜欢的卡片（快照优先，其次匹配当天数据；快照缺失且当天数据也没有的——旧记录无法找回）
   const likedCards = useMemo(() => {
@@ -1919,6 +1936,26 @@ export default function App() {
   );
   // 二轮 G6：热门预览与主信息流同一条列数反解（不再是 CSS auto-fill 的另一套口径）
   const { cols: hotCols, shape: hotShape, ref: hotColsRef } = useResponsiveCols();
+
+  // ── 二十二-1 预取覆盖面（2026-10-07）────────────────────────────────────────
+  // 三处「直接 markup」卡面接入通用 idle 预取通道（不可见时传空数组=零请求，
+  // detail 闸 P1「预取 ⊆ 可视卡集合」同样约束这些卡面）。
+  // ① 搜索空态热门预览（仅搜索 tab 且空 query 时在场上）
+  useIdleDetailPrefetch(tab === "search" && !searchQuery ? hotPreview.map((c) => c.repo) : []);
+  // ② 收藏夹展开网格（我的-收藏 且夹子展开时在场上）
+  const expandedFolderRepos = useMemo(() => {
+    if (tab !== "me" || meView !== "collections") return [];
+    const out: string[] = [];
+    for (const col of collections) {
+      if (!(expandedCols[col.id] ?? false)) continue;
+      for (const repo of col.repos) {
+        // 与渲染口径一致：快照或当天数据里有卡才会上屏，才值得预取
+        if (col.snapshots?.[repo] || cardByRepo.has(repo)) out.push(repo);
+      }
+    }
+    return out;
+  }, [tab, meView, collections, expandedCols, cardByRepo]);
+  useIdleDetailPrefetch(expandedFolderRepos);
 
   // 创作者页项目列表（栈顶 owner 过滤，score 降序）
   const creatorCards = useMemo(() => {
@@ -2088,6 +2125,13 @@ export default function App() {
                             去项目卡片上点创作者名即可关注；关注保存在这台浏览器，TA 的项目和 TA star
                             过的库内项目会出现在关注频道
                           </p>
+                        </div>
+                      )}
+                      {/* 冻结式头片冷窗：切到尚无数据的频道 = 加载态（不渲染残缺序） */}
+                      {tab === "feed" && coldHeadOnly && !activeSection && (
+                        <div className="status">
+                          <div className="spinner" />
+                          <p>正在加载好项目…</p>
                         </div>
                       )}
                       {activeSection && (
@@ -2453,124 +2497,137 @@ export default function App() {
                       )}
                     </div>
 
-                    {/* 空状态：推荐搜索词 + 分类直达 + 热门项目预览（G6：与主信息流同一内容容器与内距口径） */}
-                    {!searchQuery && (
-                      <div className="search-empty search-empty-unified">
-                        <div className="search-chips">
-                          <div className="search-empty-title">试试搜索</div>
-                          <div className="chip-row">
-                            {topicChips.map((t) => (
-                              <button key={t} className="search-chip" onClick={() => setSearchQuery(t)}>
-                                {t}
-                              </button>
-                            ))}
-                          </div>
-                        </div>
-
-                        <div className="search-cats">
-                          <div className="search-empty-title">分类直达</div>
-                          <div className="cat-row">
-                            {CATEGORY_SECTIONS.map((s) => (
-                              <button
-                                key={s.key}
-                                className="search-cat"
-                                onClick={() => {
-                                  setTab("feed");
-                                  switchFeedChannel(s.key);
-                                }}
-                              >
-                                <span className="cat-icon">
-                                  <SectionIcon icon={s.icon} size={18} />
-                                </span>
-                                <span className="cat-text">{s.title}</span>
-                              </button>
-                            ))}
-                          </div>
-                        </div>
-
-                        <div className="search-hot">
-                          <div className="search-empty-title">热门项目</div>
-                          <div
-                            className="feed-list"
-                            ref={hotColsRef}
-                            data-cols={hotCols}
-                            style={{ "--feed-cols": hotCols } as React.CSSProperties}
-                          >
-                            {/* 十二轮：列式容器——i%K 轮转入列（与主信息流同构） */}
-                            {buildColumnIndex(hotPreview.length, hotCols).map((idxs, c) => (
-                              <div className="feed-col" key={c}>
-                                {idxs.map((i) => {
-                                  const card = hotPreview[i];
-                                  return (
-                                    <FeedCardMemo
-                                      key={card.repo}
-                                      card={card}
-                                      liked={feedback.likes.includes(card.repo)}
-                                      ignored={dislikedSet.has(card.repo)}
-                                      onOpen={handleOpenDetail}
-                                      onOpenCreator={openCreator}
-                                      tagSlots={hotShape.tagSlots}
-                                    />
-                                  );
-                                })}
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* 创作者分组（结果顶部；默认只展开前 4 位防霸屏，点卡片打开创作者页） */}
-                    {searchQuery && searchCreators.length > 0 && (
-                      <div className="search-creators">
-                        <div className="search-group-title">创作者</div>
-                        <div className="creator-list">
-                          {(showAllCreators ? searchCreators : searchCreators.slice(0, 4)).map(
-                            ({ owner, count }) => (
-                              <div
-                                key={owner}
-                                className="creator-item"
-                                title={`查看 ${owner} 的创作者页`}
-                                onClick={() => openCreator(owner)}
-                              >
-                                <GithubAvatar owner={owner} size={56} className="creator-item-avatar" />
-                                <span className="creator-item-name">{owner}</span>
-                                <span className="creator-item-count">{count} 个项目</span>
-                              </div>
-                            ),
-                          )}
-                        </div>
-                        {searchCreators.length > 4 && (
-                          <button className="creator-toggle" onClick={() => setShowAllCreators((v) => !v)}>
-                            {showAllCreators
-                              ? "收起创作者"
-                              : `展开其余 ${searchCreators.length - 4} 位创作者`}
-                          </button>
-                        )}
-                      </div>
-                    )}
-
-                    {/* 项目分组 */}
-                    {searchQuery && searchResults.length > 0 && (
-                      <>
-                        <div className="search-group-title">项目</div>
-                        <FeedVirtualList
-                          cards={searchResults}
-                          likedSet={likedSet}
-                          dislikedSet={dislikedSet}
-                          onOpen={handleOpenDetail}
-                          onOpenCreator={openCreator}
-                        />
-                      </>
-                    )}
-
-                    {searchQuery && searchResults.length === 0 && searchCreators.length === 0 && (
+                    {coldHeadOnly ? (
+                      /* 冻结式头片冷窗：搜索吃全量数据——到货前保持加载态，不渲染残缺序 */
                       <div className="status">
-                        <p>
-                          <Search size={16} className="icon" />
-                          没搜到，换个关键词试试？
-                        </p>
+                        <div className="spinner" />
+                        <p>正在加载好项目…</p>
                       </div>
+                    ) : (
+                      <>
+                        {/* 空状态：推荐搜索词 + 分类直达 + 热门项目预览（G6：与主信息流同一内容容器与内距口径） */}
+                        {!searchQuery && (
+                          <div className="search-empty search-empty-unified">
+                            <div className="search-chips">
+                              <div className="search-empty-title">试试搜索</div>
+                              <div className="chip-row">
+                                {topicChips.map((t) => (
+                                  <button key={t} className="search-chip" onClick={() => setSearchQuery(t)}>
+                                    {t}
+                                  </button>
+                                ))}
+                              </div>
+                            </div>
+
+                            <div className="search-cats">
+                              <div className="search-empty-title">分类直达</div>
+                              <div className="cat-row">
+                                {CATEGORY_SECTIONS.map((s) => (
+                                  <button
+                                    key={s.key}
+                                    className="search-cat"
+                                    onClick={() => {
+                                      setTab("feed");
+                                      switchFeedChannel(s.key);
+                                    }}
+                                  >
+                                    <span className="cat-icon">
+                                      <SectionIcon icon={s.icon} size={18} />
+                                    </span>
+                                    <span className="cat-text">{s.title}</span>
+                                  </button>
+                                ))}
+                              </div>
+                            </div>
+
+                            <div className="search-hot">
+                              <div className="search-empty-title">热门项目</div>
+                              <div
+                                className="feed-list"
+                                ref={hotColsRef}
+                                data-cols={hotCols}
+                                style={{ "--feed-cols": hotCols } as React.CSSProperties}
+                              >
+                                {/* 十二轮：列式容器——i%K 轮转入列（与主信息流同构） */}
+                                {buildColumnIndex(hotPreview.length, hotCols).map((idxs, c) => (
+                                  <div className="feed-col" key={c}>
+                                    {idxs.map((i) => {
+                                      const card = hotPreview[i];
+                                      return (
+                                        <FeedCardMemo
+                                          key={card.repo}
+                                          card={card}
+                                          liked={feedback.likes.includes(card.repo)}
+                                          ignored={dislikedSet.has(card.repo)}
+                                          onOpen={handleOpenDetail}
+                                          onOpenCreator={openCreator}
+                                          tagSlots={hotShape.tagSlots}
+                                        />
+                                      );
+                                    })}
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                        )}
+
+                        {/* 创作者分组（结果顶部；默认只展开前 4 位防霸屏，点卡片打开创作者页） */}
+                        {searchQuery && searchCreators.length > 0 && (
+                          <div className="search-creators">
+                            <div className="search-group-title">创作者</div>
+                            <div className="creator-list">
+                              {(showAllCreators ? searchCreators : searchCreators.slice(0, 4)).map(
+                                ({ owner, count }) => (
+                                  <div
+                                    key={owner}
+                                    className="creator-item"
+                                    title={`查看 ${owner} 的创作者页`}
+                                    onClick={() => openCreator(owner)}
+                                  >
+                                    <GithubAvatar owner={owner} size={56} className="creator-item-avatar" />
+                                    <span className="creator-item-name">{owner}</span>
+                                    <span className="creator-item-count">{count} 个项目</span>
+                                  </div>
+                                ),
+                              )}
+                            </div>
+                            {searchCreators.length > 4 && (
+                              <button
+                                className="creator-toggle"
+                                onClick={() => setShowAllCreators((v) => !v)}
+                              >
+                                {showAllCreators
+                                  ? "收起创作者"
+                                  : `展开其余 ${searchCreators.length - 4} 位创作者`}
+                              </button>
+                            )}
+                          </div>
+                        )}
+
+                        {/* 项目分组 */}
+                        {searchQuery && searchResults.length > 0 && (
+                          <>
+                            <div className="search-group-title">项目</div>
+                            <FeedVirtualList
+                              cards={searchResults}
+                              likedSet={likedSet}
+                              dislikedSet={dislikedSet}
+                              onOpen={handleOpenDetail}
+                              onOpenCreator={openCreator}
+                            />
+                          </>
+                        )}
+
+                        {searchQuery && searchResults.length === 0 && searchCreators.length === 0 && (
+                          <div className="status">
+                            <p>
+                              <Search size={16} className="icon" />
+                              没搜到，换个关键词试试？
+                            </p>
+                          </div>
+                        )}
+                      </>
                     )}
                   </>
                 )}

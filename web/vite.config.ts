@@ -1,10 +1,12 @@
 import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
+import zlib from "node:zlib";
 import { defineConfig, type Plugin } from "vite";
 import react from "@vitejs/plugin-react";
 import { splitFeedPayload, detailShardPath, detailShardBody } from "./src/payload-split.ts";
 import { cardCopyOk, type CopyOkCard } from "../src/feed/copy-ok.ts";
+import { buildRecommended } from "./src/recommend-baseline.ts";
 
 /**
  * 构建前把 data/feed.json 拆成列表 + 详情表。
@@ -78,6 +80,35 @@ function prepareFeedPlugin(): Plugin {
       fs.writeFileSync(listPath, JSON.stringify(list));
       fs.writeFileSync(detailsPath, JSON.stringify(details));
 
+      /* ═══ 冻结式头片（二十二代 二十二-0，2026-10-07）═══
+       * 冷路径加载可感的数据根源：feed.json（1.2MB gzip 级）占冷首载 91%。头片 = 推荐频道
+       * baseline top-256（与运行时**同一份**排序实现 recommend-baseline.buildRecommended，
+       * 默认个性化参数——首访者无偏好时 baseline 序＝个性化序），冷启动先载头片即时渲染，
+       * 全量到货只向尾部 append（会话内定序字面保全，硬不变量）。
+       * 体积预算：gzip ≤110KB（head-eval 实测 107KB@3418 卡）；超预算闸会拦
+       *（scripts/gittok-head-freeze-check.mjs），到时优先收窄 K 而不是牺牲冻结不变量。 */
+      const HEAD_K = 256;
+      const HEAD_GZIP_BUDGET = 110 * 1024;
+      const headCards = buildRecommended(
+        list.filter((c) => typeof c.reasonCn === "string" && c.reasonCn.length > 0),
+        {},
+        {},
+        {},
+        new Set(),
+        Date.now(),
+      ).slice(0, HEAD_K);
+      const headPath = path.join(outDir, "feed-head.json");
+      const headBody = JSON.stringify(headCards);
+      fs.writeFileSync(headPath, headBody);
+      const headGzip = zlib.gzipSync(headBody, { level: 6 }).length;
+      if (headGzip > HEAD_GZIP_BUDGET) {
+        console.warn(
+          `[prepare-feed] 头片 gzip ${(headGzip / 1024).toFixed(1)}KB 超预算 ${(
+            HEAD_GZIP_BUDGET / 1024
+          ).toFixed(0)}KB——head-freeze 闸会红，收窄 HEAD_K`,
+        );
+      }
+
       // 二十轮 C3（2026-10-06）：详情**单卡分片**——点击只拉所需一片（p50 ≈1.7KB），
       // 替代「点击等 5.96MB 整表」。有 detailCn 发正文分片，无 detailCn 发墓碑
       // {"detailCn":null}（确认缺失一次请求有答案）。构建期随 data/feed.json 再生，
@@ -124,7 +155,7 @@ function prepareFeedPlugin(): Plugin {
       const listBytes = fs.statSync(listPath).size;
       const detailsBytes = fs.statSync(detailsPath).size;
       console.log(
-        `[prepare-feed] ${cards.length} cards: list ${(listBytes / 1024).toFixed(0)}KB, details ${(detailsBytes / 1024).toFixed(0)}KB, shards ${shardCount} files ${(shardBytes / 1024).toFixed(0)}KB (source ${(Buffer.byteLength(raw) / 1024).toFixed(0)}KB)`,
+        `[prepare-feed] ${cards.length} cards: list ${(listBytes / 1024).toFixed(0)}KB, details ${(detailsBytes / 1024).toFixed(0)}KB, shards ${shardCount} files ${(shardBytes / 1024).toFixed(0)}KB, head ${headCards.length} cards gzip ${(headGzip / 1024).toFixed(1)}KB (source ${(Buffer.byteLength(raw) / 1024).toFixed(0)}KB)`,
       );
     },
   };
