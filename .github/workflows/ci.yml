@@ -187,6 +187,16 @@ jobs:
           CHROME_PATH: /usr/bin/google-chrome
         run: node scripts/gittok-head-freeze-check.mjs
 
+      # Width freeze gate (Round 23 N3b): the 10-07 live probe pinned the homepage width
+      # jump to the Lora 600-weight late swap-in (old size-adjust 95.24% vs measured 98.11%,
+      # +2.87pp x 300px = the observed 5px). Fix = preload all four weights + re-calibrated
+      # NSC fallbacks. Gate: zero width jumps after fonts loaded, swap window <=1 jump and
+      # <=8px, zero width jumps across feed.json arrival, four weights registered.
+      - name: Width freeze gate（二十三代 N3b：装载后零宽度跳·换装窗 ≤1 跳 ≤8px·数据到货零宽度跳·四字重注册）
+        env:
+          CHROME_PATH: /usr/bin/google-chrome
+        run: node scripts/gittok-width-freeze-check.mjs
+
       # Service Worker gate (Round 21 N4②): precache registration, zero-network second visit
       # (with HTTP cache disabled), versioned-cache invalidation (stale cache cleaned on
       # activate), offline shell opens, data/* passthrough (no second source of truth).

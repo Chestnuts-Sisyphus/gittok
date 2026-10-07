@@ -35,11 +35,18 @@
     <meta name="twitter:image:alt" content="GitTok 信息流界面：左侧频道与分区，右侧中文项目卡片" />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <link rel="preload" href="./data/feed.json" as="fetch" crossorigin />
-    <!-- 主字重预加载（二十一轮 N3/N4⑤）：Lora 400 是全站正文的主用字面。preload 让 woff2
-         在解析 HTML 时就开跑（与 CSS/JS 并行），把 swap 时刻尽量提前；宽度零跳变由下面的
-         metric fallback 兜底（preload 只缩短换装窗，不消灭重排）。字体 preload 必须带
-         crossorigin（同源也要，fetch 凭据语义要求）。 -->
+    <!-- 主字重预加载（二十三轮 N3b 扩到四字重）：Lora 400/500/600/700 是全站所有已用字面
+         （正文/标题/站名/卡片名/声明位共用 47 处 font-weight ≥500）。只 preload 400 的
+         残留症状＝等待窗内 500/600/700 走 swap 异步换装（本探针 2026-10-07 实测：
+         线上唯一跳变 slot=latin 基准串 295→300 @1565ms，早于 loadingdone@2511ms，
+         fontState=loading 时已跳 ⇒ 是 FB→Lora 路径上慢字重的补点换装）。
+         fonts/ 全部已入 SW 预缓存（二访 0 网络），preload 只压冷首访到达差。
+         italic 用点=0（全站无 italic 渲染）不消耗预算。crossorigin 不可省（同源 fetch
+         凭据语义）。 -->
     <link rel="preload" href="./fonts/lora-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="./fonts/lora-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="./fonts/lora-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="./fonts/lora-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin />
     <!-- 字体本地化（二十轮 N2）＋度量对齐兜底（二十一轮 N3/N4⑤，2026-10-06 实测）。
          N3 症状＝「打开我的/首页整体宽度变一下」：Lora woff2 线上 max-age=600 → 隔 10min
          的每次访问必重新下载 → font-display:swap 换装 → 全站拉丁/数字宽度重排（探针实测
@@ -56,12 +63,16 @@
          换装前后一致）。栈序＝每个兜底面紧贴其 local 源家族之前：源家族缺装的机器
          local() 失败 → 该兜底面整体跳过 → 落到下一族（无 NSC 的机器自动走 TNR 族）。
          行高全部显式（styles.css 零 normal）⇒ 纵向度量不参与行盒，无需 ascent/descent 覆写。 -->
+    <!-- N3b（二十三轮，2026-10-07 线上复校）：size-adjust 逐档重写。二十一轮的实测值是
+         本机 headless 分布的均值，换机器/换字符串残差可达 ±2.9pp（600 档写死 95.24%，
+         线上实测 98.11%）。用 4 串实测中位重写如下（NSC 族）；TNR 族同理可复校，
+         本机未变故暂不动。unicode-range 限定 latin（CJK 不动）不变。 -->
     <style>
       @font-face {
         font-family: "Lora FB NSC";
         font-style: normal;
         font-weight: 400;
-        size-adjust: 96.25%;
+        size-adjust: 94.92%;
         src: local("Noto Serif SC");
         unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
       }
@@ -69,7 +80,7 @@
         font-family: "Lora FB NSC";
         font-style: normal;
         font-weight: 500;
-        size-adjust: 95.73%;
+        size-adjust: 96.13%;
         src: local("Noto Serif SC");
         unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
       }
@@ -77,7 +88,7 @@
         font-family: "Lora FB NSC";
         font-style: normal;
         font-weight: 600;
-        size-adjust: 95.24%;
+        size-adjust: 98.11%;
         src: local("Noto Serif SC");
         unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
       }
@@ -85,7 +96,7 @@
         font-family: "Lora FB NSC";
         font-style: normal;
         font-weight: 700;
-        size-adjust: 94.26%;
+        size-adjust: 96.38%;
         src: local("Noto Serif SC");
         unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
       }
