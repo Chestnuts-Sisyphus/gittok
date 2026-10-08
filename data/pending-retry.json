@@ -1,19 +1,19 @@
 [
   {
-    "repo": "1yefuwang1/vectorlite",
-    "desc": "Fast, SQL powered, in-process vector search for any language with an SQLite driver",
-    "stars": 361,
-    "language": "Rust",
+    "repo": "0b5vr/wavenerd",
+    "desc": "GLSL music live coding environment",
+    "stars": 108,
+    "language": "TypeScript",
     "topics": [
-      "vector-db"
+      "synthesizer"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2023-10-07T06:18:07Z",
+    "createdAt": "2020-05-30T20:44:33Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-07T16:28:32Z",
-    "retryCount": 6
+    "ts": "2026-10-03T18:38:06Z",
+    "retryCount": 1
   },
   {
     "repo": "47thtechcorner/RayCodes_FrogNano-4B",
@@ -29,6 +29,19 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-07T15:19:55Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "738/awesome-devbook",
+    "desc": "",
+    "stars": 1000,
+    "language": "",
+    "topics": [],
+    "source": "tier",
+    "starGrowth": 0,
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-08T08:37:58.529Z",
     "retryCount": 1
   },
   {
@@ -45,6 +58,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-01T16:49:32Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "ad-si/awesome-music-production",
+    "desc": "A curated list of software, services, and resources to create and distribute music",
+    "stars": 1516,
+    "language": "",
+    "topics": [
+      "synthesizer"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2016-03-14T14:48:08Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-05T10:58:10Z",
     "retryCount": 1
   },
   {
@@ -77,6 +106,38 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-20T06:21:35Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "adenaufal/anti-slop-writing",
+    "desc": "Stop your AI from writing like AI. A universal system prompt eliminating every known LLM style tell — works with Claude Code, Gemini CLI, Codex CLI, Copilot, Cursor, and any web AI.",
+    "stars": 145,
+    "language": "Python",
+    "topics": [
+      "writing"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-02-28T19:45:28Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-27T04:56:07Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "adityakumar3cs28-debug/Precision-Point-Dart",
+    "desc": "Professional Dart Aim Trainer 2026: Precision Shooting Practice Tool",
+    "stars": 56,
+    "language": "HTML",
+    "topics": [
+      "pygame"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-09-21T20:43:24Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-08T08:17:12Z",
     "retryCount": 1
   },
   {
@@ -93,7 +154,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-06T06:07:19Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "Agents365-ai/video-podcast-maker",
@@ -107,6 +168,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-26T17:52:47.721Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "alexgreensh/anidoodle",
+    "desc": "Art and animation, written as code. Illustrations, loops, interactive web art, launch-videos and scored films in dozens of styles, identical on every render.",
+    "stars": 849,
+    "language": "TypeScript",
+    "topics": [
+      "creative-coding"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-09-22T11:20:47Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-05T12:24:20Z",
     "retryCount": 1
   },
   {
@@ -122,8 +199,8 @@
     "createdAt": "2026-07-16T12:52:55Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-10-08T00:35:44Z",
-    "retryCount": 1
+    "ts": "2026-10-08T08:22:16Z",
+    "retryCount": 2
   },
   {
     "repo": "alperkah/grafik-ve-animasyon",
@@ -139,7 +216,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-06T13:27:46Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "andrea-magni/MARS",
@@ -156,22 +233,6 @@
     "bigbros": [],
     "ts": "2026-10-07T19:18:28Z",
     "retryCount": 1
-  },
-  {
-    "repo": "anetonline/ANetDRAW",
-    "desc": "An ANSI/ASCII art editor for BBS callers, in the spirit of TheDraw, ACiDDraw, Moebius, and PabloDraw. Built in C against OpenDoors. FULL WEB VERSION: https://a-net.online/studio",
-    "stars": 5,
-    "language": "C",
-    "topics": [
-      "ascii-art"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-09-29T13:44:19Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-30T13:13:37Z",
-    "retryCount": 6
   },
   {
     "repo": "anuj-121/Interview-Assist",
@@ -203,7 +264,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-07T23:17:51Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "bagidea/bagidea-office",
@@ -219,23 +280,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-05T17:23:20Z",
-    "retryCount": 3
-  },
-  {
-    "repo": "beita6969/ScienceClaw",
-    "desc": "🔬🦞 A self-evolving AI research colleague for scientists. 285 skills, zero hallucination, persistent memory.",
-    "stars": 906,
-    "language": "TypeScript",
-    "topics": [
-      "bioinformatics"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-03-11T12:17:51Z",
-    "silentRounds": 2,
-    "bigbros": [],
-    "ts": "2026-10-07T13:20:07Z",
-    "retryCount": 1
+    "retryCount": 4
   },
   {
     "repo": "Bennettxai/FounderOS-DEMO",
@@ -264,24 +309,8 @@
     "createdAt": "2026-08-02T16:36:25Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-07T18:32:24Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "blaylockbk/SynopticPy",
-    "desc": "Retrieve mesonet weather data as Polars DataFrames from Synoptic's Weather API.",
-    "stars": 74,
-    "language": "Python",
-    "topics": [
-      "weather"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2020-08-19T02:52:50Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-07T05:42:53Z",
-    "retryCount": 6
+    "ts": "2026-10-08T02:39:04Z",
+    "retryCount": 2
   },
   {
     "repo": "boykopovar/AnyPS5",
@@ -310,7 +339,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-06T19:52:34Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "chubbyguan/chubbyskills",
@@ -326,7 +355,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-06T07:08:55Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "cicloid/awesome-fm-1",
@@ -342,7 +371,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-05T23:32:27Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "COMS30117-Deep-Learning/labsheets",
@@ -358,7 +387,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-06T15:07:18Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "cth9191/animate",
@@ -374,7 +403,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-05T20:31:48Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "CylnaNangong/NGYY_ENG_Dataset",
@@ -390,7 +419,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-06T18:38:48Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "d-li14/involution",
@@ -436,7 +465,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-04T07:14:17Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "DataExpert-io/llm-driven-data-engineering",
@@ -450,7 +479,7 @@
     "silentRounds": 6,
     "bigbros": [],
     "ts": "2026-09-30T23:37:45.729Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "datawhalechina/base-llm",
@@ -482,7 +511,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-06T05:59:01Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "Derpyu520/qq-bridge",
@@ -514,7 +543,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-07T13:07:36Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "dgreenheck/webgpu-claude-skill",
@@ -528,23 +557,7 @@
     "silentRounds": 5,
     "bigbros": [],
     "ts": "2026-09-30T23:37:45.729Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "djayuffe/neon-vectors-amiga-cracktro-aga-v5",
-    "desc": "NEON VECTORS AGA v5: audited Amiga AGA cracktro source release with deterministic assets and validation tooling",
-    "stars": 0,
-    "language": "Python",
-    "topics": [
-      "demoscene"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-10-01T20:17:02Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-01T20:33:14Z",
-    "retryCount": 6
+    "retryCount": 2
   },
   {
     "repo": "djayuffe/wireframe-scroller",
@@ -560,7 +573,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-07T21:59:04Z",
-    "retryCount": 2
+    "retryCount": 3
+  },
+  {
+    "repo": "ecliptik/flynn",
+    "desc": "A Telnet and Finger client for classic 68k Macintoshes",
+    "stars": 25,
+    "language": "C",
+    "topics": [
+      "retrocomputing"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-03-06T05:11:21Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-08T02:45:29Z",
+    "retryCount": 1
   },
   {
     "repo": "Emmi-AI/noether",
@@ -576,7 +605,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-07T11:29:46Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "eolix/photosuite",
@@ -604,8 +633,8 @@
     "createdAt": "2026-09-16T19:47:21Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-07T00:35:31Z",
-    "retryCount": 1
+    "ts": "2026-10-08T05:39:15Z",
+    "retryCount": 2
   },
   {
     "repo": "fabio-rovai/open-ontologies",
@@ -632,7 +661,7 @@
     "silentRounds": 6,
     "bigbros": [],
     "ts": "2026-09-30T23:37:45.729Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "FailproofAI/failproofai",
@@ -648,7 +677,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-07T09:43:48Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "feder-cr/dots",
@@ -664,39 +693,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-07T11:34:19Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "feder-cr/invisible_dots",
-    "desc": "Open-source, self-hosted alternative to OpenAI Dots, Meta Muse, Grok Bot, Manus Cue and Claude Cowork. AI agents, each with a virtual machine on your PC with a desktop, a shell, files, memory and skills that stay, invisible to anti-bots. Any model on OpenRouter.",
-    "stars": 31797,
-    "language": "TypeScript",
-    "topics": [
-      "ai-agent"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2024-08-04T12:15:06Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-08T00:37:26Z",
     "retryCount": 1
-  },
-  {
-    "repo": "gcy6630/city-food-map-skill",
-    "desc": "一句话生成手机上能点、能筛选、能导航的城市美食地图：抖音挖本地人真吃的店 + 高德定位 + GitHub Pages 永久托管。AionUi skill / mobile-first city food map generator.",
-    "stars": 2,
-    "language": "JavaScript",
-    "topics": [
-      "travel"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-09-29T07:37:51Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-29T07:51:52Z",
-    "retryCount": 6
   },
   {
     "repo": "gelijunge22-code/novel-app",
@@ -712,24 +709,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-09-22T07:45:31Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "golanlevin/p5.plotSvg",
-    "desc": "A p5.js library for exporting SVG files tailored for pen plotting. ",
-    "stars": 208,
-    "language": "JavaScript",
-    "topics": [
-      "creative-coding",
-      "generative-art"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2024-11-19T05:22:04Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-07T05:00:17Z",
-    "retryCount": 6
+    "retryCount": 2
   },
   {
     "repo": "google/lullaby",
@@ -743,7 +723,7 @@
     "silentRounds": 6,
     "bigbros": [],
     "ts": "2026-09-30T23:37:45.729Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "grafana/gcx",
@@ -772,7 +752,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-07T19:33:02Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "gymcoach-app/gymcoach",
@@ -788,7 +768,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-07T09:37:53Z",
-    "retryCount": 5
+    "retryCount": 1
   },
   {
     "repo": "huzjie/chonkforge",
@@ -820,7 +800,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-06T12:03:12Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "Iamsdt/chess",
@@ -835,8 +815,8 @@
     "createdAt": "2026-03-01T12:06:41Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-10-06T19:11:31Z",
-    "retryCount": 3
+    "ts": "2026-10-08T01:35:09Z",
+    "retryCount": 1
   },
   {
     "repo": "iblai/os",
@@ -851,8 +831,24 @@
     "createdAt": "2026-03-03T18:02:16Z",
     "silentRounds": 3,
     "bigbros": [],
-    "ts": "2026-10-07T22:20:49Z",
-    "retryCount": 2
+    "ts": "2026-10-08T02:20:29Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "icloudza/caplo",
+    "desc": "macOS 屏幕录制工具",
+    "stars": 8,
+    "language": "Swift",
+    "topics": [
+      "video-editor"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-09-08T09:44:16Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-08T06:30:49Z",
+    "retryCount": 1
   },
   {
     "repo": "inseq-team/inseq",
@@ -868,7 +864,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-07T07:33:02Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "interview-ps/InterviewOS",
@@ -884,7 +880,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-07T19:04:55Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "iwangjian/Paper-Reading-ConvAI",
@@ -898,7 +894,7 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-10-02T23:52:36.769Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "jevakallio/git-notify",
@@ -915,6 +911,38 @@
     "retryCount": 1
   },
   {
+    "repo": "jlt-commons/raylib-jolt-demo",
+    "desc": "187 raylib examples in Jolt, one runnable sub-project each",
+    "stars": 3,
+    "language": "Clojure",
+    "topics": [
+      "raylib"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-04T20:32:51Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-06T21:53:59Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "jpvalery/newfoundland",
+    "desc": "An interactive web experience to tell our journey across Newfoundland",
+    "stars": 35,
+    "language": "HTML",
+    "topics": [
+      "photography"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2019-05-19T16:14:41Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-08T03:50:19Z",
+    "retryCount": 1
+  },
+  {
     "repo": "junruxiong/IncarnaMind",
     "desc": "Connect and chat with your multiple documents (pdf and txt) through GPT 3.5, GPT-4 Turbo, Claude and Local Open-Source LLMs",
     "stars": 802,
@@ -928,7 +956,23 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-07T23:24:09Z",
-    "retryCount": 4
+    "retryCount": 5
+  },
+  {
+    "repo": "KrisEnigma/couch-doom",
+    "desc": "Fullscreen gamepad front end for DoomRunner, ZDL and Doom Launcher: title art, music and logos straight from your WADs",
+    "stars": 3,
+    "language": "Python",
+    "topics": [
+      "pygame"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-07T21:56:55Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-08T03:43:31Z",
+    "retryCount": 1
   },
   {
     "repo": "kvcache-ai/ktransformers",
@@ -942,7 +986,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-13T22:08:09.499Z",
-    "retryCount": 3
+    "retryCount": 1
+  },
+  {
+    "repo": "Lacemakingatmometer593/awesome-ai-startups",
+    "desc": "Curate a list of bootstrapped and pre-seed AI products built by independent founders.",
+    "stars": 3,
+    "language": "",
+    "topics": [
+      "interview"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-05-12T10:33:42Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-06T06:14:18Z",
+    "retryCount": 1
   },
   {
     "repo": "LearnPrompt/LearnPrompt",
@@ -956,7 +1016,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-21T19:19:33.440Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Leflexe/crava-foco-pagamentos-gfx",
@@ -971,8 +1031,8 @@
     "createdAt": "2026-09-22T19:32:37Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-07T21:51:01Z",
-    "retryCount": 3
+    "ts": "2026-10-08T01:39:46Z",
+    "retryCount": 4
   },
   {
     "repo": "llm-d/llm-d-router",
@@ -985,6 +1045,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-06T13:04:24.792Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "lloyddominic/hiring-without-whiteboards",
+    "desc": "🛠️ Discover companies that skip whiteboard interviews and focus on real-world skills, promoting better hiring practices in tech.",
+    "stars": 3,
+    "language": "JavaScript",
+    "topics": [
+      "interview"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2025-10-10T17:29:47Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-07T04:34:19Z",
     "retryCount": 1
   },
   {
@@ -1001,7 +1077,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-07T07:28:49Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "madisonrickert/ableton-tools",
@@ -1017,7 +1093,39 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-07T00:46:45Z",
-    "retryCount": 3
+    "retryCount": 4
+  },
+  {
+    "repo": "mcci-catena/arduino-lorawan",
+    "desc": "User-friendly library for using arduino-lmic with The Things Network and other LoRaWAN® networks",
+    "stars": 299,
+    "language": "C++",
+    "topics": [
+      "arduino"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2016-10-24T05:26:27Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-08T00:55:13Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "melihcolpan/MuscleMap",
+    "desc": "A SwiftUI SDK for rendering interactive human body muscle maps with highlights, heatmaps, gestures, and UIKit support. iOS 17+, macOS 14+.",
+    "stars": 270,
+    "language": "Swift",
+    "topics": [
+      "fitness"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-02-09T21:00:45Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-08T02:06:07Z",
+    "retryCount": 1
   },
   {
     "repo": "MiaAI-Lab/sparkDash",
@@ -1046,7 +1154,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-07T03:33:30Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "morluto/rea",
@@ -1072,6 +1180,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-06T13:04:24.792Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "nanreh/calendar-hack",
+    "desc": "Calendar Hack: a web application for runners who train for races.",
+    "stars": 144,
+    "language": "TypeScript",
+    "topics": [
+      "fitness"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2020-06-04T06:07:31Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-08T06:12:23Z",
     "retryCount": 1
   },
   {
@@ -1087,8 +1211,8 @@
     "createdAt": "2026-10-05T13:06:33Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-05T13:09:59Z",
-    "retryCount": 2
+    "ts": "2026-10-08T06:51:06Z",
+    "retryCount": 3
   },
   {
     "repo": "oil-oil/oil-ui",
@@ -1104,6 +1228,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-07T16:27:46Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "OxfordSKA/OSKAR",
+    "desc": "SKA Radio Telescope Simulator",
+    "stars": 82,
+    "language": "C",
+    "topics": [
+      "astronomy"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2013-04-06T03:13:37Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-08T08:26:43Z",
     "retryCount": 1
   },
   {
@@ -1137,6 +1277,38 @@
     "retryCount": 1
   },
   {
+    "repo": "sirkicker/kicker",
+    "desc": "A poker roguelike where every card is a live vibe/vibe launch. Robinhood Chain testnet · PixiJS + WebGL",
+    "stars": 1,
+    "language": "TypeScript",
+    "topics": [
+      "roguelike"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-07T19:00:17Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-07T19:12:05Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "Soumya7681/interview_prep",
+    "desc": "JobPrep is more than just a markdown repository; it is a fully functional Next.js 15 application built to serve as the ultimate interview companion. It contains deep, highly-curated knowledge tailored for top tech companies (FAANG and leading Service Providers).",
+    "stars": 4,
+    "language": "TypeScript",
+    "topics": [
+      "interview"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-05-19T04:57:49Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-08T07:35:22Z",
+    "retryCount": 1
+  },
+  {
     "repo": "timschmidt/synaps-cad",
     "desc": "The AI-powered 3D CAD IDE — edit code, visualize in 3D, and reshape your designs with natural language.",
     "stars": 370,
@@ -1150,6 +1322,22 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-05T16:52:51Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "travel-requirements/entry-requirements",
+    "desc": "Entry requirements for 199 destinations x 199 passports, compiled from official government sources with a source URL and verification date behind every fact. CC BY 4.0.",
+    "stars": 2,
+    "language": "",
+    "topics": [
+      "travel"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-08-27T17:42:40Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-07T18:35:21Z",
     "retryCount": 1
   },
   {
@@ -1165,7 +1353,7 @@
     "createdAt": "2026-02-10T12:42:33Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-10-08T00:01:10Z",
+    "ts": "2026-10-08T06:30:45Z",
     "retryCount": 1
   },
   {
@@ -1182,7 +1370,23 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-04T23:00:50Z",
-    "retryCount": 4
+    "retryCount": 1
+  },
+  {
+    "repo": "WBBB0730/PigMap",
+    "desc": "猪猪地图能让您方便地创建不同的地点清单，在地图上标记清单中的地点，帮助您更轻松地规划旅游线路；也可以将清单分享给好友，共同享受愉快的旅途",
+    "stars": 8,
+    "language": "Vue",
+    "topics": [
+      "travel"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2023-01-12T07:14:02Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-08T07:43:47Z",
+    "retryCount": 1
   },
   {
     "repo": "yapi1994/FH6-OMNI-TRAINER",
@@ -1197,7 +1401,7 @@
     "createdAt": "2026-09-21T21:19:43Z",
     "silentRounds": 3,
     "bigbros": [],
-    "ts": "2026-10-07T20:29:58Z",
+    "ts": "2026-10-08T07:07:45Z",
     "retryCount": 1
   },
   {
@@ -1214,7 +1418,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-07T22:43:10Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "ZAYED-ENG-IT/Genrm-Lab-Nine-Floor-Duel",
@@ -1230,7 +1434,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-25T15:39:15Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "ZomBombadil/eru-companion",
