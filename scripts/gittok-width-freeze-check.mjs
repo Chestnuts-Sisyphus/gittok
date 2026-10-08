@@ -18,8 +18,12 @@
  *      （冻结式头片姊妹不变量：数据到货不改任何已渲染盒宽）。
  *   W4 四字重在 loadingdone 集内：Lora 400/500/600/700 的 @font-face 必须全部注册
  *      （少一档 = 该档换装窗回到异步晚到，二十轮 600 档错档复活的温床）。
- *   W5 tab 切换几何一致（二十三代 N3b）：同视口下 首页↔我的 两 tab 的外壳/内容区
- *      x/width 逐位一致（2026-09-23 居中壳漏 me 的同类缺口：2560 实测切换跳 334px）。
+ *   W5 tab 切换几何一致（二十三代 N3b→追加升格）：同视口下 首页/我的/搜索/Agent 四 tab
+ *      的外壳/内容区 x/width 逐位一致（2026-09-23 居中壳漏 me＝2560 跳 334px；10-08 栗子
+ *      复测再报 agent→我的 / agent→搜索→首页 仍有宽度变化动画＝跨版式族同类 → 全 tab
+ *      统一 1866 壳＋侧栏常驻后字面成立）。
+ *   W6 切换窗零渐变帧（二十三代追加）：每次 tab 切换窗内 .main 的 padding-left 与内容区
+ *      x 只允许**单值**（30ms 采样；出现第二个值＝过渡在播放＝「宽度变化动画」本尊）。
  *
  * 用法：node scripts/gittok-width-freeze-check.mjs
  * 环境变量：CHROME_PATH / GITTK_REPO / GITTK_DIST / GITTK_WIDTH_OUT / GITTK_WIDTH_PORT /
@@ -222,16 +226,20 @@ async function main() {
     // node 侧短轮询等 4 卡（服务器 feed.json 延迟 FEED_DELAY_MS；头片先到应立即出卡）
     let cards = 0;
     for (let i = 0; i < 90; i++) {
-      try { cards = (await cdp.eval(`return document.querySelectorAll('.feed-col > .card').length`)) || 0; } catch {}
+      try {
+        cards = (await cdp.eval(`return document.querySelectorAll('.feed-col > .card').length`)) || 0;
+      } catch {}
       if (cards >= 4) break;
       await new Promise((r) => setTimeout(r, 500));
     }
     if (cards < 4) throw new Error("首窗卡未出现");
     // 等字体 loaded + 数据到货 + 落定（覆盖换装窗与到货窗）
-    let fontsLoaded = false, feedDone = 0;
+    let fontsLoaded = false,
+      feedDone = 0;
     for (let i = 0; i < 90; i++) {
       try {
-        fontsLoaded = (await cdp.eval(`return document.fonts ? document.fonts.status === "loaded" : false`)) === true;
+        fontsLoaded =
+          (await cdp.eval(`return document.fonts ? document.fonts.status === "loaded" : false`)) === true;
         feedDone = (await cdp.eval(`return window.__feedDoneAt || 0`)) || 0;
       } catch {}
       if (fontsLoaded && feedDone > 0) break;
@@ -244,7 +252,8 @@ async function main() {
     const slots = ["body.scrollWidth", "latin 基准串", "feed-col 宽", "卡盒宽"];
     const jumps = [];
     for (let i = 1; i < w.length; i++) {
-      const a = w[i - 1], b = w[i];
+      const a = w[i - 1],
+        b = w[i];
       for (let s = 1; s <= 4; s++) {
         if (a[s] > 0 && b[s] > 0 && Math.abs(b[s] - a[s]) > 0.5) {
           jumps.push({ t: b[0], slot: slots[s - 1], from: a[s], to: b[s], fontState: a[5] });
@@ -255,9 +264,7 @@ async function main() {
     // W4：四字重注册集（只收 "Lora <w>" 本体；"Lora FB NSC/TNR <w>" 是兜底面不算）
     const loadedFaces = fe.filter((e) => e.ev === "loadingdone").flatMap((e) => e.faces);
     const loraWeights = new Set(
-      loadedFaces
-        .filter((f) => /^Lora \d+$/.test(f))
-        .map((f) => Number(f.split(" ")[1])),
+      loadedFaces.filter((f) => /^Lora \d+$/.test(f)).map((f) => Number(f.split(" ")[1])),
     );
     const w4ok = [400, 500, 600, 700].every((x) => loraWeights.has(x));
     report(
@@ -293,38 +300,75 @@ async function main() {
       `feed.json@${feedDone}ms ±1s 跳变 ${arrivalJumps.length}${arrivalJumps.length ? " " + JSON.stringify(arrivalJumps) : ""}`,
     );
 
-    // W5：tab 切换几何一致（二十三代 N3b 根修判据）：首页↔我的 外壳/内容区 x/width 逐位一致
+    // W5/W6（二十三代追加升格）：四 tab 几何逐位一致＋切换窗零渐变帧
     //（cdp.eval 会把表达式再包一层 IIFE——这里只给语句体，return 由包裹层承接）
     const snapGeo = `
       const shell = document.querySelector('.feed-layout, .me-layout');
       const content = document.querySelector('.feed-content');
+      const m = document.querySelector('.main');
       return { shellX: shell ? Math.round(shell.getBoundingClientRect().x) : -1,
                shellW: shell ? Math.round(shell.getBoundingClientRect().width) : -1,
                contX: content ? Math.round(content.getBoundingClientRect().x) : -1,
-               contW: content ? Math.round(content.getBoundingClientRect().width) : -1 };`;
-    const feedGeo = await cdp.eval(snapGeo);
-    await cdp.eval(
-      `(() => { const t = Array.from(document.querySelectorAll('.tabs .tab')).find(b => b.textContent.includes('我的')); if (t) t.click(); return 1; })()`,
+               contW: content ? Math.round(content.getBoundingClientRect().width) : -1,
+               mainPadL: m ? getComputedStyle(m).paddingLeft : "?" };`;
+    const clickTab = (label) =>
+      `(() => { const t = Array.from(document.querySelectorAll('.tabs .tab')).find(b => b.textContent.includes('${label}')); if (t) t.click(); return 1; })()`;
+    const TABS = ["首页", "我的", "搜索", "Agent"];
+    const geos = {};
+    const switchReports = [];
+    for (const label of TABS) {
+      // 页面侧 30ms setInterval 采样（不依赖 rAF——后台窗 rAF 会被节流）
+      await cdp.eval(
+        `window.__SW = []; window.__SWT = setInterval(() => { const m = document.querySelector('.main'); const c = document.querySelector('.feed-content'); if (m) window.__SW.push([Math.round(performance.now()), getComputedStyle(m).paddingLeft, c ? Math.round(c.getBoundingClientRect().x) : -1, Math.round(document.querySelector('.main').getBoundingClientRect().width)]); }, 30);`,
+      );
+      await cdp.eval(clickTab(label));
+      await new Promise((r) => setTimeout(r, 1500));
+      const sw = (await cdp.eval(`clearInterval(window.__SWT); return window.__SW || [];`)) || [];
+      geos[label] = await cdp.eval(snapGeo);
+      const pads = [...new Set(sw.map((s) => s[1]))];
+      const contXs = [...new Set(sw.map((s) => s[2]).filter((x) => x > 0))];
+      const mainWs = [...new Set(sw.map((s) => s[3]).filter((x) => x > 0))];
+      switchReports.push({ to: label, samples: sw.length, pads, contXs, mainWs });
+    }
+    const geoVals = TABS.map((t) => geos[t]);
+    const geoOk = geoVals.every(
+      (g) =>
+        g.shellX === geoVals[0].shellX &&
+        g.shellW === geoVals[0].shellW &&
+        g.contX === geoVals[0].contX &&
+        g.contW === geoVals[0].contW,
     );
-    await new Promise((r) => setTimeout(r, 1200));
-    const meGeo = await cdp.eval(snapGeo);
-    await cdp.eval(
-      `(() => { const t = Array.from(document.querySelectorAll('.tabs .tab')).find(b => b.textContent.includes('首页')); if (t) t.click(); return 1; })()`,
-    );
-    const geoOk =
-      feedGeo.shellX === meGeo.shellX &&
-      feedGeo.shellW === meGeo.shellW &&
-      feedGeo.contX === meGeo.contX &&
-      feedGeo.contW === meGeo.contW;
     report(
-      "W5 tab 切换几何一致（首页↔我的外壳/内容区逐位同值，居中壳轮同类缺口根修）",
+      "W5 tab 切换几何一致（首页/我的/搜索/Agent 外壳/内容区逐位同值，全 tab 统一壳）",
       geoOk,
-      `feed=${JSON.stringify(feedGeo)} me=${JSON.stringify(meGeo)}`,
+      TABS.map((t) => `${t}=${JSON.stringify(geos[t])}`).join(" "),
+    );
+    const animBad = switchReports.filter(
+      (r) => r.pads.length > 1 || r.contXs.length > 1 || r.mainWs.length > 1,
+    );
+    report(
+      "W6 切换窗零渐变帧（padding/内容区 x/主盒宽各只允许单值；多值＝宽度变化动画在播放）",
+      animBad.length === 0,
+      animBad.length === 0
+        ? `4 次切换全单值（${switchReports.map((r) => `${r.to}:${r.samples}帧`).join(" ")}）`
+        : animBad.map((r) => `${r.to} pads=${r.pads} contX=${r.contXs} mainW=${r.mainWs}`).join("；"),
     );
 
     fs.writeFileSync(
       path.join(OUT, `width-freeze_${new Date().toISOString().replace(/[:.]/g, "-")}.json`),
-      JSON.stringify({ at: new Date().toISOString(), frames: w.length, jumps, fontEvents: fe, results: RESULTS }, null, 2),
+      JSON.stringify(
+        {
+          at: new Date().toISOString(),
+          frames: w.length,
+          jumps,
+          fontEvents: fe,
+          geos,
+          switchReports,
+          results: RESULTS,
+        },
+        null,
+        2,
+      ),
     );
   } finally {
     chrome.kill();

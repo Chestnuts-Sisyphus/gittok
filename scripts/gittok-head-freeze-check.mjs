@@ -318,7 +318,13 @@ async function main() {
       return flat;
     };
     const cols0 = await cdp.eval(captureColumns);
-    const flat0 = decodeFlat(cols0);
+    // 对齐前缀解码（2026-10-08 修正）：两列卡高不同 ⇒ 虚拟窗按各自高度裁剪，窗口边缘
+    // 会差一张（ragged tail；今日 drip 数据刷新后 1400×900 稳定复现：col0 第 12 张恰好
+    // 折入折叠线下、col1 第 12 张在场——1920 档同 dist 零失配证明渲染无缺卡）。
+    // 逐位比对只取**行对齐区**（min 列长），ragged 尾张不参与——它的行为由 H4
+    // （首窗前缀保持＋append-only）覆盖，判据本身不放宽。
+    const rowsAligned = Math.min(...cols0.map((c) => c.length));
+    const flat0 = decodeFlat(cols0.map((c) => c.slice(0, rowsAligned)));
     const lower = (s) => s.toLowerCase();
     const prefixLen = Math.min(flat0.length, headRepos.length);
     let orderOk = prefixLen > 0;
@@ -331,9 +337,9 @@ async function main() {
       }
     }
     report(
-      "H2 头片序=会话序（冷窗解码回会话序 = 头片文件序前缀，逐位一致）",
+      "H2 头片序=会话序（冷窗解码回会话序 = 头片文件序前缀，逐位一致；比对限行对齐区）",
       orderOk,
-      `cols=${cols0.length} 比对 ${prefixLen} 张${firstMismatch >= 0 ? `，首位失配 @${firstMismatch}（DOM=${flat0[firstMismatch]} 头片=${headRepos[firstMismatch]}）` : ""}`,
+      `cols=${cols0.map((c) => c.length).join("/")} 对齐 ${rowsAligned} 行，比对 ${prefixLen} 张${firstMismatch >= 0 ? `，首位失配 @${firstMismatch}（DOM=${flat0[firstMismatch]} 头片=${headRepos[firstMismatch]}）` : ""}`,
     );
 
     // H5 冷窗不渲染残缺序：搜索 tab 输入查询 → 加载态（不是假空态/「没搜到」）

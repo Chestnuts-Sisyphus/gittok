@@ -1991,6 +1991,15 @@ export default function App() {
     return () => window.clearTimeout(t);
   }, [channelEnter]);
 
+  // 非 feed 上下文点频道（搜索/Agent/创作者页的常驻侧栏、移动端抽屉）：先回首页再切频道
+  const pickChannelGoFeed = useCallback(
+    (key: string) => {
+      setTab("feed");
+      switchFeedChannel(key);
+    },
+    [switchFeedChannel],
+  );
+
   const stats = useMemo(
     () => ({
       total: cards.length,
@@ -2044,121 +2053,149 @@ export default function App() {
         {/* N5（二十一轮）：主内容区边界——信息流/搜索/创作者页任何渲染崩溃都落进
             可恢复错误 UI（重试/刷新），永不整树卸载紫屏；console.error 留证据不吞错。 */}
         <ErrorBoundary label="主内容区">
-          <main className={`main${tab === "feed" || tab === "me" ? " main-feed" : ""}`}>
-            {/* === 创作者页栈：整页替换（feed/我的/搜索全部让位）；返回逐级 pop 后恢复原 tab 原频道 === */}
+          {/* 二十三代追加（2026-10-08）：main-feed 恒开。四个 tab 与创作者页统一住同一个
+              1866 居中壳（侧栏 192＋内容 1650，agent/creator 的 1200 阅读列在内容区内居中，
+              三档口径保留）——tab 切换不再翻转 .main 的 padding/max-width，栗子 10-08 报的
+              「agent→我的 / agent→搜索→首页 进入时宽度变化动画」从机制上消失（此前是
+              .main-feed 的 padding 过渡在类翻转时播放）。.main-feed 的 padding 过渡只剩
+              768 断点跨越一个职责（media 查询改 padding 仍走过渡，三轮甲A1 判据保留）。 */}
+          <main className="main main-feed">
+            {/* === 创作者页栈：内容区整页替换（壳与侧栏常驻——与四 tab 同一几何，返回逐级 pop 后恢复原 tab 原频道） === */}
             {viewStack.length > 0 && currentCreator ? (
-              <CreatorPage
-                owner={currentCreator}
-                projects={creatorCards}
-                likedSet={likedSet}
-                dislikedSet={dislikedSet}
-                isFollowing={followingSet.has(currentCreator)}
-                onToggleFollow={toggleFollow}
-                onOpen={handleOpenDetail}
-                onOpenCreator={openCreator}
-                onBack={closeCreator}
-              />
+              <div className="feed-layout">
+                <aside className="sidebar">
+                  <ChannelNav sections={sections} activeKey={feedChannel} onPick={pickChannelGoFeed} />
+                </aside>
+                <div className="feed-content">
+                  <CreatorPage
+                    owner={currentCreator}
+                    projects={creatorCards}
+                    likedSet={likedSet}
+                    dislikedSet={dislikedSet}
+                    isFollowing={followingSet.has(currentCreator)}
+                    onToggleFollow={toggleFollow}
+                    onOpen={handleOpenDetail}
+                    onOpenCreator={openCreator}
+                    onBack={closeCreator}
+                  />
+                </div>
+              </div>
             ) : (
               <>
-                {/* === Agent 接入 tab（四条路径 / 服务自检 / 三步接入） === */}
-                {tab === "agent" && <AgentPage />}
+                {/* === Agent 接入 tab（四条路径 / 服务自检 / 三步接入）——与四 tab 同壳同几何 === */}
+                {tab === "agent" && (
+                  <div className="feed-layout">
+                    <aside className="sidebar">
+                      <ChannelNav sections={sections} activeKey={feedChannel} onPick={pickChannelGoFeed} />
+                    </aside>
+                    <div className="feed-content">
+                      <AgentPage />
+                    </div>
+                  </div>
+                )}
 
-                {/* === 首页 tab === */}
-                {tab === "feed" && loading && (
-                  <div className="status">
-                    <div className="spinner" />
-                    <p>正在加载好项目…</p>
-                  </div>
-                )}
-                {tab === "feed" && error && (
-                  <div className="status error">
-                    <p>
-                      <AlertTriangle size={16} className="icon" />
-                      加载失败: {error}
-                    </p>
-                  </div>
-                )}
-                {tab === "feed" && !loading && !error && sections.length === 0 && (
-                  <div className="status">
-                    <p>
-                      <Inbox size={16} className="icon" />
-                      暂无内容
-                    </p>
-                  </div>
-                )}
-                {tab === "feed" && !loading && !error && sections.length > 0 && (
+                {/* === 首页 tab（壳与侧栏常驻：加载/错误/空态也在壳内，本 tab 几何从首帧起恒定） === */}
+                {tab === "feed" && (
                   <div className="feed-layout">
                     {/* 左侧边栏：目的地导航（发现组 + 分类组；移动端移入抽屉，桌面保持现状） */}
                     <aside className="sidebar">
                       <ChannelNav sections={sections} activeKey={feedChannel} onPick={switchFeedChannel} />
                     </aside>
                     <div className="feed-content">
-                      {showPrefPrompt && feedChannel === "recommended" && (
-                        <div className="pref-prompt">
-                          <p className="pref-title">想让推荐更懂你？选一个更想看的类别（随时可在设置里改）</p>
-                          <div className="pref-options">
-                            <button onClick={() => pickPreferredZone(zoneForCategory("ai"))}>
-                              <Bot size={16} /> AI
-                            </button>
-                            <button onClick={() => pickPreferredZone(zoneForCategory("fun"))}>
-                              <Gamepad2 size={16} /> 创意
-                            </button>
-                            <button onClick={() => pickPreferredZone(zoneForCategory("tool"))}>
-                              <Wrench size={16} /> 工具
-                            </button>
-                            <button onClick={() => pickPreferredZone(zoneForCategory("learning"))}>
-                              <BookOpen size={16} /> 资源
-                            </button>
-                          </div>
-                          <button className="pref-skip" onClick={() => pickPreferredZone(null)}>
-                            先随便看看
-                          </button>
-                        </div>
-                      )}
-                      {feedChannel === "following" && !activeSection && (
-                        <div className="status">
-                          <p>
-                            <Heart size={16} className="icon" />
-                            还没有关注任何人
-                          </p>
-                          <p className="hint">
-                            去项目卡片上点创作者名即可关注；关注保存在这台浏览器，TA 的项目和 TA star
-                            过的库内项目会出现在关注频道
-                          </p>
-                        </div>
-                      )}
-                      {/* 冻结式头片冷窗：切到尚无数据的频道 = 加载态（不渲染残缺序） */}
-                      {tab === "feed" && coldHeadOnly && !activeSection && (
+                      {loading && (
                         <div className="status">
                           <div className="spinner" />
                           <p>正在加载好项目…</p>
                         </div>
                       )}
-                      {activeSection && (
+                      {error && (
+                        <div className="status error">
+                          <p>
+                            <AlertTriangle size={16} className="icon" />
+                            加载失败: {error}
+                          </p>
+                        </div>
+                      )}
+                      {!loading && !error && sections.length === 0 && (
+                        <div className="status">
+                          <p>
+                            <Inbox size={16} className="icon" />
+                            暂无内容
+                          </p>
+                        </div>
+                      )}
+                      {!loading && !error && sections.length > 0 && (
                         <>
-                          {/* 频道头：**每个频道都显示**（含推荐）。张数 = 这个频道里真实可看的张数
+                          {showPrefPrompt && feedChannel === "recommended" && (
+                            <div className="pref-prompt">
+                              <p className="pref-title">
+                                想让推荐更懂你？选一个更想看的类别（随时可在设置里改）
+                              </p>
+                              <div className="pref-options">
+                                <button onClick={() => pickPreferredZone(zoneForCategory("ai"))}>
+                                  <Bot size={16} /> AI
+                                </button>
+                                <button onClick={() => pickPreferredZone(zoneForCategory("fun"))}>
+                                  <Gamepad2 size={16} /> 创意
+                                </button>
+                                <button onClick={() => pickPreferredZone(zoneForCategory("tool"))}>
+                                  <Wrench size={16} /> 工具
+                                </button>
+                                <button onClick={() => pickPreferredZone(zoneForCategory("learning"))}>
+                                  <BookOpen size={16} /> 资源
+                                </button>
+                              </div>
+                              <button className="pref-skip" onClick={() => pickPreferredZone(null)}>
+                                先随便看看
+                              </button>
+                            </div>
+                          )}
+                          {feedChannel === "following" && !activeSection && (
+                            <div className="status">
+                              <p>
+                                <Heart size={16} className="icon" />
+                                还没有关注任何人
+                              </p>
+                              <p className="hint">
+                                去项目卡片上点创作者名即可关注；关注保存在这台浏览器，TA 的项目和 TA star
+                                过的库内项目会出现在关注频道
+                              </p>
+                            </div>
+                          )}
+                          {/* 冻结式头片冷窗：切到尚无数据的频道 = 加载态（不渲染残缺序） */}
+                          {tab === "feed" && coldHeadOnly && !activeSection && (
+                            <div className="status">
+                              <div className="spinner" />
+                              <p>正在加载好项目…</p>
+                            </div>
+                          )}
+                          {activeSection && (
+                            <>
+                              {/* 频道头：**每个频道都显示**（含推荐）。张数 = 这个频道里真实可看的张数
                             （池子长度），不是本批渲染数——栗子 2026-09-14：「现在都写 60 张会让
                             用户觉得这个频道只有六十张，这是欺骗」。无限滚动 + 真实张数缺一不可。 */}
-                          <div className="channel-head">
-                            <span className="ch-icon">
-                              <SectionIcon icon={activeSection.icon} size={18} />
-                            </span>
-                            <span className="ch-title">{activeSection.title}</span>
-                            <span className="ch-count">
-                              共 {activeSection.cards.length} 张 · {activeSection.desc}
-                            </span>
-                          </div>
-                          <FeedVirtualList
-                            cards={activeSection.cards}
-                            likedSet={likedSet}
-                            dislikedSet={dislikedSet}
-                            onOpen={handleOpenDetail}
-                            channel={feedChannel}
-                            onOpenCreator={openCreator}
-                            entering={channelEnter}
-                            onExpose={handleExpose}
-                            onEndHint={`已加载全部 ${activeSection.cards.length} 个项目`}
-                          />
+                              <div className="channel-head">
+                                <span className="ch-icon">
+                                  <SectionIcon icon={activeSection.icon} size={18} />
+                                </span>
+                                <span className="ch-title">{activeSection.title}</span>
+                                <span className="ch-count">
+                                  共 {activeSection.cards.length} 张 · {activeSection.desc}
+                                </span>
+                              </div>
+                              <FeedVirtualList
+                                cards={activeSection.cards}
+                                likedSet={likedSet}
+                                dislikedSet={dislikedSet}
+                                onOpen={handleOpenDetail}
+                                channel={feedChannel}
+                                onOpenCreator={openCreator}
+                                entering={channelEnter}
+                                onExpose={handleExpose}
+                                onEndHint={`已加载全部 ${activeSection.cards.length} 个项目`}
+                              />
+                            </>
+                          )}
                         </>
                       )}
                     </div>
@@ -2475,161 +2512,166 @@ export default function App() {
                   </div>
                 )}
 
-                {/* === 搜索 tab === */}
+                {/* === 搜索 tab（与四 tab 同壳同几何；冷窗/空态/结果全部在壳内容区内） === */}
                 {tab === "search" && (
-                  <>
-                    <div className="search-bar">
-                      <input
-                        type="text"
-                        className="search-input"
-                        placeholder="搜项目名、描述、标签…"
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        autoFocus
-                      />
-                      {/* 二轮 G6：搜索空态的热门预览套进与主信息流**同一个内容容器**
+                  <div className="feed-layout">
+                    <aside className="sidebar">
+                      <ChannelNav sections={sections} activeKey={feedChannel} onPick={pickChannelGoFeed} />
+                    </aside>
+                    <div className="feed-content">
+                      <div className="search-bar">
+                        <input
+                          type="text"
+                          className="search-input"
+                          placeholder="搜项目名、描述、标签…"
+                          value={searchQuery}
+                          onChange={(e) => setSearchQuery(e.target.value)}
+                          autoFocus
+                        />
+                        {/* 二轮 G6：搜索空态的热门预览套进与主信息流**同一个内容容器**
                         （.feed-content 同宽）——同视口下预览与主信息流的列数/卡宽从机制上一致，
                         而不是「同一规则、不同容器宽」的貌合神离（预览容器没有侧栏，1600 档会多出一列）。 */}
-                      {searchQuery && (
-                        <button className="search-clear" onClick={() => setSearchQuery("")}>
-                          <X size={16} />
-                        </button>
-                      )}
-                    </div>
-
-                    {coldHeadOnly ? (
-                      /* 冻结式头片冷窗：搜索吃全量数据——到货前保持加载态，不渲染残缺序 */
-                      <div className="status">
-                        <div className="spinner" />
-                        <p>正在加载好项目…</p>
-                      </div>
-                    ) : (
-                      <>
-                        {/* 空状态：推荐搜索词 + 分类直达 + 热门项目预览（G6：与主信息流同一内容容器与内距口径） */}
-                        {!searchQuery && (
-                          <div className="search-empty search-empty-unified">
-                            <div className="search-chips">
-                              <div className="search-empty-title">试试搜索</div>
-                              <div className="chip-row">
-                                {topicChips.map((t) => (
-                                  <button key={t} className="search-chip" onClick={() => setSearchQuery(t)}>
-                                    {t}
-                                  </button>
-                                ))}
-                              </div>
-                            </div>
-
-                            <div className="search-cats">
-                              <div className="search-empty-title">分类直达</div>
-                              <div className="cat-row">
-                                {CATEGORY_SECTIONS.map((s) => (
-                                  <button
-                                    key={s.key}
-                                    className="search-cat"
-                                    onClick={() => {
-                                      setTab("feed");
-                                      switchFeedChannel(s.key);
-                                    }}
-                                  >
-                                    <span className="cat-icon">
-                                      <SectionIcon icon={s.icon} size={18} />
-                                    </span>
-                                    <span className="cat-text">{s.title}</span>
-                                  </button>
-                                ))}
-                              </div>
-                            </div>
-
-                            <div className="search-hot">
-                              <div className="search-empty-title">热门项目</div>
-                              <div
-                                className="feed-list"
-                                ref={hotColsRef}
-                                data-cols={hotCols}
-                                style={{ "--feed-cols": hotCols } as React.CSSProperties}
-                              >
-                                {/* 十二轮：列式容器——i%K 轮转入列（与主信息流同构） */}
-                                {buildColumnIndex(hotPreview.length, hotCols).map((idxs, c) => (
-                                  <div className="feed-col" key={c}>
-                                    {idxs.map((i) => {
-                                      const card = hotPreview[i];
-                                      return (
-                                        <FeedCardMemo
-                                          key={card.repo}
-                                          card={card}
-                                          liked={feedback.likes.includes(card.repo)}
-                                          ignored={dislikedSet.has(card.repo)}
-                                          onOpen={handleOpenDetail}
-                                          onOpenCreator={openCreator}
-                                          tagSlots={hotShape.tagSlots}
-                                        />
-                                      );
-                                    })}
-                                  </div>
-                                ))}
-                              </div>
-                            </div>
-                          </div>
+                        {searchQuery && (
+                          <button className="search-clear" onClick={() => setSearchQuery("")}>
+                            <X size={16} />
+                          </button>
                         )}
+                      </div>
 
-                        {/* 创作者分组（结果顶部；默认只展开前 4 位防霸屏，点卡片打开创作者页） */}
-                        {searchQuery && searchCreators.length > 0 && (
-                          <div className="search-creators">
-                            <div className="search-group-title">创作者</div>
-                            <div className="creator-list">
-                              {(showAllCreators ? searchCreators : searchCreators.slice(0, 4)).map(
-                                ({ owner, count }) => (
-                                  <div
-                                    key={owner}
-                                    className="creator-item"
-                                    title={`查看 ${owner} 的创作者页`}
-                                    onClick={() => openCreator(owner)}
-                                  >
-                                    <GithubAvatar owner={owner} size={56} className="creator-item-avatar" />
-                                    <span className="creator-item-name">{owner}</span>
-                                    <span className="creator-item-count">{count} 个项目</span>
-                                  </div>
-                                ),
+                      {coldHeadOnly ? (
+                        /* 冻结式头片冷窗：搜索吃全量数据——到货前保持加载态，不渲染残缺序 */
+                        <div className="status">
+                          <div className="spinner" />
+                          <p>正在加载好项目…</p>
+                        </div>
+                      ) : (
+                        <>
+                          {/* 空状态：推荐搜索词 + 分类直达 + 热门项目预览（G6：与主信息流同一内容容器与内距口径） */}
+                          {!searchQuery && (
+                            <div className="search-empty search-empty-unified">
+                              <div className="search-chips">
+                                <div className="search-empty-title">试试搜索</div>
+                                <div className="chip-row">
+                                  {topicChips.map((t) => (
+                                    <button key={t} className="search-chip" onClick={() => setSearchQuery(t)}>
+                                      {t}
+                                    </button>
+                                  ))}
+                                </div>
+                              </div>
+
+                              <div className="search-cats">
+                                <div className="search-empty-title">分类直达</div>
+                                <div className="cat-row">
+                                  {CATEGORY_SECTIONS.map((s) => (
+                                    <button
+                                      key={s.key}
+                                      className="search-cat"
+                                      onClick={() => {
+                                        setTab("feed");
+                                        switchFeedChannel(s.key);
+                                      }}
+                                    >
+                                      <span className="cat-icon">
+                                        <SectionIcon icon={s.icon} size={18} />
+                                      </span>
+                                      <span className="cat-text">{s.title}</span>
+                                    </button>
+                                  ))}
+                                </div>
+                              </div>
+
+                              <div className="search-hot">
+                                <div className="search-empty-title">热门项目</div>
+                                <div
+                                  className="feed-list"
+                                  ref={hotColsRef}
+                                  data-cols={hotCols}
+                                  style={{ "--feed-cols": hotCols } as React.CSSProperties}
+                                >
+                                  {/* 十二轮：列式容器——i%K 轮转入列（与主信息流同构） */}
+                                  {buildColumnIndex(hotPreview.length, hotCols).map((idxs, c) => (
+                                    <div className="feed-col" key={c}>
+                                      {idxs.map((i) => {
+                                        const card = hotPreview[i];
+                                        return (
+                                          <FeedCardMemo
+                                            key={card.repo}
+                                            card={card}
+                                            liked={feedback.likes.includes(card.repo)}
+                                            ignored={dislikedSet.has(card.repo)}
+                                            onOpen={handleOpenDetail}
+                                            onOpenCreator={openCreator}
+                                            tagSlots={hotShape.tagSlots}
+                                          />
+                                        );
+                                      })}
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            </div>
+                          )}
+
+                          {/* 创作者分组（结果顶部；默认只展开前 4 位防霸屏，点卡片打开创作者页） */}
+                          {searchQuery && searchCreators.length > 0 && (
+                            <div className="search-creators">
+                              <div className="search-group-title">创作者</div>
+                              <div className="creator-list">
+                                {(showAllCreators ? searchCreators : searchCreators.slice(0, 4)).map(
+                                  ({ owner, count }) => (
+                                    <div
+                                      key={owner}
+                                      className="creator-item"
+                                      title={`查看 ${owner} 的创作者页`}
+                                      onClick={() => openCreator(owner)}
+                                    >
+                                      <GithubAvatar owner={owner} size={56} className="creator-item-avatar" />
+                                      <span className="creator-item-name">{owner}</span>
+                                      <span className="creator-item-count">{count} 个项目</span>
+                                    </div>
+                                  ),
+                                )}
+                              </div>
+                              {searchCreators.length > 4 && (
+                                <button
+                                  className="creator-toggle"
+                                  onClick={() => setShowAllCreators((v) => !v)}
+                                >
+                                  {showAllCreators
+                                    ? "收起创作者"
+                                    : `展开其余 ${searchCreators.length - 4} 位创作者`}
+                                </button>
                               )}
                             </div>
-                            {searchCreators.length > 4 && (
-                              <button
-                                className="creator-toggle"
-                                onClick={() => setShowAllCreators((v) => !v)}
-                              >
-                                {showAllCreators
-                                  ? "收起创作者"
-                                  : `展开其余 ${searchCreators.length - 4} 位创作者`}
-                              </button>
-                            )}
-                          </div>
-                        )}
+                          )}
 
-                        {/* 项目分组 */}
-                        {searchQuery && searchResults.length > 0 && (
-                          <>
-                            <div className="search-group-title">项目</div>
-                            <FeedVirtualList
-                              cards={searchResults}
-                              likedSet={likedSet}
-                              dislikedSet={dislikedSet}
-                              onOpen={handleOpenDetail}
-                              onOpenCreator={openCreator}
-                            />
-                          </>
-                        )}
+                          {/* 项目分组 */}
+                          {searchQuery && searchResults.length > 0 && (
+                            <>
+                              <div className="search-group-title">项目</div>
+                              <FeedVirtualList
+                                cards={searchResults}
+                                likedSet={likedSet}
+                                dislikedSet={dislikedSet}
+                                onOpen={handleOpenDetail}
+                                onOpenCreator={openCreator}
+                              />
+                            </>
+                          )}
 
-                        {searchQuery && searchResults.length === 0 && searchCreators.length === 0 && (
-                          <div className="status">
-                            <p>
-                              <Search size={16} className="icon" />
-                              没搜到，换个关键词试试？
-                            </p>
-                          </div>
-                        )}
-                      </>
-                    )}
-                  </>
+                          {searchQuery && searchResults.length === 0 && searchCreators.length === 0 && (
+                            <div className="status">
+                              <p>
+                                <Search size={16} className="icon" />
+                                没搜到，换个关键词试试？
+                              </p>
+                            </div>
+                          )}
+                        </>
+                      )}
+                    </div>
+                  </div>
                 )}
               </>
             )}
@@ -2654,7 +2696,7 @@ export default function App() {
           sections={sections}
           activeKey={feedChannel}
           onPick={(key) => {
-            switchFeedChannel(key);
+            pickChannelGoFeed(key);
             setDrawerOpen(false);
           }}
         />
