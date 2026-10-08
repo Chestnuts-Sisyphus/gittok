@@ -192,7 +192,7 @@ jobs:
       # +2.87pp x 300px = the observed 5px). Fix = preload all four weights + re-calibrated
       # NSC fallbacks. Gate: zero width jumps after fonts loaded, swap window <=1 jump and
       # <=8px, zero width jumps across feed.json arrival, four weights registered.
-      - name: Width freeze gate（二十三代 N3b：装载后零宽度跳·换装窗 ≤1 跳 ≤8px·数据到货零宽度跳·四字重注册）
+      - name: Width freeze gate（二十三代 N3b：装载后零宽度跳·换装窗 ≤1 跳 ≤8px·数据到货零宽度跳·四字重注册·tab 切换几何一致）
         env:
           CHROME_PATH: /usr/bin/google-chrome
         run: node scripts/gittok-width-freeze-check.mjs

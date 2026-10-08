@@ -18,6 +18,8 @@
  *      （冻结式头片姊妹不变量：数据到货不改任何已渲染盒宽）。
  *   W4 四字重在 loadingdone 集内：Lora 400/500/600/700 的 @font-face 必须全部注册
  *      （少一档 = 该档换装窗回到异步晚到，二十轮 600 档错档复活的温床）。
+ *   W5 tab 切换几何一致（二十三代 N3b）：同视口下 首页↔我的 两 tab 的外壳/内容区
+ *      x/width 逐位一致（2026-09-23 居中壳漏 me 的同类缺口：2560 实测切换跳 334px）。
  *
  * 用法：node scripts/gittok-width-freeze-check.mjs
  * 环境变量：CHROME_PATH / GITTK_REPO / GITTK_DIST / GITTK_WIDTH_OUT / GITTK_WIDTH_PORT /
@@ -289,6 +291,35 @@ async function main() {
       "W3 数据到货零宽度跳变（冻结式头片姊妹不变量）",
       arrivalJumps.length === 0,
       `feed.json@${feedDone}ms ±1s 跳变 ${arrivalJumps.length}${arrivalJumps.length ? " " + JSON.stringify(arrivalJumps) : ""}`,
+    );
+
+    // W5：tab 切换几何一致（二十三代 N3b 根修判据）：首页↔我的 外壳/内容区 x/width 逐位一致
+    //（cdp.eval 会把表达式再包一层 IIFE——这里只给语句体，return 由包裹层承接）
+    const snapGeo = `
+      const shell = document.querySelector('.feed-layout, .me-layout');
+      const content = document.querySelector('.feed-content');
+      return { shellX: shell ? Math.round(shell.getBoundingClientRect().x) : -1,
+               shellW: shell ? Math.round(shell.getBoundingClientRect().width) : -1,
+               contX: content ? Math.round(content.getBoundingClientRect().x) : -1,
+               contW: content ? Math.round(content.getBoundingClientRect().width) : -1 };`;
+    const feedGeo = await cdp.eval(snapGeo);
+    await cdp.eval(
+      `(() => { const t = Array.from(document.querySelectorAll('.tabs .tab')).find(b => b.textContent.includes('我的')); if (t) t.click(); return 1; })()`,
+    );
+    await new Promise((r) => setTimeout(r, 1200));
+    const meGeo = await cdp.eval(snapGeo);
+    await cdp.eval(
+      `(() => { const t = Array.from(document.querySelectorAll('.tabs .tab')).find(b => b.textContent.includes('首页')); if (t) t.click(); return 1; })()`,
+    );
+    const geoOk =
+      feedGeo.shellX === meGeo.shellX &&
+      feedGeo.shellW === meGeo.shellW &&
+      feedGeo.contX === meGeo.contX &&
+      feedGeo.contW === meGeo.contW;
+    report(
+      "W5 tab 切换几何一致（首页↔我的外壳/内容区逐位同值，居中壳轮同类缺口根修）",
+      geoOk,
+      `feed=${JSON.stringify(feedGeo)} me=${JSON.stringify(meGeo)}`,
     );
 
     fs.writeFileSync(
