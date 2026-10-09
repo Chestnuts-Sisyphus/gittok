@@ -1,0 +1,53 @@
+{
+  "zh": {
+    "ai-cli": [
+      "Claude Code/OpenAI Codex等工具摘要生成失败",
+      "Gemini CLI v0.65.0-nightly 极高活跃度",
+      "GitHub Copilot CLI 高频处理模型稳定性",
+      "Kimi Code CLI 与 DeepSeek TUI 过去24小时无活动",
+      "OpenCode 高频处理Windows守护进程与持久化",
+      "Pi与Qwen Code聚焦MCP与子代理生命周期管理"
+    ],
+    "ai-agents": [
+      "LobsterAI发布22个PR快速迭代",
+      "IronClaw与NanoClaw保持稳定功能扩张",
+      "Pico/NullClaw项目活跃度极低甚至停滞",
+      "IronClaw引入iMessage/SMS原生通信渠道",
+      "LobsterAI实现全链路TraceID可观测性",
+      "LobsterAI具备API自动检测降低切换门槛"
+    ],
+    "ai-trending": [
+      "OpenClaw高星AI自动化框架登顶",
+      "morluto/rea单日暴增7738星逆向工程",
+      "mattpocock/skills工程师技能合集飙升",
+      "obra/superpowers聚焦Agent技能框架",
+      "AI触角向二进制逆向与系统级交互延伸",
+      "智能体工作流与底层硬件操作获爆发关注"
+    ],
+    "ai-arxiv": [
+      "Decoupling Exploration from Optimization 解耦探索与优化",
+      "EngramEdit基于条件记忆实现解耦知识更新",
+      "RECAST自适应证据路由替代固定RAG",
+      "PHRBench构建后幻觉推理行为基准",
+      "RobotWorld跨任务机器人使用仿真基准",
+      "A Society of Researchers设计自主研究机构"
+    ],
+    "ai-hf": [
+      "Qwen3.8-27B下载量超680万旗舰多模态",
+      "Lightricks/LTX-2.5图像到视频生成模型",
+      "deepseek-ai/DeepSeek-V4.1-Flash专注图像理解",
+      "DavidAU/Qwen3.8-27B-TURBO GGUF本地部署",
+      "ISTA-DASLab/Qwen3.8-27B-GSQ-GGUF量化版",
+      "convaiinnovations/laya系统化指令微调模型"
+    ],
+    "ai-community": [
+      "Kaggle基准挑战赛探讨AI任务重试策略",
+      "AI加速交付≠工程成熟警示Demo陷阱",
+      "端到端YOLO26n离线模型训练实战",
+      "AI生成数学结果验证体系三天撤稿",
+      "多语言AI偏差葡萄牙语性能降12分",
+      "Token压缩优化反而导致Agent成本上升"
+    ]
+  },
+  "en": {}
+}
