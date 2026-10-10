@@ -29,7 +29,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-09T16:09:21Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "adambenhassen/ryanair-mcp",
@@ -76,22 +76,6 @@
     "retryCount": 1
   },
   {
-    "repo": "ajkdrag/otterly",
-    "desc": "A desktop app for Markdown notes. Write, search, link notes, and keep every file in your own folder.",
-    "stars": 165,
-    "language": "TypeScript",
-    "topics": [
-      "note-taking"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-02-05T06:51:45Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-05T06:55:37Z",
-    "retryCount": 6
-  },
-  {
     "repo": "Akun-python/autumn-recruitment",
     "desc": "Autumn-Recruit Algo Notes(秋招算法学习仓库)，面向大模型时代的算法、工程与AI学习共建仓库。从数学基础、数据结构，到机器学习、深度学习、LLM、Agent、AI-Infra、语音与数据科学，通过「理解→推导→手写 → 运行 → 验证 → 复盘构建可持续迭代的知识体系。",
     "stars": 221,
@@ -105,7 +89,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-04T09:20:57Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "alamin147/lost-and-found",
@@ -121,7 +105,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-08T17:37:36Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "alexgreensh/anidoodle",
@@ -129,7 +113,8 @@
     "stars": 870,
     "language": "TypeScript",
     "topics": [
-      "creative-coding"
+      "creative-coding",
+      "generative-art"
     ],
     "source": "search",
     "starGrowth": 0,
@@ -186,7 +171,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-09T09:59:12Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "artemnovichkov/Octavo",
@@ -202,7 +187,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-09T05:59:28Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "BaggerFast/Pacman",
@@ -218,7 +203,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-05T20:05:23Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "bagidea/bagidea-office",
@@ -277,7 +262,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-06T19:52:34Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "chubbyguan/chubbyskills",
@@ -293,23 +278,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-08T09:43:23Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
-    "repo": "cicloid/awesome-fm-1",
-    "desc": "A curated list of resources, custom firmware, tools and open source work around the M-VAVE FM-1 pocket FM synthesizer.",
-    "stars": 19,
-    "language": "",
+    "repo": "cluster1900/ai-engineering-from-scratch-zh",
+    "desc": "《AI Engineering from Scratch》中文版：20 阶段 500+ 节课，从线性代数到 Agent、MCP，Python/TS/Rust/Julia 全覆盖",
+    "stars": 14,
+    "language": "Python",
     "topics": [
-      "synthesizer"
+      "course"
     ],
     "source": "search",
-    "starGrowth": 1,
-    "createdAt": "2026-10-05T22:57:34Z",
-    "silentRounds": 1,
+    "starGrowth": 0,
+    "createdAt": "2026-05-24T12:21:18Z",
+    "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-05T23:32:27Z",
-    "retryCount": 6
+    "ts": "2026-10-08T23:26:35Z",
+    "retryCount": 1
   },
   {
     "repo": "Critlist/restoHack",
@@ -317,7 +302,8 @@
     "stars": 56,
     "language": "C",
     "topics": [
-      "retrocomputing"
+      "retrocomputing",
+      "roguelike"
     ],
     "source": "search",
     "starGrowth": 0,
@@ -325,7 +311,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-09T23:31:34Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "d-li14/involution",
@@ -355,7 +341,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-09-27T03:30:23Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "DaoyuanLi2816/can-i-finetune-this",
@@ -401,7 +387,7 @@
     "silentRounds": 8,
     "bigbros": [],
     "ts": "2026-09-30T23:37:45.729Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "datawhalechina/base-llm",
@@ -417,7 +403,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-03T16:00:10.335Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "DDD27433/openbachelors-roguelike",
@@ -433,7 +419,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-06T05:59:01Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Derpyu520/qq-bridge",
@@ -465,7 +451,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-07T13:07:36Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "devswha/herdr-web-ui",
@@ -513,23 +499,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-09T15:16:28Z",
-    "retryCount": 3
-  },
-  {
-    "repo": "etcetc000/kitbasher",
-    "desc": "Add new sound models to your Machinedrum's OS, in the browser.",
-    "stars": 7,
-    "language": "TypeScript",
-    "topics": [
-      "synthesizer"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-10-06T17:45:20Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-09T08:57:44Z",
-    "retryCount": 1
+    "retryCount": 4
   },
   {
     "repo": "facebookarchive/C3D",
@@ -543,7 +513,7 @@
     "silentRounds": 8,
     "bigbros": [],
     "ts": "2026-09-30T23:37:45.729Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "FailproofAI/failproofai",
@@ -559,7 +529,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-07T09:43:48Z",
-    "retryCount": 3
+    "retryCount": 4
+  },
+  {
+    "repo": "fandesfyf/JamTools",
+    "desc": "JamTools是一个跨平台的小工具集类软件，支持Windows7/8/10/11、Macos、ubuntu系统(其他系统可以直接从源码编译打包)。包含了(滚动/区域)截屏、录屏、文字识别、多种语言互译、多媒体格式转换、鼠标键盘动作录制播放、局域网文件传输、聊天机器人等功能，完全开源!",
+    "stars": 733,
+    "language": "Python",
+    "topics": [
+      "chatbot"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2020-10-11T10:55:38Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-28T07:52:09Z",
+    "retryCount": 1
   },
   {
     "repo": "gcy6630/city-food-map-skill",
@@ -591,7 +577,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-08T15:57:59Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "golanlevin/DrawingWithMachines",
@@ -608,7 +594,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-09T02:18:12Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "golanlevin/p5.plotSvg",
@@ -639,7 +625,7 @@
     "silentRounds": 8,
     "bigbros": [],
     "ts": "2026-09-30T23:37:45.729Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "gymcoach-app/gymcoach",
@@ -655,7 +641,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-09T13:56:29Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "huzjie/chonkforge",
@@ -671,23 +657,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-07T05:14:24Z",
-    "retryCount": 3
-  },
-  {
-    "repo": "Iamsdt/chess",
-    "desc": "♟️ AI-powered chess trainer with Stockfish 18 + LLM coaching. Learn chess with real-time explanations, engine analysis, puzzles, openings, and endgame training — directly in your browser",
-    "stars": 29,
-    "language": "JavaScript",
-    "topics": [
-      "chess"
-    ],
-    "source": "search",
-    "starGrowth": 1,
-    "createdAt": "2026-03-01T12:06:41Z",
-    "silentRounds": 3,
-    "bigbros": [],
-    "ts": "2026-10-08T17:27:45Z",
-    "retryCount": 6
+    "retryCount": 1
   },
   {
     "repo": "IbrahimSobh/llms",
@@ -719,7 +689,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-09T11:50:57Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "inseq-team/inseq",
@@ -735,7 +705,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-07T07:33:02Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "Intelligent-CAT-Lab/BugFarm",
@@ -751,23 +721,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-08T17:02:20Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "interview-ps/InterviewOS",
-    "desc": "The open-source app everyone uses to prepare for interview",
-    "stars": 7,
-    "language": "Python",
-    "topics": [
-      "interview"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-10-02T10:03:21Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-08T13:16:32Z",
-    "retryCount": 6
+    "retryCount": 3
   },
   {
     "repo": "jevakallio/git-notify",
@@ -781,23 +735,7 @@
     "silentRounds": 10,
     "bigbros": [],
     "ts": "2026-09-29T00:20:24.882Z",
-    "retryCount": 3
-  },
-  {
-    "repo": "JoeSz/WordPress-Plugin-Boilerplate-Tutorial",
-    "desc": "Tutorials and Examples for WordPress Plugin Boilerplate, a foundation for WordPress Plugin Development.",
-    "stars": 401,
-    "language": "JavaScript",
-    "topics": [
-      "tutorial"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2016-11-16T09:16:03Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-07T08:29:26Z",
-    "retryCount": 6
+    "retryCount": 4
   },
   {
     "repo": "jokierpro/Top-Conference-Best-Papers",
@@ -813,23 +751,23 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-09T07:12:55Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
-    "repo": "jrgilbertson/networked-thinking",
-    "desc": "An Obsidian companion vault for putting Networked Thinking into practice, with the notes, templates, and folder structure from the book.",
-    "stars": 154,
+    "repo": "JushiZen/Nimbus.Player",
+    "desc": "云幕 Nimbus Player: 产品介绍与问题反馈",
+    "stars": 122,
     "language": "",
     "topics": [
-      "note-taking"
+      "anime"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2022-01-26T19:07:46Z",
-    "silentRounds": 1,
+    "createdAt": "2026-05-23T15:09:05Z",
+    "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-21T16:36:57Z",
-    "retryCount": 6
+    "ts": "2026-10-02T16:29:09Z",
+    "retryCount": 1
   },
   {
     "repo": "kcy4334-lgtm/translate-book-arxiv",
@@ -845,7 +783,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-09T00:05:46Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "kindlyfire/voltis",
@@ -878,22 +816,6 @@
     "retryCount": 1
   },
   {
-    "repo": "Leflexe/crava-foco-pagamentos-gfx",
-    "desc": "2026 Commission Tracker App for GFX Artists: Pix, Robux, PayPal Vault and Cloud Sync on Windows",
-    "stars": 68,
-    "language": "HTML",
-    "topics": [
-      "pixel-art"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-09-22T19:32:37Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-09T21:24:25Z",
-    "retryCount": 6
-  },
-  {
     "repo": "llm-d/llm-d-router",
     "desc": "llm-d Router: The intelligent entry point for inference requests",
     "stars": 387,
@@ -905,7 +827,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-06T13:04:24.792Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "LosaLosSantos/aurelio-finance",
@@ -921,7 +843,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-09T11:29:00Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "lpaiu-cs/osk-system",
@@ -953,7 +875,23 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-09T13:02:40Z",
-    "retryCount": 4
+    "retryCount": 5
+  },
+  {
+    "repo": "markormesher/darwin-to-mqtt",
+    "desc": "Publish National Rail departures to MQTT",
+    "stars": 2,
+    "language": "Go",
+    "topics": [
+      "travel"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2021-12-05T10:42:00Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-09T13:06:05Z",
+    "retryCount": 1
   },
   {
     "repo": "meowstr/chicken-raylib",
@@ -969,7 +907,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-09T05:38:08Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "mkhsu2002/EC-Designer",
@@ -1015,7 +953,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-06T13:04:24.792Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "nhartland/forma",
@@ -1047,39 +985,23 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-08T15:28:44Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "phuryn/work-humanizer",
-    "desc": "A humanizer for work writing: takes the AI tone out without changing what your text says or commits to. Agent Skill + evidence: blind judges, hand-checked meaning changes, Pangram.",
-    "stars": 36,
-    "language": "Python",
-    "topics": [
-      "writing"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-10-09T08:02:57Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-09T10:33:43Z",
     "retryCount": 1
   },
   {
-    "repo": "purecodework/bookllm",
-    "desc": "Translate books and documents with LLMs, featuring glossary extraction, review, and polishing pipelines.",
-    "stars": 46,
-    "language": "TypeScript",
+    "repo": "pinguy/c_optimizer",
+    "desc": "Tiny Linux demoscene/sizecoding C optimizer and runnable packer",
+    "stars": 0,
+    "language": "Python",
     "topics": [
-      "ebook"
+      "demoscene"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2026-05-11T03:48:47Z",
-    "silentRounds": 1,
+    "createdAt": "2026-06-17T00:58:55Z",
+    "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-06T00:21:14Z",
-    "retryCount": 2
+    "ts": "2026-10-08T18:03:29Z",
+    "retryCount": 1
   },
   {
     "repo": "RobRoyce/knowledge",
@@ -1096,7 +1018,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-08T18:15:42Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "samsonovss/ESPHome-Treadmill-FTMS",
@@ -1112,7 +1034,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-09T22:13:54Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "sebattfg/ZeroScript-Free",
@@ -1126,23 +1048,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-05T14:05:45.115Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "severak/cyber-music-studio",
-    "desc": "not your usual DAW",
-    "stars": 16,
-    "language": "HTML",
-    "topics": [
-      "synthesizer"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2020-11-30T16:15:50Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-09T22:17:00Z",
-    "retryCount": 1
+    "retryCount": 3
   },
   {
     "repo": "sileod/llm-theory-of-mind",
@@ -1158,7 +1064,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-09T16:23:58Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "swordsalah/NEXORA-Intent-to-Cloth-Pipeline",
@@ -1174,7 +1080,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-09T21:26:15Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Tencent-Hunyuan/Hy-MT2",
@@ -1191,22 +1097,6 @@
     "retryCount": 2
   },
   {
-    "repo": "thesnarkitecht/rembrandt",
-    "desc": "A free photo editor. No account, no subscription, no tracking. RAW, masks and on-device AI for macOS, Windows and Linux. Self-hostable.",
-    "stars": 81,
-    "language": "C++",
-    "topics": [
-      "photography"
-    ],
-    "source": "search",
-    "starGrowth": 39,
-    "createdAt": "2026-09-29T18:25:04Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-09T13:05:43Z",
-    "retryCount": 4
-  },
-  {
     "repo": "timschmidt/synaps-cad",
     "desc": "The AI-powered 3D CAD IDE — edit code, visualize in 3D, and reshape your designs with natural language.",
     "stars": 373,
@@ -1220,7 +1110,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-05T16:52:51Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "TserenTserenov/FMT-exocortex-template",
@@ -1235,8 +1125,8 @@
     "createdAt": "2026-02-10T12:42:33Z",
     "silentRounds": 3,
     "bigbros": [],
-    "ts": "2026-10-08T13:35:25Z",
-    "retryCount": 4
+    "ts": "2026-10-09T21:14:49Z",
+    "retryCount": 1
   },
   {
     "repo": "tugcantopaloglu/godot-mcp",
@@ -1252,7 +1142,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-09T18:28:09Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "UnusualAlpha/ib-gateway-docker",
@@ -1268,7 +1158,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-06T14:48:06Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "ZAYED-ENG-IT/Genrm-Lab-Nine-Floor-Duel",
@@ -1284,7 +1174,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-09T21:25:09Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "zmy15/interview-agent",
@@ -1300,7 +1190,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-09T19:47:01Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "zvenson/dinghy",
@@ -1316,6 +1206,6 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-09T14:12:09Z",
-    "retryCount": 2
+    "retryCount": 3
   }
 ]
