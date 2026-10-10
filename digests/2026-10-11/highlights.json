@@ -1,0 +1,62 @@
+{
+  "zh": {
+    "ai-cli": [
+      "GitHub Copilot CLI 发布 v1.0.96-2 修复稳定性",
+      "OpenCode 跻身活跃度榜首 PR与Issue双高",
+      "MCP协议成主流工具核心集成标准",
+      "Copilot与OpenCode同步攻克长会话崩溃难题",
+      "Pi 工具专注 Linux/Windows 零配置体验",
+      "Kimi Code CLI 处于文档完善与标准化阶段"
+    ],
+    "ai-agents": [
+      "OpenClaw 生态总 Issue/PR 达 1000 数量级",
+      "NanoBot 合并 5 项关键 PR 修复内存与安全",
+      "Moltis 新增项目进入 OpenClaw 生态列表",
+      "Ollama 本地模型运行今日星增 1200+",
+      "REA 框架今日暴涨 2.5 万星居榜首",
+      "agent-skills 获得显著关注星增 750+"
+    ]
+  },
+  "en": {
+    "ai-cli": [
+      "Claude Code: Survive compaction & /clear",
+      "Claude Code: Security guidance API gateway fix",
+      "Claude Code: Windows & remote reliability",
+      "Claude Code: Long-running state retention",
+      "Claude Code: Auto mode permissions workflow",
+      "Claude Code: Context compaction UX pain point"
+    ],
+    "ai-agents": [
+      "Hermes Agent: 500 issues & PRs",
+      "Hermes Agent: Session state bug fixes",
+      "Hermes Agent: Gateway/replay stability",
+      "Hermes Agent: Build/rebuild stability",
+      "Hermes Agent: Security boundary enforcement",
+      "Hermes Agent: Session-persistence consistency"
+    ],
+    "ai-trending": [
+      "Skills framework sets new standards",
+      "rea framework reverse-engineers binaries",
+      "Morluto/rea massive breakout project",
+      "OpenCode review enterprise scale tool",
+      "Firecrawl web-scraping for AI agents",
+      "Ollama manages DeepSeek & Gemma locally"
+    ],
+    "ai-hf": [
+      "Qwen3.8-27B: Top rated LLM",
+      "Qwen3.8-27B: 6.8M downloads",
+      "Qwen/Qwen-Image-2.1: Most loved image gen",
+      "Lightricks/LTX-2.5: 7k+ likes",
+      "DeepSeek-V4.1-Flash: 4k+ likes",
+      "Qwen3.8-Flash-Next: High efficiency"
+    ],
+    "ai-community": [
+      "3am Agent: Emailed 400 wrong customers",
+      "Touch Grass: AI for real-world interaction",
+      "Models fail on simple logic tasks",
+      "Context compaction: Managing 200k tokens",
+      "Distilled 397B to 4B for $1.60",
+      "Kaggle: Models knew new names wrong"
+    ]
+  }
+}
