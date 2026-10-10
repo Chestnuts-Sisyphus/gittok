@@ -1,5 +1,21 @@
 [
   {
+    "repo": "12we21/cute-fat-fish-pet",
+    "desc": "蓝毛小女仆 (Blue-Haired Little Maid) · 住在 Windows 桌面上的 Q 版蓝发小女仆桌面宠物：106 个手绘透明动画、本地 Ollama 或在线模型陪聊、可选看屏幕吐槽、离线语音识别（安装器与便携版）。免费开源 MIT。同时是 DeepSeek Harness 桌面宠物插件（dsh-plugin）。By Mikolu.",
+    "stars": 1,
+    "language": "JavaScript",
+    "topics": [
+      "virtual-pet"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-08T04:30:21Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-09T20:59:33Z",
+    "retryCount": 1
+  },
+  {
     "repo": "996688P/crypto-globe-ui",
     "desc": "自托管加密风 3D 视觉层: 程序化星空 + 数字地球 + 六边形玻璃币球 + 环绕小行星玻璃币, 带载入页特效. Three.js/WebGL, 纯装饰零数据耦合 (MIT).",
     "stars": 1,
@@ -13,7 +29,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-09T16:09:21Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "adambenhassen/ryanair-mcp",
@@ -29,22 +45,6 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-09-16T17:24:49Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "adongwanai/learn-workbuddy",
-    "desc": "从 0 复刻 WorkBuddy-style 桌面 AI 助手 Harness：24 章 Python 教程，覆盖 Agent Loop、工具调用、记忆系统、Sidecar、沙盒审计、DeepSeek/OpenAI 评测轨迹",
-    "stars": 413,
-    "language": "Python",
-    "topics": [
-      "tutorial"
-    ],
-    "source": "search",
-    "starGrowth": 4,
-    "createdAt": "2026-07-08T09:00:56Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-09T10:34:07Z",
     "retryCount": 1
   },
   {
@@ -89,7 +89,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-05T06:55:37Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "Akun-python/autumn-recruitment",
@@ -105,7 +105,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-04T09:20:57Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "alamin147/lost-and-found",
@@ -121,7 +121,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-08T17:37:36Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "alexgreensh/anidoodle",
@@ -137,7 +137,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-05T12:24:20Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "Anil-matcha/open-spaces",
@@ -186,7 +186,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-09T09:59:12Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "artemnovichkov/Octavo",
@@ -202,7 +202,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-09T05:59:28Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "BaggerFast/Pacman",
@@ -218,7 +218,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-05T20:05:23Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "bagidea/bagidea-office",
@@ -248,7 +248,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-04T12:03:00.739Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "boykopovar/AnyPS5",
@@ -277,7 +277,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-06T19:52:34Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "chubbyguan/chubbyskills",
@@ -293,7 +293,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-08T09:43:23Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "cicloid/awesome-fm-1",
@@ -309,7 +309,23 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-05T23:32:27Z",
-    "retryCount": 5
+    "retryCount": 6
+  },
+  {
+    "repo": "Critlist/restoHack",
+    "desc": "A faithful restoration of the original 1984-85 Hack v1.0.3 by Andries Brouwer. Modern CMake build, cleaned and audited C source tree, and safe system compatibility for contemporary platforms. ",
+    "stars": 56,
+    "language": "C",
+    "topics": [
+      "retrocomputing"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2025-07-25T00:09:31Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-09T23:31:34Z",
+    "retryCount": 1
   },
   {
     "repo": "d-li14/involution",
@@ -339,7 +355,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-09-27T03:30:23Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "DaoyuanLi2816/can-i-finetune-this",
@@ -358,6 +374,22 @@
     "retryCount": 1
   },
   {
+    "repo": "DarkSwordman999/the_snake",
+    "desc": "🐍 Змейка на Python: Pygame, ООП, pytest, flake8. Учебный проект Yandex Practicum",
+    "stars": 2,
+    "language": "Python",
+    "topics": [
+      "pygame"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2025-11-01T13:18:50Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-10T03:35:08Z",
+    "retryCount": 1
+  },
+  {
     "repo": "DataExpert-io/llm-driven-data-engineering",
     "desc": "",
     "stars": 1160,
@@ -369,7 +401,7 @@
     "silentRounds": 8,
     "bigbros": [],
     "ts": "2026-09-30T23:37:45.729Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "datawhalechina/base-llm",
@@ -385,7 +417,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-03T16:00:10.335Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "DDD27433/openbachelors-roguelike",
@@ -433,6 +465,38 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-07T13:07:36Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "devswha/herdr-web-ui",
+    "desc": "Browser and phone client for herdr: chat and live terminal for every agent pane, remote PCs over SSH, web push alerts",
+    "stars": 722,
+    "language": "TypeScript",
+    "topics": [
+      "mobile"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-09-17T18:52:07Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-09T23:42:58Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "dziksu/synkinema",
+    "desc": "Local-first video editor for people and AI agents. Create in the Studio or via MCP, REST API and CLI; render with FFmpeg.",
+    "stars": 9,
+    "language": "Python",
+    "topics": [
+      "video-editor"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-09-14T13:25:10Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-08T19:25:08Z",
     "retryCount": 1
   },
   {
@@ -449,7 +513,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-09T15:16:28Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "etcetc000/kitbasher",
@@ -479,7 +543,7 @@
     "silentRounds": 8,
     "bigbros": [],
     "ts": "2026-09-30T23:37:45.729Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "FailproofAI/failproofai",
@@ -495,7 +559,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-07T09:43:48Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "gcy6630/city-food-map-skill",
@@ -527,7 +591,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-08T15:57:59Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "golanlevin/DrawingWithMachines",
@@ -544,7 +608,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-09T02:18:12Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "golanlevin/p5.plotSvg",
@@ -561,7 +625,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-09T02:17:42Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "google/lullaby",
@@ -591,7 +655,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-09T13:56:29Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "huzjie/chonkforge",
@@ -607,7 +671,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-07T05:14:24Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "Iamsdt/chess",
@@ -623,7 +687,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-08T17:27:45Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "IbrahimSobh/llms",
@@ -655,7 +719,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-09T11:50:57Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "inseq-team/inseq",
@@ -671,7 +735,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-07T07:33:02Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "Intelligent-CAT-Lab/BugFarm",
@@ -687,7 +751,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-08T17:02:20Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "interview-ps/InterviewOS",
@@ -703,7 +767,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-08T13:16:32Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "jevakallio/git-notify",
@@ -717,7 +781,7 @@
     "silentRounds": 10,
     "bigbros": [],
     "ts": "2026-09-29T00:20:24.882Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "JoeSz/WordPress-Plugin-Boilerplate-Tutorial",
@@ -733,7 +797,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-07T08:29:26Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "jokierpro/Top-Conference-Best-Papers",
@@ -749,7 +813,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-09T07:12:55Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "jrgilbertson/networked-thinking",
@@ -765,22 +829,6 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-21T16:36:57Z",
-    "retryCount": 5
-  },
-  {
-    "repo": "junruxiong/IncarnaMind",
-    "desc": "Connect and chat with your multiple documents (pdf and txt) through GPT 3.5, GPT-4 Turbo, Claude and Local Open-Source LLMs",
-    "stars": 801,
-    "language": "Python",
-    "topics": [
-      "chatbot"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2023-08-25T14:13:15Z",
-    "silentRounds": 3,
-    "bigbros": [],
-    "ts": "2026-10-09T17:38:11Z",
     "retryCount": 6
   },
   {
@@ -797,7 +845,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-09T00:05:46Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "kindlyfire/voltis",
@@ -827,7 +875,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-13T22:08:09.499Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "Leflexe/crava-foco-pagamentos-gfx",
@@ -842,8 +890,8 @@
     "createdAt": "2026-09-22T19:32:37Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-10-09T15:59:39Z",
-    "retryCount": 5
+    "ts": "2026-10-09T21:24:25Z",
+    "retryCount": 6
   },
   {
     "repo": "llm-d/llm-d-router",
@@ -857,7 +905,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-06T13:04:24.792Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "LosaLosSantos/aurelio-finance",
@@ -873,7 +921,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-09T11:29:00Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "lpaiu-cs/osk-system",
@@ -905,7 +953,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-09T13:02:40Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "meowstr/chicken-raylib",
@@ -921,7 +969,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-09T05:38:08Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "mkhsu2002/EC-Designer",
@@ -967,7 +1015,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-06T13:04:24.792Z",
-    "retryCount": 2
+    "retryCount": 3
+  },
+  {
+    "repo": "nhartland/forma",
+    "desc": "A Lua toolkit for computational geometry on a grid",
+    "stars": 43,
+    "language": "Lua",
+    "topics": [
+      "procedural-generation"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2018-01-16T00:35:41Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-09T20:18:57Z",
+    "retryCount": 1
   },
   {
     "repo": "Nice0o0/memopet",
@@ -983,7 +1047,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-08T15:28:44Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "phuryn/work-humanizer",
@@ -999,7 +1063,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-09T10:33:43Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "purecodework/bookllm",
@@ -1015,7 +1079,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-06T00:21:14Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "RobRoyce/knowledge",
@@ -1032,7 +1096,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-08T18:15:42Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "samsonovss/ESPHome-Treadmill-FTMS",
@@ -1047,8 +1111,8 @@
     "createdAt": "2025-04-02T23:00:26Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-09T19:11:44Z",
-    "retryCount": 1
+    "ts": "2026-10-09T22:13:54Z",
+    "retryCount": 2
   },
   {
     "repo": "sebattfg/ZeroScript-Free",
@@ -1062,6 +1126,22 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-05T14:05:45.115Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "severak/cyber-music-studio",
+    "desc": "not your usual DAW",
+    "stars": 16,
+    "language": "HTML",
+    "topics": [
+      "synthesizer"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2020-11-30T16:15:50Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-09T22:17:00Z",
     "retryCount": 1
   },
   {
@@ -1078,7 +1158,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-09T16:23:58Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "swordsalah/NEXORA-Intent-to-Cloth-Pipeline",
@@ -1093,7 +1173,7 @@
     "createdAt": "2026-09-22T20:21:58Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-30T06:25:40Z",
+    "ts": "2026-10-09T21:26:15Z",
     "retryCount": 1
   },
   {
@@ -1124,7 +1204,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-09T13:05:43Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "timschmidt/synaps-cad",
@@ -1140,7 +1220,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-05T16:52:51Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "TserenTserenov/FMT-exocortex-template",
@@ -1156,7 +1236,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-08T13:35:25Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "tugcantopaloglu/godot-mcp",
@@ -1172,23 +1252,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-09T18:28:09Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
-    "repo": "VirajMishra1/wander-agent",
-    "desc": "Your AI's personal travel agent — 66 tools, zero API keys. Flights (incl. fares airlines hide), hotels, visas, weather, points & miles, via MCP.",
-    "stars": 8,
-    "language": "Python",
+    "repo": "UnusualAlpha/ib-gateway-docker",
+    "desc": "Docker image with IB Gateway and IBC",
+    "stars": 305,
+    "language": "Dockerfile",
     "topics": [
-      "travel"
+      "trading"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2026-01-20T21:25:25Z",
-    "silentRounds": 4,
+    "createdAt": "2022-06-15T21:40:48Z",
+    "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-04T23:00:50Z",
-    "retryCount": 6
+    "ts": "2026-10-06T14:48:06Z",
+    "retryCount": 1
   },
   {
     "repo": "ZAYED-ENG-IT/Genrm-Lab-Nine-Floor-Duel",
@@ -1203,8 +1283,8 @@
     "createdAt": "2026-09-22T19:54:32Z",
     "silentRounds": 2,
     "bigbros": [],
-    "ts": "2026-09-25T15:39:15Z",
-    "retryCount": 3
+    "ts": "2026-10-09T21:25:09Z",
+    "retryCount": 4
   },
   {
     "repo": "zmy15/interview-agent",
@@ -1219,8 +1299,8 @@
     "createdAt": "2026-05-17T19:56:08Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-10-09T14:41:01Z",
-    "retryCount": 2
+    "ts": "2026-10-09T19:47:01Z",
+    "retryCount": 3
   },
   {
     "repo": "zvenson/dinghy",
@@ -1236,6 +1316,6 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-09T14:12:09Z",
-    "retryCount": 1
+    "retryCount": 2
   }
 ]
