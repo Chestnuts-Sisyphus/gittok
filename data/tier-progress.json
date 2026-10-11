@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-11T05:43:06.625Z",
+  "updatedAt": "2026-10-11T13:06:14.938Z",
   "tiers": {
     "t1": {
       "total": 5553,
@@ -9,15 +9,15 @@
     },
     "t2": {
       "total": 6988,
-      "done": 453,
+      "done": 454,
       "coverage": 0.065,
-      "lastRunDelta": 0
+      "lastRunDelta": 1
     },
     "t3": {
       "total": 52284,
       "done": 1292,
       "coverage": 0.025,
-      "lastRunDelta": 1
+      "lastRunDelta": 0
     }
   },
   "activeTier": "t1"
