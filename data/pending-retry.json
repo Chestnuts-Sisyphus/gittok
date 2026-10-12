@@ -1,21 +1,5 @@
 [
   {
-    "repo": "1105216375-alt/resimind",
-    "desc": "Neuro-symbolic agents with verified memory. Use what you know; call the model when needed. Self-correction, optional Lean checks and reusable rules.",
-    "stars": 64,
-    "language": "Python",
-    "topics": [
-      "mathematics"
-    ],
-    "source": "search",
-    "starGrowth": 12,
-    "createdAt": "2026-10-08T02:15:17Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-10T02:10:47Z",
-    "retryCount": 6
-  },
-  {
     "repo": "adsorgcn/WorkBuddy",
     "desc": "iLang 专家与技能的 GitHub 安装源，海外版 WorkBuddy 可直接装：公众号爆文结构专家 v2.0（素材进稿子出，12 项自查，内置去 AI 味）· iLang experts & skills for WorkBuddy, installable from GitHub",
     "stars": 21,
@@ -57,7 +41,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-09-26T17:52:47.721Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "ajkdrag/otterly",
@@ -73,23 +57,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-05T06:55:37Z",
-    "retryCount": 3
-  },
-  {
-    "repo": "alamin147/lost-and-found",
-    "desc": "Lost & Found Management System is a full-stack web application designed to streamline the process of reporting, tracking, and claiming lost items. Users can report lost belongings, register found items, and make claims through an intuitive interface.",
-    "stars": 10,
-    "language": "TypeScript",
-    "topics": [
-      "llm-model"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2024-05-31T21:04:31Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-08T17:37:36Z",
-    "retryCount": 6
+    "retryCount": 1
   },
   {
     "repo": "all0b0y/Chilk",
@@ -137,7 +105,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-11T03:51:36Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "Anil-matcha/awesome-open-source-saas-alternatives",
@@ -153,7 +121,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-12T14:47:15Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "anuj-121/Interview-Assist",
@@ -169,7 +137,7 @@
     "silentRounds": 7,
     "bigbros": [],
     "ts": "2026-09-07T18:10:07Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "ApparitionStream/CapCut-v26",
@@ -185,7 +153,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-09T09:59:12Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "bagidea/bagidea-office",
@@ -201,7 +169,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-05T17:23:20Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "Bel1eff-0228/How-to-Train-Better",
@@ -263,7 +231,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-06T19:52:34Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Carapacik/Beltz",
@@ -279,23 +247,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-11T13:20:55Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
-    "repo": "Cecilapp/staticast",
-    "desc": "Staticast is a ready to use Progressive Web App to publish your podcast, with a RSS feed ready for syndication platforms, and a user friendly CMS.",
-    "stars": 15,
-    "language": "CSS",
+    "repo": "choxos/Mathematics-of-ITC",
+    "desc": "A graduate pure-mathematics textbook on indirect treatment comparisons: population adjustment, transportability, and comparative effect estimation. From linear algebra foundations to MAIC, STC, and multilevel network meta-regression, with every result proved and a machine-checked Coq companion.",
+    "stars": 1,
+    "language": "TeX",
     "topics": [
-      "podcast"
+      "textbook"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2020-06-12T00:43:58Z",
-    "silentRounds": 1,
+    "createdAt": "2026-06-26T00:42:42Z",
+    "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-10T23:22:42Z",
-    "retryCount": 6
+    "ts": "2026-10-12T22:14:42Z",
+    "retryCount": 1
   },
   {
     "repo": "cliptate/cliptate",
@@ -311,7 +279,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-12T14:25:11Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "cluster1900/ai-engineering-from-scratch-zh",
@@ -343,22 +311,6 @@
     "retryCount": 1
   },
   {
-    "repo": "cyanochroite/celestine",
-    "desc": "A python framework for desktop applications. Featuring support for multiple graphical user interfaces. Supports all languages of the European Union.",
-    "stars": 4,
-    "language": "Python",
-    "topics": [
-      "pygame"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2019-04-23T00:33:47Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-10T19:16:45Z",
-    "retryCount": 6
-  },
-  {
     "repo": "d0r1h/ML-University",
     "desc": "Machine Learning Open Source University",
     "stars": 956,
@@ -373,7 +325,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-12T03:22:18Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "danukim/Miko",
@@ -389,7 +341,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-09-27T03:30:23Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "DaoyuanLi2816/can-i-finetune-this",
@@ -405,7 +357,7 @@
     "silentRounds": 8,
     "bigbros": [],
     "ts": "2026-10-08T09:45:42Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "datamllab/openesm",
@@ -421,7 +373,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-10T17:12:36Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "david-a-campbell/W1_Hit",
@@ -437,7 +389,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-10T13:19:10Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "Derpyu520/qq-bridge",
@@ -453,7 +405,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-03T06:13:55Z",
-    "retryCount": 4
+    "retryCount": 5
+  },
+  {
+    "repo": "djayuffe/neon-vectors-amiga-cracktro-aga-v5",
+    "desc": "NEON VECTORS AGA v5: audited Amiga AGA cracktro source release with deterministic assets and validation tooling",
+    "stars": 0,
+    "language": "Python",
+    "topics": [
+      "demoscene"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-01T20:17:02Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-01T20:33:14Z",
+    "retryCount": 1
   },
   {
     "repo": "Dragonboon/Atrium",
@@ -472,28 +440,13 @@
     "retryCount": 1
   },
   {
-    "repo": "durul/My-Medium-Articles",
-    "desc": "List of my blog posts in the Medium ",
-    "stars": 164,
-    "language": "",
-    "topics": [
-      "interview"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2017-02-24T16:27:33Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-10T20:08:40Z",
-    "retryCount": 6
-  },
-  {
     "repo": "EYamanS/texel-studio",
     "desc": "AI pixel art agent that paints like a real artist. Not diffusion — actual tool-based painting with shapes, noise, and per-pixel control.",
     "stars": 216,
     "language": "Python",
     "topics": [
-      "generative-art"
+      "generative-art",
+      "pixel-art"
     ],
     "source": "search",
     "starGrowth": 0,
@@ -502,22 +455,6 @@
     "bigbros": [],
     "ts": "2026-10-12T18:04:42Z",
     "retryCount": 1
-  },
-  {
-    "repo": "facebookincubator/Meta-open-sound",
-    "desc": "A free to use library of audio and implementation guidance, for use in games and interactive media",
-    "stars": 8,
-    "language": "",
-    "topics": [
-      "music-production"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-07-23T19:22:34Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-08T22:05:32Z",
-    "retryCount": 6
   },
   {
     "repo": "FailproofAI/failproofai",
@@ -532,40 +469,8 @@
     "createdAt": "2026-04-06T01:56:39Z",
     "silentRounds": 3,
     "bigbros": [],
-    "ts": "2026-10-12T16:23:53Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "genielabs/HomeGenie",
-    "desc": "HomeGenie: The Programmable Intelligence with 100% Local Agentic AI.",
-    "stars": 458,
-    "language": "JavaScript",
-    "topics": [
-      "home-automation"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2014-02-21T22:55:33Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-11T20:13:58Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "GodotVR/godot-xr-tools",
-    "desc": "Support scenes for AR and VR in Godot",
-    "stars": 735,
-    "language": "GDScript",
-    "topics": [
-      "godot"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2018-05-04T08:55:53Z",
-    "silentRounds": 4,
-    "bigbros": [],
-    "ts": "2026-10-10T11:31:56Z",
-    "retryCount": 6
+    "ts": "2026-10-12T22:25:10Z",
+    "retryCount": 3
   },
   {
     "repo": "gymcoach-app/gymcoach",
@@ -581,7 +486,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-09T13:56:29Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "HEXUXIU/M365-Copilot2API",
@@ -627,7 +532,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-11T14:32:55Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "insomniachi/Totoro",
@@ -646,38 +551,6 @@
     "retryCount": 1
   },
   {
-    "repo": "Intelligent-CAT-Lab/BugFarm",
-    "desc": "Artifact repository for the paper \"Challenging Bug Prediction and Repair Models with Synthetic Bugs\", In Proceedings of The 25th IEEE International Conference on Source Code Analysis & Manipulation (SCAM 2025), Auckland, New Zealand, September 2025",
-    "stars": 6,
-    "language": "Python",
-    "topics": [
-      "llm-model"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2023-01-12T18:02:51Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-08T17:02:20Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "jackluucoding/build-llm-from-zero",
-    "desc": "Code, notebooks and exercises for the book Teach Your Computer to Write: Build and Train an LLM from Zero. A small GPT-style language model built from scratch in Python and PyTorch, with no GPU.",
-    "stars": 0,
-    "language": "Jupyter Notebook",
-    "topics": [
-      "textbook"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-09-19T23:02:29Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-10T18:32:16Z",
-    "retryCount": 6
-  },
-  {
     "repo": "jcarmichael-art/Notris",
     "desc": "A tertis clone that uses pygame and numpy",
     "stars": 2,
@@ -691,7 +564,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-11T00:37:53Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "jikan-me/jikan-rest",
@@ -706,39 +579,7 @@
     "createdAt": "2017-12-12T16:08:59Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-10-12T21:04:43Z",
-    "retryCount": 5
-  },
-  {
-    "repo": "jojo-swe/PulseAscendant",
-    "desc": "A standalone music-reactive 3D demo for Windows and Linux. Three acts, 16 worlds, 76 chapters, Vulkan hardware ray queries and an OpenGL fallback.",
-    "stars": 0,
-    "language": "C++",
-    "topics": [
-      "demoscene"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-10-11T18:25:20Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-12T02:07:00Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "Josh1185/SeniorProject",
-    "desc": "TripSquad - A collaborative web application designed to simplify the trip planning process amongst groups of people",
-    "stars": 3,
-    "language": "TypeScript",
-    "topics": [
-      "travel"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-09-06T20:54:35Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-12T02:08:06Z",
+    "ts": "2026-10-12T22:40:32Z",
     "retryCount": 6
   },
   {
@@ -754,40 +595,8 @@
     "createdAt": "2026-10-12T00:07:32Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-12T21:50:11Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "justarieldotcom/omarchy-hotkey-hints",
-    "desc": "Hold Super, Alt, Ctrl or Shift to see every hotkey that branches off it. A which-key style cheatsheet overlay for Omarchy (Hyprland + Quickshell).",
-    "stars": 3,
-    "language": "QML",
-    "topics": [
-      "cheatsheet"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-09-14T17:07:17Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-09-19T13:59:23Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "kgdunn/pid-book",
-    "desc": "Source repository for the open-access, free book Process Improvement using Data.",
-    "stars": 10,
-    "language": "Python",
-    "topics": [
-      "textbook"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2020-03-02T13:05:33Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-12T10:06:47Z",
-    "retryCount": 6
+    "ts": "2026-10-12T22:43:07Z",
+    "retryCount": 3
   },
   {
     "repo": "KorroAi/claude-creativity",
@@ -803,7 +612,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-10T22:12:55Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "KorroAi/drunk-claude",
@@ -819,7 +628,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-10T22:12:58Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "kshvakov/ai-agent-course",
@@ -849,7 +658,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-13T22:08:09.499Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "langlangagowith/mcd-rogue",
@@ -865,23 +674,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-11T16:51:11Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
-    "repo": "LeaddeOpenLab/awesome-opus-5-5-video-prompts",
-    "desc": "Claude Opus 5.5 video prompts for motion graphics, explainers, 3D scenes and interactive demos. Browse by use case, with previews, required inputs and tools.",
-    "stars": 26,
-    "language": "",
+    "repo": "Lukeli0425/Galaxy-Deconv",
+    "desc": "[MNRAS] Galaxy Image Deconvolution for Weak Gravitational Lensing with Unrolled Plug-and-Play ADMM",
+    "stars": 63,
+    "language": "Jupyter Notebook",
     "topics": [
-      "creative-coding"
+      "astronomy"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2026-09-28T03:34:01Z",
-    "silentRounds": 1,
+    "createdAt": "2022-08-28T12:38:49Z",
+    "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-11T17:39:27Z",
-    "retryCount": 6
+    "ts": "2026-10-12T22:06:53Z",
+    "retryCount": 1
   },
   {
     "repo": "lumen-prism/journal-page",
@@ -913,7 +722,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-12T15:36:34Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "mahnoorishfaq/pdf-insight",
@@ -929,39 +738,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-12T15:11:13Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "mdatyabnadim-sys/YatraX",
-    "desc": "",
-    "stars": 3,
-    "language": "JavaScript",
-    "topics": [
-      "travel"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-10-01T10:32:51Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-11T15:47:40Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "mdatyabnadim-sys/YatraX-backend",
-    "desc": "REST API backend for YatraX. Built with Java 21, Spring Boot 4, Spring Data JPA, Hibernate & H2. Endpoints for destinations, user auth, trip planning & Wikipedia data enrichment. Frontend: github.com/mdatyabnadim-sys/YatraX",
-    "stars": 4,
-    "language": "Java",
-    "topics": [
-      "travel"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-10-07T20:55:47Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-11T21:52:38Z",
-    "retryCount": 6
+    "retryCount": 2
   },
   {
     "repo": "Mohammad-Hasan-Kaman/kaman-ai-translator",
@@ -977,7 +754,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-12T10:30:26Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "morluto/rea",
@@ -1009,7 +786,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-12T14:58:05Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Nikhil-creat/voyagr",
@@ -1041,22 +818,6 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-11T07:12:37Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "okdalto/siljangnim",
-    "desc": "A creative coding studio run by an agent — make live visuals by talking, reshape and mix them, perform with MIDI/OSC/sound, export video.",
-    "stars": 25,
-    "language": "TypeScript",
-    "topics": [
-      "generative-art"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-02-27T10:28:13Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-12T15:25:40Z",
     "retryCount": 2
   },
   {
@@ -1073,7 +834,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-11T16:56:27Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "openfilm/openfilm",
@@ -1092,22 +853,6 @@
     "retryCount": 1
   },
   {
-    "repo": "penge/my-notes",
-    "desc": "Simple and fast note-taking in Chrome. Zero setup, works offline, no account needed.",
-    "stars": 266,
-    "language": "TypeScript",
-    "topics": [
-      "note-taking"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2019-11-17T16:35:33Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-12T09:53:34Z",
-    "retryCount": 6
-  },
-  {
     "repo": "PetitOnes/petit-textbook",
     "desc": "Textbook for Petits and the people who live with them (for Petits / adults / teens / small children) / ぷちと、ぷちと暮らす人のための教科書(ぷち用・おとな・中高生・小学生未満)",
     "stars": 0,
@@ -1121,22 +866,22 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-12T04:18:38Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
-    "repo": "pixtuoid/pixtuoid",
-    "desc": "Terminal pixel-art office for AI coding agents",
-    "stars": 491,
-    "language": "Rust",
+    "repo": "philburk/jsyn",
+    "desc": "Modular audio synthesizer library with unit generators in Java",
+    "stars": 251,
+    "language": "Java",
     "topics": [
-      "pixel-art"
+      "synthesizer"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2026-05-21T06:05:19Z",
-    "silentRounds": 1,
+    "createdAt": "2014-12-31T00:33:56Z",
+    "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-12T21:37:54Z",
+    "ts": "2026-10-12T22:34:43Z",
     "retryCount": 1
   },
   {
@@ -1153,7 +898,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-11T17:22:41Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "ranxianglei/billion-context",
@@ -1183,39 +928,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-01T07:38:43Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "robotmitchum/sample_tools",
-    "desc": "Tools for creating and editing virtual sampled instruments, optimized for DecentSampler and SFZ",
-    "stars": 9,
-    "language": "Python",
-    "topics": [
-      "music-production"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2024-12-18T16:17:34Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-11T18:35:02Z",
     "retryCount": 1
-  },
-  {
-    "repo": "Router0824/OpsPilot-AI",
-    "desc": "Open-source AI operations workspace for meetings, knowledge, decisions, tasks, risks, workflows, and organizational memory.",
-    "stars": 75,
-    "language": "TypeScript",
-    "topics": [
-      "knowledge-management"
-    ],
-    "source": "search",
-    "starGrowth": 8,
-    "createdAt": "2026-10-03T12:12:32Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-03T12:35:02Z",
-    "retryCount": 6
   },
   {
     "repo": "SagarBiswas-MultiHAT/researchVault",
@@ -1231,7 +944,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-11T17:49:37Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "sebattfg/ZeroScript-Free",
@@ -1245,7 +958,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-05T14:05:45.115Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "sepehr071/jabama-mcp",
@@ -1261,7 +974,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-11T12:20:58Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "swordsalah/NEXORA-Intent-to-Cloth-Pipeline",
@@ -1277,7 +990,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-09T21:26:15Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "TserenTserenov/FMT-exocortex-template",
@@ -1309,6 +1022,6 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-12T16:37:59Z",
-    "retryCount": 2
+    "retryCount": 3
   }
 ]
