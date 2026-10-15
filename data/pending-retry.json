@@ -1,35 +1,19 @@
 [
   {
-    "repo": "0xnhsec/PORTSWIGGER-LABS",
-    "desc": "My PoC writteups from my Roadmap for Web Application Security",
-    "stars": 19,
+    "repo": "a-shygun/Pawnix",
+    "desc": "A minimal curses chess client with Lichess API support",
+    "stars": 12,
     "language": "Python",
     "topics": [
-      "writing"
+      "ascii-art"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2026-06-27T02:41:27Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-14T05:59:09Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "1105216375-alt/resimind",
-    "desc": "Neuro-symbolic agents with verified memory. MCP math tools, an algebra repair Skill, and an open challenge. Verify solutions, learn checked rules, and reuse.",
-    "stars": 112,
-    "language": "Python",
-    "topics": [
-      "mathematics"
-    ],
-    "source": "search",
-    "starGrowth": 11,
-    "createdAt": "2026-10-08T02:15:17Z",
+    "createdAt": "2026-10-10T09:40:18Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-14T16:31:27Z",
-    "retryCount": 6
+    "ts": "2026-10-13T09:59:59Z",
+    "retryCount": 1
   },
   {
     "repo": "aeturrell/coding-for-economists",
@@ -45,7 +29,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-14T18:02:00Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "Agents365-ai/video-podcast-maker",
@@ -76,22 +60,6 @@
     "bigbros": [],
     "ts": "2026-10-05T06:55:37Z",
     "retryCount": 1
-  },
-  {
-    "repo": "alamin147/lost-and-found",
-    "desc": "Lost & Found Management System is a full-stack web application designed to streamline the process of reporting, tracking, and claiming lost items. Users can report lost belongings, register found items, and make claims through an intuitive interface.",
-    "stars": 11,
-    "language": "TypeScript",
-    "topics": [
-      "llm-model"
-    ],
-    "source": "search",
-    "starGrowth": 1,
-    "createdAt": "2024-05-31T21:04:31Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-08T17:37:36Z",
-    "retryCount": 6
   },
   {
     "repo": "alwqx/awesome-cs-course",
@@ -126,54 +94,6 @@
     "retryCount": 1
   },
   {
-    "repo": "ApparitionStream/CapCut-v26",
-    "desc": "Professional video editing suite featuring multi-track timeline editing, AI-powered effects, keyframe animation, and optimized 4K rendering tools.",
-    "stars": 151,
-    "language": "",
-    "topics": [
-      "video-editor"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-09-20T14:29:12Z",
-    "silentRounds": 5,
-    "bigbros": [],
-    "ts": "2026-10-09T09:59:12Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "Arhythmetic-Units/PotatoChips",
-    "desc": "Potato Chips brings classic sound chips to VCV Rack 2 with polyphonic chiptune oscillators, FM synth voices, wavetables, envelopes, and effects by Arhythmetic Units.",
-    "stars": 56,
-    "language": "C++",
-    "topics": [
-      "synthesizer"
-    ],
-    "source": "search",
-    "starGrowth": 1,
-    "createdAt": "2020-06-23T12:36:31Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-14T03:37:27Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "Arhythmetic-Units/RackNES",
-    "desc": "A voltage-controlled NES emulator for VCV Rack 2 by Arhythmetic Units. Turn games into musical instruments with gate-driven controllers, five audio voices, save-state recall, and the CV Genie memory expander.",
-    "stars": 105,
-    "language": "C++",
-    "topics": [
-      "music-production"
-    ],
-    "source": "search",
-    "starGrowth": 1,
-    "createdAt": "2020-06-14T05:16:38Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-14T21:23:16Z",
-    "retryCount": 6
-  },
-  {
     "repo": "assafkip/claudemy",
     "desc": "Claudemy: an open-source alternative to Udemy and Coursera. Give Claude a topic, it researches the web and builds a course of 2-minute audio lessons with cited sources. A free Claude Code skill.",
     "stars": 92,
@@ -203,7 +123,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-14T15:23:56Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "bagidea/bagidea-office",
@@ -249,39 +169,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-12T14:54:39.565Z",
-    "retryCount": 3
-  },
-  {
-    "repo": "BkashJEE/ScreenPolish",
-    "desc": "A screen recorder that polishes the take for you: zooms into every click, draws its own cursor, runs entirely offline. Linux, Windows and macOS.",
-    "stars": 18,
-    "language": "TypeScript",
-    "topics": [
-      "video-editor"
-    ],
-    "source": "search",
-    "starGrowth": 1,
-    "createdAt": "2026-09-24T09:23:21Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-14T06:01:50Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "brandonhimpfen/awesome-travel",
-    "desc": "A collection of awesome travel-related lists.",
-    "stars": 7,
-    "language": "",
-    "topics": [
-      "travel"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2023-06-21T15:37:58Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-13T01:23:37Z",
-    "retryCount": 6
+    "retryCount": 1
   },
   {
     "repo": "caglarutkuguler/cubicle",
@@ -297,7 +185,7 @@
     "silentRounds": 5,
     "bigbros": [],
     "ts": "2026-10-14T06:54:33Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "Carapacik/Beltz",
@@ -316,68 +204,20 @@
     "retryCount": 1
   },
   {
-    "repo": "Cecilapp/staticast",
-    "desc": "Staticast is a ready to use Progressive Web App to publish your podcast, with a RSS feed ready for syndication platforms, and a user friendly CMS.",
-    "stars": 15,
-    "language": "CSS",
+    "repo": "choxos/Mathematics-of-ITC",
+    "desc": "A graduate pure-mathematics textbook on indirect treatment comparisons: population adjustment, transportability, and comparative effect estimation. From linear algebra foundations to MAIC, STC, and multilevel network meta-regression, with every result proved and a machine-checked Coq companion.",
+    "stars": 1,
+    "language": "TeX",
     "topics": [
-      "podcast"
+      "textbook"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2020-06-12T00:43:58Z",
-    "silentRounds": 1,
+    "createdAt": "2026-06-26T00:42:42Z",
+    "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-10T23:22:42Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "charming-art/charming",
-    "desc": "A lightweight data-driven API for manipulating SVG, Canvas and HTML.",
-    "stars": 32,
-    "language": "JavaScript",
-    "topics": [
-      "creative-coding"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2023-07-15T06:33:46Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-14T02:01:12Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "chawannua/air-defense-radar-sim",
-    "desc": "Real-time tactical air defense radar simulator with AESA sweep physics, 4th-root RCS tracking, EW jamming cones and interceptor kinematics - built in Pygame",
-    "stars": 2,
-    "language": "Python",
-    "topics": [
-      "pygame"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-03-13T07:08:12Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-09-15T13:15:52Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "codesandtags/frontend-resources",
-    "desc": "🚀 The official database for the 'Frontend Resources' website! A community-curated list of the best frontend tools, libraries, and learning materials. Contributions welcome! ⭐",
-    "stars": 201,
-    "language": "TypeScript",
-    "topics": [
-      "learning"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2016-04-22T23:52:13Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-13T00:35:00Z",
-    "retryCount": 6
+    "ts": "2026-10-12T22:14:42Z",
+    "retryCount": 1
   },
   {
     "repo": "CopilotKit/OpenIntelligentUI",
@@ -391,23 +231,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-11T12:25:39.178Z",
-    "retryCount": 3
-  },
-  {
-    "repo": "cyanochroite/celestine",
-    "desc": "A python framework for desktop applications. Featuring support for multiple graphical user interfaces. Supports all languages of the European Union.",
-    "stars": 4,
-    "language": "Python",
-    "topics": [
-      "pygame"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2019-04-23T00:33:47Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-10T19:16:45Z",
-    "retryCount": 6
+    "retryCount": 4
   },
   {
     "repo": "d0r1h/ML-University",
@@ -425,7 +249,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-12T03:22:18Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "danukim/Miko",
@@ -505,23 +329,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-14T08:35:26Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
-    "repo": "durul/My-Medium-Articles",
-    "desc": "List of my blog posts in the Medium ",
-    "stars": 164,
-    "language": "",
+    "repo": "djayuffe/neon-vectors-amiga-cracktro-aga-v5",
+    "desc": "NEON VECTORS AGA v5: audited Amiga AGA cracktro source release with deterministic assets and validation tooling",
+    "stars": 0,
+    "language": "Python",
     "topics": [
-      "interview"
+      "demoscene"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2017-02-24T16:27:33Z",
-    "silentRounds": 1,
+    "createdAt": "2026-10-01T20:17:02Z",
+    "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-10T20:08:40Z",
-    "retryCount": 6
+    "ts": "2026-10-01T20:33:14Z",
+    "retryCount": 1
   },
   {
     "repo": "Eezo-framework/eezo",
@@ -537,7 +361,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-14T10:39:46Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "Eoic/ASCIIGround",
@@ -570,7 +394,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-14T16:35:28Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "FailproofAI/failproofai",
@@ -586,7 +410,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-14T20:57:46Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "Gabberflast/prose-revision-skill-ht-anthony-lee-zhang",
@@ -602,7 +426,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-13T22:51:19Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "golanlevin/p5-single-line-font-resources",
@@ -664,7 +488,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-13T17:21:23Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "Herricka/RecallWeave",
@@ -694,7 +518,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-12T14:54:39.565Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "hpleapfrog/Scholia",
@@ -726,7 +550,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-10T18:32:16Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "jamro/tiny-engineer",
@@ -742,7 +566,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-13T20:17:30Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "jcarmichael-art/Notris",
@@ -774,7 +598,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-09T15:41:22Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "jikan-me/jikan-rest",
@@ -790,7 +614,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-14T09:02:19Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "juliobsz/skills",
@@ -806,7 +630,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-13T01:05:32Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "Kirito14IT/prompt-spider-ui",
@@ -822,7 +646,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-14T04:41:26Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "KorroAi/drunk-claude",
@@ -852,7 +676,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-13T22:08:09.499Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "lcomment/development-recipes",
@@ -871,22 +695,6 @@
     "retryCount": 1
   },
   {
-    "repo": "level09/enferno",
-    "desc": "Lean Flask framework built for coding agents: Vue 3 + Vuetify with no build step, production-ready auth (2FA, passkeys, OAuth), AGENTS.md, an agent skill and a read-only MCP server. No webpack, no node_modules, just Python.",
-    "stars": 568,
-    "language": "HTML",
-    "topics": [
-      "web-framework"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2014-07-09T12:57:38Z",
-    "silentRounds": 2,
-    "bigbros": [],
-    "ts": "2026-10-14T21:24:19Z",
-    "retryCount": 6
-  },
-  {
     "repo": "lingmulongtai/tsuyulabo",
     "desc": "ショウジョウバエの配線をもとにした神経モデルで育つ育成ゲーム。毎週の成長・お世話・繁殖・AIキャラクターとの交流を楽しむアルファ版。",
     "stars": 1,
@@ -900,7 +708,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-13T14:49:42Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "mahnoorishfaq/pdf-insight",
@@ -916,7 +724,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-14T21:33:34Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "morluto/rea",
@@ -948,7 +756,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-12T14:58:05Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "Nikhil-creat/voyagr",
@@ -980,7 +788,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-11T07:12:37Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "openfilm/openfilm",
@@ -996,7 +804,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-14T17:59:29Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "pathwaycom/serviette",
@@ -1014,7 +822,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-14T16:56:37Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "quantumlib/OpenFermion-PySCF",
@@ -1030,7 +838,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-14T01:46:53Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "ranxianglei/billion-context",
@@ -1044,21 +852,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-12T14:54:39.565Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "rasonyang/ai-native-callcenter",
-    "desc": "Self-hosted, API-first AI call center. Realtime voice bots answer every call, human agents take over without a drop. Full REST + SSE API with OpenAPI spec to embed in your product. FreeSWITCH + OpenAI Realtime / Qwen, one Go binary.",
-    "stars": 260,
-    "language": "Go",
-    "topics": [],
-    "source": "trending",
-    "starGrowth": 18,
-    "createdAt": "2026-08-11T23:48:21Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-13T15:45:19.355Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "razorpay/slashdocs",
@@ -1087,7 +881,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-11T17:49:37Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "sebattfg/ZeroScript-Free",
@@ -1101,7 +895,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-05T14:05:45.115Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "soejrd/digidrum",
@@ -1117,7 +911,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-14T22:26:24Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "swordsalah/NEXORA-Intent-to-Cloth-Pipeline",
@@ -1149,7 +943,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-14T21:56:52Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "vinson-lee01/ops-engineering-roadmap",
@@ -1181,7 +975,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-13T15:58:16Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "yatori-dev/yatori-go-console",
@@ -1197,7 +991,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-13T17:21:35Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "zjoooooo/galaxy-explorer",
@@ -1214,6 +1008,6 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-14T22:39:11Z",
-    "retryCount": 4
+    "retryCount": 5
   }
 ]
