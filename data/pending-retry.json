@@ -1,21 +1,5 @@
 [
   {
-    "repo": "0xnhsec/PORTSWIGGER-LABS",
-    "desc": "My PoC writteups from my Roadmap for Web Application Security",
-    "stars": 19,
-    "language": "Python",
-    "topics": [
-      "writing"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-06-27T02:41:27Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-14T05:59:09Z",
-    "retryCount": 6
-  },
-  {
     "repo": "0xProbabillity/house-control",
     "desc": "Your home as a live 3D model in the Mac menu bar and on iPhone — lights and ACs via Smart Life, Home Assistant, Philips Hue and Apple Home.",
     "stars": 361,
@@ -29,7 +13,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-15T16:03:34Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "1105216375-alt/resimind",
@@ -45,7 +29,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-15T15:00:55Z",
-    "retryCount": 5
+    "retryCount": 6
+  },
+  {
+    "repo": "a-shygun/Pawnix",
+    "desc": "A minimal curses chess client with Lichess API support",
+    "stars": 13,
+    "language": "Python",
+    "topics": [
+      "ascii-art"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-10T09:40:18Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-13T09:59:59Z",
+    "retryCount": 1
   },
   {
     "repo": "aeturrell/coding-for-economists",
@@ -61,7 +61,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-15T14:16:48Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "Agents365-ai/video-podcast-maker",
@@ -94,22 +94,6 @@
     "retryCount": 1
   },
   {
-    "repo": "alamin147/lost-and-found",
-    "desc": "Lost & Found Management System is a full-stack web application designed to streamline the process of reporting, tracking, and claiming lost items. Users can report lost belongings, register found items, and make claims through an intuitive interface.",
-    "stars": 11,
-    "language": "TypeScript",
-    "topics": [
-      "llm-model"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2024-05-31T21:04:31Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-08T17:37:36Z",
-    "retryCount": 6
-  },
-  {
     "repo": "ananie1/VoidProtocol",
     "desc": "",
     "stars": 1,
@@ -126,38 +110,6 @@
     "retryCount": 1
   },
   {
-    "repo": "Arhythmetic-Units/PotatoChips",
-    "desc": "Potato Chips brings classic sound chips to VCV Rack 2 with polyphonic chiptune oscillators, FM synth voices, wavetables, envelopes, and effects by Arhythmetic Units.",
-    "stars": 56,
-    "language": "C++",
-    "topics": [
-      "synthesizer"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2020-06-23T12:36:31Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-14T03:37:27Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "Arhythmetic-Units/RackNES",
-    "desc": "A voltage-controlled NES emulator for VCV Rack 2 by Arhythmetic Units. Turn games into musical instruments with gate-driven controllers, five audio voices, save-state recall, and the CV Genie memory expander.",
-    "stars": 105,
-    "language": "C++",
-    "topics": [
-      "music-production"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2020-06-14T05:16:38Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-14T21:23:16Z",
-    "retryCount": 6
-  },
-  {
     "repo": "Axelrod-Python/Axelrod",
     "desc": "A research tool for the Iterated Prisoner's Dilemma",
     "stars": 856,
@@ -171,7 +123,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-15T11:57:07Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "B33pBeeps/redthread",
@@ -187,7 +139,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-15T17:45:01Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "bagidea/bagidea-office",
@@ -236,38 +188,6 @@
     "retryCount": 1
   },
   {
-    "repo": "BkashJEE/ScreenPolish",
-    "desc": "A screen recorder that polishes the take for you: zooms into every click, draws its own cursor, runs entirely offline. Linux, Windows and macOS.",
-    "stars": 18,
-    "language": "TypeScript",
-    "topics": [
-      "video-editor"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-09-24T09:23:21Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-15T19:50:03Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "brandonhimpfen/awesome-travel",
-    "desc": "A collection of awesome travel-related lists.",
-    "stars": 7,
-    "language": "",
-    "topics": [
-      "travel"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2023-06-21T15:37:58Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-13T01:23:37Z",
-    "retryCount": 6
-  },
-  {
     "repo": "ByteGrad/Professional-CSS-Course",
     "desc": "This repo contains everything you need as a student of the Professional CSS Course by ByteGrad",
     "stars": 68,
@@ -280,8 +200,8 @@
     "createdAt": "2021-05-14T19:09:47Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-15T17:33:55Z",
-    "retryCount": 3
+    "ts": "2026-10-15T20:39:23Z",
+    "retryCount": 4
   },
   {
     "repo": "ByteGrad/Professional-JavaScript-Course",
@@ -296,8 +216,8 @@
     "createdAt": "2022-04-11T11:08:51Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-15T17:35:21Z",
-    "retryCount": 3
+    "ts": "2026-10-15T20:39:27Z",
+    "retryCount": 4
   },
   {
     "repo": "caglarutkuguler/cubicle",
@@ -313,7 +233,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-15T19:47:12Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "CandlemakerMaster/aewtzeew",
@@ -328,55 +248,7 @@
     "createdAt": "2026-10-02T00:00:43Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-10-15T20:03:11Z",
-    "retryCount": 5
-  },
-  {
-    "repo": "Cecilapp/staticast",
-    "desc": "Staticast is a ready to use Progressive Web App to publish your podcast, with a RSS feed ready for syndication platforms, and a user friendly CMS.",
-    "stars": 15,
-    "language": "CSS",
-    "topics": [
-      "podcast"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2020-06-12T00:43:58Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-10T23:22:42Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "cfelicio/ShotSieve",
-    "desc": "Local-first AI photo culling app for photographers: score images, compare models, and review keep/reject decisions visually.",
-    "stars": 15,
-    "language": "Python",
-    "topics": [
-      "photography"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-04-25T05:49:39Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-06T01:40:56Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "charming-art/charming",
-    "desc": "A lightweight data-driven API for manipulating SVG, Canvas and HTML.",
-    "stars": 32,
-    "language": "JavaScript",
-    "topics": [
-      "creative-coding"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2023-07-15T06:33:46Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-14T02:01:12Z",
+    "ts": "2026-10-15T22:46:23Z",
     "retryCount": 6
   },
   {
@@ -393,7 +265,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-08T01:52:32Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "chengzicv/chengzicv-career-skills",
@@ -409,7 +281,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-14T17:03:03Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "CopilotKit/OpenIntelligentUI",
@@ -454,7 +326,7 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-10-12T03:22:18Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "danukim/Miko",
@@ -486,7 +358,7 @@
     "silentRounds": 11,
     "bigbros": [],
     "ts": "2026-10-08T09:45:42Z",
-    "retryCount": 5
+    "retryCount": 1
   },
   {
     "repo": "datamllab/openebfm",
@@ -550,7 +422,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-14T08:35:26Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "Dragynrain/RogueSignalProtocol",
@@ -566,7 +438,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-15T20:15:25Z",
-    "retryCount": 6
+    "retryCount": 1
   },
   {
     "repo": "EGSECDA/vocaloid-style-mv-pipeline",
@@ -582,7 +454,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-04T11:38:15Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "ErTasselli/OpenTerminal",
@@ -611,7 +483,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-14T16:35:28Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "FailproofAI/failproofai",
@@ -627,7 +499,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-15T15:30:16Z",
-    "retryCount": 5
+    "retryCount": 1
   },
   {
     "repo": "Fazmin/AILearningGuide",
@@ -735,7 +607,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-12T14:54:39.565Z",
-    "retryCount": 6
+    "retryCount": 1
+  },
+  {
+    "repo": "higgins/gitpushups.com",
+    "desc": "Git Pushups — do daily pushups or you can't code",
+    "stars": 12,
+    "language": "TypeScript",
+    "topics": [
+      "fitness"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2025-07-30T04:01:01Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-15T22:24:13Z",
+    "retryCount": 1
   },
   {
     "repo": "hormuz-labs/manul",
@@ -751,7 +639,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-15T09:37:39Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "hpleapfrog/Scholia",
@@ -783,7 +671,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-15T17:12:44Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "itsPLK/ps5-payload-manager",
@@ -812,7 +700,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-10T18:32:16Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "jamro/tiny-engineer",
@@ -844,7 +732,7 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-10-11T00:37:53Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "juliobsz/skills",
@@ -860,7 +748,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-13T01:05:32Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "Kirito14IT/prompt-spider-ui",
@@ -892,7 +780,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-10T22:12:58Z",
-    "retryCount": 5
+    "retryCount": 1
   },
   {
     "repo": "kvcache-ai/ktransformers",
@@ -906,7 +794,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-13T22:08:09.499Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "laoma528/awesome-zhuiju-free",
@@ -951,23 +839,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-13T14:49:42Z",
-    "retryCount": 3
-  },
-  {
-    "repo": "lobehub/lobe-vidol",
-    "desc": "🧸 Lobe Vidol - Making Virtual Idols Accessible for EveryOne",
-    "stars": 991,
-    "language": "TypeScript",
-    "topics": [
-      "chatbot"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2024-04-10T15:27:39Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-15T07:32:57Z",
-    "retryCount": 1
+    "retryCount": 4
   },
   {
     "repo": "makerforgetech/modular-biped",
@@ -999,7 +871,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-15T19:51:08Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "morluto/rea",
@@ -1030,8 +902,8 @@
     "createdAt": "2026-10-10T07:19:25Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-15T20:37:24Z",
-    "retryCount": 2
+    "ts": "2026-10-15T22:38:55Z",
+    "retryCount": 3
   },
   {
     "repo": "Naruki-Ichihara/feax",
@@ -1047,6 +919,22 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-12T14:58:05Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "NeoXider/neoxider-agent-deck",
+    "desc": "A desktop pet for your AI agents: a slime that climbs your screen, naps on the taskbar and tells you when DeepSeek Harness agents finish or need you. Plus a full chat, live session board and an edge hinge.",
+    "stars": 2,
+    "language": "JavaScript",
+    "topics": [
+      "virtual-pet"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-08-25T10:26:00Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-15T22:02:49Z",
     "retryCount": 1
   },
   {
@@ -1063,7 +951,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-11T07:12:37Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "openfilm/openfilm",
@@ -1079,23 +967,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-15T08:56:50Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "PathGao/MoonDigest",
-    "desc": "用 AI 读完收藏的视频、整理 B 站收藏夹的 Chrome 扩展：字幕、AI 总结问答、收藏夹分拣，导出 Markdown，可选写入 Obsidian · Read and triage saved Bilibili & YouTube videos with AI: subtitles, AI summaries, favorites triage, Markdown and optional Obsidian export",
-    "stars": 63,
-    "language": "JavaScript",
-    "topics": [
-      "knowledge-management"
-    ],
-    "source": "search",
-    "starGrowth": 3,
-    "createdAt": "2026-09-15T06:03:15Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-15T13:06:39Z",
-    "retryCount": 6
+    "retryCount": 2
   },
   {
     "repo": "quantumlib/OpenFermion-PySCF",
@@ -1111,7 +983,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-14T01:46:53Z",
-    "retryCount": 5
+    "retryCount": 1
   },
   {
     "repo": "ranxianglei/billion-context",
@@ -1155,7 +1027,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-14T13:29:18.389Z",
-    "retryCount": 5
+    "retryCount": 1
   },
   {
     "repo": "SagarBiswas-MultiHAT/researchVault",
@@ -1174,6 +1046,38 @@
     "retryCount": 1
   },
   {
+    "repo": "sauvryn/BT-dragon",
+    "desc": "BT Dragon turns a Raspberry Pi Zero 2 W (on its own, or as part of an old Pwnagotchi with its e-ink screen) into a different kind of pocket pet: a cartoon Viking dragon who snacks on the Bluetooth gadgets around you, treats himself to Wi-Fi networks, goes on walks with you, makes friends with other dragons, and collects virtual butterflies.",
+    "stars": 1,
+    "language": "HTML",
+    "topics": [
+      "virtual-pet"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-11T21:35:14Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-15T20:31:03Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "sdolard/mac-demo-lab",
+    "desc": "Low-level GPU demos from a Mac: Bonzomatic livecoding setup + native Apple Silicon Metal 64k intro scaffold",
+    "stars": 1,
+    "language": "Objective-C++",
+    "topics": [
+      "demoscene"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-07T07:03:41Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-07T08:27:50Z",
+    "retryCount": 1
+  },
+  {
     "repo": "sebattfg/ZeroScript-Free",
     "desc": "ZeroScript Free: Turn ChatGPT, DeepSeek, Gemini, Kimi, GLM, Qwen, Arena or Meta AI into a Roblox Studio agent. Browser extension + local bridge. Read/edit scripts, run Luau, generate assets, all from chat. Robust agentic loop. No terminal needed.",
     "stars": 338,
@@ -1185,6 +1089,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-05T14:05:45.115Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "SimonSchubert/YogaBase",
+    "desc": "Yoga App",
+    "stars": 24,
+    "language": "Kotlin",
+    "topics": [
+      "fitness"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2025-04-10T21:30:06Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-15T22:38:06Z",
     "retryCount": 1
   },
   {
@@ -1201,7 +1121,7 @@
     "silentRounds": 6,
     "bigbros": [],
     "ts": "2026-10-13T09:45:48Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "tomtommyyuan/spmind",
@@ -1217,7 +1137,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-04T21:36:40Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "trailhq/Trail-Code",
@@ -1249,6 +1169,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-15T13:04:02Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "VidiPT89/iVidigotchi",
+    "desc": "Native iOS & iPadOS virtual pet built with SwiftUI and SpriteKit — procedural animated pet, 8 branching adult forms, four mini-games, iCloud sync, Home Screen widget, bilingual PT-PT/EN, dark and light theming.",
+    "stars": 1,
+    "language": "Swift",
+    "topics": [
+      "virtual-pet"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-09-29T23:25:07Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-15T21:43:26Z",
     "retryCount": 1
   },
   {
@@ -1265,7 +1201,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-13T15:58:16Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "wangzifan396-wzf/mini-browser-games",
@@ -1281,7 +1217,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-15T16:48:24Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "yatori-dev/yatori-go-console",
@@ -1297,7 +1233,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-13T17:21:35Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "zjoooooo/galaxy-explorer",
@@ -1314,6 +1250,6 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-15T16:18:48Z",
-    "retryCount": 1
+    "retryCount": 2
   }
 ]
