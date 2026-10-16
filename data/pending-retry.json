@@ -13,7 +13,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-14T05:59:09Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "1105216375-alt/resimind",
@@ -45,7 +45,52 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-13T09:59:59Z",
-    "retryCount": 4
+    "retryCount": 5
+  },
+  {
+    "repo": "abcwyc/pi-agent-desktop",
+    "desc": "Pi — A cross-platform AI coding agent, bringing the Claude Code experience to your desktop. No environment setup, no terminal commands. Download and start coding right away.",
+    "stars": 791,
+    "language": "TypeScript",
+    "topics": [],
+    "source": "trending",
+    "starGrowth": 269,
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-16T14:41:56.693Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "adalca/medical-datasets",
+    "desc": "tracking medical datasets, with a focus on medical imaging",
+    "stars": 930,
+    "language": "",
+    "topics": [
+      "learning"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2019-02-26T03:10:20Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-16T13:03:14Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "aeturrell/coding-for-economists",
+    "desc": "This repository hosts the code behind the online book, Coding for Economists.",
+    "stars": 943,
+    "language": "Jupyter Notebook",
+    "topics": [
+      "learning"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2020-11-28T23:41:41Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-16T13:00:07Z",
+    "retryCount": 1
   },
   {
     "repo": "Agents365-ai/video-podcast-maker",
@@ -59,7 +104,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-26T17:52:47.721Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "ajkdrag/otterly",
@@ -75,7 +120,7 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-10-05T06:55:37Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "alamin147/lost-and-found",
@@ -91,7 +136,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-08T17:37:36Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "ananie1/VoidProtocol",
@@ -107,7 +152,23 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-10-11T03:51:36Z",
-    "retryCount": 2
+    "retryCount": 3
+  },
+  {
+    "repo": "arcmira/mcp",
+    "desc": "YouTube transcript search for your AI. Find who said what with timestamps, mentions, sponsors, and recommendations. Remote MCP and agent skills.",
+    "stars": 26,
+    "language": "TypeScript",
+    "topics": [
+      "podcast"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-12T20:51:36Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-15T19:39:37Z",
+    "retryCount": 1
   },
   {
     "repo": "Arhythmetic-Units/PotatoChips",
@@ -123,7 +184,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-14T03:37:27Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "Arhythmetic-Units/RackNES",
@@ -139,7 +200,55 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-14T21:23:16Z",
-    "retryCount": 3
+    "retryCount": 4
+  },
+  {
+    "repo": "ArminShaikhy/frontend-interview-questions",
+    "desc": "A well-organized collection of frontend interview questions, categorized by topic, designed to help you prepare for technical interviews, deepen your knowledge, and serve as a practical reference for ongoing learning.",
+    "stars": 169,
+    "language": "CSS",
+    "topics": [
+      "interview"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2025-05-03T07:43:12Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-16T12:46:37Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "Axelrod-Python/Axelrod",
+    "desc": "A research tool for the Iterated Prisoner's Dilemma",
+    "stars": 857,
+    "language": "Python",
+    "topics": [
+      "mathematics"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2015-02-18T09:37:17Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-16T03:49:12Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "B33pBeeps/redthread",
+    "desc": "A sticky-note pegboard TUI for your terminal — drag notes around an ASCII corkboard, dangle red strings between them, switch through named boards. Mouse-first, written in Go.",
+    "stars": 69,
+    "language": "Go",
+    "topics": [
+      "ascii-art"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-04-24T21:11:00Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-15T17:45:01Z",
+    "retryCount": 1
   },
   {
     "repo": "bagidea/bagidea-office",
@@ -155,7 +264,7 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-10-15T17:23:42Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "Bel1eff-0228/How-to-Train-Better",
@@ -171,7 +280,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-12T03:51:53Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "Bennettxai/FounderOS",
@@ -200,8 +309,8 @@
     "createdAt": "2026-09-24T09:23:21Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-16T04:07:03Z",
-    "retryCount": 3
+    "ts": "2026-10-16T10:41:53Z",
+    "retryCount": 4
   },
   {
     "repo": "brandonhimpfen/awesome-travel",
@@ -217,7 +326,39 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-13T01:23:37Z",
-    "retryCount": 3
+    "retryCount": 4
+  },
+  {
+    "repo": "ByteGrad/Professional-CSS-Course",
+    "desc": "This repo contains everything you need as a student of the Professional CSS Course by ByteGrad",
+    "stars": 68,
+    "language": "CSS",
+    "topics": [
+      "course"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2021-05-14T19:09:47Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-15T20:39:23Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "ByteGrad/Professional-JavaScript-Course",
+    "desc": "This repo contains everything you need as a student of the Professional JavaScript Course by ByteGrad.com",
+    "stars": 61,
+    "language": "CSS",
+    "topics": [
+      "course"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2022-04-11T11:08:51Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-15T20:39:27Z",
+    "retryCount": 1
   },
   {
     "repo": "caglarutkuguler/cubicle",
@@ -233,7 +374,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-15T19:47:12Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "CandlemakerMaster/aewtzeew",
@@ -248,8 +389,8 @@
     "createdAt": "2026-10-02T00:00:43Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-16T08:22:05Z",
-    "retryCount": 2
+    "ts": "2026-10-16T14:27:20Z",
+    "retryCount": 3
   },
   {
     "repo": "Cecilapp/staticast",
@@ -265,7 +406,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-10T23:22:42Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "cfelicio/ShotSieve",
@@ -281,7 +422,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-06T01:40:56Z",
-    "retryCount": 3
+    "retryCount": 4
+  },
+  {
+    "repo": "cgranier/tabSidian",
+    "desc": "tabSidian gathers your open browser tabs and turns them into a markdown list.",
+    "stars": 105,
+    "language": "JavaScript",
+    "topics": [
+      "knowledge-management"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2023-04-20T01:11:29Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-28T19:54:43Z",
+    "retryCount": 1
   },
   {
     "repo": "charming-art/charming",
@@ -297,7 +454,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-14T02:01:12Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "CopilotKit/OpenIntelligentUI",
@@ -311,7 +468,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-11T12:25:39.178Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "Crosstalk-Solutions/unifi-toolkit",
@@ -342,7 +499,23 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-10-12T03:22:18Z",
-    "retryCount": 2
+    "retryCount": 1
+  },
+  {
+    "repo": "Danche23/tuyou",
+    "desc": "户外旅行平台的后端服务，提供会员端和管理端两套 API",
+    "stars": 3,
+    "language": "Go",
+    "topics": [
+      "travel"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-09-01T11:59:14Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-15T14:11:13Z",
+    "retryCount": 1
   },
   {
     "repo": "danukim/Miko",
@@ -358,7 +531,7 @@
     "silentRounds": 5,
     "bigbros": [],
     "ts": "2026-09-27T03:30:23Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "DaoyuanLi2816/can-i-finetune-this",
@@ -374,7 +547,7 @@
     "silentRounds": 11,
     "bigbros": [],
     "ts": "2026-10-08T09:45:42Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "datamllab/openebfm",
@@ -390,7 +563,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-14T18:54:47Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "datamllab/OpenEBFM",
@@ -422,6 +595,38 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-14T18:54:47Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "deeptools/HiCExplorer",
+    "desc": "HiCExplorer is a powerful and easy to use set of tools to process, normalize and visualize Hi-C data.",
+    "stars": 280,
+    "language": "Python",
+    "topics": [
+      "bioinformatics"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2015-02-16T13:31:19Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-24T11:12:24Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "donutbrowser/donutbrowser",
+    "desc": "The Most Private Anti-Detect Browser 🍩",
+    "stars": 4058,
+    "language": "Rust",
+    "topics": [
+      "privacy"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2025-05-29T06:13:50Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-15T22:24:21Z",
     "retryCount": 1
   },
   {
@@ -454,7 +659,20 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-04T11:38:15Z",
-    "retryCount": 4
+    "retryCount": 1
+  },
+  {
+    "repo": "elder-plinius/V3R1T4S",
+    "desc": "liberating known unknowns",
+    "stars": 348,
+    "language": "Python",
+    "topics": [],
+    "source": "trending",
+    "starGrowth": 43,
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-16T14:41:56.693Z",
+    "retryCount": 1
   },
   {
     "repo": "ElekLabs/digikit",
@@ -469,7 +687,7 @@
     "createdAt": "2026-09-08T08:31:54Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-16T05:05:21Z",
+    "ts": "2026-10-16T12:59:10Z",
     "retryCount": 1
   },
   {
@@ -486,6 +704,38 @@
     "retryCount": 1
   },
   {
+    "repo": "Explore-In-HMOS/touristic-places",
+    "desc": "Travel discovery UI prototype for HarmonyOS watches with searchable mock destinations; note and favorite controls are non-functional placeholders.",
+    "stars": 3,
+    "language": "TypeScript",
+    "topics": [
+      "travel"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2025-09-01T19:20:47Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-16T13:44:07Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "Explore-In-HMOS/travel-app",
+    "desc": "Travel browsing sample for HarmonyOS watches with museum, restaurant and hotel listings, venue details and category navigation.",
+    "stars": 3,
+    "language": "TypeScript",
+    "topics": [
+      "travel"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2025-09-01T19:21:05Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-16T13:44:08Z",
+    "retryCount": 1
+  },
+  {
     "repo": "eyenpi/spriglet",
     "desc": "Little desktop companions called spriglets for your Mac. Meet Mallow, your first spriglet. Native Swift and AppKit; local by design. MIT code and artwork.",
     "stars": 1,
@@ -499,23 +749,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-14T16:35:28Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "FailproofAI/failproofai",
-    "desc": "Observability and enforcement for AI agent harnesses. Capture every run and runtime reliability with policy enforcement.  ",
-    "stars": 5518,
-    "language": "TypeScript",
-    "topics": [
-      "ai-agent"
-    ],
-    "source": "search",
-    "starGrowth": 101,
-    "createdAt": "2026-04-06T01:56:39Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-16T07:09:13Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "Fazmin/AILearningGuide",
@@ -531,7 +765,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-16T02:05:49Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "fchavonet/creative_coding-flip_book",
@@ -550,6 +784,22 @@
     "retryCount": 1
   },
   {
+    "repo": "francof2a/fxpmath",
+    "desc": "A python library for fractional fixed-point (base 2) arithmetic and binary manipulation with Numpy compatibility.",
+    "stars": 207,
+    "language": "Python",
+    "topics": [
+      "mathematics"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2020-04-08T14:30:19Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-16T13:46:37Z",
+    "retryCount": 1
+  },
+  {
     "repo": "Gabberflast/prose-revision-skill-ht-anthony-lee-zhang",
     "desc": "A Claude Skill for revising draft prose — essays, papers, memos, reports — on the principle of idea flow before linguistic flow. Diagnoses structure before wording, leads with the main claim, preserves the author's voice and claim strength, and knows when to leave a good draft alone. Distinct from proofreading.",
     "stars": 13,
@@ -563,7 +813,39 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-13T22:51:19Z",
-    "retryCount": 2
+    "retryCount": 3
+  },
+  {
+    "repo": "gbtami/chessgroundx",
+    "desc": "Fork of https://github.com/lichess-org/chessground Supports boards up to 16x16",
+    "stars": 46,
+    "language": "TypeScript",
+    "topics": [
+      "chess"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2019-03-12T09:11:15Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-16T14:32:35Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "gioda/ecuaciones-diferenciales",
+    "desc": "Ecuaciones diferenciales: problemas, modelos y métodos — Giovanni Dalmasso y Joaquín Menacho",
+    "stars": 0,
+    "language": "TeX",
+    "topics": [
+      "textbook"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-09-29T08:22:34Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-15T12:40:22Z",
+    "retryCount": 1
   },
   {
     "repo": "golanlevin/p5-single-line-font-resources",
@@ -580,7 +862,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-15T07:15:08Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "google/agentmesh",
@@ -593,6 +875,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-14T13:29:18.389Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "HappyHackingSpace/english-learning-resources",
+    "desc": "Your ultimate guide to mastering English with categorized resources and learning paths.",
+    "stars": 13,
+    "language": "",
+    "topics": [
+      "english"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2024-11-25T08:13:55Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-16T12:35:53Z",
     "retryCount": 1
   },
   {
@@ -609,7 +907,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-15T15:59:22Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "Herricka/RecallWeave",
@@ -625,7 +923,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-13T16:25:56Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "HEXUXIU/M365-Copilot2API",
@@ -639,7 +937,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-12T14:54:39.565Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "HeyCubit/effortless",
@@ -654,8 +952,8 @@
     "createdAt": "2026-10-06T01:51:25Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-16T01:32:04Z",
-    "retryCount": 2
+    "ts": "2026-10-16T13:48:42Z",
+    "retryCount": 3
   },
   {
     "repo": "higgins/gitpushups.com",
@@ -671,7 +969,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-16T08:14:45Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "hormuz-labs/manul",
@@ -687,7 +985,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-15T09:37:39Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "hpleapfrog/Scholia",
@@ -702,8 +1000,8 @@
     "createdAt": "2026-10-05T07:23:57Z",
     "silentRounds": 4,
     "bigbros": [],
-    "ts": "2026-10-14T09:22:19Z",
-    "retryCount": 2
+    "ts": "2026-10-16T09:32:03Z",
+    "retryCount": 1
   },
   {
     "repo": "ISS-Mimic/Mimic",
@@ -719,7 +1017,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-15T17:12:44Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "itsPLK/ps5-payload-manager",
@@ -767,6 +1065,19 @@
     "retryCount": 1
   },
   {
+    "repo": "jasonxu114514/opencode2api",
+    "desc": "A Go-based OpenCode Zen / Zen Go API proxy with OpenAI &amp; Anthropic API compatibility, key/proxy pooling, automatic routing, and WebUI.",
+    "stars": 867,
+    "language": "Go",
+    "topics": [],
+    "source": "trending",
+    "starGrowth": 186,
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-16T14:41:56.693Z",
+    "retryCount": 1
+  },
+  {
     "repo": "jcarmichael-art/Notris",
     "desc": "A tertis clone that uses pygame and numpy",
     "stars": 2,
@@ -780,7 +1091,7 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-10-11T00:37:53Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "joltwallet/esp_littlefs",
@@ -796,7 +1107,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-16T00:02:50Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "juliobsz/skills",
@@ -811,8 +1122,8 @@
     "createdAt": "2026-10-12T00:07:32Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-13T01:05:32Z",
-    "retryCount": 4
+    "ts": "2026-10-16T12:35:00Z",
+    "retryCount": 1
   },
   {
     "repo": "k3ng/k3ng_cw_keyer",
@@ -827,8 +1138,8 @@
     "createdAt": "2013-01-29T19:27:23Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-16T00:12:53Z",
-    "retryCount": 2
+    "ts": "2026-10-16T12:14:29Z",
+    "retryCount": 1
   },
   {
     "repo": "K3vinb5/unyo-app",
@@ -844,7 +1155,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-16T08:01:05Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Kirito14IT/prompt-spider-ui",
@@ -852,7 +1163,8 @@
     "stars": 20,
     "language": "JavaScript",
     "topics": [
-      "generative-art"
+      "generative-art",
+      "creative-coding"
     ],
     "source": "search",
     "starGrowth": 9,
@@ -860,7 +1172,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-14T04:41:26Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "KorroAi/drunk-claude",
@@ -876,7 +1188,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-10T22:12:58Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "kvcache-ai/ktransformers",
@@ -890,7 +1202,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-13T22:08:09.499Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "laoma528/awesome-zhuiju-free",
@@ -919,7 +1231,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-12T16:16:38Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "lcomment/development-recipes",
@@ -935,7 +1247,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-14T08:38:08Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "lingmulongtai/tsuyulabo",
@@ -951,7 +1263,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-13T14:49:42Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "Lunatic-Works/neural-tools",
@@ -966,8 +1278,8 @@
     "createdAt": "2021-07-04T17:19:52Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-16T03:24:20Z",
-    "retryCount": 2
+    "ts": "2026-10-16T11:25:39Z",
+    "retryCount": 1
   },
   {
     "repo": "makerforgetech/modular-biped",
@@ -983,7 +1295,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-06T14:36:09Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "mikahama/natas",
@@ -999,7 +1311,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-15T19:51:08Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "morluto/rea",
@@ -1018,22 +1330,6 @@
     "retryCount": 1
   },
   {
-    "repo": "naman-sharma12345/kimo",
-    "desc": "MCP-first AI video editor in Rust/C++. Every operation is an AI-callable tool.",
-    "stars": 10,
-    "language": "Rust",
-    "topics": [
-      "video-editor"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-10-10T07:19:25Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-16T08:06:54Z",
-    "retryCount": 6
-  },
-  {
     "repo": "Naruki-Ichihara/feax",
     "desc": "A simulation node in your JAX workflow.",
     "stars": 90,
@@ -1047,7 +1343,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-12T14:58:05Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "NeoXider/neoxider-agent-deck",
@@ -1079,7 +1375,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-11T07:12:37Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "openfilm/openfilm",
@@ -1094,7 +1390,7 @@
     "createdAt": "2026-10-04T09:29:07Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-15T08:56:50Z",
+    "ts": "2026-10-16T11:00:35Z",
     "retryCount": 1
   },
   {
@@ -1110,8 +1406,24 @@
     "createdAt": "2026-01-10T11:45:20Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-15T22:21:03Z",
-    "retryCount": 2
+    "ts": "2026-10-16T10:57:41Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "oysterhyd/futa-night-walk",
+    "desc": "燃灯夜行 · 夜渡：Godot 原生四章动作肉鸽，民俗木版画与剪纸风格，支持 Windows 免安装游玩。",
+    "stars": 2,
+    "language": "GDScript",
+    "topics": [
+      "roguelike"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-03-26T16:58:13Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-16T14:17:33Z",
+    "retryCount": 1
   },
   {
     "repo": "pangeran-droid/ascii-profile-card",
@@ -1127,7 +1439,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-14T04:16:26Z",
-    "retryCount": 2
+    "retryCount": 1
+  },
+  {
+    "repo": "pedrolcl/vmpk-android",
+    "desc": "VMPK for Android",
+    "stars": 31,
+    "language": "Java",
+    "topics": [
+      "synthesizer"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2025-08-26T15:34:18Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-16T08:58:32Z",
+    "retryCount": 1
   },
   {
     "repo": "phucnguyentvp1/frameweaver",
@@ -1142,8 +1470,8 @@
     "createdAt": "2026-10-14T02:18:40Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-14T05:57:15Z",
-    "retryCount": 2
+    "ts": "2026-10-16T10:18:49Z",
+    "retryCount": 3
   },
   {
     "repo": "Pixelgamer4k/graden",
@@ -1159,7 +1487,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-15T17:03:04Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "quantumlib/OpenFermion-PySCF",
@@ -1175,7 +1503,23 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-14T01:46:53Z",
-    "retryCount": 2
+    "retryCount": 1
+  },
+  {
+    "repo": "rabbit-ear/rabbit-ear",
+    "desc": "computational origami library",
+    "stars": 652,
+    "language": "JavaScript",
+    "topics": [
+      "generative-art"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2016-01-02T21:14:58Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-16T12:55:43Z",
+    "retryCount": 1
   },
   {
     "repo": "ranxianglei/billion-context",
@@ -1189,7 +1533,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-12T14:54:39.565Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "RareSense/Nova3D",
@@ -1205,7 +1549,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-15T14:26:14Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "razorpay/slashdocs",
@@ -1219,7 +1563,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-14T13:29:18.389Z",
-    "retryCount": 2
+    "retryCount": 3
+  },
+  {
+    "repo": "remance/Masendor",
+    "desc": "Open source educational and historical battle action game",
+    "stars": 149,
+    "language": "Python",
+    "topics": [
+      "pygame"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2020-05-27T15:21:52Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-16T12:57:46Z",
+    "retryCount": 1
   },
   {
     "repo": "SagarBiswas-MultiHAT/researchVault",
@@ -1234,8 +1594,8 @@
     "createdAt": "2026-08-25T15:54:18Z",
     "silentRounds": 4,
     "bigbros": [],
-    "ts": "2026-10-11T17:49:37Z",
-    "retryCount": 4
+    "ts": "2026-10-16T14:23:58Z",
+    "retryCount": 5
   },
   {
     "repo": "sauvryn/BT-dragon",
@@ -1281,7 +1641,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-05T14:05:45.115Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "sfrangulov/claude-code-handbook-ru",
@@ -1297,7 +1657,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-16T05:49:42Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "SimonSchubert/YogaBase",
@@ -1313,7 +1673,52 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-15T22:38:06Z",
-    "retryCount": 4
+    "retryCount": 1
+  },
+  {
+    "repo": "superdesigndev/superdesign-skill",
+    "desc": "The design skill for Claude Code, Cursor and any coding agent. Stop shipping AI-slop UI: turn it into shippable, tasteful frontend. Install: npx skills add superdesigndev/superdesign-skill. Powered by superdesign.dev",
+    "stars": 799,
+    "language": "JavaScript",
+    "topics": [],
+    "source": "trending",
+    "starGrowth": 61,
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-16T14:41:56.693Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "supermosh/supermosh.github.io",
+    "desc": "Datamosh in the browser",
+    "stars": 377,
+    "language": "TypeScript",
+    "topics": [
+      "generative-art"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2021-07-01T10:07:51Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-15T16:30:07Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "SuperTost100/politost-books",
+    "desc": "Free PoliTost smartbooks. Write or fix a book with a pull request; merges publish to books.politost.it.",
+    "stars": 0,
+    "language": "TypeScript",
+    "topics": [
+      "textbook"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-12T14:27:57Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-14T07:38:30Z",
+    "retryCount": 1
   },
   {
     "repo": "swordsalah/NEXORA-Intent-to-Cloth-Pipeline",
@@ -1337,7 +1742,8 @@
     "stars": 111,
     "language": "Nim",
     "topics": [
-      "algorithms"
+      "algorithms",
+      "mathematics"
     ],
     "source": "search",
     "starGrowth": 0,
@@ -1345,7 +1751,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-16T08:36:38Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Timmoth/Sapling",
@@ -1360,8 +1766,8 @@
     "createdAt": "2024-09-04T18:58:43Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-16T04:47:59Z",
-    "retryCount": 1
+    "ts": "2026-10-16T14:20:42Z",
+    "retryCount": 2
   },
   {
     "repo": "tomaszs/flashcards",
@@ -1393,7 +1799,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-04T21:36:40Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "tonyzedginidze/librecalculator",
@@ -1409,7 +1815,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-15T19:53:45Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "trailhq/Trail-Code",
@@ -1425,6 +1831,35 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-15T15:36:21Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "tristenlammi/Arrmada",
+    "desc": "arrrrrrrr",
+    "stars": 225,
+    "language": "Go",
+    "topics": [],
+    "source": "trending",
+    "starGrowth": 27,
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-16T14:41:56.693Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "tstamborski/pixelart-icons",
+    "desc": "Still growing set of totally free and royalty free pixel art icons. ",
+    "stars": 46,
+    "language": "Shell",
+    "topics": [
+      "pixel-art"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2023-01-24T20:54:36Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-16T13:22:33Z",
     "retryCount": 1
   },
   {
@@ -1441,7 +1876,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-15T13:04:02Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "VidiPT89/iVidigotchi",
@@ -1457,7 +1892,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-15T21:43:26Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "vivekvar-dl/wingman-AI",
@@ -1473,7 +1908,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-13T15:58:16Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "wangzifan396-wzf/mini-browser-games",
@@ -1505,7 +1940,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-13T17:21:35Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "zigcc/zig-course",
@@ -1521,7 +1956,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-15T08:42:55Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "zjoooooo/galaxy-explorer",
@@ -1538,6 +1973,6 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-16T03:37:34Z",
-    "retryCount": 5
+    "retryCount": 6
   }
 ]
