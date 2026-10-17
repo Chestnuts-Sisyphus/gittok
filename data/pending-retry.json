@@ -1,21 +1,5 @@
 [
   {
-    "repo": "0xnhsec/PORTSWIGGER-LABS",
-    "desc": "My PoC writteups from my Roadmap for Web Application Security",
-    "stars": 19,
-    "language": "Python",
-    "topics": [
-      "writing"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-06-27T02:41:27Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-14T05:59:09Z",
-    "retryCount": 6
-  },
-  {
     "repo": "1105216375-alt/resimind",
     "desc": "Neuro-symbolic agents with verified memory. MCP math tools, an algebra repair Skill, and an open challenge. Verify solutions, learn checked rules, and reuse.",
     "stars": 171,
@@ -32,6 +16,22 @@
     "retryCount": 1
   },
   {
+    "repo": "a-shygun/Pawnix",
+    "desc": "A minimal curses chess client with Lichess API support",
+    "stars": 14,
+    "language": "Python",
+    "topics": [
+      "ascii-art"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-10T09:40:18Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-13T09:59:59Z",
+    "retryCount": 1
+  },
+  {
     "repo": "Agents365-ai/video-podcast-maker",
     "desc": "",
     "stars": 1684,
@@ -43,23 +43,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-26T17:52:47.721Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "alamin147/lost-and-found",
-    "desc": "Lost & Found Management System is a full-stack web application designed to streamline the process of reporting, tracking, and claiming lost items. Users can report lost belongings, register found items, and make claims through an intuitive interface.",
-    "stars": 11,
-    "language": "TypeScript",
-    "topics": [
-      "llm-model"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2024-05-31T21:04:31Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-08T17:37:36Z",
-    "retryCount": 6
+    "retryCount": 1
   },
   {
     "repo": "ananie1/VoidProtocol",
@@ -75,7 +59,7 @@
     "silentRounds": 6,
     "bigbros": [],
     "ts": "2026-10-11T03:51:36Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "arcmira/mcp",
@@ -91,55 +75,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-15T19:39:37Z",
-    "retryCount": 4
-  },
-  {
-    "repo": "Arhythmetic-Units/PotatoChips",
-    "desc": "Potato Chips brings classic sound chips to VCV Rack 2 with polyphonic chiptune oscillators, FM synth voices, wavetables, envelopes, and effects by Arhythmetic Units.",
-    "stars": 56,
-    "language": "C++",
-    "topics": [
-      "synthesizer"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2020-06-23T12:36:31Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-14T03:37:27Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "Arhythmetic-Units/RackNES",
-    "desc": "A voltage-controlled NES emulator for VCV Rack 2 by Arhythmetic Units. Turn games into musical instruments with gate-driven controllers, five audio voices, save-state recall, and the CV Genie memory expander.",
-    "stars": 105,
-    "language": "C++",
-    "topics": [
-      "music-production"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2020-06-14T05:16:38Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-14T21:23:16Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "ashtonmeuser/godot-wasm",
-    "desc": "Interact with WebAssembly modules from Godot",
-    "stars": 302,
-    "language": "C++",
-    "topics": [
-      "godot"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2022-11-05T18:18:57Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-16T23:32:51Z",
-    "retryCount": 6
+    "retryCount": 1
   },
   {
     "repo": "Ayfri/4k-minecraft",
@@ -171,7 +107,7 @@
     "silentRounds": 6,
     "bigbros": [],
     "ts": "2026-10-15T17:23:42Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "billpwchan/neon-zenith",
@@ -187,39 +123,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-06T06:29:50Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "BkashJEE/ScreenPolish",
-    "desc": "A screen recorder that polishes the take for you: zooms into every click, draws its own cursor, runs entirely offline. Linux, Windows and macOS.",
-    "stars": 20,
-    "language": "TypeScript",
-    "topics": [
-      "video-editor"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-09-24T09:23:21Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-16T10:41:53Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "brandonhimpfen/awesome-travel",
-    "desc": "A collection of awesome travel-related lists.",
-    "stars": 7,
-    "language": "",
-    "topics": [
-      "travel"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2023-06-21T15:37:58Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-13T01:23:37Z",
-    "retryCount": 6
+    "retryCount": 3
   },
   {
     "repo": "caglarutkuguler/cubicle",
@@ -235,23 +139,23 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-17T15:55:15Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
-    "repo": "Cecilapp/staticast",
-    "desc": "Staticast is a ready to use Progressive Web App to publish your podcast, with a RSS feed ready for syndication platforms, and a user friendly CMS.",
-    "stars": 15,
-    "language": "CSS",
+    "repo": "CatVinci-Studio/Textus",
+    "desc": "The next-generation Markdown editor, with an AI writing assistant. Free and open source for macOS, Windows and Linux.",
+    "stars": 101,
+    "language": "TypeScript",
     "topics": [
-      "podcast"
+      "writing"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2020-06-12T00:43:58Z",
-    "silentRounds": 1,
+    "createdAt": "2026-07-08T21:58:26Z",
+    "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-10T23:22:42Z",
-    "retryCount": 6
+    "ts": "2026-10-17T06:33:24Z",
+    "retryCount": 1
   },
   {
     "repo": "cgranier/tabSidian",
@@ -267,23 +171,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-09-28T19:54:43Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "charming-art/charming",
-    "desc": "A JavaScript library for creative coding and data-driven drawing.",
-    "stars": 32,
-    "language": "JavaScript",
-    "topics": [
-      "creative-coding"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2023-07-15T06:33:46Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-17T16:19:54Z",
-    "retryCount": 6
+    "retryCount": 1
   },
   {
     "repo": "chartmann1590/Pixel-Fish-Tank",
@@ -314,7 +202,7 @@
     "createdAt": "2025-11-25T19:01:18Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-17T16:15:12Z",
+    "ts": "2026-10-17T17:05:55Z",
     "retryCount": 1
   },
   {
@@ -345,7 +233,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-11T12:25:39.178Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "creep-ltx/charcoal",
@@ -361,7 +249,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-17T04:25:11Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "Crosstalk-Solutions/unifi-toolkit",
@@ -392,7 +280,7 @@
     "silentRounds": 6,
     "bigbros": [],
     "ts": "2026-10-12T03:22:18Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "danukim/Miko",
@@ -408,7 +296,7 @@
     "silentRounds": 7,
     "bigbros": [],
     "ts": "2026-09-27T03:30:23Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "datamllab/openebfm",
@@ -424,7 +312,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-14T18:54:47Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "datamllab/openesm",
@@ -440,7 +328,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-14T18:54:47Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "Dragynrain/RogueSignalProtocol",
@@ -456,7 +344,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-17T16:03:54Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "elder-plinius/V3R1T4S",
@@ -470,7 +358,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-16T19:28:56.080Z",
-    "retryCount": 5
+    "retryCount": 1
   },
   {
     "repo": "ErTasselli/OpenTerminal",
@@ -484,7 +372,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-15T14:47:34.742Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "eyenpi/spriglet",
@@ -500,7 +388,7 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-10-14T16:35:28Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Fazmin/AILearningGuide",
@@ -516,8 +404,8 @@
     "createdAt": "2026-10-05T02:29:23Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-17T13:46:44Z",
-    "retryCount": 2
+    "ts": "2026-10-17T17:07:37Z",
+    "retryCount": 1
   },
   {
     "repo": "gd-codes/mc-pixelart-maker",
@@ -533,7 +421,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-16T16:57:31Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "golanlevin/p5-single-line-font-resources",
@@ -566,7 +454,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-14T16:09:23Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "HeyCubit/effortless",
@@ -598,7 +486,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-17T06:15:31Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "hormuz-labs/manul",
@@ -614,7 +502,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-17T08:10:13Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "hpleapfrog/Scholia",
@@ -646,7 +534,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-16T18:28:46Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "ISS-Mimic/Mimic",
@@ -662,7 +550,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-15T17:12:44Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "jasonxu114514/opencode2api",
@@ -691,7 +579,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-17T15:28:43Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "jcarmichael-art/Notris",
@@ -723,7 +611,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-17T14:02:00Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "kanishkamisra/minicons",
@@ -739,7 +627,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-06T12:14:31Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "Kirito14IT/prompt-spider-ui",
@@ -756,7 +644,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-14T04:41:26Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "KorroAi/drunk-claude",
@@ -786,7 +674,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-13T22:08:09.499Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "laoma528/awesome-zhuiju-free",
@@ -800,7 +688,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-15T14:47:34.742Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "lew0nn/voidworm",
@@ -816,7 +704,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-10T16:43:58Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "linyaocrush/DLsite-Purchase-Analyzer",
@@ -832,7 +720,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-16T13:58:51Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "liuchang0812/dl-textbook",
@@ -848,7 +736,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-17T06:32:18Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "maddada/Ghostex",
@@ -878,7 +766,7 @@
     "createdAt": "2026-04-14T00:51:32Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-17T16:28:38Z",
+    "ts": "2026-10-17T17:06:32Z",
     "retryCount": 1
   },
   {
@@ -926,8 +814,8 @@
     "createdAt": "2026-10-14T13:00:40Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-10-17T16:29:16Z",
-    "retryCount": 1
+    "ts": "2026-10-17T16:53:19Z",
+    "retryCount": 2
   },
   {
     "repo": "phucnguyentvp1/frameweaver",
@@ -943,7 +831,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-16T10:18:49Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "quantumlib/OpenFermion-PySCF",
@@ -959,7 +847,7 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-10-14T01:46:53Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "ranxianglei/billion-context",
@@ -989,7 +877,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-07T12:00:10Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "receptron/mulmocast-cli",
@@ -1005,7 +893,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-16T21:13:34Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "SagarBiswas-MultiHAT/researchVault",
@@ -1021,7 +909,7 @@
     "silentRounds": 6,
     "bigbros": [],
     "ts": "2026-10-17T16:43:34Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "scott20201225/ChinaK12BookDownLoader",
@@ -1037,7 +925,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-17T06:32:24Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "SimoneScoop/Stardew-Desk",
@@ -1053,7 +941,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-16T08:53:05Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "swordsalah/NEXORA-Intent-to-Cloth-Pipeline",
@@ -1069,7 +957,7 @@
     "silentRounds": 8,
     "bigbros": [],
     "ts": "2026-10-13T09:45:48Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "tomtommyyuan/spmind",
@@ -1085,7 +973,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-04T21:36:40Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "trailhq/Trail-Code",
@@ -1101,7 +989,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-17T12:21:35Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "tristenlammi/Arrmada",
@@ -1146,7 +1034,7 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-10-13T15:58:16Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "vshulcz/deja-vu",
@@ -1208,7 +1096,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-16T20:30:43Z",
-    "retryCount": 5
+    "retryCount": 1
   },
   {
     "repo": "ygelfand/echolocal",
