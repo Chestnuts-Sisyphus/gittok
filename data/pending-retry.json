@@ -1,21 +1,5 @@
 [
   {
-    "repo": "0xnhsec/PORTSWIGGER-LABS",
-    "desc": "My PoC writteups from my Roadmap for Web Application Security",
-    "stars": 19,
-    "language": "Python",
-    "topics": [
-      "writing"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-06-27T02:41:27Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-14T05:59:09Z",
-    "retryCount": 6
-  },
-  {
     "repo": "1105216375-alt/resimind",
     "desc": "Neuro-symbolic agents with verified memory. MCP math tools, an algebra repair Skill, and an open challenge. Verify solutions, learn checked rules, and reuse.",
     "stars": 177,
@@ -32,6 +16,22 @@
     "retryCount": 1
   },
   {
+    "repo": "1Step621/zerium",
+    "desc": "A video editor with zero limits.",
+    "stars": 16,
+    "language": "Rust",
+    "topics": [
+      "video-editor"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-08-15T09:07:56Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-18T13:37:37Z",
+    "retryCount": 1
+  },
+  {
     "repo": "24kr/Local_LLM_Assistant",
     "desc": "LoLA: Privacy-first desktop AI with RAG. Chat offline with your docs using Ollama models. React+Electron UI, FastAPI backend. 100% local, cross-platform.",
     "stars": 0,
@@ -45,7 +45,23 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-17T22:11:49Z",
-    "retryCount": 3
+    "retryCount": 4
+  },
+  {
+    "repo": "a-shygun/Pawnix",
+    "desc": "A minimal curses chess client with Lichess API support",
+    "stars": 15,
+    "language": "Python",
+    "topics": [
+      "ascii-art"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-10T09:40:18Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-13T09:59:59Z",
+    "retryCount": 1
   },
   {
     "repo": "ActiveInferenceInstitute/fundamentals",
@@ -61,7 +77,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-18T01:07:25Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Agents365-ai/video-podcast-maker",
@@ -78,20 +94,17 @@
     "retryCount": 1
   },
   {
-    "repo": "alamin147/lost-and-found",
-    "desc": "Lost & Found Management System is a full-stack web application designed to streamline the process of reporting, tracking, and claiming lost items. Users can report lost belongings, register found items, and make claims through an intuitive interface.",
-    "stars": 11,
-    "language": "TypeScript",
-    "topics": [
-      "llm-model"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2024-05-31T21:04:31Z",
-    "silentRounds": 1,
+    "repo": "alvinunreal/lazyskills",
+    "desc": "mission control for agent skills",
+    "stars": 533,
+    "language": "Go",
+    "topics": [],
+    "source": "trending",
+    "starGrowth": 107,
+    "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-08T17:37:36Z",
-    "retryCount": 6
+    "ts": "2026-10-18T13:52:18.694Z",
+    "retryCount": 1
   },
   {
     "repo": "ananie1/VoidProtocol",
@@ -107,7 +120,23 @@
     "silentRounds": 7,
     "bigbros": [],
     "ts": "2026-10-11T03:51:36Z",
-    "retryCount": 3
+    "retryCount": 1
+  },
+  {
+    "repo": "apresmoi/glyphcss",
+    "desc": "ASCII polygon mesh renderer for the DOM. Forked from LayoutitStudio/polycss.",
+    "stars": 214,
+    "language": "TypeScript",
+    "topics": [
+      "ascii-art"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-05-17T18:47:24Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-18T13:49:06Z",
+    "retryCount": 1
   },
   {
     "repo": "arcmira/mcp",
@@ -126,54 +155,6 @@
     "retryCount": 1
   },
   {
-    "repo": "Arhythmetic-Units/PotatoChips",
-    "desc": "Potato Chips brings classic sound chips to VCV Rack 2 with polyphonic chiptune oscillators, FM synth voices, wavetables, envelopes, and effects by Arhythmetic Units.",
-    "stars": 56,
-    "language": "C++",
-    "topics": [
-      "synthesizer"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2020-06-23T12:36:31Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-14T03:37:27Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "Arhythmetic-Units/RackNES",
-    "desc": "A voltage-controlled NES emulator for VCV Rack 2 by Arhythmetic Units. Turn games into musical instruments with gate-driven controllers, five audio voices, save-state recall, and the CV Genie memory expander.",
-    "stars": 105,
-    "language": "C++",
-    "topics": [
-      "music-production"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2020-06-14T05:16:38Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-14T21:23:16Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "ashtonmeuser/godot-wasm",
-    "desc": "Interact with WebAssembly modules from Godot",
-    "stars": 302,
-    "language": "C++",
-    "topics": [
-      "godot"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2022-11-05T18:18:57Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-16T23:32:51Z",
-    "retryCount": 6
-  },
-  {
     "repo": "bagidea/bagidea-office",
     "desc": "A living AI-agent office on your desktop wallpaper — Claude Code agents that walk, work, delegate, learn & hold meetings. Per-agent swappable models (Claude/GLM/DeepSeek/Qwen/Kimi/OpenAI/Gemini/Groq/Ollama…), workflows, plugins, voice & Telegram/Discord/LINE. Open source.",
     "stars": 250,
@@ -187,7 +168,7 @@
     "silentRounds": 7,
     "bigbros": [],
     "ts": "2026-10-15T17:23:42Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "billpwchan/neon-zenith",
@@ -203,39 +184,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-06T06:29:50Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "BkashJEE/ScreenPolish",
-    "desc": "A screen recorder that polishes the take for you: zooms into every click, draws its own cursor, runs entirely offline. Linux, Windows and macOS.",
-    "stars": 20,
-    "language": "TypeScript",
-    "topics": [
-      "video-editor"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-09-24T09:23:21Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-18T06:14:18Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "brandonhimpfen/awesome-travel",
-    "desc": "A collection of awesome travel-related lists.",
-    "stars": 7,
-    "language": "",
-    "topics": [
-      "travel"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2023-06-21T15:37:58Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-13T01:23:37Z",
-    "retryCount": 6
+    "retryCount": 1
   },
   {
     "repo": "caglarutkuguler/cubicle",
@@ -250,24 +199,24 @@
     "createdAt": "2026-09-27T09:46:49Z",
     "silentRounds": 3,
     "bigbros": [],
-    "ts": "2026-10-18T08:09:54Z",
+    "ts": "2026-10-18T12:08:31Z",
     "retryCount": 1
   },
   {
-    "repo": "Cecilapp/staticast",
-    "desc": "Staticast is a ready to use Progressive Web App to publish your podcast, with a RSS feed ready for syndication platforms, and a user friendly CMS.",
-    "stars": 15,
-    "language": "CSS",
+    "repo": "CatVinci-Studio/Textus",
+    "desc": "The next-generation Markdown editor, with an AI writing assistant. Free and open source for macOS, Windows and Linux.",
+    "stars": 258,
+    "language": "TypeScript",
     "topics": [
-      "podcast"
+      "writing"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2020-06-12T00:43:58Z",
-    "silentRounds": 1,
+    "createdAt": "2026-07-08T21:58:26Z",
+    "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-10T23:22:42Z",
-    "retryCount": 6
+    "ts": "2026-10-18T05:36:33Z",
+    "retryCount": 1
   },
   {
     "repo": "cgranier/tabSidian",
@@ -284,22 +233,6 @@
     "bigbros": [],
     "ts": "2026-09-28T19:54:43Z",
     "retryCount": 1
-  },
-  {
-    "repo": "charming-art/charming",
-    "desc": "A JavaScript library for creative coding and data-driven drawing with high performance.",
-    "stars": 32,
-    "language": "JavaScript",
-    "topics": [
-      "creative-coding"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2023-07-15T06:33:46Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-17T16:19:54Z",
-    "retryCount": 6
   },
   {
     "repo": "chartmann1590/Pixel-Fish-Tank",
@@ -330,8 +263,37 @@
     "createdAt": "2025-11-25T19:01:18Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-10-18T08:20:18Z",
-    "retryCount": 3
+    "ts": "2026-10-18T13:15:12Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "claration/impactor",
+    "desc": "Cross-platform &amp; feature rich iOS/iPadOS/tvOS sideloading application. Formerly known as PlumeImpactor.",
+    "stars": 3513,
+    "language": "Rust",
+    "topics": [],
+    "source": "trending",
+    "starGrowth": 11,
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-18T13:52:18.694Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "CostardRouge/generative-art-p5js",
+    "desc": "https://art.steeve.website/",
+    "stars": 16,
+    "language": "JavaScript",
+    "topics": [
+      "generative-art"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2021-11-16T23:39:09Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-18T10:13:03Z",
+    "retryCount": 1
   },
   {
     "repo": "creep-ltx/charcoal",
@@ -347,7 +309,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-17T04:25:11Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "Crosstalk-Solutions/unifi-toolkit",
@@ -376,23 +338,7 @@
     "silentRounds": 8,
     "bigbros": [],
     "ts": "2026-09-27T03:30:23Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "darrylschaefer/ai-text-editor",
-    "desc": "AI-powered word processor for writers—semantic search, version diffs, and tool-using agents with reusable prompt macros.",
-    "stars": 41,
-    "language": "TypeScript",
-    "topics": [
-      "writing"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2024-02-06T15:18:47Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-17T19:32:39Z",
-    "retryCount": 6
+    "retryCount": 3
   },
   {
     "repo": "datamllab/openebfm",
@@ -440,7 +386,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-18T06:57:51Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "elder-plinius/V3R1T4S",
@@ -454,7 +400,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-16T19:28:56.080Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "ErTasselli/OpenTerminal",
@@ -488,22 +434,6 @@
     "retryCount": 1
   },
   {
-    "repo": "finity69x2/nws_alerts",
-    "desc": "An updated version of the nws_alerts custom integration for Home Assistant",
-    "stars": 177,
-    "language": "Python",
-    "topics": [
-      "weather"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2020-05-13T22:28:43Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-17T19:22:10Z",
-    "retryCount": 6
-  },
-  {
     "repo": "gd-codes/mc-pixelart-maker",
     "desc": "A client-side web application that creates add-ons for the popular game Minecraft, allowing you to bring any image from your computer into the game !",
     "stars": 36,
@@ -517,7 +447,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-16T16:57:31Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "golanlevin/p5-single-line-font-resources",
@@ -550,7 +480,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-18T03:49:48Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "hericdk/winampFM",
@@ -566,7 +496,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-14T16:09:23Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "hormuz-labs/manul",
@@ -582,7 +512,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-17T08:10:13Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "hpleapfrog/Scholia",
@@ -597,8 +527,8 @@
     "createdAt": "2026-10-05T07:23:57Z",
     "silentRounds": 7,
     "bigbros": [],
-    "ts": "2026-10-18T05:21:57Z",
-    "retryCount": 2
+    "ts": "2026-10-18T13:50:17Z",
+    "retryCount": 1
   },
   {
     "repo": "hypit-ai/hypit",
@@ -614,7 +544,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-15T08:45:06Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "inet-framework/inet",
@@ -630,7 +560,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-16T18:28:46Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "ISS-Mimic/Mimic",
@@ -646,7 +576,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-15T17:12:44Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "jasonxu114514/opencode2api",
@@ -674,8 +604,8 @@
     "createdAt": "2022-04-25T06:46:43Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-10-18T08:38:22Z",
-    "retryCount": 4
+    "ts": "2026-10-18T13:12:57Z",
+    "retryCount": 5
   },
   {
     "repo": "jcarmichael-art/Notris",
@@ -694,20 +624,20 @@
     "retryCount": 1
   },
   {
-    "repo": "joshspeagle/aparture",
-    "desc": "An LLM-powered tool to help sift through the arxiv",
-    "stars": 20,
-    "language": "JavaScript",
+    "repo": "jpeckenpaugh/gemini_bootstrap",
+    "desc": "Customize the Gemini AI Agent CLI (https://github.com/google-gemini/gemini-cli) with persistent instructions, custom commands and session memory. Reduces context decay, role drift, and recall gaps for a more consistent and capable agent.",
+    "stars": 0,
+    "language": "",
     "topics": [
-      "podcast"
+      "llm-model"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2025-08-12T05:08:37Z",
-    "silentRounds": 1,
+    "createdAt": "2025-10-05T19:56:31Z",
+    "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-17T20:46:29Z",
-    "retryCount": 6
+    "ts": "2026-10-18T11:34:48Z",
+    "retryCount": 1
   },
   {
     "repo": "JuliaPhysics/PhysicalConstants.jl",
@@ -723,7 +653,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-17T20:09:36Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "KaledSML/Pudin-Ghost-Cat-RPA",
@@ -739,7 +669,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-17T21:12:27Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "kamwoh/yume",
@@ -771,7 +701,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-06T12:14:31Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "kaybi-gh/K7",
@@ -787,7 +717,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-17T21:33:14Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "KilledByAPixel/CapJS",
@@ -803,7 +733,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-18T05:55:16Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Kirito14IT/prompt-spider-ui",
@@ -823,22 +753,6 @@
     "retryCount": 1
   },
   {
-    "repo": "kleZ799/clipmint",
-    "desc": "Free, open-source AI clip generator and Opus Clip alternative. Turns podcasts, vlogs, tutorials and stream VODs into captioned YouTube Shorts, Reels and TikToks on your own PC: local Whisper, LLM ranking, speaker-tracking crop, YouTube upload. Windows, Mac, Linux. No subscription, no watermark.",
-    "stars": 13,
-    "language": "Python",
-    "topics": [
-      "podcast"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-08-31T03:54:20Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-05T11:53:36Z",
-    "retryCount": 2
-  },
-  {
     "repo": "KorroAi/drunk-claude",
     "desc": "Intensity slider from tipsy (0.1) to blackout (1.0). 5 moods, 8 creative techniques. Lowers inhibition, not intelligence. Unfiltered genius for Claude Code.",
     "stars": 203,
@@ -852,7 +766,7 @@
     "silentRounds": 6,
     "bigbros": [],
     "ts": "2026-10-10T22:12:58Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "kvcache-ai/ktransformers",
@@ -866,7 +780,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-09-13T22:08:09.499Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "laoma528/awesome-zhuiju-free",
@@ -896,7 +810,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-10T16:43:58Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "liuchang0812/dl-textbook",
@@ -912,7 +826,23 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-17T06:32:18Z",
-    "retryCount": 2
+    "retryCount": 3
+  },
+  {
+    "repo": "lordmauve/pgzero",
+    "desc": "A zero-boilerplate games programming framework for Python 3, based on Pygame.",
+    "stars": 610,
+    "language": "Python",
+    "topics": [
+      "pygame"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2018-02-25T13:16:02Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-11T09:38:45Z",
+    "retryCount": 1
   },
   {
     "repo": "maddada/Ghostex",
@@ -926,23 +856,33 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-17T16:44:22.178Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
-    "repo": "marcel-licence/ml_synth_organ_example",
-    "desc": "ESP32, ESP8266 based MIDI Organ using the ML_SynthTools library (little example arduino project)",
-    "stars": 67,
-    "language": "C",
-    "topics": [
-      "synthesizer"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2021-11-26T22:13:47Z",
-    "silentRounds": 1,
+    "repo": "Mag1cFall/AIStudio2API",
+    "desc": "将AI Studio Playground和Build反代成API | AI Studio to OpenAI, Anthropic &amp; Gemini Compatible API",
+    "stars": 346,
+    "language": "Go",
+    "topics": [],
+    "source": "trending",
+    "starGrowth": 35,
+    "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-17T18:51:15Z",
-    "retryCount": 6
+    "ts": "2026-10-18T13:52:18.694Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "mozilla-ai/otari",
+    "desc": "Open-source, OpenAI-compatible LLM gateway you run yourself. One endpoint for 40+ providers, with virtual keys, budgets, and usage tracking.",
+    "stars": 640,
+    "language": "Python",
+    "topics": [],
+    "source": "trending",
+    "starGrowth": 46,
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-18T13:52:18.694Z",
+    "retryCount": 1
   },
   {
     "repo": "Naruki-Ichihara/feax",
@@ -961,6 +901,35 @@
     "retryCount": 1
   },
   {
+    "repo": "NeonMedusa/Sawdust",
+    "desc": "A fast, simple and tiny DAW written in Zig — no runtime required.",
+    "stars": 7,
+    "language": "C",
+    "topics": [
+      "music-production"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-09-30T03:31:03Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-17T20:46:39Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "NVlabs/ASPIRE",
+    "desc": "ASPIRE: Agentic /Skills Discovery for Robotics",
+    "stars": 520,
+    "language": "Python",
+    "topics": [],
+    "source": "trending",
+    "starGrowth": 99,
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-18T13:52:18.694Z",
+    "retryCount": 1
+  },
+  {
     "repo": "Panda-995/ai-writing-assistant",
     "desc": "妙笔生花是一款基于 Google Gemini 和 OpenAI 技术的现代化智能写作辅助工具。它能够深度分析文章内容，提供从基础纠错到逻辑重构的全方位建议，帮助创作者打磨出更优质的内容。",
     "stars": 32,
@@ -974,7 +943,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-17T18:34:31Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "patroldestroyerjump/Midnight-CS2-free",
@@ -1006,7 +975,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-10T14:53:13Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "quantumlib/OpenFermion-PySCF",
@@ -1022,7 +991,7 @@
     "silentRounds": 5,
     "bigbros": [],
     "ts": "2026-10-14T01:46:53Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "ranxianglei/billion-context",
@@ -1053,22 +1022,6 @@
     "bigbros": [],
     "ts": "2026-10-17T16:43:34Z",
     "retryCount": 1
-  },
-  {
-    "repo": "SagarBiswas-MultiHAT/second-brain",
-    "desc": "A curated developer second brain with battle-tested blueprints: 24/7 zero-cost full-stack cloud hosting, open-source licensing and IP defense (MIT, Apache 2.0, CC BY-SA), GPG cryptographic commit signing, and the PRISM 9-hour daily study routine for engineering and cybersecurity.",
-    "stars": 4,
-    "language": "",
-    "topics": [
-      "cheatsheet"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-08-25T15:54:18Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-17T18:49:16Z",
-    "retryCount": 6
   },
   {
     "repo": "SciML/Catalyst.jl",
@@ -1116,7 +1069,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-16T13:49:33Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Shreongit/Typing.Racer",
@@ -1132,7 +1085,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-17T03:57:18Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "SimoneScoop/Stardew-Desk",
@@ -1164,23 +1117,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-18T07:33:00Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "stasilo/retrace.gl",
-    "desc": "Create, ray trace & export programatically defined Signed Distance Function CSG geometries with an API suited for generative art - in your browser! 🎉",
-    "stars": 196,
-    "language": "JavaScript",
-    "topics": [
-      "generative-art"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2019-06-08T14:46:00Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-17T19:02:25Z",
-    "retryCount": 6
+    "retryCount": 2
   },
   {
     "repo": "swordsalah/NEXORA-Intent-to-Cloth-Pipeline",
@@ -1196,7 +1133,7 @@
     "silentRounds": 10,
     "bigbros": [],
     "ts": "2026-10-13T09:45:48Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "tombackert/ninja-game",
@@ -1212,7 +1149,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-18T08:12:43Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "tomtommyyuan/spmind",
@@ -1228,7 +1165,7 @@
     "silentRounds": 5,
     "bigbros": [],
     "ts": "2026-10-04T21:36:40Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Tracecatalyst/chemfigstudio",
@@ -1243,8 +1180,8 @@
     "createdAt": "2026-10-16T13:34:28Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-17T18:41:14Z",
-    "retryCount": 1
+    "ts": "2026-10-18T09:59:31Z",
+    "retryCount": 2
   },
   {
     "repo": "trailhq/Trail-Code",
@@ -1293,20 +1230,17 @@
     "retryCount": 1
   },
   {
-    "repo": "VidiPT89/iVidigotchy",
-    "desc": "Native iOS & iPadOS virtual pet built with SwiftUI and SpriteKit — procedural animated pet, 8 branching adult forms, four mini-games, iCloud sync, Home Screen widget, bilingual PT-PT/EN, dark and light theming.",
-    "stars": 1,
-    "language": "Swift",
-    "topics": [
-      "virtual-pet"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-09-29T23:25:07Z",
-    "silentRounds": 1,
+    "repo": "VersusControl/versus-incident",
+    "desc": "The self-hosted AI SRE agent. You don't have to monitor your systems alone. Versus Incident will keep track of your services, applications, and systems, detect new or unexpected problems, and provide your team with the evidence needed to investigate.",
+    "stars": 863,
+    "language": "Go",
+    "topics": [],
+    "source": "trending",
+    "starGrowth": 6,
+    "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-17T19:14:33Z",
-    "retryCount": 6
+    "ts": "2026-10-18T13:52:18.694Z",
+    "retryCount": 1
   },
   {
     "repo": "vivekvar-dl/wingman-AI",
@@ -1322,7 +1256,7 @@
     "silentRounds": 5,
     "bigbros": [],
     "ts": "2026-10-13T15:58:16Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "vshulcz/deja-vu",
@@ -1336,6 +1270,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-17T16:44:22.178Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "xms0g/psymandl",
+    "desc": "Psychedelic Mandelbrot on MS-DOS",
+    "stars": 23,
+    "language": "C",
+    "topics": [
+      "retrocomputing"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2022-05-08T16:36:43Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-18T11:41:32Z",
     "retryCount": 1
   },
   {
@@ -1351,7 +1301,7 @@
     "createdAt": "2026-10-15T20:15:53Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-18T05:26:38Z",
+    "ts": "2026-10-18T10:37:07Z",
     "retryCount": 1
   },
   {
@@ -1368,7 +1318,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-16T20:30:43Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "ygelfand/echolocal",
