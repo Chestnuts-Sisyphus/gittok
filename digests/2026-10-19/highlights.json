@@ -1,0 +1,78 @@
+{
+  "zh": {
+    "ai-cli": [
+      "Claude Code Skills 安全硬化进展",
+      "MCP 构建器适配新 API",
+      "docx 处理工具修正 XML 命名空间",
+      "OpenAI Codex CLI 社区动态",
+      "Gemini CLI 本周更新",
+      "Kimi Code CLI 发布新版本"
+    ],
+    "ai-agents": [
+      "OpenClaw 生态活跃度飙升",
+      "NanoBot 项目进展顺利",
+      "Hermes Agent 持续迭代",
+      "PicoClaw 新增 Sendblue 传输渠道",
+      "IronClaw 针对性修复 Bug",
+      "ZeroClaw 生态整合加速"
+    ],
+    "ai-trending": [
+      "anomalyco/opencode Star 数暴涨",
+      "openclaw 系统级 Agent 热度新高",
+      "obra/superpowers Agent 标准化框架",
+      "morluto/rea 逆向工程 Agent",
+      "MadsLorentzen/ai-job-search 求职自动化",
+      "debpalash/VoiceStudio 本地语音克隆"
+    ],
+    "ai-hf": [
+      "Qwen3.8-27B 下载超 769 万",
+      "DeepSeek-V4.1-Flash 图像理解强劲",
+      "Qwen-Image-2.1-Turbo 图像生成工具",
+      "MiniCPM-V-4.7-35B 轻量化部署",
+      "Underdog-Saluki-27B 长任务推理",
+      "Unlimited-OCR 百度 OCR 模型"
+    ],
+    "ai-community": [
+      "Rust 构建 AI 网关性能优化",
+      "本地 AI Agent 7 层记忆系统",
+      "浏览器端运行 RAG 检索增强",
+      "Tinker 微调 Qwen3-8B 准确率提升",
+      "Athena 本地 Git 智能分析引擎",
+      "Neural Networks 安全性争议讨论"
+    ]
+  },
+  "en": {
+    "ai-cli": [
+      "Claude Code Skills failed to generate summary",
+      "OpenAI Codex focuses on Windows URL glitches",
+      "Computer Use integration failing on Windows",
+      "WebSocket compression gating added",
+      "Memory leaks plaguing recent desktop releases",
+      "MCP discovery hardening in NanoBot"
+    ],
+    "ai-agents": [
+      "NanoBot merges 24 PRs in one day",
+      "NanoBot stabilizing core agent capabilities",
+      "10 PRs still open, 4 active issues",
+      "NanoBot focusing on DeepSeek and DuckDuckGo compatibility",
+      "Complex Matrix and iMessage features in review",
+      "IronClaw emerges as top Agent project"
+    ],
+    "ai-trending": [
+      "Agent-First Infrastructure surging in popularity",
+      "Local-First Generative Media adoption exploding",
+      "Rust CLI tools slash token costs by 60%",
+      "rtk-ai/rtk reduces token consumption by 60-90%",
+      "xerj auto-indexes code for instant agent context",
+      "akitaonrails/ai-memory enables seamless AI handoffs"
+    ],
+    "ai-community": [
+      "Hacktoberfest AI Challenge drives side hustle focus",
+      "Fine-tuning Qwen3-8B improves accuracy to 76%",
+      "Open-source models replace expensive App Store APIs",
+      "Autonomous Voice Healthcare Agent saves lives",
+      "Rust gateway claims world's fastest LLM performance",
+      "Client reply challenges AI agent management"
+    ]
+  }
+}
