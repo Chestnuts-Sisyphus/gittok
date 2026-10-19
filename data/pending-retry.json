@@ -1,5 +1,21 @@
 [
   {
+    "repo": "1024Adam/infinite-maze",
+    "desc": "Infinite Maze Game",
+    "stars": 3,
+    "language": "Python",
+    "topics": [
+      "pygame"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2017-02-11T20:03:59Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-19T00:11:36Z",
+    "retryCount": 1
+  },
+  {
     "repo": "1105216375-alt/resimind",
     "desc": "Neuro-symbolic agents with verified memory. MCP math tools, an algebra repair Skill, and an open challenge. Verify solutions, learn checked rules, and reuse.",
     "stars": 190,
@@ -16,6 +32,22 @@
     "retryCount": 1
   },
   {
+    "repo": "1Step621/zerium",
+    "desc": "A video editor with zero limits.",
+    "stars": 32,
+    "language": "Rust",
+    "topics": [
+      "video-editor"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-08-15T09:07:56Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-19T02:12:20Z",
+    "retryCount": 1
+  },
+  {
     "repo": "24kr/Local_LLM_Assistant",
     "desc": "LoLA: Privacy-first desktop AI with RAG. Chat offline with your docs using Ollama models. React+Electron UI, FastAPI backend. 100% local, cross-platform.",
     "stars": 0,
@@ -29,7 +61,23 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-17T22:11:49Z",
-    "retryCount": 3
+    "retryCount": 4
+  },
+  {
+    "repo": "a-shygun/Pawnix",
+    "desc": "A minimal curses chess client with Lichess API support",
+    "stars": 15,
+    "language": "Python",
+    "topics": [
+      "ascii-art"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-10T09:40:18Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-13T09:59:59Z",
+    "retryCount": 1
   },
   {
     "repo": "ActiveInferenceInstitute/fundamentals",
@@ -45,7 +93,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-18T01:07:25Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Adityaraj0421/naksha-studio",
@@ -91,7 +139,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-16T17:25:12Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "alvinunreal/lazyskills",
@@ -123,6 +171,38 @@
     "retryCount": 1
   },
   {
+    "repo": "apresmoi/glyphcss",
+    "desc": "ASCII polygon mesh renderer for the DOM. Forked from LayoutitStudio/polycss.",
+    "stars": 217,
+    "language": "TypeScript",
+    "topics": [
+      "ascii-art"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-05-17T18:47:24Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-18T13:59:19Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "astrocatalogs/OACAPI",
+    "desc": "Open Astronomy Catalog API",
+    "stars": 113,
+    "language": "Python",
+    "topics": [
+      "astronomy"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2017-10-25T09:20:12Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-19T02:38:22Z",
+    "retryCount": 1
+  },
+  {
     "repo": "ayangabryl/asciify-engine",
     "desc": "ASCII for the web: 31 GPU-drawn interface components, backgrounds, and image, GIF and video conversion.",
     "stars": 46,
@@ -135,8 +215,24 @@
     "createdAt": "2026-02-21T14:29:37Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-18T21:05:42Z",
-    "retryCount": 2
+    "ts": "2026-10-19T01:12:47Z",
+    "retryCount": 3
+  },
+  {
+    "repo": "Azure12355/weilanx-claude-videos",
+    "desc": "Hand-drawn and pixel-art explainer videos written entirely in code — Remotion + React + SVG, procedural music & SFX, subtitle-driven timing",
+    "stars": 32,
+    "language": "TypeScript",
+    "topics": [
+      "pixel-art"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-10T13:34:45Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-17T16:18:32Z",
+    "retryCount": 1
   },
   {
     "repo": "bagidea/bagidea-office",
@@ -155,6 +251,22 @@
     "retryCount": 1
   },
   {
+    "repo": "bioperl/bioperl-live",
+    "desc": "Core BioPerl 1.x code",
+    "stars": 323,
+    "language": "Perl",
+    "topics": [
+      "bioinformatics"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2010-05-12T17:13:10Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-19T01:29:49Z",
+    "retryCount": 1
+  },
+  {
     "repo": "caglarutkuguler/cubicle",
     "desc": "Cubicle: a live pixel-art office for your AI agents (Paperclip, Claude Code, Codex, Gemini CLI). See who works, who needs you, who failed; KPI board, Telegram alerts, HD themes. Zero dependencies, read-only.",
     "stars": 40,
@@ -168,7 +280,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-18T12:08:31Z",
-    "retryCount": 2
+    "retryCount": 1
+  },
+  {
+    "repo": "CatVinci-Studio/Textus",
+    "desc": "The next-generation Markdown editor, with an AI writing assistant. Free and open source for macOS, Windows and Linux.",
+    "stars": 327,
+    "language": "TypeScript",
+    "topics": [
+      "note-taking"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-07-08T21:58:26Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-19T04:26:27Z",
+    "retryCount": 1
   },
   {
     "repo": "cgranier/tabSidian",
@@ -215,7 +343,7 @@
     "createdAt": "2025-11-25T19:01:18Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-19T00:00:39Z",
+    "ts": "2026-10-19T04:19:02Z",
     "retryCount": 1
   },
   {
@@ -232,6 +360,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-16T14:46:00Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "CostardRouge/generative-art-p5js",
+    "desc": "https://art.steeve.website/",
+    "stars": 16,
+    "language": "JavaScript",
+    "topics": [
+      "generative-art"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2021-11-16T23:39:09Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-18T10:13:03Z",
     "retryCount": 1
   },
   {
@@ -248,7 +392,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-17T04:25:11Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "Crosstalk-Solutions/unifi-toolkit",
@@ -294,23 +438,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-07T10:32:19Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "darrylschaefer/ai-text-editor",
-    "desc": "AI-powered word processor for writers—semantic search, version diffs, and tool-using agents with reusable prompt macros.",
-    "stars": 41,
-    "language": "TypeScript",
-    "topics": [
-      "writing"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2024-02-06T15:18:47Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-18T19:16:24Z",
-    "retryCount": 6
+    "retryCount": 1
   },
   {
     "repo": "datamllab/openebfm",
@@ -342,7 +470,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-14T18:54:47Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "djayuffe/neon-vectors-crimson",
@@ -357,7 +485,7 @@
     "createdAt": "2026-10-01T22:55:39Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-10-18T22:04:45Z",
+    "ts": "2026-10-19T04:01:15Z",
     "retryCount": 1
   },
   {
@@ -374,6 +502,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-18T06:57:51Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "EL4CTEO/blender-skills",
+    "desc": "Professional Blender 5.2 workflows as Agent Skills for Claude Code, Codex, Gemini CLI, Copilot and Cursor: modeling, UVs, PBR, baking, rigging, animation, export and QA.",
+    "stars": 221,
+    "language": "Python",
+    "topics": [
+      "godot"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-14T19:08:14Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-16T14:30:33Z",
     "retryCount": 1
   },
   {
@@ -388,7 +532,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-16T19:28:56.080Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "ErTasselli/OpenTerminal",
@@ -402,7 +546,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-15T14:47:34.742Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "fossbk-spec/hmyt-book",
@@ -417,8 +561,8 @@
     "createdAt": "2026-09-06T08:48:29Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-18T08:29:28Z",
-    "retryCount": 1
+    "ts": "2026-10-19T00:31:59Z",
+    "retryCount": 2
   },
   {
     "repo": "golanlevin/p5-single-line-font-resources",
@@ -482,7 +626,7 @@
     "createdAt": "2026-10-05T07:23:57Z",
     "silentRounds": 8,
     "bigbros": [],
-    "ts": "2026-10-18T14:01:12Z",
+    "ts": "2026-10-19T04:16:56Z",
     "retryCount": 1
   },
   {
@@ -499,7 +643,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-01T22:15:12Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "inet-framework/inet",
@@ -515,7 +659,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-18T19:21:23Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "Irixil/irixi-owl-focus",
@@ -531,7 +675,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-18T15:54:21Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "jasonxu114514/opencode2api",
@@ -559,8 +703,8 @@
     "createdAt": "2022-04-25T06:46:43Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-10-18T18:31:49Z",
-    "retryCount": 4
+    "ts": "2026-10-19T03:40:57Z",
+    "retryCount": 5
   },
   {
     "repo": "jbinder/sprawlrun",
@@ -591,7 +735,23 @@
     "createdAt": "2026-10-18T15:55:16Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-18T17:09:23Z",
+    "ts": "2026-10-19T00:40:58Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "jpeckenpaugh/gemini_bootstrap",
+    "desc": "Customize the Gemini AI Agent CLI (https://github.com/google-gemini/gemini-cli) with persistent instructions, custom commands and session memory. Reduces context decay, role drift, and recall gaps for a more consistent and capable agent.",
+    "stars": 0,
+    "language": "",
+    "topics": [
+      "llm-model"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2025-10-05T19:56:31Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-18T11:34:48Z",
     "retryCount": 1
   },
   {
@@ -608,7 +768,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-17T20:09:36Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "KaledSML/Pudin-Ghost-Cat-RPA",
@@ -624,7 +784,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-17T21:12:27Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "kamwoh/yume",
@@ -656,7 +816,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-17T21:33:14Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "KilledByAPixel/CapJS",
@@ -672,7 +832,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-18T05:55:16Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Kirito14IT/prompt-spider-ui",
@@ -689,7 +849,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-14T04:41:26Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "kitschpatrol/brain",
@@ -705,7 +865,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-18T23:39:57Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "koki7o/claude-code-for-beginners",
@@ -722,7 +882,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-15T11:51:40Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "KorroAi/drunk-claude",
@@ -738,7 +898,7 @@
     "silentRounds": 7,
     "bigbros": [],
     "ts": "2026-10-10T22:12:58Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "kvcache-ai/ktransformers",
@@ -752,7 +912,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-09-13T22:08:09.499Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "laoma528/awesome-zhuiju-free",
@@ -769,6 +929,22 @@
     "retryCount": 1
   },
   {
+    "repo": "lordmauve/pgzero",
+    "desc": "A zero-boilerplate games programming framework for Python 3, based on Pygame.",
+    "stars": 610,
+    "language": "Python",
+    "topics": [
+      "pygame"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2018-02-25T13:16:02Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-11T09:38:45Z",
+    "retryCount": 1
+  },
+  {
     "repo": "maddada/Ghostex",
     "desc": "The Best &amp; Most Powerful Native Agents Workspace. Fully Rust &amp; GPUI based. Mobile apps. 20+ agents. Ghostty.",
     "stars": 1305,
@@ -780,7 +956,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-17T16:44:22.178Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Mag1cFall/AIStudio2API",
@@ -808,8 +984,8 @@
     "createdAt": "2026-10-18T23:47:12Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-18T23:47:18Z",
-    "retryCount": 1
+    "ts": "2026-10-19T01:16:15Z",
+    "retryCount": 2
   },
   {
     "repo": "mozilla-ai/otari",
@@ -838,7 +1014,23 @@
     "silentRounds": 7,
     "bigbros": [],
     "ts": "2026-10-12T14:58:05Z",
-    "retryCount": 2
+    "retryCount": 1
+  },
+  {
+    "repo": "NeonMedusa/Sawdust",
+    "desc": "A fast, simple and tiny DAW written in Zig — no runtime required.",
+    "stars": 7,
+    "language": "C",
+    "topics": [
+      "music-production"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-09-30T03:31:03Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-18T20:09:13Z",
+    "retryCount": 1
   },
   {
     "repo": "nikunjsingh93/react-glass-keep",
@@ -853,8 +1045,8 @@
     "createdAt": "2025-08-09T21:35:06Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-10-18T23:14:14Z",
-    "retryCount": 4
+    "ts": "2026-10-19T04:09:25Z",
+    "retryCount": 5
   },
   {
     "repo": "NVlabs/ASPIRE",
@@ -883,23 +1075,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-18T22:06:20Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "pipriles/vc",
-    "desc": "Abandoned Virtual Creatures port",
-    "stars": 1,
-    "language": "Odin",
-    "topics": [
-      "virtual-pet"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-10-15T02:18:18Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-16T03:28:06Z",
-    "retryCount": 6
+    "retryCount": 3
   },
   {
     "repo": "pskoett/self-improving-agent",
@@ -915,7 +1091,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-10T14:53:13Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "reidjohnson/nn-field-guide",
@@ -946,8 +1122,8 @@
     "createdAt": "2017-02-06T10:30:55Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-10-17T17:31:04Z",
-    "retryCount": 1
+    "ts": "2026-10-19T00:38:37Z",
+    "retryCount": 2
   },
   {
     "repo": "Shreongit/Chess.Game",
@@ -963,7 +1139,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-16T13:49:33Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Shreongit/Typing.Racer",
@@ -979,7 +1155,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-17T03:57:18Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "swordsalah/NEXORA-Intent-to-Cloth-Pipeline",
@@ -995,7 +1171,7 @@
     "silentRounds": 11,
     "bigbros": [],
     "ts": "2026-10-13T09:45:48Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "trailhq/Trail-Code",
@@ -1011,7 +1187,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-18T11:33:26Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "tristenlammi/Arrmada",
@@ -1041,7 +1217,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-16T19:18:48Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "VersusControl/versus-incident",
@@ -1070,7 +1246,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-05T15:07:22Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "vivekvar-dl/wingman-AI",
@@ -1086,6 +1262,22 @@
     "silentRounds": 6,
     "bigbros": [],
     "ts": "2026-10-13T15:58:16Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "webkubor/writing-standard-skills",
+    "desc": "把话说对的四步：搭骨架（金字塔/SCQA/MECE）→ 定读者（人 or agent）→ 调语气（心理机制驱动）→ 当读者通读自检。6 个 Agent skill + 5D 原子表达矩阵，给 AI agent 和人共用的表达规范。writing / technical writing / 写作 / 去 AI 味 / 一行安装",
+    "stars": 16,
+    "language": "Shell",
+    "topics": [
+      "writing"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-09-10T08:47:28Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-19T03:58:56Z",
     "retryCount": 1
   },
   {
@@ -1102,7 +1294,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-18T19:42:19Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "YaroslavSamchuk/Hetman-2b",
@@ -1118,7 +1310,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-16T20:30:43Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "ygelfand/echolocal",
