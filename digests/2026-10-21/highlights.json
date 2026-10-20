@@ -1,0 +1,78 @@
+{
+  "zh": {
+    "ai-cli": [
+      "GitHub Copilot CLI v1.0.101 发布，历史积累回归修复",
+      "OpenCode 与 Qwen Code 进入密集迭代期，活跃度极高",
+      "Qwen Code v0.25.4-preview.1 高速迭代，性能与状态管理成焦点",
+      "DeepSeek TUI (Codewhale) 筹备 v0.10.2，优化 TUI 细节",
+      "AI CLI 工具正从玩具化向生产级混合开发环境演进",
+      "Claude Code Skills 正在构建下一代开发技能生态"
+    ],
+    "ai-agents": [
+      "Hermes Agent 与 NanoClaw 围绕 MCP 协议构建企业级生态",
+      "LobsterAI 专注企业级合规，解决 MITM 代理安全认证",
+      "Moltis 与 CoPaw 探索多用户场景下的身份溯源与权限隔离",
+      "IronClaw 链上合约与本地安全连接需求持续增长",
+      "OpenClaw 处于基础设施地位，定义行业主流交互模式",
+      "智能体生态正从单一指令响应向深度上下文集成演进"
+    ],
+    "ai-trending": [
+      "ai-job-search 今日新增 Star 飙升第一，本地化求职框架受热捧",
+      "xerj-rs 本地优先搜索引擎获 2k+ Star，是 Agent 的杀手级基建",
+      "rea 智能体逆向工程工具热度飙升，展示安全领域潜力",
+      "OpenClaw 热度超 39 万，代表通用智能体系统底层协同趋势",
+      "Agent 开发正全面转向本地优先与工程化落地",
+      "MCP 协议周边工具爆发，代码文档检索成技术基建热点"
+    ],
+    "ai-hf": [
+      "DeepSeek-V4.1-Flash-1017 下载量破 2.7 万，领跑多模态文本生成",
+      "LTX-2.5 视频生成模型下载量过亿，巩固开源旗舰地位",
+      "Qwen3.8-Flash-Next 与 Qwen-Image-2.1-Turbo 双双领跑下载榜",
+      "NVIDIA Nemotron-3.5-Super-VL-120B 下载量近 1.1 万，精度卓越",
+      "Kromoss 多模态微调模型下载量 5k+，支撑图像生成专用能力",
+      "社区在量化、微调及专用模型领域持续发力"
+    ],
+    "ai-community": [
+      "CLI-Anything 解决 AI 调用桌面软件痛点，实现跨软件自动化",
+      "GPU 后门攻击警示：本地 LLM 可被植入窃取凭证的微小模型",
+      "Claude.md 提示词过长问题引发开发者共鸣与讨论",
+      "机器人学 AI 最难的是硬件调试与传感器校准，非算法",
+      "AI 时代程序员心理健康与职业认同的深度反思",
+      "前端开发者应尝试的 2 个 Agent 技能提升指南"
+    ]
+  },
+  "en": {
+    "ai-cli": [
+      "Claude Code Skills Summary Failed",
+      "OpenAI Codex Summary Failed",
+      "Gemini CLI v0.65.0 Released",
+      "Gemini CLI v0.66.0-preview Released",
+      "Gemini CLI focuses on security",
+      "Gemini CLI improves terminal UX"
+    ],
+    "ai-agents": [
+      "IronClaw Project Digest: 2026-10-21",
+      "IronClaw Project Overview Unavailable",
+      "NanoBot Summary Failed",
+      "Hermes Agent Summary Failed",
+      "PicoClaw Summary Failed",
+      "NanoClaw Summary Failed"
+    ],
+    "ai-trending": [
+      "Trend: Local-First & Agent-Orchestrated",
+      "Trend: Rust-based tools dominating",
+      "xerj: Local-first search engine (12k stars)",
+      "impeccable: Rust design library (83k stars)",
+      "headroom: Token compression library (76k stars)",
+      "ComfyUI: Fastest local inference engine (140k stars)"
+    ],
+    "ai-community": [
+      "Focus on secure agent tools",
+      "Shift to local-first solutions",
+      "Discussing GPU memory optimization",
+      "Merging MQA and GQA for efficiency",
+      "Capture reusable team knowledge",
+      "Debating loss of coding joy"
+    ]
+  }
+}
