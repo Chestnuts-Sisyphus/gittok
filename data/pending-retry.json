@@ -13,7 +13,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-19T17:25:05Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "1Step621/zerium",
@@ -29,7 +29,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T12:13:18Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "24kr/Local_LLM_Assistant",
@@ -45,7 +45,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T15:11:59Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "a-shygun/Pawnix",
@@ -61,39 +61,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-13T09:59:59Z",
-    "retryCount": 5
-  },
-  {
-    "repo": "ActiveInferenceInstitute/fundamentals",
-    "desc": "Unofficial repo for materials and code related to \"Fundamentals of Active Inference\" (Namjoshi 2026). ",
-    "stars": 36,
-    "language": "Python",
-    "topics": [
-      "textbook"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-03-19T17:35:28Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-18T01:07:25Z",
     "retryCount": 6
-  },
-  {
-    "repo": "Adityaraj0421/naksha-studio",
-    "desc": "A virtual design team for Claude Code, Cursor, Windsurf, Gemini CLI, and Copilot — 30 roles, 70 commands, 16,000+ lines of expert design knowledge. Your agency's design brain, inside your terminal.",
-    "stars": 343,
-    "language": "JavaScript",
-    "topics": [
-      "design"
-    ],
-    "source": "search",
-    "starGrowth": 4,
-    "createdAt": "2026-03-09T06:53:11Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-18T08:51:42Z",
-    "retryCount": 1
   },
   {
     "repo": "Agents365-ai/video-podcast-maker",
@@ -123,7 +91,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-16T17:25:12Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "alvinunreal/lazyskills",
@@ -169,7 +137,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-18T13:59:19Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "armadsen/ORSSerialPort",
@@ -185,7 +153,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T20:42:48Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "astrocatalogs/OACAPI",
@@ -201,7 +169,23 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-19T02:38:22Z",
-    "retryCount": 5
+    "retryCount": 6
+  },
+  {
+    "repo": "ayangabryl/asciify-engine",
+    "desc": "ASCII for the web: 31 GPU-drawn interface components, backgrounds, and image, GIF and video conversion.",
+    "stars": 48,
+    "language": "TypeScript",
+    "topics": [
+      "ascii-art"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-02-21T14:29:37Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-19T22:24:57Z",
+    "retryCount": 1
   },
   {
     "repo": "Azure12355/weilanx-claude-videos",
@@ -217,7 +201,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-17T16:18:32Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "bagidea/bagidea-office",
@@ -249,7 +233,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-18T17:31:06Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "bioperl/bioperl-live",
@@ -265,7 +249,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-19T01:29:49Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "caglarutkuguler/cubicle",
@@ -281,7 +265,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T21:26:14Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "CatVinci-Studio/Textus",
@@ -297,8 +281,8 @@
     "createdAt": "2026-07-08T21:58:26Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-19T23:10:28Z",
-    "retryCount": 5
+    "ts": "2026-10-19T23:15:06Z",
+    "retryCount": 6
   },
   {
     "repo": "cgranier/tabSidian",
@@ -314,7 +298,7 @@
     "silentRounds": 5,
     "bigbros": [],
     "ts": "2026-09-28T19:54:43Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "chartmann1590/Pixel-Fish-Tank",
@@ -349,22 +333,6 @@
     "retryCount": 1
   },
   {
-    "repo": "ConnerWill/Convert-ImageToASCIIArt",
-    "desc": "PowerShell function to convert an image to ASCII art ",
-    "stars": 5,
-    "language": "PowerShell",
-    "topics": [
-      "ascii-art"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2023-03-14T19:14:48Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-16T14:46:00Z",
-    "retryCount": 6
-  },
-  {
     "repo": "CostardRouge/generative-art-p5js",
     "desc": "https://art.steeve.website/",
     "stars": 16,
@@ -378,7 +346,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-18T10:13:03Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "creep-ltx/charcoal",
@@ -394,7 +362,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-17T04:25:11Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Crosstalk-Solutions/unifi-toolkit",
@@ -440,7 +408,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-19T20:35:21Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "datamllab/openebfm",
@@ -475,22 +443,6 @@
     "retryCount": 1
   },
   {
-    "repo": "Ebony-Vinyl/EAC-design-world",
-    "desc": "DeepSeek Harness 本地视频制作与设计插件：多轨剪辑、模板与设计体系、原生预览画布和真实文件导出",
-    "stars": 49,
-    "language": "JavaScript",
-    "topics": [
-      "video-editor"
-    ],
-    "source": "search",
-    "starGrowth": 13,
-    "createdAt": "2026-10-17T06:46:19Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-18T06:57:51Z",
-    "retryCount": 6
-  },
-  {
     "repo": "EL4CTEO/blender-skills",
     "desc": "Professional Blender 5.2 workflows as Agent Skills for Claude Code, Codex, Gemini CLI, Copilot and Cursor: modeling, UVs, PBR, baking, rigging, animation, export and QA.",
     "stars": 280,
@@ -504,7 +456,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T19:35:31Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "elder-plinius/V3R1T4S",
@@ -518,22 +470,6 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-16T19:28:56.080Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "elliott-json-park/obsidian-vault-pet",
-    "desc": "A pixel cat that grows as you write: daily word goal, focus sessions and finished tasks become XP and coins. Obsidian plugin.",
-    "stars": 12,
-    "language": "JavaScript",
-    "topics": [
-      "virtual-pet"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-09-19T13:55:08Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-19T13:01:08Z",
     "retryCount": 1
   },
   {
@@ -566,22 +502,6 @@
     "retryCount": 1
   },
   {
-    "repo": "fossbk-spec/hmyt-book",
-    "desc": "Trang web bài giảng ET4248 Học Máy trong Y Tế (bản build tự động từ nguồn; không sửa trực tiếp).",
-    "stars": 0,
-    "language": "HTML",
-    "topics": [
-      "textbook"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-09-06T08:48:29Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-19T00:31:59Z",
-    "retryCount": 6
-  },
-  {
     "repo": "Friedrich-M/UniMate",
     "desc": "[SIGGRAPH Asia 2026] UniMate: One Unified Model to Animate Diverse Skeletons",
     "stars": 1997,
@@ -608,7 +528,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T18:17:35Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "glorat/nethack-cocoa",
@@ -657,7 +577,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T20:53:20Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "hericdk/winampFM",
@@ -673,23 +593,7 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-10-14T16:09:23Z",
-    "retryCount": 5
-  },
-  {
-    "repo": "hormuz-labs/manul",
-    "desc": "Direct your video, Manul edits it. An open-source AI video editor: drop in footage, say what you want, point at the frame, and get a before/after for every change. Runs on your own computer.",
-    "stars": 13,
-    "language": "TypeScript",
-    "topics": [
-      "video-editor"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-10-05T19:44:25Z",
-    "silentRounds": 4,
-    "bigbros": [],
-    "ts": "2026-10-19T08:07:51Z",
-    "retryCount": 2
+    "retryCount": 6
   },
   {
     "repo": "hpleapfrog/Scholia",
@@ -705,7 +609,23 @@
     "silentRounds": 9,
     "bigbros": [],
     "ts": "2026-10-19T12:10:10Z",
-    "retryCount": 2
+    "retryCount": 3
+  },
+  {
+    "repo": "HurricaHjz/SecondSelf",
+    "desc": "Second yourself. One agent that remembers you, with many hands to act for you: a multi-agent harness (Claude Code, with Codex helpers), a self-maintaining local wiki as its long-term memory, and the frontier model you choose. Research assistant today. Pre-1.0, in active development.",
+    "stars": 156,
+    "language": "Python",
+    "topics": [
+      "knowledge-management"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-06-24T20:40:01Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-01T22:15:12Z",
+    "retryCount": 1
   },
   {
     "repo": "inet-framework/inet",
@@ -721,7 +641,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-19T14:13:04Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "insberr/videoEditorAI",
@@ -737,7 +657,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T20:15:44Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "jasonxu114514/opencode2api",
@@ -754,22 +674,6 @@
     "retryCount": 1
   },
   {
-    "repo": "jbinder/sprawlrun",
-    "desc": "A gamified cyberpunk running tracker for Android. Twenty GPS-tracked story missions across two campaigns, cutting into your music, with pursuits scaled to your own pace. Fully offline — no accounts, no network.",
-    "stars": 13,
-    "language": "Dart",
-    "topics": [
-      "fitness"
-    ],
-    "source": "search",
-    "starGrowth": 1,
-    "createdAt": "2026-07-27T22:30:12Z",
-    "silentRounds": 2,
-    "bigbros": [],
-    "ts": "2026-10-19T19:07:45Z",
-    "retryCount": 1
-  },
-  {
     "repo": "joeseesun/lexfridman-cn",
     "desc": "Lex Fridman 播客中文导航站:506 期全目录、AI 中文精读、官方音频/文稿与全文 RSS | Chinese companion to the Lex Fridman Podcast: AI deep-reads, official audio & transcripts for all 506 episodes.",
     "stars": 167,
@@ -783,6 +687,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T00:40:58Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "kailashsr38/ascii-magic-art",
+    "desc": "634 animated ASCII art pieces for web pages, READMEs, wallpapers and terminals. Browse them in your terminal with npx ascii-magic-art and add one to your project in one prompt.",
+    "stars": 5,
+    "language": "JavaScript",
+    "topics": [
+      "ascii-art"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-19T08:00:49Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-19T11:32:11Z",
     "retryCount": 1
   },
   {
@@ -799,7 +719,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-17T21:33:14Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "kieranhj/stnicc-beeb",
@@ -815,23 +735,6 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-19T16:41:51Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "Kirito14IT/prompt-spider-ui",
-    "desc": "原生 JavaScript + Canvas 2D 的机械蜘蛛可视化 UI。普通演示零依赖；可选 MCP 接入自己的 Agent，实时展示任务，支持三套布局、主题定制、JSON 回放与独立项目导出。",
-    "stars": 47,
-    "language": "JavaScript",
-    "topics": [
-      "generative-art",
-      "creative-coding"
-    ],
-    "source": "search",
-    "starGrowth": 4,
-    "createdAt": "2026-10-13T07:28:20Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-19T13:30:18Z",
     "retryCount": 1
   },
   {
@@ -848,7 +751,7 @@
     "silentRounds": 8,
     "bigbros": [],
     "ts": "2026-10-10T22:12:58Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "kvcache-ai/ktransformers",
@@ -862,7 +765,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-13T22:08:09.499Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "laoma528/awesome-zhuiju-free",
@@ -903,7 +806,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-17T16:44:22.178Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Mag1cFall/AIStudio2API",
@@ -919,20 +822,6 @@
     "retryCount": 1
   },
   {
-    "repo": "mozilla-ai/otari",
-    "desc": "Open-source, OpenAI-compatible LLM gateway you run yourself. One endpoint for 40+ providers, with virtual keys, budgets, and usage tracking.",
-    "stars": 697,
-    "language": "Python",
-    "topics": [],
-    "source": "trending",
-    "starGrowth": 47,
-    "createdAt": "2026-04-02T09:42:10Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-18T17:00:41.984Z",
-    "retryCount": 6
-  },
-  {
     "repo": "NVlabs/ASPIRE",
     "desc": "ASPIRE: Agentic /Skills Discovery for Robotics",
     "stars": 690,
@@ -944,7 +833,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-18T17:00:41.984Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "oddycosplay/unpam-virtual",
@@ -960,7 +849,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-19T09:38:39Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "ooooooomygosh/Flow-Cabin",
@@ -976,7 +865,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-19T09:16:42Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "Pexers/CS-fundamentals",
@@ -992,7 +881,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T23:02:30Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "QingYunA/answer-me-with-html",
@@ -1008,7 +897,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T15:41:38Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "rozim/ChessData",
@@ -1024,7 +913,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T22:04:41Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "salikhussain71-code/python-fundamentals-and-practice",
@@ -1040,23 +929,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-11T12:03:38Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "SciML/Catalyst.jl",
-    "desc": "Chemical reaction network and systems biology interface for scientific machine learning (SciML). High performance, GPU-parallelized, and O(1) solvers in open source software.",
-    "stars": 531,
-    "language": "Julia",
-    "topics": [
-      "simulation"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2017-02-06T10:30:55Z",
-    "silentRounds": 2,
-    "bigbros": [],
-    "ts": "2026-10-19T00:38:37Z",
-    "retryCount": 6
+    "retryCount": 2
   },
   {
     "repo": "smg-project/smg",
@@ -1085,6 +958,22 @@
     "silentRounds": 12,
     "bigbros": [],
     "ts": "2026-10-13T09:45:48Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "TimbraSuite/Neuroforge",
+    "desc": "Neuroforge: a neurofunk bass VST3 instrument. Great neuro bass in seconds, deep enough for hours. (beta)",
+    "stars": 10,
+    "language": "C++",
+    "topics": [
+      "synthesizer"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-15T17:50:49Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-18T14:31:54Z",
     "retryCount": 1
   },
   {
@@ -1115,7 +1004,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-16T19:28:56.080Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "uiwjs/react-amap",
@@ -1131,7 +1020,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-16T19:18:48Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "VibeMage/claude-mod-pet",
@@ -1147,7 +1036,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-05T15:07:22Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "vivekvar-dl/wingman-AI",
@@ -1163,7 +1052,7 @@
     "silentRounds": 7,
     "bigbros": [],
     "ts": "2026-10-13T15:58:16Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "webkubor/writing-standard-skills",
@@ -1179,7 +1068,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-19T03:58:56Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "xms0g/cubicLife",
@@ -1195,7 +1084,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-18T19:42:19Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "ygelfand/echolocal",
@@ -1209,7 +1098,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-17T16:44:22.178Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "YuJunZhiXue/dsh-purge",
