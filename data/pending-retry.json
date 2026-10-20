@@ -1,37 +1,5 @@
 [
   {
-    "repo": "1024Adam/infinite-maze",
-    "desc": "Infinite Maze Game",
-    "stars": 3,
-    "language": "Python",
-    "topics": [
-      "pygame"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2017-02-11T20:03:59Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-19T17:25:05Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "1Step621/zerium",
-    "desc": "A video editor with zero limits.",
-    "stars": 38,
-    "language": "Rust",
-    "topics": [
-      "video-editor"
-    ],
-    "source": "search",
-    "starGrowth": 6,
-    "createdAt": "2026-08-15T09:07:56Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-19T12:13:18Z",
-    "retryCount": 6
-  },
-  {
     "repo": "24kr/Local_LLM_Assistant",
     "desc": "LoLA: Privacy-first desktop AI with RAG. Chat offline with your docs using Ollama models. React+Electron UI, FastAPI backend. 100% local, cross-platform.",
     "stars": 0,
@@ -45,23 +13,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T15:11:59Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
-    "repo": "a-shygun/Pawnix",
-    "desc": "A minimal curses chess client with Lichess API support",
-    "stars": 15,
+    "repo": "ActiveInferenceInstitute/fundamentals",
+    "desc": "Unofficial repo for materials and code related to \"Fundamentals of Active Inference\" (Namjoshi 2026). ",
+    "stars": 36,
     "language": "Python",
     "topics": [
-      "ascii-art"
+      "textbook"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2026-10-10T09:40:18Z",
-    "silentRounds": 1,
+    "createdAt": "2026-03-19T17:35:28Z",
+    "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-13T09:59:59Z",
-    "retryCount": 6
+    "ts": "2026-10-18T01:07:25Z",
+    "retryCount": 1
   },
   {
     "repo": "Agents365-ai/video-podcast-maker",
@@ -75,7 +43,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-26T17:52:47.721Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "AhmadHassan-BTed/Jantt",
@@ -91,7 +59,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-16T17:25:12Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "alvinunreal/lazyskills",
@@ -124,22 +92,6 @@
     "retryCount": 1
   },
   {
-    "repo": "apresmoi/glyphcss",
-    "desc": "ASCII polygon mesh renderer for the DOM. Forked from LayoutitStudio/polycss.",
-    "stars": 219,
-    "language": "TypeScript",
-    "topics": [
-      "ascii-art"
-    ],
-    "source": "search",
-    "starGrowth": 2,
-    "createdAt": "2026-05-17T18:47:24Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-18T13:59:19Z",
-    "retryCount": 6
-  },
-  {
     "repo": "armadsen/ORSSerialPort",
     "desc": "Serial port library for Objective-C and Swift macOS apps",
     "stars": 774,
@@ -153,23 +105,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T20:42:48Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "astrocatalogs/OACAPI",
-    "desc": "Open Astronomy Catalog API",
-    "stars": 113,
-    "language": "Python",
-    "topics": [
-      "astronomy"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2017-10-25T09:20:12Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-19T02:38:22Z",
-    "retryCount": 6
+    "retryCount": 3
   },
   {
     "repo": "ayangabryl/asciify-engine",
@@ -184,24 +120,8 @@
     "createdAt": "2026-02-21T14:29:37Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-19T22:24:57Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "Azure12355/weilanx-claude-videos",
-    "desc": "Hand-drawn and pixel-art explainer videos written entirely in code — Remotion + React + SVG, procedural music & SFX, subtitle-driven timing",
-    "stars": 56,
-    "language": "TypeScript",
-    "topics": [
-      "pixel-art"
-    ],
-    "source": "search",
-    "starGrowth": 24,
-    "createdAt": "2026-10-10T13:34:45Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-17T16:18:32Z",
-    "retryCount": 6
+    "ts": "2026-10-20T00:39:49Z",
+    "retryCount": 2
   },
   {
     "repo": "bagidea/bagidea-office",
@@ -233,23 +153,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-18T17:31:06Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "bioperl/bioperl-live",
-    "desc": "Core BioPerl 1.x code",
-    "stars": 323,
-    "language": "Perl",
-    "topics": [
-      "bioinformatics"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2010-05-12T17:13:10Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-19T01:29:49Z",
-    "retryCount": 6
+    "retryCount": 3
   },
   {
     "repo": "caglarutkuguler/cubicle",
@@ -265,24 +169,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T21:26:14Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "CatVinci-Studio/Textus",
-    "desc": "The next-generation Markdown editor, with an AI writing assistant. Free and open source for macOS, Windows and Linux.",
-    "stars": 387,
-    "language": "TypeScript",
-    "topics": [
-      "note-taking",
-      "writing"
-    ],
-    "source": "search",
-    "starGrowth": 60,
-    "createdAt": "2026-07-08T21:58:26Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-19T23:15:06Z",
-    "retryCount": 6
+    "retryCount": 1
   },
   {
     "repo": "cgranier/tabSidian",
@@ -298,7 +185,7 @@
     "silentRounds": 5,
     "bigbros": [],
     "ts": "2026-09-28T19:54:43Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "chartmann1590/Pixel-Fish-Tank",
@@ -333,20 +220,20 @@
     "retryCount": 1
   },
   {
-    "repo": "CostardRouge/generative-art-p5js",
-    "desc": "https://art.steeve.website/",
-    "stars": 16,
-    "language": "JavaScript",
+    "repo": "ConnerWill/Convert-ImageToASCIIArt",
+    "desc": "PowerShell function to convert an image to ASCII art ",
+    "stars": 5,
+    "language": "PowerShell",
     "topics": [
-      "generative-art"
+      "ascii-art"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2021-11-16T23:39:09Z",
-    "silentRounds": 1,
+    "createdAt": "2023-03-14T19:14:48Z",
+    "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-18T10:13:03Z",
-    "retryCount": 6
+    "ts": "2026-10-16T14:46:00Z",
+    "retryCount": 1
   },
   {
     "repo": "creep-ltx/charcoal",
@@ -362,7 +249,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-17T04:25:11Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "Crosstalk-Solutions/unifi-toolkit",
@@ -376,6 +263,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-15T14:47:34.742Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "CursedPrograms/NINA",
+    "desc": "NINA (Network Inspector & Notification Assistant): the caretaker of the DREAM Robotics fleet. Watches every robot through RIFT, catches reboots, slow pages and unexplained mode changes on NORA, explains the likely cause out loud and writes it to the mission log. Python/Flask, with an options menu in pygame.",
+    "stars": 2,
+    "language": "Python",
+    "topics": [
+      "pygame"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-04T22:00:10Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-19T22:59:12Z",
     "retryCount": 1
   },
   {
@@ -408,7 +311,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-19T20:35:21Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "datamllab/openebfm",
@@ -440,23 +343,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-14T18:54:47Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
-    "repo": "EL4CTEO/blender-skills",
-    "desc": "Professional Blender 5.2 workflows as Agent Skills for Claude Code, Codex, Gemini CLI, Copilot and Cursor: modeling, UVs, PBR, baking, rigging, animation, export and QA.",
-    "stars": 280,
-    "language": "Python",
+    "repo": "Ebony-Vinyl/EAC-design-world",
+    "desc": "DeepSeek Harness 本地视频制作与设计插件：多轨剪辑、模板与设计体系、原生预览画布和真实文件导出",
+    "stars": 56,
+    "language": "JavaScript",
     "topics": [
-      "godot"
+      "video-editor"
     ],
     "source": "search",
-    "starGrowth": 59,
-    "createdAt": "2026-10-14T19:08:14Z",
+    "starGrowth": 0,
+    "createdAt": "2026-10-17T06:46:19Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-19T19:35:31Z",
-    "retryCount": 6
+    "ts": "2026-10-18T06:57:51Z",
+    "retryCount": 1
   },
   {
     "repo": "elder-plinius/V3R1T4S",
@@ -527,8 +430,8 @@
     "createdAt": "2026-10-17T08:12:35Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-19T18:17:35Z",
-    "retryCount": 2
+    "ts": "2026-10-20T03:57:28Z",
+    "retryCount": 1
   },
   {
     "repo": "glorat/nethack-cocoa",
@@ -544,7 +447,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-19T13:09:57Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "golanlevin/p5-single-line-font-resources",
@@ -577,23 +480,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T20:53:20Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "hericdk/winampFM",
-    "desc": "winampFM Synth: a Winamp 2.x-style firmware for the M-VAVE FM-1, based on SLOOP 2.6 (GPL-3.0)",
-    "stars": 9,
-    "language": "C",
-    "topics": [
-      "synthesizer"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-10-13T19:48:11Z",
-    "silentRounds": 4,
-    "bigbros": [],
-    "ts": "2026-10-14T16:09:23Z",
-    "retryCount": 6
+    "retryCount": 3
   },
   {
     "repo": "hpleapfrog/Scholia",
@@ -609,7 +496,7 @@
     "silentRounds": 9,
     "bigbros": [],
     "ts": "2026-10-19T12:10:10Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "HurricaHjz/SecondSelf",
@@ -625,7 +512,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-01T22:15:12Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "inet-framework/inet",
@@ -641,7 +528,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-19T14:13:04Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "insberr/videoEditorAI",
@@ -657,7 +544,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T20:15:44Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "jasonxu114514/opencode2api",
@@ -671,7 +558,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-16T19:28:56.080Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "joeseesun/lexfridman-cn",
@@ -686,8 +573,8 @@
     "createdAt": "2026-10-18T15:55:16Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-19T00:40:58Z",
-    "retryCount": 2
+    "ts": "2026-10-20T01:03:34Z",
+    "retryCount": 1
   },
   {
     "repo": "kailashsr38/ascii-magic-art",
@@ -703,7 +590,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T11:32:11Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "kaybi-gh/K7",
@@ -738,6 +625,22 @@
     "retryCount": 1
   },
   {
+    "repo": "kividbio/kividb",
+    "desc": "A fast, multi-threaded Redis® and Valkey alternative written in Rust: drop-in compatible, with full-text and vector search built in",
+    "stars": 274,
+    "language": "Rust",
+    "topics": [
+      "vector-db"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-16T01:07:52Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-18T18:57:26Z",
+    "retryCount": 1
+  },
+  {
     "repo": "KorroAi/drunk-claude",
     "desc": "Intensity slider from tipsy (0.1) to blackout (1.0). 5 moods, 8 creative techniques. Lowers inhibition, not intelligence. Unfiltered genius for Claude Code.",
     "stars": 204,
@@ -751,7 +654,7 @@
     "silentRounds": 8,
     "bigbros": [],
     "ts": "2026-10-10T22:12:58Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "kvcache-ai/ktransformers",
@@ -779,7 +682,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-15T14:47:34.742Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "leepokai/Codync",
@@ -806,7 +709,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-17T16:44:22.178Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "Mag1cFall/AIStudio2API",
@@ -833,7 +736,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-18T17:00:41.984Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "oddycosplay/unpam-virtual",
@@ -849,7 +752,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-19T09:38:39Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "ooooooomygosh/Flow-Cabin",
@@ -865,7 +768,23 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-19T09:16:42Z",
-    "retryCount": 4
+    "retryCount": 5
+  },
+  {
+    "repo": "pauloperrotta/systemic-game-design-skill",
+    "desc": "A Claude skill to design, analyze and balance games as systems of loops. Based on Michael Sellers' systems approach (unofficial).",
+    "stars": 2,
+    "language": "",
+    "topics": [
+      "roguelike"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-17T22:33:50Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-18T03:13:29Z",
+    "retryCount": 1
   },
   {
     "repo": "Pexers/CS-fundamentals",
@@ -881,7 +800,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T23:02:30Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "QingYunA/answer-me-with-html",
@@ -896,8 +815,8 @@
     "createdAt": "2026-10-02T09:57:40Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-19T15:41:38Z",
-    "retryCount": 2
+    "ts": "2026-10-20T01:48:50Z",
+    "retryCount": 3
   },
   {
     "repo": "rozim/ChessData",
@@ -912,8 +831,8 @@
     "createdAt": "2013-01-09T05:25:27Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-19T22:04:41Z",
-    "retryCount": 2
+    "ts": "2026-10-20T00:34:26Z",
+    "retryCount": 3
   },
   {
     "repo": "salikhussain71-code/python-fundamentals-and-practice",
@@ -929,7 +848,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-11T12:03:38Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "smg-project/smg",
@@ -942,6 +861,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T12:39:19.117Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "SVF-tools/Teaching-Software-Verification",
+    "desc": "Teaching and Learning Software Verification via SVF",
+    "stars": 36,
+    "language": "C++",
+    "topics": [
+      "course"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2022-02-01T11:34:31Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-20T00:24:26Z",
     "retryCount": 1
   },
   {
@@ -958,7 +893,23 @@
     "silentRounds": 12,
     "bigbros": [],
     "ts": "2026-10-13T09:45:48Z",
-    "retryCount": 2
+    "retryCount": 3
+  },
+  {
+    "repo": "therenegar/retro-icons",
+    "desc": "A massive library of retro icons",
+    "stars": 15,
+    "language": "Python",
+    "topics": [
+      "retrocomputing"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-13T06:39:57Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-13T08:09:52Z",
+    "retryCount": 1
   },
   {
     "repo": "TimbraSuite/Neuroforge",
@@ -974,7 +925,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-18T14:31:54Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "trailhq/Trail-Code",
@@ -990,7 +941,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T16:29:21Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "tristenlammi/Arrmada",
@@ -1004,7 +955,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-16T19:28:56.080Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "uiwjs/react-amap",
@@ -1020,7 +971,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-16T19:18:48Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "VibeMage/claude-mod-pet",
@@ -1036,7 +987,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-05T15:07:22Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "vivekvar-dl/wingman-AI",
@@ -1068,6 +1019,22 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-19T03:58:56Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "xiaoyulics/The-Missing-Textbooks",
+    "desc": "Graduate textbooks that should exist, but don't. Five volumes (1,818 pages), written by Claude, conceived and edited by Xiaoyu Li.",
+    "stars": 1,
+    "language": "TeX",
+    "topics": [
+      "textbook"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-16T17:13:37Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-20T00:02:35Z",
     "retryCount": 1
   },
   {
@@ -1084,7 +1051,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-18T19:42:19Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "ygelfand/echolocal",
@@ -1098,7 +1065,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-17T16:44:22.178Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "YuJunZhiXue/dsh-purge",
