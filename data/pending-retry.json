@@ -32,6 +32,22 @@
     "retryCount": 1
   },
   {
+    "repo": "24kr/Local_LLM_Assistant",
+    "desc": "LoLA: Privacy-first desktop AI with RAG. Chat offline with your docs using Ollama models. React+Electron UI, FastAPI backend. 100% local, cross-platform.",
+    "stars": 0,
+    "language": "JavaScript",
+    "topics": [
+      "llm-model"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-01-03T09:08:52Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-19T15:11:59Z",
+    "retryCount": 1
+  },
+  {
     "repo": "8f4e/8f4e",
     "desc": "8f4e is an experimental stack-oriented programming language with a semi-visual live code editor",
     "stars": 16,
@@ -45,7 +61,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-20T20:40:17Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "ActiveInferenceInstitute/fundamentals",
@@ -61,7 +77,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-18T01:07:25Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "Agents365-ai/video-podcast-maker",
@@ -75,7 +91,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-26T17:52:47.721Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "AhmadHassan-BTed/CursedTomorrow",
@@ -91,6 +107,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-20T06:49:30Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "AhmadHassan-BTed/Jantt",
+    "desc": "The AI-native JSON Gantt chart engine. Dependency-free interactive timelines with React, script-tag, CLI, topological DAG solver, and formal JSON schema.",
+    "stars": 2295,
+    "language": "TypeScript",
+    "topics": [
+      "data-visualization"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-08-28T07:32:35Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-16T17:25:12Z",
     "retryCount": 1
   },
   {
@@ -123,7 +155,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-20T12:25:20Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "apresmoi/glyphcss",
@@ -139,6 +171,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-18T13:59:19Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "armadsen/ORSSerialPort",
+    "desc": "Serial port library for Objective-C and Swift macOS apps",
+    "stars": 774,
+    "language": "Objective-C",
+    "topics": [
+      "arduino"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2012-06-27T23:14:17Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-19T20:42:48Z",
     "retryCount": 1
   },
   {
@@ -158,39 +206,6 @@
     "retryCount": 1
   },
   {
-    "repo": "ayangabryl/asciify-engine",
-    "desc": "ASCII for the web: 31 GPU-drawn interface components, backgrounds, and image, GIF and video conversion.",
-    "stars": 48,
-    "language": "TypeScript",
-    "topics": [
-      "ascii-art",
-      "creative-coding"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-02-21T14:29:37Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-20T08:37:25Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "Azure12355/weilanx-claude-videos",
-    "desc": "Hand-drawn and pixel-art explainer videos written entirely in code — Remotion + React + SVG, procedural music & SFX, subtitle-driven timing",
-    "stars": 80,
-    "language": "TypeScript",
-    "topics": [
-      "pixel-art"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-10-10T13:34:45Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-17T16:18:32Z",
-    "retryCount": 2
-  },
-  {
     "repo": "bagidea/bagidea-office",
     "desc": "A living AI-agent office on your desktop wallpaper — Claude Code agents that walk, work, delegate, learn & hold meetings. Per-agent swappable models (Claude/GLM/DeepSeek/Qwen/Kimi/OpenAI/Gemini/Groq/Ollama…), workflows, plugins, voice & Telegram/Discord/LINE. Open source.",
     "stars": 250,
@@ -204,7 +219,23 @@
     "silentRounds": 9,
     "bigbros": [],
     "ts": "2026-10-15T17:23:42Z",
-    "retryCount": 5
+    "retryCount": 6
+  },
+  {
+    "repo": "BasilForge/Kairos",
+    "desc": "Instant replay for Windows games. Press a key or say your phrase to save the last minutes. Free, open source, offline.",
+    "stars": 21,
+    "language": "C#",
+    "topics": [
+      "video-editor"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-17T17:52:44Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-18T17:31:06Z",
+    "retryCount": 1
   },
   {
     "repo": "CatVinci-Studio/Textus",
@@ -219,8 +250,8 @@
     "createdAt": "2026-07-08T21:58:26Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-20T21:11:12Z",
-    "retryCount": 2
+    "ts": "2026-10-20T22:11:11Z",
+    "retryCount": 1
   },
   {
     "repo": "cgranier/tabSidian",
@@ -267,8 +298,8 @@
     "createdAt": "2025-11-25T19:01:18Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-20T21:24:47Z",
-    "retryCount": 1
+    "ts": "2026-10-20T22:07:17Z",
+    "retryCount": 2
   },
   {
     "repo": "ColOfAbRiX/figlet4s",
@@ -284,7 +315,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-20T20:47:54Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "ConnerWill/Convert-ImageToASCIIArt",
@@ -300,7 +331,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-16T14:46:00Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "CostardRouge/generative-art-p5js",
@@ -316,7 +347,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-20T07:42:59Z",
-    "retryCount": 3
+    "retryCount": 4
+  },
+  {
+    "repo": "creep-ltx/charcoal",
+    "desc": "CharEdit + CharView: text-art editor and viewer for every platform - Amiga and PC ANSI, Unicode/IRC, PETSCII (C64, Plus/4, PET, VIC-20), ATASCII, Atari ST, ZX Spectrum, Amstrad CPC, MSX, MZ-700, teletext, Viewdata, Minitel. BBS animations, TheDraw fonts, layers. Windows, Mac, Linux.",
+    "stars": 1,
+    "language": "Go",
+    "topics": [
+      "demoscene"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-13T22:13:05Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-17T04:25:11Z",
+    "retryCount": 1
   },
   {
     "repo": "Crosstalk-Solutions/unifi-toolkit",
@@ -346,7 +393,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-20T10:44:59Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "DaniGreco/hai-sim",
@@ -393,7 +440,7 @@
     "createdAt": "2024-02-06T15:18:47Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-10-20T18:56:43Z",
+    "ts": "2026-10-20T22:12:13Z",
     "retryCount": 1
   },
   {
@@ -410,7 +457,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-14T18:54:47Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "datavzrd/datavzrd",
@@ -426,7 +473,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-20T16:02:37Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "Dragonboon/Terrainy",
@@ -442,7 +489,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-18T18:18:16Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "Ebony-Vinyl/EAC-design-world",
@@ -458,7 +505,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-18T06:57:51Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "elder-plinius/V3R1T4S",
@@ -488,7 +535,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-13T11:36:47Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "feder-cr/git-ai",
@@ -504,7 +551,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-20T12:58:45Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "flizzywine/dsh-tavern",
@@ -517,7 +564,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T19:34:18.850Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "Friedrich-M/UniMate",
@@ -530,7 +577,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T12:39:19.117Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Gathin23/cleanyourtv",
@@ -546,7 +593,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-20T19:57:27Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "glorat/nethack-cocoa",
@@ -562,7 +609,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-19T13:09:57Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "golanlevin/p5-single-line-font-resources",
@@ -594,8 +641,24 @@
     "createdAt": "2026-03-11T04:30:52Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-20T11:43:26Z",
-    "retryCount": 2
+    "ts": "2026-10-20T21:51:03Z",
+    "retryCount": 3
+  },
+  {
+    "repo": "handbook-academy/engineering-handbook",
+    "desc": "Open-source High-Level System Design, DSA, and AI Engineering handbooks. CC BY-SA 4.0, Free Forever.",
+    "stars": 827,
+    "language": "JavaScript",
+    "topics": [
+      "algorithms"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-05-11T20:52:32Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-19T20:53:20Z",
+    "retryCount": 1
   },
   {
     "repo": "heuermh/lick",
@@ -611,7 +674,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-20T19:47:13Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "hpleapfrog/Scholia",
@@ -643,23 +706,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-20T13:53:46Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
-    "repo": "HurricaHjz/SecondSelf",
-    "desc": "Second yourself. One agent that remembers you, with many hands to act for you: a multi-agent harness (Claude Code, with Codex helpers), a self-maintaining local wiki as its long-term memory, and the frontier model you choose. Research assistant today. Pre-1.0, in active development.",
-    "stars": 156,
-    "language": "Python",
+    "repo": "iamlukethedev/The-Ninth-Vigil",
+    "desc": "A Diablo-class isometric action RPG in the browser where every texture, mesh, rig, animation and sound is generated procedurally at runtime. Three.js, zero external assets.",
+    "stars": 32,
+    "language": "JavaScript",
     "topics": [
-      "knowledge-management"
+      "procedural-generation"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2026-06-24T20:40:01Z",
+    "createdAt": "2026-07-30T17:10:59Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-01T22:15:12Z",
-    "retryCount": 6
+    "ts": "2026-10-20T00:58:08Z",
+    "retryCount": 1
   },
   {
     "repo": "IF977/if977",
@@ -675,7 +738,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-20T13:03:52Z",
-    "retryCount": 3
+    "retryCount": 4
+  },
+  {
+    "repo": "insberr/videoEditorAI",
+    "desc": "Video editing with as little human interaction as possible ",
+    "stars": 19,
+    "language": "V",
+    "topics": [
+      "video-editor"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2020-11-11T18:29:22Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-19T20:15:44Z",
+    "retryCount": 1
   },
   {
     "repo": "ivantsai1982/geo-lab",
@@ -691,7 +770,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-20T06:44:47Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "jasonxu114514/opencode2api",
@@ -721,7 +800,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-20T10:21:57Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "jsbueno/terminedia",
@@ -737,7 +816,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-20T19:22:19Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "K3V1991/Disable-Firefox-Telemetry-and-Data-Collection",
@@ -753,7 +832,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-20T11:34:28Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "kaybi-gh/K7",
@@ -785,7 +864,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-20T07:17:27Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "kieranhj/stnicc-beeb",
@@ -817,7 +896,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-20T20:27:28Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "kividbio/kividb",
@@ -832,8 +911,8 @@
     "createdAt": "2026-10-16T01:07:52Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-20T21:18:19Z",
-    "retryCount": 5
+    "ts": "2026-10-20T21:49:06Z",
+    "retryCount": 6
   },
   {
     "repo": "KorroAi/drunk-claude",
@@ -849,7 +928,7 @@
     "silentRounds": 8,
     "bigbros": [],
     "ts": "2026-10-10T22:12:58Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "kvcache-ai/ktransformers",
@@ -863,7 +942,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-13T22:08:09.499Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "lidedongsn/frame-cut",
@@ -879,7 +958,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-20T08:37:36Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "lmy414/ai-chan-sheets",
@@ -895,7 +974,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-09T06:09:41Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "maddada/Ghostex",
@@ -909,7 +988,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-17T16:44:22.178Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "Mag1cFall/AIStudio2API",
@@ -922,7 +1001,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-18T17:00:41.984Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "magikh0e/sprout",
@@ -938,6 +1017,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-10T07:34:25Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "MHusted01/shortcutlens",
+    "desc": "Hold Command to see the keyboard shortcuts of the frontmost macOS app. No telemetry.",
+    "stars": 3,
+    "language": "Swift",
+    "topics": [
+      "cheatsheet"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-18T13:42:14Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-20T12:52:04Z",
     "retryCount": 1
   },
   {
@@ -1016,7 +1111,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-20T16:47:32Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "patriciasilvadatamac/Lightroom-Photo-Studio",
@@ -1032,7 +1127,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-16T10:21:41Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "PC2005-cloud/dsh-pet",
@@ -1074,7 +1169,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T12:39:19.117Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "Spacial/awesome-arts",
@@ -1090,7 +1185,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-20T19:54:45Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "swordsalah/NEXORA-Intent-to-Cloth-Pipeline",
@@ -1122,7 +1217,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-13T08:09:52Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "trailhq/Trail-Code",
@@ -1152,7 +1247,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-16T19:28:56.080Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "uiwjs/react-amap",
@@ -1184,7 +1279,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-05T15:07:22Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "vivekvar-dl/wingman-AI",
@@ -1200,7 +1295,7 @@
     "silentRounds": 7,
     "bigbros": [],
     "ts": "2026-10-13T15:58:16Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "webkubor/writing-standard-skills",
@@ -1216,7 +1311,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-19T03:58:56Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "xms0g/cubicLife",
