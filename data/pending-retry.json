@@ -13,7 +13,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-20T20:12:51Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "1Step621/zerium",
@@ -45,7 +45,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-19T15:11:59Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "8f4e/8f4e",
@@ -61,7 +61,23 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-20T20:40:17Z",
-    "retryCount": 5
+    "retryCount": 6
+  },
+  {
+    "repo": "ActiveInferenceInstitute/fundamentals",
+    "desc": "Unofficial repo for materials and code related to \"Fundamentals of Active Inference\" (Namjoshi 2026). ",
+    "stars": 36,
+    "language": "Python",
+    "topics": [
+      "textbook"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-03-19T17:35:28Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-18T01:07:25Z",
+    "retryCount": 1
   },
   {
     "repo": "Agents365-ai/video-podcast-maker",
@@ -91,7 +107,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-20T06:49:30Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "AhmadHassan-BTed/Jantt",
@@ -107,7 +123,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-16T17:25:12Z",
-    "retryCount": 2
+    "retryCount": 3
+  },
+  {
+    "repo": "ajietudou007/TraceDot",
+    "desc": "迹点点 TraceDot · 集成式旅行纪念票根工作室：十种票面一站式制作收藏，行程自动绘制成中国地图，串成旅行编年史与年度报告。纯前端单文件，浏览器 / Windows / macOS 全平台",
+    "stars": 10,
+    "language": "HTML",
+    "topics": [
+      "travel"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-01T01:10:19Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-21T00:13:41Z",
+    "retryCount": 1
   },
   {
     "repo": "ananie1/VoidProtocol",
@@ -139,7 +171,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-20T12:25:20Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "apresmoi/glyphcss",
@@ -155,6 +187,22 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-18T13:59:19Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "Archie3d/aeolus_plugin",
+    "desc": "Pipe organ synthesizer (VST plugin)",
+    "stars": 170,
+    "language": "C++",
+    "topics": [
+      "synthesizer"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2021-05-22T16:42:47Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-16T15:33:24Z",
     "retryCount": 1
   },
   {
@@ -171,7 +219,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-19T20:42:48Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "astrocatalogs/OACAPI",
@@ -187,7 +235,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-19T02:38:22Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "ayangabryl/asciify-engine",
@@ -195,7 +243,8 @@
     "stars": 50,
     "language": "TypeScript",
     "topics": [
-      "creative-coding"
+      "creative-coding",
+      "ascii-art"
     ],
     "source": "search",
     "starGrowth": 0,
@@ -203,7 +252,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-20T08:37:25Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "BasilForge/Kairos",
@@ -219,39 +268,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-18T17:31:06Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "CatVinci-Studio/Textus",
-    "desc": "The next-generation Markdown editor, with an AI writing assistant. Free and open source for macOS, Windows and Linux.",
-    "stars": 436,
-    "language": "TypeScript",
-    "topics": [
-      "note-taking"
-    ],
-    "source": "search",
-    "starGrowth": 12,
-    "createdAt": "2026-07-08T21:58:26Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-20T22:30:35Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "cgranier/tabSidian",
-    "desc": "tabSidian gathers your open browser tabs and turns them into a markdown list.",
-    "stars": 107,
-    "language": "JavaScript",
-    "topics": [
-      "knowledge-management"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2023-04-20T01:11:29Z",
-    "silentRounds": 6,
-    "bigbros": [],
-    "ts": "2026-09-28T19:54:43Z",
-    "retryCount": 1
+    "retryCount": 3
   },
   {
     "repo": "chartmann1590/Pixel-Fish-Tank",
@@ -283,7 +300,23 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-20T22:33:49Z",
-    "retryCount": 3
+    "retryCount": 1
+  },
+  {
+    "repo": "cmyksoda/ASCII-Odyssey",
+    "desc": "Generative tracker music and ASCII visuals for the Nintendo Wii",
+    "stars": 0,
+    "language": "C",
+    "topics": [
+      "demoscene"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-21T00:03:09Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-21T00:19:08Z",
+    "retryCount": 1
   },
   {
     "repo": "ColOfAbRiX/figlet4s",
@@ -299,7 +332,23 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-20T20:47:54Z",
-    "retryCount": 3
+    "retryCount": 4
+  },
+  {
+    "repo": "ConnerWill/Convert-ImageToASCIIArt",
+    "desc": "PowerShell function to convert an image to ASCII art ",
+    "stars": 5,
+    "language": "PowerShell",
+    "topics": [
+      "ascii-art"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2023-03-14T19:14:48Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-16T14:46:00Z",
+    "retryCount": 1
   },
   {
     "repo": "CostardRouge/generative-art-p5js",
@@ -314,8 +363,8 @@
     "createdAt": "2021-11-16T23:39:09Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-10-20T07:42:59Z",
-    "retryCount": 5
+    "ts": "2026-10-20T23:07:16Z",
+    "retryCount": 6
   },
   {
     "repo": "creep-ltx/charcoal",
@@ -331,7 +380,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-17T04:25:11Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "Crosstalk-Solutions/unifi-toolkit",
@@ -345,6 +394,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-15T14:47:34.742Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "CursedPrograms/NINA",
+    "desc": "NINA (Network Inspector & Notification Assistant): the caretaker of the DREAM Robotics fleet. Watches every robot through RIFT, catches reboots, slow pages and unexplained mode changes on NORA, explains the likely cause out loud and writes it to the mission log. Python/Flask, with an options menu in pygame.",
+    "stars": 2,
+    "language": "Python",
+    "topics": [
+      "pygame"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-04T22:00:10Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-20T10:44:59Z",
     "retryCount": 1
   },
   {
@@ -392,8 +457,8 @@
     "createdAt": "2024-02-06T15:18:47Z",
     "silentRounds": 2,
     "bigbros": [],
-    "ts": "2026-10-20T22:17:27Z",
-    "retryCount": 1
+    "ts": "2026-10-21T00:17:37Z",
+    "retryCount": 2
   },
   {
     "repo": "datamllab/openesm",
@@ -409,7 +474,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-14T18:54:47Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "datavzrd/datavzrd",
@@ -425,7 +490,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-20T16:02:37Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "Dragonboon/Terrainy",
@@ -441,7 +506,39 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-18T18:18:16Z",
-    "retryCount": 5
+    "retryCount": 6
+  },
+  {
+    "repo": "Droivox/Godot-Engine-FPS",
+    "desc": "Godot Engine FPS",
+    "stars": 274,
+    "language": "GDScript",
+    "topics": [
+      "godot"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2020-04-08T15:07:25Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-21T00:14:39Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "Ebony-Vinyl/EAC-design-world",
+    "desc": "DeepSeek Harness 本地视频制作与设计插件：多轨剪辑、模板与设计体系、原生预览画布和真实文件导出",
+    "stars": 71,
+    "language": "JavaScript",
+    "topics": [
+      "video-editor"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-17T06:46:19Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-18T06:57:51Z",
+    "retryCount": 1
   },
   {
     "repo": "elder-plinius/V3R1T4S",
@@ -455,7 +552,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-16T19:28:56.080Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "faqruddin37/VEGAS-Pro-Video-Studio",
@@ -471,7 +568,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-13T11:36:47Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "feder-cr/git-ai",
@@ -487,7 +584,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-20T12:58:45Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "flizzywine/dsh-tavern",
@@ -501,7 +598,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T19:34:18.850Z",
-    "retryCount": 5
+    "retryCount": 1
   },
   {
     "repo": "Friedrich-M/UniMate",
@@ -515,7 +612,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T12:39:19.117Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "Gathin23/cleanyourtv",
@@ -531,7 +628,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-20T19:57:27Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "glorat/nethack-cocoa",
@@ -547,7 +644,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-19T13:09:57Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "golanlevin/p5-single-line-font-resources",
@@ -580,7 +677,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-20T21:51:03Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "handbook-academy/engineering-handbook",
@@ -596,7 +693,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-19T20:53:20Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "heuermh/lick",
@@ -611,8 +708,8 @@
     "createdAt": "2009-01-29T23:08:41Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-10-20T19:47:13Z",
-    "retryCount": 3
+    "ts": "2026-10-20T23:05:12Z",
+    "retryCount": 4
   },
   {
     "repo": "hpleapfrog/Scholia",
@@ -660,7 +757,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-01T22:15:12Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "iamlukethedev/The-Ninth-Vigil",
@@ -676,7 +773,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-20T00:58:08Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "IF977/if977",
@@ -692,7 +789,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-20T13:03:52Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "insberr/videoEditorAI",
@@ -708,7 +805,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-19T20:15:44Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "ivantsai1982/geo-lab",
@@ -724,21 +821,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-20T06:44:47Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "jasonxu114514/opencode2api",
-    "desc": "A Go-based OpenCode Zen / Zen Go API proxy with OpenAI &amp; Anthropic API compatibility, key/proxy pooling, automatic routing, and WebUI.",
-    "stars": 1160,
-    "language": "Go",
-    "topics": [],
-    "source": "trending",
-    "starGrowth": 42,
-    "createdAt": "2026-08-13T23:57:44Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-16T19:28:56.080Z",
-    "retryCount": 1
+    "retryCount": 3
   },
   {
     "repo": "joeseesun/lexfridman-cn",
@@ -770,7 +853,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-20T19:22:19Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "K3V1991/Disable-Firefox-Telemetry-and-Data-Collection",
@@ -786,7 +869,23 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-20T11:34:28Z",
-    "retryCount": 5
+    "retryCount": 6
+  },
+  {
+    "repo": "Ka1-S/LYNX",
+    "desc": "Lightweight open-source DAW in C++20/JUCE with the FL Studio workflow — Channel Rack, Piano Roll, Playlist, Mixer and .flp import",
+    "stars": 7,
+    "language": "C++",
+    "topics": [
+      "music-production"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-12T21:49:02Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-21T00:10:53Z",
+    "retryCount": 1
   },
   {
     "repo": "kaybi-gh/K7",
@@ -818,7 +917,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-20T07:17:27Z",
-    "retryCount": 6
+    "retryCount": 1
   },
   {
     "repo": "kieranhj/stnicc-beeb",
@@ -834,7 +933,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-19T16:41:51Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "kingabzpro/Travel-with-Kimi-K2",
@@ -850,7 +949,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-20T20:27:28Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "KorroAi/drunk-claude",
@@ -866,7 +965,7 @@
     "silentRounds": 9,
     "bigbros": [],
     "ts": "2026-10-10T22:12:58Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "kvcache-ai/ktransformers",
@@ -880,7 +979,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-13T22:08:09.499Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "lidedongsn/frame-cut",
@@ -896,7 +995,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-20T08:37:36Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "lmy414/ai-chan-sheets",
@@ -912,7 +1011,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-09T06:09:41Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "maddada/Ghostex",
@@ -926,7 +1025,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-17T16:44:22.178Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "Mag1cFall/AIStudio2API",
@@ -940,7 +1039,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-18T17:00:41.984Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "magikh0e/sprout",
@@ -956,7 +1055,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-10T07:34:25Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "MHusted01/shortcutlens",
@@ -972,7 +1071,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-20T12:52:04Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "monid-ai/monid",
@@ -988,7 +1087,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-16T03:23:31Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "nihui/ncnn-android-piper",
@@ -1004,7 +1103,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-20T08:09:48Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "NVlabs/ASPIRE",
@@ -1034,7 +1133,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-19T09:38:39Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "ooooooomygosh/Flow-Cabin",
@@ -1050,7 +1149,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-20T16:47:32Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "patriciasilvadatamac/Lightroom-Photo-Studio",
@@ -1066,7 +1165,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-16T10:21:41Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "PC2005-cloud/dsh-pet",
@@ -1095,7 +1194,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-20T13:07:23Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "smg-project/smg",
@@ -1109,7 +1208,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T12:39:19.117Z",
-    "retryCount": 5
+    "retryCount": 1
   },
   {
     "repo": "Spacial/awesome-arts",
@@ -1125,7 +1224,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-20T19:54:45Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "therenegar/retro-icons",
@@ -1141,7 +1240,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-13T08:09:52Z",
-    "retryCount": 5
+    "retryCount": 1
   },
   {
     "repo": "trailhq/Trail-Code",
@@ -1173,7 +1272,7 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-10-16T19:18:48Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "VibeMage/claude-mod-pet",
@@ -1189,7 +1288,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-05T15:07:22Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "vivekvar-dl/wingman-AI",
@@ -1205,7 +1304,7 @@
     "silentRounds": 8,
     "bigbros": [],
     "ts": "2026-10-13T15:58:16Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "webkubor/writing-standard-skills",
@@ -1221,7 +1320,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-19T03:58:56Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "xms0g/cubicLife",
@@ -1237,7 +1336,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-18T19:42:19Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "YuJunZhiXue/dsh-purge",
@@ -1250,6 +1349,6 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T12:39:19.117Z",
-    "retryCount": 1
+    "retryCount": 2
   }
 ]
