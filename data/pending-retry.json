@@ -13,23 +13,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T17:38:35Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "24kr/Local_LLM_Assistant",
-    "desc": "LoLA: Privacy-first desktop AI with RAG. Chat offline with your docs using Ollama models. React+Electron UI, FastAPI backend. 100% local, cross-platform.",
-    "stars": 0,
-    "language": "JavaScript",
-    "topics": [
-      "llm-model"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-01-03T09:08:52Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-19T15:11:59Z",
-    "retryCount": 6
+    "retryCount": 3
   },
   {
     "repo": "8f4e/8f4e",
@@ -44,8 +28,8 @@
     "createdAt": "2020-11-17T18:02:28Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-21T17:52:28Z",
-    "retryCount": 2
+    "ts": "2026-10-21T18:37:13Z",
+    "retryCount": 3
   },
   {
     "repo": "abuseofnotation/category-theory-illustrated",
@@ -61,7 +45,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T05:42:45Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "ActiveInferenceInstitute/fundamentals",
@@ -77,7 +61,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-18T01:07:25Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "AhmadHassan-BTed/CursedTomorrow",
@@ -93,23 +77,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-20T06:49:30Z",
-    "retryCount": 3
-  },
-  {
-    "repo": "AhmadHassan-BTed/Jantt",
-    "desc": "The AI-native JSON Gantt chart engine. Dependency-free interactive timelines with React, script-tag, CLI, topological DAG solver, and formal JSON schema.",
-    "stars": 2312,
-    "language": "TypeScript",
-    "topics": [
-      "data-visualization"
-    ],
-    "source": "search",
-    "starGrowth": 17,
-    "createdAt": "2026-08-28T07:32:35Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-16T17:25:12Z",
-    "retryCount": 6
+    "retryCount": 1
   },
   {
     "repo": "ai-job-search-dev/ai-job-search",
@@ -141,7 +109,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T11:21:04Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "ajietudou007/TraceDot",
@@ -157,7 +125,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T16:39:03Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "alibaba-aero/technical-interview",
@@ -173,7 +141,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T09:29:00Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "ananie1/VoidProtocol",
@@ -189,7 +157,7 @@
     "silentRounds": 10,
     "bigbros": [],
     "ts": "2026-10-11T03:51:36Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "AndyShaman/add_to_NotebookLM",
@@ -205,7 +173,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T12:04:58Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "apresmoi/glyphcss",
@@ -221,7 +189,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-18T13:59:19Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "Archie3d/aeolus_plugin",
@@ -237,23 +205,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-16T15:33:24Z",
-    "retryCount": 4
-  },
-  {
-    "repo": "armadsen/ORSSerialPort",
-    "desc": "Serial port library for Objective-C and Swift macOS apps",
-    "stars": 774,
-    "language": "Objective-C",
-    "topics": [
-      "arduino"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2012-06-27T23:14:17Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-19T20:42:48Z",
-    "retryCount": 6
+    "retryCount": 5
   },
   {
     "repo": "Asymptote-Labs/agent-beacon",
@@ -267,6 +219,22 @@
     "bigbros": [],
     "ts": "2026-10-21T18:19:35.350Z",
     "retryCount": 2
+  },
+  {
+    "repo": "atomikfactory/atomik-rack",
+    "desc": "Atomik Rack: a modular DAW written in Rust (GPL-3.0-or-later)",
+    "stars": 8,
+    "language": "Rust",
+    "topics": [
+      "music-production"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-19T22:55:49Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-21T17:12:48Z",
+    "retryCount": 1
   },
   {
     "repo": "ayangabryl/asciify-engine",
@@ -283,7 +251,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-20T08:37:25Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "bakustarver/rpgmakermlinux-cicpoffs",
@@ -299,23 +267,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T12:44:54Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "BasilForge/Kairos",
-    "desc": "Instant replay for Windows games. Press a key or say your phrase to save the last minutes. Free, open source, offline.",
-    "stars": 21,
-    "language": "C#",
-    "topics": [
-      "video-editor"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-10-17T17:52:44Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-18T17:31:06Z",
-    "retryCount": 6
+    "retryCount": 3
   },
   {
     "repo": "CacinieP/pure-mathematics-primer",
@@ -331,7 +283,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T09:15:51Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "carpentries-incubator/targets-workshop",
@@ -347,7 +299,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T08:45:41Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "chartmann1590/Pixel-Fish-Tank",
@@ -363,7 +315,7 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-10-08T01:52:32Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "cherkavi/enterprise-architect-toolbox",
@@ -379,7 +331,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T08:26:52Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "Christian-Gennari/Nostos",
@@ -395,7 +347,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-21T17:43:06Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "cmyksoda/ASCII-Odyssey",
@@ -411,7 +363,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T00:19:08Z",
-    "retryCount": 4
+    "retryCount": 5
+  },
+  {
+    "repo": "ColOfAbRiX/figlet4s",
+    "desc": "ASCII-art banners in Scala",
+    "stars": 39,
+    "language": "Scala",
+    "topics": [
+      "ascii-art"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2020-08-06T21:12:42Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-20T20:47:54Z",
+    "retryCount": 1
   },
   {
     "repo": "ConnerWill/Convert-ImageToASCIIArt",
@@ -427,7 +395,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-16T14:46:00Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "Crosstalk-Solutions/unifi-toolkit",
@@ -441,7 +409,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-15T14:47:34.742Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "DaniGreco/hai-sim",
@@ -457,7 +425,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-20T00:17:07Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "danukim/Miko",
@@ -473,7 +441,7 @@
     "silentRounds": 11,
     "bigbros": [],
     "ts": "2026-09-27T03:30:23Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "darrylschaefer/fthr",
@@ -489,23 +457,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-21T15:03:06Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "datamllab/openesm",
-    "desc": "Open-source code for training and scaling up energy-based foundation models.",
-    "stars": 114,
-    "language": "Python",
-    "topics": [
-      "llm-model"
-    ],
-    "source": "search",
-    "starGrowth": 13,
-    "createdAt": "2026-09-21T01:49:37Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-14T18:54:47Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "dean9703111/multicam-recorder",
@@ -553,21 +505,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-18T06:57:51Z",
-    "retryCount": 4
-  },
-  {
-    "repo": "elder-plinius/V3R1T4S",
-    "desc": "liberating known unknowns",
-    "stars": 450,
-    "language": "Python",
-    "topics": [],
-    "source": "trending",
-    "starGrowth": 38,
-    "createdAt": "2025-07-01T09:35:20Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-16T19:28:56.080Z",
-    "retryCount": 6
+    "retryCount": 1
   },
   {
     "repo": "feder-cr/git-ai",
@@ -583,7 +521,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-20T12:58:45Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "flizzywine/dsh-tavern",
@@ -597,7 +535,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T19:34:18.850Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "Friedrich-M/UniMate",
@@ -611,7 +549,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T12:39:19.117Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "Gathin23/cleanyourtv",
@@ -626,24 +564,8 @@
     "createdAt": "2026-10-17T08:12:35Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-21T17:39:23Z",
+    "ts": "2026-10-21T18:36:50Z",
     "retryCount": 1
-  },
-  {
-    "repo": "glorat/nethack-cocoa",
-    "desc": "NetHack 5.0 for macOS: a native Mac app with painted tiles",
-    "stars": 5,
-    "language": "C",
-    "topics": [
-      "roguelike"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-10-14T13:36:00Z",
-    "silentRounds": 2,
-    "bigbros": [],
-    "ts": "2026-10-19T13:09:57Z",
-    "retryCount": 3
   },
   {
     "repo": "golanlevin/p5-single-line-font-resources",
@@ -660,7 +582,7 @@
     "silentRounds": 7,
     "bigbros": [],
     "ts": "2026-10-15T07:15:08Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "handbook-academy/engineering-handbook",
@@ -676,7 +598,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-21T07:09:35Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "hpleapfrog/Scholia",
@@ -708,22 +630,6 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T04:43:05Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "insberr/videoEditorAI",
-    "desc": "Video editing with as little human interaction as possible ",
-    "stars": 19,
-    "language": "V",
-    "topics": [
-      "video-editor"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2020-11-11T18:29:22Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-19T20:15:44Z",
     "retryCount": 1
   },
   {
@@ -740,7 +646,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-20T06:44:47Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "joeseesun/lexfridman-cn",
@@ -756,22 +662,6 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T13:29:26Z",
-    "retryCount": 3
-  },
-  {
-    "repo": "kaybi-gh/K7",
-    "desc": "Self-hosted media server for a small circle of family and friends.",
-    "stars": 333,
-    "language": "C#",
-    "topics": [
-      "jellyfin"
-    ],
-    "source": "search",
-    "starGrowth": 1,
-    "createdAt": "2026-07-05T13:18:14Z",
-    "silentRounds": 2,
-    "bigbros": [],
-    "ts": "2026-10-17T21:33:14Z",
     "retryCount": 1
   },
   {
@@ -788,7 +678,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-19T16:41:51Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "kvcache-ai/ktransformers",
@@ -802,39 +692,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-13T22:08:09.499Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "Leonxlnx/procedural-alpine-lake",
-    "desc": "A 60 second cinematic alpine lake film rendered entirely from code. Procedural terrain, GPU erosion, forest, water, sky and a fully synthesized soundtrack in Python and GLSL.",
-    "stars": 34,
-    "language": "GLSL",
-    "topics": [
-      "procedural-generation"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-10-20T14:47:16Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-20T21:57:14Z",
     "retryCount": 1
-  },
-  {
-    "repo": "lidedongsn/frame-cut",
-    "desc": "A vlog editor built for Apple silicon Macs — free, no watermark, fully on-device, 2.3 MB. 为 Apple 芯片 Mac 打造的 vlog 剪辑软件。",
-    "stars": 21,
-    "language": "Swift",
-    "topics": [
-      "video-editor"
-    ],
-    "source": "search",
-    "starGrowth": 7,
-    "createdAt": "2026-10-20T08:31:39Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-21T01:54:51Z",
-    "retryCount": 6
   },
   {
     "repo": "lizadaly/a-letter-groove",
@@ -850,20 +708,6 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T17:08:51Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "maddada/Ghostex",
-    "desc": "The Best &amp; Most Powerful Native Agents Workspace. Fully Rust &amp; GPUI based. Mobile apps. 20+ agents. Ghostty.",
-    "stars": 1359,
-    "language": "Rust",
-    "topics": [],
-    "source": "trending",
-    "starGrowth": 13,
-    "createdAt": "2026-04-27T01:44:16Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-17T16:44:22.178Z",
     "retryCount": 2
   },
   {
@@ -878,7 +722,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-18T17:00:41.984Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "magikh0e/sprout",
@@ -894,7 +738,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-10T07:34:25Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Mason-Levyy/myfitnesspal-mcp",
@@ -910,7 +754,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T14:53:37Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "MilkteaTW1/slime-pi",
@@ -926,7 +770,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T13:46:46Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "monid-ai/monid",
@@ -942,7 +786,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-16T03:23:31Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "nicklashansen/tdmpc2",
@@ -958,7 +802,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-20T23:34:54Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "nihui/ncnn-android-piper",
@@ -974,7 +818,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-20T08:09:48Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "NVlabs/ASPIRE",
@@ -988,7 +832,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-18T17:00:41.984Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "oddycosplay/unpam-virtual",
@@ -1004,7 +848,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-19T09:38:39Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "onblog/bar-tool",
@@ -1020,7 +864,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T13:33:53Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "PC2005-cloud/dsh-pet",
@@ -1033,7 +877,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-20T11:12:00.269Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "QingYunA/answer-me-with-html",
@@ -1049,21 +893,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T06:56:25Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "smg-project/smg",
-    "desc": "Engine-agnostic LLM gateway in Rust. Full OpenAI &amp; Anthropic API compatibility across vLLM, TRT-LLM, TokenSpeed, SGLang, OpenAI, Gemini &amp; more. Industry-first gRPC pipeline, KV cache-aware routing, chat history, tokenization caching, Responses API, embeddings, WASM plugins, MCP, and multi-tenant auth.",
-    "stars": 654,
-    "language": "Rust",
-    "topics": [],
-    "source": "trending",
-    "starGrowth": 27,
-    "createdAt": "2025-11-22T05:17:14Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-19T12:39:19.117Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "trailhq/Trail-Code",
@@ -1079,22 +909,6 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T13:24:31Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "uiwjs/react-amap",
-    "desc": "基于 React 封装的高德地图组件，帮助你轻松的接入地图到 React 项目中。",
-    "stars": 508,
-    "language": "TypeScript",
-    "topics": [
-      "maps"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2020-09-21T19:19:51Z",
-    "silentRounds": 4,
-    "bigbros": [],
-    "ts": "2026-10-16T19:18:48Z",
     "retryCount": 1
   },
   {
@@ -1111,7 +925,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-23T15:37:28Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "VibeMage/claude-mod-pet",
@@ -1127,7 +941,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-05T15:07:22Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "vivekvar-dl/wingman-AI",
@@ -1143,7 +957,7 @@
     "silentRounds": 8,
     "bigbros": [],
     "ts": "2026-10-13T15:58:16Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "webkubor/writing-standard-skills",
@@ -1159,7 +973,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-19T03:58:56Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "xms0g/cubicLife",
@@ -1188,7 +1002,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T12:39:19.117Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "zhoushoujianwork/easyeda-agent",
