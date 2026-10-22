@@ -13,7 +13,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T23:27:51Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "24kr/Local_LLM_Assistant",
@@ -29,7 +29,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T15:11:59Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "8f4e/8f4e",
@@ -44,7 +44,7 @@
     "createdAt": "2020-11-17T18:02:28Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-22T08:35:22Z",
+    "ts": "2026-10-22T12:11:25Z",
     "retryCount": 1
   },
   {
@@ -61,7 +61,36 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-18T01:07:25Z",
-    "retryCount": 3
+    "retryCount": 4
+  },
+  {
+    "repo": "adermgram/Tetris-game",
+    "desc": "A clone of the famous Tetris game with C++ and Raylib library",
+    "stars": 27,
+    "language": "C++",
+    "topics": [
+      "raylib"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2024-06-16T14:24:52Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-22T13:16:34Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "adobe/skills",
+    "desc": "Adobe Skills for Agents",
+    "stars": 294,
+    "language": "JavaScript",
+    "topics": [],
+    "source": "trending",
+    "starGrowth": 6,
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-22T14:59:22.749Z",
+    "retryCount": 1
   },
   {
     "repo": "AhmadHassan-BTed/Jantt",
@@ -77,7 +106,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-16T17:25:12Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "ai-job-search-dev/ai-job-search",
@@ -96,6 +125,22 @@
     "retryCount": 1
   },
   {
+    "repo": "AIPMAndy/how-to-job-hop-and-raise-salary",
+    "desc": "普通人跳槽涨薪保姆级指南：10 章教程、50 项任务、26 份模板，选岗、简历、面试、谈薪全流程｜Job-hop & salary raise guide",
+    "stars": 36,
+    "language": "HTML",
+    "topics": [
+      "interview"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-12T05:35:38Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-21T11:21:04Z",
+    "retryCount": 1
+  },
+  {
     "repo": "ajietudou007/TraceDot",
     "desc": "迹点点 TraceDot · 集成式旅行纪念票根工作室：十种票面一站式制作收藏，行程自动绘制成中国地图，串成旅行编年史与年度报告。纯前端单文件，浏览器 / Windows / macOS 全平台",
     "stars": 11,
@@ -109,7 +154,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T16:39:03Z",
-    "retryCount": 3
+    "retryCount": 4
+  },
+  {
+    "repo": "alibaba-aero/technical-interview",
+    "desc": "Technical interview questions for Alibaba Travels Co.",
+    "stars": 630,
+    "language": "",
+    "topics": [
+      "interview"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2021-03-23T09:37:19Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-21T09:29:00Z",
+    "retryCount": 1
   },
   {
     "repo": "AndyShaman/add_to_NotebookLM",
@@ -140,7 +201,7 @@
     "createdAt": "2023-05-25T14:21:12Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-22T08:26:25Z",
+    "ts": "2026-10-22T14:52:54Z",
     "retryCount": 1
   },
   {
@@ -173,7 +234,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T22:18:19Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "Archie3d/aeolus_plugin",
@@ -189,7 +250,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-16T15:33:24Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "armadsen/ORSSerialPort",
@@ -205,7 +266,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T20:42:48Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "Asymptote-Labs/agent-beacon",
@@ -219,22 +280,6 @@
     "bigbros": [],
     "ts": "2026-10-21T18:19:35.350Z",
     "retryCount": 2
-  },
-  {
-    "repo": "atomikfactory/atomik-rack",
-    "desc": "Atomik Rack: a modular DAW written in Rust (GPL-3.0-or-later)",
-    "stars": 8,
-    "language": "Rust",
-    "topics": [
-      "music-production"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-10-19T22:55:49Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-21T20:56:00Z",
-    "retryCount": 6
   },
   {
     "repo": "ayangabryl/asciify-engine",
@@ -251,7 +296,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T22:47:09Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "bakustarver/rpgmakermlinux-cicpoffs",
@@ -283,7 +328,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-18T17:31:06Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "beyonk/svelte-mapbox",
@@ -299,7 +344,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-22T06:48:13Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "BlueRingsLabs/no-shortcuts",
@@ -318,6 +363,22 @@
     "retryCount": 1
   },
   {
+    "repo": "BUPT-AI4S/ai4s-book",
+    "desc": "《科学智能原理与实践》｜科学知识建模、自主实验室与可信测评｜在线阅读、PDF 下载与配套课程",
+    "stars": 2,
+    "language": "Python",
+    "topics": [
+      "textbook"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-22T13:42:36Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-22T14:22:45Z",
+    "retryCount": 1
+  },
+  {
     "repo": "bzr-player/bzr-player",
     "desc": "BZR Player is an audio player for Windows and Linux supporting a wide array of multi-platform exotic file formats",
     "stars": 60,
@@ -331,7 +392,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-22T07:10:48Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "CacinieP/pure-mathematics-primer",
@@ -350,6 +411,22 @@
     "retryCount": 1
   },
   {
+    "repo": "cherkavi/enterprise-architect-toolbox",
+    "desc": "Toolbox for Enterpise Architect",
+    "stars": 7,
+    "language": "",
+    "topics": [
+      "cheatsheet"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2024-08-04T20:55:29Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-21T08:26:52Z",
+    "retryCount": 1
+  },
+  {
     "repo": "Christian-Gennari/Nostos",
     "desc": "A home for your reading life. Read your books, capture what stays with you, and turn your reading into thought and writing in one self-hosted study.",
     "stars": 23,
@@ -362,8 +439,8 @@
     "createdAt": "2025-11-25T19:01:18Z",
     "silentRounds": 2,
     "bigbros": [],
-    "ts": "2026-10-22T07:54:40Z",
-    "retryCount": 1
+    "ts": "2026-10-22T14:53:25Z",
+    "retryCount": 2
   },
   {
     "repo": "cmyksoda/ASCII-Odyssey",
@@ -379,23 +456,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T00:19:08Z",
-    "retryCount": 3
-  },
-  {
-    "repo": "ColOfAbRiX/figlet4s",
-    "desc": "ASCII-art banners in Scala",
-    "stars": 39,
-    "language": "Scala",
-    "topics": [
-      "ascii-art"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2020-08-06T21:12:42Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-21T20:58:33Z",
-    "retryCount": 6
+    "retryCount": 4
   },
   {
     "repo": "Crosstalk-Solutions/unifi-toolkit",
@@ -409,7 +470,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-15T14:47:34.742Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "DaniGreco/hai-sim",
@@ -425,7 +486,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-20T00:17:07Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "danukim/Miko",
@@ -441,7 +502,7 @@
     "silentRounds": 12,
     "bigbros": [],
     "ts": "2026-09-27T03:30:23Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "dean9703111/multicam-recorder",
@@ -457,7 +518,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-22T03:42:35Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "DECRUX9812/hermes-plugin-gameforge",
@@ -465,7 +526,8 @@
     "stars": 30,
     "language": "Python",
     "topics": [
-      "procedural-generation"
+      "procedural-generation",
+      "pixel-art"
     ],
     "source": "search",
     "starGrowth": 0,
@@ -473,7 +535,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T07:26:35Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "devlikemasta/bureau-des-agents",
@@ -489,7 +551,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-14T20:13:59Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "dipakkr/awesome-ai-engineering",
@@ -506,7 +568,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-21T16:19:25Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "Ebony-Vinyl/EAC-design-world",
@@ -525,6 +587,22 @@
     "retryCount": 1
   },
   {
+    "repo": "electronstudio/jaylib",
+    "desc": "Java JNI bindings for Raylib",
+    "stars": 218,
+    "language": "C",
+    "topics": [
+      "raylib"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2020-04-03T00:20:20Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-22T13:43:12Z",
+    "retryCount": 1
+  },
+  {
     "repo": "flizzywine/dsh-tavern",
     "desc": "基于DSH的Agent酒馆。类酒馆文字游戏Agent。兼容SillyTavern生态，人物卡直接导入就能玩。更快、更稳、更鲜活。所有模型都能用。手机也能玩。",
     "stars": 1186,
@@ -536,7 +614,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T19:34:18.850Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Friedrich-M/UniMate",
@@ -566,7 +644,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-17T12:34:55Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "Gathin23/cleanyourtv",
@@ -581,7 +659,7 @@
     "createdAt": "2026-10-17T08:12:35Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-22T09:11:54Z",
+    "ts": "2026-10-22T12:22:35Z",
     "retryCount": 1
   },
   {
@@ -599,7 +677,7 @@
     "silentRounds": 8,
     "bigbros": [],
     "ts": "2026-10-15T07:15:08Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "GRiMMBIENT/grimm",
@@ -615,6 +693,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-20T16:25:35Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "GuidoPenta/the-candidates-guide-to-the-galaxy",
+    "desc": "Don't panic. A ready-to-use set of AI skills for your tech job search, from CV to signed offer. Built on the Galactic guides. 🇮🇹/🇬🇧",
+    "stars": 20,
+    "language": "HTML",
+    "topics": [
+      "interview"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-09-25T08:32:40Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-08T11:51:15Z",
     "retryCount": 1
   },
   {
@@ -631,7 +725,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T07:09:35Z",
-    "retryCount": 2
+    "retryCount": 3
+  },
+  {
+    "repo": "holooooo/webgl-seascape-video",
+    "desc": "🌊 A showcase of Shader & 3D tech videos written by Opus 5.5 — realistic seascape, stylized shaders, black-hole cosmos, voxel Jiangnan valley. Play live in the browser or replay the video render process. 由 Opus 5.5 制作的 Shader / 3D 技术视频合集，可在线交互，完全开源。",
+    "stars": 14,
+    "language": "HTML",
+    "topics": [
+      "generative-art"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-16T07:43:29Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-16T07:43:42Z",
+    "retryCount": 1
   },
   {
     "repo": "hpleapfrog/Scholia",
@@ -646,8 +756,8 @@
     "createdAt": "2026-10-05T07:23:57Z",
     "silentRounds": 11,
     "bigbros": [],
-    "ts": "2026-10-22T03:54:03Z",
-    "retryCount": 1
+    "ts": "2026-10-22T11:40:55Z",
+    "retryCount": 2
   },
   {
     "repo": "ivantsai1982/geo-lab",
@@ -663,7 +773,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-20T06:44:47Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "joeseesun/lexfridman-cn",
@@ -679,7 +789,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T13:29:26Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "kvcache-ai/ktransformers",
@@ -693,7 +803,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-13T22:08:09.499Z",
-    "retryCount": 2
+    "retryCount": 3
+  },
+  {
+    "repo": "kwant-project/kwant",
+    "desc": "Mirror of the Kwant project https://gitlab.kwant-project.org/kwant/kwant",
+    "stars": 113,
+    "language": "Python",
+    "topics": [
+      "physics"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2015-10-20T20:41:57Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-22T09:35:15Z",
+    "retryCount": 1
   },
   {
     "repo": "lemomo-ai/lemo-mod",
@@ -709,7 +835,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-17T06:22:59Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "Leo4815162342/dukascopy-node",
@@ -725,7 +851,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T20:13:15Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "lizadaly/a-letter-groove",
@@ -741,7 +867,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-21T17:08:51Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Mag1cFall/AIStudio2API",
@@ -787,7 +913,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T23:24:15Z",
-    "retryCount": 4
+    "retryCount": 5
+  },
+  {
+    "repo": "Mason-Levyy/garmin-personal-mcp",
+    "desc": "MCP server for Garmin Connect on Garmin's official Personal API: sleep, HRV, body battery, activities, and more from Claude or any MCP client",
+    "stars": 13,
+    "language": "Python",
+    "topics": [
+      "fitness"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-22T07:03:04Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-22T14:42:15Z",
+    "retryCount": 1
   },
   {
     "repo": "Mason-Levyy/myfitnesspal-mcp",
@@ -803,6 +945,38 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-22T06:36:02Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "mathiazom/pasjonsfrukt",
+    "desc": "🍹 Scrape PodMe podcast streams to mp3 and host with RSS feed. Requires a valid PodMe subscription for premium podcasts.",
+    "stars": 15,
+    "language": "Python",
+    "topics": [
+      "podcast"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2021-09-14T19:37:41Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-22T12:32:46Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "mengyihh233/book-to-project",
+    "desc": "把一本教材变成可以动手做的练习：每题给定框架 + 补全区 + 真实样例检查，教材靠导入，不含任何原书内容",
+    "stars": 1,
+    "language": "C++",
+    "topics": [
+      "textbook"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-22T11:13:18Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-22T13:06:37Z",
     "retryCount": 1
   },
   {
@@ -851,7 +1025,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T20:23:59Z",
-    "retryCount": 5
+    "retryCount": 6
+  },
+  {
+    "repo": "nagameTW/formosa-humanizer",
+    "desc": "以台灣用語和中文標點重寫 blader/humanizer，含中國用語偵測。支援 Claude Code、Codex、Claude.ai",
+    "stars": 16,
+    "language": "Markdown",
+    "topics": [
+      "writing"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-07-24T01:39:20Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-21T14:06:10Z",
+    "retryCount": 1
   },
   {
     "repo": "neo954/sichuan-cookbook",
@@ -912,7 +1102,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-22T09:22:18.336Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "NVlabs/ASPIRE",
@@ -942,7 +1132,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-19T09:38:39Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "omnetpp/omnetpp",
@@ -977,6 +1167,22 @@
     "retryCount": 1
   },
   {
+    "repo": "oskarrough/slaytheweb",
+    "desc": "Slay the Web is a singleplayer, deck builder, roguelike card crawl game for the web based on Slay the Spire",
+    "stars": 317,
+    "language": "JavaScript",
+    "topics": [
+      "roguelike"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2019-04-06T14:47:02Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-22T12:15:42Z",
+    "retryCount": 1
+  },
+  {
     "repo": "PC2005-cloud/dsh-pet",
     "desc": "DSH 桌面宠物：一行命令装好即用的透明动画小桌宠，支持多开、大小位置随心配置；还内置 DIY 素材链，能用 AI 视频自造专属宠物",
     "stars": 3271,
@@ -1004,6 +1210,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T20:07:13Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "picosonic/bbc-fdc",
+    "desc": "Floppy disk interface for Raspberry Pi",
+    "stars": 267,
+    "language": "C",
+    "topics": [
+      "retrocomputing"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2017-03-02T11:29:05Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-22T14:45:44Z",
     "retryCount": 1
   },
   {
@@ -1020,7 +1242,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T12:26:07Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "PolygonCaptainWatch/touchup",
@@ -1036,7 +1258,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-18T13:35:58Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "prabal-rje/latentscore",
@@ -1044,7 +1266,8 @@
     "stars": 44,
     "language": "Python",
     "topics": [
-      "creative-coding"
+      "creative-coding",
+      "synthesizer"
     ],
     "source": "search",
     "starGrowth": 0,
@@ -1052,7 +1275,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-22T00:49:30Z",
-    "retryCount": 5
+    "retryCount": 1
   },
   {
     "repo": "QingYunA/answer-me-with-html",
@@ -1068,7 +1291,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-22T08:23:28Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "RoyceBella-commits/The-Pelican-Test",
@@ -1103,6 +1326,38 @@
     "retryCount": 1
   },
   {
+    "repo": "Snehil-Shah/LibreSprite-MCP",
+    "desc": "Prompt your way into LibreSprite.",
+    "stars": 36,
+    "language": "JavaScript",
+    "topics": [
+      "pixel-art"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2025-08-01T16:20:18Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-22T13:08:53Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "ssb22/midi-beeper",
+    "desc": "play MIDI files on old hardware",
+    "stars": 15,
+    "language": "Python",
+    "topics": [
+      "retrocomputing"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2017-11-17T14:20:34Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-22T14:15:32Z",
+    "retryCount": 1
+  },
+  {
     "repo": "The-Studio-of-Sadiq/engineering-mathematics",
     "desc": "The Mathematics Universe: a 25-chapter engineering-mathematics core, 74 chapters across nine specialization tracks and a research frontier, and an appendix of proofs. Markdown + LaTeX Obsidian vault with Desmos graphs, crafted figures, a 1,400-page PDF and an MCP server.",
     "stars": 0,
@@ -1119,6 +1374,22 @@
     "retryCount": 1
   },
   {
+    "repo": "ThisFreakDoesntExist/ThisFirmwareDoesNotExist",
+    "desc": "ThisFirmwareDoesNotExist presents freakpatch: community firmware patches for the Arturia MicroFreak, applied to your own official update file. Plus docs for building your own.",
+    "stars": 11,
+    "language": "Python",
+    "topics": [
+      "synthesizer"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-11T23:49:11Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-21T21:59:09Z",
+    "retryCount": 1
+  },
+  {
     "repo": "trailhq/Trail-Code",
     "desc": "Turbocharge Claude Code, Cursor, Codex, Gemini & every coding agent: faster, cheaper, with contextual understanding specific to your codebase.",
     "stars": 10597,
@@ -1132,7 +1403,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T18:54:07Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "utajum/SynthHUB",
@@ -1148,7 +1419,7 @@
     "createdAt": "2026-07-21T03:32:30Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-22T09:02:49Z",
+    "ts": "2026-10-22T10:16:50Z",
     "retryCount": 1
   },
   {
@@ -1197,7 +1468,7 @@
     "silentRounds": 9,
     "bigbros": [],
     "ts": "2026-10-13T15:58:16Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "WFRT/verif",
@@ -1213,7 +1484,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-22T08:56:07Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "xms0g/cubicLife",
@@ -1229,7 +1500,7 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-10-18T19:42:19Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "yibie/supertag",
@@ -1244,7 +1515,7 @@
     "createdAt": "2024-12-07T15:21:18Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-13T23:00:50Z",
+    "ts": "2026-10-22T14:14:40Z",
     "retryCount": 1
   },
   {
@@ -1258,7 +1529,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T12:39:19.117Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "zhoushoujianwork/easyeda-agent",
@@ -1271,6 +1542,6 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T18:19:35.350Z",
-    "retryCount": 2
+    "retryCount": 1
   }
 ]
