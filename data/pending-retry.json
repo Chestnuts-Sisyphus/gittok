@@ -13,7 +13,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-22T14:17:08Z",
-    "retryCount": 5
+    "retryCount": 6
+  },
+  {
+    "repo": "24kr/Local_LLM_Assistant",
+    "desc": "LoLA: Privacy-first desktop AI with RAG. Chat offline with your docs using Ollama models. React+Electron UI, FastAPI backend. 100% local, cross-platform.",
+    "stars": 0,
+    "language": "JavaScript",
+    "topics": [
+      "llm-model"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-01-03T09:08:52Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-19T15:11:59Z",
+    "retryCount": 1
   },
   {
     "repo": "8f4e/8f4e",
@@ -45,7 +61,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-18T01:07:25Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "adermgram/Tetris-game",
@@ -61,7 +77,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-22T13:16:34Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "adobe/skills",
@@ -106,7 +122,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-22T16:25:25Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "ajietudou007/TraceDot",
@@ -122,7 +138,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-22T17:51:00Z",
-    "retryCount": 5
+    "retryCount": 6
+  },
+  {
+    "repo": "alexhartm/tonie-podcast-sync",
+    "desc": "allows synching podcast episodes to Toniebox creative tonies",
+    "stars": 71,
+    "language": "Python",
+    "topics": [
+      "podcast"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2021-04-07T13:06:48Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-22T19:39:36Z",
+    "retryCount": 1
   },
   {
     "repo": "alibaba-aero/technical-interview",
@@ -138,7 +170,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T09:29:00Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "AndyShaman/add_to_NotebookLM",
@@ -154,7 +186,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T12:04:58Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "Anil-matcha/open-duet",
@@ -169,24 +201,24 @@
     "createdAt": "2023-05-25T14:21:12Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-22T17:07:28Z",
-    "retryCount": 2
+    "ts": "2026-10-22T19:19:25Z",
+    "retryCount": 1
   },
   {
-    "repo": "apresmoi/glyphcss",
-    "desc": "ASCII polygon mesh renderer for the DOM. Forked from LayoutitStudio/polycss.",
-    "stars": 220,
-    "language": "TypeScript",
+    "repo": "arcanorca/boids-in-the-blue",
+    "desc": "An interactive live wallpaper for KDE Plasma 6. Feed your fish, watch them breed, and see them react to your CPU/GPU load in real-time.",
+    "stars": 16,
+    "language": "JavaScript",
     "topics": [
-      "ascii-art"
+      "generative-art"
     ],
     "source": "search",
-    "starGrowth": 1,
-    "createdAt": "2026-05-17T18:47:24Z",
-    "silentRounds": 2,
+    "starGrowth": 0,
+    "createdAt": "2026-02-11T23:06:22Z",
+    "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-21T18:46:08Z",
-    "retryCount": 2
+    "ts": "2026-10-21T22:18:19Z",
+    "retryCount": 1
   },
   {
     "repo": "Archie3d/aeolus_plugin",
@@ -202,7 +234,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-16T15:33:24Z",
-    "retryCount": 5
+    "retryCount": 6
+  },
+  {
+    "repo": "armadsen/ORSSerialPort",
+    "desc": "Serial port library for Objective-C and Swift macOS apps",
+    "stars": 774,
+    "language": "Objective-C",
+    "topics": [
+      "arduino"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2012-06-27T23:14:17Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-19T20:42:48Z",
+    "retryCount": 1
   },
   {
     "repo": "Asymptote-Labs/agent-beacon",
@@ -218,23 +266,6 @@
     "retryCount": 2
   },
   {
-    "repo": "ayangabryl/asciify-engine",
-    "desc": "ASCII for the web: 31 GPU-drawn interface components, backgrounds, and image, GIF and video conversion.",
-    "stars": 51,
-    "language": "TypeScript",
-    "topics": [
-      "ascii-art",
-      "creative-coding"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-02-21T14:29:37Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-22T12:37:55Z",
-    "retryCount": 6
-  },
-  {
     "repo": "bakustarver/rpgmakermlinux-cicpoffs",
     "desc": "Run any RPG Maker XP, VX, VX Ace, MV, MZ, TyranoBuilder, Godot, Construct 2/3, Nscripter game on linux natively",
     "stars": 402,
@@ -248,7 +279,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T12:44:54Z",
-    "retryCount": 2
+    "retryCount": 1
+  },
+  {
+    "repo": "BasilForge/Kairos",
+    "desc": "Instant replay for Windows games. Press a key or say your phrase to save the last minutes. Free, open source, offline.",
+    "stars": 24,
+    "language": "C#",
+    "topics": [
+      "video-editor"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-17T17:52:44Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-18T17:31:06Z",
+    "retryCount": 1
   },
   {
     "repo": "BUPT-AI4S/ai4s-book",
@@ -264,7 +311,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-22T16:17:45Z",
-    "retryCount": 2
+    "retryCount": 3
+  },
+  {
+    "repo": "bzr-player/bzr-player",
+    "desc": "Advanced audio player for Windows and Linux supporting a wide array of multi-platform exotic file formats",
+    "stars": 60,
+    "language": "C",
+    "topics": [
+      "demoscene"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2022-05-11T18:58:54Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-22T18:43:56Z",
+    "retryCount": 1
   },
   {
     "repo": "cherkavi/enterprise-architect-toolbox",
@@ -280,7 +343,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T08:26:52Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "Christian-Gennari/Nostos",
@@ -296,7 +359,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-22T17:23:10Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "cmyksoda/ASCII-Odyssey",
@@ -312,7 +375,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T00:19:08Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "DaniGreco/hai-sim",
@@ -328,7 +391,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-20T00:17:07Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "danukim/Miko",
@@ -344,7 +407,7 @@
     "silentRounds": 12,
     "bigbros": [],
     "ts": "2026-09-27T03:30:23Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "dean9703111/multicam-recorder",
@@ -360,7 +423,23 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-22T17:49:48Z",
-    "retryCount": 3
+    "retryCount": 4
+  },
+  {
+    "repo": "DECRUX9812/hermes-plugin-gameforge",
+    "desc": "Game development plugin for Hermes Agent: sound effects, music, NPC voices, pixel art, 3D models, Godot/Unity/Blender/Unreal, a playtester that actually plays the build, and one-click export.",
+    "stars": 37,
+    "language": "Python",
+    "topics": [
+      "pixel-art"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-21T05:39:03Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-21T07:26:35Z",
+    "retryCount": 1
   },
   {
     "repo": "devlikemasta/bureau-des-agents",
@@ -376,7 +455,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-14T20:13:59Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "devswha/ovis",
@@ -392,7 +471,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-22T18:09:24Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "dipakkr/awesome-ai-engineering",
@@ -425,7 +504,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-18T06:57:51Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "electronstudio/jaylib",
@@ -441,7 +520,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-22T13:43:12Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "exam-data/NETEMVocabulary",
@@ -471,7 +550,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T19:34:18.850Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "Fractal-Compute-Orchestrations/FractalWorkspace",
@@ -501,7 +580,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T12:39:19.117Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "fte/fire-at-seaparks",
@@ -517,7 +596,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-17T12:34:55Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "Gathin23/cleanyourtv",
@@ -532,7 +611,7 @@
     "createdAt": "2026-10-17T08:12:35Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-22T18:12:04Z",
+    "ts": "2026-10-22T18:52:26Z",
     "retryCount": 1
   },
   {
@@ -550,7 +629,7 @@
     "silentRounds": 8,
     "bigbros": [],
     "ts": "2026-10-15T07:15:08Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "handbook-academy/engineering-handbook",
@@ -566,7 +645,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T07:09:35Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "holooooo/webgl-seascape-video",
@@ -582,7 +661,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-16T07:43:42Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "hpleapfrog/Scholia",
@@ -598,7 +677,7 @@
     "silentRounds": 11,
     "bigbros": [],
     "ts": "2026-10-22T11:40:55Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "ivantsai1982/geo-lab",
@@ -614,7 +693,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-20T06:44:47Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "joeseesun/lexfridman-cn",
@@ -630,7 +709,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T13:29:26Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "kvcache-ai/ktransformers",
@@ -644,7 +723,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-13T22:08:09.499Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "lizadaly/a-letter-groove",
@@ -660,7 +739,23 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-21T17:08:51Z",
-    "retryCount": 3
+    "retryCount": 4
+  },
+  {
+    "repo": "llm-xiaoye/cc-connect-obsidian-knowledge-import",
+    "desc": "通过 cc-connect 将公开网页安全分析并导入本机 Obsidian 的 Claude Code Skill",
+    "stars": 70,
+    "language": "Python",
+    "topics": [
+      "knowledge-management"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-08-13T18:20:45Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-21T08:11:52Z",
+    "retryCount": 1
   },
   {
     "repo": "LSXPrime/SoundFlow",
@@ -675,7 +770,7 @@
     "createdAt": "2025-02-08T10:16:02Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-22T15:36:01Z",
+    "ts": "2026-10-22T18:36:53Z",
     "retryCount": 1
   },
   {
@@ -706,23 +801,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-10T07:34:25Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "Majiks-Studio/majiks-music-studio",
-    "desc": "Open-source AI music generation powered by ACE-Step 1.5. macOS native (Swift/SwiftUI) + cross-platform (Tauri 2/Svelte 5/Rust). Apache 2.0.",
-    "stars": 15,
-    "language": "Swift",
-    "topics": [
-      "music-production"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-03-25T21:29:29Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-21T23:24:15Z",
-    "retryCount": 6
+    "retryCount": 2
   },
   {
     "repo": "Mason-Levyy/myfitnesspal-mcp",
@@ -738,7 +817,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-22T06:36:02Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "mengyihh233/book-to-project",
@@ -753,8 +832,8 @@
     "createdAt": "2026-10-22T11:13:18Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-22T13:06:37Z",
-    "retryCount": 2
+    "ts": "2026-10-22T19:17:23Z",
+    "retryCount": 1
   },
   {
     "repo": "monid-ai/monid",
@@ -770,7 +849,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-22T06:04:53Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "nagameTW/formosa-humanizer",
@@ -786,7 +865,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-22T16:10:26Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "nicklashansen/tdmpc2",
@@ -802,7 +881,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-20T23:34:54Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "nimrafaryal/ai-squat-coach",
@@ -818,7 +897,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-20T21:07:19Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "NVlabs/ASPIRE",
@@ -832,7 +911,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-18T17:00:41.984Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "oddycosplay/unpam-virtual",
@@ -848,7 +927,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-19T09:38:39Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "onblog/bar-tool",
@@ -864,7 +943,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-21T13:33:53Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "oskarrough/slaytheweb",
@@ -880,7 +959,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-22T12:15:42Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "PC2005-cloud/dsh-pet",
@@ -894,7 +973,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-20T11:12:00.269Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "picosonic/bbc-fdc",
@@ -910,7 +989,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-22T14:45:44Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "pmd-fan-web/pmd-fan-web.github.io",
@@ -926,7 +1005,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T12:26:07Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "prabal-rje/latentscore",
@@ -943,7 +1022,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-22T00:49:30Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "protogenesis/New-Concept-English",
@@ -959,7 +1038,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-22T04:01:09Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "QingYunA/answer-me-with-html",
@@ -975,7 +1054,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-22T08:23:28Z",
-    "retryCount": 3
+    "retryCount": 4
+  },
+  {
+    "repo": "ReciHub/FunnyAlgorithms",
+    "desc": "A repository with a bunch of funny algorithms, beginners friendly ",
+    "stars": 532,
+    "language": "C++",
+    "topics": [
+      "algorithms"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2018-09-24T10:03:54Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-22T19:04:25Z",
+    "retryCount": 1
   },
   {
     "repo": "RoyceBella-commits/The-Pelican-Test",
@@ -991,23 +1086,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-20T07:30:43Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
-    "repo": "ssb22/midi-beeper",
-    "desc": "play MIDI files on old hardware",
-    "stars": 15,
-    "language": "Python",
+    "repo": "rsubtil/controller_icons",
+    "desc": "Automatic keyboard/mouse/controller icons and remapper for Godot.",
+    "stars": 446,
+    "language": "GDScript",
     "topics": [
-      "retrocomputing"
+      "godot"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2017-11-17T14:20:34Z",
+    "createdAt": "2022-08-13T16:42:08Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-22T14:15:32Z",
-    "retryCount": 2
+    "ts": "2026-10-22T18:13:11Z",
+    "retryCount": 1
   },
   {
     "repo": "strawberry-little-bear/PixelPet",
@@ -1039,7 +1134,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T21:59:09Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "trailhq/Trail-Code",
@@ -1055,7 +1150,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-22T18:05:53Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "utajum/SynthHUB",
@@ -1072,7 +1167,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-22T10:16:50Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "valentijnh/livebridge-ableton-mcp",
@@ -1088,7 +1183,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-23T15:37:28Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "vivekvar-dl/wingman-AI",
@@ -1104,7 +1199,7 @@
     "silentRounds": 9,
     "bigbros": [],
     "ts": "2026-10-13T15:58:16Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "xms0g/cubicLife",
@@ -1120,7 +1215,7 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-10-18T19:42:19Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "YuJunZhiXue/dsh-purge",
@@ -1133,7 +1228,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T12:39:19.117Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "zhoushoujianwork/easyeda-agent",
@@ -1146,6 +1241,6 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T18:19:35.350Z",
-    "retryCount": 2
+    "retryCount": 3
   }
 ]
