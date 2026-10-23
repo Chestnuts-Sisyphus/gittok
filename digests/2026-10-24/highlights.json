@@ -1,0 +1,78 @@
+{
+  "zh": {
+    "ai-cli": [
+      "Copilot CLI v1.0.104 修复 Auto 回退与证书错误",
+      "Pi 推进多架构性能优化与 TUI 稳定性修复",
+      "Qwen Code 侧重 Daemon token 持久化与 CI 拥堵治理",
+      "DeepSeek TUI 0.10.2 候选测试，正视 CPU 性能回退",
+      "Claude Code Skills 社区数据缺失，处于静默期",
+      "MCP 认证流与 Windows 兼容性成 Copilot CLI 攻坚点"
+    ],
+    "ai-agents": [
+      "NanoClaw PR 数达 41，处于极高活跃的快速迭代期",
+      "CoPaw PR 数达 50，处于架构重构期",
+      "LobsterAI 发布 2026.10.23 版本，依赖 OpenClaw 运行时",
+      "OpenClaw 成为事实上的生态协议层与 Gateway 标准制定者",
+      "多模型统一接入与生产环境安全加固成共同关注方向",
+      "Picoclaw 修复 Launcher 参数冲突，加固跨平台稳定性"
+    ],
+    "ai-trending": [
+      "Orca 热度暴增 1085 stars，聚焦多 Agent 协同管理",
+      "NVIDIA OpenShell 日增 1240 stars，主打内核级沙箱",
+      "OpenShell 搭建私有自主 AI 智能体安全运行时",
+      "TradingAgents 热度攀升，专注多智能体金融应用",
+      "ponytail 聚焦 Agent 行为修正与 Prompt Engineering",
+      "Knowledge-work-plugins 聚焦 Claude Code 技能生态"
+    ],
+    "ai-hf": [
+      "Qwen3.8-27B 下载量超 770 万，成 Image-Text 主力",
+      "TX-2.5 视频生成下载量居首，旗舰级图生视频模型",
+      "DeepSeek-V4.1-Flash 优化轻量化部署，兼顾高性价比",
+      "Qwen-Image-2.1 量化版下载超 239 万，兼顾质量与效率",
+      "Meta MUSE-Spark-Open 816B 超大规模多模态模型",
+      "MiniMax-M3.1-Flash 轻量级模型，契合部署需求"
+    ],
+    "ai-community": [
+      "NVIDIA OpenShell 开源内核级沙箱，杜绝 Agent 凭证泄露",
+      "利用 80 年前数学书理论提升 AI 代码生成 Agent 准确率",
+      "98 次调用 0 检测：AI 测试套件对错误代码的过度自信",
+      "本地 RAG 工具自动整理精简阅读列表，解决信息过载",
+      "diffium-db 实时可视化 Agent 数据库变更操作",
+      "Mistral 发布 Timestral 时间序列基础模型"
+    ]
+  },
+  "en": {
+    "ai-cli": [
+      "Claude Code Windows bugs: silent data loss risk",
+      "Windows Cowork sync failures cause silent writes",
+      "Claude Code safety filters triggering false positives",
+      "Critical stability issues plague Claude Code agents",
+      "Kimi Code CLI joins top 9 AI CLI tools list",
+      "Claude Code community struggles with execution mode friction"
+    ],
+    "ai-agents": [
+      "PicoClaw active: 2 issues, 4 PRs resolved",
+      "OpenClaw ecosystem spans 13 projects and 500 issues",
+      "NanoBot and Hermes Agent reports pending summary",
+      "IronClaw and LobsterAI added to OpenClaw list",
+      "NanoClaw and NullClaw expand the agent framework",
+      "ZeroClaw completes the open agent ecosystem trio"
+    ],
+    "ai-trending": [
+      "Agentic Skills Frameworks dominate open source trends",
+      "Security audit skills see massive star growth (+2.7k)",
+      "Ponytail optimizes code with 'laziest senior dev' logic",
+      "Superpowers framework targets production agent loops",
+      "REA reverse engineering suite reaches 372k stars",
+      "Graphify Labs knowledge engine trends up (+1.3k stars)"
+    ],
+    "ai-community": [
+      "NVIDIA OpenShell enforces zero API key access for agents",
+      "80-year-old math book fixes AI coding agent reliability",
+      "Hacktoberfest projects focus on local privacy models",
+      "Test suites fail to detect AI tool bugs silently",
+      "Agents should never hold user credentials directly",
+      "Developer tools target digital clutter and privacy"
+    ]
+  }
+}
