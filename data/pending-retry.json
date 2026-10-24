@@ -1,5 +1,21 @@
 [
   {
+    "repo": "2233admin/glyph-arts",
+    "desc": "Terminal-visible chart toolkit — 29 chart types (incl. image/video via chafa+ffmpeg) + live animation rendered directly in the CLI. No browser, no files. Works with Claude Code, Codex, Gemini CLI.",
+    "stars": 7,
+    "language": "Python",
+    "topics": [
+      "ascii-art"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-04-13T20:23:49Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-22T21:38:58Z",
+    "retryCount": 1
+  },
+  {
     "repo": "2282199198/zuiqiang-shifu",
     "desc": "最强师傅 V3.0：给自媒体创作者用的内容 Skill——从选题到成稿，讲深知识、少套话少 AI 腔；含 17 个可组合模块与 3 份示范稿。",
     "stars": 16,
@@ -13,7 +29,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-22T10:21:37Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "24kr/Local_LLM_Assistant",
@@ -44,7 +60,7 @@
     "createdAt": "2020-11-17T18:02:28Z",
     "silentRounds": 3,
     "bigbros": [],
-    "ts": "2026-10-24T02:59:41Z",
+    "ts": "2026-10-24T17:37:13Z",
     "retryCount": 1
   },
   {
@@ -61,7 +77,23 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-23T02:59:26Z",
-    "retryCount": 5
+    "retryCount": 6
+  },
+  {
+    "repo": "ActiveInferenceInstitute/fundamentals",
+    "desc": "Unofficial repo for materials and code related to \"Fundamentals of Active Inference\" (Namjoshi 2026). ",
+    "stars": 36,
+    "language": "Python",
+    "topics": [
+      "textbook"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-03-19T17:35:28Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-18T01:07:25Z",
+    "retryCount": 1
   },
   {
     "repo": "adobe/skills",
@@ -78,6 +110,38 @@
     "retryCount": 1
   },
   {
+    "repo": "AhmadHassan-BTed/Jantt",
+    "desc": "The AI-native JSON Gantt chart engine. Dependency-free interactive timelines with React, script-tag, CLI, topological DAG solver, and formal JSON schema.",
+    "stars": 4008,
+    "language": "TypeScript",
+    "topics": [
+      "data-visualization"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-08-28T07:32:35Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-23T17:26:55Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "ajietudou007/TraceDot",
+    "desc": "迹点点 TraceDot · 集成式旅行纪念票根工作室：十种票面一站式制作收藏，行程自动绘制成中国地图，串成旅行编年史与年度报告。纯前端单文件，浏览器 / Windows / macOS 全平台",
+    "stars": 11,
+    "language": "HTML",
+    "topics": [
+      "travel"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-01T01:10:19Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-24T15:37:43Z",
+    "retryCount": 1
+  },
+  {
     "repo": "ajxs/yamaha_dx7_rom_disassembly",
     "desc": "Yamaha DX7 Firmware ROM annotated disassembly.",
     "stars": 83,
@@ -91,7 +155,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-24T02:38:36Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "alexkroman/tiny-audio",
@@ -107,7 +171,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-23T03:31:22Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "AndrianLeah/ai-remove-lightcraft",
@@ -137,6 +201,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-23T11:18:07.745Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "Archie3d/aeolus_plugin",
+    "desc": "Pipe organ synthesizer (VST plugin)",
+    "stars": 170,
+    "language": "C++",
+    "topics": [
+      "synthesizer"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2021-05-22T16:42:47Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-16T15:33:24Z",
     "retryCount": 1
   },
   {
@@ -151,7 +231,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T18:19:35.350Z",
-    "retryCount": 5
+    "retryCount": 1
   },
   {
     "repo": "ayangabryl/asciify-engine",
@@ -159,7 +239,8 @@
     "stars": 56,
     "language": "TypeScript",
     "topics": [
-      "ascii-art"
+      "ascii-art",
+      "creative-coding"
     ],
     "source": "search",
     "starGrowth": 0,
@@ -167,6 +248,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T09:37:27Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "bceenaeiklmr/raylib_ahk",
+    "desc": "raylib 5.5 for AutoHotkey v2: windowed graphics, shapes, images, textures, custom fonts, 3D and audio, driven straight from a script.",
+    "stars": 4,
+    "language": "AutoHotkey",
+    "topics": [
+      "raylib"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2023-03-07T20:01:40Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-24T19:31:07Z",
     "retryCount": 1
   },
   {
@@ -196,7 +293,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-24T00:06:54Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "brandonp2412/Flex",
@@ -212,7 +309,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-24T06:52:29Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "bzr-player/bzr-player",
@@ -227,8 +324,8 @@
     "createdAt": "2022-05-11T18:58:54Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-23T20:11:28Z",
-    "retryCount": 2
+    "ts": "2026-10-24T19:41:57Z",
+    "retryCount": 3
   },
   {
     "repo": "charlie947/ai-second-brain",
@@ -244,7 +341,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-24T09:54:27Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "Christian-Gennari/Nostos",
@@ -259,21 +356,37 @@
     "createdAt": "2025-11-25T19:01:18Z",
     "silentRounds": 5,
     "bigbros": [],
-    "ts": "2026-10-24T13:46:21Z",
-    "retryCount": 1
+    "ts": "2026-10-24T19:38:14Z",
+    "retryCount": 2
   },
   {
     "repo": "chuma-beep/mathua",
     "desc": "",
-    "stars": 351,
+    "stars": 352,
     "language": "Go",
     "topics": [],
     "source": "trending",
     "starGrowth": 40,
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-24T17:28:35.425Z",
-    "retryCount": 2
+    "ts": "2026-10-24T19:55:49.193Z",
+    "retryCount": 3
+  },
+  {
+    "repo": "cmyksoda/ASCII-Odyssey",
+    "desc": "Generative tracker music and ASCII visuals for the Nintendo Wii",
+    "stars": 0,
+    "language": "C",
+    "topics": [
+      "demoscene"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-21T00:03:09Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-21T00:19:08Z",
+    "retryCount": 1
   },
   {
     "repo": "daemon-summoner/InstantCognition",
@@ -289,7 +402,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-24T17:22:38Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "DaniGreco/hai-sim",
@@ -305,23 +418,7 @@
     "silentRounds": 5,
     "bigbros": [],
     "ts": "2026-10-20T00:17:07Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "danukim/Miko",
-    "desc": "Embodied 3D AI desktop companion powered by Ollama, dual voice synthesis (Fish Audio S2.1 & local GPT-SoVITS), real-time lip-sync, and custom VRM avatar support.",
-    "stars": 285,
-    "language": "C#",
-    "topics": [
-      "anime"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2023-04-30T20:23:50Z",
-    "silentRounds": 15,
-    "bigbros": [],
-    "ts": "2026-09-27T03:30:23Z",
-    "retryCount": 6
+    "retryCount": 2
   },
   {
     "repo": "DEVILENMO/DeadEye-Auto-Aiming-System",
@@ -370,7 +467,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T16:19:25Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "DivitMittal/CARLA-Autonomous-Driving",
@@ -386,7 +483,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-22T18:56:20Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "DoktorDaveJoos/manuscript",
@@ -402,7 +499,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-24T12:00:53Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "Ebony-Vinyl/EAC-design-world",
@@ -418,7 +515,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T00:48:29Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "EmirErtorer/CyberUI.koplugin",
@@ -433,8 +530,8 @@
     "createdAt": "2026-10-23T08:42:35Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-24T15:19:39Z",
-    "retryCount": 1
+    "ts": "2026-10-24T19:12:58Z",
+    "retryCount": 2
   },
   {
     "repo": "exam-data/NETEMVocabulary",
@@ -450,7 +547,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-22T10:45:05Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "eymenefealtun/all-words-in-all-languages",
@@ -466,7 +563,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T10:55:07Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "flizzywine/dsh-tavern",
@@ -480,7 +577,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T19:34:18.850Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Fractal-Compute-Orchestrations/FractalWorkspace",
@@ -496,7 +593,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-22T08:56:47Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "fte/fire-at-seaparks",
@@ -512,7 +609,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-17T12:34:55Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "Glade-tool/glade-mcp",
@@ -528,7 +625,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-21T06:34:53Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "GrootTeam/Groot",
@@ -544,23 +641,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T14:11:58Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "handbook-academy/engineering-handbook",
-    "desc": "Open-source High-Level System Design, DSA, and AI Engineering handbooks. CC BY-SA 4.0, Free Forever.",
-    "stars": 846,
-    "language": "JavaScript",
-    "topics": [
-      "algorithms"
-    ],
-    "source": "search",
-    "starGrowth": 3,
-    "createdAt": "2026-05-11T20:52:32Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-21T07:09:35Z",
-    "retryCount": 6
+    "retryCount": 3
   },
   {
     "repo": "harrisliangsu/ai-agent-engineer-handbook",
@@ -592,7 +673,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-16T07:43:42Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "hormuz-labs/agentshot",
@@ -607,8 +688,8 @@
     "createdAt": "2026-10-05T19:44:25Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-10-24T17:27:05Z",
-    "retryCount": 3
+    "ts": "2026-10-24T19:15:44Z",
+    "retryCount": 1
   },
   {
     "repo": "hpleapfrog/Scholia",
@@ -640,7 +721,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T13:29:26Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "kissqy/Microduck-kissqy",
@@ -656,7 +737,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-23T16:04:11Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "kitao/playload",
@@ -673,7 +754,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T05:57:04Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "kurtdekker/makegeo",
@@ -689,7 +770,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-23T23:02:55Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "kvcache-ai/ktransformers",
@@ -719,7 +800,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-22T18:36:53Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Mag1cFall/AIStudio2API",
@@ -765,7 +846,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T16:30:08Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "monid-ai/monid",
@@ -797,6 +878,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T17:24:24Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "noboomu/proteus",
+    "desc": "Proteus is a blazing fast minimalist Java web server framework built atop Undertow.",
+    "stars": 200,
+    "language": "Java",
+    "topics": [
+      "web-framework"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2017-04-25T14:55:16Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-21T19:36:17Z",
     "retryCount": 1
   },
   {
@@ -811,7 +908,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-18T17:00:41.984Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "OutOfAmine/ai-voice-studio",
@@ -827,7 +924,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T03:31:46Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "ouxxyy/ouba-classmate",
@@ -843,7 +940,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T13:13:56Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "PC2005-cloud/dsh-pet",
@@ -857,38 +954,6 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-20T11:12:00.269Z",
-    "retryCount": 3
-  },
-  {
-    "repo": "peach-mitao/peach",
-    "desc": "Peach 蜜桃：单用户、本地优先的个人媒体系统 · Single-user, local-first personal media system",
-    "stars": 10633,
-    "language": "Python",
-    "topics": [
-      "self-hosted"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-08-19T19:48:30Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-24T06:06:40Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "QingYunA/answer-me-with-html",
-    "desc": "Answer me with HTML — an agent skill that answers hard questions with a one-page HTML you can actually read. 让 AI Agent 用一页 HTML 回答复杂问题。",
-    "stars": 4360,
-    "language": "JavaScript",
-    "topics": [
-      "ai-agent"
-    ],
-    "source": "search",
-    "starGrowth": 48,
-    "createdAt": "2026-10-02T09:57:40Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-22T08:23:28Z",
     "retryCount": 4
   },
   {
@@ -905,7 +970,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T16:11:46Z",
-    "retryCount": 2
+    "retryCount": 3
+  },
+  {
+    "repo": "rodrigohpalmeirim/trip-finder",
+    "desc": "Web app to find the best prices for round-trip flights",
+    "stars": 3,
+    "language": "Svelte",
+    "topics": [
+      "travel"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2023-10-24T00:05:06Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-09-25T16:59:31Z",
+    "retryCount": 1
   },
   {
     "repo": "rolottr/bambu-bar",
@@ -921,23 +1002,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T12:00:59Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
-    "repo": "ssskay/desktop-chiikawa-macos",
-    "desc": "🍙 Chiikawa desktop pet for macOS (Apple Silicon & Intel) — wellness reminders, wandering, petting, snacks. Native Mac port of CookieElmo´s Desktop Chiikawa. ちいかわ デスクトップペット Mac版",
-    "stars": 1,
-    "language": "GDScript",
+    "repo": "seandavi/awesome-cancer-variant-resources",
+    "desc": "A community-maintained repository of cancer clinical knowledge bases and databases focused on cancer variants.",
+    "stars": 340,
+    "language": "",
     "topics": [
-      "virtual-pet"
+      "bioinformatics"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2026-07-09T22:26:19Z",
-    "silentRounds": 1,
+    "createdAt": "2016-07-07T13:16:14Z",
+    "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-09-29T19:40:55Z",
-    "retryCount": 6
+    "ts": "2026-10-24T18:43:19Z",
+    "retryCount": 1
   },
   {
     "repo": "tech-robert-pro/llm-tool-examples",
@@ -953,7 +1034,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T17:11:31Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "trailhq/Trail-Code",
@@ -984,7 +1065,7 @@
     "createdAt": "2026-10-21T21:11:11Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-10-24T16:41:41Z",
+    "ts": "2026-10-24T18:46:37Z",
     "retryCount": 1
   },
   {
@@ -1002,7 +1083,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-22T10:16:50Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "vivekvar-dl/wingman-AI",
@@ -1018,7 +1099,7 @@
     "silentRounds": 12,
     "bigbros": [],
     "ts": "2026-10-13T15:58:16Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "vostride/agent-qa",
@@ -1033,8 +1114,8 @@
     "createdAt": "2026-05-07T20:17:57Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-10-24T16:23:13Z",
-    "retryCount": 2
+    "ts": "2026-10-24T19:08:29Z",
+    "retryCount": 1
   },
   {
     "repo": "xms0g/cubicLife",
@@ -1066,7 +1147,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-23T16:43:40Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "yoyiyi/SoleilNotes",
@@ -1082,7 +1163,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T17:03:13Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "ZinYY/Online_RLHF",
@@ -1098,6 +1179,6 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-24T11:45:13Z",
-    "retryCount": 3
+    "retryCount": 4
   }
 ]
