@@ -1,11 +1,11 @@
 {
-  "updatedAt": "2026-10-24T20:11:45.324Z",
+  "updatedAt": "2026-10-24T21:16:21.411Z",
   "tiers": {
     "t1": {
       "total": 5553,
       "done": 1196,
       "coverage": 0.215,
-      "lastRunDelta": 1
+      "lastRunDelta": 0
     },
     "t2": {
       "total": 6988,
@@ -15,7 +15,7 @@
     },
     "t3": {
       "total": 52284,
-      "done": 1307,
+      "done": 1308,
       "coverage": 0.025,
       "lastRunDelta": 1
     }
