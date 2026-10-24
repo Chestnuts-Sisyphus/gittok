@@ -13,7 +13,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-22T21:38:58Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "24kr/Local_LLM_Assistant",
@@ -48,6 +48,22 @@
     "retryCount": 1
   },
   {
+    "repo": "aaryavvatts-lab/south-asian-culture-textbook",
+    "desc": "Roots & Rivers: a free, interactive textbook on South Asian cultures, traditions, languages and countries for high school students.",
+    "stars": 1,
+    "language": "Python",
+    "topics": [
+      "textbook"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-22T22:56:36Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-23T02:59:26Z",
+    "retryCount": 1
+  },
+  {
     "repo": "ActiveInferenceInstitute/fundamentals",
     "desc": "Unofficial repo for materials and code related to \"Fundamentals of Active Inference\" (Namjoshi 2026). ",
     "stars": 36,
@@ -61,7 +77,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-18T01:07:25Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "adobe/skills",
@@ -91,7 +107,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-23T17:26:55Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "ajietudou007/TraceDot",
@@ -106,24 +122,24 @@
     "createdAt": "2026-10-01T01:10:19Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-24T15:37:43Z",
-    "retryCount": 2
+    "ts": "2026-10-24T21:56:14Z",
+    "retryCount": 3
   },
   {
-    "repo": "ajxs/yamaha_dx7_rom_disassembly",
-    "desc": "Yamaha DX7 Firmware ROM annotated disassembly.",
-    "stars": 83,
-    "language": "Assembly",
+    "repo": "alexkroman/tiny-audio",
+    "desc": "A speech-to-text system you can train for $25. A frozen speech encoder and a Qwen LLM joined by a small trained projector, with word timestamps, speaker diarization, a batched HTTP server, a live demo, and a free course.",
+    "stars": 175,
+    "language": "Python",
     "topics": [
-      "synthesizer"
+      "transformers"
     ],
     "source": "search",
-    "starGrowth": 1,
-    "createdAt": "2021-12-07T06:57:43Z",
-    "silentRounds": 1,
+    "starGrowth": 0,
+    "createdAt": "2025-10-14T02:20:00Z",
+    "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-24T02:38:36Z",
-    "retryCount": 6
+    "ts": "2026-10-23T03:31:22Z",
+    "retryCount": 1
   },
   {
     "repo": "AndrianLeah/ai-remove-lightcraft",
@@ -169,7 +185,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-16T15:33:24Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "Asymptote-Labs/agent-beacon",
@@ -200,7 +216,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T09:37:27Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "bceenaeiklmr/raylib_ahk",
@@ -216,7 +232,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T20:02:47Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "bendlang/bend",
@@ -232,20 +248,20 @@
     "retryCount": 1
   },
   {
-    "repo": "brandonp2412/Flex",
-    "desc": "Offline-first workout tracker for strength and cardio, with progress graphs, rest timers, and custom themes. Built with Flutter.",
-    "stars": 451,
-    "language": "Dart",
+    "repo": "BoBkiNN/cellspeedrun",
+    "desc": "Simple PyGame game",
+    "stars": 6,
+    "language": "Python",
     "topics": [
-      "fitness"
+      "pygame"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2024-02-26T03:40:27Z",
-    "silentRounds": 1,
+    "createdAt": "2023-05-16T12:06:21Z",
+    "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-24T06:52:29Z",
-    "retryCount": 6
+    "ts": "2026-10-24T00:06:54Z",
+    "retryCount": 1
   },
   {
     "repo": "bzr-player/bzr-player",
@@ -260,8 +276,8 @@
     "createdAt": "2022-05-11T18:58:54Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-24T19:41:57Z",
-    "retryCount": 4
+    "ts": "2026-10-24T21:11:16Z",
+    "retryCount": 5
   },
   {
     "repo": "charlie947/ai-second-brain",
@@ -280,22 +296,6 @@
     "retryCount": 1
   },
   {
-    "repo": "Christian-Gennari/Nostos",
-    "desc": "A home for your reading life. Read your books, capture what stays with you, and turn your reading into thought and writing in one self-hosted study.",
-    "stars": 25,
-    "language": "C#",
-    "topics": [
-      "writing"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2025-11-25T19:01:18Z",
-    "silentRounds": 5,
-    "bigbros": [],
-    "ts": "2026-10-24T20:28:12Z",
-    "retryCount": 3
-  },
-  {
     "repo": "chuma-beep/mathua",
     "desc": "",
     "stars": 352,
@@ -306,7 +306,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T19:55:49.193Z",
-    "retryCount": 4
+    "retryCount": 5
+  },
+  {
+    "repo": "cmuparlay/parlaylib",
+    "desc": "A Toolkit for Programming Parallel Algorithms on Shared-Memory Multicore Machines",
+    "stars": 445,
+    "language": "C++",
+    "topics": [
+      "algorithms"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2019-12-10T19:52:11Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-20T15:55:09Z",
+    "retryCount": 1
   },
   {
     "repo": "cmyksoda/ASCII-Odyssey",
@@ -322,7 +338,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T00:19:08Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "daemon-summoner/InstantCognition",
@@ -338,7 +354,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-24T17:22:38Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "DEVILENMO/DeadEye-Auto-Aiming-System",
@@ -403,7 +419,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-22T18:56:20Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "DoktorDaveJoos/manuscript",
@@ -419,23 +435,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-24T12:00:53Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "Ebony-Vinyl/EAC-design-world",
-    "desc": "DeepSeek Harness 本地视频制作与设计插件：多轨剪辑、模板与设计体系、原生预览画布和真实文件导出",
-    "stars": 199,
-    "language": "JavaScript",
-    "topics": [
-      "video-editor"
-    ],
-    "source": "search",
-    "starGrowth": 45,
-    "createdAt": "2026-10-17T06:46:19Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-24T00:48:29Z",
-    "retryCount": 3
+    "retryCount": 2
   },
   {
     "repo": "EmirErtorer/CyberUI.koplugin",
@@ -467,7 +467,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-22T10:45:05Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "eymenefealtun/all-words-in-all-languages",
@@ -483,7 +483,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T10:55:07Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "flizzywine/dsh-tavern",
@@ -513,7 +513,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-22T08:56:47Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "Glade-tool/glade-mcp",
@@ -529,7 +529,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-21T06:34:53Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "GrootTeam/Groot",
@@ -577,7 +577,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-16T07:43:42Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "hormuz-labs/agentshot",
@@ -592,7 +592,7 @@
     "createdAt": "2026-10-05T19:44:25Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-10-24T19:15:44Z",
+    "ts": "2026-10-24T21:47:17Z",
     "retryCount": 1
   },
   {
@@ -625,7 +625,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T13:29:26Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "jsdf/pce",
@@ -641,23 +641,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T20:26:15Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "kissqy/Microduck-kissqy",
-    "desc": "🦆 Microduck 飞特 HD1910 实机复刻项目：从零复刻教程、材料清单与成本、全套 3D 打印件、自制 HAT / IMU、系统镜像、中文机器人中控与强化学习训练。稳定公开版 V167，提供实机演示与制作记录。",
-    "stars": 138,
-    "language": "Rust",
-    "topics": [
-      "3d-printing"
-    ],
-    "source": "search",
-    "starGrowth": 11,
-    "createdAt": "2026-10-07T05:06:37Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-23T16:04:11Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "kitao/playload",
@@ -674,7 +658,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T05:57:04Z",
-    "retryCount": 5
+    "retryCount": 1
   },
   {
     "repo": "kurtdekker/makegeo",
@@ -690,7 +674,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-23T23:02:55Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "kvcache-ai/ktransformers",
@@ -704,7 +688,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-13T22:08:09.499Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "LSXPrime/SoundFlow",
@@ -720,21 +704,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-22T18:36:53Z",
-    "retryCount": 3
-  },
-  {
-    "repo": "Mag1cFall/AIStudio2API",
-    "desc": "将AI Studio Playground和Build反代成API | AI Studio to OpenAI, Anthropic &amp; Gemini Compatible API",
-    "stars": 455,
-    "language": "Go",
-    "topics": [],
-    "source": "trending",
-    "starGrowth": 13,
-    "createdAt": "2025-08-21T17:14:27Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-18T17:00:41.984Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "Mason-Levyy/myfitnesspal-mcp",
@@ -750,23 +720,7 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-10-23T14:09:51Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "maubot/maubot",
-    "desc": "A plugin-based Matrix bot system.",
-    "stars": 903,
-    "language": "Python",
-    "topics": [
-      "chatbot"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2018-06-10T10:28:31Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-24T16:30:08Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "monid-ai/monid",
@@ -798,7 +752,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T17:24:24Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "noboomu/proteus",
@@ -814,7 +768,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T19:36:17Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "NVlabs/ASPIRE",
@@ -828,7 +782,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-18T17:00:41.984Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "ouxxyy/ouba-classmate",
@@ -844,7 +798,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T13:13:56Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "rocksdanister/weather",
@@ -860,7 +814,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T16:11:46Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "rodrigohpalmeirim/trip-finder",
@@ -876,7 +830,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T20:06:19Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "rolottr/bambu-bar",
@@ -892,7 +846,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T12:00:59Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "seandavi/awesome-cancer-variant-resources",
@@ -908,7 +862,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T18:43:19Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "trailhq/Trail-Code",
@@ -939,7 +893,7 @@
     "createdAt": "2026-10-21T21:11:11Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-10-24T20:23:14Z",
+    "ts": "2026-10-24T21:18:56Z",
     "retryCount": 1
   },
   {
@@ -956,7 +910,7 @@
     "silentRounds": 12,
     "bigbros": [],
     "ts": "2026-10-13T15:58:16Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "vostride/agent-qa",
@@ -972,7 +926,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-24T19:08:29Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "xms0g/cubicLife",
@@ -1003,7 +957,7 @@
     "createdAt": "2021-09-08T14:22:50Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-10-24T20:26:55Z",
+    "ts": "2026-10-24T20:31:54Z",
     "retryCount": 1
   },
   {
@@ -1020,7 +974,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T17:03:13Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "ZinYY/Online_RLHF",
@@ -1036,6 +990,6 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-24T11:45:13Z",
-    "retryCount": 1
+    "retryCount": 2
   }
 ]
