@@ -1,21 +1,5 @@
 [
   {
-    "repo": "1c7/Fitness",
-    "desc": "健身教学（高质量）帮你减脂，增肌（以及拉伸放松，热身，体态，康复）（有大量 B 站和抖音视频）",
-    "stars": 396,
-    "language": "",
-    "topics": [
-      "fitness"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2021-02-26T06:09:59Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-23T14:32:20Z",
-    "retryCount": 6
-  },
-  {
     "repo": "2233admin/glyph-arts",
     "desc": "Terminal-visible chart toolkit — 29 chart types (incl. image/video via chafa+ffmpeg) + live animation rendered directly in the CLI. No browser, no files. Works with Claude Code, Codex, Gemini CLI.",
     "stars": 7,
@@ -29,7 +13,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-22T21:38:58Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "2282199198/zuiqiang-shifu",
@@ -45,7 +29,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-22T10:21:37Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "24kr/Local_LLM_Assistant",
@@ -61,7 +45,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T15:11:59Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "8f4e/8f4e",
@@ -76,7 +60,7 @@
     "createdAt": "2020-11-17T18:02:28Z",
     "silentRounds": 2,
     "bigbros": [],
-    "ts": "2026-10-23T20:33:02Z",
+    "ts": "2026-10-24T02:59:41Z",
     "retryCount": 1
   },
   {
@@ -93,7 +77,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-23T02:59:26Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "ActiveInferenceInstitute/fundamentals",
@@ -109,7 +93,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-18T01:07:25Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "adobe/skills",
@@ -139,7 +123,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-23T17:26:55Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "ai-job-search-dev/ai-job-search",
@@ -158,22 +142,6 @@
     "retryCount": 1
   },
   {
-    "repo": "AIPMAndy/how-to-job-hop-and-raise-salary",
-    "desc": "跳槽涨薪怎么做？普通人跳槽涨薪保姆级指南：10 章教程、50 项任务、26 份模板，选岗、简历、面试、谈薪全流程｜Job-hop & salary raise guide",
-    "stars": 36,
-    "language": "HTML",
-    "topics": [
-      "interview"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-10-12T05:35:38Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-22T16:25:25Z",
-    "retryCount": 1
-  },
-  {
     "repo": "ajietudou007/TraceDot",
     "desc": "迹点点 TraceDot · 集成式旅行纪念票根工作室：十种票面一站式制作收藏，行程自动绘制成中国地图，串成旅行编年史与年度报告。纯前端单文件，浏览器 / Windows / macOS 全平台",
     "stars": 11,
@@ -186,8 +154,24 @@
     "createdAt": "2026-10-01T01:10:19Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-24T00:15:37Z",
-    "retryCount": 3
+    "ts": "2026-10-24T03:58:11Z",
+    "retryCount": 4
+  },
+  {
+    "repo": "ajxs/yamaha_dx7_rom_disassembly",
+    "desc": "Yamaha DX7 Firmware ROM annotated disassembly.",
+    "stars": 82,
+    "language": "Assembly",
+    "topics": [
+      "synthesizer"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2021-12-07T06:57:43Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-24T02:38:36Z",
+    "retryCount": 1
   },
   {
     "repo": "AlexFlipnote/discord_bot.py",
@@ -219,7 +203,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-22T19:39:36Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "alexkroman/tiny-audio",
@@ -235,7 +219,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-23T03:31:22Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "alibaba-aero/technical-interview",
@@ -251,23 +235,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-21T09:29:00Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "AndyShaman/add_to_NotebookLM",
-    "desc": "Free Chrome extension for NotebookLM: bulk-import YouTube videos, playlists, channels, comments, web pages, open tabs and RSS feeds as sources. No limits, no premium tier, no account.",
-    "stars": 152,
-    "language": "JavaScript",
-    "topics": [
-      "knowledge-management"
-    ],
-    "source": "search",
-    "starGrowth": 1,
-    "createdAt": "2026-01-16T17:47:54Z",
-    "silentRounds": 2,
-    "bigbros": [],
-    "ts": "2026-10-21T12:04:58Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "anomalyco/hex",
@@ -296,7 +264,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-23T15:33:23Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "Archie3d/aeolus_plugin",
@@ -312,7 +280,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-16T15:33:24Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "armadsen/ORSSerialPort",
@@ -328,7 +296,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T20:42:48Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "Asymptote-Labs/agent-beacon",
@@ -342,22 +310,6 @@
     "bigbros": [],
     "ts": "2026-10-21T18:19:35.350Z",
     "retryCount": 2
-  },
-  {
-    "repo": "augustfu-droid/ml108",
-    "desc": "Ink into Stars: 108 Lectures on Machine Learning | 《墨点成星：机器学习一百零八讲》中英双语讲义与配套代码",
-    "stars": 1,
-    "language": "",
-    "topics": [
-      "textbook"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-10-23T13:11:08Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-23T13:17:08Z",
-    "retryCount": 6
   },
   {
     "repo": "ayangabryl/asciify-engine",
@@ -374,7 +326,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-23T17:47:52Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "BasilForge/Kairos",
@@ -390,7 +342,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T00:18:10Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "bioconvert/bioconvert",
@@ -422,6 +374,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T00:06:54Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "brandonp2412/Flex",
+    "desc": "Offline-first workout tracker for strength and cardio, with progress graphs, rest timers, and custom themes. Built with Flutter.",
+    "stars": 451,
+    "language": "Dart",
+    "topics": [
+      "fitness"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2024-02-26T03:40:27Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-24T06:52:29Z",
     "retryCount": 1
   },
   {
@@ -437,8 +405,8 @@
     "createdAt": "2026-10-22T13:42:36Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-10-23T06:07:52Z",
-    "retryCount": 1
+    "ts": "2026-10-24T04:54:30Z",
+    "retryCount": 2
   },
   {
     "repo": "bzr-player/bzr-player",
@@ -454,22 +422,6 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-23T20:11:28Z",
-    "retryCount": 5
-  },
-  {
-    "repo": "c4dynamics/c4dynamics",
-    "desc": "The Python framework for state-space modeling and algorithm development",
-    "stars": 124,
-    "language": "Python",
-    "topics": [
-      "algorithms"
-    ],
-    "source": "search",
-    "starGrowth": 1,
-    "createdAt": "2022-10-13T12:22:09Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-21T15:09:55Z",
     "retryCount": 6
   },
   {
@@ -485,8 +437,8 @@
     "createdAt": "2025-11-25T19:01:18Z",
     "silentRounds": 4,
     "bigbros": [],
-    "ts": "2026-10-23T20:34:34Z",
-    "retryCount": 1
+    "ts": "2026-10-24T04:24:52Z",
+    "retryCount": 2
   },
   {
     "repo": "CleoMenezesJr/weather-oclock",
@@ -502,7 +454,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-23T14:02:31Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "cmyksoda/ASCII-Odyssey",
@@ -518,7 +470,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T00:19:08Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "d3cod3/Mosaic",
@@ -534,6 +486,22 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-22T18:32:40Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "daemon-summoner/InstantCognition",
+    "desc": "Every AI, one keystroke away. ChatGPT, Claude, Gemini and Perplexity side by side, a private local model (llama.cpp, MLX, vLLM) and an agent that browses for you. Alt+Space on macOS, Ctrl+Space on Windows and Linux.",
+    "stars": 5,
+    "language": "JavaScript",
+    "topics": [
+      "llm-model"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2024-09-11T06:59:44Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-24T03:18:51Z",
     "retryCount": 1
   },
   {
@@ -566,7 +534,7 @@
     "silentRounds": 14,
     "bigbros": [],
     "ts": "2026-09-27T03:30:23Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "dean9703111/multicam-recorder",
@@ -582,7 +550,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-22T17:49:48Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "DeanChensj/jiangshan-map",
@@ -596,7 +564,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-23T11:18:07.745Z",
-    "retryCount": 6
+    "retryCount": 1
   },
   {
     "repo": "DECRUX9812/hermes-plugin-gameforge",
@@ -628,7 +596,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-14T20:13:59Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "dipakkr/awesome-ai-engineering",
@@ -645,7 +613,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T16:19:25Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "Ebony-Vinyl/EAC-design-world",
@@ -660,7 +628,7 @@
     "createdAt": "2026-10-17T06:46:19Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-23T18:31:07Z",
+    "ts": "2026-10-24T00:48:29Z",
     "retryCount": 1
   },
   {
@@ -677,6 +645,22 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-22T10:45:05Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "exuupery/island",
+    "desc": "Island - Dynamic Island for Windows: a liquid pill at the top of the screen with live events, clipboard history, screenshots, a command bar, weather and AI. Free, with a one-time Pro upgrade.",
+    "stars": 63,
+    "language": "",
+    "topics": [
+      "weather"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-09-28T19:28:24Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-18T15:53:49Z",
     "retryCount": 1
   },
   {
@@ -707,21 +691,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-22T08:56:47Z",
-    "retryCount": 4
-  },
-  {
-    "repo": "Friedrich-M/UniMate",
-    "desc": "[SIGGRAPH Asia 2026] UniMate: One Unified Model to Animate Diverse Skeletons",
-    "stars": 2146,
-    "language": "Python",
-    "topics": [],
-    "source": "trending",
-    "starGrowth": 26,
-    "createdAt": "2026-07-22T20:57:39Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-19T12:39:19.117Z",
-    "retryCount": 6
+    "retryCount": 1
   },
   {
     "repo": "fte/fire-at-seaparks",
@@ -740,22 +710,6 @@
     "retryCount": 1
   },
   {
-    "repo": "Gathin23/cleanyourtv",
-    "desc": "Debloat any Android or Google TV over Wi-Fi and get an Apple TV-style home.",
-    "stars": 27284,
-    "language": "Java",
-    "topics": [
-      "privacy"
-    ],
-    "source": "search",
-    "starGrowth": 3571,
-    "createdAt": "2026-10-17T08:12:35Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-23T16:19:47Z",
-    "retryCount": 1
-  },
-  {
     "repo": "Glade-tool/glade-mcp",
     "desc": "Connect any MCP-compatible AI client (Claude Code, Cursor, Windsurf) to Unity or Godot. 275+ granular tools, an editor aware system prompt, game design document project context, script semantic search, and skill calibration.",
     "stars": 218,
@@ -769,7 +723,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T06:34:53Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "gokayfem/shader-skills",
@@ -785,7 +739,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-23T08:48:47Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "guijixzh/Inverse-Gomoku-GUI-vs-AI",
@@ -817,7 +771,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T07:09:35Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "harrisliangsu/ai-agent-engineer-handbook",
@@ -833,7 +787,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-23T09:29:45Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "hollobit/ai-native",
@@ -848,7 +802,7 @@
     "createdAt": "2026-10-22T14:00:11Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-23T18:10:58Z",
+    "ts": "2026-10-24T06:37:30Z",
     "retryCount": 1
   },
   {
@@ -865,7 +819,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-16T07:43:42Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "hpleapfrog/Scholia",
@@ -881,23 +835,7 @@
     "silentRounds": 13,
     "bigbros": [],
     "ts": "2026-10-23T11:31:23Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "iloveqjh/naiwa-companion",
-    "desc": "轻量 Windows 奶蛙桌宠：身外眼神跟随、按头 Q 弹、动作声音与 60 fps 爬行主题支持。中文指南，C# / .NET Framework，MIT 开源。",
-    "stars": 2,
-    "language": "C#",
-    "topics": [
-      "virtual-pet"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-10-21T00:27:20Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-23T08:28:25Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "joeseesun/lexfridman-cn",
@@ -913,7 +851,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T13:29:26Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "JosssphZhou/cinetty",
@@ -929,7 +867,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-23T03:07:33Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "kissqy/Microduck-kissqy",
@@ -945,7 +883,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-23T16:04:11Z",
-    "retryCount": 5
+    "retryCount": 1
   },
   {
     "repo": "kvcache-ai/ktransformers",
@@ -962,20 +900,20 @@
     "retryCount": 1
   },
   {
-    "repo": "Lourdhu02/achilles",
-    "desc": "Core AI from first principles: 17 test-driven labs from autograd to FlashAttention in Triton, LoRA, DPO, GRPO, quantization and interpretability, plus a curriculum, frontier-lab guides and a research library. Runs on CPU, CUDA, Apple Silicon or Colab.",
-    "stars": 3,
-    "language": "Python",
+    "repo": "Leonxlnx/napali",
+    "desc": "A drone flight over the Na Pali coast, rendered entirely in code. No textures, images or models.",
+    "stars": 28,
+    "language": "HTML",
     "topics": [
-      "cheatsheet"
+      "generative-art"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2026-05-19T05:17:58Z",
-    "silentRounds": 1,
+    "createdAt": "2026-10-23T19:46:42Z",
+    "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-23T13:51:53Z",
-    "retryCount": 2
+    "ts": "2026-10-23T19:46:49Z",
+    "retryCount": 1
   },
   {
     "repo": "LSXPrime/SoundFlow",
@@ -991,7 +929,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-22T18:36:53Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "lucianoon/llm-course",
@@ -1007,7 +945,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-22T18:38:49Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Mag1cFall/AIStudio2API",
@@ -1021,7 +959,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-18T17:00:41.984Z",
-    "retryCount": 6
+    "retryCount": 1
   },
   {
     "repo": "magikh0e/sprout",
@@ -1037,7 +975,7 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-10-10T07:34:25Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "Mason-Levyy/myfitnesspal-mcp",
@@ -1056,6 +994,22 @@
     "retryCount": 1
   },
   {
+    "repo": "materialsproject/matbench",
+    "desc": "Matbench: Benchmarks for materials science property prediction",
+    "stars": 223,
+    "language": "Python",
+    "topics": [
+      "physics"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2021-02-24T03:58:42Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-24T04:08:23Z",
+    "retryCount": 1
+  },
+  {
     "repo": "mawinkler/astroweather",
     "desc": "Asynchronous Astro Weather Forecast for Home Assistant",
     "stars": 155,
@@ -1069,7 +1023,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-23T14:40:18Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "monid-ai/monid",
@@ -1085,7 +1039,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-22T06:04:53Z",
-    "retryCount": 3
+    "retryCount": 1
+  },
+  {
+    "repo": "nmcdev/nmc_met_io",
+    "desc": "提供对MICAPS文件, 卫星云图, 天气雷达等数据的读写, 并访问CIMISS和MICAPS CASSANDRA数据库文件等.",
+    "stars": 150,
+    "language": "Python",
+    "topics": [
+      "weather"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2019-02-18T01:11:43Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-24T03:55:27Z",
+    "retryCount": 1
   },
   {
     "repo": "NVlabs/ASPIRE",
@@ -1099,55 +1069,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-18T17:00:41.984Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "onblog/bar-tool",
-    "desc": "bar-tool — a macOS menu bar toolbox for everyday text: clean it up, Chinese typesetting, tidy a list, strip a tracking link. 吧台：把剪贴板里乱糟糟的文字就地清理、排版、整理成能直接用的样子的 macOS 菜单栏工具箱。",
-    "stars": 1966,
-    "language": "JavaScript",
-    "topics": [
-      "writing"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2020-01-03T04:09:14Z",
-    "silentRounds": 3,
-    "bigbros": [],
-    "ts": "2026-10-21T13:33:53Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "ora/standards",
-    "desc": "The Agentic-Web Cheatsheet: the open standards that let AI agents find, use, sign in to, shop on and pay websites, in plain words.",
-    "stars": 3,
-    "language": "TypeScript",
-    "topics": [
-      "cheatsheet"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-10-12T06:14:28Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-22T00:09:22Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "Paycei/naylib",
-    "desc": "Updated naylib version.",
-    "stars": 3,
-    "language": "C",
-    "topics": [
-      "raylib"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-10-02T23:03:35Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-20T08:17:55Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "PC2005-cloud/dsh-pet",
@@ -1161,7 +1083,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-20T11:12:00.269Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "peva3/EmulsionPresets",
@@ -1177,23 +1099,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-23T15:53:26Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "printf6666/Minecraft-Tower-Defense",
-    "desc": "Python + pygame 写的像素风塔防：12 种炮塔 / 三阶进化树 / 36 种附魔 / 动态天气与温度 / 100 波敌人 / 四阶段最终 BOSS。非商业同人作品，免费开玩。",
-    "stars": 3,
-    "language": "Python",
-    "topics": [
-      "pygame"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-05-29T15:23:33Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-23T14:31:12Z",
-    "retryCount": 6
+    "retryCount": 2
   },
   {
     "repo": "protogenesis/New-Concept-English",
@@ -1209,7 +1115,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-22T04:01:09Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "QingYunA/answer-me-with-html",
@@ -1225,7 +1131,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-22T08:23:28Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "raphamorim/gameboy",
@@ -1241,7 +1147,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-23T13:46:41Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "rezored/cubicle-crew",
@@ -1257,7 +1163,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-23T10:34:56Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "rolottr/bambu-bar",
@@ -1273,38 +1179,6 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-23T19:10:21Z",
-    "retryCount": 5
-  },
-  {
-    "repo": "RoyceBella-commits/The-Pelican-Test",
-    "desc": "《鹈鹕测试》一只鹈鹕骑着自行车穿越二十个时代的艺术史——画面与音乐全部由代码生成 · A 2:17 film drawn and scored entirely by code: a pelican rides a bicycle through 20 eras of art",
-    "stars": 27,
-    "language": "JavaScript",
-    "topics": [
-      "generative-art"
-    ],
-    "source": "search",
-    "starGrowth": 6,
-    "createdAt": "2026-10-20T07:30:07Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-20T07:30:43Z",
-    "retryCount": 3
-  },
-  {
-    "repo": "Ryder191/haloflux",
-    "desc": "Beat-driven sci-fi light-ring visualization. Pure Canvas, single HTML, zero dependencies. RYDER CODE / Ms MAIKEBAIs CAT ｜ 节拍驱动的科幻光环数据可视化，纯原生 Canvas 单文件 HTML、零依赖，支持 Wallpaper Engine 动态壁纸。",
-    "stars": 17,
-    "language": "HTML",
-    "topics": [
-      "generative-art"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-10-21T12:21:48Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-23T08:27:43Z",
     "retryCount": 6
   },
   {
@@ -1321,7 +1195,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-23T11:53:21Z",
-    "retryCount": 6
+    "retryCount": 1
   },
   {
     "repo": "SehajveerSingh2005/bloom",
@@ -1334,6 +1208,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-23T11:18:07.745Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "skorotkiewicz/psycho-odin",
+    "desc": "An audio-reactive puzzle racer that turns songs into cached, closed-loop 3D roller-coaster tracks.",
+    "stars": 8,
+    "language": "Odin",
+    "topics": [
+      "raylib"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-07-13T18:55:43Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-24T06:36:16Z",
     "retryCount": 1
   },
   {
@@ -1350,7 +1240,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-29T19:40:55Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "tangowerk/csdbkecko",
@@ -1366,7 +1256,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-28T11:42:33Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "thesysdev/openui-trip-planner",
@@ -1382,7 +1272,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-15T14:12:05Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "ThisFreakDoesntExist/ThisFirmwareDoesNotExist",
@@ -1398,7 +1288,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-21T21:59:09Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "trailhq/Trail-Code",
@@ -1414,7 +1304,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-23T18:36:09Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "transit-audio/transit",
@@ -1429,8 +1319,8 @@
     "createdAt": "2026-10-21T21:11:11Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-24T00:04:08Z",
-    "retryCount": 2
+    "ts": "2026-10-24T03:22:25Z",
+    "retryCount": 3
   },
   {
     "repo": "utajum/SynthHUB",
@@ -1447,7 +1337,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-22T10:16:50Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "vedika-io/xalen-ephemeris",
@@ -1463,7 +1353,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-23T22:26:57Z",
-    "retryCount": 5
+    "retryCount": 1
   },
   {
     "repo": "vivekvar-dl/wingman-AI",
@@ -1479,7 +1369,7 @@
     "silentRounds": 11,
     "bigbros": [],
     "ts": "2026-10-13T15:58:16Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "vostride/agent-qa",
@@ -1498,20 +1388,20 @@
     "retryCount": 1
   },
   {
-    "repo": "waozixyz/breeze",
-    "desc": "calm breathing, meditation sessions, and habit tracking",
-    "stars": 30,
-    "language": "Python",
+    "repo": "xing-phys/physics-of-and-for-ai",
+    "desc": "An open Quarto textbook on the physics of learning and physics-inspired artificial intelligence, from statistical mechanics to intelligent systems.",
+    "stars": 1,
+    "language": "Jupyter Notebook",
     "topics": [
-      "raylib"
+      "textbook"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2026-05-27T16:23:11Z",
-    "silentRounds": 1,
+    "createdAt": "2026-10-21T11:00:52Z",
+    "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-23T22:27:25Z",
-    "retryCount": 6
+    "ts": "2026-10-21T11:11:49Z",
+    "retryCount": 1
   },
   {
     "repo": "xms0g/cubicLife",
@@ -1527,7 +1417,7 @@
     "silentRounds": 6,
     "bigbros": [],
     "ts": "2026-10-18T19:42:19Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "Xooter/Open-Microcosm",
@@ -1543,7 +1433,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-23T16:44:54Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "YALDAKHOSHPEY/Burger_Builder",
@@ -1559,7 +1449,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-22T20:01:33Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "YuJunZhiXue/dsh-purge",
@@ -1573,7 +1463,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-19T12:39:19.117Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "yuu-eguci/arrangement-game-try",
@@ -1589,6 +1479,6 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-14T06:18:57Z",
-    "retryCount": 2
+    "retryCount": 3
   }
 ]
