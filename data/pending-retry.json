@@ -13,7 +13,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-22T21:38:58Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "24kr/Local_LLM_Assistant",
@@ -29,7 +29,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-19T15:11:59Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "aaryavvatts-lab/south-asian-culture-textbook",
@@ -45,7 +45,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-23T02:59:26Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "ActiveInferenceInstitute/fundamentals",
@@ -61,7 +61,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-18T01:07:25Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "adobe/skills",
@@ -91,7 +91,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-23T17:26:55Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "AIPMAndy/how-to-get-offer",
@@ -107,7 +107,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-25T03:43:06Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "ajietudou007/TraceDot",
@@ -123,7 +123,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T21:56:14Z",
-    "retryCount": 3
+    "retryCount": 4
+  },
+  {
+    "repo": "ajxs/yamaha_dx7_rom_disassembly",
+    "desc": "Yamaha DX7 Firmware ROM annotated disassembly.",
+    "stars": 83,
+    "language": "Assembly",
+    "topics": [
+      "synthesizer"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2021-12-07T06:57:43Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-24T02:38:36Z",
+    "retryCount": 1
   },
   {
     "repo": "alienzhou/blog",
@@ -139,23 +155,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-25T11:34:59Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
-    "repo": "amwhoi/ascii-bin",
-    "desc": "Plain-text ASCII art database, comes with single-file HTML tools for tagging and decorating.",
-    "stars": 8,
-    "language": "HTML",
+    "repo": "andreiramani/pgvector_pgsql_windows",
+    "desc": "pgvector for PostgreSQL Windows (native compiled in Microsoft Windows environment)",
+    "stars": 226,
+    "language": "",
     "topics": [
-      "ascii-art"
+      "vector-db"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2026-10-12T13:08:15Z",
-    "silentRounds": 1,
+    "createdAt": "2024-08-05T06:50:29Z",
+    "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-20T18:21:08Z",
-    "retryCount": 6
+    "ts": "2026-10-21T06:48:07Z",
+    "retryCount": 1
   },
   {
     "repo": "AndrianLeah/ai-remove-lightcraft",
@@ -201,7 +217,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-25T19:11:32Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "Archie3d/aeolus_plugin",
@@ -217,7 +233,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-16T15:33:24Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "asos520-rgb/tamame-esp32",
@@ -233,7 +249,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T12:35:11Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "Asymptote-Labs/agent-beacon",
@@ -264,7 +280,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T09:37:27Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "bceenaeiklmr/raylib_ahk",
@@ -280,7 +296,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T20:02:47Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "bendlang/bend",
@@ -310,6 +326,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T00:06:54Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "brandonp2412/Flex",
+    "desc": "Offline-first workout tracker for strength and cardio, with progress graphs, rest timers, and custom themes. Built with Flutter.",
+    "stars": 451,
+    "language": "Dart",
+    "topics": [
+      "fitness"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2024-02-26T03:40:27Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-25T04:46:25Z",
     "retryCount": 1
   },
   {
@@ -326,23 +358,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-24T09:54:27Z",
-    "retryCount": 4
-  },
-  {
-    "repo": "ChinaOpenClaw/mcd-nutrition-expert",
-    "desc": "身材管控期也想吃麦当劳？这个专家会帮你根据每日消耗搭配麦麦套餐。基于 SP 矩阵理论，打通麦当劳官方 MCP Server 的营养选型与点餐闭环（35 个官方工具 · 14 个 REST 接口 · 零第三方前端依赖）。",
-    "stars": 75,
-    "language": "Python",
-    "topics": [
-      "fitness"
-    ],
-    "source": "search",
-    "starGrowth": 61,
-    "createdAt": "2026-10-24T18:06:01Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-25T02:01:42Z",
-    "retryCount": 6
+    "retryCount": 5
   },
   {
     "repo": "cmuparlay/parlaylib",
@@ -358,7 +374,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-20T15:55:09Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "cmyksoda/ASCII-Odyssey",
@@ -374,7 +390,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T00:19:08Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "CoretechR/PicoLab",
@@ -390,7 +406,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T16:08:47Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "dannyheskett/opentrail",
@@ -406,7 +422,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T20:56:31Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "devlikemasta/bureau-des-agents",
@@ -439,7 +455,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T16:19:25Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "djayuffe/demo-engine",
@@ -455,7 +471,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-25T17:22:41Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "DMM-331/dsh-rice-pet",
@@ -519,7 +535,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-25T20:29:45Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "exam-data/NETEMVocabulary",
@@ -535,7 +551,7 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-10-22T10:45:05Z",
-    "retryCount": 6
+    "retryCount": 1
   },
   {
     "repo": "factory797/quadplay",
@@ -550,24 +566,8 @@
     "createdAt": "2019-05-29T10:34:03Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-25T19:28:24Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "fe80Grau/ytdlp2STRM",
-    "desc": "A little script to serve Youtube / Twitch / Crunchyroll videos without storage it.  Uses yt-dlp HTTP data throught Flask and dynamic URLs. We can use this dynamic URLs to set STRM files.",
-    "stars": 499,
-    "language": "Python",
-    "topics": [
-      "jellyfin"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2023-03-11T10:34:22Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-25T06:51:34Z",
-    "retryCount": 6
+    "ts": "2026-10-25T21:02:34Z",
+    "retryCount": 2
   },
   {
     "repo": "flizzywine/dsh-tavern",
@@ -597,7 +597,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-22T08:56:47Z",
-    "retryCount": 4
+    "retryCount": 5
+  },
+  {
+    "repo": "GeEom/greedytile",
+    "desc": "Random greedy pixel pattern generation algorithm",
+    "stars": 24,
+    "language": "Rust",
+    "topics": [
+      "generative-art"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2025-07-06T19:21:40Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-25T20:55:48Z",
+    "retryCount": 1
   },
   {
     "repo": "Glade-tool/glade-mcp",
@@ -613,7 +629,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-21T06:34:53Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "Hainrixz/editor-pro-max",
@@ -629,7 +645,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-25T06:03:12Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "harrisliangsu/ai-agent-engineer-handbook",
@@ -645,7 +661,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-23T09:29:45Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "holooooo/webgl-seascape-video",
@@ -661,7 +677,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-16T07:43:42Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "hormuz-labs/agentshot",
@@ -693,23 +709,7 @@
     "silentRounds": 15,
     "bigbros": [],
     "ts": "2026-10-23T11:31:23Z",
-    "retryCount": 3
-  },
-  {
-    "repo": "IAAR-Shanghai/ICSFSurvey",
-    "desc": "Explore concepts like Self-Correct, Self-Refine, Self-Improve, Self-Contradict, Self-Play, and Self-Knowledge, alongside o1-like reasoning elevation🍓 and hallucination alleviation🍄.",
-    "stars": 172,
-    "language": "Jupyter Notebook",
-    "topics": [
-      "llm-model"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2024-06-01T08:40:43Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-25T01:31:12Z",
-    "retryCount": 6
+    "retryCount": 1
   },
   {
     "repo": "ilotterytea/hyperspace",
@@ -725,7 +725,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-25T19:57:07Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "JetBrains/thinkrail",
@@ -755,7 +755,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-25T01:01:28Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "jonathanprogram2/agentforge",
@@ -803,7 +803,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-23T23:02:55Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "kvcache-ai/ktransformers",
@@ -833,7 +833,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-25T20:25:05Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "mantrakp04/ardia",
@@ -863,7 +863,7 @@
     "silentRounds": 5,
     "bigbros": [],
     "ts": "2026-10-25T15:57:10Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "nightly-labs/openbot",
@@ -893,7 +893,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-16T19:55:03Z",
-    "retryCount": 4
+    "retryCount": 5
+  },
+  {
+    "repo": "ReactTraining/react-workshop",
+    "desc": "The course material for our React Hooks workshop",
+    "stars": 299,
+    "language": "TypeScript",
+    "topics": [
+      "course"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2019-10-24T20:21:50Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-25T21:06:30Z",
+    "retryCount": 1
   },
   {
     "repo": "rolottr/bambu-bar",
@@ -909,7 +925,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T12:00:59Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "sebastiancarlos/hacker-fables-game",
@@ -925,7 +941,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-25T17:15:17Z",
-    "retryCount": 2
+    "retryCount": 1
+  },
+  {
+    "repo": "spytify/spytify",
+    "desc": "🎤 Records Spotify to mp3 without ads and adds media tags to the files 🎵",
+    "stars": 2393,
+    "language": "C#",
+    "topics": [
+      "music"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2016-11-11T22:21:41Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-25T21:05:25Z",
+    "retryCount": 1
   },
   {
     "repo": "switchboy/IsoRTS",
@@ -941,7 +973,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-25T16:23:33Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "tine-schreibt/aDHL",
@@ -957,7 +989,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-25T18:37:16Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "tolsonhuddy-collab/huberman-tolson-cn",
@@ -973,7 +1005,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-25T11:19:53Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "tradecatlabs-projects/tradecat-public",
@@ -989,7 +1021,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-25T04:11:11Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "trailhq/Trail-Code",
@@ -1004,7 +1036,7 @@
     "createdAt": "2026-07-03T13:44:21Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-25T17:26:11Z",
+    "ts": "2026-10-25T21:42:40Z",
     "retryCount": 1
   },
   {
@@ -1021,7 +1053,7 @@
     "silentRounds": 13,
     "bigbros": [],
     "ts": "2026-10-13T15:58:16Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "vostride/agent-qa",
@@ -1037,7 +1069,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T19:08:29Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "weswalz/ULTIMATEVJ-releases",
@@ -1053,7 +1085,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T17:00:46Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "xfetch-cli/xfetch",
@@ -1085,7 +1117,7 @@
     "silentRounds": 8,
     "bigbros": [],
     "ts": "2026-10-18T19:42:19Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "yagizkoryurek/Vampire_Survivors-clone",
