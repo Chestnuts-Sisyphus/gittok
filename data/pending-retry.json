@@ -13,7 +13,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-22T21:38:58Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "24kr/Local_LLM_Assistant",
@@ -45,7 +45,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-23T02:59:26Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "ActiveInferenceInstitute/fundamentals",
@@ -61,7 +61,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-18T01:07:25Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "adobe/skills",
@@ -91,7 +91,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-23T17:26:55Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "ajietudou007/TraceDot",
@@ -107,7 +107,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T21:56:14Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "ajxs/yamaha_dx7_rom_disassembly",
@@ -123,7 +123,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T02:38:36Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "alexkroman/tiny-audio",
@@ -139,7 +139,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-23T03:31:22Z",
-    "retryCount": 2
+    "retryCount": 3
+  },
+  {
+    "repo": "amwhoi/ascii-bin",
+    "desc": "Plain-text ASCII art database, comes with single-file HTML tools for tagging and decorating.",
+    "stars": 8,
+    "language": "HTML",
+    "topics": [
+      "ascii-art"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-12T13:08:15Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-20T18:21:08Z",
+    "retryCount": 1
   },
   {
     "repo": "andreiramani/pgvector_pgsql_windows",
@@ -155,7 +171,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T06:48:07Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "AndrianLeah/ai-remove-lightcraft",
@@ -201,7 +217,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-16T15:33:24Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "Asymptote-Labs/agent-beacon",
@@ -232,7 +248,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T09:37:27Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "bceenaeiklmr/raylib_ahk",
@@ -248,7 +264,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T20:02:47Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "bendlang/bend",
@@ -277,7 +293,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T00:06:54Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "brandonp2412/Flex",
@@ -292,24 +308,8 @@
     "createdAt": "2024-02-26T03:40:27Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-24T06:52:29Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "bzr-player/bzr-player",
-    "desc": "Advanced audio player for Windows and Linux supporting a wide array of multi-platform exotic file formats",
-    "stars": 60,
-    "language": "C",
-    "topics": [
-      "demoscene"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2022-05-11T18:58:54Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-24T21:11:16Z",
-    "retryCount": 6
+    "ts": "2026-10-25T04:46:25Z",
+    "retryCount": 2
   },
   {
     "repo": "charlie947/ai-second-brain",
@@ -328,17 +328,20 @@
     "retryCount": 1
   },
   {
-    "repo": "chuma-beep/mathua",
-    "desc": "",
-    "stars": 352,
-    "language": "Go",
-    "topics": [],
-    "source": "trending",
-    "starGrowth": 40,
+    "repo": "ChinaOpenClaw/mcd-nutrition-expert",
+    "desc": "身材管控期也想吃麦当劳？这个专家会帮你根据每日消耗搭配麦麦套餐。基于 SP 矩阵理论，打通麦当劳官方 MCP Server 的营养选型与点餐闭环（35 个官方工具 · 14 个 REST 接口 · 零第三方前端依赖）。",
+    "stars": 14,
+    "language": "Python",
+    "topics": [
+      "fitness"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-24T18:06:01Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-24T19:55:49.193Z",
-    "retryCount": 6
+    "ts": "2026-10-25T02:01:42Z",
+    "retryCount": 1
   },
   {
     "repo": "cmuparlay/parlaylib",
@@ -354,7 +357,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-20T15:55:09Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "cmyksoda/ASCII-Odyssey",
@@ -370,23 +373,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T00:19:08Z",
-    "retryCount": 4
-  },
-  {
-    "repo": "DEVILENMO/DeadEye-Auto-Aiming-System",
-    "desc": "基于Yolo的辅助瞄准系统，高度模块化编写，也可以用于光学控制、监控物体追踪等领域，持续更新中，仅供交流学习使用。An auto-aiming system, or aim bot, which is mainly based on Yolo. Can be easily used in different areas such as optical control, monitoring object tracking. I will keep fixing bugs and adding new features.",
-    "stars": 111,
-    "language": "Python",
-    "topics": [
-      "english"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2024-03-07T04:14:52Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-24T16:58:50Z",
-    "retryCount": 1
+    "retryCount": 5
   },
   {
     "repo": "devlikemasta/bureau-des-agents",
@@ -419,23 +406,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T16:19:25Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "DivitMittal/CARLA-Autonomous-Driving",
-    "desc": "Via high-fidelity CARLA vehicle simulator & deep semantic segmentation, data from RGBA cameras and LiDAR sensors are combined to achieve comprehensive environmental awareness",
-    "stars": 31,
-    "language": "Jupyter Notebook",
-    "topics": [
-      "pygame"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2024-12-01T15:43:30Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-22T18:56:20Z",
-    "retryCount": 6
+    "retryCount": 2
   },
   {
     "repo": "DoktorDaveJoos/manuscript",
@@ -451,7 +422,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-24T12:00:53Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "EmirErtorer/CyberUI.koplugin",
@@ -486,20 +457,20 @@
     "retryCount": 1
   },
   {
-    "repo": "eymenefealtun/all-words-in-all-languages",
-    "desc": "This repository contains all the words from every language that exists in the universe.",
-    "stars": 189,
+    "repo": "fe80Grau/ytdlp2STRM",
+    "desc": "A little script to serve Youtube / Twitch / Crunchyroll videos without storage it.  Uses yt-dlp HTTP data throught Flask and dynamic URLs. We can use this dynamic URLs to set STRM files.",
+    "stars": 499,
     "language": "Python",
     "topics": [
-      "english"
+      "jellyfin"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2023-08-14T13:03:28Z",
+    "createdAt": "2023-03-11T10:34:22Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-24T10:55:07Z",
-    "retryCount": 6
+    "ts": "2026-10-25T06:51:34Z",
+    "retryCount": 1
   },
   {
     "repo": "flizzywine/dsh-tavern",
@@ -548,6 +519,22 @@
     "retryCount": 1
   },
   {
+    "repo": "Hainrixz/editor-pro-max",
+    "desc": "AI-powered video editor by @soyenriquerocha — built with Remotion + Claude Code. Describe videos in natural language, get professional MP4s. 25 components, 9 templates, 7 skills.",
+    "stars": 279,
+    "language": "TypeScript",
+    "topics": [
+      "video-editor"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-03-25T19:28:42Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-25T06:03:12Z",
+    "retryCount": 1
+  },
+  {
     "repo": "harrisliangsu/ai-agent-engineer-handbook",
     "desc": "AI Agent / LLM 应用工程师面试与学习手册 | Prompt→Context→Agent→Harness + real JD teardown + 92 interview Q&As (CN)",
     "stars": 68,
@@ -577,7 +564,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-16T07:43:42Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "hormuz-labs/agentshot",
@@ -592,8 +579,8 @@
     "createdAt": "2026-10-05T19:44:25Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-10-24T21:47:17Z",
-    "retryCount": 1
+    "ts": "2026-10-25T06:34:17Z",
+    "retryCount": 2
   },
   {
     "repo": "hpleapfrog/Scholia",
@@ -609,6 +596,38 @@
     "silentRounds": 14,
     "bigbros": [],
     "ts": "2026-10-23T11:31:23Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "IAAR-Shanghai/ICSFSurvey",
+    "desc": "Explore concepts like Self-Correct, Self-Refine, Self-Improve, Self-Contradict, Self-Play, and Self-Knowledge, alongside o1-like reasoning elevation🍓 and hallucination alleviation🍄.",
+    "stars": 172,
+    "language": "Jupyter Notebook",
+    "topics": [
+      "llm-model"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2024-06-01T08:40:43Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-25T01:31:12Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "jephersonRD/JiruHub",
+    "desc": "JiruHub — Modern Open Source Desktop App for Watching Anime, Reading Manga & Comics, Streaming Movies and Entertainment Content for Free on Windows and Linux",
+    "stars": 315,
+    "language": "JavaScript",
+    "topics": [
+      "anime"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-05-24T16:27:03Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-25T00:40:38Z",
     "retryCount": 1
   },
   {
@@ -624,8 +643,8 @@
     "createdAt": "2026-10-18T15:55:16Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-21T13:29:26Z",
-    "retryCount": 1
+    "ts": "2026-10-25T01:01:28Z",
+    "retryCount": 2
   },
   {
     "repo": "jsdf/pce",
@@ -641,7 +660,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T20:26:15Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "kitao/playload",
@@ -658,23 +677,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T05:57:04Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "kurtdekker/makegeo",
-    "desc": "Make Geometry - Procedural Unity3D Geometry",
-    "stars": 279,
-    "language": "C#",
-    "topics": [
-      "procedural-generation"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2018-03-02T15:47:01Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-23T23:02:55Z",
-    "retryCount": 6
+    "retryCount": 3
   },
   {
     "repo": "kvcache-ai/ktransformers",
@@ -688,7 +691,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-13T22:08:09.499Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "LSXPrime/SoundFlow",
@@ -704,7 +707,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-22T18:36:53Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Mason-Levyy/myfitnesspal-mcp",
@@ -719,8 +722,8 @@
     "createdAt": "2026-07-09T04:09:31Z",
     "silentRounds": 4,
     "bigbros": [],
-    "ts": "2026-10-23T14:09:51Z",
-    "retryCount": 3
+    "ts": "2026-10-25T04:44:30Z",
+    "retryCount": 4
   },
   {
     "repo": "monid-ai/monid",
@@ -736,7 +739,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-22T06:04:53Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "Nekidev/anime-api",
@@ -752,7 +755,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T17:24:24Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "noboomu/proteus",
@@ -768,7 +771,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T19:36:17Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "NVlabs/ASPIRE",
@@ -782,7 +785,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-18T17:00:41.984Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "ouxxyy/ouba-classmate",
@@ -798,23 +801,39 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T13:13:56Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
-    "repo": "rocksdanister/weather",
-    "desc": "Windows native weather app powered by DirectX12 animations",
-    "stars": 759,
-    "language": "C#",
+    "repo": "rmjarvis/Piff",
+    "desc": "PSFs In the Full FOV.  A software package for modeling the point-spread function (PSF) across the full field of view (FOV).  Documentation:",
+    "stars": 69,
+    "language": "Python",
     "topics": [
-      "weather"
+      "astronomy"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2023-07-26T17:16:38Z",
+    "createdAt": "2016-02-25T16:24:08Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-24T16:11:46Z",
-    "retryCount": 6
+    "ts": "2026-10-25T03:42:35Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "RobLoach/raylib-libretro",
+    "desc": "libretro frontend using raylib :space_invader:",
+    "stars": 39,
+    "language": "C",
+    "topics": [
+      "raylib"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2020-04-12T20:33:15Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-25T01:20:43Z",
+    "retryCount": 1
   },
   {
     "repo": "rodrigohpalmeirim/trip-finder",
@@ -830,23 +849,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T20:06:19Z",
-    "retryCount": 4
-  },
-  {
-    "repo": "rolottr/bambu-bar",
-    "desc": "Native macOS menu bar app for Bambu Lab 3D printers. Live progress, time left, temperatures, AMS spools and errors, print controls, several printers and desktop widgets. Local network, no account or cloud.",
-    "stars": 112,
-    "language": "Swift",
-    "topics": [
-      "3d-printing"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-10-22T09:33:07Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-24T12:00:59Z",
-    "retryCount": 6
+    "retryCount": 5
   },
   {
     "repo": "seandavi/awesome-cancer-variant-resources",
@@ -862,7 +865,39 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T18:43:19Z",
-    "retryCount": 4
+    "retryCount": 5
+  },
+  {
+    "repo": "ThunderbearStudios/angband3d",
+    "desc": "Real-time 60 FPS WebGL & Godot 4 C# 3D/CRT dual-reality bridge for 4 native C/C++ engines (Angband, Sil-Q, FrogComposBand, Hengband) powered by a zero-allocation C99 delta adapter, 2.79 MB WASM, Google Cloud Run, and Gemini Native Audio.",
+    "stars": 6,
+    "language": "JavaScript",
+    "topics": [
+      "roguelike"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-09-09T21:35:26Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-25T03:41:11Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "tradecatlabs-projects/tradecat-public",
+    "desc": "交易猫数据系统",
+    "stars": 959,
+    "language": "Makefile",
+    "topics": [
+      "trading"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2025-12-30T03:32:38Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-25T04:11:11Z",
+    "retryCount": 1
   },
   {
     "repo": "trailhq/Trail-Code",
@@ -878,7 +913,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T11:53:42Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "transit-audio/transit",
@@ -893,7 +928,23 @@
     "createdAt": "2026-10-21T21:11:11Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-10-24T23:52:17Z",
+    "ts": "2026-10-25T06:14:09Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "twinksoftware/Gearslip",
+    "desc": "An Android Auto alternative built for everyone",
+    "stars": 165,
+    "language": "Kotlin",
+    "topics": [
+      "maps"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-09-20T07:17:22Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-25T02:03:40Z",
     "retryCount": 1
   },
   {
@@ -909,8 +960,8 @@
     "createdAt": "2024-08-27T10:37:13Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-24T10:13:31Z",
-    "retryCount": 1
+    "ts": "2026-10-25T03:14:29Z",
+    "retryCount": 2
   },
   {
     "repo": "vivekvar-dl/wingman-AI",
@@ -926,7 +977,7 @@
     "silentRounds": 12,
     "bigbros": [],
     "ts": "2026-10-13T15:58:16Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "vostride/agent-qa",
@@ -942,7 +993,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-24T19:08:29Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "xms0g/cubicLife",
@@ -974,23 +1025,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-24T20:31:54Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "yoyiyi/SoleilNotes",
-    "desc": "技术面试必备知识点：Android、Java、C、C++、Python、Flutter、Gradle、数据结构、计算机组成原理、计算机网络、操作系统、算法、数据结构、设计模式、密码学等等",
-    "stars": 596,
-    "language": "Python",
-    "topics": [
-      "design"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2020-11-20T08:19:02Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-24T17:03:13Z",
-    "retryCount": 6
+    "retryCount": 2
   },
   {
     "repo": "ZinYY/Online_RLHF",
@@ -1006,6 +1041,6 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-24T11:45:13Z",
-    "retryCount": 3
+    "retryCount": 1
   }
 ]
