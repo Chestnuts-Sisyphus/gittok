@@ -1,5 +1,21 @@
 [
   {
+    "repo": "2233admin/glyph-arts",
+    "desc": "Terminal-visible chart toolkit — 29 chart types (incl. image/video via chafa+ffmpeg) + live animation rendered directly in the CLI. No browser, no files. Works with Claude Code, Codex, Gemini CLI.",
+    "stars": 7,
+    "language": "Python",
+    "topics": [
+      "ascii-art"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-04-13T20:23:49Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-22T21:38:58Z",
+    "retryCount": 1
+  },
+  {
     "repo": "24kr/Local_LLM_Assistant",
     "desc": "LoLA: Privacy-first desktop AI with RAG. Chat offline with your docs using Ollama models. React+Electron UI, FastAPI backend. 100% local, cross-platform.",
     "stars": 0,
@@ -13,7 +29,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-19T15:11:59Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "aaryavvatts-lab/south-asian-culture-textbook",
@@ -29,7 +45,23 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-23T02:59:26Z",
-    "retryCount": 5
+    "retryCount": 6
+  },
+  {
+    "repo": "ActiveInferenceInstitute/fundamentals",
+    "desc": "Unofficial repo for materials and code related to \"Fundamentals of Active Inference\" (Namjoshi 2026). ",
+    "stars": 36,
+    "language": "Python",
+    "topics": [
+      "textbook"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-03-19T17:35:28Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-18T01:07:25Z",
+    "retryCount": 1
   },
   {
     "repo": "adobe/skills",
@@ -43,7 +75,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-22T18:13:47.371Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "AIPMAndy/how-to-get-offer",
@@ -59,6 +91,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-25T03:43:06Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "ajietudou007/TraceDot",
+    "desc": "迹点点 TraceDot · 集成式旅行纪念票根工作室：十种票面一站式制作收藏，行程自动绘制成中国地图，串成旅行编年史与年度报告。纯前端单文件，浏览器 / Windows / macOS 全平台",
+    "stars": 11,
+    "language": "HTML",
+    "topics": [
+      "travel"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-01T01:10:19Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-24T21:56:14Z",
     "retryCount": 1
   },
   {
@@ -75,7 +123,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-24T02:38:36Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "alexkroman/tiny-audio",
@@ -91,7 +139,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-23T03:31:22Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "alienzhou/blog",
@@ -107,7 +155,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-25T11:34:59Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "amwhoi/ascii-bin",
@@ -123,7 +171,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-20T18:21:08Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "andreiramani/pgvector_pgsql_windows",
@@ -139,7 +187,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-21T06:48:07Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "AndrianLeah/ai-remove-lightcraft",
@@ -154,7 +202,7 @@
     "createdAt": "2026-10-19T12:10:24Z",
     "silentRounds": 2,
     "bigbros": [],
-    "ts": "2026-10-23T21:08:41Z",
+    "ts": "2026-10-25T17:38:53Z",
     "retryCount": 1
   },
   {
@@ -172,6 +220,22 @@
     "retryCount": 1
   },
   {
+    "repo": "Archie3d/aeolus_plugin",
+    "desc": "Pipe organ synthesizer (VST plugin)",
+    "stars": 170,
+    "language": "C++",
+    "topics": [
+      "synthesizer"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2021-05-22T16:42:47Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-16T15:33:24Z",
+    "retryCount": 1
+  },
+  {
     "repo": "asos520-rgb/tamame-esp32",
     "desc": "TamaMe — an independent ESP32 desktop pet based on the Muse Gadget SDK. Source preview for the Waveshare ESP32-S3-Touch-AMOLED-1.75C: trilingual UI, wardrobe, interactions, and optional Fish Audio TTS.",
     "stars": 1,
@@ -185,7 +249,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T12:35:11Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Asymptote-Labs/agent-beacon",
@@ -215,6 +279,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T09:37:27Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "bceenaeiklmr/raylib_ahk",
+    "desc": "raylib 5.5 for AutoHotkey v2: windowed graphics, shapes, images, textures, custom fonts, 3D and audio, driven straight from a script.",
+    "stars": 5,
+    "language": "AutoHotkey",
+    "topics": [
+      "raylib"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2023-03-07T20:01:40Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-24T20:02:47Z",
     "retryCount": 1
   },
   {
@@ -245,7 +325,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-24T00:06:54Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "brandonp2412/Flex",
@@ -261,7 +341,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-25T04:46:25Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "bzr-player/bzr-player",
@@ -277,7 +357,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-25T16:07:11Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "charlie947/ai-second-brain",
@@ -293,7 +373,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-24T09:54:27Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "ChinaOpenClaw/mcd-nutrition-expert",
@@ -309,7 +389,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-25T02:01:42Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "cmuparlay/parlaylib",
@@ -325,7 +405,23 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-20T15:55:09Z",
-    "retryCount": 5
+    "retryCount": 6
+  },
+  {
+    "repo": "cmyksoda/ASCII-Odyssey",
+    "desc": "Generative tracker music and ASCII visuals for the Nintendo Wii",
+    "stars": 0,
+    "language": "C",
+    "topics": [
+      "demoscene"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-21T00:03:09Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-21T00:19:08Z",
+    "retryCount": 1
   },
   {
     "repo": "CoretechR/PicoLab",
@@ -341,7 +437,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T16:08:47Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "dannyheskett/opentrail",
@@ -406,7 +502,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-22T18:56:20Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "djeada/Git-Notes",
@@ -422,7 +518,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-25T10:45:58Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "DMM-331/dsh-rice-pet",
@@ -438,7 +534,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-25T01:57:19Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "DoktorDaveJoos/manuscript",
@@ -470,7 +566,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T19:12:58Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "EricJujianZou/rederive",
@@ -486,7 +582,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-25T15:17:37Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "exam-data/NETEMVocabulary",
@@ -502,7 +598,7 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-10-22T10:45:05Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "eymenefealtun/all-words-in-all-languages",
@@ -518,7 +614,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T10:55:07Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "fe80Grau/ytdlp2STRM",
@@ -534,7 +630,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-25T06:51:34Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "flizzywine/dsh-tavern",
@@ -564,7 +660,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-22T08:56:47Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Glade-tool/glade-mcp",
@@ -580,7 +676,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-21T06:34:53Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Hainrixz/editor-pro-max",
@@ -596,7 +692,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-25T06:03:12Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "harrisliangsu/ai-agent-engineer-handbook",
@@ -612,7 +708,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-23T09:29:45Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "holooooo/webgl-seascape-video",
@@ -628,7 +724,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-16T07:43:42Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "hormuz-labs/agentshot",
@@ -643,8 +739,8 @@
     "createdAt": "2026-10-05T19:44:25Z",
     "silentRounds": 2,
     "bigbros": [],
-    "ts": "2026-10-25T17:06:38Z",
-    "retryCount": 4
+    "ts": "2026-10-25T17:27:35Z",
+    "retryCount": 1
   },
   {
     "repo": "hpleapfrog/Scholia",
@@ -660,7 +756,7 @@
     "silentRounds": 15,
     "bigbros": [],
     "ts": "2026-10-23T11:31:23Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "IAAR-Shanghai/ICSFSurvey",
@@ -676,7 +772,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-25T01:31:12Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "jephersonRD/JiruHub",
@@ -722,7 +818,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-25T01:01:28Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "jsdf/pce",
@@ -738,7 +834,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-24T20:26:15Z",
-    "retryCount": 6
+    "retryCount": 1
   },
   {
     "repo": "justxor/robotics-roadmap-2026",
@@ -754,7 +850,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-23T13:05:09Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "jwardsmith/Active-Directory-Exploitation",
@@ -770,7 +866,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-25T12:01:19Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Khalidabdi1/design-ai",
@@ -786,7 +882,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-28T00:22:27Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "kitao/playload",
@@ -803,23 +899,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T05:57:04Z",
-    "retryCount": 5
-  },
-  {
-    "repo": "Kohulan/DECIMER-Image_Transformer",
-    "desc": "DECIMER Image Transformer is a deep-learning-based tool designed for automated recognition of chemical structure images. Leveraging transformer architectures, the model converts chemical images into SMILES strings, enabling the digitization of chemical data from scanned documents, literature, and patents.",
-    "stars": 414,
-    "language": "Python",
-    "topics": [
-      "transformers"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2020-09-07T16:00:46Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-25T16:14:32Z",
-    "retryCount": 2
+    "retryCount": 6
   },
   {
     "repo": "kurtdekker/makegeo",
@@ -835,7 +915,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-23T23:02:55Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "kvcache-ai/ktransformers",
@@ -849,22 +929,6 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-13T22:08:09.499Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "LSXPrime/SoundFlow",
-    "desc": "A high-performance, modular audio & MIDI engine for .NET 8+. A complete toolkit for the entire audio lifecycle: Playback, Recording, Multi-track Editing, Pro Synthesis (MPE/SF2), Real-time DSP, and Visualization. Includes a unique security suite for AES-256 encryption, acoustic fingerprinting, and watermarking. Featuring SIMD and NativeAOT support.",
-    "stars": 524,
-    "language": "C#",
-    "topics": [
-      "synthesizer"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2025-02-08T10:16:02Z",
-    "silentRounds": 4,
-    "bigbros": [],
-    "ts": "2026-10-22T18:36:53Z",
     "retryCount": 1
   },
   {
@@ -895,7 +959,7 @@
     "silentRounds": 5,
     "bigbros": [],
     "ts": "2026-10-25T15:57:10Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "monid-ai/monid",
@@ -911,7 +975,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-22T06:04:53Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "nemethviktor/GeoTagNinja",
@@ -927,7 +991,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-25T12:07:58Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "nightly-labs/openbot",
@@ -957,7 +1021,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-25T15:38:43Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "noboomu/proteus",
@@ -989,7 +1053,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-25T00:27:17Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "pazvanti/Chronicle",
@@ -1005,7 +1069,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-16T19:55:03Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "RobLoach/raylib-libretro",
@@ -1021,7 +1085,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-25T01:20:43Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "rocksdanister/weather",
@@ -1037,7 +1101,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T16:11:46Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "rolottr/bambu-bar",
@@ -1053,7 +1117,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T12:00:59Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "sloemo01/diorama",
@@ -1070,7 +1134,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T16:05:52Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "switchboy/IsoRTS",
@@ -1086,7 +1150,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-25T16:23:33Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "tempoCollaboration/OQuPy",
@@ -1102,7 +1166,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-25T17:10:40Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "ThunderbearStudios/angband3d",
@@ -1134,7 +1198,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-25T15:23:27Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "tolsonhuddy-collab/huberman-tolson-cn",
@@ -1150,7 +1214,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-25T11:19:53Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "tomsbin/mcd-fit-planner",
@@ -1214,7 +1278,7 @@
     "silentRounds": 13,
     "bigbros": [],
     "ts": "2026-10-13T15:58:16Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "vostride/agent-qa",
@@ -1230,7 +1294,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T19:08:29Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "weswalz/ULTIMATEVJ-releases",
@@ -1246,7 +1310,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T17:00:46Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "xms0g/cubicLife",
@@ -1262,7 +1326,7 @@
     "silentRounds": 8,
     "bigbros": [],
     "ts": "2026-10-18T19:42:19Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "yagizkoryurek/Vampire_Survivors-clone",
@@ -1270,7 +1334,8 @@
     "stars": 3,
     "language": "Python",
     "topics": [
-      "roguelike"
+      "roguelike",
+      "pygame"
     ],
     "source": "search",
     "starGrowth": 0,
@@ -1278,7 +1343,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-25T10:45:44Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "yandexdataschool/deep_vision_and_graphics",
@@ -1294,7 +1359,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-24T20:31:54Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "yoyiyi/SoleilNotes",
@@ -1310,7 +1375,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T17:03:13Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "ZinYY/Online_RLHF",
@@ -1326,6 +1391,6 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-24T11:45:13Z",
-    "retryCount": 3
+    "retryCount": 1
   }
 ]
