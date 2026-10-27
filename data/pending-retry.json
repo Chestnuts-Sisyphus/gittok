@@ -1,5 +1,21 @@
 [
   {
+    "repo": "aaryavvatts-lab/south-asian-culture-textbook",
+    "desc": "Roots & Rivers: a free, interactive textbook on South Asian cultures, traditions, languages and countries for high school students.",
+    "stars": 1,
+    "language": "Python",
+    "topics": [
+      "textbook"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-22T22:56:36Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-23T02:59:26Z",
+    "retryCount": 1
+  },
+  {
     "repo": "AdamWhiteHat/BigRational",
     "desc": "Arbitrary precision rational number class",
     "stars": 36,
@@ -13,7 +29,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-30T05:01:47Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "adobe/skills",
@@ -43,7 +59,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-30T02:51:23Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "ahmadayyan056-art/tf-trainer-studio",
@@ -75,7 +91,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T14:08:09Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "AhmedMustafa-tech/it-ops-toolkit",
@@ -91,7 +107,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-29T10:04:05Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "aimuzov/keysight.fish",
@@ -107,23 +123,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T12:11:44Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
-    "repo": "ajxs/yamaha_dx7_rom_disassembly",
-    "desc": "Yamaha DX7 Firmware ROM annotated disassembly.",
-    "stars": 83,
-    "language": "Assembly",
+    "repo": "Aiseam/RM38",
+    "desc": "A web version similar to the classic Reason Studio Rebirth 338, this version is quite faithful to the original with some improvements!",
+    "stars": 8,
+    "language": "HTML",
     "topics": [
-      "synthesizer"
+      "music-production"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2021-12-07T06:57:43Z",
-    "silentRounds": 1,
+    "createdAt": "2026-10-22T17:01:43Z",
+    "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-24T02:38:36Z",
-    "retryCount": 6
+    "ts": "2026-10-25T18:20:28Z",
+    "retryCount": 1
   },
   {
     "repo": "AlexanderFabisch/jaxtransform3d",
@@ -139,7 +155,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-04T06:16:47Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "Alexenveloping465/CS2-Smoke-Be-Gone-One-Click-Smoke-Removal-Utility",
@@ -155,7 +171,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-13T07:08:15Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "AlexMarinescu/pyGameMath",
@@ -171,7 +187,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-10T13:59:47Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "alexyc9381/mock-interview-skill",
@@ -187,7 +203,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-17T08:11:57Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "Ali-Iyad-Durra/SyntaxHub",
@@ -203,7 +219,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-20T20:24:18Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "AllenDowney/CompStats",
@@ -219,7 +235,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T15:43:41Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "alphaonelabs/website",
@@ -235,7 +251,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T00:41:51Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "alycda/dotfiles",
@@ -251,7 +267,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T08:17:53Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "amwhoi/ascii-bin",
@@ -267,22 +283,6 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-20T18:21:08Z",
-    "retryCount": 5
-  },
-  {
-    "repo": "andreiramani/pgvector_pgsql_windows",
-    "desc": "pgvector for PostgreSQL Windows (native compiled in Microsoft Windows environment)",
-    "stars": 226,
-    "language": "",
-    "topics": [
-      "vector-db"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2024-08-05T06:50:29Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-21T06:48:07Z",
     "retryCount": 6
   },
   {
@@ -299,7 +299,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-26T13:23:27Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "angelherman0130-cell/linux-commands-cheatsheet",
@@ -315,7 +315,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-20T06:57:02Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "anomalyco/hex",
@@ -345,7 +345,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-30T11:38:24Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "Apich-Organization/rssn",
@@ -361,7 +361,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-26T09:44:29Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "Asymptote-Labs/agent-beacon",
@@ -405,7 +405,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T09:56:18Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "DEVILENMO/Unsupervised-Defect-Detection-Project-Based-on-VAE-GAN-Architecture",
@@ -421,7 +421,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-26T05:52:44Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "devlikemasta/bureau-des-agents",
@@ -454,7 +454,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-21T16:19:25Z",
-    "retryCount": 5
+    "retryCount": 1
   },
   {
     "repo": "dromara/dante-cloud",
@@ -486,7 +486,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-08T06:16:27Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "eclipse-hawkbit/hawkbit",
@@ -518,7 +518,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-24T19:12:58Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "EricJujianZou/rederive",
@@ -534,7 +534,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-25T20:29:45Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "exam-data/NETEMVocabulary",
@@ -550,7 +550,7 @@
     "silentRounds": 5,
     "bigbros": [],
     "ts": "2026-10-22T10:45:05Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "factory797/quadplay",
@@ -566,7 +566,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-25T21:02:34Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "flizzywine/dsh-tavern",
@@ -580,7 +580,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T19:34:18.850Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "fuhuonvshen/EasyWork-Interview",
@@ -628,7 +628,7 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-10-23T09:29:45Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "higgsfield-ai/skills",
@@ -672,8 +672,8 @@
     "createdAt": "2026-10-05T19:44:25Z",
     "silentRounds": 3,
     "bigbros": [],
-    "ts": "2026-10-26T18:51:37Z",
-    "retryCount": 2
+    "ts": "2026-10-26T20:32:38Z",
+    "retryCount": 3
   },
   {
     "repo": "hpleapfrog/Scholia",
@@ -689,7 +689,7 @@
     "silentRounds": 16,
     "bigbros": [],
     "ts": "2026-10-26T06:57:34Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "HRuiCcc/RuiC-pixel-explainer",
@@ -705,7 +705,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-26T03:36:24Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "i365dev/awesome-seo",
@@ -724,6 +724,38 @@
     "retryCount": 1
   },
   {
+    "repo": "InternetDweller/ownFrogElectron-public",
+    "desc": "Manage your tasks, see current weather and grow a happy pet frog",
+    "stars": 1,
+    "language": "JavaScript",
+    "topics": [
+      "virtual-pet"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-26T20:57:30Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-26T21:16:18Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "J4ve/python-3d-wireframe-renderer",
+    "desc": "3D wireframe graphics projection and rendering engine built from scratch in Python. (Formerly Linear-Algebra-Based-Python-3D-Graphics-Renderer)",
+    "stars": 2,
+    "language": "Mathematica",
+    "topics": [
+      "pygame"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2024-10-05T12:11:20Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-23T14:20:06Z",
+    "retryCount": 1
+  },
+  {
     "repo": "JamsusMaximus/trainingpeaks-mcp",
     "desc": "TrainingPeaks MCP server for Claude Desktop, Code and Cowork. No API approval needed - works with any account. Query workouts, CTL/ATL/TSB fitness data, power PRs via natural language.",
     "stars": 186,
@@ -737,7 +769,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-23T16:05:45Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "JasperZhang121/Vaults",
@@ -753,7 +785,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T10:09:26Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "JayWebtech/autoshorts",
@@ -783,6 +815,22 @@
     "retryCount": 1
   },
   {
+    "repo": "jilljenn/tryalgo",
+    "desc": "Algorithms and data structures for preparing programming competitions: basic and advanced",
+    "stars": 385,
+    "language": "Python",
+    "topics": [
+      "algorithms"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2016-01-21T16:05:54Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-26T21:05:29Z",
+    "retryCount": 1
+  },
+  {
     "repo": "joeseesun/lexfridman-cn",
     "desc": "Lex Fridman 播客中文导航站:506 期全目录、AI 中文精读、官方音频/文稿与全文 RSS | Chinese companion to the Lex Fridman Podcast: AI deep-reads, official audio & transcripts for all 506 episodes.",
     "stars": 240,
@@ -796,7 +844,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-25T01:01:28Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "Khalidabdi1/design-ai",
@@ -812,7 +860,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-28T00:22:27Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "kvcache-ai/ktransformers",
@@ -858,7 +906,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-29T04:52:43Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "learningeconomy/LearnCard",
@@ -874,7 +922,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-26T11:59:09Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "maplexrain/unyra",
@@ -890,7 +938,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-25T14:31:15Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "Mason-Levyy/myfitnesspal-mcp",
@@ -906,7 +954,7 @@
     "silentRounds": 6,
     "bigbros": [],
     "ts": "2026-10-25T15:57:10Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "MelihGulum/Comprehensive-Data-Science-AI-Project-Portfolio",
@@ -938,7 +986,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-14T07:05:05Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "Mullassery/PyInterviewBot",
@@ -970,7 +1018,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-03T23:20:54Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "nightly-labs/openbot",
@@ -987,38 +1035,6 @@
     "retryCount": 1
   },
   {
-    "repo": "openshift/microshift",
-    "desc": "A small form factor OpenShift/Kubernetes optimized for edge computing",
-    "stars": 848,
-    "language": "Go",
-    "topics": [
-      "iot"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2021-04-26T14:39:38Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-26T11:06:36Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "ParadevAI/Paradev",
-    "desc": "Paradev (formerly Superset) is an agentic IDE to orchestrate 100+ coding agents in parallel. Run any agent with your own subscription.",
-    "stars": 15583,
-    "language": "TypeScript",
-    "topics": [
-      "developer-tools"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2025-10-21T09:16:51Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-26T19:13:34Z",
-    "retryCount": 1
-  },
-  {
     "repo": "pebaryan/raymotion",
     "desc": "Motion graphics written in C++: a Remotion-style video engine on raylib, OpenGL and ffmpeg. Compositions are code, rendered deterministically frame by frame to MP4.",
     "stars": 5,
@@ -1032,7 +1048,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-26T14:29:03Z",
-    "retryCount": 2
+    "retryCount": 3
+  },
+  {
+    "repo": "Sirero98/az-104-cheatsheets",
+    "desc": "Cheatsheets para preparar la certificación AZ-104 (Microsoft Azure Administrator), en español e inglés",
+    "stars": 7,
+    "language": "",
+    "topics": [
+      "cheatsheet"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-14T11:24:25Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-14T11:24:38Z",
+    "retryCount": 1
   },
   {
     "repo": "Stewie-pixel/claude-with-leetcode",
@@ -1065,7 +1097,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-26T15:51:21Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "trailhq/Trail-Code",
@@ -1113,23 +1145,23 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-24T19:08:29Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
-    "repo": "weswalz/ULTIMATEVJ-releases",
-    "desc": "Free native macOS VJ software for Apple Silicon. GPU video compositing, ordered effect chains, MIDI control, and 28 built-in RenderWave generators.",
-    "stars": 21,
-    "language": "",
+    "repo": "Woyten/tune",
+    "desc": "Make xenharmonic music and create synthesizer tuning files for microtonal scales.",
+    "stars": 157,
+    "language": "Rust",
     "topics": [
-      "generative-art"
+      "synthesizer"
     ],
     "source": "search",
-    "starGrowth": 4,
-    "createdAt": "2026-10-22T03:22:02Z",
+    "starGrowth": 0,
+    "createdAt": "2019-01-06T19:05:25Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-24T17:00:46Z",
-    "retryCount": 2
+    "ts": "2026-10-26T22:42:02Z",
+    "retryCount": 1
   },
   {
     "repo": "xixu-me/awesome-persona-distill-skills",
@@ -1145,7 +1177,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-18T19:09:21Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "xms0g/cubicLife",
@@ -1161,7 +1193,7 @@
     "silentRounds": 9,
     "bigbros": [],
     "ts": "2026-10-18T19:42:19Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "yeasy/ai_beginner_guide",
@@ -1177,7 +1209,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-23T23:04:41Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "yibie/awesome-jev",
@@ -1193,7 +1225,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-26T11:31:16Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "yoyiyi/SoleilNotes",
@@ -1210,6 +1242,6 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-24T17:03:13Z",
-    "retryCount": 4
+    "retryCount": 1
   }
 ]
