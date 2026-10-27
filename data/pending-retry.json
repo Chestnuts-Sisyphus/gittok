@@ -13,23 +13,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-23T02:59:26Z",
-    "retryCount": 3
-  },
-  {
-    "repo": "AdamWhiteHat/BigRational",
-    "desc": "Arbitrary precision rational number class",
-    "stars": 36,
-    "language": "C#",
-    "topics": [
-      "mathematics"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2017-04-08T05:10:17Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-30T05:01:47Z",
-    "retryCount": 6
+    "retryCount": 4
   },
   {
     "repo": "adobe/skills",
@@ -46,22 +30,6 @@
     "retryCount": 1
   },
   {
-    "repo": "adrienbrault/geekmagic-hacs",
-    "desc": "Home Assistant integration for GeekMagic displays (SmallTV Pro/Ultra). Server-side rendering, no device flashing required.",
-    "stars": 471,
-    "language": "Python",
-    "topics": [
-      "iot"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2025-12-13T09:45:01Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-30T02:51:23Z",
-    "retryCount": 6
-  },
-  {
     "repo": "ahmadayyan056-art/tf-trainer-studio",
     "desc": "TensorFlow Trainer 2026: Python ML Model Training Framework for Scalable AI Pipelines",
     "stars": 53,
@@ -75,55 +43,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-26T11:55:56Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "ahmeddoghri/ATSProofResume",
-    "desc": "Scores whether an ATS can actually read your resume, then rewrites it. The audit is deterministic, runs offline with no API key, and is itself benchmarked at 1.00 precision and recall against resumes with planted defects.",
-    "stars": 4,
-    "language": "Python",
-    "topics": [
-      "interview"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2025-02-03T17:51:18Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-19T14:08:09Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "AhmedMustafa-tech/it-ops-toolkit",
-    "desc": "Copy-paste snippets for IT operations: JQL, Chrome version control, macOS fixes, SPF/DKIM/DMARC checks",
-    "stars": 0,
-    "language": "",
-    "topics": [
-      "cheatsheet"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-09-29T10:03:18Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-29T10:04:05Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "aimuzov/keysight.fish",
-    "desc": "One command that shows every keyboard shortcut your machine actually has, parsed from the live configs of fish, terminals, skhd and TUI apps",
-    "stars": 1,
-    "language": "Shell",
-    "topics": [
-      "cheatsheet"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-08-14T10:46:51Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-24T12:11:44Z",
-    "retryCount": 6
+    "retryCount": 2
   },
   {
     "repo": "Aiseam/RM38",
@@ -139,7 +59,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-25T18:20:28Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "ajxs/yamaha_dx7_rom_disassembly",
@@ -155,135 +75,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T02:38:36Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "AlexanderFabisch/jaxtransform3d",
-    "desc": "pytransform3d in JAX (experimental)",
-    "stars": 12,
-    "language": "Python",
-    "topics": [
-      "mathematics"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2025-03-06T09:30:10Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-04T06:16:47Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "Alexenveloping465/CS2-Smoke-Be-Gone-One-Click-Smoke-Removal-Utility",
-    "desc": "Remove smoke grenade clouds in Counter-Strike 2 with one click. This utility clears visual obstructions instantly without complex configuration.",
-    "stars": 1,
-    "language": "",
-    "topics": [
-      "interview"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-05-23T14:25:21Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-13T07:08:15Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "AlexMarinescu/pyGameMath",
-    "desc": "A lightweight, pure-Python library for graphics, geometry, and computational mathematics. No NumPy or compiled extensions.",
-    "stars": 24,
-    "language": "Python",
-    "topics": [
-      "mathematics"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2012-04-14T18:51:24Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-10T13:59:47Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "alexyc9381/mock-interview-skill",
-    "desc": "Five Claudes interview you for any job from the real job post, then grade every answer and rewrite your weakest ones. Free Claude Code skill, MIT.",
-    "stars": 4,
-    "language": "Python",
-    "topics": [
-      "interview"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-10-17T08:11:52Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-17T08:11:57Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "Ali-Iyad-Durra/SyntaxHub",
-    "desc": "fast, minimal, and offline-ready developer cheatsheet hub for programming syntax, fundamentals, and snippets.",
-    "stars": 0,
-    "language": "JavaScript",
-    "topics": [
-      "cheatsheet"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-10-20T18:53:15Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-20T20:24:18Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "AllenDowney/CompStats",
-    "desc": "Code for a workshop on statistical inference using computational methods in Python",
-    "stars": 223,
-    "language": "Jupyter Notebook",
-    "topics": [
-      "tutorial"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2015-03-09T13:35:49Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-21T15:43:41Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "alphaonelabs/website",
-    "desc": "Alpha One Labs Educational Website",
-    "stars": 66,
-    "language": "HTML",
-    "topics": [
-      "learning"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2025-01-05T23:00:48Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-24T00:41:51Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "alycda/dotfiles",
-    "desc": "This repo documents my journey learning Nix—starting from zero",
-    "stars": 1,
-    "language": "Nix",
-    "topics": [
-      "cheatsheet"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2025-12-31T03:22:36Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-24T08:17:53Z",
-    "retryCount": 6
+    "retryCount": 3
   },
   {
     "repo": "amwhoi/ascii-bin",
@@ -299,7 +91,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-20T18:21:08Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "andreiramani/pgvector_pgsql_windows",
@@ -315,7 +107,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T06:48:07Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "AndrianLeah/ai-remove-lightcraft",
@@ -334,22 +126,6 @@
     "retryCount": 1
   },
   {
-    "repo": "angelherman0130-cell/linux-commands-cheatsheet",
-    "desc": "Offline desktop app with 263 Linux commands for Ubuntu, Fedora and Arch (GTK4 + libadwaita)",
-    "stars": 0,
-    "language": "Python",
-    "topics": [
-      "cheatsheet"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-10-20T01:33:18Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-20T06:57:02Z",
-    "retryCount": 6
-  },
-  {
     "repo": "anomalyco/hex",
     "desc": "Local-first voice dictation for macOS. Hold a shortcut, speak, and paste into any app. Native Rust, on-device speech recognition, and a Linux beta.",
     "stars": 591,
@@ -361,39 +137,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-23T11:18:07.745Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "AntonovAnton/math.trigonometric",
-    "desc": "This C# library includes functions that are missing in .NET: cot, sec, csc, acot, asec, acsc, coth, sech, csch, acoth, asech, and acsch. Also, it includes standard functions: sin, cos, tan, asin, acos, atan, sinh, cosh, tanh, asinh, acosh, and atanh.",
-    "stars": 8,
-    "language": "C#",
-    "topics": [
-      "mathematics"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2024-06-08T11:46:20Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-09-30T11:38:24Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "Apich-Organization/rssn",
-    "desc": "RSSN is an open-source project building high-performance, safe, Rust-native alternatives to scientific computing libraries like NumPy/SymPy. Licensed under Apache 2.0, it promotes broad adoption, allowing seamless integration into open-source and proprietary projects.",
-    "stars": 38,
-    "language": "Rust",
-    "topics": [
-      "mathematics"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2025-07-27T15:01:01Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-26T09:44:29Z",
-    "retryCount": 6
+    "retryCount": 2
   },
   {
     "repo": "Asymptote-Labs/agent-beacon",
@@ -407,7 +151,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T18:19:35.350Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "bendlang/bend",
@@ -437,6 +181,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-27T01:00:01Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "Ckokoski/Fibb",
+    "desc": "The Autonomous AI Writing Agent — a secure, author-focused AI for fiction and nonfiction authors (Planning, Revision, Promotion, and more)",
+    "stars": 128,
+    "language": "TypeScript",
+    "topics": [
+      "writing"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-02-24T11:31:23Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-27T11:03:48Z",
     "retryCount": 1
   },
   {
@@ -453,7 +213,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T09:56:18Z",
-    "retryCount": 5
+    "retryCount": 1
   },
   {
     "repo": "DEVILENMO/Unsupervised-Defect-Detection-Project-Based-on-VAE-GAN-Architecture",
@@ -469,7 +229,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-26T05:52:44Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "devlikemasta/bureau-des-agents",
@@ -485,7 +245,23 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-14T20:13:59Z",
-    "retryCount": 2
+    "retryCount": 1
+  },
+  {
+    "repo": "DilawarShafiq/nietzschian-debugger",
+    "desc": "The anti-AI debugger. What doesn't kill your code makes it stronger. Confrontational questioning for developers.",
+    "stars": 290,
+    "language": "Python",
+    "topics": [
+      "learning"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-02-24T17:02:17Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-11T16:05:09Z",
+    "retryCount": 1
   },
   {
     "repo": "dipakkr/awesome-ai-engineering",
@@ -502,7 +278,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-21T16:19:25Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "dromara/dante-cloud",
@@ -534,7 +310,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-08T06:16:27Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "eclipse-hawkbit/hawkbit",
@@ -550,7 +326,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-26T12:05:21Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "EmirErtorer/CyberUI.koplugin",
@@ -566,7 +342,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-24T19:12:58Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "EricJujianZou/rederive",
@@ -582,6 +358,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-25T20:29:45Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "esimov/diagram",
+    "desc": "CLI app to convert ASCII arts into hand drawn diagrams.",
+    "stars": 900,
+    "language": "Go",
+    "topics": [
+      "ascii-art"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2017-08-02T12:14:38Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-27T08:45:51Z",
     "retryCount": 1
   },
   {
@@ -614,7 +406,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-25T21:02:34Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "flizzywine/dsh-tavern",
@@ -628,7 +420,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T19:34:18.850Z",
-    "retryCount": 5
+    "retryCount": 1
   },
   {
     "repo": "fuhuonvshen/EasyWork-Interview",
@@ -660,7 +452,20 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-25T06:03:12Z",
-    "retryCount": 2
+    "retryCount": 3
+  },
+  {
+    "repo": "hanliang97/MatrixMedia",
+    "desc": "视频矩阵工具 vue electorn puppeteer 批量发布 视频到各个视频平台 自媒体 矩阵 抖音 小红书 头条 视频号 快手等 ai 自动化 cli",
+    "stars": 1127,
+    "language": "JavaScript",
+    "topics": [],
+    "source": "trending",
+    "starGrowth": 34,
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-27T11:52:13.901Z",
+    "retryCount": 1
   },
   {
     "repo": "harrisliangsu/ai-agent-engineer-handbook",
@@ -676,7 +481,7 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-10-23T09:29:45Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "hcming2026/textbook-writing-skills",
@@ -692,7 +497,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-26T15:49:57Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "higgsfield-ai/skills",
@@ -705,6 +510,19 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-26T19:39:07.702Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "HKUDS/AutoSwarm",
+    "desc": "AutoSwarm: All Your Agents, Working as One (Codex · Claude Code · DeepSeek Harness · Muse · Grok · WorkBuddy· nanobot · and more)",
+    "stars": 2021,
+    "language": "Python",
+    "topics": [],
+    "source": "trending",
+    "starGrowth": 41,
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-27T11:52:13.901Z",
     "retryCount": 1
   },
   {
@@ -721,7 +539,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-16T07:43:42Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "hormuz-labs/agentshot",
@@ -736,7 +554,7 @@
     "createdAt": "2026-10-05T19:44:25Z",
     "silentRounds": 3,
     "bigbros": [],
-    "ts": "2026-10-26T20:32:38Z",
+    "ts": "2026-10-27T11:18:47Z",
     "retryCount": 1
   },
   {
@@ -753,7 +571,7 @@
     "silentRounds": 16,
     "bigbros": [],
     "ts": "2026-10-26T06:57:34Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "HRuiCcc/RuiC-pixel-explainer",
@@ -785,7 +603,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T02:18:51Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "InternetDweller/ownFrogElectron-public",
@@ -801,7 +619,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-26T21:16:18Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "J4ve/python-3d-wireframe-renderer",
@@ -817,7 +635,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-23T14:20:06Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "JamsusMaximus/trainingpeaks-mcp",
@@ -833,7 +651,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-23T16:05:45Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "JasperZhang121/Vaults",
@@ -862,7 +680,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-26T19:39:07.702Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "JetBrains/thinkrail",
@@ -891,8 +709,8 @@
     "createdAt": "2016-01-21T16:05:54Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-26T21:05:29Z",
-    "retryCount": 3
+    "ts": "2026-10-27T08:43:52Z",
+    "retryCount": 4
   },
   {
     "repo": "kelsierbot/GrimoireTUI",
@@ -908,7 +726,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-28T02:11:17Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Khalidabdi1/design-ai",
@@ -924,7 +742,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-28T00:22:27Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "kvcache-ai/ktransformers",
@@ -938,7 +756,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-13T22:08:09.499Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "KWAMIVAVA/RefCheck",
@@ -954,7 +772,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-12T04:37:48Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "kyouccc/jobready-career-assistant",
@@ -970,23 +788,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-29T04:52:43Z",
-    "retryCount": 4
-  },
-  {
-    "repo": "learningeconomy/LearnCard",
-    "desc": "✨ Open-source lifelong learning passport that empowers learners to collect, own, and share their skills and experiences. 💖",
-    "stars": 69,
-    "language": "TypeScript",
-    "topics": [
-      "learning"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2022-04-27T05:19:45Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-26T11:59:09Z",
-    "retryCount": 6
+    "retryCount": 5
   },
   {
     "repo": "louboecker/railboard",
@@ -1001,8 +803,8 @@
     "createdAt": "2022-10-26T13:58:45Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-27T02:13:46Z",
-    "retryCount": 1
+    "ts": "2026-10-27T08:45:04Z",
+    "retryCount": 2
   },
   {
     "repo": "maplexrain/unyra",
@@ -1050,7 +852,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-03T10:45:34Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "Mohsen6210/dasd-thinking",
@@ -1066,7 +868,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-14T07:05:05Z",
-    "retryCount": 5
+    "retryCount": 1
   },
   {
     "repo": "Mullassery/PyInterviewBot",
@@ -1098,7 +900,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-03T23:20:54Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "nightly-labs/openbot",
@@ -1127,7 +929,20 @@
     "createdAt": "2014-09-17T06:00:59Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-27T04:21:11Z",
+    "ts": "2026-10-27T05:22:19Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "NVIDIA/auto-ontology",
+    "desc": "Auto Ontology is a Python framework for building semantic, graph-based reasoning layers over data. It enables deterministic query generation, better context retrieval, and more explainable AI for LLM and agent workflows.",
+    "stars": 242,
+    "language": "Python",
+    "topics": [],
+    "source": "trending",
+    "starGrowth": 75,
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-27T11:52:13.901Z",
     "retryCount": 1
   },
   {
@@ -1144,7 +959,65 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-26T14:29:03Z",
-    "retryCount": 5
+    "retryCount": 6
+  },
+  {
+    "repo": "QCYTSN/dsh-dafeiyu",
+    "desc": "Desktop-native BigFish companion for DeepSeek Harness — real Agent status, always on top on Windows.",
+    "stars": 523,
+    "language": "JavaScript",
+    "topics": [],
+    "source": "trending",
+    "starGrowth": 17,
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-27T11:52:13.901Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "Roebou1989/create-and-mint-nft-collection",
+    "desc": "This code repo has been created to help NFT enthusiasts to create their generative art via the Hashlips generative art codebase and then to utilize the NFTPort API service to upload their NFT files and finally mint them.",
+    "stars": 112,
+    "language": "JavaScript",
+    "topics": [
+      "generative-art"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2022-01-01T08:45:05Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-27T11:04:47Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "ShayanAbbas1/dbdelve",
+    "desc": "Fast and lightweight DB Client made in Rust and GPUI.",
+    "stars": 549,
+    "language": "Rust",
+    "topics": [],
+    "source": "trending",
+    "starGrowth": 27,
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-27T11:52:13.901Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "shotstack/shotstack-sdk-python",
+    "desc": "Python SDK for Shotstack, the cloud video editing API",
+    "stars": 27,
+    "language": "Python",
+    "topics": [
+      "video-editor"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2022-05-03T03:04:40Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-27T02:48:07Z",
+    "retryCount": 1
   },
   {
     "repo": "Sirero98/az-104-cheatsheets",
@@ -1160,7 +1033,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-14T11:24:38Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "Stewie-pixel/claude-with-leetcode",
@@ -1176,6 +1049,35 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-26T02:02:25Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "togg53192-cmd/jailbreaks",
+    "desc": "LIST OF ALL MY JAILBREAKS",
+    "stars": 4856,
+    "language": "",
+    "topics": [],
+    "source": "trending",
+    "starGrowth": 890,
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-27T11:52:13.901Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "tomas-bear/OpenExam-USYD",
+    "desc": "OpenExam (openexam.tech) — USYD past papers, practice & cheat sheets. Free 26s1 PDFs archived here.",
+    "stars": 7,
+    "language": "",
+    "topics": [
+      "cheatsheet"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-05-18T03:37:13Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-27T06:42:13Z",
     "retryCount": 1
   },
   {
@@ -1192,7 +1094,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-26T11:28:51Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "vivekvar-dl/wingman-AI",
@@ -1208,7 +1110,7 @@
     "silentRounds": 14,
     "bigbros": [],
     "ts": "2026-10-13T15:58:16Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "vostride/agent-qa",
@@ -1224,7 +1126,23 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-24T19:08:29Z",
-    "retryCount": 5
+    "retryCount": 6
+  },
+  {
+    "repo": "wirehack7/Gameboy-Tracker",
+    "desc": "Browser-based Game Boy & Game Boy Color music tracker with cycle-accurate APU emulation, works on desktop and mobile. Export to ROM, GBS, VGM, GBDK C arrays, XM/MOD, WAV/FLAC/Opus, stems and video.",
+    "stars": 0,
+    "language": "TypeScript",
+    "topics": [
+      "demoscene"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-27T07:23:25Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-27T10:58:29Z",
+    "retryCount": 1
   },
   {
     "repo": "Woyten/tune",
@@ -1240,7 +1158,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-26T22:42:02Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "xixu-me/awesome-persona-distill-skills",
@@ -1256,7 +1174,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-18T19:09:21Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "xms0g/cubicLife",
@@ -1275,6 +1193,22 @@
     "retryCount": 1
   },
   {
+    "repo": "xyproto/monkeyjump",
+    "desc": ":monkey: Minimalistic GUI for playing Go with GNU Go",
+    "stars": 17,
+    "language": "Python",
+    "topics": [
+      "pygame"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2013-08-01T20:32:56Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-27T09:25:31Z",
+    "retryCount": 1
+  },
+  {
     "repo": "ybouane/flashraw",
     "desc": "Fast, memory-safe camera RAW decoder in Rust: ~40 formats, SIMD, GPU, WebAssembly, ICC colour management. CLI, C, C++, Python and JavaScript bindings.",
     "stars": 31,
@@ -1288,7 +1222,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-25T13:45:41Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "yeasy/ai_beginner_guide",
@@ -1320,7 +1254,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-26T11:31:16Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "yoyiyi/SoleilNotes",
@@ -1337,6 +1271,22 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-24T17:03:13Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "yuna78/cn-k12-textbook-skills",
+    "desc": "中国中小学教材 AI 技能系列：从国家中小学智慧教育平台下载电子课本 → 拆成带页码的知识库 → 只回答有出处的问答（引用硬校验）。Claude Code / Codex / WorkBuddy 均可，MIT。",
+    "stars": 1,
+    "language": "Python",
+    "topics": [
+      "textbook"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-26T13:31:48Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-27T03:06:57Z",
     "retryCount": 1
   }
 ]
