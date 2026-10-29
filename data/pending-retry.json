@@ -62,6 +62,22 @@
     "retryCount": 1
   },
   {
+    "repo": "ajxs/yamaha_dx7_rom_disassembly",
+    "desc": "Yamaha DX7 Firmware ROM annotated disassembly.",
+    "stars": 83,
+    "language": "Assembly",
+    "topics": [
+      "synthesizer"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2021-12-07T06:57:43Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-24T02:38:36Z",
+    "retryCount": 1
+  },
+  {
     "repo": "alexkroman/tiny-audio",
     "desc": "A speech-to-text system you can train for $25. A frozen speech encoder and a Qwen LLM joined by a small trained projector, with word timestamps, speaker diarization, a batched HTTP server, a live demo, and a free course.",
     "stars": 176,
@@ -78,19 +94,19 @@
     "retryCount": 1
   },
   {
-    "repo": "amwhoi/ascii-bin",
-    "desc": "Plain-text ASCII art database, comes with single-file HTML tools for tagging and decorating.",
-    "stars": 11,
-    "language": "HTML",
+    "repo": "andreiramani/pgvector_pgsql_windows",
+    "desc": "pgvector for PostgreSQL Windows (native compiled in Microsoft Windows environment)",
+    "stars": 230,
+    "language": "",
     "topics": [
-      "ascii-art"
+      "vector-db"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2026-10-12T13:08:15Z",
-    "silentRounds": 1,
+    "createdAt": "2024-08-05T06:50:29Z",
+    "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-20T18:21:08Z",
+    "ts": "2026-10-21T06:48:07Z",
     "retryCount": 1
   },
   {
@@ -107,7 +123,7 @@
     "silentRounds": 5,
     "bigbros": [],
     "ts": "2026-10-26T13:23:27Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "anomalyco/hex",
@@ -151,7 +167,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-22T18:21:12Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "charolettebradford1361985svo-bit/stable-sprite-animation",
@@ -167,7 +183,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-25T02:36:16Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "chiarabis/pixel-pet",
@@ -183,7 +199,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-28T15:28:19Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "chr15m/rogule.com",
@@ -215,7 +231,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-27T12:12:01Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "cmaranes/coreink-tamagotchi",
@@ -231,7 +247,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-26T15:43:46Z",
-    "retryCount": 2
+    "retryCount": 3
+  },
+  {
+    "repo": "conormkelly/reamo",
+    "desc": "Phone/tablet remote control for REAPER DAW — mixer, timeline, recording, MIDI instruments, audio streaming. Runs in any browser via WebSocket.",
+    "stars": 49,
+    "language": "TypeScript",
+    "topics": [
+      "music-production"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-01-19T20:31:35Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-28T08:39:13Z",
+    "retryCount": 1
   },
   {
     "repo": "DataTalksClub/open-source-llm-zoomcamp",
@@ -246,8 +278,8 @@
     "createdAt": "2025-05-13T10:54:34Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-10-26T06:49:55Z",
-    "retryCount": 1
+    "ts": "2026-10-29T11:04:00Z",
+    "retryCount": 2
   },
   {
     "repo": "Deibler/openskycam",
@@ -263,7 +295,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-28T14:06:49Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "dgerosa/astrostatistics_bicocca_2024",
@@ -279,7 +311,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-28T17:09:07Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "dgerosa/astrostatistics_bicocca_2025",
@@ -295,7 +327,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-28T17:08:22Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "dipakkr/awesome-ai-engineering",
@@ -312,6 +344,38 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T16:19:25Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "divagr18/qwenputer",
+    "desc": "A computer, compiled into the weights of a language model. An exact CPU inside Qwen3.5-4B, with Gated DeltaNet state as RAM.",
+    "stars": 183,
+    "language": "Python",
+    "topics": [
+      "transformers"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-19T11:48:10Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-23T09:13:55Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "EdwardAThomson/Roguelike",
+    "desc": "A Roguelike game with pseudo-infinite extent",
+    "stars": 2,
+    "language": "JavaScript",
+    "topics": [
+      "roguelike"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2025-07-04T16:21:30Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-29T11:41:46Z",
     "retryCount": 1
   },
   {
@@ -328,7 +392,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-27T17:05:05Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "EricJujianZou/rederive",
@@ -344,7 +408,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-25T20:29:45Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "exam-data/NETEMVocabulary",
@@ -360,7 +424,7 @@
     "silentRounds": 7,
     "bigbros": [],
     "ts": "2026-10-22T10:45:05Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "factory797/quadplay",
@@ -376,7 +440,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-25T21:02:34Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "feimacode/open-design-agent-kit",
@@ -392,7 +456,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-28T10:31:55Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "FelixdelasPozas/TrayWeather",
@@ -408,7 +472,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-28T15:32:20Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "flizzywine/dsh-tavern",
@@ -422,7 +486,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T19:34:18.850Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "fuhuonvshen/EasyWork-Interview",
@@ -454,7 +518,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-28T16:29:56Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "glenwrhodes/OpenDaw",
@@ -470,7 +534,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-29T02:13:42Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "Gnt191612/snowhorn-gpt",
@@ -486,7 +550,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-11T15:32:39Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "GTKottman/mortiflix-music-oss",
@@ -502,7 +566,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-27T16:47:45Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "hanliang97/MatrixMedia",
@@ -516,7 +580,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-27T11:52:13.901Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "haplollc/ClayGlobe",
@@ -532,7 +596,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-28T23:21:57Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "haplollc/MuscleMapKit",
@@ -548,7 +612,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-28T23:21:51Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "harrisliangsu/ai-agent-engineer-handbook",
@@ -563,8 +627,8 @@
     "createdAt": "2026-05-03T04:09:45Z",
     "silentRounds": 6,
     "bigbros": [],
-    "ts": "2026-10-23T09:29:45Z",
-    "retryCount": 2
+    "ts": "2026-10-29T04:29:26Z",
+    "retryCount": 1
   },
   {
     "repo": "HasoSchno70/Nachtflug",
@@ -580,7 +644,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-28T15:47:22Z",
-    "retryCount": 2
+    "retryCount": 3
+  },
+  {
+    "repo": "heise3/ExtremaRank",
+    "desc": "Native R and Python sample-deletion robustness for omics: candidate certificates, minimum deletion bounds, Bioconductor model refits and donor-level pseudobulk",
+    "stars": 283,
+    "language": "HTML",
+    "topics": [
+      "bioinformatics"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-03T03:53:54Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-07T02:46:25Z",
+    "retryCount": 1
   },
   {
     "repo": "helloianneo/awesome-claude-code-skills",
@@ -596,7 +676,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-27T01:50:46Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "higgsfield-ai/skills",
@@ -624,6 +704,19 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-27T11:52:13.901Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "hydro-project/infinity",
+    "desc": "An agent runtime and tool protocol for principled agent concurrency",
+    "stars": 339,
+    "language": "Rust",
+    "topics": [],
+    "source": "trending",
+    "starGrowth": 162,
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-29T12:36:41.468Z",
     "retryCount": 1
   },
   {
@@ -655,8 +748,8 @@
     "createdAt": "2026-10-02T17:45:55Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-10-27T11:44:38Z",
-    "retryCount": 4
+    "ts": "2026-10-29T12:14:30Z",
+    "retryCount": 5
   },
   {
     "repo": "JasGujral/Quantsbin",
@@ -672,7 +765,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-28T07:52:45Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "JasperZhang121/Vaults",
@@ -688,7 +781,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-24T10:09:26Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "jellyfin/jellyfin-webos",
@@ -704,7 +797,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-28T00:08:29Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "JetBrains/thinkrail",
@@ -734,7 +827,23 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-28T00:21:24Z",
-    "retryCount": 4
+    "retryCount": 5
+  },
+  {
+    "repo": "jtprogru/interview-task",
+    "desc": "Задачки с собеседований, LeetCode, CodeWars (решаю их на Python)",
+    "stars": 9,
+    "language": "Python",
+    "topics": [
+      "interview"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2021-10-27T13:41:21Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-29T09:19:56Z",
+    "retryCount": 1
   },
   {
     "repo": "Khalidabdi1/design-ai",
@@ -750,7 +859,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-09-28T00:22:27Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "kvcache-ai/ktransformers",
@@ -780,7 +889,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-09-29T04:52:43Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "langchain-ai/design-agent",
@@ -796,7 +905,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-27T17:24:47Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "Liyuk/Interview-Book",
@@ -812,7 +921,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-28T19:37:01Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "luskaner/ageServer",
@@ -831,6 +940,22 @@
     "retryCount": 1
   },
   {
+    "repo": "mahbuba01/Everything-about-Job-Interviews",
+    "desc": "Product & Service-based Company: What's the Difference and How to Prepare for Interviews",
+    "stars": 60,
+    "language": "",
+    "topics": [
+      "interview"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2024-06-25T10:09:01Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-29T11:02:50Z",
+    "retryCount": 1
+  },
+  {
     "repo": "Mason-Levyy/myfitnesspal-mcp",
     "desc": "MCP server for MyFitnessPal to log meals, search foods with macros, track trends from Claude or any MCP client",
     "stars": 27,
@@ -844,7 +969,7 @@
     "silentRounds": 8,
     "bigbros": [],
     "ts": "2026-10-28T05:29:56Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "mehmetkahya0/temp-mail",
@@ -860,7 +985,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-28T11:36:10Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "MelihGulum/Comprehensive-Data-Science-AI-Project-Portfolio",
@@ -876,7 +1001,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-03T10:45:34Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "meta/docusaurus",
@@ -892,23 +1017,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-23T20:44:37Z",
-    "retryCount": 4
-  },
-  {
-    "repo": "meta/rocksdb",
-    "desc": "A library that provides an embeddable, persistent key-value store for fast storage.",
-    "stars": 32233,
-    "language": "C++",
-    "topics": [
-      "database"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2012-11-30T06:16:18Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-28T23:29:10Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "Mohsen6210/dasd-thinking",
@@ -924,7 +1033,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-14T07:05:05Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "mwood77/ws4kp-international",
@@ -940,7 +1049,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-27T12:55:48Z",
-    "retryCount": 5
+    "retryCount": 1
   },
   {
     "repo": "naheedroomy/InterviewOS",
@@ -956,7 +1065,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-03T23:20:54Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "nightly-labs/openbot",
@@ -986,6 +1095,67 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-29T04:41:33Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "NVIDIA/cuda-rust",
+    "desc": "NVIDIA's CUDA platform for Rust. Host runtime crates plus Tile (cutile-rs) and SIMT (cuda-oxide) kernel programming models in idiomatic Rust.",
+    "stars": 3868,
+    "language": "Rust",
+    "topics": [],
+    "source": "trending",
+    "starGrowth": 32,
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-29T12:36:41.468Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "odlgroup/odl",
+    "desc": "Operator Discretization Library  https://odl.readthedocs.io/",
+    "stars": 435,
+    "language": "Python",
+    "topics": [
+      "mathematics"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2015-11-05T07:57:55Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-29T09:38:30Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "olavolav/uniplot",
+    "desc": "Lightweight plotting to the terminal. 4x resolution via Unicode.",
+    "stars": 460,
+    "language": "Python",
+    "topics": [
+      "ascii-art"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2020-08-15T12:21:10Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-29T08:23:21Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "Oriole-FDU/Wisepen",
+    "desc": "面向高校教学、学习与科研的开源知识与 AI Agent 协作平台 | Open-source platform for education and research",
+    "stars": 122,
+    "language": "TypeScript",
+    "topics": [
+      "knowledge-management"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-05-12T08:04:59Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-29T07:43:03Z",
     "retryCount": 1
   },
   {
@@ -1001,23 +1171,7 @@
     "createdAt": "2026-10-23T19:43:35Z",
     "silentRounds": 2,
     "bigbros": [],
-    "ts": "2026-10-26T14:29:03Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "phiat/rpg-quint",
-    "desc": "Formal RPG system specs in Quint with model-based testing for Odin implementations",
-    "stars": 4,
-    "language": "Odin",
-    "topics": [
-      "raylib"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-04-11T12:11:40Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-28T00:09:16Z",
+    "ts": "2026-10-29T08:49:16Z",
     "retryCount": 1
   },
   {
@@ -1033,7 +1187,7 @@
     "createdAt": "2026-10-24T05:35:47Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-29T04:59:28Z",
+    "ts": "2026-10-29T12:24:37Z",
     "retryCount": 1
   },
   {
@@ -1069,22 +1223,6 @@
     "retryCount": 1
   },
   {
-    "repo": "sharmao07/Animatto",
-    "desc": "Animatto 🐾 Anime inspired interactive desktop companions for macOS. Built with Swift, SwiftUI, AppKit, and Apple Vision.",
-    "stars": 1,
-    "language": "Swift",
-    "topics": [
-      "virtual-pet"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-10-24T07:04:25Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-28T19:50:58Z",
-    "retryCount": 4
-  },
-  {
     "repo": "shengdabai/chinese-textbook-generator",
     "desc": "AI pipeline + multi-LLM specs for generating HSK-aligned, theme-based Chinese textbooks — vocab, dialogues, grammar, print-ready PDFs.",
     "stars": 1,
@@ -1098,6 +1236,22 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-28T09:17:23Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "Sirero98/az-305-cheatsheets",
+    "desc": "Cheatsheets para preparar la certificación AZ-305 (Azure Solutions Architect Expert), en español e inglés",
+    "stars": 4,
+    "language": "",
+    "topics": [
+      "cheatsheet"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-13T18:29:43Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-13T18:31:44Z",
     "retryCount": 1
   },
   {
@@ -1130,7 +1284,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-26T11:28:40Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "togg53192-cmd/jailbreaks",
@@ -1207,23 +1361,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-28T21:00:54Z",
-    "retryCount": 4
-  },
-  {
-    "repo": "wirehack7/Gameboy-Tracker",
-    "desc": "Browser-based Game Boy & Game Boy Color music tracker with cycle-accurate APU emulation, works on desktop and mobile. Export to ROM, GBS, VGM, GBDK C arrays, XM/MOD, WAV/FLAC/Opus, stems and video.",
-    "stars": 0,
-    "language": "TypeScript",
-    "topics": [
-      "demoscene"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-10-27T07:23:25Z",
-    "silentRounds": 2,
-    "bigbros": [],
-    "ts": "2026-10-28T22:52:16Z",
-    "retryCount": 2
+    "retryCount": 5
   },
   {
     "repo": "wirehack7/SNES-tracker",
@@ -1239,7 +1377,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-27T19:47:13Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "workersio/breakscale",
@@ -1271,7 +1409,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-26T22:42:02Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "xiaolai/the-craft-of-selfteaching",
@@ -1284,7 +1422,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-28T16:32:02.188Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "xreamm1/the-browsing-of-isaac",
@@ -1300,23 +1438,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-20T07:53:00Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "yibie/awesome-jev",
-    "desc": "A curated list of public projects, integrations, and discussions built on Jev — TypeSafe AI's System One model for typed decisions.",
-    "stars": 2496,
-    "language": "Python",
-    "topics": [
-      "awesome"
-    ],
-    "source": "search",
-    "starGrowth": 14,
-    "createdAt": "2026-09-17T14:23:21Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-26T11:31:16Z",
-    "retryCount": 6
+    "retryCount": 2
   },
   {
     "repo": "yoyiyi/SoleilNotes",
@@ -1349,6 +1471,6 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-15T04:19:38Z",
-    "retryCount": 2
+    "retryCount": 3
   }
 ]
