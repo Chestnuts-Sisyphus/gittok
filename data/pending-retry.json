@@ -1,5 +1,21 @@
 [
   {
+    "repo": "aaryavvatts-lab/south-asian-culture-textbook",
+    "desc": "Roots & Rivers: a free, interactive textbook on South Asian cultures, traditions, languages and countries for high school students.",
+    "stars": 1,
+    "language": "Python",
+    "topics": [
+      "textbook"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-22T22:56:36Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-23T02:59:26Z",
+    "retryCount": 1
+  },
+  {
     "repo": "adobe/skills",
     "desc": "Adobe Skills for Agents",
     "stars": 316,
@@ -30,20 +46,36 @@
     "retryCount": 1
   },
   {
-    "repo": "ajxs/yamaha_dx7_rom_disassembly",
-    "desc": "Yamaha DX7 Firmware ROM annotated disassembly.",
-    "stars": 83,
-    "language": "Assembly",
+    "repo": "Aiseam/RM38",
+    "desc": "A web version similar to the classic Reason Studio Rebirth 338, this version is quite faithful to the original with some improvements!",
+    "stars": 9,
+    "language": "HTML",
     "topics": [
-      "synthesizer"
+      "music-production"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2021-12-07T06:57:43Z",
-    "silentRounds": 1,
+    "createdAt": "2026-10-22T17:01:43Z",
+    "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-24T02:38:36Z",
-    "retryCount": 6
+    "ts": "2026-10-25T18:20:28Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "alexkroman/tiny-audio",
+    "desc": "A speech-to-text system you can train for $25. A frozen speech encoder and a Qwen LLM joined by a small trained projector, with word timestamps, speaker diarization, a batched HTTP server, a live demo, and a free course.",
+    "stars": 176,
+    "language": "Python",
+    "topics": [
+      "transformers"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2025-10-14T02:20:00Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-23T03:31:22Z",
+    "retryCount": 1
   },
   {
     "repo": "amwhoi/ascii-bin",
@@ -62,22 +94,6 @@
     "retryCount": 1
   },
   {
-    "repo": "andreiramani/pgvector_pgsql_windows",
-    "desc": "pgvector for PostgreSQL Windows (native compiled in Microsoft Windows environment)",
-    "stars": 230,
-    "language": "",
-    "topics": [
-      "vector-db"
-    ],
-    "source": "search",
-    "starGrowth": 2,
-    "createdAt": "2024-08-05T06:50:29Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-21T06:48:07Z",
-    "retryCount": 6
-  },
-  {
     "repo": "AndrianLeah/ai-remove-lightcraft",
     "desc": "Remove objects and people from RAW photos with local AI, inside LightCraft (unofficial plug-in): SAM 3 selection, LaMa / SDXL / FLUX fills, written back into a RAW DNG.",
     "stars": 30,
@@ -91,7 +107,7 @@
     "silentRounds": 5,
     "bigbros": [],
     "ts": "2026-10-26T13:23:27Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "anomalyco/hex",
@@ -122,22 +138,6 @@
     "retryCount": 1
   },
   {
-    "repo": "blixvip/MotionClone",
-    "desc": "Rebuild a reference video as an editable HyperFrames project, compare the match against the original, and export an MP4.",
-    "stars": 525,
-    "language": "Python",
-    "topics": [
-      "creative-coding"
-    ],
-    "source": "search",
-    "starGrowth": 7,
-    "createdAt": "2026-09-10T02:29:35Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-27T01:00:01Z",
-    "retryCount": 1
-  },
-  {
     "repo": "catchouli/better_tactics",
     "desc": "Chess tactics trainer with spaced repetition",
     "stars": 39,
@@ -151,7 +151,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-22T18:21:12Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "charolettebradford1361985svo-bit/stable-sprite-animation",
@@ -167,7 +167,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-25T02:36:16Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "chiarabis/pixel-pet",
@@ -183,7 +183,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-28T15:28:19Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "chr15m/rogule.com",
@@ -215,7 +215,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-27T12:12:01Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "cmaranes/coreink-tamagotchi",
@@ -231,23 +231,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-26T15:43:46Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "conormkelly/reamo",
-    "desc": "Phone/tablet remote control for REAPER DAW — mixer, timeline, recording, MIDI instruments, audio streaming. Runs in any browser via WebSocket.",
-    "stars": 49,
-    "language": "TypeScript",
-    "topics": [
-      "music-production"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-01-19T20:31:35Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-28T08:39:13Z",
-    "retryCount": 6
+    "retryCount": 2
   },
   {
     "repo": "DataTalksClub/open-source-llm-zoomcamp",
@@ -279,23 +263,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-28T14:06:49Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "devlikemasta/bureau-des-agents",
-    "desc": "Tu dis ce que tu veux, une équipe de vrais agents Claude Code se met au travail sous tes yeux, dans un bureau en pixel art. Gratuit et open source.",
-    "stars": 51,
-    "language": "TypeScript",
-    "topics": [
-      "pixel-art"
-    ],
-    "source": "search",
-    "starGrowth": 2,
-    "createdAt": "2026-10-14T20:13:40Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-14T20:13:59Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "dgerosa/astrostatistics_bicocca_2024",
@@ -311,7 +279,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-28T17:09:07Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "dgerosa/astrostatistics_bicocca_2025",
@@ -327,7 +295,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-28T17:08:22Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "dipakkr/awesome-ai-engineering",
@@ -376,7 +344,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-25T20:29:45Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "exam-data/NETEMVocabulary",
@@ -392,7 +360,7 @@
     "silentRounds": 7,
     "bigbros": [],
     "ts": "2026-10-22T10:45:05Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "factory797/quadplay",
@@ -408,7 +376,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-25T21:02:34Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "feimacode/open-design-agent-kit",
@@ -424,7 +392,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-28T10:31:55Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "FelixdelasPozas/TrayWeather",
@@ -440,7 +408,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-28T15:32:20Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "flizzywine/dsh-tavern",
@@ -454,7 +422,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T19:34:18.850Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "fuhuonvshen/EasyWork-Interview",
@@ -486,7 +454,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-28T16:29:56Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "glenwrhodes/OpenDaw",
@@ -501,8 +469,8 @@
     "createdAt": "2026-03-12T22:24:44Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-28T23:43:00Z",
-    "retryCount": 2
+    "ts": "2026-10-29T02:13:42Z",
+    "retryCount": 3
   },
   {
     "repo": "Gnt191612/snowhorn-gpt",
@@ -518,7 +486,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-11T15:32:39Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "GTKottman/mortiflix-music-oss",
@@ -534,7 +502,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-27T16:47:45Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "hanliang97/MatrixMedia",
@@ -548,7 +516,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-27T11:52:13.901Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "haplollc/ClayGlobe",
@@ -564,7 +532,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-28T23:21:57Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "haplollc/MuscleMapKit",
@@ -580,7 +548,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-28T23:21:51Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "harrisliangsu/ai-agent-engineer-handbook",
@@ -596,7 +564,7 @@
     "silentRounds": 6,
     "bigbros": [],
     "ts": "2026-10-23T09:29:45Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "HasoSchno70/Nachtflug",
@@ -612,7 +580,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-28T15:47:22Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "helloianneo/awesome-claude-code-skills",
@@ -628,7 +596,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-27T01:50:46Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "higgsfield-ai/skills",
@@ -642,7 +610,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-26T19:39:07.702Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "HKUDS/AutoSwarm",
@@ -656,23 +624,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-27T11:52:13.901Z",
-    "retryCount": 3
-  },
-  {
-    "repo": "HRuiCcc/RuiC-pixel-explainer",
-    "desc": "像素游戏化讲解片生成产线（Agent Skill）：给一段口播文案，产出 1920×1080/30fps 的像素 RPG 讲解短片。角色分两条路线——有生图用参考图生成 4×4 透明动作表与半身表情，没生图直接代码绘制半身＋Q 版小人；章节轨 + 单行字幕 + 语义组件，逐帧导出、逐帧可复现",
-    "stars": 46,
-    "language": "JavaScript",
-    "topics": [
-      "pixel-art"
-    ],
-    "source": "search",
-    "starGrowth": 6,
-    "createdAt": "2026-10-09T03:01:10Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-26T03:36:24Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "i365dev/awesome-seo",
@@ -704,7 +656,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-27T11:44:38Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "JasGujral/Quantsbin",
@@ -720,7 +672,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-28T07:52:45Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "JasperZhang121/Vaults",
@@ -752,7 +704,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-28T00:08:29Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "JetBrains/thinkrail",
@@ -769,22 +721,6 @@
     "retryCount": 1
   },
   {
-    "repo": "josueBarretogit/manga-tui",
-    "desc": "Terminal-based manga reader and downloader with image rendering support ",
-    "stars": 952,
-    "language": "Rust",
-    "topics": [
-      "anime"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2024-06-10T23:02:19Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-28T16:42:07Z",
-    "retryCount": 3
-  },
-  {
     "repo": "josw123/dart-fss",
     "desc": "한국 금융감독원에서 운영하는 다트(Dart) 시스템 크롤링을 위한 라이브러리",
     "stars": 383,
@@ -798,7 +734,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-28T00:21:24Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "Khalidabdi1/design-ai",
@@ -814,7 +750,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-09-28T00:22:27Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "kvcache-ai/ktransformers",
@@ -844,7 +780,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-09-29T04:52:43Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "langchain-ai/design-agent",
@@ -860,7 +796,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-27T17:24:47Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "Liyuk/Interview-Book",
@@ -876,7 +812,23 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-28T19:37:01Z",
-    "retryCount": 3
+    "retryCount": 4
+  },
+  {
+    "repo": "luskaner/ageServer",
+    "desc": "Web Server (and its launcher) for AoE 1, 2, 3 (all DE), AoE 4 and AoM: RT supporting offline multiplayer, fully cross-platform and portable",
+    "stars": 751,
+    "language": "Go",
+    "topics": [
+      "emulator"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2024-05-02T01:35:45Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-29T01:03:48Z",
+    "retryCount": 1
   },
   {
     "repo": "Mason-Levyy/myfitnesspal-mcp",
@@ -892,7 +844,7 @@
     "silentRounds": 8,
     "bigbros": [],
     "ts": "2026-10-28T05:29:56Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "mehmetkahya0/temp-mail",
@@ -924,7 +876,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-03T10:45:34Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "meta/docusaurus",
@@ -940,7 +892,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-23T20:44:37Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "meta/rocksdb",
@@ -956,23 +908,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-28T23:29:10Z",
-    "retryCount": 3
-  },
-  {
-    "repo": "MichaelCurrin/dev-cheatsheets",
-    "desc": "A collection of code snippets and CLI guides for quick and easy reference while coding",
-    "stars": 105,
-    "language": "Makefile",
-    "topics": [
-      "cheatsheet"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2019-12-11T11:30:55Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-27T15:30:21Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "Mohsen6210/dasd-thinking",
@@ -988,23 +924,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-14T07:05:05Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "Mullassery/PyInterviewBot",
-    "desc": "Voice-first AI interview platform: Rust WebSocket audio gateway, Python ASR/LLM/TTS evidence engine, and TypeScript client. Candidates converse by voice; the system transcribes, extracts evidence, and adapts.",
-    "stars": 1,
-    "language": "Rust",
-    "topics": [
-      "interview"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-09-18T20:59:28Z",
-    "silentRounds": 2,
-    "bigbros": [],
-    "ts": "2026-10-26T11:08:53Z",
-    "retryCount": 6
+    "retryCount": 3
   },
   {
     "repo": "mwood77/ws4kp-international",
@@ -1020,7 +940,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-27T12:55:48Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "naheedroomy/InterviewOS",
@@ -1036,7 +956,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-03T23:20:54Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "nightly-labs/openbot",
@@ -1050,6 +970,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-25T13:05:28.531Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "NovusGFX/retro-design-system",
+    "desc": "53 retro HTML/CSS UI themes for AI-assisted frontend development. Windows 95, CRT, vaporwave, DOS, arcade, mainframe, and more.",
+    "stars": 47,
+    "language": "HTML",
+    "topics": [
+      "pixel-art"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-04-23T03:11:32Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-29T04:41:33Z",
     "retryCount": 1
   },
   {
@@ -1082,7 +1018,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-28T00:09:16Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "rddmwmddr/android-ad-cleaner",
@@ -1097,7 +1033,7 @@
     "createdAt": "2026-10-24T05:35:47Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-28T06:13:08Z",
+    "ts": "2026-10-29T04:59:28Z",
     "retryCount": 1
   },
   {
@@ -1114,7 +1050,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-28T11:55:23Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "roboninecom/SO-ARM102",
@@ -1130,7 +1066,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-28T20:50:13Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "sharmao07/Animatto",
@@ -1146,7 +1082,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-28T19:50:58Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "shengdabai/chinese-textbook-generator",
@@ -1178,7 +1114,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-27T15:09:33Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "systemsssx/systemo-ebook",
@@ -1194,7 +1130,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-26T11:28:40Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "togg53192-cmd/jailbreaks",
@@ -1239,7 +1175,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-28T06:48:22Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "vivekvar-dl/wingman-AI",
@@ -1255,7 +1191,7 @@
     "silentRounds": 16,
     "bigbros": [],
     "ts": "2026-10-13T15:58:16Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "vostride/agent-qa",
@@ -1271,7 +1207,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-28T21:00:54Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "wirehack7/Gameboy-Tracker",
@@ -1287,6 +1223,22 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-28T22:52:16Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "wirehack7/SNES-tracker",
+    "desc": "SNES music tracker in the browser: an emulated S-DSP with 8 voices, BRR samples, ADSR and echo. Export to SPC, XM, WAV, MP3 and MP4. Works on desktop and phone, offline as a PWA.",
+    "stars": 0,
+    "language": "TypeScript",
+    "topics": [
+      "demoscene"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-27T11:56:53Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-27T19:47:13Z",
     "retryCount": 1
   },
   {
@@ -1303,7 +1255,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-28T18:00:30Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "Woyten/tune",
@@ -1319,7 +1271,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-26T22:42:02Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "xiaolai/the-craft-of-selfteaching",
@@ -1333,22 +1285,6 @@
     "bigbros": [],
     "ts": "2026-10-28T16:32:02.188Z",
     "retryCount": 1
-  },
-  {
-    "repo": "xms0g/cubicLife",
-    "desc": "Conway's Game of Life in 3D",
-    "stars": 119,
-    "language": "C++",
-    "topics": [
-      "mathematics"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2024-01-18T10:59:20Z",
-    "silentRounds": 11,
-    "bigbros": [],
-    "ts": "2026-10-18T19:42:19Z",
-    "retryCount": 6
   },
   {
     "repo": "xreamm1/the-browsing-of-isaac",
@@ -1380,7 +1316,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-26T11:31:16Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "yoyiyi/SoleilNotes",
@@ -1400,22 +1336,6 @@
     "retryCount": 1
   },
   {
-    "repo": "yuna78/cn-k12-textbook-skills",
-    "desc": "中国中小学教材 AI 技能系列：从国家中小学智慧教育平台下载电子课本 → 拆成带页码的知识库 → 只回答有出处的问答（引用硬校验）。Claude Code / Codex / WorkBuddy 均可，MIT。",
-    "stars": 1,
-    "language": "Python",
-    "topics": [
-      "textbook"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-10-26T13:31:48Z",
-    "silentRounds": 2,
-    "bigbros": [],
-    "ts": "2026-10-27T03:06:57Z",
-    "retryCount": 6
-  },
-  {
     "repo": "yuu-eguci/minimap-try",
     "desc": "This app was made cuz I wanted to try to use pygame library.",
     "stars": 2,
@@ -1429,6 +1349,6 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-15T04:19:38Z",
-    "retryCount": 1
+    "retryCount": 2
   }
 ]
