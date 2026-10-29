@@ -1,21 +1,5 @@
 [
   {
-    "repo": "aaryavvatts-lab/south-asian-culture-textbook",
-    "desc": "Roots & Rivers: a free, interactive textbook on South Asian cultures, traditions, languages and countries for high school students.",
-    "stars": 1,
-    "language": "Python",
-    "topics": [
-      "textbook"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-10-22T22:56:36Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-23T02:59:26Z",
-    "retryCount": 6
-  },
-  {
     "repo": "adobe/skills",
     "desc": "Adobe Skills for Agents",
     "stars": 316,
@@ -43,23 +27,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-26T11:55:56Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "Aiseam/RM38",
-    "desc": "A web version similar to the classic Reason Studio Rebirth 338, this version is quite faithful to the original with some improvements!",
-    "stars": 9,
-    "language": "HTML",
-    "topics": [
-      "music-production"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-10-22T17:01:43Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-25T18:20:28Z",
-    "retryCount": 6
+    "retryCount": 1
   },
   {
     "repo": "ajxs/yamaha_dx7_rom_disassembly",
@@ -75,7 +43,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-24T02:38:36Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "amwhoi/ascii-bin",
@@ -107,7 +75,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T06:48:07Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "AndrianLeah/ai-remove-lightcraft",
@@ -137,7 +105,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-23T11:18:07.745Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "Asymptote-Labs/agent-beacon",
@@ -167,7 +135,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-27T01:00:01Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "catchouli/better_tactics",
@@ -183,7 +151,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-22T18:21:12Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "charolettebradford1361985svo-bit/stable-sprite-animation",
@@ -199,7 +167,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-25T02:36:16Z",
-    "retryCount": 2
+    "retryCount": 3
+  },
+  {
+    "repo": "chiarabis/pixel-pet",
+    "desc": "Your cute pixel pet for desktop 🐈‍⬛",
+    "stars": 1,
+    "language": "JavaScript",
+    "topics": [
+      "virtual-pet"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-21T12:53:59Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-28T15:28:19Z",
+    "retryCount": 1
   },
   {
     "repo": "chr15m/rogule.com",
@@ -215,7 +199,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-28T06:59:51Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "Ckokoski/Fibb",
@@ -231,6 +215,22 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-27T12:12:01Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "cmaranes/coreink-tamagotchi",
+    "desc": "A Tamagotchi-style virtual pet for the M5Stack CoreInk e-ink board, with a PC simulator",
+    "stars": 1,
+    "language": "C++",
+    "topics": [
+      "virtual-pet"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-26T15:43:38Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-26T15:43:46Z",
     "retryCount": 1
   },
   {
@@ -247,23 +247,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-28T08:39:13Z",
-    "retryCount": 5
-  },
-  {
-    "repo": "cskwork/claude-code-workflow-cheatsheet",
-    "desc": "Turn Claude Code's companyAnnouncements into workflow muscle memory. Presets for Superpowers, ECC, OMCC, and custom harnesses.",
-    "stars": 1,
-    "language": "JavaScript",
-    "topics": [
-      "cheatsheet"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-04-04T07:19:58Z",
-    "silentRounds": 2,
-    "bigbros": [],
-    "ts": "2026-10-21T09:56:18Z",
-    "retryCount": 1
+    "retryCount": 6
   },
   {
     "repo": "DataTalksClub/open-source-llm-zoomcamp",
@@ -279,6 +263,22 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-26T06:49:55Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "Deibler/openskycam",
+    "desc": "Record a sky camera around the clock, keep the footage on your own disk, and find what flew past.",
+    "stars": 65,
+    "language": "TypeScript",
+    "topics": [
+      "astronomy"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-26T01:53:40Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-28T14:06:49Z",
     "retryCount": 1
   },
   {
@@ -311,7 +311,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-28T17:09:07Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "dgerosa/astrostatistics_bicocca_2025",
@@ -327,7 +327,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-28T17:08:22Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "dipakkr/awesome-ai-engineering",
@@ -344,7 +344,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T16:19:25Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "EmirErtorer/CyberUI.koplugin",
@@ -360,7 +360,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-27T17:05:05Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "EricJujianZou/rederive",
@@ -376,7 +376,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-25T20:29:45Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "exam-data/NETEMVocabulary",
@@ -392,7 +392,7 @@
     "silentRounds": 7,
     "bigbros": [],
     "ts": "2026-10-22T10:45:05Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "factory797/quadplay",
@@ -408,7 +408,23 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-25T21:02:34Z",
-    "retryCount": 2
+    "retryCount": 1
+  },
+  {
+    "repo": "feimacode/open-design-agent-kit",
+    "desc": "Pro-grade UI design built into the coding agent you already use — GitHub Copilot Chat, Claude Code, Codex, Cursor. 270+ design skills, 150+ brand design systems, 160+ remixable examples. No desktop app, no daemon, no API keys — just files in your repo.",
+    "stars": 229,
+    "language": "HTML",
+    "topics": [
+      "design"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-09-19T23:36:29Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-28T10:31:55Z",
+    "retryCount": 1
   },
   {
     "repo": "FelixdelasPozas/TrayWeather",
@@ -424,7 +440,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-28T15:32:20Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "flizzywine/dsh-tavern",
@@ -438,7 +454,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T19:34:18.850Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "fuhuonvshen/EasyWork-Interview",
@@ -470,7 +486,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-28T16:29:56Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "glenwrhodes/OpenDaw",
@@ -485,8 +501,8 @@
     "createdAt": "2026-03-12T22:24:44Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-28T21:42:31Z",
-    "retryCount": 1
+    "ts": "2026-10-28T23:43:00Z",
+    "retryCount": 2
   },
   {
     "repo": "Gnt191612/snowhorn-gpt",
@@ -502,7 +518,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-11T15:32:39Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "GTKottman/mortiflix-music-oss",
@@ -518,23 +534,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-27T16:47:45Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "Hainrixz/editor-pro-max",
-    "desc": "AI-powered video editor by @soyenriquerocha — built with Remotion + Claude Code. Describe videos in natural language, get professional MP4s. 25 components, 9 templates, 7 skills.",
-    "stars": 283,
-    "language": "TypeScript",
-    "topics": [
-      "video-editor"
-    ],
-    "source": "search",
-    "starGrowth": 2,
-    "createdAt": "2026-03-25T19:28:42Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-25T06:03:12Z",
-    "retryCount": 6
+    "retryCount": 3
   },
   {
     "repo": "hanliang97/MatrixMedia",
@@ -548,7 +548,39 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-27T11:52:13.901Z",
-    "retryCount": 2
+    "retryCount": 3
+  },
+  {
+    "repo": "haplollc/ClayGlobe",
+    "desc": "A claymorphic 3D globe for SwiftUI that plants a waving flag on every country you visit",
+    "stars": 28,
+    "language": "Swift",
+    "topics": [
+      "travel"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-09-09T00:09:53Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-28T23:21:57Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "haplollc/MuscleMapKit",
+    "desc": "Interactive 3D muscle map for iOS. Shade muscles by how hard they were worked, spin the body, tap a group.",
+    "stars": 52,
+    "language": "Swift",
+    "topics": [
+      "fitness"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-08-27T00:01:06Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-28T23:21:51Z",
+    "retryCount": 1
   },
   {
     "repo": "harrisliangsu/ai-agent-engineer-handbook",
@@ -567,6 +599,38 @@
     "retryCount": 1
   },
   {
+    "repo": "HasoSchno70/Nachtflug",
+    "desc": "Nachtflug / Night Flight – a trance demo in Drachenhauch: music, sounds and pictures all made by one program. Eine Trance-Demo, Musik und Bild aus einem Programm.",
+    "stars": 0,
+    "language": "HTML",
+    "topics": [
+      "demoscene"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-27T17:01:38Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-28T15:47:22Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "helloianneo/awesome-claude-code-skills",
+    "desc": "Claude Code 最实用的 Skills / Agents / Plugins 精选合集 | 50+ 精选 | 按场景分类 | 带推荐等级 | 复制即装",
+    "stars": 500,
+    "language": "",
+    "topics": [
+      "design"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-04-13T15:19:44Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-27T01:50:46Z",
+    "retryCount": 1
+  },
+  {
     "repo": "higgsfield-ai/skills",
     "desc": "",
     "stars": 1766,
@@ -578,7 +642,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-26T19:39:07.702Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "HKUDS/AutoSwarm",
@@ -592,7 +656,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-27T11:52:13.901Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "HRuiCcc/RuiC-pixel-explainer",
@@ -608,7 +672,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-26T03:36:24Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "i365dev/awesome-seo",
@@ -640,7 +704,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-27T11:44:38Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "JasGujral/Quantsbin",
@@ -656,7 +720,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-28T07:52:45Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "JasperZhang121/Vaults",
@@ -672,7 +736,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-24T10:09:26Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "jellyfin/jellyfin-webos",
@@ -688,7 +752,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-28T00:08:29Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "JetBrains/thinkrail",
@@ -718,7 +782,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-28T16:42:07Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "josw123/dart-fss",
@@ -734,7 +798,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-28T00:21:24Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "Khalidabdi1/design-ai",
@@ -764,23 +828,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-13T22:08:09.499Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "KWAMIVAVA/RefCheck",
-    "desc": "🔍 Detect similarities in texts to ensure originality and safeguard your work with RefCheck.",
-    "stars": 3,
-    "language": "TypeScript",
-    "topics": [
-      "interview"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-01-02T15:08:22Z",
-    "silentRounds": 2,
-    "bigbros": [],
-    "ts": "2026-10-12T04:37:48Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "kyouccc/jobready-career-assistant",
@@ -796,7 +844,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-09-29T04:52:43Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "langchain-ai/design-agent",
@@ -812,7 +860,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-27T17:24:47Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "Liyuk/Interview-Book",
@@ -827,24 +875,8 @@
     "createdAt": "2018-02-28T06:30:09Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-10-28T18:37:17Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "luskaner/ageServer",
-    "desc": "Web Server (and its launcher) for AoE 1, 2, 3 (all DE), AoE 4 and AoM: RT supporting offline multiplayer, fully cross-platform and portable",
-    "stars": 751,
-    "language": "Go",
-    "topics": [
-      "emulator"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2024-05-02T01:35:45Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-28T03:34:17Z",
-    "retryCount": 6
+    "ts": "2026-10-28T19:37:01Z",
+    "retryCount": 3
   },
   {
     "repo": "Mason-Levyy/myfitnesspal-mcp",
@@ -860,7 +892,23 @@
     "silentRounds": 8,
     "bigbros": [],
     "ts": "2026-10-28T05:29:56Z",
-    "retryCount": 3
+    "retryCount": 4
+  },
+  {
+    "repo": "mehmetkahya0/temp-mail",
+    "desc": "TempMail is a simple web application that allows you to generate temporary email addresses and view the emails received by these addresses.",
+    "stars": 181,
+    "language": "JavaScript",
+    "topics": [
+      "algorithms"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2024-03-16T21:42:21Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-28T11:36:10Z",
+    "retryCount": 1
   },
   {
     "repo": "MelihGulum/Comprehensive-Data-Science-AI-Project-Portfolio",
@@ -876,7 +924,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-03T10:45:34Z",
-    "retryCount": 5
+    "retryCount": 1
   },
   {
     "repo": "meta/docusaurus",
@@ -892,7 +940,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-23T20:44:37Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "meta/rocksdb",
@@ -907,8 +955,8 @@
     "createdAt": "2012-11-30T06:16:18Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-10-28T18:13:39Z",
-    "retryCount": 2
+    "ts": "2026-10-28T23:29:10Z",
+    "retryCount": 3
   },
   {
     "repo": "MichaelCurrin/dev-cheatsheets",
@@ -924,7 +972,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-27T15:30:21Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "Mohsen6210/dasd-thinking",
@@ -940,7 +988,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-14T07:05:05Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Mullassery/PyInterviewBot",
@@ -956,7 +1004,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-26T11:08:53Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "mwood77/ws4kp-international",
@@ -972,7 +1020,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-27T12:55:48Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "naheedroomy/InterviewOS",
@@ -988,7 +1036,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-03T23:20:54Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "nightly-labs/openbot",
@@ -1034,7 +1082,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-28T00:09:16Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "rddmwmddr/android-ad-cleaner",
@@ -1066,7 +1114,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-28T11:55:23Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "roboninecom/SO-ARM102",
@@ -1081,8 +1129,8 @@
     "createdAt": "2026-09-19T05:30:23Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-10-28T18:30:16Z",
-    "retryCount": 2
+    "ts": "2026-10-28T20:50:13Z",
+    "retryCount": 3
   },
   {
     "repo": "sharmao07/Animatto",
@@ -1097,8 +1145,8 @@
     "createdAt": "2026-10-24T07:04:25Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-10-28T18:54:47Z",
-    "retryCount": 2
+    "ts": "2026-10-28T19:50:58Z",
+    "retryCount": 3
   },
   {
     "repo": "shengdabai/chinese-textbook-generator",
@@ -1130,7 +1178,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-27T15:09:33Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "systemsssx/systemo-ebook",
@@ -1146,7 +1194,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-26T11:28:40Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "togg53192-cmd/jailbreaks",
@@ -1174,7 +1222,7 @@
     "createdAt": "2026-07-03T13:44:21Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-28T19:04:09Z",
+    "ts": "2026-10-28T20:54:29Z",
     "retryCount": 1
   },
   {
@@ -1191,7 +1239,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-28T06:48:22Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "vivekvar-dl/wingman-AI",
@@ -1207,7 +1255,7 @@
     "silentRounds": 16,
     "bigbros": [],
     "ts": "2026-10-13T15:58:16Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "vostride/agent-qa",
@@ -1222,8 +1270,8 @@
     "createdAt": "2026-05-07T20:17:57Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-24T19:08:29Z",
-    "retryCount": 2
+    "ts": "2026-10-28T21:00:54Z",
+    "retryCount": 3
   },
   {
     "repo": "wirehack7/Gameboy-Tracker",
@@ -1238,8 +1286,8 @@
     "createdAt": "2026-10-27T07:23:25Z",
     "silentRounds": 2,
     "bigbros": [],
-    "ts": "2026-10-28T09:06:20Z",
-    "retryCount": 2
+    "ts": "2026-10-28T22:52:16Z",
+    "retryCount": 1
   },
   {
     "repo": "workersio/breakscale",
@@ -1255,7 +1303,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-28T18:00:30Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "Woyten/tune",
@@ -1271,7 +1319,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-26T22:42:02Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "xiaolai/the-craft-of-selfteaching",
@@ -1287,22 +1335,6 @@
     "retryCount": 1
   },
   {
-    "repo": "xixu-me/awesome-persona-distill-skills",
-    "desc": "Curated list of Agent Skills centered on people, relationships, commemorative scenes, and methodological perspectives",
-    "stars": 4720,
-    "language": "JavaScript",
-    "topics": [
-      "awesome"
-    ],
-    "source": "search",
-    "starGrowth": 1,
-    "createdAt": "2026-04-06T20:02:21Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-18T19:09:21Z",
-    "retryCount": 6
-  },
-  {
     "repo": "xms0g/cubicLife",
     "desc": "Conway's Game of Life in 3D",
     "stars": 119,
@@ -1316,7 +1348,23 @@
     "silentRounds": 11,
     "bigbros": [],
     "ts": "2026-10-18T19:42:19Z",
-    "retryCount": 5
+    "retryCount": 6
+  },
+  {
+    "repo": "xreamm1/the-browsing-of-isaac",
+    "desc": "The Binding of Isaac: Repentance+ in your browser, recompiled from the Windows executable to WebAssembly. Features full desktop/mobile controls, Lua modding support (REPENTOGON), and browser save states.",
+    "stars": 3,
+    "language": "JavaScript",
+    "topics": [
+      "roguelike"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-16T06:45:43Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-20T07:53:00Z",
+    "retryCount": 1
   },
   {
     "repo": "yibie/awesome-jev",
@@ -1332,7 +1380,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-26T11:31:16Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "yoyiyi/SoleilNotes",
@@ -1365,7 +1413,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-27T03:06:57Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "yuu-eguci/minimap-try",
@@ -1381,6 +1429,6 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-15T04:19:38Z",
-    "retryCount": 4
+    "retryCount": 1
   }
 ]
