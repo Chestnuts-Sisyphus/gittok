@@ -1,0 +1,63 @@
+{
+  "zh": {
+    "ai-cli": [
+      "Claude Code & OpenAI Codex 摘要生成失败",
+      "GitHub Copilot CLI v1.0.105 修复 Fusion 模型选择",
+      "OpenCode v1.19.5 修复 TUI 工作线程并发问题",
+      "Kimi CLI 新增 HOL Guard 安全钩子实现白名单执行",
+      "Pi-mono 修复 V8 溢出与 Anthropic 线程限制",
+      "OpenAI Codex Rust 版今日 Star 数达 131,439 (+308)"
+    ],
+    "ai-agents": [
+      "NanoBot 发布 v0.4.0 持久化会话与 SQLite 存储",
+      "OpenClaw 生态 13 个项目总览：Issues 500 | PRs 500",
+      "PicoClaw 优化 Anthropic 原生协议与 Cron 定时任务",
+      "NanoClaw Signal 附件 Bug 待评审",
+      "IronClaw 探索第三方长尾 Provider 接入策略",
+      "LobsterAI 项目数据摘要生成失败"
+    ],
+    "ai-trending": [
+      "OpenAI Codex (Rust) 今日 Star 数暴增 308 (+131,439)",
+      "trymirai/uzu 高性能推理引擎今日 Star 数增长 360 (+2,996)",
+      "openclaw/openclaw 跨平台 AI Agent 霸榜 GitHub Trending (393,293 Stars)",
+      "obra/superpowers Agent 技能框架今日 Star 数增长 1,096 (+307,417)",
+      "affaan-m/ECC Claude Code 性能优化系统今日 Star 数增长 1,059 (+291,735)",
+      "debpalash/VoiceStudio 完全本地 ElevenLabs 替代方案今日 Star 数增长 1,831 (+92,954)"
+    ]
+  },
+  "en": {
+    "ai-cli": [
+      "New CLI tools: Claude Code, OpenAI Codex, Gemini CLI, GitHub Copilot CLI",
+      "Comparison: Claude Code vs OpenAI Codex: 10 hot issues vs 10 PRs",
+      "Shift to autonomous coding environment: stability over model intelligence",
+      "Shared bottleneck: observability & transparency in token usage",
+      "Observability & transparency: clearer visibility into token usage",
+      "Addressing friction of local filesystem virtualization and session persistence"
+    ],
+    "ai-agents": [
+      "OpenClaw ecosystem digest: 500 issues, 13 projects covered",
+      "NanoBot v0.4.0 release adds durable conversation history",
+      "NanoBot: 31 PRs updated with 19 merged and 12 still open",
+      "NanoBot: Enhanced workbench for everyday work scenarios",
+      "NanoBot: Improved multi-context management and stability",
+      "NanoBot: Active continuous development and bug fixes"
+    ],
+    "ai-trending": [],
+    "ai-hf": [
+      "Trending: facebook/sam3 leads video masking downloads",
+      "Trending: Qwen/Qwen3.8-27B hits 7.5M downloads",
+      "Trending: google/embeddinggemma-2 shows strong engagement",
+      "Specialized: DeepSeek-V4.1-Flash-1017 for image-text tasks",
+      "Quantized: Flint-GGUF and Qwen3.8-27B GGUF gaining traction",
+      "Multi-modal: Rising popularity in image-text-to-text models"
+    ],
+    "ai-community": [
+      "Generative AI dev is 80% context management, not prompting",
+      "Computer science shifting toward deeper engineering with AI",
+      "Production agents waste thousands of tokens—optimize input costs",
+      "11 production agents instrumented: 9 had expensive steps",
+      "Debate: Trade-offs between local models and API services",
+      "EU digital expropriation highlights growing regulatory concerns"
+    ]
+  }
+}
