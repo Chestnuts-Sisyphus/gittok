@@ -1,5 +1,21 @@
 [
   {
+    "repo": "2arian3/Cool-Programming-Challenges",
+    "desc": "Cool programming challenges solved in different languages.",
+    "stars": 9,
+    "language": "Python",
+    "topics": [
+      "pygame"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2020-07-24T12:59:45Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-30T22:19:50Z",
+    "retryCount": 1
+  },
+  {
     "repo": "acesaint/textbooks-i-wrote",
     "desc": "这些书的大部分内容都是大模型AI生成的。📚 大魔王博士的零基础通关教材：《Python零基础入门教材》(21天) · 《大语言模型原理》(13章) · 《编程入门》(8关53章)，均含 md/epub/azw3/kfx",
     "stars": 1,
@@ -13,7 +29,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-30T09:21:24Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "AHMADALIPARR/snapkitty-savers",
@@ -29,7 +45,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-31T04:44:12Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "ajnart/self-host",
@@ -45,7 +61,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-31T14:43:15Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "ajxs/yamaha_dx7_rom_disassembly",
@@ -61,7 +77,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T02:38:36Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "alexkroman/tiny-audio",
@@ -77,7 +93,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-23T03:31:22Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "andreiramani/pgvector_pgsql_windows",
@@ -109,7 +125,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-26T13:23:27Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "anomalyco/hex",
@@ -139,23 +155,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-31T01:37:29Z",
-    "retryCount": 4
-  },
-  {
-    "repo": "ArminJo/ServoEasing",
-    "desc": "Arduino library to enable smooth servo movement.",
-    "stars": 386,
-    "language": "C++",
-    "topics": [
-      "arduino"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2019-01-17T21:33:05Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-30T01:42:27Z",
-    "retryCount": 6
+    "retryCount": 5
   },
   {
     "repo": "Asymptote-Labs/agent-beacon",
@@ -185,7 +185,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-31T13:30:48Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "blackpineapple114514/tsn-auto-run",
@@ -201,39 +201,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-15T02:33:07Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "catchouli/better_tactics",
-    "desc": "Chess tactics trainer with spaced repetition",
-    "stars": 39,
-    "language": "Rust",
-    "topics": [
-      "chess"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2023-09-23T19:36:14Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-22T18:21:12Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "charolettebradford1361985svo-bit/stable-sprite-animation",
-    "desc": "Reference-preserving sprite animation skill for AI agents: intact-limb walks, small jumps, transparent PNG sequences and GIF.",
-    "stars": 87,
-    "language": "Python",
-    "topics": [
-      "pixel-art"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-10-24T07:02:41Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-25T02:36:16Z",
-    "retryCount": 6
+    "retryCount": 3
   },
   {
     "repo": "Ckokoski/Fibb",
@@ -249,7 +217,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-27T12:12:01Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "cmaranes/coreink-tamagotchi",
@@ -265,7 +233,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-26T15:43:46Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "colibri-hq/colibri",
@@ -281,7 +249,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-29T13:30:18Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "daeuniverse/honk",
@@ -310,7 +278,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-22T15:12:44Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "Deibler/openskycam",
@@ -326,7 +294,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-29T14:29:11Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "Devansh-Singhal/send-a-bouquet",
@@ -342,39 +310,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-26T15:01:26Z",
-    "retryCount": 4
-  },
-  {
-    "repo": "dgerosa/astrostatistics_bicocca_2024",
-    "desc": "Astrostatistics and Machine Learning class for the MSc degree in Astrophysics at the University of Milan-Bicocca (Italy)",
-    "stars": 37,
-    "language": "Jupyter Notebook",
-    "topics": [
-      "course"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2024-01-03T10:48:05Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-28T17:09:07Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "dgerosa/astrostatistics_bicocca_2025",
-    "desc": "Astrostatistics and Machine Learning class for the MSc degree in Astrophysics at the University of Milan-Bicocca (Italy)",
-    "stars": 21,
-    "language": "Jupyter Notebook",
-    "topics": [
-      "course"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2025-01-26T17:08:12Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-28T17:08:22Z",
-    "retryCount": 6
+    "retryCount": 1
   },
   {
     "repo": "divagr18/qwenputer",
@@ -390,23 +326,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-31T15:17:34Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "drgrib/dotmap",
-    "desc": "Dot access dictionary with dynamic hierarchy creation and ordered iteration",
-    "stars": 481,
-    "language": "Python",
-    "topics": [
-      "maps"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2015-08-11T20:56:21Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-29T20:24:55Z",
-    "retryCount": 6
+    "retryCount": 3
   },
   {
     "repo": "EmirErtorer/CyberUI.koplugin",
@@ -422,7 +342,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-31T13:54:51Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "ethanplusai/harvey",
@@ -435,6 +355,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-30T12:27:38.628Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "eugnsp/library",
+    "desc": "Data structures, algorithms, and C++ reference library",
+    "stars": 252,
+    "language": "",
+    "topics": [
+      "algorithms"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2018-10-21T12:24:53Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-31T18:20:10Z",
     "retryCount": 1
   },
   {
@@ -451,7 +387,7 @@
     "silentRounds": 9,
     "bigbros": [],
     "ts": "2026-10-22T10:45:05Z",
-    "retryCount": 5
+    "retryCount": 1
   },
   {
     "repo": "feimacode/open-design-agent-kit",
@@ -470,22 +406,6 @@
     "retryCount": 1
   },
   {
-    "repo": "FelixdelasPozas/TrayWeather",
-    "desc": "Tray Weather is a simple application to retrieve and show weather information for a given geographic location in a small dialog and in the Windows OS system tray.",
-    "stars": 297,
-    "language": "C++",
-    "topics": [
-      "weather"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2016-12-06T18:23:25Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-28T15:32:20Z",
-    "retryCount": 6
-  },
-  {
     "repo": "flizzywine/dsh-tavern",
     "desc": "基于DSH的Agent酒馆。类酒馆文字游戏Agent。兼容SillyTavern生态，人物卡直接导入就能玩。更快、更稳、更鲜活。所有模型都能用。手机也能玩。",
     "stars": 1399,
@@ -497,7 +417,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T19:34:18.850Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "fmind/mlops-coding-course",
@@ -516,22 +436,6 @@
     "retryCount": 1
   },
   {
-    "repo": "gaerae/awesome-algorithms-education",
-    "desc": "A curated list of courses, online judges, visualizations, books and competitions for learning and practicing algorithms. English and Korean.",
-    "stars": 908,
-    "language": "",
-    "topics": [
-      "algorithms"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2018-02-20T04:16:27Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-28T16:29:56Z",
-    "retryCount": 6
-  },
-  {
     "repo": "getenu/enu",
     "desc": "A Logo-like 3D environment, implemented in Nim",
     "stars": 486,
@@ -545,7 +449,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-30T13:32:12Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "Gnt191612/snowhorn-gpt",
@@ -561,7 +465,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-11T15:32:39Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "google/elephant-goldfish-model",
@@ -577,7 +481,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-30T09:33:24Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "haplollc/ClayGlobe",
@@ -593,7 +497,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-28T23:21:57Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "haplollc/MuscleMapKit",
@@ -609,7 +513,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-28T23:21:51Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "higgsfield-ai/skills",
@@ -623,7 +527,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-26T19:39:07.702Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "HKUDS/AutoSwarm",
@@ -637,7 +541,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-27T11:52:13.901Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "IamRamgarhia/Free-GST-Billing-Software",
@@ -650,7 +554,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-30T12:27:38.628Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "InukaAsith/TwinDesk",
@@ -666,7 +570,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-30T02:45:31Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "jenchienchang/transformer-roofline-analyzer",
@@ -682,7 +586,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-31T04:38:51Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "JetBrains/thinkrail",
@@ -696,7 +600,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-25T13:05:28.531Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "jishnu-kv/WinUI-Apps-List",
@@ -712,7 +616,23 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-30T05:24:30Z",
-    "retryCount": 2
+    "retryCount": 3
+  },
+  {
+    "repo": "JuiceBoxxGames/utsuwa",
+    "desc": "Utsuwa is an open-source alternative to Grok Companion. This is a platform where you can have a virtual AI waifu that learns and grows with you, bundled with optional mechanics inspired by Japanese dating sim games. ",
+    "stars": 138,
+    "language": "TypeScript",
+    "topics": [
+      "anime"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-01-20T05:21:25Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-30T04:46:32Z",
+    "retryCount": 1
   },
   {
     "repo": "Khalidabdi1/design-ai",
@@ -728,7 +648,7 @@
     "silentRounds": 5,
     "bigbros": [],
     "ts": "2026-09-28T00:22:27Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "kubai087/pro-threads",
@@ -744,7 +664,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-31T11:56:55Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "kvcache-ai/ktransformers",
@@ -774,7 +694,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-30T19:25:11Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "LifetimeLabsHQ/PrivacyNotes.app",
@@ -791,7 +711,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-23T11:29:15Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "LofiSu/LLM-NoteBook",
@@ -807,7 +727,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-31T10:13:17Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "LucasJRamos/spritekiln",
@@ -823,7 +743,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-30T20:19:40Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "MelihGulum/Comprehensive-Data-Science-AI-Project-Portfolio",
@@ -839,7 +759,7 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-10-03T10:45:34Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "meshy-dev/meshy-mcp-server",
@@ -855,6 +775,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-30T14:01:35Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "microsoft/TokenEconomizer",
+    "desc": "Experience-Driven Black-Box Cost Control for Coding Agents",
+    "stars": 2940,
+    "language": "Python",
+    "topics": [
+      "productivity"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-13T04:16:50Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-31T00:09:32Z",
     "retryCount": 1
   },
   {
@@ -871,7 +807,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-14T07:05:05Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "nightly-labs/openbot",
@@ -901,7 +837,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-29T02:28:17Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "Oriole-FDU/Wisepen",
@@ -917,7 +853,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-29T07:43:03Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "pieeg-club/EEGwithRaspberryPI",
@@ -933,7 +869,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-29T13:35:26Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "pisces312/StreamClip",
@@ -949,7 +885,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-31T16:58:43Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "Rastapopolix/tessera",
@@ -964,8 +900,8 @@
     "createdAt": "2026-10-11T21:24:13Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-10-31T17:59:34Z",
-    "retryCount": 2
+    "ts": "2026-10-31T20:52:57Z",
+    "retryCount": 1
   },
   {
     "repo": "rddmwmddr/android-ad-cleaner",
@@ -980,8 +916,8 @@
     "createdAt": "2026-10-24T05:35:47Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-31T17:59:16Z",
-    "retryCount": 1
+    "ts": "2026-10-31T18:00:16Z",
+    "retryCount": 2
   },
   {
     "repo": "Re-Summer75/ai-history-film",
@@ -997,7 +933,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-14T15:42:11Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "rtmandreyev/construct",
@@ -1013,7 +949,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-28T19:05:24Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "santoshshinde2012/ai-ml-ground-truth",
@@ -1029,23 +965,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-31T06:47:57Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "scott20201225/marknote-pro",
-    "desc": "本地优先的结构化 Markdown 笔记与知识工作台。原生集成 Git 版本控制、Draw.io 绘图、GeoGebra 建模、思维导图、KDBX 密码库（含 2FA & SSH 直连）及 PDF 专业批注。| Local-first structured Markdown notes & knowledge base with Git, Draw.io, GeoGebra, MindMap, KDBX & PDF.",
-    "stars": 229,
-    "language": "JavaScript",
-    "topics": [
-      "note-taking"
-    ],
-    "source": "search",
-    "starGrowth": 12,
-    "createdAt": "2026-07-18T14:31:23Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-20T04:19:06Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "shengdabai/chinese-textbook-generator",
@@ -1077,7 +997,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-30T14:47:58Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "SimplePhotoGallery/core",
@@ -1093,7 +1013,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-29T20:23:44Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "SkywalkerHolmes/Impedance_Matching_Calculation",
@@ -1109,7 +1029,23 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-10-27T15:09:33Z",
-    "retryCount": 2
+    "retryCount": 1
+  },
+  {
+    "repo": "sxrvys/Abjext",
+    "desc": "New repository for the video software formerly known as Semiotic. ",
+    "stars": 19,
+    "language": "",
+    "topics": [
+      "video-editor"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-23T16:39:20Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-30T16:24:01Z",
+    "retryCount": 1
   },
   {
     "repo": "tarpboi/Prediction-Markets-Trading-Bot-Toolkits",
@@ -1125,7 +1061,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-29T22:20:31Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "tiagocardosobezerra/openmon",
@@ -1141,7 +1077,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-24T02:17:07Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "trailhq/Trail-Code",
@@ -1173,7 +1109,7 @@
     "silentRounds": 18,
     "bigbros": [],
     "ts": "2026-10-13T15:58:16Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "vostride/agent-qa",
@@ -1188,8 +1124,24 @@
     "createdAt": "2026-05-07T20:17:57Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-10-31T17:53:34Z",
-    "retryCount": 2
+    "ts": "2026-10-31T20:46:23Z",
+    "retryCount": 3
+  },
+  {
+    "repo": "yalongwastaken/git-koi",
+    "desc": "Draw a pixel-art koi from a GitHub account's public activity, as a looping GIF for a profile README.",
+    "stars": 75,
+    "language": "Rust",
+    "topics": [
+      "generative-art"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-26T00:08:44Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-31T18:53:42Z",
+    "retryCount": 1
   },
   {
     "repo": "YoKONCy/TriviumDB",
@@ -1205,7 +1157,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-30T20:20:21Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "Yun-0000/Anima",
@@ -1221,6 +1173,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-31T01:11:47Z",
-    "retryCount": 3
+    "retryCount": 4
+  },
+  {
+    "repo": "zaman13/Poisson-solver-2D",
+    "desc": "Finite difference solution of 2D Poisson equation. Can handle Dirichlet, Neumann and mixed boundary conditions.",
+    "stars": 78,
+    "language": "Python",
+    "topics": [
+      "mathematics"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2020-05-03T03:47:26Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-31T18:47:51Z",
+    "retryCount": 1
   }
 ]
