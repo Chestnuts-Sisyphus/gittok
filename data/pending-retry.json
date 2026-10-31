@@ -13,7 +13,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-30T22:19:50Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "acesaint/textbooks-i-wrote",
@@ -29,7 +29,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-30T09:21:24Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "AHMADALIPARR/snapkitty-savers",
@@ -45,7 +45,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-31T04:44:12Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "ajnart/self-host",
@@ -61,7 +61,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-31T14:43:15Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "ajxs/yamaha_dx7_rom_disassembly",
@@ -77,7 +77,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T02:38:36Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "alexkroman/tiny-audio",
@@ -93,7 +93,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-23T03:31:22Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "andreiramani/pgvector_pgsql_windows",
@@ -155,7 +155,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-31T01:37:29Z",
-    "retryCount": 5
+    "retryCount": 6
+  },
+  {
+    "repo": "ArminJo/ServoEasing",
+    "desc": "Arduino library to enable smooth servo movement.",
+    "stars": 386,
+    "language": "C++",
+    "topics": [
+      "arduino"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2019-01-17T21:33:05Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-30T01:42:27Z",
+    "retryCount": 1
   },
   {
     "repo": "Asymptote-Labs/agent-beacon",
@@ -169,7 +185,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T18:19:35.350Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "AtDjinn/premiere-setup-rpocket-team-guide",
@@ -185,7 +201,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-31T13:30:48Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "blackpineapple114514/tsn-auto-run",
@@ -201,7 +217,39 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-15T02:33:07Z",
-    "retryCount": 3
+    "retryCount": 1
+  },
+  {
+    "repo": "catchouli/better_tactics",
+    "desc": "Chess tactics trainer with spaced repetition",
+    "stars": 39,
+    "language": "Rust",
+    "topics": [
+      "chess"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2023-09-23T19:36:14Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-22T18:21:12Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "charolettebradford1361985svo-bit/stable-sprite-animation",
+    "desc": "Reference-preserving sprite animation skill for AI agents: intact-limb walks, small jumps, transparent PNG sequences and GIF.",
+    "stars": 103,
+    "language": "Python",
+    "topics": [
+      "pixel-art"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-24T07:02:41Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-25T02:36:16Z",
+    "retryCount": 1
   },
   {
     "repo": "Ckokoski/Fibb",
@@ -217,7 +265,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-27T12:12:01Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "cmaranes/coreink-tamagotchi",
@@ -249,7 +297,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-29T13:30:18Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "daeuniverse/honk",
@@ -278,7 +326,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-22T15:12:44Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "Deibler/openskycam",
@@ -294,7 +342,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-29T14:29:11Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "Devansh-Singhal/send-a-bouquet",
@@ -310,6 +358,38 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-26T15:01:26Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "dgerosa/astrostatistics_bicocca_2024",
+    "desc": "Astrostatistics and Machine Learning class for the MSc degree in Astrophysics at the University of Milan-Bicocca (Italy)",
+    "stars": 37,
+    "language": "Jupyter Notebook",
+    "topics": [
+      "course"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2024-01-03T10:48:05Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-28T17:09:07Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "dgerosa/astrostatistics_bicocca_2025",
+    "desc": "Astrostatistics and Machine Learning class for the MSc degree in Astrophysics at the University of Milan-Bicocca (Italy)",
+    "stars": 21,
+    "language": "Jupyter Notebook",
+    "topics": [
+      "course"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2025-01-26T17:08:12Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-28T17:08:22Z",
     "retryCount": 1
   },
   {
@@ -326,7 +406,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-31T15:17:34Z",
-    "retryCount": 3
+    "retryCount": 1
+  },
+  {
+    "repo": "drgrib/dotmap",
+    "desc": "Dot access dictionary with dynamic hierarchy creation and ordered iteration",
+    "stars": 481,
+    "language": "Python",
+    "topics": [
+      "maps"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2015-08-11T20:56:21Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-29T20:24:55Z",
+    "retryCount": 1
   },
   {
     "repo": "EmirErtorer/CyberUI.koplugin",
@@ -342,7 +438,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-31T13:54:51Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "ethanplusai/harvey",
@@ -371,7 +467,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-31T18:20:10Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "exam-data/NETEMVocabulary",
@@ -403,6 +499,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-31T11:56:49Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "FelixdelasPozas/TrayWeather",
+    "desc": "Tray Weather is a simple application to retrieve and show weather information for a given geographic location in a small dialog and in the Windows OS system tray.",
+    "stars": 297,
+    "language": "C++",
+    "topics": [
+      "weather"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2016-12-06T18:23:25Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-28T15:32:20Z",
     "retryCount": 1
   },
   {
@@ -417,7 +529,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T19:34:18.850Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "fmind/mlops-coding-course",
@@ -449,7 +561,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-30T13:32:12Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "Gnt191612/snowhorn-gpt",
@@ -465,39 +577,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-11T15:32:39Z",
-    "retryCount": 3
-  },
-  {
-    "repo": "google/elephant-goldfish-model",
-    "desc": "Open-source skills for designing and reviewing software with AI agents",
-    "stars": 6603,
-    "language": "Python",
-    "topics": [
-      "developer-tools"
-    ],
-    "source": "search",
-    "starGrowth": 703,
-    "createdAt": "2026-09-13T16:31:06Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-30T09:33:24Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "haplollc/ClayGlobe",
-    "desc": "A claymorphic 3D globe for SwiftUI that plants a waving flag on every country you visit",
-    "stars": 29,
-    "language": "Swift",
-    "topics": [
-      "travel"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-09-09T00:09:53Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-28T23:21:57Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "haplollc/MuscleMapKit",
@@ -513,7 +593,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-28T23:21:51Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "higgsfield-ai/skills",
@@ -527,21 +607,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-26T19:39:07.702Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "HKUDS/AutoSwarm",
-    "desc": "AutoSwarm: All Your Agents, Working as One (Codex · Claude Code · DeepSeek Harness · Muse · Grok · WorkBuddy· nanobot · and more)",
-    "stars": 2125,
-    "language": "Python",
-    "topics": [],
-    "source": "trending",
-    "starGrowth": 36,
-    "createdAt": "2026-07-01T10:17:37Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-27T11:52:13.901Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "IamRamgarhia/Free-GST-Billing-Software",
@@ -554,7 +620,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-30T12:27:38.628Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "InukaAsith/TwinDesk",
@@ -570,7 +636,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-30T02:45:31Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "jenchienchang/transformer-roofline-analyzer",
@@ -586,7 +652,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-31T04:38:51Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "JetBrains/thinkrail",
@@ -600,7 +666,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-25T13:05:28.531Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "jishnu-kv/WinUI-Apps-List",
@@ -616,7 +682,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-30T05:24:30Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "JuiceBoxxGames/utsuwa",
@@ -632,23 +698,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-30T04:46:32Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "Khalidabdi1/design-ai",
-    "desc": "DESIGN.md examples for AI coding agents, AI design tools, and website-inspired UI generation.",
-    "stars": 248,
-    "language": "",
-    "topics": [
-      "design"
-    ],
-    "source": "search",
-    "starGrowth": 1,
-    "createdAt": "2026-04-05T14:23:05Z",
-    "silentRounds": 5,
-    "bigbros": [],
-    "ts": "2026-09-28T00:22:27Z",
-    "retryCount": 6
+    "retryCount": 2
   },
   {
     "repo": "kubai087/pro-threads",
@@ -678,7 +728,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-09-13T22:08:09.499Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "langchain-ai/design-agent",
@@ -694,24 +744,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-30T19:25:11Z",
-    "retryCount": 5
-  },
-  {
-    "repo": "LifetimeLabsHQ/PrivacyNotes.app",
-    "desc": "End-to-end encrypted notes, tasks, files, passwords, journal and bookmarks. Keyed by a 12-word BIP-39 phrase: no email, no password, no account to leak. The full client source for web, desktop and mobile is published, along with the encryption (XChaCha20-Poly1305, HKDF-SHA256, Ed25519) and the threat model, so the privacy claims are falsifiable.",
-    "stars": 616,
-    "language": "TypeScript",
-    "topics": [
-      "note-taking",
-      "cryptography"
-    ],
-    "source": "search",
-    "starGrowth": 24,
-    "createdAt": "2026-05-03T07:49:36Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-23T11:29:15Z",
-    "retryCount": 1
+    "retryCount": 6
   },
   {
     "repo": "LofiSu/LLM-NoteBook",
@@ -759,7 +792,7 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-10-03T10:45:34Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "meshy-dev/meshy-mcp-server",
@@ -775,7 +808,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-30T14:01:35Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "microsoft/TokenEconomizer",
@@ -791,7 +824,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-31T00:09:32Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Mohsen6210/dasd-thinking",
@@ -807,7 +840,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-14T07:05:05Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "nightly-labs/openbot",
@@ -821,7 +854,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-25T13:05:28.531Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "numbpill3d/cardputer-adv-diviner",
@@ -837,7 +870,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-29T02:28:17Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "Oriole-FDU/Wisepen",
@@ -853,7 +886,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-29T07:43:03Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "pieeg-club/EEGwithRaspberryPI",
@@ -869,7 +902,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-29T13:35:26Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "pisces312/StreamClip",
@@ -885,7 +918,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-31T16:58:43Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "Rastapopolix/tessera",
@@ -900,7 +933,7 @@
     "createdAt": "2026-10-11T21:24:13Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-10-31T20:52:57Z",
+    "ts": "2026-10-31T21:13:19Z",
     "retryCount": 1
   },
   {
@@ -917,7 +950,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-31T18:00:16Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "Re-Summer75/ai-history-film",
@@ -933,7 +966,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-14T15:42:11Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "rtmandreyev/construct",
@@ -949,7 +982,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-28T19:05:24Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "santoshshinde2012/ai-ml-ground-truth",
@@ -965,7 +998,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-31T06:47:57Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "shengdabai/chinese-textbook-generator",
@@ -1013,7 +1046,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-29T20:23:44Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "SkywalkerHolmes/Impedance_Matching_Calculation",
@@ -1045,7 +1078,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-30T16:24:01Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "tarpboi/Prediction-Markets-Trading-Bot-Toolkits",
@@ -1061,7 +1094,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-29T22:20:31Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "tiagocardosobezerra/openmon",
@@ -1077,7 +1110,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-24T02:17:07Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "trailhq/Trail-Code",
@@ -1109,7 +1142,7 @@
     "silentRounds": 18,
     "bigbros": [],
     "ts": "2026-10-13T15:58:16Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "vostride/agent-qa",
@@ -1125,7 +1158,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-31T20:46:23Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "yalongwastaken/git-koi",
@@ -1133,7 +1166,8 @@
     "stars": 75,
     "language": "Rust",
     "topics": [
-      "generative-art"
+      "generative-art",
+      "pixel-art"
     ],
     "source": "search",
     "starGrowth": 0,
@@ -1141,7 +1175,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-31T18:53:42Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "YoKONCy/TriviumDB",
@@ -1157,7 +1191,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-30T20:20:21Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "Yun-0000/Anima",
@@ -1173,7 +1207,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-31T01:11:47Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "zaman13/Poisson-solver-2D",
@@ -1189,6 +1223,6 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-31T18:47:51Z",
-    "retryCount": 1
+    "retryCount": 2
   }
 ]
