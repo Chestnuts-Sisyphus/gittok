@@ -13,7 +13,23 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-30T22:19:50Z",
-    "retryCount": 3
+    "retryCount": 4
+  },
+  {
+    "repo": "acesaint/textbooks-i-wrote",
+    "desc": "这些书的大部分内容都是大模型AI生成的。📚 大魔王博士的零基础通关教材：《Python零基础入门教材》(21天) · 《大语言模型原理》(13章) · 《编程入门》(8关53章)，均含 md/epub/azw3/kfx",
+    "stars": 1,
+    "language": "",
+    "topics": [
+      "textbook"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-25T06:46:43Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-30T09:21:24Z",
+    "retryCount": 1
   },
   {
     "repo": "AHMADALIPARR/snapkitty-savers",
@@ -29,7 +45,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-31T04:44:12Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "ajnart/self-host",
@@ -61,7 +77,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-24T02:38:36Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "alexkroman/tiny-audio",
@@ -126,6 +142,22 @@
     "retryCount": 1
   },
   {
+    "repo": "anton-petrunin/birkhoff",
+    "desc": "Euclidean plane and its relatives; a minimalist introduction.",
+    "stars": 22,
+    "language": "TeX",
+    "topics": [
+      "textbook"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2015-01-24T03:25:16Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-31T01:37:29Z",
+    "retryCount": 1
+  },
+  {
     "repo": "ArminJo/ServoEasing",
     "desc": "Arduino library to enable smooth servo movement.",
     "stars": 386,
@@ -139,7 +171,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-30T01:42:27Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "Asymptote-Labs/agent-beacon",
@@ -169,7 +201,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-31T13:30:48Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "blackpineapple114514/tsn-auto-run",
@@ -201,7 +233,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-22T18:21:12Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "charolettebradford1361985svo-bit/stable-sprite-animation",
@@ -217,7 +249,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-25T02:36:16Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "cmaranes/coreink-tamagotchi",
@@ -249,7 +281,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-29T13:30:18Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "daeuniverse/honk",
@@ -278,7 +310,23 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-22T15:12:44Z",
-    "retryCount": 5
+    "retryCount": 6
+  },
+  {
+    "repo": "Deibler/openskycam",
+    "desc": "Record a sky camera around the clock, keep the footage on your own disk, and find what flew past.",
+    "stars": 75,
+    "language": "TypeScript",
+    "topics": [
+      "astronomy"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-26T01:53:40Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-29T14:29:11Z",
+    "retryCount": 1
   },
   {
     "repo": "Devansh-Singhal/send-a-bouquet",
@@ -310,7 +358,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-28T17:09:07Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "dgerosa/astrostatistics_bicocca_2025",
@@ -326,23 +374,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-28T17:08:22Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "divagr18/qwenputer",
-    "desc": "A computer, compiled into the weights of a language model. An exact CPU inside Qwen3.5-4B, with Gated DeltaNet state as RAM.",
-    "stars": 381,
-    "language": "Python",
-    "topics": [
-      "transformers"
-    ],
-    "source": "search",
-    "starGrowth": 75,
-    "createdAt": "2026-10-19T11:48:10Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-31T15:17:34Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "drgrib/dotmap",
@@ -358,7 +390,23 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-29T20:24:55Z",
-    "retryCount": 2
+    "retryCount": 3
+  },
+  {
+    "repo": "ellsimohammed8-prog/atlas-pixel-dungeon",
+    "desc": "Atlas Pixel Dungeon — a rebranded open-source roguelike (GPL-3.0 fork of Shattered Pixel Dungeon) with full Arabic support.",
+    "stars": 3,
+    "language": "Java",
+    "topics": [
+      "roguelike"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-13T12:13:48Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-18T22:54:01Z",
+    "retryCount": 1
   },
   {
     "repo": "EmirErtorer/CyberUI.koplugin",
@@ -403,7 +451,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-31T18:20:10Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "exam-data/NETEMVocabulary",
@@ -419,7 +467,7 @@
     "silentRounds": 10,
     "bigbros": [],
     "ts": "2026-10-22T10:45:05Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "feimacode/open-design-agent-kit",
@@ -451,7 +499,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-28T15:32:20Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "fmind/mlops-coding-course",
@@ -483,6 +531,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-28T16:29:56Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "getenu/enu",
+    "desc": "A Logo-like 3D environment, implemented in Nim",
+    "stars": 486,
+    "language": "Nim",
+    "topics": [
+      "godot"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2020-02-12T15:12:27Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-30T13:32:12Z",
     "retryCount": 1
   },
   {
@@ -515,7 +579,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-28T23:21:51Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "henriquesebastiao/badges",
@@ -531,7 +595,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-31T22:34:23Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "higgsfield-ai/skills",
@@ -545,7 +609,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-26T19:39:07.702Z",
-    "retryCount": 2
+    "retryCount": 1
+  },
+  {
+    "repo": "inet-framework/inet",
+    "desc": "INET Framework for the OMNeT++ discrete event simulator",
+    "stars": 537,
+    "language": "C++",
+    "topics": [
+      "simulation"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2009-01-22T15:47:14Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-30T17:08:09Z",
+    "retryCount": 1
   },
   {
     "repo": "InukaAsith/TwinDesk",
@@ -561,7 +641,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-30T02:45:31Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "jenchienchang/transformer-roofline-analyzer",
@@ -591,22 +671,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-25T13:05:28.531Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
-    "repo": "jishnu-kv/WinUI-Apps-List",
-    "desc": "A curated collection of over 900+ apps that embrace the WinUI Design",
-    "stars": 796,
-    "language": "Python",
+    "repo": "js-lm/COMBiler",
+    "desc": "A music \"compiler\" for COMB Optical Music Box ",
+    "stars": 3,
+    "language": "C++",
     "topics": [
-      "design"
+      "raylib"
     ],
     "source": "search",
-    "starGrowth": 3,
-    "createdAt": "2023-07-01T11:05:49Z",
+    "starGrowth": 0,
+    "createdAt": "2026-04-21T14:38:58Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-30T05:24:30Z",
+    "ts": "2026-10-24T14:57:22Z",
     "retryCount": 1
   },
   {
@@ -623,7 +703,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-30T04:46:32Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "kubai087/pro-threads",
@@ -653,7 +733,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-09-13T22:08:09.499Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "LofiSu/LLM-NoteBook",
@@ -701,7 +781,7 @@
     "silentRounds": 5,
     "bigbros": [],
     "ts": "2026-10-03T10:45:34Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "meshy-dev/meshy-mcp-server",
@@ -733,7 +813,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-31T22:53:30Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "Mohsen6210/dasd-thinking",
@@ -749,7 +829,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-14T07:05:05Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "nightly-labs/openbot",
@@ -763,7 +843,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-25T13:05:28.531Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "numbpill3d/cardputer-adv-diviner",
@@ -779,7 +859,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-29T02:28:17Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "Oriole-FDU/Wisepen",
@@ -811,7 +891,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-29T13:35:26Z",
-    "retryCount": 6
+    "retryCount": 1
   },
   {
     "repo": "pisces312/StreamClip",
@@ -827,7 +907,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-31T16:58:43Z",
-    "retryCount": 5
+    "retryCount": 1
   },
   {
     "repo": "Rastapopolix/tessera",
@@ -843,7 +923,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-31T21:13:19Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "rddmwmddr/android-ad-cleaner",
@@ -859,7 +939,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-31T18:00:16Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "Re-Summer75/ai-history-film",
@@ -875,23 +955,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-14T15:42:11Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "rtmandreyev/construct",
-    "desc": "Describe a thing, get a hologram, a 3D model and its parts: built by any AI agent, honestly.",
-    "stars": 60,
-    "language": "Python",
-    "topics": [
-      "procedural-generation"
-    ],
-    "source": "search",
-    "starGrowth": 15,
-    "createdAt": "2026-10-24T07:55:36Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-28T19:05:24Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "santoshshinde2012/ai-ml-ground-truth",
@@ -907,7 +971,23 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-31T06:47:57Z",
-    "retryCount": 2
+    "retryCount": 3
+  },
+  {
+    "repo": "scastd/raygui-cpp",
+    "desc": "C++ bindings for Raygui library.",
+    "stars": 22,
+    "language": "C++",
+    "topics": [
+      "raylib"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2023-08-17T11:11:29Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-01T00:05:45Z",
+    "retryCount": 1
   },
   {
     "repo": "shengdabai/chinese-textbook-generator",
@@ -939,7 +1019,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-30T14:47:58Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "SimplePhotoGallery/core",
@@ -971,7 +1051,7 @@
     "silentRounds": 5,
     "bigbros": [],
     "ts": "2026-10-27T15:09:33Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "sxrvys/Abjext",
@@ -987,7 +1067,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-30T16:24:01Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "tiagocardosobezerra/openmon",
@@ -1003,7 +1083,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-24T02:17:07Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "trailhq/Trail-Code",
@@ -1019,7 +1099,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-31T11:24:59Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "vostride/agent-qa",
@@ -1052,7 +1132,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-31T18:53:42Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "YoKONCy/TriviumDB",
@@ -1068,22 +1148,6 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-30T20:20:21Z",
-    "retryCount": 5
-  },
-  {
-    "repo": "Yun-0000/Anima",
-    "desc": "Anime characters that feel alive, right in your browser. Chat or just talk out loud: each one answers in their own voice, moves while they speak and reacts with gestures and expressions.",
-    "stars": 143,
-    "language": "TypeScript",
-    "topics": [
-      "anime"
-    ],
-    "source": "search",
-    "starGrowth": 4,
-    "createdAt": "2026-05-03T05:02:15Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-31T01:11:47Z",
     "retryCount": 6
   },
   {
@@ -1100,6 +1164,6 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-31T18:47:51Z",
-    "retryCount": 3
+    "retryCount": 4
   }
 ]
