@@ -13,7 +13,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-30T22:19:50Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "acesaint/textbooks-i-wrote",
@@ -29,7 +29,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-30T09:21:24Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "ActiveInferenceInstitute/Parr_et_al_2022_ActInf_Textbook",
@@ -44,7 +44,23 @@
     "createdAt": "2022-04-29T13:45:33Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-02T02:41:13Z",
+    "ts": "2026-11-02T17:59:26Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "ad-si/awesome-soundfonts",
+    "desc": "A curated list of awesome soundfont software, libraries, and resources.",
+    "stars": 194,
+    "language": "",
+    "topics": [
+      "synthesizer"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2015-03-29T13:25:34Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-02T18:38:49Z",
     "retryCount": 1
   },
   {
@@ -60,7 +76,7 @@
     "createdAt": "2025-03-18T15:45:55Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-01T20:45:55Z",
+    "ts": "2026-11-02T19:59:12Z",
     "retryCount": 1
   },
   {
@@ -77,7 +93,7 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-11-01T16:18:26Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "andreavolpato/spektrafilm",
@@ -106,7 +122,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-21T06:48:07Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "andriidrok1/andriidrok1",
@@ -121,8 +137,8 @@
     "createdAt": "2026-07-27T09:07:01Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-02T04:40:07Z",
-    "retryCount": 1
+    "ts": "2026-11-02T13:27:24Z",
+    "retryCount": 2
   },
   {
     "repo": "anomalyco/hex",
@@ -152,7 +168,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-02T01:29:19Z",
-    "retryCount": 2
+    "retryCount": 3
+  },
+  {
+    "repo": "arla6ka/design.how",
+    "desc": "Design systems, skills and visuals for coding agents",
+    "stars": 235,
+    "language": "TypeScript",
+    "topics": [
+      "creative-coding"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-09-28T07:10:37Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-02T19:15:44Z",
+    "retryCount": 1
   },
   {
     "repo": "Asymptote-Labs/agent-beacon",
@@ -166,23 +198,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T18:19:35.350Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
-    "repo": "blackpineapple114514/tsn-auto-run",
-    "desc": "体适能「阳光跑/校园跑」跑步记录工作台（本地运行 · 已脱敏开源版）",
-    "stars": 15,
-    "language": "Python",
+    "repo": "blazejkustra/uncut",
+    "desc": "Open-source AI video editor for macOS: your Claude Code or Codex edits on a real timeline",
+    "stars": 19,
+    "language": "TypeScript",
     "topics": [
-      "fitness"
+      "video-editor"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2026-10-15T01:53:20Z",
-    "silentRounds": 3,
+    "createdAt": "2026-10-11T21:27:18Z",
+    "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-15T02:33:07Z",
-    "retryCount": 3
+    "ts": "2026-11-02T12:40:29Z",
+    "retryCount": 1
   },
   {
     "repo": "Blizzardteawning/IK-Multimedia-AmpliTube-5-MAX-v2-Free-Guitar-Bass-Modeling",
@@ -198,7 +230,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-01T18:05:58Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "bmmmm/tvtv",
@@ -214,7 +246,36 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-27T00:20:18Z",
-    "retryCount": 2
+    "retryCount": 3
+  },
+  {
+    "repo": "bobrippling/podsync",
+    "desc": "A minimal podcast sync server, using the same API as GPodder, compatible with AntennaPod. See also https://github.com/kd2org/opodsync",
+    "stars": 20,
+    "language": "Rust",
+    "topics": [
+      "podcast"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2023-02-26T12:06:23Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-02T18:41:30Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "cheaper-inference/OmniRoute",
+    "desc": "Never stop coding. Free MIT AI gateway: one endpoint, 375 providers (150+ free), 1,400+ models Kimi, Claude, GPT, Gemini, GLM, DeepSeek, MiniMax. Works with Claude Code, Codex, Cursor, OpenCode, Cline &amp; Copilot. Quota-aware auto-fallback, RTK+Caveman compression saves 15-95% tokens, MCP/A2A, Desktop/PWA. Built by 900+ contributors",
+    "stars": 83932,
+    "language": "TypeScript",
+    "topics": [],
+    "source": "trending",
+    "starGrowth": 390,
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-02T20:07:51.158Z",
+    "retryCount": 1
   },
   {
     "repo": "cmaranes/coreink-tamagotchi",
@@ -230,23 +291,36 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-26T15:43:46Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "CNCKitchen/ScanRuler",
+    "desc": "",
+    "stars": 712,
+    "language": "TypeScript",
+    "topics": [],
+    "source": "trending",
+    "starGrowth": 256,
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-02T20:07:51.158Z",
     "retryCount": 1
   },
   {
-    "repo": "cmj1184077234-sketch/pixel-ai-desk-pet",
-    "desc": "🔔 会摇铃提醒你 AI 做完了的像素桌宠 · 会聊天、会干活、一张照片变成任何样子",
-    "stars": 1,
-    "language": "C#",
+    "repo": "Coding-Meet/Gemini-AI-KMP-App",
+    "desc": "Gemini AI Kotlin Multiplatform project designed to target Android, iOS, Windows, macOS, Linux, and Web platforms.",
+    "stars": 114,
+    "language": "Kotlin",
     "topics": [
-      "virtual-pet"
+      "generative-art"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2026-10-31T02:16:36Z",
-    "silentRounds": 1,
+    "createdAt": "2024-01-08T12:56:30Z",
+    "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-01T02:06:31Z",
-    "retryCount": 6
+    "ts": "2026-11-02T09:57:06Z",
+    "retryCount": 1
   },
   {
     "repo": "creep-ltx/bbmp",
@@ -262,7 +336,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-11T13:28:59Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "crgimenes/filo-games",
@@ -278,23 +352,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T05:28:00Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "darekkay/dev-tools",
-    "desc": "Developer tools",
-    "stars": 33,
-    "language": "HTML",
-    "topics": [
-      "cheatsheet"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2018-09-24T19:55:33Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-11-01T10:23:50Z",
-    "retryCount": 6
+    "retryCount": 3
   },
   {
     "repo": "DarknessFX/zig_workbench",
@@ -310,7 +368,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-01T02:43:09Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "deamonSLINKY/PERF-1",
@@ -326,7 +384,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-31T21:02:25Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Deibler/openskycam",
@@ -342,7 +400,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-29T14:29:11Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "DerekTurtleRoe/awesome-emulators",
@@ -357,7 +415,7 @@
     "createdAt": "2023-02-01T10:46:36Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-11-01T13:14:46Z",
+    "ts": "2026-11-02T13:42:49Z",
     "retryCount": 1
   },
   {
@@ -374,23 +432,36 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-26T15:01:26Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
-    "repo": "djayuffe/uber10-dos-demo",
-    "desc": "A 10-byte DOS demo: the 256 CP437 glyphs scrolling at a readable pace, with sound. x86 assembly, with CI, an emulated-CPU test and tag-driven releases.",
-    "stars": 0,
-    "language": "Python",
+    "repo": "egoist/kero",
+    "desc": "A cross-platform native terminal app optimized for agents",
+    "stars": 1367,
+    "language": "Go",
+    "topics": [],
+    "source": "trending",
+    "starGrowth": 17,
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-02T20:07:51.158Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "eklein382680/ableton-live-setup-guide",
+    "desc": "Ableton Live is a digital audio workstation for composing, recording, and mixing on Windows. Session and Arrangement views keep loops, clips, and full tracks in one timeline-driven workflow.",
+    "stars": 11,
+    "language": "JavaScript",
     "topics": [
-      "demoscene"
+      "music-production"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2026-10-09T18:18:48Z",
-    "silentRounds": 1,
+    "createdAt": "2026-10-31T13:37:59Z",
+    "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-11T03:45:44Z",
-    "retryCount": 6
+    "ts": "2026-10-31T13:46:30Z",
+    "retryCount": 1
   },
   {
     "repo": "ellsimohammed8-prog/atlas-pixel-dungeon",
@@ -406,7 +477,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-18T22:54:01Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "EmirErtorer/CyberUI.koplugin",
@@ -422,7 +493,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-01T20:12:02Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "ethanplusai/harvey",
@@ -451,7 +522,7 @@
     "silentRounds": 11,
     "bigbros": [],
     "ts": "2026-10-22T10:45:05Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "FelixdelasPozas/TrayWeather",
@@ -467,6 +538,22 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-28T15:32:20Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "floooh/vscode-kcide",
+    "desc": "Retro assembly IDE for VSCode",
+    "stars": 78,
+    "language": "TypeScript",
+    "topics": [
+      "retrocomputing"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2023-11-14T11:16:38Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-02T15:50:14Z",
     "retryCount": 1
   },
   {
@@ -483,7 +570,7 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-10-29T13:58:09Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "gaerae/awesome-algorithms-education",
@@ -499,7 +586,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-28T16:29:56Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "gazbert/bxbot",
@@ -515,7 +602,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-02T05:51:57Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "getenu/enu",
@@ -531,7 +618,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-30T13:32:12Z",
-    "retryCount": 2
+    "retryCount": 3
+  },
+  {
+    "repo": "haddocking/pdb-tools",
+    "desc": "A dependency-free cross-platform swiss army knife for PDB files.",
+    "stars": 461,
+    "language": "Python",
+    "topics": [
+      "bioinformatics"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2014-11-27T09:09:09Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-02T19:46:03Z",
+    "retryCount": 1
   },
   {
     "repo": "haplollc/MuscleMapKit",
@@ -547,24 +650,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-28T23:21:51Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "Hazenix/backend-interview-simulator",
-    "desc": "Java/Go/C++后端面试模拟面试SKILL，支持多身份多风格 | Simulate backend interviews with AI, supporting multiple personas and   six interviewer styles",
-    "stars": 232,
-    "language": "",
-    "topics": [
-      "backend",
-      "interview"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-04-01T03:06:05Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-11-01T04:25:41Z",
-    "retryCount": 6
+    "retryCount": 2
   },
   {
     "repo": "henriquesebastiao/badges",
@@ -580,7 +666,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-31T22:34:23Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "i-oms/IdleWalker",
@@ -596,7 +682,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-01T15:19:09Z",
-    "retryCount": 6
+    "retryCount": 1
   },
   {
     "repo": "immortal71/openoncology",
@@ -612,7 +698,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-02T02:57:40Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "inet-framework/inet",
@@ -628,7 +714,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-02T08:55:28Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "jenchienchang/transformer-roofline-analyzer",
@@ -644,7 +730,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-31T04:38:51Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "JetBrains/thinkrail",
@@ -658,23 +744,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-25T13:05:28.531Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "JuiceBoxxGames/utsuwa",
-    "desc": "Utsuwa is an open-source alternative to Grok Companion. This is a platform where you can have a virtual AI waifu that learns and grows with you, bundled with optional mechanics inspired by Japanese dating sim games. ",
-    "stars": 139,
-    "language": "TypeScript",
-    "topics": [
-      "anime"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-01-20T05:21:25Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-11-02T01:02:22Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "Juicesyo/highway-survivors-dead-zone",
@@ -705,7 +775,23 @@
     "createdAt": "2026-11-01T12:31:29Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-01T14:13:00Z",
+    "ts": "2026-11-02T17:56:44Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "katrin-o0874380900/native-instruments-kontakt-setup-guide",
+    "desc": "Kontakt is Native Instruments’ sampler for Windows, hosting NKI libraries in DAWs or Standalone. This repo tracks setup bundles, deployment notes, and changelog entries for consistent studio installs.",
+    "stars": 12,
+    "language": "JavaScript",
+    "topics": [
+      "music-production"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-31T19:07:12Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-31T19:14:52Z",
     "retryCount": 1
   },
   {
@@ -722,7 +808,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-01T04:49:41Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "kvcache-ai/ktransformers",
@@ -739,22 +825,6 @@
     "retryCount": 1
   },
   {
-    "repo": "l0ng-ai/openidea",
-    "desc": "The IDE you know, rebuilt in Rust. IntelliJ IDEA–style keymap, tool windows and search-everywhere in a fast native app: editor, code insight, debugger, Git, terminal, database and HTTP clients for 60+ languages.",
-    "stars": 3410,
-    "language": "TypeScript",
-    "topics": [
-      "git"
-    ],
-    "source": "search",
-    "starGrowth": 297,
-    "createdAt": "2026-10-21T12:23:14Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-11-01T13:52:32Z",
-    "retryCount": 6
-  },
-  {
     "repo": "liuminxin45/podflow-studio",
     "desc": "本地优先的 AI 新闻播客制作工作台：素材研究、事实卡片、口播稿、分段配音、音质检查与 RSS 发布包，正式发布保留人工终审。Local-first AI news podcast workspace.",
     "stars": 88,
@@ -768,7 +838,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-02T07:58:08Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "LofiSu/LLM-NoteBook",
@@ -800,7 +870,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-01T15:57:46Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "LucasJRamos/spritekiln",
@@ -819,22 +889,6 @@
     "retryCount": 1
   },
   {
-    "repo": "luoshaobo69-arch/xinglan-desktop",
-    "desc": "星澜 Xinglan — 蓝发星海桌面伙伴 · 离线运行 · 9种动作与16向视线 | Offline anime desktop companion for Windows",
-    "stars": 1,
-    "language": "Python",
-    "topics": [
-      "virtual-pet"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-11-01T07:37:58Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-11-01T07:53:13Z",
-    "retryCount": 6
-  },
-  {
     "repo": "mankidev/codixel",
     "desc": "Pixel art skill for Claude Code: how to make good pixel, animated game sprite out, effects etc.",
     "stars": 49,
@@ -847,8 +901,8 @@
     "createdAt": "2026-10-31T18:31:02Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-02T08:55:15Z",
-    "retryCount": 1
+    "ts": "2026-11-02T09:32:05Z",
+    "retryCount": 2
   },
   {
     "repo": "melonlee/capydown",
@@ -864,7 +918,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-01T15:52:34Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "melonlee/slothdown",
@@ -896,7 +950,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-30T14:01:35Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "minorcell/spider",
@@ -912,6 +966,22 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-01T20:58:10Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "modelflare-ai/AnyModelBot",
+    "desc": "🤖 Open-source, local-first alternative to Grok Bot, OpenAI dots and Claude Duet. Your own AI bots on any model: GPT, Claude, Gemini, Grok, DeepSeek, Kimi, GLM and 70+ more through one Modelflare key. Reach them in the app, WeChat or Feishu; they remember you, work in the background, run commands and use your computer. Pay per use.",
+    "stars": 1322,
+    "language": "TypeScript",
+    "topics": [
+      "chatbot"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-27T08:51:18Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-02T18:12:04Z",
     "retryCount": 1
   },
   {
@@ -926,7 +996,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-25T13:05:28.531Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "numbpill3d/cardputer-adv-diviner",
@@ -942,7 +1012,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-29T02:28:17Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "p-o-l-e/spiro",
@@ -958,7 +1028,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-01T19:38:55Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "paulherter/sequence-studio",
@@ -990,7 +1060,7 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-10-29T13:35:26Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "pizslacker/true-3d-boing-ball",
@@ -1006,7 +1076,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-05T19:36:40Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "Rastapopolix/tessera",
@@ -1021,8 +1091,8 @@
     "createdAt": "2026-10-11T21:24:13Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-02T03:43:45Z",
-    "retryCount": 1
+    "ts": "2026-11-02T12:59:55Z",
+    "retryCount": 2
   },
   {
     "repo": "Re-Summer75/ai-history-film",
@@ -1038,7 +1108,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-14T15:42:11Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "realchendahuang/cherina-pod",
@@ -1054,23 +1124,23 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-31T05:58:15Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
-    "repo": "rfdslabs/demoscene",
-    "desc": "Old-school demoscene intros in modern C++ on macOS: shaders, software renderers, procedural chiptunes, and a cracktro creator",
-    "stars": 0,
-    "language": "C++",
+    "repo": "robalb/x86-64-playground",
+    "desc": "An online assembly editor, emulator and debugger for the x86-64 architecture",
+    "stars": 768,
+    "language": "C",
     "topics": [
-      "demoscene"
+      "emulator"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2026-10-13T02:02:36Z",
+    "createdAt": "2024-08-29T22:10:57Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-13T02:09:04Z",
-    "retryCount": 2
+    "ts": "2026-11-01T23:17:05Z",
+    "retryCount": 1
   },
   {
     "repo": "santoshshinde2012/ai-ml-ground-truth",
@@ -1085,8 +1155,8 @@
     "createdAt": "2026-08-19T16:08:39Z",
     "silentRounds": 3,
     "bigbros": [],
-    "ts": "2026-10-31T06:47:57Z",
-    "retryCount": 5
+    "ts": "2026-11-02T12:24:45Z",
+    "retryCount": 1
   },
   {
     "repo": "scenario-labs/skills",
@@ -1099,6 +1169,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-01T16:41:37.734Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "Scrut1ny/AutoVirt",
+    "desc": "Automated Linux virtualization scripts",
+    "stars": 724,
+    "language": "Shell",
+    "topics": [
+      "emulator"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2023-09-19T07:32:44Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-28T20:02:30Z",
     "retryCount": 1
   },
   {
@@ -1114,8 +1200,8 @@
     "createdAt": "2026-09-30T00:05:15Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-02T07:41:34Z",
-    "retryCount": 1
+    "ts": "2026-11-02T15:02:30Z",
+    "retryCount": 2
   },
   {
     "repo": "SimplePhotoGallery/core",
@@ -1131,7 +1217,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-29T20:23:44Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "SkywalkerHolmes/Impedance_Matching_Calculation",
@@ -1147,7 +1233,7 @@
     "silentRounds": 6,
     "bigbros": [],
     "ts": "2026-10-27T15:09:33Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "smcameron/gaseous-giganticus",
@@ -1163,7 +1249,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-01T18:46:04Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "SparrowPortray/horizon-free-capes",
@@ -1179,7 +1265,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-02T01:48:50Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "stranix79/cours-rust",
@@ -1195,7 +1281,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-25T18:44:12Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "techjarves/Portable-Local-Studio",
@@ -1211,6 +1297,22 @@
     "retryCount": 1
   },
   {
+    "repo": "TheBozos/TMB_Recomp",
+    "desc": "Twisted Metal: Black (USA, SCUS-97101) as a native PC port: static recompilation with PS2Recomp (no game data)",
+    "stars": 7,
+    "language": "C++",
+    "topics": [
+      "raylib"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-22T21:31:18Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-02T18:27:23Z",
+    "retryCount": 1
+  },
+  {
     "repo": "thepixelgardener-create/omawing",
     "desc": "Amiga-style vector flight demo and arcade game for Omarchy, in C++ and Qt Quick",
     "stars": 0,
@@ -1223,8 +1325,8 @@
     "createdAt": "2026-10-20T22:40:27Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-21T14:35:52Z",
-    "retryCount": 2
+    "ts": "2026-11-02T17:00:11Z",
+    "retryCount": 3
   },
   {
     "repo": "tommyod/streprogen",
@@ -1239,8 +1341,8 @@
     "createdAt": "2017-07-27T16:01:07Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-02T05:36:36Z",
-    "retryCount": 1
+    "ts": "2026-11-02T16:40:40Z",
+    "retryCount": 2
   },
   {
     "repo": "unipheas/book-pet-x3",
@@ -1271,7 +1373,23 @@
     "createdAt": "2019-03-28T11:41:17Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-02T06:45:56Z",
+    "ts": "2026-11-02T17:47:35Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "valentderah/totk-pc-recomp",
+    "desc": "Static recompilation of The Legend of Zelda: Tears of the Kingdom to native Windows and Linux x86-64, with a Vulkan renderer. Game files not included.",
+    "stars": 3889,
+    "language": "C",
+    "topics": [
+      "game"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-29T12:32:46Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-02T15:56:58Z",
     "retryCount": 1
   },
   {
@@ -1288,7 +1406,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-02T03:44:37Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "wangzan101/Mika",
@@ -1303,7 +1421,20 @@
     "createdAt": "2026-10-29T14:34:07Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-01T19:10:15Z",
+    "ts": "2026-11-02T19:08:44Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "warmbly/warmbly",
+    "desc": "The largest open-source B2B cold outreach and email warmup service.",
+    "stars": 866,
+    "language": "Go",
+    "topics": [],
+    "source": "trending",
+    "starGrowth": 244,
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-02T20:07:51.158Z",
     "retryCount": 1
   },
   {
@@ -1320,7 +1451,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-01T09:05:39Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "yalongwastaken/git-koi",
@@ -1337,6 +1468,6 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-31T18:53:42Z",
-    "retryCount": 1
+    "retryCount": 2
   }
 ]
