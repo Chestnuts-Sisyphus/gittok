@@ -1,0 +1,86 @@
+{
+  "zh": {
+    "ai-cli": [
+      "Claude Code Skills PR#1742支持mcp>=2与自定义Header",
+      "PR#1298重构skill-creator解决Windows管道竞争",
+      "PR#1245实现Notion规格页面自动拆解任务工作流",
+      "PR#1771的proofcore智能体将合约审计证明写入TON区块链",
+      "社区热议md2video-audio实现零成本Markdown转带配音视频",
+      "关注AI终端技能包与基准优化等前沿扩展生态"
+    ],
+    "ai-agents": [
+      "NanoBot项目保持中等偏高活跃度并发布多项修复",
+      "修复WebUI会话切换时的重新挂载阻塞问题PR#6540",
+      "修复运行时恢复并防止不安全的MCP重放PR#6537",
+      "在MCP工具结果中新增resource与audio块渲染支持",
+      "优化Agent流式处理避免工具错误时消息被误丢弃",
+      "新增基于面板的终端显示CLI提升交互体验PR#3601"
+    ],
+    "ai-trending": [
+      "claude-mem提供持久化上下文记忆系统获11万+Star",
+      "Claude-Code-Game-Studios内置49个专精Agent模拟游戏公司",
+      "ECC集成技能注入与记忆管理优化主流Agent终端",
+      "Orkas本地优先桌面AI团队含1 Commander与16专家Agent",
+      "colibri纯C实现消费级MoE推理引擎支持磁盘流式读取",
+      "OmniRoute作为免费开源的统一AI API网关受关注"
+    ],
+    "ai-web": [
+      "Anthropic发布Vibe physics展示Claude进行高能物理计算",
+      "Claude-shaped science通过BootLoops自选科研问题",
+      "Claude在蛋白质设计与分析化学中展现显著加速效果",
+      "Anthropic新研究表明Claude正成为全流程科研助手",
+      "OpenAI更新Lifeval及Scaling Git等工程组织页面",
+      "Anthropic持续迭代实验细节凸显科研机构吸引力"
+    ],
+    "ai-hn": [
+      "Anthropic修订S-1披露Q3营收17B与巨额支出承诺",
+      "Anthropic内部AI使用成本已超过员工薪酬引发热议",
+      "社区激烈讨论SEC是否应阻止Anthropic的IPO",
+      "科技泡沫与AI公司经济可持续性成HN核心辩论焦点",
+      "失业技术人员被排挤在旧金山AI财富 boom 之外",
+      "Linux内核长期未修复的0day漏洞引发安全焦虑"
+    ],
+    "ai-hf": [
+      "LiquidAI发布非Transformer架构的LFM3系列多模态模型",
+      "Qwen3.8-27B下载量破790万领跑开源生态",
+      "Nanbeige4.3-33B在复杂逻辑与指令遵循上表现出众",
+      "Lightricks LTX-2.5视频生成模型下载量突破240万",
+      "开源社区持续推出基于主流基座的高精度量化版本",
+      "端侧模型与多模态视觉生成技术迎来爆发期"
+    ]
+  },
+  "en": {
+    "ai-cli": [
+      "Claude Code v2.1.317 adds privacy guardrails",
+      "GitHub Copilot CLI ships v1.0.106 with ACP fixes",
+      "AI-CLI landscape matures into agent-as-a-tool platforms",
+      "Strong community focus on BYOK and remote control",
+      "Claude Code struggles with safety filter false-positives",
+      "Heavy activity centers on Claude, Copilot, and OpenCode"
+    ],
+    "ai-web": [
+      "Claude Opus 4.5 completes full physics research paper",
+      "BootLoops toolkit accelerates cross-disciplinary science",
+      "Claude Opus 5 scores >90% on 15-target protein binders",
+      "Anthropic advances domain-specific science automation",
+      "Claude Opus 4.5 physics run used over 36M tokens",
+      "New updates highlight AI-driven chemistry insights"
+    ],
+    "ai-hn": [
+      "Anthropic files revised S-1 showing $17B Q3 revenue",
+      "Anthropic reports $895B in compute commitments",
+      "Internal AI use at Anthropic exceeds employee pay",
+      "HN debates AI infrastructure spending sustainability",
+      "Discussions spark over potential SEC IPO scrutiny",
+      "Developers voice fatigue regarding AI price hikes"
+    ],
+    "ai-hf": [
+      "LiquidAI launches native LFM3 model suite",
+      "Qwen3.8-27B drives massive developer adoption",
+      "DeepSeek-V4.1-Flash optimizes low-latency reasoning",
+      "Mistral Large 4 debuts as a massive MoE model",
+      "Lightricks LTX-2.5 surges in generative video",
+      "Black Forest Labs Flux 3 variants lead downloads"
+    ]
+  }
+}
