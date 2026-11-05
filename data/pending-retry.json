@@ -1,21 +1,5 @@
 [
   {
-    "repo": "0xCodez/pulsr",
-    "desc": "Pulsr — open-source recovery, strain and sleep coach for Apple Watch. Liquid Glass UI, on-device, no subscription.",
-    "stars": 98,
-    "language": "Swift",
-    "topics": [
-      "fitness"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-11-02T18:31:19Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-11-02T18:36:42Z",
-    "retryCount": 1
-  },
-  {
     "repo": "Abyssalasteroidcore/resocket-SINO-OS",
     "desc": "SINO OS：使用 GPT-6 经过上百轮对话迭代生成与完善的 32 位 x86 操作系统，包含图形桌面、中文拼音输入和 SysBASIC 可视化 IDE。 Generated and refined through 100+ rounds with GPT-6.",
     "stars": 36,
@@ -32,22 +16,6 @@
     "retryCount": 1
   },
   {
-    "repo": "ActiveInferenceInstitute/Parr_et_al_2022_ActInf_Textbook",
-    "desc": "Study materials for the Active Inference Institute's reading group on Parr, Pezzulo & Friston's \"Active Inference\" (MIT Press, 2022): cleaned plaintext chapters and Julia/Jupyter computational notebooks.",
-    "stars": 7,
-    "language": "Julia",
-    "topics": [
-      "textbook"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2022-04-29T13:45:33Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-11-04T15:36:56Z",
-    "retryCount": 1
-  },
-  {
     "repo": "AhmadHassan-BTed/FormFilla",
     "desc": "About A local-first browser extension that fills job-application forms from local JSON profile data and files. Matches are computed deterministically via multi-signal scoring, structural repeated-block detection, and bipartite optimization.",
     "stars": 4681,
@@ -61,7 +29,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-03T06:13:54Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "AhmadHassan-BTed/NaSuno-SongHumanizer",
@@ -76,7 +44,7 @@
     "createdAt": "2023-07-25T20:15:14Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-22T09:05:47Z",
+    "ts": "2026-11-05T14:38:54Z",
     "retryCount": 1
   },
   {
@@ -93,7 +61,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-03T20:50:33Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "ajnart/self-host",
@@ -109,7 +77,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-04T15:24:49Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "akfamily/akhub",
@@ -125,7 +93,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-03T11:50:41Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "alexkroman/tiny-audio",
@@ -141,7 +109,7 @@
     "silentRounds": 6,
     "bigbros": [],
     "ts": "2026-11-01T16:18:26Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "andreiramani/pgvector_pgsql_windows",
@@ -157,22 +125,6 @@
     "silentRounds": 5,
     "bigbros": [],
     "ts": "2026-11-04T07:17:40Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "andriidrok1/andriidrok1",
-    "desc": "Profile README with self-hosted stats: a scheduled Action draws every SVG from the GitHub GraphQL API, SMIL animation, inlined subset fonts, no third-party cards",
-    "stars": 52,
-    "language": "Python",
-    "topics": [
-      "ascii-art"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-07-27T09:07:01Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-11-05T13:09:23Z",
     "retryCount": 2
   },
   {
@@ -187,7 +139,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-23T11:18:07.745Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "apache/flex-sdk",
@@ -203,23 +155,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-04T16:30:59Z",
-    "retryCount": 5
-  },
-  {
-    "repo": "AR13X3/halation",
-    "desc": "Design animated gradient backgrounds in your browser: textured glass, liquid surfaces and seamless video loops. Free and open source.",
-    "stars": 38,
-    "language": "JavaScript",
-    "topics": [
-      "generative-art"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-10-04T04:05:38Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-11-03T10:18:16Z",
-    "retryCount": 3
+    "retryCount": 6
   },
   {
     "repo": "Aratako/T5Gemma-TTS",
@@ -235,7 +171,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-04T10:32:06Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "artembobkin/ImmersiveMap",
@@ -250,8 +186,8 @@
     "createdAt": "2026-05-25T14:03:47Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-11-01T18:14:48Z",
-    "retryCount": 5
+    "ts": "2026-11-05T17:14:46Z",
+    "retryCount": 6
   },
   {
     "repo": "Arutosio/aruta.sh",
@@ -267,7 +203,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-19T10:31:02Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "Asymptote-Labs/agent-beacon",
@@ -281,7 +217,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T18:19:35.350Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "ayuayue/PiDeck",
@@ -296,23 +232,7 @@
     "createdAt": "2026-05-31T12:40:24Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-05T00:06:07Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "basnijholt/miflora",
-    "desc": "☘️🌡🌼🥀🏡 Mi Flora Plant sensor Python package",
-    "stars": 375,
-    "language": "Python",
-    "topics": [
-      "home-automation"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2016-08-25T08:17:51Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-11-02T03:39:23Z",
+    "ts": "2026-11-05T19:37:08Z",
     "retryCount": 1
   },
   {
@@ -329,7 +249,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-05T00:59:47Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "bowo-prasetyo/web-llm",
@@ -344,8 +264,8 @@
     "createdAt": "2026-05-21T14:01:23Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-11-05T14:13:27Z",
-    "retryCount": 5
+    "ts": "2026-11-05T14:44:50Z",
+    "retryCount": 6
   },
   {
     "repo": "branislav0/snake-and-villain",
@@ -361,22 +281,22 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-03T10:02:39Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
-    "repo": "carpentries-incubator/bioimage-analysis-python",
-    "desc": "Bioimage Analysis with Python",
-    "stars": 12,
-    "language": "HTML",
+    "repo": "cactus-compute/engine",
+    "desc": "2bit quants, kernels and runtime for consumer devices. ",
+    "stars": 6181,
+    "language": "C++",
     "topics": [
-      "english"
+      "rag"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2025-04-08T11:34:52Z",
+    "createdAt": "2025-04-23T14:33:43Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-03T04:33:04Z",
+    "ts": "2026-11-05T18:40:29Z",
     "retryCount": 1
   },
   {
@@ -393,23 +313,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-03T05:48:52Z",
-    "retryCount": 5
-  },
-  {
-    "repo": "chadyi/StudyOnTV",
-    "desc": "StudyOnTV (Tiledaoti TV) — open-source Android TV app where kids unlock screen time by answering questions. Runs fully on the TV: no server, no account. Parents scan a QR code and manage questions from the LAN. Learn first. Watch later.",
-    "stars": 350,
-    "language": "Kotlin",
-    "topics": [
-      "learning"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-11-01T15:31:22Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-11-05T08:47:23Z",
-    "retryCount": 1
+    "retryCount": 6
   },
   {
     "repo": "ChatCut-Inc/agent-plugin",
@@ -425,7 +329,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-05T13:50:19Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "cheaper-inference/OmniRoute",
@@ -439,7 +343,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-02T20:07:51.158Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "clawgeek/mcd-nutrition-expert",
@@ -455,22 +359,6 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-25T02:01:42Z",
-    "retryCount": 4
-  },
-  {
-    "repo": "cmaranes/coreink-tamagotchi",
-    "desc": "A Tamagotchi-style virtual pet for the M5Stack CoreInk e-ink board, with a PC simulator",
-    "stars": 1,
-    "language": "C++",
-    "topics": [
-      "virtual-pet"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-10-26T15:43:38Z",
-    "silentRounds": 5,
-    "bigbros": [],
-    "ts": "2026-10-26T15:43:46Z",
     "retryCount": 1
   },
   {
@@ -487,7 +375,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-01T02:06:31Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "Coding-Meet/Gemini-AI-KMP-App",
@@ -503,23 +391,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-05T12:28:46Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "convex/convex-saas",
-    "desc": "A production-ready Convex Stack for your next SaaS application with Convex Auth, Stripe, TanStack, Resend, Tailwindcss, and shadcn.",
-    "stars": 377,
-    "language": "TypeScript",
-    "topics": [
-      "backend"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2024-07-27T21:22:25Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-28T23:08:40Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "crmne/zapfast",
@@ -535,6 +407,22 @@
     "retryCount": 2
   },
   {
+    "repo": "CX-ArtLab/BoopFace",
+    "desc": "BoopFace (formerly Agent Robot Avatar): a lightweight, expressive robot avatar component for AI bots, agents and interactive apps.",
+    "stars": 69,
+    "language": "JavaScript",
+    "topics": [
+      "virtual-pet"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-09-02T23:12:17Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-05T17:06:56Z",
+    "retryCount": 1
+  },
+  {
     "repo": "danielkuhlwein/strength-training",
     "desc": "A native iOS workout tracker built with SwiftUI. Log sets, track progress, sync to iCloud.",
     "stars": 17,
@@ -548,39 +436,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-05T05:28:26Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "darekkay/dev-tools",
-    "desc": "Developer tools",
-    "stars": 33,
-    "language": "HTML",
-    "topics": [
-      "cheatsheet"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2018-09-24T19:55:33Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-11-01T10:23:50Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "DarknessFX/zig_workbench",
-    "desc": "DarknessFX Zig templates, projects, programs, libs and tools.",
-    "stars": 55,
-    "language": "C",
-    "topics": [
-      "raylib"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2023-10-26T21:57:08Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-11-01T02:43:09Z",
-    "retryCount": 1
+    "retryCount": 3
   },
   {
     "repo": "DataTalksClub/production-ai-agents-for-media-generation",
@@ -596,7 +452,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-05T14:15:19Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "davidrapan/ha-solarman",
@@ -612,23 +468,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-04T17:20:05Z",
-    "retryCount": 5
-  },
-  {
-    "repo": "DespiteVoltcloud/InterviewCopilot-rpocket-team",
-    "desc": "EdTech application designed to bridge the gap between learning and landing your dream job",
-    "stars": 38,
-    "language": "HTML",
-    "topics": [
-      "interview"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-11-05T11:56:46Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-11-05T11:56:54Z",
-    "retryCount": 1
+    "retryCount": 6
   },
   {
     "repo": "deus42/standup-pal",
@@ -644,7 +484,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-04T11:54:09Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "Developkings/vibe-a-gochi",
@@ -660,7 +500,23 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-28T21:41:32Z",
-    "retryCount": 5
+    "retryCount": 6
+  },
+  {
+    "repo": "DresdenGman/AIGlasses_for_navigation",
+    "desc": "Open-source AI navigation glasses under $35 — they say what they see, and say 'uncertain' instead of guessing. Safety-first, printable enclosure, community build kit.",
+    "stars": 212,
+    "language": "Python",
+    "topics": [
+      "3d-printing"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2025-12-09T07:10:57Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-05T13:58:20Z",
+    "retryCount": 1
   },
   {
     "repo": "dsx-ai-factory/nvke",
@@ -692,20 +548,6 @@
     "retryCount": 1
   },
   {
-    "repo": "egoist/kero",
-    "desc": "A cross-platform native terminal app optimized for agents",
-    "stars": 1396,
-    "language": "Go",
-    "topics": [],
-    "source": "trending",
-    "starGrowth": 29,
-    "createdAt": "2026-07-18T09:31:32Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-11-02T20:07:51.158Z",
-    "retryCount": 1
-  },
-  {
     "repo": "elithril/blender-kiln",
     "desc": "Claude Code plugin: describe an object or show a photo, and Claude builds a clean 3D model in Blender, for games, the web, AR or 3D printing. It animates characters too. New in 3.0: Kiln Studio, a local page to view, check and fix your models with Claude.",
     "stars": 106,
@@ -719,55 +561,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-03T21:18:16Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "emanuele-em/kanzo",
-    "desc": "Self-hosted, sharable kanban for humans and agents. One 4.5 MB binary, 4.5 MB of RAM, 10 to 60 tokens per agent reply, starts in 2 ms, zero setup.",
-    "stars": 1011,
-    "language": "Rust",
-    "topics": [
-      "raspberry-pi"
-    ],
-    "source": "search",
-    "starGrowth": 43,
-    "createdAt": "2026-10-25T11:14:03Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-11-04T20:36:17Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "EnigmahavenIce75216/rpocket-team-mod-playerbots-portable",
-    "desc": "Portable Windows AzerothCore server with earned Vanilla, TBC and Wrath progression, historical talents, autonomous bot dungeons, raid support, bot auction trading and automatic updates.",
-    "stars": 36,
-    "language": "",
-    "topics": [
-      "english"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-11-05T12:00:11Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-11-05T12:00:24Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "ePubLift/epublift",
-    "desc": "EPUB toolbox: upgrade, validate, repair, edit metadata, archive, and import PDF or Markdown. Pure Rust CLI and self-hosted web app.",
-    "stars": 70,
-    "language": "Rust",
-    "topics": [
-      "ebook"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-06-09T19:51:00Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-11-04T19:10:48Z",
-    "retryCount": 1
+    "retryCount": 3
   },
   {
     "repo": "ethanplusai/harvey",
@@ -783,7 +577,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-02T03:55:36Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "exam-data/NETEMVocabulary",
@@ -814,8 +608,8 @@
     "createdAt": "2024-08-04T12:15:06Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-05T14:19:53Z",
-    "retryCount": 1
+    "ts": "2026-11-05T19:10:52Z",
+    "retryCount": 2
   },
   {
     "repo": "FedorSosnin/PokeKnomiGochi",
@@ -834,22 +628,6 @@
     "retryCount": 1
   },
   {
-    "repo": "fieldeffects/spiro",
-    "desc": "Semi-modular VST / Standalone synthesizer",
-    "stars": 36,
-    "language": "C++",
-    "topics": [
-      "synthesizer"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2022-06-14T22:44:34Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-11-01T19:38:55Z",
-    "retryCount": 1
-  },
-  {
     "repo": "FlashCat-Jordan/Flashduck",
     "desc": "闪猫造物Flashduck — an open-source ESP32-S3 desktop duck robot with six servos, a single animated eye, wide-stance walking and two interaction systems (voice assistant / DuckClaw local agent).",
     "stars": 134,
@@ -863,7 +641,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-03T04:59:18Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "fmind/mlops-coding-course",
@@ -879,7 +657,7 @@
     "silentRounds": 6,
     "bigbros": [],
     "ts": "2026-11-02T20:26:07Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "ForgeAX/forgeax-engine",
@@ -894,8 +672,8 @@
     "createdAt": "2026-10-15T16:49:46Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-03T05:21:04Z",
-    "retryCount": 4
+    "ts": "2026-11-05T08:05:53Z",
+    "retryCount": 1
   },
   {
     "repo": "frankShan001/CutVoke",
@@ -911,7 +689,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-03T09:48:47Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "genex-games/genex-desktop",
@@ -926,101 +704,21 @@
     "createdAt": "2026-10-02T17:17:59Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-05T14:04:31Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "grazianobolla/godot-monke-net",
-    "desc": "Client/Server Authoritative Multiplayer Addon for the Godot Engine",
-    "stars": 250,
-    "language": "C#",
-    "topics": [
-      "physics"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2023-01-14T05:32:30Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-22T17:07:31Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "GuYeying/pygamest",
-    "desc": "Pygame implementation and binding with pure Rust using RustPython as interpreter",
-    "stars": 5,
-    "language": "Python",
-    "topics": [
-      "pygame"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-09-30T17:22:03Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-11-05T13:02:04Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "HaoyanZhang123/dsh-plugin-control-your-schedule",
-    "desc": "DSH自己的便签、画布、日程表，支持常用提示词预填充 Paper-style sticky notes, notes, calendar and drawing panel for DeepSeek Harness (DSH) . Supports common prompt pre-fill",
-    "stars": 12,
-    "language": "HTML",
-    "topics": [
-      "english"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-10-18T05:12:23Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-11-05T03:57:49Z",
-    "retryCount": 1
+    "ts": "2026-11-05T20:48:38Z",
+    "retryCount": 3
   },
   {
     "repo": "HunYiSage/dsh-purge",
     "desc": "DeepSeek Harness 破甲：让所有模型都能破甲，不同模型可换不同提示词；默认提示词面向国模「小码酱」。Jailbreak for every model — swap prompts per model. 求 Star 收藏 ⭐ 如要二开，请查看署名要求部分",
-    "stars": 18866,
+    "stars": 19084,
     "language": "JavaScript",
     "topics": [],
     "source": "trending",
     "starGrowth": 1064,
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-05T14:23:18.089Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "i-oms/IdleWalker",
-    "desc": "A tiny desktop companion for Windows, macOS and Linux. When your mouse has not moved for a while (two seconds by default), a small shaded, 3D-looking Minion peeks over the bottom edge of the screen, hops out, and strolls along the bottom of your monitors.",
-    "stars": 2,
-    "language": "Rust",
-    "topics": [
-      "virtual-pet"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-11-02T15:57:19Z",
-    "silentRounds": 3,
-    "bigbros": [],
-    "ts": "2026-11-04T17:00:44Z",
+    "ts": "2026-11-05T20:53:34.917Z",
     "retryCount": 2
-  },
-  {
-    "repo": "indaco/garmin-personal-mcp",
-    "desc": "MCP server for the official Garmin Connect Personal API. Ask Claude, Codex or any stdio MCP client about your runs, strength sets, sleep and HRV. Read-only, runs with npx. A training dashboard in under a minute, as a page file or inside the chat in Claude Desktop. The server writes the page: about 100× fewer output tokens.",
-    "stars": 16,
-    "language": "TypeScript",
-    "topics": [
-      "fitness"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-10-27T10:06:29Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-11-05T14:06:00Z",
-    "retryCount": 1
   },
   {
     "repo": "ItsSNOWMOBILE/aftertake",
@@ -1036,7 +734,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-30T06:26:41Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "jenchienchang/transformer-roofline-analyzer",
@@ -1052,7 +750,7 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-10-31T04:38:51Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "JetBrains/thinkrail",
@@ -1066,7 +764,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-25T13:05:28.531Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "JiaFeiMiao-K-Cat/DiscImageStudio",
@@ -1082,22 +780,6 @@
     "retryCount": 1
   },
   {
-    "repo": "johangardhage/amiga-realtime3d",
-    "desc": "The 3D engine from the book \"Amiga Real-Time 3D Graphics\"",
-    "stars": 25,
-    "language": "Assembly",
-    "topics": [
-      "demoscene"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2018-12-27T07:18:13Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-11-05T14:16:32Z",
-    "retryCount": 1
-  },
-  {
     "repo": "kvcache-ai/ktransformers",
     "desc": "",
     "stars": 19660,
@@ -1109,7 +791,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-09-13T22:08:09.499Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "Lanqiao-Luca/ai-video-marker",
@@ -1124,23 +806,7 @@
     "createdAt": "2026-10-25T16:04:04Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-04T08:06:34Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "lavantien/blind-trainer",
-    "desc": "3BLD/WCA cubing trainer in C23/raylib: alg repository with mechanical cube verification, genetically optimized memo syllables, commutator-to-plain-alg, FSRS-5 case drills, SQLite persistence, 3D replay, full fuzz/mutation gating",
-    "stars": 3,
-    "language": "C",
-    "topics": [
-      "raylib"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-10-11T18:50:28Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-11-01T15:37:39Z",
+    "ts": "2026-11-05T14:49:14Z",
     "retryCount": 3
   },
   {
@@ -1156,8 +822,8 @@
     "createdAt": "2026-07-28T12:59:13Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-05T13:53:46Z",
-    "retryCount": 5
+    "ts": "2026-11-05T20:22:45Z",
+    "retryCount": 1
   },
   {
     "repo": "librehold-game/librehold",
@@ -1173,23 +839,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-04T21:27:39Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "lightsheikhextol/Desktop-Pet-Desktop-2026",
-    "desc": "⭐️ Desktop Pet — virtual companion software 2026 with setup installer v1.2. Includes activation keygen, license key pre-activated, full version latest build Pro. Cute desktop assistant with interactive pet animations for Windows 10/11 PC. Get fun productivity boost with customizable pets and digital companion experience. ⭐️",
-    "stars": 1,
-    "language": "Go",
-    "topics": [
-      "virtual-pet"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-11-03T17:58:36Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-11-04T21:11:13Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "llm-xiaoye/douyin-to-obsidian",
@@ -1205,7 +855,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-05T10:59:19Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "lucasbabur/jp-essay",
@@ -1221,7 +871,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-01T15:57:46Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "LucasJRamos/spritekiln",
@@ -1237,7 +887,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-30T20:19:40Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "lucidrains/BS-RoFormer",
@@ -1285,7 +935,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-03T08:34:53Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "MaxEllis/orcaslicer-mcp",
@@ -1301,23 +951,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-02T23:43:43Z",
-    "retryCount": 3
-  },
-  {
-    "repo": "midilab/aciduino",
-    "desc": "Affordable and DIY, Roland TB-303 and TR-808 step sequencer clone and midi controller. Packed with additional features, specifically designed for musicians and DJs to use on live performances or streamline their studio creative process.",
-    "stars": 334,
-    "language": "C++",
-    "topics": [
-      "arduino"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2018-03-10T19:58:25Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-10-14T15:06:48Z",
-    "retryCount": 1
+    "retryCount": 4
   },
   {
     "repo": "Muvon/octomind",
@@ -1330,7 +964,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-04T17:53:11.038Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "Ne0bliviscaris/SQL-Detective-RAG-Game",
@@ -1346,54 +980,38 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-04T22:04:21Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
-    "repo": "numbpill3d/cardputer-adv-diviner",
-    "desc": "Daedric/Lain-skinned companion firmware for the M5Stack Cardputer ADV: a pocket synth, visual instrument, Gemini browser, and authorized Wi-Fi/BLE/LAN toolkit with 16 rites.",
-    "stars": 14,
-    "language": "C++",
-    "topics": [
-      "synthesizer"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-10-20T08:02:07Z",
-    "silentRounds": 5,
-    "bigbros": [],
-    "ts": "2026-11-02T18:34:20Z",
-    "retryCount": 4
-  },
-  {
-    "repo": "OmarSoudan/tic-tac-toe-ai-lab",
-    "desc": "A game-grade Tic-Tac-Toe AI laboratory featuring hardware-accelerated Pygame rendering, real-time candidate move heatmaps, live telemetry dossiers, and multi-engine tournament benchmarking.",
-    "stars": 2,
+    "repo": "owoevan-dev/music-skill",
+    "desc": "An Agent Skill that writes original instrumental music as editable notes, then performs, mixes and masters it on free sampled instruments (CC0 or free for any use) and synthesizers. MIDI, stems and game loops; no audio-generation model.",
+    "stars": 20,
     "language": "Python",
     "topics": [
-      "pygame"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-10-27T23:02:05Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-27T23:30:17Z",
-    "retryCount": 5
-  },
-  {
-    "repo": "qvantor/chisper",
-    "desc": "Experimental wavetable synth written on TS and Web Audio",
-    "stars": 39,
-    "language": "TypeScript",
-    "topics": [
       "synthesizer"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2022-10-28T07:04:26Z",
+    "createdAt": "2026-11-02T10:25:32Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-05T09:45:36Z",
+    "ts": "2026-11-05T15:44:04Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "PapilotAI/papilot",
+    "desc": "Next-Generation AI LaTeX Editor: Don't read or write LaTeX. Just work on the PDF.",
+    "stars": 135,
+    "language": "TypeScript",
+    "topics": [
+      "writing"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-26T07:50:28Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-05T19:31:03Z",
     "retryCount": 1
   },
   {
@@ -1410,20 +1028,36 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-31T05:58:15Z",
-    "retryCount": 2
+    "retryCount": 1
+  },
+  {
+    "repo": "sakitam-fdd/wind-layer",
+    "desc": ":flags: :rocket: wind-layer | a openlayers && maptalks && amap && bmap && leaflet && mapbox-gl && maplibre-gl extension like windy.com for weather visualization",
+    "stars": 714,
+    "language": "TypeScript",
+    "topics": [
+      "weather"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2017-12-14T15:35:32Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-05T04:57:23Z",
+    "retryCount": 1
   },
   {
     "repo": "sandbox-quantum/switch",
     "desc": "Open-source AI teammates in Slack, Teams, Discord, Telegram and Mattermost. Self-host it, with any agent harness and any model.",
-    "stars": 3901,
+    "stars": 3933,
     "language": "Python",
     "topics": [],
     "source": "trending",
     "starGrowth": 215,
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-05T14:23:18.089Z",
-    "retryCount": 1
+    "ts": "2026-11-05T20:53:34.917Z",
+    "retryCount": 2
   },
   {
     "repo": "santoshshinde2012/ai-ml-ground-truth",
@@ -1439,7 +1073,23 @@
     "silentRounds": 5,
     "bigbros": [],
     "ts": "2026-11-02T12:24:45Z",
-    "retryCount": 2
+    "retryCount": 3
+  },
+  {
+    "repo": "snazzybean/roommind",
+    "desc": "Intelligent room climate control for Home Assistant — self-learning MPC, proportional valve control, solar gain modeling",
+    "stars": 422,
+    "language": "Python",
+    "topics": [
+      "home-automation"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-02-18T19:15:16Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-04T23:15:44Z",
+    "retryCount": 1
   },
   {
     "repo": "TauricResearch/Trading-R1",
@@ -1455,7 +1105,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-04T05:51:38Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "tembo/voxl",
@@ -1468,6 +1118,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-05T14:23:18.089Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "the-geeky-couldron/waypoint",
+    "desc": "Real streets. Game worlds. Native Android navigation with 27 game-inspired maps, sensor-assisted guidance and verified in-app updates.",
+    "stars": 227,
+    "language": "Kotlin",
+    "topics": [
+      "maps"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-30T13:50:08Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-05T17:46:45Z",
     "retryCount": 1
   },
   {
@@ -1484,7 +1150,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-05T13:43:58Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "TiantianYeTTY/textbook-full-workflow",
@@ -1500,7 +1166,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-05T04:24:10Z",
-    "retryCount": 5
+    "retryCount": 1
   },
   {
     "repo": "Toshihiko-Lin/Open-Revelare",
@@ -1515,40 +1181,8 @@
     "createdAt": "2026-08-06T06:43:42Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-11-05T09:01:24Z",
-    "retryCount": 4
-  },
-  {
-    "repo": "Trendorin/yami",
-    "desc": "Pixel-art desktop for niri: a Rust Wayland shell in ~15 MB, its own file manager, image viewer and video player, one accent for every app, signed updates, any linux distro from source.",
-    "stars": 64,
-    "language": "Rust",
-    "topics": [
-      "pixel-art"
-    ],
-    "source": "search",
-    "starGrowth": 13,
-    "createdAt": "2026-11-03T15:29:46Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-11-05T11:07:40Z",
-    "retryCount": 3
-  },
-  {
-    "repo": "trioalchey/ozone-mastering-suite",
-    "desc": "AI-assisted mastering suite with spectral shaping, maximizer and codec preview",
-    "stars": 193,
-    "language": "JavaScript",
-    "topics": [
-      "music-production"
-    ],
-    "source": "search",
-    "starGrowth": 89,
-    "createdAt": "2026-11-02T23:42:16Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-11-05T08:39:40Z",
-    "retryCount": 4
+    "ts": "2026-11-05T17:01:00Z",
+    "retryCount": 1
   },
   {
     "repo": "valentderah/totk-pc-recomp",
@@ -1563,24 +1197,8 @@
     "createdAt": "2026-10-29T12:32:46Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-05T08:29:26Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "veripublica/epubveri",
-    "desc": "Pure-Rust EPUB validator — a fast, JVM-free, embeddable alternative to epubcheck",
-    "stars": 26,
-    "language": "Rust",
-    "topics": [
-      "ebook"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-07-01T07:02:33Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-11-03T22:25:08Z",
-    "retryCount": 1
+    "ts": "2026-11-05T17:15:10Z",
+    "retryCount": 3
   },
   {
     "repo": "Vottivott/microduck-playground",
@@ -1595,8 +1213,8 @@
     "createdAt": "2026-09-02T17:56:43Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-03T23:58:39Z",
-    "retryCount": 4
+    "ts": "2026-11-05T17:46:12Z",
+    "retryCount": 1
   },
   {
     "repo": "wesammustafa/Claude-Code-Quest",
@@ -1611,7 +1229,7 @@
     "createdAt": "2025-08-17T14:45:39Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-05T14:03:00Z",
+    "ts": "2026-11-05T20:37:06Z",
     "retryCount": 1
   },
   {
@@ -1627,7 +1245,7 @@
     "createdAt": "2026-11-01T18:17:11Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-05T11:23:02Z",
+    "ts": "2026-11-05T15:58:47Z",
     "retryCount": 1
   },
   {
@@ -1644,7 +1262,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-04T12:01:51Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "YuvrajSingh-mist/Paper-Replications-and-Experiments",
@@ -1660,22 +1278,6 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-04T21:20:48Z",
-    "retryCount": 4
-  },
-  {
-    "repo": "Zoraaprun80322/BouncitRaw-rpocket",
-    "desc": "Free one-knob stereo echo plugin for macOS and Windows. macOS: AU, VST3, CLAP, AAX, Standalone (Apple Silicon native). Windows: VST3, CLAP, Standalone. Instant tempo-synced bounce.",
-    "stars": 40,
-    "language": "HTML",
-    "topics": [
-      "music-production"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-11-05T11:54:13Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-11-05T11:54:20Z",
     "retryCount": 1
   }
 ]
