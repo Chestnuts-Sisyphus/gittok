@@ -348,7 +348,7 @@
   },
   {
     "job": "feed",
-    "at": "2026-11-06T01:14:09.057Z",
+    "at": "2026-11-06T20:27:15.727Z",
     "workers": [
       {
         "name": "zhipu",
@@ -368,7 +368,7 @@
         "cooldowns": 1,
         "otherErrors": 0,
         "cooling": false,
-        "lastError": "Error: 429 You’ve reached the API rate limit for free users. Upgrade to a Token Plan to unlock higher limits and continue using the API without interruption. (request id: 2026110601015636885033OIoFscV"
+        "lastError": "Error: 429 You’ve reached the API rate limit for free users. Upgrade to a Token Plan to unlock higher limits and continue using the API without interruption. (request id: 20261106201424785299296N7t5wy"
       },
       {
         "name": "agnes#2",
@@ -378,28 +378,40 @@
         "cooldowns": 1,
         "otherErrors": 0,
         "cooling": false,
-        "lastError": "Error: 429 You’ve reached the API rate limit for free users. Upgrade to a Token Plan to unlock higher limits and continue using the API without interruption. (request id: 20261106010535477361814Drqplk"
+        "lastError": "Error: 429 You’ve reached the API rate limit for free users. Upgrade to a Token Plan to unlock higher limits and continue using the API without interruption. (request id: 2026110620142542479390PwJBRld"
       },
       {
         "name": "zhipu#2",
-        "calls": 1,
+        "calls": 3,
         "ok": 1,
-        "err429": 0,
+        "err429": 2,
         "cooldowns": 0,
         "otherErrors": 0,
-        "cooling": false
+        "cooling": false,
+        "lastError": "Error: 429 该模型当前访问量过大，请您稍后再试"
       },
       {
         "name": "zhipu#3",
-        "calls": 1,
+        "calls": 3,
         "ok": 1,
-        "err429": 0,
+        "err429": 2,
         "cooldowns": 0,
         "otherErrors": 0,
-        "cooling": false
+        "cooling": false,
+        "lastError": "Error: 429 该模型当前访问量过大，请您稍后再试"
       },
       {
         "name": "zhipu#4",
+        "calls": 3,
+        "ok": 1,
+        "err429": 2,
+        "cooldowns": 0,
+        "otherErrors": 0,
+        "cooling": false,
+        "lastError": "Error: 429 该模型当前访问量过大，请您稍后再试"
+      },
+      {
+        "name": "zhipu#5",
         "calls": 4,
         "ok": 1,
         "err429": 3,
@@ -409,24 +421,14 @@
         "lastError": "Error: 429 该模型当前访问量过大，请您稍后再试"
       },
       {
-        "name": "zhipu#5",
-        "calls": 3,
-        "ok": 1,
-        "err429": 2,
-        "cooldowns": 0,
-        "otherErrors": 0,
-        "cooling": false,
-        "lastError": "Error: 429 您的账户已达到速率限制，请您控制请求频率"
-      },
-      {
         "name": "groq",
         "calls": 4,
         "ok": 0,
         "err429": 4,
         "cooldowns": 1,
         "otherErrors": 0,
-        "cooling": true,
-        "lastError": "Error: 429 Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 195942, Requested 58"
+        "cooling": false,
+        "lastError": "Error: 429 Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 195058, Requested 63"
       },
       {
         "name": "groq#2",
@@ -435,8 +437,8 @@
         "err429": 4,
         "cooldowns": 1,
         "otherErrors": 0,
-        "cooling": true,
-        "lastError": "Error: 429 Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 195942, Requested 60"
+        "cooling": false,
+        "lastError": "Error: 429 Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 195059, Requested 58"
       },
       {
         "name": "groq#3",
@@ -445,8 +447,8 @@
         "err429": 4,
         "cooldowns": 1,
         "otherErrors": 0,
-        "cooling": true,
-        "lastError": "Error: 429 Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 195942, Requested 56"
+        "cooling": false,
+        "lastError": "Error: 429 Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 195059, Requested 56"
       },
       {
         "name": "groq#4",
@@ -455,8 +457,8 @@
         "err429": 4,
         "cooldowns": 1,
         "otherErrors": 0,
-        "cooling": true,
-        "lastError": "Error: 429 Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 195942, Requested 62"
+        "cooling": false,
+        "lastError": "Error: 429 Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 195059, Requested 62"
       },
       {
         "name": "groq#5",
@@ -465,8 +467,8 @@
         "err429": 4,
         "cooldowns": 1,
         "otherErrors": 0,
-        "cooling": true,
-        "lastError": "Error: 429 Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 195942, Requested 44"
+        "cooling": false,
+        "lastError": "Error: 429 Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 195059, Requested 56"
       },
       {
         "name": "groq#6",
@@ -475,18 +477,17 @@
         "err429": 4,
         "cooldowns": 1,
         "otherErrors": 0,
-        "cooling": true,
-        "lastError": "Error: 429 Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 195942, Requested 44"
+        "cooling": false,
+        "lastError": "Error: 429 Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 195059, Requested 63"
       },
       {
         "name": "groq#7",
         "calls": 1,
-        "ok": 0,
+        "ok": 1,
         "err429": 0,
         "cooldowns": 0,
-        "otherErrors": 1,
-        "cooling": false,
-        "lastError": "Error: Unexpected empty response from groq"
+        "otherErrors": 0,
+        "cooling": false
       },
       {
         "name": "groq#8",
@@ -496,7 +497,7 @@
         "cooldowns": 0,
         "otherErrors": 1,
         "cooling": false,
-        "lastError": "Error: 413 Request too large for model `openai/gpt-oss-20b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Requested 12276, please re"
+        "lastError": "Error: Unexpected empty response from groq"
       },
       {
         "name": "groq#9",
@@ -509,33 +510,31 @@
       },
       {
         "name": "groq#10",
-        "calls": 2,
+        "calls": 3,
         "ok": 1,
-        "err429": 1,
+        "err429": 2,
         "cooldowns": 0,
         "otherErrors": 0,
         "cooling": false,
-        "lastError": "Error: 429 Request too large for model `qwen/qwen3.8-27b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on output tokens per minute (OTPM): Limit 1000, Requested 4068. The "
+        "lastError": "Error: 429 Request too large for model `qwen/qwen3.8-27b` in organization `org_01m1pdm1bne5ssp5tzddge7ka3` service tier `on_demand` on output tokens per minute (OTPM): Limit 1000, Requested 3514. The "
       },
       {
         "name": "gemini",
-        "calls": 4,
+        "calls": 1,
         "ok": 1,
-        "err429": 3,
+        "err429": 0,
         "cooldowns": 0,
         "otherErrors": 0,
-        "cooling": false,
-        "lastError": "Error: 429 status code (no body)"
+        "cooling": false
       },
       {
         "name": "gemini#2",
-        "calls": 2,
+        "calls": 1,
         "ok": 1,
-        "err429": 1,
+        "err429": 0,
         "cooldowns": 0,
         "otherErrors": 0,
-        "cooling": false,
-        "lastError": "Error: 429 status code (no body)"
+        "cooling": false
       },
       {
         "name": "gemini#3",
@@ -632,6 +631,26 @@
         "otherErrors": 1,
         "cooling": false,
         "lastError": "Error: 401 status code (no body)"
+      },
+      {
+        "name": "cerebras",
+        "calls": 1,
+        "ok": 0,
+        "err429": 0,
+        "cooldowns": 0,
+        "otherErrors": 1,
+        "cooling": false,
+        "lastError": "Error: 402 status code (no body)"
+      },
+      {
+        "name": "cerebras#2",
+        "calls": 1,
+        "ok": 0,
+        "err429": 0,
+        "cooldowns": 0,
+        "otherErrors": 1,
+        "cooling": false,
+        "lastError": "Error: 402 status code (no body)"
       },
       {
         "name": "hf",
