@@ -13,7 +13,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-03T06:13:54Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "ai-infra-curriculum/ai-infra-junior-engineer-learning",
@@ -29,7 +29,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-11-08T14:09:29Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "akfamily/akhub",
@@ -45,7 +45,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-07T06:38:40Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "alchaincyf/codex-orange-book",
@@ -62,7 +62,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-20T03:23:27Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "alchaincyf/huashu-art-motion",
@@ -94,7 +94,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-22T14:12:37Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "alexkroman/tiny-audio",
@@ -110,7 +110,7 @@
     "silentRounds": 9,
     "bigbros": [],
     "ts": "2026-11-01T16:18:26Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "alexsto1an/ha-ani-weather-card",
@@ -126,7 +126,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-06T11:30:30Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "amazoogle/vesper",
@@ -158,7 +158,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-08T11:27:53Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "Aratako/T5Gemma-TTS",
@@ -174,7 +174,7 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-11-04T10:32:06Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "artembobkin/ImmersiveMap",
@@ -190,7 +190,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-08T15:55:13Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "asaft29/govertor",
@@ -206,7 +206,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-06T13:19:15Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "Asymptote-Labs/agent-beacon",
@@ -255,6 +255,22 @@
     "retryCount": 1
   },
   {
+    "repo": "ayushsharma82/WebSerial",
+    "desc": "A remote terminal library for wireless microcontrollers to log, monitor or debug your firmware/product.",
+    "stars": 648,
+    "language": "C++",
+    "topics": [
+      "arduino"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2019-06-14T13:24:15Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-06T23:03:22Z",
+    "retryCount": 1
+  },
+  {
     "repo": "Azure-Samples/aisearch-openai-rag-audio",
     "desc": "A simple example implementation of the VoiceRAG pattern to power interactive voice generative AI experiences using RAG with Azure AI Search and Azure OpenAI's gpt-4o-realtime-preview model. ",
     "stars": 565,
@@ -268,7 +284,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-06T00:28:22Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "babygoton/WorkDaddy",
@@ -282,6 +298,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-07T12:44:07.308Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "bitninjaexpiate/Adobe-Lightroom-Full-Version-Setup",
+    "desc": "adobe lightroom full version setup windows — Adobe Lightroom for Windows 11 & 10. Setup walkthrough in README plus install order for Windows desktop use.",
+    "stars": 82,
+    "language": "",
+    "topics": [
+      "photography"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-31T01:28:08Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-05T00:59:47Z",
     "retryCount": 1
   },
   {
@@ -298,7 +330,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-07T11:36:53Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "branislav0/snake-and-villain",
@@ -314,7 +346,23 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-03T10:02:39Z",
-    "retryCount": 3
+    "retryCount": 4
+  },
+  {
+    "repo": "ChatCut-Inc/agent-plugin",
+    "desc": "AI video editor for agents. ChatCut plugin and MCP server for Codex, ChatGPT, Claude Code, Cursor, Grok, Gemini CLI, WorkBuddy, Doubao Work and Qwen Work: edit your own footage by chatting, add captions and subtitles, remove silences and filler words, create motion graphics, and export an editable timeline.",
+    "stars": 1018,
+    "language": "JavaScript",
+    "topics": [
+      "video-editor"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-06-25T09:45:29Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-06T12:28:32Z",
+    "retryCount": 1
   },
   {
     "repo": "cheaper-inference/OmniRoute",
@@ -344,7 +392,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-08T10:13:29Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "cobusgreyling/grok-bot-templates",
@@ -358,7 +406,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-07T12:44:07.308Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Coding-Meet/Gemini-AI-KMP-App",
@@ -374,7 +422,7 @@
     "silentRounds": 5,
     "bigbros": [],
     "ts": "2026-11-05T12:28:46Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "CodingQuests/2D-Roguelike-Tutorial-youtube",
@@ -390,7 +438,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-12T23:29:30Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "crmne/zapfast",
@@ -404,7 +452,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-03T19:18:36.422Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "CursedPrograms/KIDA-Robot-v00",
@@ -420,7 +468,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-08T18:29:28Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "CX-ArtLab/BoopFace",
@@ -436,7 +484,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-08T04:06:25Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "darknecrocities/Helios",
@@ -452,7 +500,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-08T16:31:43Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "DataTalksClub/production-ai-agents-for-media-generation",
@@ -468,7 +516,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-06T17:45:05Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "dberzins/wollix",
@@ -484,7 +532,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-08T12:02:03Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "dboudreau00/Reverse-Engineering-Textbook-Labs",
@@ -500,7 +548,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T18:09:22Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "DemonDamon/AgenticX",
@@ -516,7 +564,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-08T16:00:09Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "didilili/mianstack",
@@ -532,7 +580,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-07T05:55:18Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "dsx-ai-factory/nvke",
@@ -561,7 +609,7 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-11-04T11:47:06Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "ethanplusai/sellbird",
@@ -593,7 +641,7 @@
     "silentRounds": 16,
     "bigbros": [],
     "ts": "2026-10-22T10:45:05Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "FedorSosnin/PokeKnomiGochi",
@@ -609,7 +657,7 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-11-06T21:39:15Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "fmind/mlops-coding-course",
@@ -625,7 +673,7 @@
     "silentRounds": 9,
     "bigbros": [],
     "ts": "2026-11-08T14:39:21Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "FonaTech/Project_Chronos",
@@ -640,8 +688,8 @@
     "createdAt": "2026-04-19T21:05:18Z",
     "silentRounds": 2,
     "bigbros": [],
-    "ts": "2026-11-08T18:24:37Z",
-    "retryCount": 2
+    "ts": "2026-11-08T18:39:43Z",
+    "retryCount": 3
   },
   {
     "repo": "ForgeAX/forgeax-engine",
@@ -657,7 +705,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-06T05:22:29Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "foxnaim/Medical-Graph-RAG",
@@ -673,7 +721,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-07T17:02:14Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "fraisasghar/Cpp-Personal-Gym-Trainer-and-Fitness-Recommendation-System",
@@ -689,7 +737,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-07T11:39:47Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "franklynton/Millennium-Bug",
@@ -721,7 +769,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-01T16:14:03Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "google-gemini/gemini-api-cli",
@@ -735,7 +783,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-07T12:44:07.308Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "ilynthn/MeguLit",
@@ -751,7 +799,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-08T18:23:47Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "ivanusto/japan-travel-achievement-list",
@@ -767,7 +815,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-08T10:45:18Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "jattree/NextTang",
@@ -799,7 +847,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-05T08:26:01Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "llm-xiaoye/douyin-to-obsidian",
@@ -815,7 +863,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-11-05T10:59:19Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "LucasJRamos/spritekiln",
@@ -831,23 +879,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-30T20:19:40Z",
-    "retryCount": 4
-  },
-  {
-    "repo": "lupantech/MathVista",
-    "desc": "MathVista: data, code, and evaluation for Mathematical Reasoning in Visual Contexts ",
-    "stars": 367,
-    "language": "Jupyter Notebook",
-    "topics": [
-      "mathematics"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2023-10-04T00:25:27Z",
-    "silentRounds": 4,
-    "bigbros": [],
-    "ts": "2026-11-04T00:42:07Z",
-    "retryCount": 1
+    "retryCount": 5
   },
   {
     "repo": "manjughosa/magpie-digital-pet-portal",
@@ -863,7 +895,7 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-11-03T08:34:53Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "martinkozle/embedded-lab",
@@ -879,7 +911,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-08T13:12:44Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "meta/astryx",
@@ -908,7 +940,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-08T07:49:33Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "n5za/chess-mate",
@@ -924,7 +956,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T20:51:58Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "nokri-mohammed/deskpane",
@@ -940,7 +972,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-08T13:46:33Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "PansaLegrand/dojo-video-harness",
@@ -971,8 +1003,8 @@
     "createdAt": "2026-10-26T07:50:28Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-08T18:32:10Z",
-    "retryCount": 4
+    "ts": "2026-11-08T18:50:26Z",
+    "retryCount": 1
   },
   {
     "repo": "poco-ai/Agentero",
@@ -1034,7 +1066,7 @@
     "silentRounds": 8,
     "bigbros": [],
     "ts": "2026-11-02T12:24:45Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "shengdabai/Chinese-Textbook-Generator",
@@ -1050,7 +1082,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-06T16:30:55Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "stuntrally/stuntrally3",
@@ -1066,7 +1098,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-07T23:13:51Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "TiantianYeTTY/textbook-full-workflow",
@@ -1098,7 +1130,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-07T21:27:22Z",
-    "retryCount": 6
+    "retryCount": 1
   },
   {
     "repo": "valentderah/totk-pc-recomp",
@@ -1114,7 +1146,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-08T18:14:36Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "willing999/EnglishPod",
@@ -1122,7 +1154,8 @@
     "stars": 29,
     "language": "JavaScript",
     "topics": [
-      "english"
+      "english",
+      "podcast"
     ],
     "source": "search",
     "starGrowth": 0,
@@ -1162,7 +1195,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-08T02:38:21Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "zhishengplus/ZhishengWeather",
@@ -1178,6 +1211,6 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-08T03:42:00Z",
-    "retryCount": 3
+    "retryCount": 1
   }
 ]
