@@ -1,5 +1,37 @@
 [
   {
+    "repo": "aa1143/NamiAgent",
+    "desc": "零基础入门 AI Agent 的基础教程。不只是教程，也是一个能在本地跑起来的 Agent：读写文件、执行命令、MCP、长期记忆，自带网页端看清每一步。从 100 行最小循环开始，一课加一个能力，最后拆解 Claude Code、Codex 等主流 Agent",
+    "stars": 466,
+    "language": "Python",
+    "topics": [
+      "tutorial"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-30T11:03:30Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-30T13:37:27Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "aaryansamanta/usaco-kaggle",
+    "desc": "USACO 2026 Second Contest: Bronze, Silver and Gold problems explained, with verified C++17 solutions.",
+    "stars": 665,
+    "language": "Jupyter Notebook",
+    "topics": [
+      "algorithms"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2025-12-01T20:59:31Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-09T03:46:38Z",
+    "retryCount": 1
+  },
+  {
     "repo": "AhmadHassan-BTed/FormFilla",
     "desc": "About A local-first browser extension that fills job-application forms from local JSON profile data and files. Matches are computed deterministically via multi-signal scoring, structural repeated-block detection, and bipartite optimization.",
     "stars": 4674,
@@ -13,7 +45,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-03T06:13:54Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "ai-infra-curriculum/ai-infra-junior-engineer-learning",
@@ -45,7 +77,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-08T23:30:20Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "akfamily/akhub",
@@ -61,7 +93,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-07T06:38:40Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "alchaincyf/codex-orange-book",
@@ -94,7 +126,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-16T17:03:31Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "AlekseyMalykh/am-mod",
@@ -110,7 +142,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-06T01:04:16Z",
-    "retryCount": 4
+    "retryCount": 5
+  },
+  {
+    "repo": "Alexius0815/ps5-raymarch-techdemo",
+    "desc": "Small native PS5 homebrew tech demo (CPU raymarching, VideoOut, AudioOut, DualSense). A free test title for AnyPS5, no game data needed.",
+    "stars": 1,
+    "language": "C++",
+    "topics": [
+      "demoscene"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-17T11:36:27Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-22T14:12:37Z",
+    "retryCount": 1
   },
   {
     "repo": "alexkroman/tiny-audio",
@@ -126,7 +174,7 @@
     "silentRounds": 9,
     "bigbros": [],
     "ts": "2026-11-01T16:18:26Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "amazoogle/vesper",
@@ -142,7 +190,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-07T16:52:29Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "annejan/npu-iron-experiments",
@@ -158,7 +206,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-08T11:27:53Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "Aratako/T5Gemma-TTS",
@@ -174,7 +222,7 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-11-04T10:32:06Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Artawower/orgnote",
@@ -190,8 +238,8 @@
     "createdAt": "2022-02-08T20:31:47Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-08T21:38:07Z",
-    "retryCount": 4
+    "ts": "2026-11-09T11:26:54Z",
+    "retryCount": 5
   },
   {
     "repo": "artembobkin/ImmersiveMap",
@@ -207,7 +255,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-08T20:40:33Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Asymptote-Labs/agent-beacon",
@@ -237,7 +285,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-08T14:43:30Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "aunicall/ai-job-search-zh",
@@ -268,8 +316,24 @@
     "createdAt": "2026-11-08T18:36:49Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-08T18:38:07Z",
-    "retryCount": 4
+    "ts": "2026-11-09T11:55:03Z",
+    "retryCount": 5
+  },
+  {
+    "repo": "ayushmishra-18/umbriel-keybind-overlay",
+    "desc": "An unofficial searchable keyboard-shortcut overlay for the Umbriel Wayland compositor.",
+    "stars": 5,
+    "language": "Python",
+    "topics": [
+      "cheatsheet"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-11-07T18:30:21Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-09T14:39:46Z",
+    "retryCount": 1
   },
   {
     "repo": "ayushsharma82/WebSerial",
@@ -285,7 +349,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-06T23:03:22Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "Azure-Samples/aisearch-openai-rag-audio",
@@ -301,7 +365,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-06T00:28:22Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "babygoton/WorkDaddy",
@@ -331,7 +395,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-05T00:59:47Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "bowo-prasetyo/web-llm",
@@ -346,8 +410,8 @@
     "createdAt": "2026-05-21T14:01:23Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-07T11:36:53Z",
-    "retryCount": 1
+    "ts": "2026-11-09T07:07:54Z",
+    "retryCount": 2
   },
   {
     "repo": "branislav0/snake-and-villain",
@@ -363,7 +427,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-03T10:02:39Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "ChatCut-Inc/agent-plugin",
@@ -379,7 +443,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-06T12:28:32Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "cheaper-inference/OmniRoute",
@@ -393,7 +457,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-02T20:07:51.158Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "cifertech/TamaFi",
@@ -425,7 +489,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T04:53:43Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "cobusgreyling/grok-bot-templates",
@@ -439,7 +503,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-07T12:44:07.308Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Coding-Meet/Gemini-AI-KMP-App",
@@ -455,7 +519,7 @@
     "silentRounds": 5,
     "bigbros": [],
     "ts": "2026-11-05T12:28:46Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "CodingQuests/2D-Roguelike-Tutorial-youtube",
@@ -471,6 +535,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-12T23:29:30Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "cont1n3nt/ostrovok-agent",
+    "desc": "An AI travel planning agent developed as a solution during a hackathon",
+    "stars": 3,
+    "language": "Python",
+    "topics": [
+      "travel"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-10T16:54:41Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-29T05:27:52Z",
     "retryCount": 1
   },
   {
@@ -485,7 +565,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-03T19:18:36.422Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "CursedPrograms/KIDA-Robot-v00",
@@ -501,7 +581,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-08T18:29:28Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "CX-ArtLab/BoopFace",
@@ -517,7 +597,39 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-08T04:06:25Z",
-    "retryCount": 3
+    "retryCount": 4
+  },
+  {
+    "repo": "d3cod3/ofxVisualProgramming",
+    "desc": "A visual programming patching environment for OF",
+    "stars": 171,
+    "language": "C++",
+    "topics": [
+      "creative-coding"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2018-06-18T07:56:31Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-21T19:16:47Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "DanielHuang-ning/smartedu-textbook",
+    "desc": "中小学电子教材下载器 · Claude Code Skill + CLI",
+    "stars": 5,
+    "language": "Python",
+    "topics": [
+      "textbook"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-07-31T08:20:49Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-09T14:49:14Z",
+    "retryCount": 1
   },
   {
     "repo": "DataTalksClub/production-ai-agents-for-media-generation",
@@ -536,6 +648,38 @@
     "retryCount": 1
   },
   {
+    "repo": "dberzins/wollix",
+    "desc": "Wollix — a lightweight, header-only C library for woven immediate-mode UI layouts",
+    "stars": 4,
+    "language": "C",
+    "topics": [
+      "raylib"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-03-18T05:32:34Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-08T12:02:03Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "dboudreau00/Reverse-Engineering-Textbook-Labs",
+    "desc": "Sources and compiled lab programs for the Reverse Engineering textbook at dboudreau.dev. Run in a VM only.",
+    "stars": 27,
+    "language": "C",
+    "topics": [
+      "textbook"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-19T17:54:28Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-19T18:09:22Z",
+    "retryCount": 1
+  },
+  {
     "repo": "Deeyu/ai-costume-gallery-zh",
     "desc": "AI 参考图库中文版｜服装（写实 1,407 套／动画 1,320 套）、脸型 1,499 张、姿势线稿与深度图各 1,439 张、二次元 843 条目。面向 AI 绘画、角色设计与漫剧分镜，支持中文检索、多视角浏览、图片复制与下载。开源静态站点，保留原始来源及使用条件。",
     "stars": 142,
@@ -549,7 +693,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-05T10:00:10Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "DemonDamon/AgenticX",
@@ -581,7 +725,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-08T22:25:19Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "didilili/mianstack",
@@ -597,7 +741,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-07T05:55:18Z",
-    "retryCount": 3
+    "retryCount": 1
+  },
+  {
+    "repo": "djyde/dalibre",
+    "desc": "A lightweight Calibre alternative",
+    "stars": 158,
+    "language": "Go",
+    "topics": [
+      "ebook"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-11-08T09:56:44Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-09T15:32:08Z",
+    "retryCount": 1
   },
   {
     "repo": "dsx-ai-factory/nvke",
@@ -626,7 +786,7 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-11-04T11:47:06Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "dvdsosa/scientific-writing-skills",
@@ -642,6 +802,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-08T13:33:10Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "electron-rare/AV-Live",
+    "desc": "Audio-visual live performance monorepo : SuperCollider sound engine + openFrameworks Hantek oscilloscope visualizer + macOS SwiftUI launcher",
+    "stars": 4,
+    "language": "SuperCollider",
+    "topics": [
+      "demoscene"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-05-07T09:49:18Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-09T11:24:36Z",
     "retryCount": 1
   },
   {
@@ -658,7 +834,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-08T17:56:33Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "exam-data/NETEMVocabulary",
@@ -690,7 +866,7 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-11-06T21:39:15Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "fmind/mlops-coding-course",
@@ -706,7 +882,7 @@
     "silentRounds": 9,
     "bigbros": [],
     "ts": "2026-11-08T14:39:21Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "FonaTech/Project_Chronos",
@@ -721,7 +897,7 @@
     "createdAt": "2026-04-19T21:05:18Z",
     "silentRounds": 2,
     "bigbros": [],
-    "ts": "2026-11-08T18:39:43Z",
+    "ts": "2026-11-09T15:25:39Z",
     "retryCount": 1
   },
   {
@@ -738,6 +914,38 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-06T05:22:29Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "Fractal-Compute-Orchestrations/FractalCore",
+    "desc": "The central nervous system and backend orchestrator for Fractal. It handles multi-tenant task scheduling, real-time TFLOPs budgeting, and federated weight aggregation using FedAvg.",
+    "stars": 4982,
+    "language": "Python",
+    "topics": [
+      "iot"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-05-12T06:19:35Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-09T05:25:25Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "fraisasghar/Cpp-Personal-Gym-Trainer-and-Fitness-Recommendation-System",
+    "desc": "The project focuses on the development of a Personal Gym Trainer application using the C++ programming language. The purpose of the system is to assist users in planning and following a customized workout routine based on their Body Mass Index, fitness level, and personal preferences.",
+    "stars": 39,
+    "language": "C++",
+    "topics": [
+      "fitness"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-02-03T19:30:20Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-07T11:39:47Z",
     "retryCount": 1
   },
   {
@@ -754,23 +962,39 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-28T15:09:54Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
-    "repo": "gil-son/language-ai-engineering-lab",
-    "desc": "Language AI Engineering Lab, a place where you can deeply understand and build modern Language AI systems, from fundamentals to production.",
-    "stars": 129,
-    "language": "Jupyter Notebook",
+    "repo": "Fridolph/FE-prepare-interview",
+    "desc": "搜集整理各类前端面试资料和答案 ，主要借鉴思路，反思复盘，仅供参考，请勿照搬",
+    "stars": 8,
+    "language": "JavaScript",
     "topics": [
-      "transformers"
+      "interview"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2025-04-25T23:50:22Z",
-    "silentRounds": 2,
+    "createdAt": "2024-01-25T05:09:34Z",
+    "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-01T16:14:03Z",
-    "retryCount": 6
+    "ts": "2026-11-09T07:43:18Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "Gesagazar/Waves-Insert-resp-Audio-Effect",
+    "desc": "The Waves Ultimate plugin suite offers critical tools for vocal processing within digital audio workstations. Users can apply compressors, de-essers, and reverbs to achieve polished vocal tracks in formats like VST3 and AAX",
+    "stars": 40,
+    "language": "HTML",
+    "topics": [
+      "music-production"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-11-09T09:47:51Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-09T09:47:58Z",
+    "retryCount": 1
   },
   {
     "repo": "gilzoide/godot-lua-pluginscript",
@@ -786,6 +1010,54 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-09T00:30:21Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "greywolf1499/opds_plus.koplugin",
+    "desc": "Enhanced OPDS catalog browser for KOReader with visual cover display, grid/list views, and extensive customization options",
+    "stars": 209,
+    "language": "Lua",
+    "topics": [
+      "ebook"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2025-11-16T18:16:39Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-09T15:41:05Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "Huseynteymurzade28/oddy",
+    "desc": "A hard, precision platformer for Android — dash, wall-jump, one hit and you're back at the checkpoint. Odin + raylib, no Java.",
+    "stars": 4,
+    "language": "Odin",
+    "topics": [
+      "raylib"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-07-23T11:47:59Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-09T12:51:17Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "ilyautov/llm-manual-lab",
+    "desc": "Бесплатный учебник «Теория LLM и практика AI-лаборатории» и лаборатория на TypeScript",
+    "stars": 4,
+    "language": "Python",
+    "topics": [
+      "textbook"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-11-09T13:03:21Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-09T15:02:25Z",
     "retryCount": 1
   },
   {
@@ -801,7 +1073,7 @@
     "createdAt": "2026-11-06T10:00:42Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-08T22:04:44Z",
+    "ts": "2026-11-09T15:35:06Z",
     "retryCount": 1
   },
   {
@@ -834,7 +1106,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-08T21:06:01Z",
-    "retryCount": 4
+    "retryCount": 5
+  },
+  {
+    "repo": "ivanusto/japan-travel-achievement-list",
+    "desc": "🇯🇵 日本旅行成就系統 / Japan Travel Achievements: 一個結合個人旅遊足跡打卡、成就收集與分享圖卡生成的手帳風平台。 A Washi-style notebook platform for tracking Japan travel footprints, collecting achievements, and generating share cards.",
+    "stars": 5,
+    "language": "HTML",
+    "topics": [
+      "travel"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-07-07T05:28:07Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-08T10:45:18Z",
+    "retryCount": 1
   },
   {
     "repo": "jaredchu/context-docs",
@@ -849,7 +1137,7 @@
     "createdAt": "2026-09-26T06:32:38Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-09T03:58:29Z",
+    "ts": "2026-11-09T14:55:39Z",
     "retryCount": 1
   },
   {
@@ -866,7 +1154,23 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-08T09:43:04Z",
-    "retryCount": 3
+    "retryCount": 4
+  },
+  {
+    "repo": "joeseesun/capwise",
+    "desc": "免费开源的 macOS 录屏与 AI 剪辑工作台：双语字幕、配音、封面与提词器。Native Mac screen recording, captions and AI editing.",
+    "stars": 69,
+    "language": "Rust",
+    "topics": [
+      "video-editor"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-11-05T17:16:27Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-09T15:40:36Z",
+    "retryCount": 1
   },
   {
     "repo": "librehold-game/librehold",
@@ -882,7 +1186,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-05T08:26:01Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "llm-xiaoye/douyin-to-obsidian",
@@ -898,7 +1202,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-11-05T10:59:19Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "LucasJRamos/spritekiln",
@@ -914,6 +1218,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-30T20:19:40Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "luoyike2003ls/LongShuGameDev",
+    "desc": "A Game Development Large Language Model",
+    "stars": 7,
+    "language": "Python",
+    "topics": [
+      "llm-model"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-04-10T01:07:55Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-09T06:56:08Z",
     "retryCount": 1
   },
   {
@@ -930,7 +1250,7 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-11-03T08:34:53Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "martinkozle/embedded-lab",
@@ -946,7 +1266,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-08T13:12:44Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "meta/astryx",
@@ -974,8 +1294,8 @@
     "createdAt": "2026-09-28T04:59:28Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-11-08T07:49:33Z",
-    "retryCount": 1
+    "ts": "2026-11-09T15:08:23Z",
+    "retryCount": 2
   },
   {
     "repo": "n5za/chess-mate",
@@ -1007,6 +1327,35 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-08T13:46:33Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "olegius88/keyswitch",
+    "desc": "Free, open-source alternative to Punto Switcher and Caramba Switcher that also runs on Linux: automatic EN/RU keyboard layout correction for Windows 10/11 (x64 and ARM64), Ubuntu/Xubuntu (X11) and macOS 13+. Local contextual models and personal correction rules; typed text never leaves the computer.",
+    "stars": 13,
+    "language": "Rust",
+    "topics": [
+      "english"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-08-26T14:33:51Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-09T15:03:36Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "ooolabdev/ooosplat",
+    "desc": "A local desktop app that turns videos and images into 3D Gaussian Splats in one click.",
+    "stars": 2398,
+    "language": "Rust",
+    "topics": [],
+    "source": "trending",
+    "starGrowth": 109,
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-09T15:42:26.840Z",
     "retryCount": 1
   },
   {
@@ -1022,8 +1371,8 @@
     "createdAt": "2026-10-30T16:10:25Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-09T04:02:37Z",
-    "retryCount": 2
+    "ts": "2026-11-09T15:28:43Z",
+    "retryCount": 1
   },
   {
     "repo": "PapilotAI/papilot",
@@ -1038,8 +1387,24 @@
     "createdAt": "2026-10-26T07:50:28Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-09T05:13:49Z",
-    "retryCount": 2
+    "ts": "2026-11-09T15:33:29Z",
+    "retryCount": 3
+  },
+  {
+    "repo": "pennyzhaozhao/AI-interview-Assistant",
+    "desc": "Help people to prepare the interview",
+    "stars": 9,
+    "language": "Swift",
+    "topics": [
+      "interview"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-09-24T18:38:28Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-09T10:31:48Z",
+    "retryCount": 1
   },
   {
     "repo": "poco-ai/Agentero",
@@ -1053,7 +1418,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-08T18:34:58.191Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "pvjbuilds/crab-buddy",
@@ -1069,7 +1434,39 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T16:22:06Z",
-    "retryCount": 4
+    "retryCount": 5
+  },
+  {
+    "repo": "qkl12041016s/python-web-scraping-notes",
+    "desc": "80 页中文 Python 网络爬虫讲义：LaTeX 源码、可运行示例、失败样本与本地端到端项目",
+    "stars": 1,
+    "language": "TeX",
+    "topics": [
+      "textbook"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-11-05T09:56:14Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-06T21:04:06Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "raphaelsalaja/web-kits",
+    "desc": "Interface kits for the web",
+    "stars": 594,
+    "language": "TypeScript",
+    "topics": [
+      "synthesizer"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-04-04T13:49:52Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-09T15:38:04Z",
+    "retryCount": 1
   },
   {
     "repo": "Ratnesh-181998/AI-Engineer",
@@ -1085,7 +1482,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-06T22:15:23Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "realchendahuang/cherina-pod",
@@ -1101,7 +1498,7 @@
     "silentRounds": 6,
     "bigbros": [],
     "ts": "2026-10-31T05:58:15Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "RetroFloppy77/TerraCraft",
@@ -1117,7 +1514,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-08T13:00:26Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "roznet/connectstats",
@@ -1133,7 +1530,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-07T21:31:02Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "santoshshinde2012/ai-ml-ground-truth",
@@ -1149,7 +1546,7 @@
     "silentRounds": 8,
     "bigbros": [],
     "ts": "2026-11-02T12:24:45Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "shengdabai/Chinese-Textbook-Generator",
@@ -1168,6 +1565,22 @@
     "retryCount": 1
   },
   {
+    "repo": "sigma-py/orthopy",
+    "desc": ":triangular_ruler: Orthogonal polynomials in all shapes and sizes.",
+    "stars": 192,
+    "language": "",
+    "topics": [
+      "physics"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2017-08-20T13:59:37Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-09T12:59:19Z",
+    "retryCount": 1
+  },
+  {
     "repo": "sky-access/skyaccess-mcp",
     "desc": "Hosted SkyAccess MCP server for private jet empty legs: search 5,000+ live empty leg flights, charter price estimates and booking links. No account or API key.",
     "stars": 3,
@@ -1181,7 +1594,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-07T21:42:37Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "stuntrally/stuntrally3",
@@ -1197,7 +1610,23 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-09T01:10:29Z",
-    "retryCount": 3
+    "retryCount": 1
+  },
+  {
+    "repo": "Taydaggercopper/borisfx-respocket",
+    "desc": "Borisfx 15.3 pre-configured environment for professional video editing, screen recording, and visual effects solution deployment in...",
+    "stars": 40,
+    "language": "HTML",
+    "topics": [
+      "video-editor"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-11-09T09:45:04Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-09T09:45:12Z",
+    "retryCount": 1
   },
   {
     "repo": "TiantianYeTTY/textbook-full-workflow",
@@ -1213,7 +1642,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-05T04:24:10Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "timothepoznanski/Poznote",
@@ -1228,7 +1657,7 @@
     "createdAt": "2025-08-01T16:19:33Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-08T22:59:10Z",
+    "ts": "2026-11-09T14:35:26Z",
     "retryCount": 1
   },
   {
@@ -1244,8 +1673,8 @@
     "createdAt": "2026-10-29T12:32:46Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-08T18:14:36Z",
-    "retryCount": 2
+    "ts": "2026-11-09T11:46:59Z",
+    "retryCount": 3
   },
   {
     "repo": "willing999/EnglishPod",
@@ -1262,7 +1691,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-08T15:29:01Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "YeStarOne/deepseek-superagent-feiyu-os",
@@ -1294,7 +1723,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-08T02:38:21Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "zhishengplus/ZhishengWeather",
@@ -1310,6 +1739,6 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-08T03:42:00Z",
-    "retryCount": 2
+    "retryCount": 3
   }
 ]
