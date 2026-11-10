@@ -29,7 +29,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-03T06:13:54Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "ai-infra-curriculum/ai-infra-junior-engineer-learning",
@@ -61,7 +61,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-08T23:30:20Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "akfamily/akhub",
@@ -77,7 +77,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-07T06:38:40Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "alchaincyf/codex-orange-book",
@@ -94,22 +94,22 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-10-20T03:23:27Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
-    "repo": "alchaincyf/huashu-art-motion",
-    "desc": "艺术动画skill：35种艺术风格、9种解说语法，用代码让画动起来。",
-    "stars": 6623,
-    "language": "JavaScript",
+    "repo": "AlekseyMalykh/am-mod",
+    "desc": "Unofficial SD-card mod for the Akai MPC Sample: step sequencer, chords, scale layouts, search, pad EQ, resampling, rear recording. Nothing is flashed.",
+    "stars": 14,
+    "language": "C++",
     "topics": [
-      "generative-art"
+      "music-production"
     ],
     "source": "search",
-    "starGrowth": 93,
-    "createdAt": "2026-10-06T04:49:37Z",
+    "starGrowth": 0,
+    "createdAt": "2026-10-31T15:26:50Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-10-16T17:03:31Z",
+    "ts": "2026-11-09T22:10:58Z",
     "retryCount": 1
   },
   {
@@ -142,7 +142,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-06T11:30:30Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "amazoogle/vesper",
@@ -174,7 +174,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-09T17:53:19Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "annejan/npu-iron-experiments",
@@ -190,7 +190,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-09T17:47:45Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "Aratako/T5Gemma-TTS",
@@ -206,7 +206,7 @@
     "silentRounds": 5,
     "bigbros": [],
     "ts": "2026-11-04T10:32:06Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "ariaesm/pygame",
@@ -222,7 +222,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-09T20:42:26Z",
-    "retryCount": 2
+    "retryCount": 3
+  },
+  {
+    "repo": "Artawower/orgnote",
+    "desc": "Zettelkasten environment for productive people",
+    "stars": 548,
+    "language": "Shell",
+    "topics": [
+      "knowledge-management"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2022-02-08T20:31:47Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-09T19:07:12Z",
+    "retryCount": 1
   },
   {
     "repo": "artembobkin/ImmersiveMap",
@@ -238,7 +254,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-09T14:12:45Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "asaft29/govertor",
@@ -254,7 +270,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-06T13:19:15Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Asymptote-Labs/agent-beacon",
@@ -268,7 +284,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-21T18:19:35.350Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "ATLURI0001/BuildSite",
@@ -284,7 +300,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-09T06:22:50Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "aunicall/ai-job-search-zh",
@@ -300,7 +316,23 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-27T02:00:41Z",
-    "retryCount": 2
+    "retryCount": 3
+  },
+  {
+    "repo": "AutocratMinaret/valorant-ai-clip-editor",
+    "desc": "AI Valorant clip editor and montage maker with beat sync and NVENC",
+    "stars": 179,
+    "language": "Rust",
+    "topics": [
+      "video-editor"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-11-08T18:36:49Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-09T11:55:03Z",
+    "retryCount": 1
   },
   {
     "repo": "ayushsharma82/WebSerial",
@@ -316,7 +348,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-06T23:03:22Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Azure-Samples/aisearch-openai-rag-audio",
@@ -332,7 +364,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-06T00:28:22Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "babygoton/WorkDaddy",
@@ -346,7 +378,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-07T12:44:07.308Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "bayshier/pixelfx-zh",
@@ -362,7 +394,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-01T07:10:03Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "beichuanshengsi/desktop-pet",
@@ -378,7 +410,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-09T07:41:28Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "bitninjaexpiate/Adobe-Lightroom-Full-Version-Setup",
@@ -394,7 +426,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-05T00:59:47Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "bowo-prasetyo/web-llm",
@@ -410,7 +442,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-09T07:07:54Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "branislav0/snake-and-villain",
@@ -426,7 +458,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-03T10:02:39Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "ChatCut-Inc/agent-plugin",
@@ -442,7 +474,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-06T12:28:32Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "cheaper-inference/OmniRoute",
@@ -456,7 +488,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-02T20:07:51.158Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "cifertech/TamaFi",
@@ -472,7 +504,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-08T10:13:29Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "clawnify/OpenTripPlanner",
@@ -488,7 +520,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-21T04:53:43Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "cobusgreyling/grok-bot-templates",
@@ -502,7 +534,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-07T12:44:07.308Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "Coding-Meet/Gemini-AI-KMP-App",
@@ -518,7 +550,7 @@
     "silentRounds": 6,
     "bigbros": [],
     "ts": "2026-11-05T12:28:46Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "CodingQuests/2D-Roguelike-Tutorial-youtube",
@@ -534,7 +566,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-12T23:29:30Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "con-dog/clingon",
@@ -550,7 +582,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-09T07:38:22Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "crmne/zapfast",
@@ -564,7 +596,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-03T19:18:36.422Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "CursedPrograms/KIDA-Robot-v00",
@@ -580,23 +612,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-08T18:29:28Z",
-    "retryCount": 4
-  },
-  {
-    "repo": "CX-ArtLab/BoopFace",
-    "desc": "BoopFace (formerly Agent Robot Avatar): a lightweight, expressive robot avatar component for AI bots, agents and interactive apps.",
-    "stars": 80,
-    "language": "JavaScript",
-    "topics": [
-      "virtual-pet"
-    ],
-    "source": "search",
-    "starGrowth": 3,
-    "createdAt": "2026-09-02T23:12:17Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-11-08T04:06:25Z",
-    "retryCount": 6
+    "retryCount": 5
   },
   {
     "repo": "DataTalksClub/production-ai-agents-for-media-generation",
@@ -612,7 +628,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-06T17:45:05Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Deeyu/ai-costume-gallery-zh",
@@ -628,7 +644,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-05T10:00:10Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "DemonDamon/AgenticX",
@@ -644,7 +660,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-09T05:23:57Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "didilili/mianstack",
@@ -660,7 +676,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-07T05:55:18Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "Dingmatt/AMSA",
@@ -676,7 +692,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-09T20:32:14Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "Dodaios/ste80-humanizer",
@@ -692,7 +708,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-09T18:05:33Z",
-    "retryCount": 2
+    "retryCount": 3
+  },
+  {
+    "repo": "donghaxkim/impasto",
+    "desc": "Deterministically turns any photo into a palette-knife painting",
+    "stars": 40,
+    "language": "TypeScript",
+    "topics": [
+      "procedural-generation"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-11-03T19:36:13Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-05T10:46:41Z",
+    "retryCount": 1
   },
   {
     "repo": "dsx-ai-factory/nvke",
@@ -721,7 +753,7 @@
     "silentRounds": 5,
     "bigbros": [],
     "ts": "2026-11-04T11:47:06Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "dvdsosa/scientific-writing-skills",
@@ -753,7 +785,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-08T04:57:29Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "EclipsingLines/GodotSynth",
@@ -768,8 +800,8 @@
     "createdAt": "2025-03-11T13:46:40Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-09T23:44:56Z",
-    "retryCount": 2
+    "ts": "2026-11-10T02:23:12Z",
+    "retryCount": 3
   },
   {
     "repo": "EndLess728/react-native-mediapipe-posedetection",
@@ -785,7 +817,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-09T17:00:38Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "ethanlabs101/StaticFX",
@@ -817,7 +849,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-08T17:56:33Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "exam-data/NETEMVocabulary",
@@ -833,7 +865,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-22T10:45:05Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "FedorSosnin/PokeKnomiGochi",
@@ -849,7 +881,7 @@
     "silentRounds": 5,
     "bigbros": [],
     "ts": "2026-11-06T21:39:15Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "FonaTech/Project_Chronos",
@@ -881,7 +913,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-09T05:07:43Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "Fractal-Compute-Orchestrations/FractalCore",
@@ -898,7 +930,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-09T19:20:48Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "franklynton/Millennium-Bug",
@@ -914,7 +946,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-28T15:09:54Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "Halleck45/OpenPronounce",
@@ -961,8 +993,8 @@
     "createdAt": "2026-11-06T10:00:42Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-09T23:28:25Z",
-    "retryCount": 2
+    "ts": "2026-11-10T02:03:36Z",
+    "retryCount": 3
   },
   {
     "repo": "inspiriflow/ascii-deepsea",
@@ -978,7 +1010,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-07T02:10:45Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "jaredchu/context-docs",
@@ -994,7 +1026,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-09T14:55:39Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "jattree/NextTang",
@@ -1010,7 +1042,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-11-08T09:43:04Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "joeseesun/capwise",
@@ -1025,8 +1057,24 @@
     "createdAt": "2026-11-05T17:16:27Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-09T20:40:56Z",
-    "retryCount": 2
+    "ts": "2026-11-10T02:21:28Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "KalarisLabs/research-agent-skills",
+    "desc": "Turn any AI agent into a research co-scientist: 280+ open-source agent skills for literature reviews, hypotheses, experimental design, data analysis, paper writing, citation verification and peer review. Claude Code, Codex, Cursor, Gemini CLI and any Agent Skills harness. npx skills add KalarisLabs/research-agent-skills",
+    "stars": 113,
+    "language": "Python",
+    "topics": [
+      "physics"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-07-07T11:55:58Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-07T07:22:41Z",
+    "retryCount": 1
   },
   {
     "repo": "keremaktug/c64programming",
@@ -1042,7 +1090,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-08T20:14:17Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "kesiev/roguecairn",
@@ -1058,7 +1106,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-09T21:51:09Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "librehold-game/librehold",
@@ -1074,7 +1122,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-05T08:26:01Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "llm-xiaoye/douyin-to-obsidian",
@@ -1090,7 +1138,7 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-11-05T10:59:19Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "LucasJRamos/spritekiln",
@@ -1106,7 +1154,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-30T20:19:40Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "manjughosa/magpie-digital-pet-portal",
@@ -1122,7 +1170,7 @@
     "silentRounds": 5,
     "bigbros": [],
     "ts": "2026-11-03T08:34:53Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "martinkozle/embedded-lab",
@@ -1138,7 +1186,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-08T13:12:44Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "meta/astryx",
@@ -1167,7 +1215,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-09T16:55:36Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "motionvideohq/motionvideo.xyz",
@@ -1183,7 +1231,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-09T15:08:23Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "n5za/chess-mate",
@@ -1199,7 +1247,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T20:51:58Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "nokri-mohammed/deskpane",
@@ -1243,8 +1291,8 @@
     "createdAt": "2026-10-30T16:10:25Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-09T16:08:04Z",
-    "retryCount": 1
+    "ts": "2026-11-10T02:15:34Z",
+    "retryCount": 2
   },
   {
     "repo": "PapilotAI/papilot",
@@ -1259,8 +1307,8 @@
     "createdAt": "2026-10-26T07:50:28Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-09T17:31:38Z",
-    "retryCount": 2
+    "ts": "2026-11-10T02:03:01Z",
+    "retryCount": 3
   },
   {
     "repo": "PKQZPC/MOMIYU",
@@ -1276,7 +1324,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-06T13:53:39Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "realchendahuang/cherina-pod",
@@ -1292,23 +1340,7 @@
     "silentRounds": 7,
     "bigbros": [],
     "ts": "2026-10-31T05:58:15Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "RetroFloppy77/TerraCraft",
-    "desc": "Voxel Engine written in Python 3 + Pyglet.",
-    "stars": 62,
-    "language": "Python",
-    "topics": [
-      "pygame"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2018-03-30T08:32:33Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-11-08T13:00:26Z",
-    "retryCount": 4
+    "retryCount": 3
   },
   {
     "repo": "roznet/connectstats",
@@ -1324,7 +1356,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-07T21:31:02Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "santoshshinde2012/ai-ml-ground-truth",
@@ -1340,7 +1372,7 @@
     "silentRounds": 9,
     "bigbros": [],
     "ts": "2026-11-09T19:47:21Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "shengdabai/Chinese-Textbook-Generator",
@@ -1356,7 +1388,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-11-06T16:30:55Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "sky-access/skyaccess-mcp",
@@ -1372,7 +1404,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-07T21:42:37Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "stuntrally/stuntrally3",
@@ -1388,7 +1420,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-11-09T22:54:58Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "tehguitarist/REV-246",
@@ -1404,6 +1436,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-01T09:07:58Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "textlint-rule/sentence-splitter",
+    "desc": "Split {Japanese, English} text into sentences.",
+    "stars": 138,
+    "language": "TypeScript",
+    "topics": [
+      "english"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2015-11-13T03:08:25Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-10T01:37:52Z",
     "retryCount": 1
   },
   {
@@ -1420,7 +1468,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-09T15:56:45Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "valentderah/totk-pc-recomp",
@@ -1436,7 +1484,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-09T16:57:08Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "ViceVerse-cz/Serein",
@@ -1465,7 +1513,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-08T15:24:34Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "yjid/kensaku",
@@ -1481,7 +1529,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-09T18:19:16Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "zhishengplus/ZhishengWeather",
@@ -1497,6 +1545,6 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-09T07:29:24Z",
-    "retryCount": 1
+    "retryCount": 2
   }
 ]
