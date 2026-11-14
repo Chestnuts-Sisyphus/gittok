@@ -1,5 +1,21 @@
 [
   {
+    "repo": "100yenadmin/hermes-personal-assistant",
+    "desc": "Your Hermes agent runs errands on the real sites, fills every field, and stops at the last button until you say yes.",
+    "stars": 4,
+    "language": "Python",
+    "topics": [
+      "travel"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-19T13:32:19Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-14T19:00:21Z",
+    "retryCount": 1
+  },
+  {
     "repo": "aa1143/NamiAgent",
     "desc": "零基础入门 AI Agent 的基础教程。不只是教程，也是一个能在本地跑起来的 Agent：读写文件、执行命令、MCP、长期记忆，自带网页端看清每一步。从 100 行最小循环开始，一课加一个能力，最后拆解 Claude Code、Codex 等主流 Agent",
     "stars": 517,
@@ -13,7 +29,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-30T13:37:27Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "abedegno/borland-reborn",
@@ -29,23 +45,55 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-14T18:44:31Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
-    "repo": "agharsallah/esp-labs-web",
-    "desc": "The ESP32-S3 bench guide as a React app: live pinout, lessons with interactive simulators, a code reader for the esp-labs firmware, and the bench log. In 11 languages.",
-    "stars": 852,
-    "language": "TypeScript",
+    "repo": "AdamWhiteHat/BigDecimal",
+    "desc": "An arbitrary-precision decimal (base 10) floating-point number type. Downloaded over 30 million times on NuGet!",
+    "stars": 77,
+    "language": "C#",
     "topics": [
-      "esp32"
+      "mathematics"
     ],
     "source": "search",
-    "starGrowth": 3,
-    "createdAt": "2026-10-21T13:40:04Z",
+    "starGrowth": 0,
+    "createdAt": "2017-02-24T08:59:15Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-13T09:20:00Z",
-    "retryCount": 6
+    "ts": "2026-11-13T13:30:06Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "AhmadHassan-BTed/FormFilla",
+    "desc": "About A local-first browser extension that fills job-application forms from local JSON profile data and files. Matches are computed deterministically via multi-signal scoring, structural repeated-block detection, and bipartite optimization.",
+    "stars": 4664,
+    "language": "TypeScript",
+    "topics": [
+      "privacy"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-07-10T15:21:56Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-03T06:13:54Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "AhmadHassan-BTed/Noria",
+    "desc": "An agentic extractor for messaging platforms. Noria receives messages & URLs via chat; scrapes web data to evaluate the content against custom scoring matrices (e.g., jobs, scholarships); and sends a structured summary with a calculated match score directly to the assigned messenger number. ",
+    "stars": 4630,
+    "language": "JavaScript",
+    "topics": [
+      "ai-agent"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-05-31T21:56:03Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-10T12:43:17Z",
+    "retryCount": 1
   },
   {
     "repo": "ai-infra-curriculum/ai-infra-junior-engineer-learning",
@@ -64,6 +112,22 @@
     "retryCount": 1
   },
   {
+    "repo": "ai-pavel/chonkestrel",
+    "desc": "🛸 A fork of XFTL: FTL with bigger ships, triple weapons, hybrid enemies and a 16-sector campaign.",
+    "stars": 2,
+    "language": "Kotlin",
+    "topics": [
+      "roguelike"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-11-08T23:08:14Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-14T16:12:29Z",
+    "retryCount": 1
+  },
+  {
     "repo": "aimod-cc/Agent2API",
     "desc": "Local AI routing gateway with Agent client takeover — reuse existing client logins, call 50+ AI clients through one base URL, with unified OpenAI / Anthropic / Images APIs, multi-account routing, check-in, balance and request reports · 本地 AI 路由网关 + Agent 客户端接管：复用各家客户端登录态，一个 base_url 调用 50+ 家模型额度，统一 OpenAI / Anthropic / 生图接口，多账号选路、签到、余额与请求报表一体管理",
     "stars": 2222,
@@ -74,6 +138,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-13T12:00:31.180Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "akfamily/akhub",
+    "desc": "AKHub：金融与经济数据工具、数据源、量化投研框架和学习资源合集 | A curated hub of financial data tools, data sources, quant research frameworks and learning resources",
+    "stars": 709,
+    "language": "",
+    "topics": [
+      "finance"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2020-03-02T18:24:03Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-07T06:38:40Z",
     "retryCount": 1
   },
   {
@@ -107,7 +187,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-13T00:44:06Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "alexkroman/tiny-audio",
@@ -139,7 +219,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-09T12:54:23Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "Ampixa/sanoTTS",
@@ -154,8 +234,8 @@
     "createdAt": "2026-07-11T15:13:22Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-14T17:27:28Z",
-    "retryCount": 1
+    "ts": "2026-11-14T19:50:13Z",
+    "retryCount": 2
   },
   {
     "repo": "AnasImloul/Leetcode-Solutions",
@@ -170,7 +250,7 @@
     "createdAt": "2022-08-07T11:14:26Z",
     "silentRounds": 2,
     "bigbros": [],
-    "ts": "2026-11-14T18:26:27Z",
+    "ts": "2026-11-14T21:45:27Z",
     "retryCount": 1
   },
   {
@@ -186,8 +266,8 @@
     "createdAt": "2026-11-13T22:34:10Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-14T16:16:36Z",
-    "retryCount": 3
+    "ts": "2026-11-14T21:02:11Z",
+    "retryCount": 4
   },
   {
     "repo": "Aratako/T5Gemma-TTS",
@@ -203,7 +283,7 @@
     "silentRounds": 8,
     "bigbros": [],
     "ts": "2026-11-04T10:32:06Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "Artawower/orgnote",
@@ -220,39 +300,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-12T14:01:48Z",
-    "retryCount": 3
-  },
-  {
-    "repo": "artembobkin/ImmersiveMap",
-    "desc": "Native Swift 6 + Metal map rendering engine for SwiftUI. Globe and flat vector-tile maps with labels, SwiftUI markers and avatars, on iOS and macOS.",
-    "stars": 206,
-    "language": "Swift",
-    "topics": [
-      "maps"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-05-25T14:03:47Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-11-11T12:35:58Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "atlasmarkz/opencode-buddy",
-    "desc": "Opencode Pets",
-    "stars": 4,
-    "language": "JavaScript",
-    "topics": [
-      "virtual-pet"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-06-03T11:45:47Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-11-10T07:04:20Z",
-    "retryCount": 6
+    "retryCount": 4
   },
   {
     "repo": "ATLURI0001/BuildSite",
@@ -268,7 +316,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-14T07:46:48Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "avenoxai/avenoxbeyin",
@@ -281,7 +329,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-13T12:00:31.180Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "Avril-Exoplanet/Avril",
@@ -297,6 +345,38 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-05T15:03:35Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "awoodbeck/gnp",
+    "desc": "The code repository for No Starch Press' Network Programming with Go",
+    "stars": 259,
+    "language": "Go",
+    "topics": [
+      "learning"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2019-05-27T18:53:47Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-14T05:30:44Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "Azure-Samples/aisearch-openai-rag-audio",
+    "desc": "A simple example implementation of the VoiceRAG pattern to power interactive voice generative AI experiences using RAG with Azure AI Search and Azure OpenAI's gpt-4o-realtime-preview model. ",
+    "stars": 567,
+    "language": "Python",
+    "topics": [
+      "vector-db"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2024-09-19T22:36:40Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-13T00:13:03Z",
     "retryCount": 1
   },
   {
@@ -327,6 +407,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-14T18:13:37Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "blixvip/GenMotion",
+    "desc": "Type an idea, get a finished motion-graphics video. Top Western + Chinese image models (Seedream, Qwen-Image, Kling, FLUX, GPT Image, Imagen...), bring your own API keys.",
+    "stars": 42,
+    "language": "JavaScript",
+    "topics": [
+      "video-editor"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-26T23:00:31Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-08T18:56:45Z",
     "retryCount": 1
   },
   {
@@ -344,23 +440,39 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-14T03:59:38Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
-    "repo": "bookleme/bookleme",
-    "desc": "读了么（BookLeme）· 把一本书编译成 Agent Skill —— 双引擎 + 可插拔体裁插件 + 逐字忠实度回验",
-    "stars": 219,
-    "language": "Python",
+    "repo": "bowo-prasetyo/web-llm",
+    "desc": "Hearth: private AI chat that lives in your browser. No server. No account. Works offline. Runs open models like Qwen, Llama, Gemma and Phi on your own GPU, answers questions about your documents, and installs as an app. Powered by WebLLM.",
+    "stars": 1,
+    "language": "JavaScript",
     "topics": [
-      "knowledge-management"
+      "llm-model"
     ],
     "source": "search",
-    "starGrowth": 4,
-    "createdAt": "2026-11-09T03:29:27Z",
+    "starGrowth": 0,
+    "createdAt": "2026-05-21T14:01:23Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-13T09:42:20Z",
-    "retryCount": 6
+    "ts": "2026-11-09T07:07:54Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "branislav0/snake-and-villain",
+    "desc": "Arcade game in Python (tkinter + pygame) – shoot the snake, catch ammo drops",
+    "stars": 3,
+    "language": "Python",
+    "topics": [
+      "pygame"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2024-08-20T10:55:06Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-03T10:02:39Z",
+    "retryCount": 1
   },
   {
     "repo": "bymayanksingh/connect4",
@@ -376,7 +488,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-11T19:43:51Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "carloocchiena/the_statistics_handbook",
@@ -392,7 +504,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-11T18:22:10Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "CartoDB/cartoframes",
@@ -408,7 +520,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-14T10:02:28Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "cifertech/TamaFi",
@@ -424,7 +536,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-11-08T10:13:29Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "darkroomengineering/aniso",
@@ -456,7 +568,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-14T09:06:01Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "daveschumaker/artbot-for-stable-diffusion",
@@ -502,7 +614,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-10T17:35:50.940Z",
-    "retryCount": 5
+    "retryCount": 1
   },
   {
     "repo": "DukeCCY/dualsense-pad",
@@ -534,7 +646,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-11-08T04:57:29Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "edgerunners-2/capri-ai-desktop",
@@ -549,7 +661,7 @@
     "createdAt": "2026-08-15T05:07:09Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-14T16:13:25Z",
+    "ts": "2026-11-14T21:32:58Z",
     "retryCount": 1
   },
   {
@@ -582,7 +694,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-22T10:45:05Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "FedorSosnin/PokeKnomiGochi",
@@ -598,7 +710,7 @@
     "silentRounds": 8,
     "bigbros": [],
     "ts": "2026-11-13T18:46:23Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "ForgeAX/forgeax-engine",
@@ -614,22 +726,6 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-12T15:31:01Z",
-    "retryCount": 5
-  },
-  {
-    "repo": "franklynton/Millennium-Bug",
-    "desc": "AI virtual pet built in 24 hours at HackNotts '26: an LLM-powered Y2K bug that learns, grows up and glitches, with multiplayer and mini-games (Next.js, TypeScript, Supabase)",
-    "stars": 1,
-    "language": "TypeScript",
-    "topics": [
-      "virtual-pet"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-10-24T11:39:38Z",
-    "silentRounds": 4,
-    "bigbros": [],
-    "ts": "2026-10-28T15:09:54Z",
     "retryCount": 1
   },
   {
@@ -645,7 +741,7 @@
     "createdAt": "2026-10-06T22:34:37Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-13T05:43:03Z",
+    "ts": "2026-11-14T20:43:21Z",
     "retryCount": 1
   },
   {
@@ -662,7 +758,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-14T17:29:46Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Hazenix/interview-prep-skills",
@@ -695,7 +791,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-13T16:25:03Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "homer-dashboard/homer",
@@ -711,7 +807,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-14T14:30:54Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "hugobatista/intellireading-calibre-plugins",
@@ -726,8 +822,8 @@
     "createdAt": "2022-11-17T16:10:01Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-11-14T18:11:28Z",
-    "retryCount": 2
+    "ts": "2026-11-14T19:12:09Z",
+    "retryCount": 3
   },
   {
     "repo": "jacobbogers/libRmath.js",
@@ -743,7 +839,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-14T15:47:13Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "jesperls/qs-vpets",
@@ -759,7 +855,23 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-14T15:53:10Z",
-    "retryCount": 2
+    "retryCount": 1
+  },
+  {
+    "repo": "juzzlin/Heimer",
+    "desc": "Heimer is a simple cross-platform mind map, diagram, and note-taking tool written in Qt.",
+    "stars": 983,
+    "language": "C++",
+    "topics": [
+      "learning"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2018-02-22T22:04:49Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-14T20:31:42Z",
+    "retryCount": 1
   },
   {
     "repo": "kingstacker/Libzora",
@@ -775,7 +887,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-11T11:50:37Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "KKKKhazix/agent-autoloop",
@@ -791,7 +903,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-14T02:01:22Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Likely7/Veyra-NRVideo",
@@ -836,22 +948,6 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-14T06:26:05Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "lonesoulsurfer/Groove_Box_Drum_Machine_Arduino_Nano",
-    "desc": "Arduino Nano drum machine for Eurorack, based on DrumKid. 3 trigger outputs, 9V or Eurorack power.",
-    "stars": 31,
-    "language": "HTML",
-    "topics": [
-      "synthesizer"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2024-12-01T05:43:08Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-11-14T06:26:23Z",
     "retryCount": 1
   },
   {
@@ -868,7 +964,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-14T06:27:01Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "macrosergeantsquare/Native-Instruments-Massive-X-1.7-Free-Professional-Synthesizer",
@@ -884,7 +980,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-11T17:09:26Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "madeiragab/Guns-and-boots",
@@ -900,7 +996,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-10T23:52:53Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "mdhabibi/one-graph-two-worlds",
@@ -915,8 +1011,8 @@
     "createdAt": "2026-11-13T22:22:43Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-14T00:24:19Z",
-    "retryCount": 1
+    "ts": "2026-11-14T20:20:54Z",
+    "retryCount": 2
   },
   {
     "repo": "n5za/chess-mate",
@@ -932,7 +1028,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T20:51:58Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "navidshad/frameflow",
@@ -980,7 +1076,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-12T14:22:24Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "njlent/tougelike-3ds-pub",
@@ -996,7 +1092,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-14T00:36:50Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "oddessentials/agent-guild-companions",
@@ -1012,7 +1108,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-12T06:45:19Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "onlyphantom/llm-python",
@@ -1028,7 +1124,39 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-13T09:54:14Z",
-    "retryCount": 2
+    "retryCount": 3
+  },
+  {
+    "repo": "PmagPy/Essentials-JupyterBook",
+    "desc": "Interactive paleomagnetic textbook built with JupyterBook. Adapted from Lisa Tauxe's Essentials of Paleomagnetism with dynamic visualizations and Python code examples using PmagPy.",
+    "stars": 2,
+    "language": "HTML",
+    "topics": [
+      "textbook"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-02-04T20:23:08Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-14T19:45:38Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "pursurer/ascii-koi",
+    "desc": "Your new tab is a koi pond, drawn in text characters. Left click: a cat paw. Right click: feed the koi.",
+    "stars": 16,
+    "language": "JavaScript",
+    "topics": [
+      "ascii-art"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-11-02T21:42:25Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-09T15:19:29Z",
+    "retryCount": 1
   },
   {
     "repo": "realidkroo/Mochy-Music",
@@ -1060,7 +1188,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-14T10:41:37Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "seehiong/noteflow",
@@ -1076,7 +1204,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-11-12T12:34:45Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "shanliuling/dsh-image-gen",
@@ -1089,7 +1217,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-12T12:24:43.888Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "signal8ai/signal8-mcp",
@@ -1105,7 +1233,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-13T11:31:30Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "SkS-GameDev/EndlessDungeon",
@@ -1121,7 +1249,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-11-10T23:20:54Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "Tencent/LoopForge",
@@ -1165,7 +1293,7 @@
     "createdAt": "2026-10-29T12:32:46Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-14T17:05:24Z",
+    "ts": "2026-11-14T20:29:17Z",
     "retryCount": 1
   },
   {
@@ -1182,6 +1310,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-14T18:39:12Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "xcontcom/billiard-fractals",
+    "desc": "Exploring fractals generated from symbolic billiards, irrational discretization, and curved surface slicing. A bridge between number theory and emergent geometry.",
+    "stars": 165,
+    "language": "JavaScript",
+    "topics": [
+      "mathematics"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2025-05-08T00:26:42Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-14T20:23:39Z",
     "retryCount": 1
   },
   {
@@ -1214,7 +1358,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-14T11:26:43Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "zzzfu411/bakemono",
@@ -1230,6 +1374,6 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-13T17:32:52Z",
-    "retryCount": 2
+    "retryCount": 3
   }
 ]
