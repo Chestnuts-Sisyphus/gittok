@@ -13,7 +13,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-30T13:37:27Z",
-    "retryCount": 4
+    "retryCount": 5
+  },
+  {
+    "repo": "abedegno/borland-reborn",
+    "desc": "Borland's DOS compilers, recovered as source that rebuilds the original binaries byte for byte. First up: Borland C++ 2.0's BCC.EXE.",
+    "stars": 34,
+    "language": "Assembly",
+    "topics": [
+      "retrocomputing"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-11-12T08:59:07Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-13T23:57:18Z",
+    "retryCount": 1
   },
   {
     "repo": "AdamKeher/peekaboo",
@@ -29,7 +45,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-13T11:34:16Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "AdamWhiteHat/BigDecimal",
@@ -45,7 +61,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-13T13:30:06Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "adewaskar/jarvis",
@@ -58,22 +74,6 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-12T12:24:43.888Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "adhadse/Bookx",
-    "desc": "A Modern, Open Source GTK4 ebook manager powered by Rust.",
-    "stars": 31,
-    "language": "Rust",
-    "topics": [
-      "ebook"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2022-08-08T09:07:11Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-11-14T00:23:50Z",
     "retryCount": 1
   },
   {
@@ -90,7 +90,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-13T09:20:00Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "AhmadHassan-BTed/FormFilla",
@@ -106,7 +106,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-03T06:13:54Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "AhmadHassan-BTed/Noria",
@@ -122,7 +122,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-10T12:43:17Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "ai-infra-curriculum/ai-infra-junior-engineer-learning",
@@ -154,7 +154,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-08T23:30:20Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "aimod-cc/Agent2API",
@@ -183,7 +183,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-07T06:38:40Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "akustikrausch/amigent",
@@ -219,6 +219,22 @@
     "retryCount": 1
   },
   {
+    "repo": "AlekseyMalykh/am-mod",
+    "desc": "Unofficial SD-card mod for the Akai MPC Sample: step sequencer, chords, scale layouts, search, pad EQ, resampling, rear recording. Nothing is flashed.",
+    "stars": 18,
+    "language": "C++",
+    "topics": [
+      "music-production"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-31T15:26:50Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-13T00:44:06Z",
+    "retryCount": 1
+  },
+  {
     "repo": "alexkroman/tiny-audio",
     "desc": "A speech-to-text system you can train for $25. A frozen speech encoder and a Qwen LLM joined by a small trained projector, with word timestamps, speaker diarization, a batched HTTP server, a live demo, and a free course.",
     "stars": 179,
@@ -232,6 +248,22 @@
     "silentRounds": 13,
     "bigbros": [],
     "ts": "2026-11-01T16:18:26Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "AmadeusITGroup/amadeus-travel-toolkit",
+    "desc": "A plugin marketplace bringing Amadeus travel expertise to AI agents",
+    "stars": 4,
+    "language": "",
+    "topics": [
+      "travel"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-09-04T09:49:38Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-09T12:54:23Z",
     "retryCount": 1
   },
   {
@@ -248,7 +280,23 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-14T00:28:58Z",
-    "retryCount": 4
+    "retryCount": 5
+  },
+  {
+    "repo": "angela-cook-1988/vegas-pro-23-desktop",
+    "desc": "VEGAS Pro 23 2026 desktop setup with timeline editing, color correction, keyframe animation and DVD/Blu-ray authoring tools for Windows 11",
+    "stars": 224,
+    "language": "C++",
+    "topics": [
+      "video-editor"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-11-13T22:34:10Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-14T05:08:39Z",
+    "retryCount": 1
   },
   {
     "repo": "Aratako/T5Gemma-TTS",
@@ -264,7 +312,23 @@
     "silentRounds": 8,
     "bigbros": [],
     "ts": "2026-11-04T10:32:06Z",
-    "retryCount": 2
+    "retryCount": 3
+  },
+  {
+    "repo": "Artawower/orgnote",
+    "desc": "Zettelkasten environment for productive people",
+    "stars": 547,
+    "language": "Shell",
+    "topics": [
+      "knowledge-management"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2022-02-08T20:31:47Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-12T14:01:48Z",
+    "retryCount": 1
   },
   {
     "repo": "artembobkin/ImmersiveMap",
@@ -280,7 +344,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-11T12:35:58Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "atlasmarkz/opencode-buddy",
@@ -296,7 +360,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-10T07:04:20Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "ATLURI0001/BuildSite",
@@ -312,23 +376,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-13T12:58:38Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "auscaster/silvertongue",
-    "desc": "Write like anyone famous. Famous writing voices for your agent, over MCP: studied from the source, every source linked.",
-    "stars": 115,
-    "language": "TypeScript",
-    "topics": [
-      "writing"
-    ],
-    "source": "search",
-    "starGrowth": 5,
-    "createdAt": "2026-10-29T07:36:08Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-11-13T10:27:21Z",
-    "retryCount": 6
+    "retryCount": 2
   },
   {
     "repo": "avenoxai/avenoxbeyin",
@@ -357,7 +405,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-05T15:03:35Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "awoodbeck/gnp",
@@ -373,7 +421,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-14T01:08:02Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "Azure-Samples/aisearch-openai-rag-audio",
@@ -389,7 +437,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-13T00:13:03Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "babygoton/WorkDaddy",
@@ -403,23 +451,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-07T12:44:07.308Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "bayshier/pixelfx-zh",
-    "desc": "pixelfx 中文版：244 种代码实时生成的顶级游戏像素特效（爆炸/闪电/魔法/连招），MIT 可商用，附 Claude Code 特效师 Skill，汉化自 patch-gg/pixelfx",
-    "stars": 84,
-    "language": "JavaScript",
-    "topics": [
-      "pixel-art"
-    ],
-    "source": "search",
-    "starGrowth": 6,
-    "createdAt": "2026-11-01T07:06:47Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-11-01T07:10:03Z",
-    "retryCount": 6
+    "retryCount": 2
   },
   {
     "repo": "bigdevwhale/songling",
@@ -435,7 +467,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-13T09:34:15Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "blixvip/GenMotion",
@@ -451,7 +483,23 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-08T18:56:45Z",
-    "retryCount": 4
+    "retryCount": 5
+  },
+  {
+    "repo": "BlokDust/BlokDust",
+    "desc": ":musical_keyboard: A free to use web-based, standalone and DAW compatible music making app. Make sounds, build instruments and share your creations.",
+    "stars": 629,
+    "language": "TypeScript",
+    "topics": [
+      "music-production"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2014-09-18T15:22:27Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-14T03:59:38Z",
+    "retryCount": 1
   },
   {
     "repo": "bookleme/bookleme",
@@ -467,7 +515,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-13T09:42:20Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "bowo-prasetyo/web-llm",
@@ -483,7 +531,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-09T07:07:54Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "branislav0/snake-and-villain",
@@ -499,7 +547,23 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-03T10:02:39Z",
-    "retryCount": 4
+    "retryCount": 5
+  },
+  {
+    "repo": "bsanat/NetacadRunner",
+    "desc": "Chrome extension for Cisco NetAcad: course navigation, video handling and built-in answer automation. Russian UI.",
+    "stars": 13,
+    "language": "JavaScript",
+    "topics": [
+      "course"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-23T23:50:43Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-10-28T14:29:42Z",
+    "retryCount": 1
   },
   {
     "repo": "bymayanksingh/connect4",
@@ -515,7 +579,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-11T19:43:51Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "carloocchiena/the_statistics_handbook",
@@ -531,7 +595,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-11T18:22:10Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "cifertech/TamaFi",
@@ -547,7 +611,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-11-08T10:13:29Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "clawnify/OpenTripPlanner",
@@ -563,7 +627,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-21T04:53:43Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "cobusgreyling/grok-bot-templates",
@@ -577,7 +641,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-07T12:44:07.308Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "darkroomengineering/aniso",
@@ -609,7 +673,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-13T17:47:19Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "daveschumaker/artbot-for-stable-diffusion",
@@ -624,7 +688,7 @@
     "createdAt": "2022-10-09T23:29:20Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-11-13T19:42:15Z",
+    "ts": "2026-11-14T06:04:39Z",
     "retryCount": 1
   },
   {
@@ -641,7 +705,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-13T20:27:40Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "DevedevT/FFmpeg-GUI-Editor-Windows",
@@ -657,7 +721,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-13T09:24:36Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "drpwchen/ai-travel-kit",
@@ -673,7 +737,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-13T19:55:39Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "dstein64/neuralart",
@@ -689,7 +753,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-11T19:38:20Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "dsx-ai-factory/run-ai",
@@ -703,7 +767,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-10T17:35:50.940Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "DukeCCY/dualsense-pad",
@@ -719,7 +783,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-04T11:47:06Z",
-    "retryCount": 3
+    "retryCount": 4
+  },
+  {
+    "repo": "dutykh/computational-etudes",
+    "desc": "Official repository for the textbook \"Computational Études: A Spectral Approach\" by Dr. Denys Dutykh. Features a fully reproducible workflow using Typst, with triple-language implementations (Python & Matlab/Advanpix & Julia) of Spectral Methods for PDEs.",
+    "stars": 2,
+    "language": "TeX",
+    "topics": [
+      "textbook"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2025-12-25T14:36:17Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-14T03:28:02Z",
+    "retryCount": 1
   },
   {
     "repo": "eclaire-labs/eclaire",
@@ -735,7 +815,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-11-08T04:57:29Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "edgerunners-2/capri-ai-desktop",
@@ -750,8 +830,8 @@
     "createdAt": "2026-08-15T05:07:09Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-13T18:03:06Z",
-    "retryCount": 5
+    "ts": "2026-11-14T08:37:20Z",
+    "retryCount": 1
   },
   {
     "repo": "exam-data/NETEMVocabulary",
@@ -767,7 +847,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-10-22T10:45:05Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "FedorSosnin/Catch151",
@@ -783,7 +863,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-13T22:33:44Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "FedorSosnin/PokeKnomiGochi",
@@ -799,7 +879,7 @@
     "silentRounds": 8,
     "bigbros": [],
     "ts": "2026-11-13T18:46:23Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "ForeactLabs/OpenExecutive",
@@ -814,8 +894,8 @@
     "createdAt": "2026-06-11T21:41:54Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-11-14T00:47:57Z",
-    "retryCount": 1
+    "ts": "2026-11-14T04:20:47Z",
+    "retryCount": 2
   },
   {
     "repo": "ForgeAX/forgeax-engine",
@@ -831,7 +911,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-12T15:31:01Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "franklynton/Millennium-Bug",
@@ -847,7 +927,7 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-10-28T15:09:54Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Gissio/font_Tiny5Mono",
@@ -880,23 +960,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-13T06:51:34Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "Heir-of-God/Fly-Rush",
-    "desc": "🏡Home repository for Fly Rush game✈️ My learning project built only with Python and its popular library Pygame🎮",
-    "stars": 5,
-    "language": "Python",
-    "topics": [
-      "pygame"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2024-06-04T06:57:38Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-11-13T15:37:32Z",
-    "retryCount": 1
+    "retryCount": 3
   },
   {
     "repo": "hollisorg/iv-studio",
@@ -912,7 +976,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-13T16:25:03Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "hugobatista/intellireading-calibre-plugins",
@@ -927,7 +991,7 @@
     "createdAt": "2022-11-17T16:10:01Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-11-13T18:50:58Z",
+    "ts": "2026-11-14T06:54:56Z",
     "retryCount": 1
   },
   {
@@ -944,7 +1008,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-13T20:21:52Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "jesperls/qs-vpets",
@@ -960,7 +1024,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-13T15:20:39Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "jpolec/quant-interviews",
@@ -976,7 +1040,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-10T22:31:58Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "Kevin-Mattheus-Moerman/BodyParts3D",
@@ -992,7 +1056,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-13T23:49:35Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "kingstacker/Libzora",
@@ -1008,7 +1072,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-11T11:50:37Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Likely7/Veyra-NRVideo",
@@ -1021,6 +1085,70 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-13T12:00:31.180Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "lonesoulsurfer/Acid_Drip_Bassline_and_Drum_Synth",
+    "desc": "DIY RP2040 groovebox: acid bassline synth, DRIFT synth and drum machine. Mozzi audio, ILI9341 screen, 16 Cherry MX pads.",
+    "stars": 121,
+    "language": "C++",
+    "topics": [
+      "synthesizer"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-06-10T01:30:01Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-14T06:24:52Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "lonesoulsurfer/Freaq_FM_Synth-Modular_Synth_Version",
+    "desc": "Meebleeps Freaq dual-voice FM synth with a generative sequencer, as a Eurorack module. Arduino Nano and Mozzi.",
+    "stars": 23,
+    "language": "C++",
+    "topics": [
+      "synthesizer"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2024-12-01T09:08:00Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-14T06:26:05Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "lonesoulsurfer/Groove_Box_Drum_Machine_Arduino_Nano",
+    "desc": "Arduino Nano drum machine for Eurorack, based on DrumKid. 3 trigger outputs, 9V or Eurorack power.",
+    "stars": 31,
+    "language": "HTML",
+    "topics": [
+      "synthesizer"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2024-12-01T05:43:08Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-14T06:26:23Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "lonesoulsurfer/Mutant_Generative_Arduino_Synth",
+    "desc": "Meebleeps Mutant generative Arduino synth, as a Eurorack module. 8x8 LED matrix, 16-step mutating sequencer.",
+    "stars": 27,
+    "language": "C++",
+    "topics": [
+      "synthesizer"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2024-12-09T08:00:55Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-14T06:27:01Z",
     "retryCount": 1
   },
   {
@@ -1053,7 +1181,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-10T23:52:53Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "masterball-w/A-writer-should-do",
@@ -1069,7 +1197,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-10T02:18:39Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "mosioc/english-forge",
@@ -1085,7 +1213,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-13T12:20:31Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "Mukasshaf/Pulse",
@@ -1101,7 +1229,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-09T06:27:21Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "n5za/chess-mate",
@@ -1117,7 +1245,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T20:51:58Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "NadirAliOfficial/Al-Mehdi-Python-Course",
@@ -1133,6 +1261,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-07T11:20:28Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "next-token-tv/next-token-skill",
+    "desc": "让 AI Agent 检索 Next Token｜词元之外 播客的 Skill：回答 AI 问题时引用主理人观点，并附 B 站 / YouTube 时间戳直跳链接",
+    "stars": 15,
+    "language": "Python",
+    "topics": [
+      "podcast"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-11-12T09:55:17Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-12T13:02:22Z",
     "retryCount": 1
   },
   {
@@ -1149,7 +1293,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-12T14:22:24Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "njlent/tougelike-3ds-pub",
@@ -1165,6 +1309,22 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-14T00:36:50Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "NotJoeMartinez/chess-insights",
+    "desc": "A tool to export and visualize your chess.com games written in vue.js",
+    "stars": 66,
+    "language": "Vue",
+    "topics": [
+      "chess"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2023-02-10T07:11:17Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-14T01:56:01Z",
     "retryCount": 1
   },
   {
@@ -1181,7 +1341,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-12T06:45:19Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "onlyphantom/llm-python",
@@ -1197,7 +1357,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-13T09:54:14Z",
-    "retryCount": 5
+    "retryCount": 1
   },
   {
     "repo": "openSUSE/travel-support-program",
@@ -1212,8 +1372,8 @@
     "createdAt": "2013-03-18T10:19:40Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-11-14T00:28:16Z",
-    "retryCount": 2
+    "ts": "2026-11-14T06:34:53Z",
+    "retryCount": 3
   },
   {
     "repo": "Pantani/ableton-mind",
@@ -1229,7 +1389,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-11T07:44:59Z",
-    "retryCount": 5
+    "retryCount": 1
   },
   {
     "repo": "Protocol-zero-0/compound-memory",
@@ -1260,8 +1420,8 @@
     "createdAt": "2026-06-15T12:13:15Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-12T14:26:44Z",
-    "retryCount": 2
+    "ts": "2026-11-14T05:07:59Z",
+    "retryCount": 1
   },
   {
     "repo": "seehiong/noteflow",
@@ -1277,7 +1437,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-11-12T12:34:45Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "shanliuling/dsh-image-gen",
@@ -1354,7 +1514,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-13T16:13:13Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "styvesgoupil/frasil",
@@ -1370,7 +1530,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-12T01:16:29Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "Tencent/LoopForge",
@@ -1386,6 +1546,22 @@
     "retryCount": 2
   },
   {
+    "repo": "The-Osint-Toolbox/Geolocation-OSINT",
+    "desc": "Improve you Geolocation skills, with this ilist of resources.",
+    "stars": 367,
+    "language": "",
+    "topics": [
+      "maps"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2023-03-30T16:21:36Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-14T08:42:27Z",
+    "retryCount": 1
+  },
+  {
     "repo": "tukkek/javelin",
     "desc": "Strategic Roguelike.",
     "stars": 73,
@@ -1399,7 +1575,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-13T22:04:32Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "valentderah/totk-pc-recomp",
@@ -1414,7 +1590,7 @@
     "createdAt": "2026-10-29T12:32:46Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-13T15:08:27Z",
+    "ts": "2026-11-14T05:50:26Z",
     "retryCount": 1
   },
   {
@@ -1431,7 +1607,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-13T21:01:28Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "vernette/warpscout",
@@ -1460,7 +1636,7 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-11-13T00:18:05Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "ZimengXiong/PancakeSlicer",
@@ -1476,7 +1652,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-14T00:09:07Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "zzzfu411/bakemono",
@@ -1492,6 +1668,6 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-13T17:32:52Z",
-    "retryCount": 4
+    "retryCount": 5
   }
 ]
