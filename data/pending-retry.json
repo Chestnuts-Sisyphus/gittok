@@ -12,8 +12,8 @@
     "createdAt": "2026-10-19T13:32:19Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-11-16T05:26:24Z",
-    "retryCount": 3
+    "ts": "2026-11-16T08:24:22Z",
+    "retryCount": 4
   },
   {
     "repo": "aa1143/NamiAgent",
@@ -45,23 +45,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-29T19:56:06Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
-    "repo": "abedegno/borland-reborn",
-    "desc": "Borland's DOS compilers, recovered as source that rebuilds the original binaries byte for byte. First up: Borland C++ 2.0's BCC.EXE.",
-    "stars": 202,
-    "language": "C",
+    "repo": "abdurakhmonoff/data-structures-and-algorithms-kotlin",
+    "desc": "Implementation and explanation of Data Structures and Algorithms (DSA) in Kotlin programming language",
+    "stars": 177,
+    "language": "Kotlin",
     "topics": [
-      "retrocomputing"
+      "algorithms"
     ],
     "source": "search",
-    "starGrowth": 14,
-    "createdAt": "2026-11-12T08:59:07Z",
+    "starGrowth": 0,
+    "createdAt": "2021-04-01T12:06:28Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-15T09:16:32Z",
-    "retryCount": 6
+    "ts": "2026-11-12T12:10:38Z",
+    "retryCount": 1
   },
   {
     "repo": "AdamWhiteHat/BigDecimal",
@@ -77,7 +77,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-13T13:30:06Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "AhmadHassan-BTed/FormFilla",
@@ -93,7 +93,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-03T06:13:54Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "AhmadHassan-BTed/Noria",
@@ -109,7 +109,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-10T12:43:17Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "ai-infra-curriculum/ai-infra-junior-engineer-learning",
@@ -141,7 +141,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-14T16:12:29Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "aimod-cc/Agent2API",
@@ -171,7 +171,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-16T02:47:19Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "akfamily/akhub",
@@ -187,7 +187,23 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-07T06:38:40Z",
-    "retryCount": 3
+    "retryCount": 4
+  },
+  {
+    "repo": "akshit-python-programmer/Foci",
+    "desc": "Calm, ADHD-friendly day planner built with pygame. Visual timeline + nested todos + focus timer.",
+    "stars": 12,
+    "language": "Python",
+    "topics": [
+      "pygame"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-06-26T07:29:29Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-15T06:23:10Z",
+    "retryCount": 1
   },
   {
     "repo": "Alarm-Siren/arduino-kicad-library",
@@ -203,7 +219,23 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-15T22:52:23Z",
-    "retryCount": 3
+    "retryCount": 4
+  },
+  {
+    "repo": "albertogeniola/MerossIot",
+    "desc": "Async Python library for controlling Meross devices",
+    "stars": 539,
+    "language": "Python",
+    "topics": [
+      "home-automation"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2018-08-27T23:30:56Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-14T18:05:29Z",
+    "retryCount": 1
   },
   {
     "repo": "alchaincyf/codex-orange-book",
@@ -220,23 +252,7 @@
     "silentRounds": 7,
     "bigbros": [],
     "ts": "2026-10-20T03:23:27Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "alexyc9381/mock-interview-skill",
-    "desc": "Five Claudes interview you for any job from the real job post, then grade every answer and rewrite your weakest ones. Free Claude Code skill, MIT.",
-    "stars": 8,
-    "language": "Python",
-    "topics": [
-      "interview"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-10-17T08:11:52Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-17T08:11:57Z",
-    "retryCount": 6
+    "retryCount": 2
   },
   {
     "repo": "Ampixa/sanoTTS",
@@ -252,7 +268,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-14T19:50:13Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "Aratako/T5Gemma-TTS",
@@ -268,7 +284,7 @@
     "silentRounds": 10,
     "bigbros": [],
     "ts": "2026-11-04T10:32:06Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Artawower/orgnote",
@@ -285,7 +301,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-15T09:46:43Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "artembobkin/ImmersiveMap",
@@ -301,7 +317,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-15T20:16:05Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "atrzaska/noesis_py",
@@ -317,7 +333,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-15T23:29:40Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "avenoxai/avenoxbeyin",
@@ -347,7 +363,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-05T15:03:35Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "awoodbeck/gnp",
@@ -363,7 +379,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-14T05:30:44Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "Azure-Samples/aisearch-openai-rag-audio",
@@ -379,7 +395,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-13T00:13:03Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "babygoton/WorkDaddy",
@@ -393,7 +409,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-07T12:44:07.308Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "bex-co/beancount-io",
@@ -408,8 +424,8 @@
     "createdAt": "2020-10-02T07:00:24Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-16T05:35:27Z",
-    "retryCount": 1
+    "ts": "2026-11-16T15:12:32Z",
+    "retryCount": 2
   },
   {
     "repo": "blixvip/GenMotion",
@@ -442,7 +458,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-14T03:59:38Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "bojieli/ai-infra-book",
@@ -455,7 +471,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-15T13:43:16.623Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "bowo-prasetyo/web-llm",
@@ -471,6 +487,22 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-09T07:07:54Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "capacityknights88/Chained-Beasts-Devlog-2026",
+    "desc": "A pre-alpha development journal covering combat, co-op systems, arena design, testing, and iteration for Chained Beasts.",
+    "stars": 3,
+    "language": "",
+    "topics": [
+      "roguelike"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-09-20T15:48:37Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-16T13:22:28Z",
     "retryCount": 1
   },
   {
@@ -487,7 +519,7 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-11-11T18:22:10Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "Cryolite/kanachan",
@@ -503,7 +535,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-14T17:04:32Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "darkroomengineering/aniso",
@@ -519,7 +551,7 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-11-11T18:58:01Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "DataTalksClub/production-ai-agents-for-media-generation",
@@ -534,8 +566,8 @@
     "createdAt": "2025-05-13T10:54:34Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-11-15T09:41:58Z",
-    "retryCount": 2
+    "ts": "2026-11-16T14:14:17Z",
+    "retryCount": 3
   },
   {
     "repo": "datawhalechina/llm-algo-leetcode",
@@ -551,7 +583,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-16T04:27:31Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "daveschumaker/artbot-for-stable-diffusion",
@@ -567,7 +599,7 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-11-14T06:04:39Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "dkaraush/tinyasr",
@@ -582,8 +614,8 @@
     "createdAt": "2026-11-09T11:36:19Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-14T17:01:17Z",
-    "retryCount": 3
+    "ts": "2026-11-16T11:12:43Z",
+    "retryCount": 4
   },
   {
     "repo": "DukeCCY/dualsense-pad",
@@ -615,7 +647,7 @@
     "silentRounds": 5,
     "bigbros": [],
     "ts": "2026-11-08T04:57:29Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "edgerunners-2/capri-ai-desktop",
@@ -631,7 +663,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-15T22:48:23Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "Electrotechnique/TSynth-Teensy4.1",
@@ -663,7 +695,7 @@
     "silentRounds": 5,
     "bigbros": [],
     "ts": "2026-10-22T10:45:05Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "FedorSosnin/PokeKnomiGochi",
@@ -679,7 +711,7 @@
     "silentRounds": 10,
     "bigbros": [],
     "ts": "2026-11-13T18:46:23Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "ForgeAX/forgeax-engine",
@@ -695,7 +727,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-15T23:05:55Z",
-    "retryCount": 6
+    "retryCount": 1
+  },
+  {
+    "repo": "fuzztheplanet/microcosm",
+    "desc": "AI generated 64K demo engine and demos",
+    "stars": 0,
+    "language": "C",
+    "topics": [
+      "demoscene"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-11-09T17:55:24Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-09T18:12:53Z",
+    "retryCount": 1
   },
   {
     "repo": "GAIK-project/gaik-toolkit",
@@ -711,7 +759,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-15T21:13:22Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Gissio/font_Tiny5Mono",
@@ -727,7 +775,33 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-14T20:43:21Z",
-    "retryCount": 2
+    "retryCount": 3
+  },
+  {
+    "repo": "gnacho/netpulse",
+    "desc": "PWA dashboard for monitoring OpenWrt/GL.iNet home networks: fleet status, per-router health, devices, WireGuard peers, AdGuard Home stats and alerts in real time (SSE). Go backend + React 19 frontend, SQLite, multi-user, i18n ES/EN.",
+    "stars": 334,
+    "language": "Go",
+    "topics": [],
+    "source": "trending",
+    "starGrowth": 36,
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-16T15:17:54.333Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "google-research/paper-orchestra",
+    "desc": "PaperOrchestra is a multi-agent framework for automated AI research paper writing.",
+    "stars": 1143,
+    "language": "Python",
+    "topics": [],
+    "source": "trending",
+    "starGrowth": 306,
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-16T15:17:54.333Z",
+    "retryCount": 1
   },
   {
     "repo": "HuskerMinion/techo5",
@@ -756,7 +830,20 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-11-14T21:07:45Z",
-    "retryCount": 5
+    "retryCount": 6
+  },
+  {
+    "repo": "jessepinkman9900/claude-second-brain",
+    "desc": "Fastest way to scaffold your LLM powered personal knowledge base - Obsidian, Claude Code, qmd, Github",
+    "stars": 166,
+    "language": "JavaScript",
+    "topics": [],
+    "source": "trending",
+    "starGrowth": 14,
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-16T15:17:54.333Z",
+    "retryCount": 1
   },
   {
     "repo": "KilledByAPixel/SpaceHuggers",
@@ -772,7 +859,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-15T23:28:52Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "KKKKhazix/AIHOT",
@@ -788,7 +875,39 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-15T22:29:36Z",
-    "retryCount": 2
+    "retryCount": 1
+  },
+  {
+    "repo": "kleberandrade/roguelike-dart",
+    "desc": "An educational turn-based ASCII roguelike in pure Dart, with procedural dungeons and a terminal interface.",
+    "stars": 6,
+    "language": "Dart",
+    "topics": [
+      "roguelike"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2019-08-07T17:54:49Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-16T02:40:15Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "Li-Evan/BloomTutor",
+    "desc": "Open-source AI tutor for personalized learning: Socratic, adaptive lessons to learn anything. Claude Code skill + self-hosted web app. Bloom 2 Sigma · 开源 AI 家教",
+    "stars": 310,
+    "language": "Python",
+    "topics": [
+      "learning"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-03-10T14:59:27Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-16T13:13:29Z",
+    "retryCount": 1
   },
   {
     "repo": "lonesoulsurfer/Freaq_FM_Synth-Modular_Synth_Version",
@@ -804,6 +923,38 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-14T06:26:05Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "ltmx/Unity.mathx",
+    "desc": "An Extension Library for Unity.Mathematics - Extension Methods, New Syntax, Optimized Functions, and more !",
+    "stars": 94,
+    "language": "C#",
+    "topics": [
+      "mathematics"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2020-06-05T22:12:22Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-16T07:38:33Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "lxyeternal/PathTracker",
+    "desc": "漫迹 Waytrace：不用按开始，全天自动记录足迹的 iPhone 和 Apple Watch App，已上架 App Store。Records your routes and places all day in the background, lights up the cities and countries you've been to, and keeps everything in your own iCloud. SwiftUI · SwiftData · CloudKit",
+    "stars": 4,
+    "language": "Swift",
+    "topics": [
+      "travel"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2025-07-20T05:44:23Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-15T09:36:22Z",
     "retryCount": 1
   },
   {
@@ -820,23 +971,23 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-11-11T17:09:26Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
-    "repo": "madeiragab/Guns-and-boots",
-    "desc": "Jogo 2D retro-futurista por turnos, com maquina de estados, sistema de save e modo mobile.",
-    "stars": 2,
-    "language": "Python",
+    "repo": "mirfansulaiman/Command-Mobile-Penetration-Testing-Cheatsheet",
+    "desc": "Mobile penetration testing android & iOS command cheatsheet ",
+    "stars": 398,
+    "language": "",
     "topics": [
-      "pygame"
+      "cheatsheet"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2026-03-04T18:18:16Z",
-    "silentRounds": 4,
+    "createdAt": "2018-12-11T08:08:11Z",
+    "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-10T23:52:53Z",
-    "retryCount": 6
+    "ts": "2026-11-16T10:01:56Z",
+    "retryCount": 1
   },
   {
     "repo": "N0zoM1z0/vocaloid-mcp",
@@ -852,7 +1003,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-15T09:01:07Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "n5za/chess-mate",
@@ -868,7 +1019,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T20:51:58Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "NeuromatchAcademy/course-content-dl",
@@ -884,7 +1035,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-15T01:36:45Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "next-token-tv/next-token-skill",
@@ -900,7 +1051,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-12T13:02:22Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "njlent/tougelike-3ds-pub",
@@ -919,6 +1070,35 @@
     "retryCount": 1
   },
   {
+    "repo": "openbkn-ai/bkn-foundry",
+    "desc": "BKN Foundry is the Ontology back-end foundation of OpenBKN. It transforms ontology-driven business semantics into runtime services: data, logic, actions, security governance, and observability.",
+    "stars": 1399,
+    "language": "Go",
+    "topics": [],
+    "source": "trending",
+    "starGrowth": 48,
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-16T15:17:54.333Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "pydy/pydy",
+    "desc": "Multibody dynamics tool kit.",
+    "stars": 418,
+    "language": "Python",
+    "topics": [
+      "physics"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2013-08-16T18:16:29Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-16T07:05:55Z",
+    "retryCount": 1
+  },
+  {
     "repo": "realidkroo/Mochy-Music",
     "desc": "A modern, cool, sleek music player. made with <3",
     "stars": 1812,
@@ -931,8 +1111,8 @@
     "createdAt": "2026-06-15T12:13:15Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-15T17:09:19Z",
-    "retryCount": 1
+    "ts": "2026-11-16T13:34:51Z",
+    "retryCount": 2
   },
   {
     "repo": "Refactorful/Oxygen.jl",
@@ -948,7 +1128,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-15T21:32:07Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "robosimstudio/robosimstudio",
@@ -964,7 +1144,20 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-13T20:05:03Z",
-    "retryCount": 2
+    "retryCount": 1
+  },
+  {
+    "repo": "s0ld13rr/pentestcode",
+    "desc": "PentestCode - Multi-agent AI penetration testing system with persistent engagement state, strategic coordination, and parallel autonomous operations.",
+    "stars": 1081,
+    "language": "TypeScript",
+    "topics": [],
+    "source": "trending",
+    "starGrowth": 34,
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-16T15:17:54.333Z",
+    "retryCount": 1
   },
   {
     "repo": "satokiyon/DartHack",
@@ -979,8 +1172,8 @@
     "createdAt": "2026-06-27T23:32:10Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-14T22:16:49Z",
-    "retryCount": 1
+    "ts": "2026-11-16T09:03:51Z",
+    "retryCount": 2
   },
   {
     "repo": "seehiong/noteflow",
@@ -1012,7 +1205,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-16T04:35:17Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "synthetos/g2",
@@ -1028,7 +1221,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-15T22:59:55Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "Tencent/LoopForge",
@@ -1057,7 +1250,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-16T04:16:48Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "the-phil-lambert/xfer-serum-desktop",
@@ -1073,7 +1266,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-16T05:16:58Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "tiny-deer-orca/capcut-desktop-desktop",
@@ -1089,23 +1282,20 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-16T05:26:50Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
-    "repo": "Verlintas/NOIR",
-    "desc": "手机隐私审计：用 adb 扫出 Android 应用的权限、上报端点与数据流向，并给出可回滚的处置。Desktop Android leak audit: permissions, endpoints, data flows, reversible fixes.",
-    "stars": 3570,
-    "language": "Kotlin",
-    "topics": [
-      "privacy"
-    ],
-    "source": "search",
-    "starGrowth": 82,
-    "createdAt": "2026-10-31T21:34:39Z",
+    "repo": "vstorm-co/agenticos",
+    "desc": "Open-source, self-hosted AI agent platform for your company's AI teammates. Build, run and govern agents on your own servers and models: shared chat, RAG, skills, a real browser, 4,700+ MCP servers, budgets, approvals and an audit trail. An alternative to ChatGPT Enterprise and Grok Bot. Apache-2.0, built on Pydantic AI.",
+    "stars": 351,
+    "language": "Python",
+    "topics": [],
+    "source": "trending",
+    "starGrowth": 56,
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-16T03:43:17Z",
-    "retryCount": 6
+    "ts": "2026-11-16T15:17:54.333Z",
+    "retryCount": 1
   },
   {
     "repo": "xDarkzx/GigChain-Keys",
@@ -1121,6 +1311,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-16T02:04:32Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "xx-hub/dsh-craft-your-textbook",
+    "desc": "DeepSeek Harness workbench that turns textbook PDFs into a teaching blueprint an AI tutor can teach from — or a readable textbook. Six-stage pipeline with human checkpoints.",
+    "stars": 15,
+    "language": "JavaScript",
+    "topics": [
+      "textbook"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-08-21T06:32:17Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-14T05:12:40Z",
     "retryCount": 1
   },
   {
@@ -1137,7 +1343,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-14T11:26:43Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "zzzfu411/bakemono",
@@ -1153,6 +1359,6 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-11-13T17:32:52Z",
-    "retryCount": 1
+    "retryCount": 2
   }
 ]
