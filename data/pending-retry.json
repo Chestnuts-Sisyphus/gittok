@@ -1,5 +1,21 @@
 [
   {
+    "repo": "100yenadmin/hermes-personal-assistant",
+    "desc": "Your Hermes agent runs errands on the real sites, fills every field, and stops at the last button until you say yes.",
+    "stars": 5,
+    "language": "Python",
+    "topics": [
+      "travel"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-19T13:32:19Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-15T23:10:24Z",
+    "retryCount": 1
+  },
+  {
     "repo": "aa1143/NamiAgent",
     "desc": "零基础入门 AI Agent 的基础教程。不只是教程，也是一个能在本地跑起来的 Agent：读写文件、执行命令、MCP、长期记忆，自带网页端看清每一步。从 100 行最小循环开始，一课加一个能力，最后拆解 Claude Code、Codex 等主流 Agent",
     "stars": 526,
@@ -16,22 +32,6 @@
     "retryCount": 1
   },
   {
-    "repo": "AbdullahBakir97/Space-Shooter",
-    "desc": "Space shooter mini-game — pygame-based arcade clone with enemies, power-ups, scoring.",
-    "stars": 3,
-    "language": "Python",
-    "topics": [
-      "pygame"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2024-06-18T10:25:35Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-10-29T19:56:06Z",
-    "retryCount": 6
-  },
-  {
     "repo": "abedegno/borland-reborn",
     "desc": "Borland's DOS compilers, recovered as source that rebuilds the original binaries byte for byte. First up: Borland C++ 2.0's BCC.EXE.",
     "stars": 188,
@@ -45,23 +45,55 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-15T09:16:32Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
-    "repo": "agharsallah/esp-labs-web",
-    "desc": "The ESP32-S3 bench guide as a React app: live pinout, lessons with interactive simulators, a code reader for the esp-labs firmware, and the bench log. In 11 languages.",
-    "stars": 858,
-    "language": "TypeScript",
+    "repo": "AdamWhiteHat/BigDecimal",
+    "desc": "An arbitrary-precision decimal (base 10) floating-point number type. Downloaded over 30 million times on NuGet!",
+    "stars": 77,
+    "language": "C#",
     "topics": [
-      "esp32"
+      "mathematics"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2026-10-21T13:40:04Z",
-    "silentRounds": 1,
+    "createdAt": "2017-02-24T08:59:15Z",
+    "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-15T13:36:53Z",
-    "retryCount": 6
+    "ts": "2026-11-13T13:30:06Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "AhmadHassan-BTed/FormFilla",
+    "desc": "About A local-first browser extension that fills job-application forms from local JSON profile data and files. Matches are computed deterministically via multi-signal scoring, structural repeated-block detection, and bipartite optimization.",
+    "stars": 4657,
+    "language": "TypeScript",
+    "topics": [
+      "privacy"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-07-10T15:21:56Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-03T06:13:54Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "AhmadHassan-BTed/Noria",
+    "desc": "An agentic extractor for messaging platforms. Noria receives messages & URLs via chat; scrapes web data to evaluate the content against custom scoring matrices (e.g., jobs, scholarships); and sends a structured summary with a calculated match score directly to the assigned messenger number. ",
+    "stars": 4624,
+    "language": "JavaScript",
+    "topics": [
+      "ai-agent"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-05-31T21:56:03Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-10T12:43:17Z",
+    "retryCount": 1
   },
   {
     "repo": "ai-infra-curriculum/ai-infra-junior-engineer-learning",
@@ -77,7 +109,23 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-15T14:09:45Z",
-    "retryCount": 2
+    "retryCount": 1
+  },
+  {
+    "repo": "ai-pavel/chonkestrel",
+    "desc": "🛸 A fork of XFTL: FTL with bigger ships, triple weapons, hybrid enemies and a 16-sector campaign.",
+    "stars": 2,
+    "language": "Kotlin",
+    "topics": [
+      "roguelike"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-11-08T23:08:14Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-14T16:12:29Z",
+    "retryCount": 1
   },
   {
     "repo": "aimod-cc/Agent2API",
@@ -91,6 +139,38 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-13T12:00:31.180Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "Aisjam/Contour-Visual-Tracker",
+    "desc": "Contour is a portable music tracker for the Anbernic RG35XX Pro, Windows, and other H700-based handhelds. Inspired by LSDj, ProTracker, Polyend, M8, Korg Gadget, Game Boy Camera, and 3DS, it combines sequencing, synthesis, sampling, and generative visuals with a decentralised, StreetPass-style music-sharing ecosystem.",
+    "stars": 1,
+    "language": "HTML",
+    "topics": [
+      "demoscene"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-11-11T22:58:02Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-15T00:25:11Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "akfamily/akhub",
+    "desc": "AKHub：金融与经济数据工具、数据源、量化投研框架和学习资源合集 | A curated hub of financial data tools, data sources, quant research frameworks and learning resources",
+    "stars": 710,
+    "language": "",
+    "topics": [
+      "finance"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2020-03-02T18:24:03Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-07T06:38:40Z",
     "retryCount": 1
   },
   {
@@ -107,23 +187,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-15T06:23:10Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
-    "repo": "albertogeniola/MerossIot",
-    "desc": "Async Python library for controlling Meross devices",
-    "stars": 539,
-    "language": "Python",
+    "repo": "Alarm-Siren/arduino-kicad-library",
+    "desc": "KiCad Symbol & Footprint Library for Arduino Modules (Shields, Sockets and Tiles)",
+    "stars": 452,
+    "language": "",
     "topics": [
-      "home-automation"
+      "arduino"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2018-08-27T23:30:56Z",
-    "silentRounds": 1,
+    "createdAt": "2017-04-28T12:26:14Z",
+    "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-14T18:05:29Z",
-    "retryCount": 6
+    "ts": "2026-11-15T22:52:23Z",
+    "retryCount": 1
   },
   {
     "repo": "alchaincyf/codex-orange-book",
@@ -156,7 +236,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-17T08:11:57Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "Ampixa/sanoTTS",
@@ -172,7 +252,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-14T19:50:13Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "AnasImloul/Leetcode-Solutions",
@@ -187,7 +267,7 @@
     "createdAt": "2022-08-07T11:14:26Z",
     "silentRounds": 3,
     "bigbros": [],
-    "ts": "2026-11-15T19:51:04Z",
+    "ts": "2026-11-15T23:31:26Z",
     "retryCount": 1
   },
   {
@@ -224,38 +304,6 @@
     "retryCount": 1
   },
   {
-    "repo": "artembobkin/ImmersiveMap",
-    "desc": "Native Swift 6 + Metal map rendering engine for SwiftUI. Globe and flat vector-tile maps with labels, SwiftUI markers and avatars, on iOS and macOS.",
-    "stars": 207,
-    "language": "Swift",
-    "topics": [
-      "maps"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-05-25T14:03:47Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-11-15T16:19:57Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "atlasmarkz/opencode-buddy",
-    "desc": "Opencode Pets",
-    "stars": 4,
-    "language": "JavaScript",
-    "topics": [
-      "virtual-pet"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-06-03T11:45:47Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-11-10T07:04:20Z",
-    "retryCount": 6
-  },
-  {
     "repo": "avenoxai/avenoxbeyin",
     "desc": "Your AI second brain in one command — open-source Obsidian + Claude Code system with persistent cross-session memory. avenox.lol/beyin.md",
     "stars": 468,
@@ -286,20 +334,36 @@
     "retryCount": 1
   },
   {
-    "repo": "ayaka-notes/ayakaleaf-pro",
-    "desc": "The ultimate open-source Overleaf extension and alternative: a free, self-hosted, drop-in replacement for Overleaf Community Edition with nearly all Pro feature—SSO, AI Assistant, Git(Hub/Lab）/ Dropbox sync, track changes, sandboxed compilation, Zotero, Mendeley and more. Formerly @Ayaka-notes Overleaf Pro. Docs: https://ayakaleaf-pro.ayaka.space",
-    "stars": 1712,
-    "language": "JavaScript",
+    "repo": "awoodbeck/gnp",
+    "desc": "The code repository for No Starch Press' Network Programming with Go",
+    "stars": 259,
+    "language": "Go",
     "topics": [
-      "editor"
+      "learning"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2026-01-22T06:41:44Z",
-    "silentRounds": 1,
+    "createdAt": "2019-05-27T18:53:47Z",
+    "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-14T15:54:18Z",
-    "retryCount": 6
+    "ts": "2026-11-14T05:30:44Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "Azure-Samples/aisearch-openai-rag-audio",
+    "desc": "A simple example implementation of the VoiceRAG pattern to power interactive voice generative AI experiences using RAG with Azure AI Search and Azure OpenAI's gpt-4o-realtime-preview model. ",
+    "stars": 568,
+    "language": "Python",
+    "topics": [
+      "vector-db"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2024-09-19T22:36:40Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-13T00:13:03Z",
+    "retryCount": 1
   },
   {
     "repo": "babygoton/WorkDaddy",
@@ -313,7 +377,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-07T12:44:07.308Z",
-    "retryCount": 6
+    "retryCount": 1
   },
   {
     "repo": "blixvip/GenMotion",
@@ -329,7 +393,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-15T19:52:53Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "BlokDust/BlokDust",
@@ -346,7 +410,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-14T03:59:38Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "bojieli/ai-infra-book",
@@ -391,7 +455,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-09T07:07:54Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "capacityknights88/Chained-Beasts-Devlog-2026",
@@ -406,8 +470,8 @@
     "createdAt": "2026-09-20T15:48:37Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-15T14:31:31Z",
-    "retryCount": 4
+    "ts": "2026-11-15T19:56:18Z",
+    "retryCount": 5
   },
   {
     "repo": "carloocchiena/the_statistics_handbook",
@@ -439,6 +503,22 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-11-08T10:13:29Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "Cryolite/kanachan",
+    "desc": "A Japanese (Riichi) Mahjong AI Framework",
+    "stars": 347,
+    "language": "Python",
+    "topics": [
+      "transformers"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2021-08-05T12:25:30Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-14T17:04:32Z",
     "retryCount": 1
   },
   {
@@ -487,7 +567,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-15T18:37:39Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "daveschumaker/artbot-for-stable-diffusion",
@@ -503,7 +583,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-14T06:04:39Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "devnulluk/tildagon-event-horizon",
@@ -519,7 +599,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-12T08:06:32Z",
-    "retryCount": 4
+    "retryCount": 5
+  },
+  {
+    "repo": "dkaraush/tinyasr",
+    "desc": "Rust library for running small Zipformer models, trained for speech recognition on device.",
+    "stars": 15,
+    "language": "Rust",
+    "topics": [
+      "english"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-11-09T11:36:19Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-14T17:01:17Z",
+    "retryCount": 1
   },
   {
     "repo": "DukeCCY/dualsense-pad",
@@ -535,7 +631,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-04T11:47:06Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "eclaire-labs/eclaire",
@@ -551,7 +647,7 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-11-08T04:57:29Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "edgerunners-2/capri-ai-desktop",
@@ -566,7 +662,7 @@
     "createdAt": "2026-08-15T05:07:09Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-15T18:25:49Z",
+    "ts": "2026-11-15T22:48:23Z",
     "retryCount": 1
   },
   {
@@ -583,7 +679,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-14T09:21:00Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "exam-data/NETEMVocabulary",
@@ -599,7 +695,7 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-10-22T10:45:05Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "FedorSosnin/PokeKnomiGochi",
@@ -615,7 +711,7 @@
     "silentRounds": 9,
     "bigbros": [],
     "ts": "2026-11-13T18:46:23Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "ForgeAX/forgeax-engine",
@@ -630,8 +726,8 @@
     "createdAt": "2026-10-15T16:49:46Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-11-12T15:31:01Z",
-    "retryCount": 3
+    "ts": "2026-11-15T23:05:55Z",
+    "retryCount": 4
   },
   {
     "repo": "GAIK-project/gaik-toolkit",
@@ -646,8 +742,8 @@
     "createdAt": "2025-10-10T14:05:17Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-15T19:17:45Z",
-    "retryCount": 2
+    "ts": "2026-11-15T21:13:22Z",
+    "retryCount": 3
   },
   {
     "repo": "Gissio/font_Tiny5Mono",
@@ -663,24 +759,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-14T20:43:21Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "Hazenix/interview-prep-skills",
-    "desc": "Agent Skills for mock interviews, adaptive follow-ups, and resume-based interview questions.AI 技术面试陪练与简历出题，覆盖前端、Java/Go/C++ 后端和 AI 应用开发。 ",
-    "stars": 243,
-    "language": "",
-    "topics": [
-      "interview",
-      "backend"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-04-01T03:06:05Z",
-    "silentRounds": 2,
-    "bigbros": [],
-    "ts": "2026-11-13T06:51:34Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "HuskerMinion/techo5",
@@ -709,7 +788,23 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-14T21:07:45Z",
-    "retryCount": 2
+    "retryCount": 3
+  },
+  {
+    "repo": "KilledByAPixel/SpaceHuggers",
+    "desc": "A roguelike platformer with destructible environments in 13KB of JavaScript",
+    "stars": 289,
+    "language": "JavaScript",
+    "topics": [
+      "physics"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2021-09-13T04:39:38Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-15T23:28:52Z",
+    "retryCount": 1
   },
   {
     "repo": "KKKKhazix/AIHOT",
@@ -724,23 +819,7 @@
     "createdAt": "2026-09-28T23:40:05Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-15T19:05:04Z",
-    "retryCount": 1
-  },
-  {
-    "repo": "lonesoulsurfer/Acid_Drip_Bassline_and_Drum_Synth",
-    "desc": "DIY RP2040 groovebox: acid bassline synth, DRIFT synth and drum machine. Mozzi audio, ILI9341 screen, 16 Cherry MX pads.",
-    "stars": 121,
-    "language": "C++",
-    "topics": [
-      "synthesizer"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-06-10T01:30:01Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-11-14T06:24:52Z",
+    "ts": "2026-11-15T22:29:36Z",
     "retryCount": 1
   },
   {
@@ -757,7 +836,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-14T06:26:05Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "macrosergeantsquare/Native-Instruments-Massive-X-1.7-Free-Professional-Synthesizer",
@@ -789,7 +868,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-11-10T23:52:53Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "N0zoM1z0/vocaloid-mcp",
@@ -805,7 +884,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-15T09:01:07Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "n5za/chess-mate",
@@ -824,22 +903,6 @@
     "retryCount": 1
   },
   {
-    "repo": "navidshad/frameflow",
-    "desc": "AI video editor for desktop. Edit by chat on a real timeline: cut filler, sync multicam, add motion graphics, captions and thumbnails. macOS, Windows, Linux.",
-    "stars": 43,
-    "language": "TypeScript",
-    "topics": [
-      "video-editor"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-02-09T16:57:11Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-11-14T10:06:06Z",
-    "retryCount": 4
-  },
-  {
     "repo": "NeuromatchAcademy/course-content-dl",
     "desc": "NMA deep learning course",
     "stars": 819,
@@ -853,7 +916,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-15T01:36:45Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "next-token-tv/next-token-skill",
@@ -869,7 +932,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-12T13:02:22Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "nguyentatkiem/ai-video-studio",
@@ -885,7 +948,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-12T14:22:24Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "njlent/tougelike-3ds-pub",
@@ -917,6 +980,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-15T17:09:19Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "Refactorful/Oxygen.jl",
+    "desc": "💨 A breath of fresh air for programming web apps in Julia",
+    "stars": 506,
+    "language": "Julia",
+    "topics": [
+      "web-framework"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2022-05-09T23:38:04Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-15T21:32:07Z",
     "retryCount": 1
   },
   {
@@ -933,7 +1012,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-13T20:05:03Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "seehiong/noteflow",
@@ -949,7 +1028,7 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-11-12T12:34:45Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "signal8ai/signal8-mcp",
@@ -965,7 +1044,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-13T11:31:30Z",
-    "retryCount": 6
+    "retryCount": 1
   },
   {
     "repo": "silent-foam-03/heygen-desktop",
@@ -980,8 +1059,24 @@
     "createdAt": "2026-11-15T11:13:10Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-15T18:26:42Z",
-    "retryCount": 2
+    "ts": "2026-11-15T23:18:53Z",
+    "retryCount": 3
+  },
+  {
+    "repo": "synthetos/g2",
+    "desc": "g2core - The Next Generation",
+    "stars": 679,
+    "language": "C++",
+    "topics": [
+      "3d-printing"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2013-03-09T21:56:55Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-15T22:59:55Z",
+    "retryCount": 1
   },
   {
     "repo": "Tencent/LoopForge",
@@ -997,22 +1092,6 @@
     "retryCount": 2
   },
   {
-    "repo": "valentderah/totk-pc-recomp",
-    "desc": "Static recompilation of The Legend of Zelda: Tears of the Kingdom to native Windows and Linux x86-64, with a Vulkan renderer. Game files not included.",
-    "stars": 7231,
-    "language": "C",
-    "topics": [
-      "game"
-    ],
-    "source": "search",
-    "starGrowth": 142,
-    "createdAt": "2026-10-29T12:32:46Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-11-15T16:21:28Z",
-    "retryCount": 6
-  },
-  {
     "repo": "Verlintas/NOIR",
     "desc": "手机隐私审计：用 adb 扫出 Android 应用的权限、上报端点与数据流向，并给出可回滚的处置。Desktop Android leak audit: permissions, endpoints, data flows, reversible fixes.",
     "stars": 3488,
@@ -1026,7 +1105,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-14T15:43:20Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "zhishengplus/ZhishengWeather",
@@ -1042,7 +1121,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-13T00:18:05Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "ZIB-IOL/The-Agentic-Researcher",
@@ -1058,7 +1137,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-14T11:26:43Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "zzzfu411/bakemono",
@@ -1074,6 +1153,6 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-13T17:32:52Z",
-    "retryCount": 2
+    "retryCount": 1
   }
 ]
