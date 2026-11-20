@@ -1,5 +1,21 @@
 [
   {
+    "repo": "100yenadmin/hermes-personal-assistant",
+    "desc": "Your Hermes agent runs errands on the real sites, fills every field, and stops at the last button until you say yes.",
+    "stars": 8,
+    "language": "Python",
+    "topics": [
+      "travel"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-19T13:32:19Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-19T05:06:38Z",
+    "retryCount": 1
+  },
+  {
     "repo": "4lch4/Digital-Garden",
     "desc": "My Digital Garden, Knowledge Base, collection TILs, whatever you wanna call it. I store the tidbits of knowledge that I've gathered over the years, in this repository.",
     "stars": 7,
@@ -13,7 +29,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-15T17:17:55Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "71chili/logseq-novara-knowledge-vault",
@@ -29,7 +45,7 @@
     "createdAt": "2026-11-18T14:14:40Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-19T21:12:47Z",
+    "ts": "2026-11-20T02:52:07Z",
     "retryCount": 1
   },
   {
@@ -46,7 +62,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-30T13:37:27Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "acasoq-web/BananaV",
@@ -62,6 +78,38 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-10T21:36:06Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "AdamWhiteHat/BigDecimal",
+    "desc": "An arbitrary-precision decimal (base 10) floating-point number type. Downloaded over 30 million times on NuGet!",
+    "stars": 77,
+    "language": "C#",
+    "topics": [
+      "mathematics"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2017-02-24T08:59:15Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-13T13:30:06Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "AhmadHassan-BTed/FormFilla",
+    "desc": "About A local-first browser extension that fills job-application forms from local JSON profile data and files. Matches are computed deterministically via multi-signal scoring, structural repeated-block detection, and bipartite optimization.",
+    "stars": 4651,
+    "language": "TypeScript",
+    "topics": [
+      "privacy"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-07-10T15:21:56Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-03T06:13:54Z",
     "retryCount": 1
   },
   {
@@ -94,7 +142,23 @@
     "silentRounds": 5,
     "bigbros": [],
     "ts": "2026-11-16T05:06:34Z",
-    "retryCount": 4
+    "retryCount": 5
+  },
+  {
+    "repo": "ai-pavel/chonkestrel",
+    "desc": "🛸 A fork of XFTL: FTL with bigger ships, triple weapons, hybrid enemies and a 16-sector campaign.",
+    "stars": 2,
+    "language": "Kotlin",
+    "topics": [
+      "roguelike"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-11-08T23:08:14Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-14T16:12:29Z",
+    "retryCount": 1
   },
   {
     "repo": "aimod-cc/Agent2API",
@@ -111,6 +175,38 @@
     "retryCount": 1
   },
   {
+    "repo": "Aisjam/Contour-Visual-Tracker",
+    "desc": "Contour is a portable music tracker for the Anbernic RG35XX Pro, Windows, and other H700-based handhelds. Inspired by LSDj, ProTracker, Polyend, M8, Korg Gadget, Game Boy Camera, and 3DS, it combines sequencing, synthesis, sampling, and generative visuals with a decentralised, StreetPass-style music-sharing ecosystem.",
+    "stars": 5,
+    "language": "HTML",
+    "topics": [
+      "demoscene"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-11-11T22:58:02Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-17T04:46:07Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "akfamily/akhub",
+    "desc": "AKHub：金融与经济数据工具、数据源、量化投研框架和学习资源合集 | A curated hub of financial data tools, data sources, quant research frameworks and learning resources",
+    "stars": 713,
+    "language": "",
+    "topics": [
+      "finance"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2020-03-02T18:24:03Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-18T07:01:32Z",
+    "retryCount": 1
+  },
+  {
     "repo": "Alarm-Siren/arduino-kicad-library",
     "desc": "KiCad Symbol & Footprint Library for Arduino Modules (Shields, Sockets and Tiles)",
     "stars": 452,
@@ -124,7 +220,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-18T23:01:57Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "Ampixa/sanoTTS",
@@ -140,7 +236,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-18T18:20:22Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "AMVerge-team/AMVerge",
@@ -156,7 +252,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-19T22:56:48Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "andyhuo520/beanpod",
@@ -172,7 +268,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-18T03:25:32Z",
-    "retryCount": 5
+    "retryCount": 1
   },
   {
     "repo": "AnjaliShaw12/darktable-merlorin",
@@ -188,7 +284,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-20T01:05:25Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "apex-shot/apexshot",
@@ -204,7 +300,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-19T16:22:22Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Aratako/T5Gemma-TTS",
@@ -237,7 +333,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-11-19T09:41:13Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "atrzaska/noesis_py",
@@ -253,7 +349,39 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-19T18:37:34Z",
-    "retryCount": 5
+    "retryCount": 6
+  },
+  {
+    "repo": "awoodbeck/gnp",
+    "desc": "The code repository for No Starch Press' Network Programming with Go",
+    "stars": 259,
+    "language": "Go",
+    "topics": [
+      "learning"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2019-05-27T18:53:47Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-17T23:11:17Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "Azure-Samples/aisearch-openai-rag-audio",
+    "desc": "A simple example implementation of the VoiceRAG pattern to power interactive voice generative AI experiences using RAG with Azure AI Search and Azure OpenAI's gpt-4o-realtime-preview model. ",
+    "stars": 568,
+    "language": "Python",
+    "topics": [
+      "vector-db"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2024-09-19T22:36:40Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-13T00:13:03Z",
+    "retryCount": 1
   },
   {
     "repo": "BaaRai/ARTEX",
@@ -269,7 +397,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-20T01:01:35Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "babygoton/WorkDaddy",
@@ -286,6 +414,22 @@
     "retryCount": 2
   },
   {
+    "repo": "balbonits/infinite-dungeon-game",
+    "desc": "A persistent, never-ending real-time dungeon crawler — Godot 4.6 + C#, built entirely by AI under human direction. Infinite descent, living dungeon, 3 classes, 80+ skills.",
+    "stars": 3,
+    "language": "C#",
+    "topics": [
+      "roguelike"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-03-19T23:31:35Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-17T03:07:37Z",
+    "retryCount": 1
+  },
+  {
     "repo": "BeniaBot/2049",
     "desc": "The classic 2048 with an unexpected twist...",
     "stars": 9,
@@ -299,7 +443,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-20T00:06:13Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "better-vault/better-vault",
@@ -315,7 +459,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-19T21:20:43Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "bex-co/beancount-io",
@@ -330,8 +474,8 @@
     "createdAt": "2020-10-02T07:00:24Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-20T01:10:26Z",
-    "retryCount": 5
+    "ts": "2026-11-20T06:26:37Z",
+    "retryCount": 6
   },
   {
     "repo": "bhukyabalu12/repdix-telegram-bot",
@@ -346,7 +490,7 @@
     "createdAt": "2026-11-15T20:31:40Z",
     "silentRounds": 2,
     "bigbros": [],
-    "ts": "2026-11-19T19:59:42Z",
+    "ts": "2026-11-20T01:45:13Z",
     "retryCount": 1
   },
   {
@@ -376,7 +520,7 @@
     "createdAt": "2026-11-10T15:43:39Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-11-19T05:57:35Z",
+    "ts": "2026-11-20T04:37:49Z",
     "retryCount": 1
   },
   {
@@ -409,7 +553,7 @@
     "silentRounds": 6,
     "bigbros": [],
     "ts": "2026-11-11T18:22:10Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "chandansgowda/learn-git-in-kannada",
@@ -425,7 +569,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-19T16:07:49Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "cody-hutson/travel-planner",
@@ -440,8 +584,8 @@
     "createdAt": "2026-06-04T17:22:06Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-13T21:16:24Z",
-    "retryCount": 1
+    "ts": "2026-11-20T04:56:21Z",
+    "retryCount": 2
   },
   {
     "repo": "darkroomengineering/aniso",
@@ -457,7 +601,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-11T18:58:01Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "Dodaios/Dodaios",
@@ -471,7 +615,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-18T12:50:04.379Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "DukeCCY/dualsense-pad",
@@ -503,7 +647,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-16T19:54:36Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "eersoy93/winexe32emu",
@@ -518,8 +662,8 @@
     "createdAt": "2025-12-10T19:22:49Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-11-20T00:30:04Z",
-    "retryCount": 1
+    "ts": "2026-11-20T05:21:23Z",
+    "retryCount": 2
   },
   {
     "repo": "Electrotechnique/TSynth-Teensy4.1",
@@ -535,24 +679,7 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-11-14T09:21:00Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "fazal0055/zotero-ceravin-research-desk",
-    "desc": "Zotero-based research desk — source capture plus structured notes.",
-    "stars": 40,
-    "language": "TypeScript",
-    "topics": [
-      "writing",
-      "knowledge-management"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-11-18T14:27:33Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-11-19T21:07:07Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "FlashML-org/FreeVideo",
@@ -582,7 +709,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-19T23:23:24Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "GAIK-project/gaik-toolkit",
@@ -598,7 +725,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-19T12:19:36Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "GetProjectsIdea/Fruit-Ninja-Game-in-Python",
@@ -614,7 +741,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-20T00:09:01Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "GetStream/Agents",
@@ -674,8 +801,24 @@
     "createdAt": "2026-11-14T16:44:16Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-20T01:08:53Z",
-    "retryCount": 2
+    "ts": "2026-11-20T02:44:30Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "guohuiyuan/go-novel-dl",
+    "desc": "go-novel-dl 是 Go 语言开发的多源小说下载器，支持 CLI 与 Web 界面，可跨站点并发搜索、一键下载并导出，已适配 ESJZone、SFACG、刺猬猫、若初文学等多个书源。novel-dl交流群：1094455212",
+    "stars": 331,
+    "language": "Go",
+    "topics": [
+      "ebook"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-03-19T04:27:59Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-20T03:20:47Z",
+    "retryCount": 1
   },
   {
     "repo": "GxAniket/mini_project_snake-game",
@@ -691,7 +834,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-19T11:15:21Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "jakobbjelver/messer-swipe",
@@ -707,7 +850,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-18T07:32:13Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "Jatin-Roopchandani/LORE",
@@ -723,7 +866,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-18T16:28:16Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "kevin9327/tiny-shaders",
@@ -739,7 +882,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-16T20:42:24Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "liamdillow783-ai/premierepro-video-editor-2026",
@@ -755,7 +898,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-17T02:44:46Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "macrosergeantsquare/Native-Instruments-Massive-X-1.7-Free-Professional-Synthesizer",
@@ -771,7 +914,7 @@
     "silentRounds": 6,
     "bigbros": [],
     "ts": "2026-11-11T17:09:26Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "n1ckfg/Telidon",
@@ -787,7 +930,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-19T22:11:42Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "n5za/chess-mate",
@@ -803,7 +946,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-19T20:51:58Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "nenuadrian/nanoMMO",
@@ -819,7 +962,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-19T18:59:20Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "oinkvm/oink",
@@ -835,7 +978,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-19T11:41:20Z",
-    "retryCount": 6
+    "retryCount": 1
   },
   {
     "repo": "ParanoaiDev/clawd-buddy",
@@ -851,7 +994,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-06T15:29:54Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "payalkhimani/microsoft-sharepoint-velrolia",
@@ -867,7 +1010,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-20T01:28:12Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "phasyn/phasyn-studio",
@@ -883,7 +1026,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-17T10:05:33Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "phone-harness/phone-harness",
@@ -915,7 +1058,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-19T18:58:38Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "rvion/CushyStudio",
@@ -931,7 +1074,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-19T20:44:47Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "s0ld13rr/pentestcode",
@@ -945,7 +1088,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-16T15:17:54.333Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "seehiong/noteflow",
@@ -961,7 +1104,7 @@
     "silentRounds": 7,
     "bigbros": [],
     "ts": "2026-11-12T12:34:45Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "SimpleAI2026/SimpleBase",
@@ -977,7 +1120,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-18T11:11:07Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "sourcegit-org/sourcegit",
@@ -993,7 +1136,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-18T15:41:14Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "sunnybunny24109/gimp-navira-photo-workspace",
@@ -1008,8 +1151,8 @@
     "createdAt": "2026-11-18T14:01:39Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-19T21:06:23Z",
-    "retryCount": 2
+    "ts": "2026-11-20T02:46:16Z",
+    "retryCount": 3
   },
   {
     "repo": "swapperfinance/swapper-toolkit",
@@ -1025,7 +1168,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-16T17:18:21Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "Tencent/LoopForge",
@@ -1070,7 +1213,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-19T09:21:44Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "victorthairu47-spec/obsidian-second-brain-vault",
@@ -1085,7 +1228,23 @@
     "createdAt": "2026-11-17T23:13:33Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-19T23:27:29Z",
+    "ts": "2026-11-20T06:29:32Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "voaneves/snake-on-pygame",
+    "desc": "snake",
+    "stars": 11,
+    "language": "Python",
+    "topics": [
+      "pygame"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2018-12-30T23:25:17Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-20T02:15:54Z",
     "retryCount": 1
   },
   {
@@ -1100,7 +1259,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-16T15:17:54.333Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "W17ant/Claude-Office",
@@ -1116,7 +1275,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-18T09:28:47Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "zanllp/agent-home",
@@ -1132,7 +1291,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-16T14:35:53Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "zhang942579/DSH-Chess-Room",
@@ -1148,7 +1307,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-06T11:46:41Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "zzzfu411/bakemono",
@@ -1164,6 +1323,6 @@
     "silentRounds": 5,
     "bigbros": [],
     "ts": "2026-11-13T17:32:52Z",
-    "retryCount": 5
+    "retryCount": 1
   }
 ]
