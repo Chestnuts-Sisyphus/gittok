@@ -46,7 +46,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-30T13:37:27Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "Academic-ID/sapienAI",
@@ -126,7 +126,7 @@
     "silentRounds": 6,
     "bigbros": [],
     "ts": "2026-11-16T05:06:34Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "akfamily/akhub",
@@ -142,7 +142,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-18T07:01:32Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Alarm-Siren/arduino-kicad-library",
@@ -158,7 +158,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-18T23:01:57Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "alchaincyf/agent-skills-orange-book",
@@ -174,7 +174,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T09:58:07Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "alchaincyf/claude-code-orange-book",
@@ -190,7 +190,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T09:58:03Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "Ampixa/sanoTTS",
@@ -206,7 +206,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T17:51:55Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "AMVerge-team/AMVerge",
@@ -222,7 +222,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T19:34:06Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "andyhuo520/beanpod",
@@ -238,7 +238,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-18T03:25:32Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "AnjaliShaw12/darktable-merlorin",
@@ -254,7 +254,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T16:38:52Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "apex-shot/apexshot",
@@ -269,8 +269,8 @@
     "createdAt": "2026-02-21T01:57:40Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-20T20:01:12Z",
-    "retryCount": 2
+    "ts": "2026-11-21T21:11:59Z",
+    "retryCount": 3
   },
   {
     "repo": "applelog/ascii-art-studio",
@@ -286,7 +286,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-18T00:32:45Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "Aratako/T5Gemma-TTS",
@@ -302,7 +302,7 @@
     "silentRounds": 13,
     "bigbros": [],
     "ts": "2026-11-04T10:32:06Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "Artawower/orgnote",
@@ -319,7 +319,7 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-11-19T09:41:13Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "ashmitmittal/trip-map-skill",
@@ -338,35 +338,19 @@
     "retryCount": 1
   },
   {
-    "repo": "atrzaska/noesis_py",
-    "desc": " Noesis implementation that works on Linux and MacOS",
-    "stars": 22,
-    "language": "Python",
-    "topics": [
-      "pygame"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2018-11-24T13:45:32Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-11-19T18:37:34Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "Azure-Samples/aisearch-openai-rag-audio",
-    "desc": "A simple example implementation of the VoiceRAG pattern to power interactive voice generative AI experiences using RAG with Azure AI Search and Azure OpenAI's gpt-4o-realtime-preview model. ",
-    "stars": 568,
-    "language": "Python",
+    "repo": "Astrmira/TriviumDB",
+    "desc": "A lightweight embedded database engine that natively fuses vector search, graph, and document-oriented metadata within a single storage kernel — ready to use the moment data is written.",
+    "stars": 192,
+    "language": "Rust",
     "topics": [
       "vector-db"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2024-09-19T22:36:40Z",
+    "createdAt": "2026-03-26T07:15:22Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-13T00:13:03Z",
+    "ts": "2026-11-20T19:17:39Z",
     "retryCount": 1
   },
   {
@@ -397,22 +381,6 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-12T08:48:22Z",
-    "retryCount": 5
-  },
-  {
-    "repo": "bayganik/mmGame-Engine-Raylib-ECS",
-    "desc": "C# Game engine using Raylib-CS + Entitas lite as an ECS.  Has its own UI and content system.",
-    "stars": 15,
-    "language": "C#",
-    "topics": [
-      "raylib"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2020-09-24T18:30:00Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-11-20T17:37:05Z",
     "retryCount": 6
   },
   {
@@ -429,7 +397,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T18:58:56Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "bojieli/ai-infra-book",
@@ -443,7 +411,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-15T13:43:16.623Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "Bongorian/yadokari",
@@ -459,7 +427,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-20T04:37:49Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "carloocchiena/the_statistics_handbook",
@@ -475,7 +443,7 @@
     "silentRounds": 7,
     "bigbros": [],
     "ts": "2026-11-11T18:22:10Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "cody-hutson/travel-planner",
@@ -491,7 +459,23 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-21T00:55:08Z",
-    "retryCount": 3
+    "retryCount": 4
+  },
+  {
+    "repo": "crobyskigh/izotope-ozone-11-mastering-suite",
+    "desc": "AI-Assisted Mastering Workflow with Spectral Shaping and Codec Preview",
+    "stars": 17,
+    "language": "HTML",
+    "topics": [
+      "music-production"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-11-21T14:42:17Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-21T20:42:20Z",
+    "retryCount": 1
   },
   {
     "repo": "Daniel451legend/davinci-resolve-sanolen-color-studio",
@@ -506,8 +490,8 @@
     "createdAt": "2026-11-21T13:29:10Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-21T13:30:38Z",
-    "retryCount": 2
+    "ts": "2026-11-21T20:23:53Z",
+    "retryCount": 3
   },
   {
     "repo": "danielwh2/sprite-stacking",
@@ -539,7 +523,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-11T18:58:01Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "Dayamoy/Defense-against-Prompt-Injection-Attack-using-DPO",
@@ -555,7 +539,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T06:59:33Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "DigitGram/nfoglow",
@@ -571,7 +555,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-20T19:16:01Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "DukeCCY/dualsense-pad",
@@ -587,7 +571,7 @@
     "silentRounds": 5,
     "bigbros": [],
     "ts": "2026-11-04T11:47:06Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "edgerunners2/capri-ai-desktop",
@@ -619,7 +603,7 @@
     "silentRounds": 5,
     "bigbros": [],
     "ts": "2026-11-14T09:21:00Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "evan-hoddinott/flambeur",
@@ -635,7 +619,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-20T16:45:54Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "FlashML-org/FreeVideo",
@@ -665,7 +649,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-21T01:53:51Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "Forgesoft-ai/esim-api",
@@ -681,7 +665,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T06:34:01Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "Forgesoft-ai/esim-mcp",
@@ -697,7 +681,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T06:33:55Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "Forkfield/grillkit",
@@ -713,7 +697,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T17:43:32Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "fscorrupt/posterizarr",
@@ -730,7 +714,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T19:41:27Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "GAIK-project/gaik-toolkit",
@@ -746,7 +730,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-20T20:14:23Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "GetStream/Agents",
@@ -778,7 +762,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-18T04:21:37Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "google-research/paper-orchestra",
@@ -807,7 +791,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T15:33:25Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "grifdail/NodePainter",
@@ -822,8 +806,8 @@
     "createdAt": "2023-11-24T18:25:49Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-20T16:48:50Z",
-    "retryCount": 2
+    "ts": "2026-11-21T21:05:02Z",
+    "retryCount": 3
   },
   {
     "repo": "guohuiyuan/go-novel-dl",
@@ -839,7 +823,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-20T03:20:47Z",
-    "retryCount": 5
+    "retryCount": 1
   },
   {
     "repo": "haydenschmitty/floorplan",
@@ -855,7 +839,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-16T16:57:59Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "hexamorphical/hypercut",
@@ -871,7 +855,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T19:51:51Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "hjkcvn/adobe-audition-velraven",
@@ -887,7 +871,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T19:58:13Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "itsdecodingai/building-a-coding-agent-from-scratch-course",
@@ -903,7 +887,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T08:43:07Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "jakobbjelver/messer-swipe",
@@ -919,7 +903,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-20T19:06:32Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "Jatin-Roopchandani/LORE",
@@ -936,22 +920,6 @@
     "bigbros": [],
     "ts": "2026-11-21T17:53:23Z",
     "retryCount": 1
-  },
-  {
-    "repo": "JaydenTeoh/NextLat",
-    "desc": "Official codebase for \"Next-Latent Prediction Transformers Learn Compact World Models\"",
-    "stars": 220,
-    "language": "Python",
-    "topics": [
-      "transformers"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-06-12T02:13:24Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-11-21T09:02:59Z",
-    "retryCount": 2
   },
   {
     "repo": "jobtalle/Koi",
@@ -999,7 +967,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-20T17:08:35Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "oinkvm/oink",
@@ -1067,6 +1035,22 @@
     "retryCount": 2
   },
   {
+    "repo": "regisvidal/teddybears-revenge",
+    "desc": "Teddybear's Revenge demo, first released in November 1996 for the Saturne Party",
+    "stars": 2,
+    "language": "Assembly",
+    "topics": [
+      "demoscene"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-11-19T14:00:22Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-21T20:48:19Z",
+    "retryCount": 1
+  },
+  {
     "repo": "RoboDojo-Benchmark/RoboDojo",
     "desc": "Official repository for RoboDojo",
     "stars": 940,
@@ -1094,22 +1078,6 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-16T15:17:54.333Z",
-    "retryCount": 3
-  },
-  {
-    "repo": "sajith-jeewantha/ballerina-sft-dataset-pipeline",
-    "desc": "Pipeline that builds a compiler-verified, traceable fine-tuning dataset for a Ballerina language model, from official Ballerina docs, examples and packages.",
-    "stars": 0,
-    "language": "Python",
-    "topics": [
-      "llm-model"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-09-09T08:11:09Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-11-15T17:43:33Z",
     "retryCount": 1
   },
   {
@@ -1126,7 +1094,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T16:01:10Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "SimpleAI2026/SimpleBase",
@@ -1142,7 +1110,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-11-18T11:11:07Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "sourcegit-org/sourcegit",
@@ -1158,7 +1126,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T15:23:55Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "super-libre/super-voice",
@@ -1237,7 +1205,23 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-18T14:18:24Z",
-    "retryCount": 2
+    "retryCount": 1
+  },
+  {
+    "repo": "TPECKA180/living-planet",
+    "desc": "Живая планета  — локальная AI-стратегия: государства, экономика, дипломатия и войны через LM Studio.",
+    "stars": 4,
+    "language": "Python",
+    "topics": [
+      "pygame"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-30T20:01:32Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-21T20:34:07Z",
+    "retryCount": 1
   },
   {
     "repo": "Viprasol-Tech/claude-video-editing-skills",
@@ -1283,7 +1267,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-18T09:28:47Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "zanllp/agent-home",
@@ -1299,7 +1283,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-16T14:35:53Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "zzzfu411/bakemono",
