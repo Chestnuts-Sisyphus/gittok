@@ -29,7 +29,7 @@
     "createdAt": "2026-11-18T14:14:40Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-21T17:09:04Z",
+    "ts": "2026-11-21T22:50:46Z",
     "retryCount": 1
   },
   {
@@ -78,7 +78,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-11-10T21:36:06Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "AhmadHassan-BTed/FormFilla",
@@ -94,7 +94,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-03T06:13:54Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "AhmadHassan-BTed/Noria",
@@ -142,23 +142,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-18T07:01:32Z",
-    "retryCount": 2
-  },
-  {
-    "repo": "Alarm-Siren/arduino-kicad-library",
-    "desc": "KiCad Symbol & Footprint Library for Arduino Modules (Shields, Sockets and Tiles)",
-    "stars": 452,
-    "language": "",
-    "topics": [
-      "arduino"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2017-04-28T12:26:14Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-11-18T23:01:57Z",
-    "retryCount": 6
+    "retryCount": 3
   },
   {
     "repo": "alchaincyf/agent-skills-orange-book",
@@ -174,7 +158,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T09:58:07Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "alchaincyf/claude-code-orange-book",
@@ -190,7 +174,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T09:58:03Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "Ampixa/sanoTTS",
@@ -206,23 +190,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T17:51:55Z",
-    "retryCount": 3
-  },
-  {
-    "repo": "AMVerge-team/AMVerge",
-    "desc": "Desktop app for scene splitting, semantic scene search, clip organization, and video export for editors",
-    "stars": 88,
-    "language": "TypeScript",
-    "topics": [
-      "video-editor"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-03-17T20:16:21Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-11-21T19:34:06Z",
-    "retryCount": 6
+    "retryCount": 4
   },
   {
     "repo": "andyhuo520/beanpod",
@@ -238,7 +206,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-18T03:25:32Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "AnjaliShaw12/darktable-merlorin",
@@ -253,8 +221,8 @@
     "createdAt": "2026-11-18T19:20:42Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-21T16:38:52Z",
-    "retryCount": 4
+    "ts": "2026-11-21T22:03:53Z",
+    "retryCount": 5
   },
   {
     "repo": "apex-shot/apexshot",
@@ -270,7 +238,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T21:11:59Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "applelog/ascii-art-studio",
@@ -286,7 +254,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-18T00:32:45Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "Aratako/T5Gemma-TTS",
@@ -319,7 +287,7 @@
     "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-11-19T09:41:13Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "ashmitmittal/trip-map-skill",
@@ -350,7 +318,23 @@
     "createdAt": "2026-03-26T07:15:22Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-20T19:17:39Z",
+    "ts": "2026-11-21T23:51:28Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "atrzaska/noesis_py",
+    "desc": " Noesis implementation that works on Linux and MacOS",
+    "stars": 22,
+    "language": "Python",
+    "topics": [
+      "pygame"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2018-11-24T13:45:32Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-19T18:37:34Z",
     "retryCount": 1
   },
   {
@@ -368,36 +352,20 @@
     "retryCount": 2
   },
   {
-    "repo": "bartp5/libtexprintf",
-    "desc": "Library providing printf-style formatted output routines with tex-like syntax support. ",
-    "stars": 90,
-    "language": "C",
+    "repo": "bayganik/mmGame-Engine-Raylib-ECS",
+    "desc": "C# Game engine using Raylib-CS + Entitas lite as an ECS.  Has its own UI and content system.",
+    "stars": 15,
+    "language": "C#",
     "topics": [
-      "ascii-art"
+      "raylib"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2022-07-04T22:33:38Z",
+    "createdAt": "2020-09-24T18:30:00Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-12T08:48:22Z",
-    "retryCount": 6
-  },
-  {
-    "repo": "BeniaBot/2049",
-    "desc": "The classic 2048 with an unexpected twist...",
-    "stars": 9,
-    "language": "Python",
-    "topics": [
-      "pygame"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-07-16T18:25:33Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-11-21T18:58:56Z",
-    "retryCount": 6
+    "ts": "2026-11-20T17:37:05Z",
+    "retryCount": 1
   },
   {
     "repo": "bojieli/ai-infra-book",
@@ -443,7 +411,7 @@
     "silentRounds": 7,
     "bigbros": [],
     "ts": "2026-11-11T18:22:10Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "cody-hutson/travel-planner",
@@ -459,7 +427,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-21T00:55:08Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "crobyskigh/izotope-ozone-11-mastering-suite",
@@ -475,6 +443,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T20:42:20Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "CWWhitney/Decision_Analysis_Course",
+    "desc": "🎓 Uni-Bonn Decision Analysis graduate course, lectures and materials",
+    "stars": 27,
+    "language": "HTML",
+    "topics": [
+      "course"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2020-11-19T17:45:11Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-21T21:11:16Z",
     "retryCount": 1
   },
   {
@@ -491,7 +475,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T20:23:53Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "danielwh2/sprite-stacking",
@@ -523,7 +507,7 @@
     "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-11T18:58:01Z",
-    "retryCount": 6
+    "retryCount": 1
   },
   {
     "repo": "Dayamoy/Defense-against-Prompt-Injection-Attack-using-DPO",
@@ -539,23 +523,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T06:59:33Z",
-    "retryCount": 3
-  },
-  {
-    "repo": "DigitGram/nfoglow",
-    "desc": "NFO and ANSI art viewer for Linux: pixel-exact block graphics, glow, effects and chiptunes",
-    "stars": 1,
-    "language": "Python",
-    "topics": [
-      "demoscene"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-11-19T23:56:15Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-11-20T19:16:01Z",
-    "retryCount": 6
+    "retryCount": 4
   },
   {
     "repo": "DukeCCY/dualsense-pad",
@@ -571,7 +539,7 @@
     "silentRounds": 5,
     "bigbros": [],
     "ts": "2026-11-04T11:47:06Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "edgerunners2/capri-ai-desktop",
@@ -587,6 +555,38 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-16T19:54:36Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "edward-polat/final-cut-win",
+    "desc": "Apple Final Cut - video editing software for timeline-based editing, multicam synchronization and color grading on Windows 10/11",
+    "stars": 20,
+    "language": "",
+    "topics": [
+      "interview"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-11-21T16:12:01Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-21T16:17:13Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "Eglantine-Community/Eglantine",
+    "desc": "An experimental Switch 2 Emulator built for Windows, Linux and MacOS.",
+    "stars": 6192,
+    "language": "C++",
+    "topics": [
+      "emulator"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-29T00:25:18Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-21T23:33:03Z",
     "retryCount": 1
   },
   {
@@ -619,7 +619,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-20T16:45:54Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "FlashML-org/FreeVideo",
@@ -665,7 +665,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T06:34:01Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "Forgesoft-ai/esim-mcp",
@@ -681,7 +681,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T06:33:55Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "Forkfield/grillkit",
@@ -697,7 +697,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T17:43:32Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "fscorrupt/posterizarr",
@@ -713,8 +713,8 @@
     "createdAt": "2024-02-02T10:09:57Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-21T19:41:27Z",
-    "retryCount": 3
+    "ts": "2026-11-21T22:01:39Z",
+    "retryCount": 4
   },
   {
     "repo": "GAIK-project/gaik-toolkit",
@@ -733,6 +733,22 @@
     "retryCount": 1
   },
   {
+    "repo": "Gangcox/cubase-pro-win",
+    "desc": "Steinberg Cubase Pro - digital audio workstation for MIDI sequencing, multitrack recording and VST plugin hosting on Windows 10/11",
+    "stars": 39,
+    "language": "",
+    "topics": [
+      "music-production"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-11-21T17:06:04Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-21T17:10:37Z",
+    "retryCount": 1
+  },
+  {
     "repo": "GetStream/Agents",
     "desc": "Quickly build text, voice and video agents. Fast, Go based Agent backend with SDKs for every language. Sensible defaults for search, knowledge, skills, telephony, sandboxes, memory and persistence. Sovereign AI. Take control of your AI.",
     "stars": 8216,
@@ -745,7 +761,7 @@
     "createdAt": "2025-08-11T18:02:04Z",
     "silentRounds": 3,
     "bigbros": [],
-    "ts": "2026-11-21T07:13:40Z",
+    "ts": "2026-11-21T23:41:00Z",
     "retryCount": 1
   },
   {
@@ -762,7 +778,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-18T04:21:37Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "google-research/paper-orchestra",
@@ -791,7 +807,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T15:33:25Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "grifdail/NodePainter",
@@ -807,7 +823,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T21:05:02Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "guohuiyuan/go-novel-dl",
@@ -823,7 +839,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-20T03:20:47Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "haydenschmitty/floorplan",
@@ -839,7 +855,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-16T16:57:59Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "hexamorphical/hypercut",
@@ -855,7 +871,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T19:51:51Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "hjkcvn/adobe-audition-velraven",
@@ -871,7 +887,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T19:58:13Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "itsdecodingai/building-a-coding-agent-from-scratch-course",
@@ -887,7 +903,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-10-24T08:43:07Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "jakobbjelver/messer-swipe",
@@ -903,7 +919,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-20T19:06:32Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Jatin-Roopchandani/LORE",
@@ -919,7 +935,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T17:53:23Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "jobtalle/Koi",
@@ -935,6 +951,38 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T11:50:17Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "Kevin1550/borisfx-environment",
+    "desc": "BorisFX Environment: Streamline Your Workflow",
+    "stars": 89,
+    "language": "HTML",
+    "topics": [
+      "video-editor"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-11-21T13:08:30Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-21T20:25:57Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "kevincodeeng2099i4/shadps4-bloodborne-pc-1440p-4k-resolution-scaler-portable",
+    "desc": "ShadPS4 Bloodborne PC 1440p/4K Resolution Scaler & Cloth Physics extension: native 64-bit Windows 10/11 portable x64 build with hot-reloadable JSON configuration, low-overhead runtime, and prebuilt portable release.",
+    "stars": 226,
+    "language": "Jupyter Notebook",
+    "topics": [
+      "physics"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-11-21T21:29:42Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-21T21:30:07Z",
     "retryCount": 1
   },
   {
@@ -967,7 +1015,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-20T17:08:35Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "oinkvm/oink",
@@ -983,7 +1031,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T11:03:05Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "OrangeViolin/content-pipeline",
@@ -1015,7 +1063,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-06T15:29:54Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "phone-harness/phone-harness",
@@ -1035,6 +1083,22 @@
     "retryCount": 2
   },
   {
+    "repo": "purvprajapati2504-design/premiere-pro-video-editor",
+    "desc": "Professional Multi-Track Video Editing Suite for Windows with 4K/8K Export",
+    "stars": 87,
+    "language": "HTML",
+    "topics": [
+      "video-editor"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-11-21T16:04:14Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-21T21:57:39Z",
+    "retryCount": 1
+  },
+  {
     "repo": "regisvidal/teddybears-revenge",
     "desc": "Teddybear's Revenge demo, first released in November 1996 for the Saturne Party",
     "stars": 2,
@@ -1048,7 +1112,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T20:48:19Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "RoboDojo-Benchmark/RoboDojo",
@@ -1078,7 +1142,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-16T15:17:54.333Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "saya-ch/dsh-mobile",
@@ -1097,6 +1161,22 @@
     "retryCount": 1
   },
   {
+    "repo": "siddharthfreitas/native-instruments-kontakt-win",
+    "desc": "Native Instruments Kontakt - software sampler and virtual instrument player for multisample libraries, scripting and DAW integration on Windows 10/11",
+    "stars": 24,
+    "language": "",
+    "topics": [
+      "music-production"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-11-21T15:40:41Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-21T15:45:36Z",
+    "retryCount": 1
+  },
+  {
     "repo": "SimpleAI2026/SimpleBase",
     "desc": "A self-hosted, AI-native backend in one Go binary: SQL/document/KV databases (DuckDB/SQLite), Go cloud functions, cron, S3 storage, sandbox, and a built-in AI cloud assistant with an OpenAI-compatible endpoint.",
     "stars": 356,
@@ -1110,7 +1190,7 @@
     "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-11-18T11:11:07Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "sourcegit-org/sourcegit",
@@ -1126,7 +1206,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T15:23:55Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "super-libre/super-voice",
@@ -1141,8 +1221,8 @@
     "createdAt": "2025-08-16T12:24:16Z",
     "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-11-21T14:05:04Z",
-    "retryCount": 1
+    "ts": "2026-11-21T22:45:52Z",
+    "retryCount": 2
   },
   {
     "repo": "swapperfinance/swapper-toolkit",
@@ -1177,6 +1257,22 @@
     "retryCount": 1
   },
   {
+    "repo": "Tarunwang/fl-studio-win",
+    "desc": "Image-Line FL Studio - digital audio workstation for beat making, MIDI sequencing and plugin hosting on Windows 10/11",
+    "stars": 36,
+    "language": "",
+    "topics": [
+      "music-production"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-11-21T16:46:05Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-21T16:51:22Z",
+    "retryCount": 1
+  },
+  {
     "repo": "Tencent/LoopForge",
     "desc": "Self-hosted workflows for coding-agent delivery. Orchestrate CodeBuddy, Codex and Claude Code with scripts and human approval gates. Includes Local workflows for coding assistants.",
     "stars": 310,
@@ -1205,7 +1301,7 @@
     "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-18T14:18:24Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "TPECKA180/living-planet",
@@ -1221,7 +1317,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T20:34:07Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Viprasol-Tech/claude-video-editing-skills",
@@ -1267,7 +1363,7 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-18T09:28:47Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "zanllp/agent-home",
@@ -1282,8 +1378,8 @@
     "createdAt": "2026-11-01T20:40:52Z",
     "silentRounds": 2,
     "bigbros": [],
-    "ts": "2026-11-16T14:35:53Z",
-    "retryCount": 2
+    "ts": "2026-11-21T22:28:30Z",
+    "retryCount": 3
   },
   {
     "repo": "zzzfu411/bakemono",
