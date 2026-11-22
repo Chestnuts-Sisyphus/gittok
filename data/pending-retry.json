@@ -10,38 +10,38 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-10-19T13:32:19Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-19T05:06:38Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "71chili/logseq-novara-knowledge-vault",
     "desc": "Logseq Novara Knowledge Vault structures notes into a linked, queryable knowledge base.",
-    "stars": 158,
+    "stars": 150,
     "language": "HTML",
     "topics": [
       "writing",
       "knowledge-management"
     ],
     "source": "search",
-    "starGrowth": 117,
+    "starGrowth": 0,
     "createdAt": "2026-11-18T14:14:40Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-21T22:50:46Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "aa1143/NamiAgent",
     "desc": "零基础入门 AI Agent 的基础教程。不只是教程，也是一个能在本地跑起来的 Agent：读写文件、执行命令、MCP、长期记忆，自带网页端看清每一步。从 100 行最小循环开始，一课加一个能力，最后拆解 Claude Code、Codex 等主流 Agent",
-    "stars": 582,
+    "stars": 586,
     "language": "Python",
     "topics": [
       "tutorial"
     ],
     "source": "search",
-    "starGrowth": 8,
+    "starGrowth": 4,
     "createdAt": "2026-10-30T11:03:30Z",
     "silentRounds": 0,
     "bigbros": [],
@@ -59,10 +59,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2024-03-31T06:30:08Z",
-    "silentRounds": 1,
+    "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-20T07:42:36Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "acasoq-web/BananaV",
@@ -73,12 +73,12 @@
       "video-editor"
     ],
     "source": "search",
-    "starGrowth": 1,
+    "starGrowth": 0,
     "createdAt": "2026-10-17T00:26:42Z",
-    "silentRounds": 3,
+    "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-11-10T21:36:06Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "AhmadHassan-BTed/FormFilla",
@@ -91,26 +91,26 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-07-10T15:21:56Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-03T06:13:54Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "AhmadHassan-BTed/Noria",
     "desc": "An agentic extractor for messaging platforms. Noria receives messages & URLs via chat; scrapes web data to evaluate the content against custom scoring matrices (e.g., jobs, scholarships); and sends a structured summary with a calculated match score directly to the assigned messenger number. ",
-    "stars": 4623,
+    "stars": 4624,
     "language": "JavaScript",
     "topics": [
       "ai-agent"
     ],
     "source": "search",
-    "starGrowth": 0,
+    "starGrowth": 1,
     "createdAt": "2026-05-31T21:56:03Z",
-    "silentRounds": 3,
+    "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-11-10T12:43:17Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "ai-infra-curriculum/ai-infra-junior-engineer-learning",
@@ -121,12 +121,12 @@
       "learning"
     ],
     "source": "search",
-    "starGrowth": 1,
+    "starGrowth": 0,
     "createdAt": "2025-10-25T19:51:41Z",
-    "silentRounds": 6,
+    "silentRounds": 7,
     "bigbros": [],
     "ts": "2026-11-16T05:06:34Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "akfamily/akhub",
@@ -139,10 +139,26 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2020-03-02T18:24:03Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-18T07:01:32Z",
-    "retryCount": 3
+    "retryCount": 1
+  },
+  {
+    "repo": "Alarm-Siren/arduino-kicad-library",
+    "desc": "KiCad Symbol & Footprint Library for Arduino Modules (Shields, Sockets and Tiles)",
+    "stars": 452,
+    "language": "",
+    "topics": [
+      "arduino"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2017-04-28T12:26:14Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-18T23:01:57Z",
+    "retryCount": 1
   },
   {
     "repo": "alchaincyf/agent-skills-orange-book",
@@ -155,10 +171,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-04-10T16:53:42Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-21T09:58:07Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "alchaincyf/claude-code-orange-book",
@@ -171,26 +187,42 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-04-11T06:24:21Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-21T09:58:03Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "Ampixa/sanoTTS",
     "desc": "sanoTTS (सानो = 'small' in Nepali): 294k–2.27M-parameter neural TTS that runs on a $3 chip, in the browser, or in Python with low-latency streaming.",
-    "stars": 851,
+    "stars": 852,
     "language": "C",
     "topics": [
       "arduino"
     ],
     "source": "search",
-    "starGrowth": 0,
+    "starGrowth": 1,
     "createdAt": "2026-07-11T15:13:22Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-21T17:51:55Z",
-    "retryCount": 4
+    "retryCount": 5
+  },
+  {
+    "repo": "AMVerge-team/AMVerge",
+    "desc": "Desktop app for scene splitting, semantic scene search, clip organization, and video export for editors",
+    "stars": 89,
+    "language": "TypeScript",
+    "topics": [
+      "video-editor"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-03-17T20:16:21Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-22T01:54:32Z",
+    "retryCount": 1
   },
   {
     "repo": "andyhuo520/beanpod",
@@ -201,17 +233,17 @@
       "podcast"
     ],
     "source": "search",
-    "starGrowth": 4,
+    "starGrowth": 0,
     "createdAt": "2026-11-16T08:56:19Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-18T03:25:32Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "AnjaliShaw12/darktable-merlorin",
     "desc": "Modular darktable build for image processing and workflow customization.",
-    "stars": 152,
+    "stars": 150,
     "language": "HTML",
     "topics": [
       "photography"
@@ -219,10 +251,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-11-18T19:20:42Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-21T22:03:53Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "apex-shot/apexshot",
@@ -235,10 +267,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-02-21T01:57:40Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-21T21:11:59Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "applelog/ascii-art-studio",
@@ -251,10 +283,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-11-18T00:30:10Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-18T00:32:45Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "Aratako/T5Gemma-TTS",
@@ -267,7 +299,7 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2025-12-13T15:30:45Z",
-    "silentRounds": 13,
+    "silentRounds": 14,
     "bigbros": [],
     "ts": "2026-11-04T10:32:06Z",
     "retryCount": 1
@@ -284,26 +316,26 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2022-02-08T20:31:47Z",
-    "silentRounds": 4,
+    "silentRounds": 5,
     "bigbros": [],
     "ts": "2026-11-19T09:41:13Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "ashmitmittal/trip-map-skill",
     "desc": "Claude skill that turns a start and an end point into an interactive 3D satellite trip map: real route, stops with photos, day plan, fuel, food and stays.",
-    "stars": 4,
+    "stars": 5,
     "language": "HTML",
     "topics": [
       "travel"
     ],
     "source": "search",
-    "starGrowth": 0,
+    "starGrowth": 1,
     "createdAt": "2026-11-21T03:44:23Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-21T03:44:32Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Astrmira/TriviumDB",
@@ -316,10 +348,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-03-26T07:15:22Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-11-21T23:51:28Z",
-    "retryCount": 2
+    "ts": "2026-11-22T00:20:40Z",
+    "retryCount": 3
   },
   {
     "repo": "atrzaska/noesis_py",
@@ -332,10 +364,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2018-11-24T13:45:32Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-19T18:37:34Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "babygoton/WorkDaddy",
@@ -352,6 +384,22 @@
     "retryCount": 2
   },
   {
+    "repo": "bartp5/libtexprintf",
+    "desc": "Library providing printf-style formatted output routines with tex-like syntax support. ",
+    "stars": 90,
+    "language": "C",
+    "topics": [
+      "ascii-art"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2022-07-04T22:33:38Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-12T08:48:22Z",
+    "retryCount": 1
+  },
+  {
     "repo": "bayganik/mmGame-Engine-Raylib-ECS",
     "desc": "C# Game engine using Raylib-CS + Entitas lite as an ECS.  Has its own UI and content system.",
     "stars": 15,
@@ -362,24 +410,40 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2020-09-24T18:30:00Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-20T17:37:05Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "BeniaBot/2049",
+    "desc": "The classic 2048 with an unexpected twist...",
+    "stars": 11,
+    "language": "Python",
+    "topics": [
+      "pygame"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-07-16T18:25:33Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-21T18:58:56Z",
     "retryCount": 1
   },
   {
     "repo": "bojieli/ai-infra-book",
     "desc": "《深入理解 AI Infra：量化分析与系统设计》（李博杰 著）开源书稿：从硬件约束和模型架构出发，量化推导 LLM 推理与训练系统设计。含全书正文、PDF、配套计算工具与实验",
-    "stars": 8163,
+    "stars": 8185,
     "language": "Python",
     "topics": [],
     "source": "trending",
-    "starGrowth": 38,
+    "starGrowth": 22,
     "createdAt": "2026-08-22T15:30:41Z",
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-15T13:43:16.623Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Bongorian/yadokari",
@@ -392,9 +456,25 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-11-10T15:43:39Z",
-    "silentRounds": 2,
+    "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-11-20T04:37:49Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "bozkurtalberto1995/clip-studio-paint-win",
+    "desc": "Celsys Clip Studio Paint - digital painting and illustration application for comic panel layout, inking and 2D animation on Windows 10/11",
+    "stars": 45,
+    "language": "",
+    "topics": [
+      "photography"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-11-21T16:28:14Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-21T16:33:01Z",
     "retryCount": 1
   },
   {
@@ -408,10 +488,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2023-01-07T18:28:37Z",
-    "silentRounds": 7,
+    "silentRounds": 8,
     "bigbros": [],
     "ts": "2026-11-11T18:22:10Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "cody-hutson/travel-planner",
@@ -424,26 +504,26 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-06-04T17:22:06Z",
-    "silentRounds": 1,
+    "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-21T00:55:08Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "crobyskigh/izotope-ozone-11-mastering-suite",
     "desc": "AI-Assisted Mastering Workflow with Spectral Shaping and Codec Preview",
-    "stars": 17,
+    "stars": 148,
     "language": "HTML",
     "topics": [
       "music-production"
     ],
     "source": "search",
-    "starGrowth": 0,
+    "starGrowth": 131,
     "createdAt": "2026-11-21T14:42:17Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-21T20:42:20Z",
-    "retryCount": 2
+    "ts": "2026-11-22T00:45:58Z",
+    "retryCount": 3
   },
   {
     "repo": "CWWhitney/Decision_Analysis_Course",
@@ -456,15 +536,15 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2020-11-19T17:45:11Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-21T21:11:16Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Daniel451legend/davinci-resolve-sanolen-color-studio",
     "desc": "Professional color grading workflows and studio tools built for Davinci Resolve.",
-    "stars": 197,
+    "stars": 195,
     "language": "HTML",
     "topics": [
       "video-editor"
@@ -472,25 +552,41 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-11-21T13:29:10Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-11-21T20:23:53Z",
-    "retryCount": 4
+    "ts": "2026-11-22T00:59:19Z",
+    "retryCount": 5
   },
   {
     "repo": "danielwh2/sprite-stacking",
     "desc": "Agent skill: turn four pixel art views into fake-3D sprites you can spin. Works with Claude Code, Codex, Cursor, OpenCode, Gemini CLI, Pi.",
-    "stars": 85,
+    "stars": 372,
     "language": "Python",
     "topics": [
       "pixel-art"
     ],
     "source": "search",
-    "starGrowth": 12,
+    "starGrowth": 287,
     "createdAt": "2026-11-20T14:32:43Z",
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T01:28:57Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "danvaneijck/renpho-api",
+    "desc": "Python API to fetch your health data from Renpho",
+    "stars": 19,
+    "language": "Python",
+    "topics": [
+      "fitness"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-02-10T06:37:08Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-16T04:07:04Z",
     "retryCount": 1
   },
   {
@@ -504,10 +600,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2022-09-06T14:39:19Z",
-    "silentRounds": 1,
+    "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-11T18:58:01Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Dayamoy/Defense-against-Prompt-Injection-Attack-using-DPO",
@@ -520,10 +616,26 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-11-21T06:38:14Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-21T06:59:33Z",
-    "retryCount": 4
+    "retryCount": 5
+  },
+  {
+    "repo": "deepaksilva/rebelle-7-win",
+    "desc": "Escape Motions Rebelle 7 - digital painting software for watercolor simulation, real-media brushes and canvas texture effects on Windows 10/11",
+    "stars": 48,
+    "language": "",
+    "topics": [
+      "photography"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-11-21T08:50:47Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-21T08:54:43Z",
+    "retryCount": 1
   },
   {
     "repo": "DukeCCY/dualsense-pad",
@@ -536,7 +648,7 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-11-04T11:20:35Z",
-    "silentRounds": 5,
+    "silentRounds": 6,
     "bigbros": [],
     "ts": "2026-11-04T11:47:06Z",
     "retryCount": 1
@@ -555,39 +667,39 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-16T19:54:36Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "edward-polat/final-cut-win",
     "desc": "Apple Final Cut - video editing software for timeline-based editing, multicam synchronization and color grading on Windows 10/11",
-    "stars": 20,
+    "stars": 31,
     "language": "",
     "topics": [
       "interview"
     ],
     "source": "search",
-    "starGrowth": 0,
+    "starGrowth": 11,
     "createdAt": "2026-11-21T16:12:01Z",
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T16:17:13Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Eglantine-Community/Eglantine",
     "desc": "An experimental Switch 2 Emulator built for Windows, Linux and MacOS.",
-    "stars": 6192,
+    "stars": 6193,
     "language": "C++",
     "topics": [
       "emulator"
     ],
     "source": "search",
-    "starGrowth": 0,
+    "starGrowth": 1,
     "createdAt": "2026-10-29T00:25:18Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-11-21T23:33:03Z",
-    "retryCount": 1
+    "ts": "2026-11-22T00:35:34Z",
+    "retryCount": 2
   },
   {
     "repo": "Electrotechnique/TSynth-Teensy4.1",
@@ -600,10 +712,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2020-07-23T01:32:29Z",
-    "silentRounds": 5,
+    "silentRounds": 6,
     "bigbros": [],
     "ts": "2026-11-14T09:21:00Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "evan-hoddinott/flambeur",
@@ -616,10 +728,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-11-19T01:38:00Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-20T16:45:54Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "FlashML-org/FreeVideo",
@@ -638,7 +750,7 @@
   {
     "repo": "fliks-app/fliks",
     "desc": "Fliks is an open-source, self-hosted media server and library manager. It organizes and streams movies, TV shows, music, books and comics.",
-    "stars": 29,
+    "stars": 30,
     "language": "Rust",
     "topics": [
       "ebook"
@@ -646,10 +758,10 @@
     "source": "search",
     "starGrowth": 1,
     "createdAt": "2026-05-02T13:41:09Z",
-    "silentRounds": 1,
+    "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-21T01:53:51Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Forgesoft-ai/esim-api",
@@ -662,26 +774,26 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-11-21T06:10:45Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-21T06:34:01Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "Forgesoft-ai/esim-mcp",
     "desc": "Add Atli's eSIM MCP server to Claude, ChatGPT, Gemini, Cursor and any MCP client: find, buy and install travel eSIMs from chat",
-    "stars": 5,
+    "stars": 8,
     "language": "",
     "topics": [
       "travel"
     ],
     "source": "search",
-    "starGrowth": 0,
+    "starGrowth": 3,
     "createdAt": "2026-11-21T05:52:08Z",
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T06:33:55Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "Forkfield/grillkit",
@@ -694,27 +806,43 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-05-20T05:05:32Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-21T17:43:32Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "fscorrupt/posterizarr",
     "desc": "🖼️ Automated artwork maker & native Dynamic Overlays for Plex, Jellyfin, Emby & Silo.",
-    "stars": 964,
+    "stars": 972,
     "language": "Python",
     "topics": [
       "jellyfin",
       "anime"
     ],
     "source": "search",
-    "starGrowth": 0,
+    "starGrowth": 8,
     "createdAt": "2024-02-02T10:09:57Z",
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T22:01:39Z",
-    "retryCount": 4
+    "retryCount": 5
+  },
+  {
+    "repo": "G4rdner26/luminar-neo-win",
+    "desc": "Skylum Luminar Neo - photo editing software for AI-powered enhancements, layer editing and raw file processing on Windows 10/11",
+    "stars": 47,
+    "language": "",
+    "topics": [
+      "photography"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-11-21T17:06:29Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-21T17:10:57Z",
+    "retryCount": 1
   },
   {
     "repo": "GAIK-project/gaik-toolkit",
@@ -727,7 +855,7 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2025-10-10T14:05:17Z",
-    "silentRounds": 2,
+    "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-11-20T20:14:23Z",
     "retryCount": 1
@@ -735,50 +863,50 @@
   {
     "repo": "Gangcox/cubase-pro-win",
     "desc": "Steinberg Cubase Pro - digital audio workstation for MIDI sequencing, multitrack recording and VST plugin hosting on Windows 10/11",
-    "stars": 39,
+    "stars": 43,
     "language": "",
     "topics": [
       "music-production"
     ],
     "source": "search",
-    "starGrowth": 0,
+    "starGrowth": 4,
     "createdAt": "2026-11-21T17:06:04Z",
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T17:10:37Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "GetStream/Agents",
     "desc": "Quickly build text, voice and video agents. Fast, Go based Agent backend with SDKs for every language. Sensible defaults for search, knowledge, skills, telephony, sandboxes, memory and persistence. Sovereign AI. Take control of your AI.",
-    "stars": 8216,
+    "stars": 8218,
     "language": "Go",
     "topics": [
       "agents"
     ],
     "source": "search",
-    "starGrowth": 1,
+    "starGrowth": 2,
     "createdAt": "2025-08-11T18:02:04Z",
-    "silentRounds": 3,
+    "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T23:41:00Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Gissio/font_Tiny5Mono",
     "desc": "A 5-pixel monospace variable font that captures the essence of 1980s–90s digital minimalism.",
-    "stars": 268,
+    "stars": 272,
     "language": "HTML",
     "topics": [
       "pixel-art"
     ],
     "source": "search",
-    "starGrowth": 1,
+    "starGrowth": 4,
     "createdAt": "2026-10-06T22:34:37Z",
-    "silentRounds": 2,
+    "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-18T04:21:37Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "google-research/paper-orchestra",
@@ -796,114 +924,114 @@
   {
     "repo": "govijr/fix-storage",
     "desc": "A CLI to fix your mac's & linux machine's storage problems, just run fix-storage.",
-    "stars": 178,
+    "stars": 265,
     "language": "TypeScript",
     "topics": [
       "pixel-art"
     ],
     "source": "search",
-    "starGrowth": 50,
+    "starGrowth": 87,
     "createdAt": "2026-11-14T16:44:16Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-21T15:33:25Z",
-    "retryCount": 2
+    "ts": "2026-11-22T01:22:54Z",
+    "retryCount": 3
   },
   {
     "repo": "grifdail/NodePainter",
     "desc": "A node based tool to make procedural art and animation",
-    "stars": 23,
+    "stars": 26,
     "language": "TypeScript",
     "topics": [
       "generative-art"
     ],
     "source": "search",
-    "starGrowth": 0,
+    "starGrowth": 3,
     "createdAt": "2023-11-24T18:25:49Z",
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T21:05:02Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "guohuiyuan/go-novel-dl",
     "desc": "go-novel-dl 是 Go 语言开发的多源小说下载器，支持 CLI 与 Web 界面，可跨站点并发搜索、一键下载并导出，已适配 ESJZone、SFACG、刺猬猫、若初文学等多个书源。novel-dl交流群：1094455212",
-    "stars": 337,
+    "stars": 349,
     "language": "Go",
     "topics": [
       "ebook"
     ],
     "source": "search",
-    "starGrowth": 6,
+    "starGrowth": 12,
     "createdAt": "2026-03-19T04:27:59Z",
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-20T03:20:47Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "haydenschmitty/floorplan",
     "desc": "See how your app actually fits together. An interactive, plain-English map of your codebase, drawn by Claude or Codex.",
-    "stars": 5634,
+    "stars": 5995,
     "language": "JavaScript",
     "topics": [
       "developer-tools"
     ],
     "source": "search",
-    "starGrowth": 27,
+    "starGrowth": 361,
     "createdAt": "2026-10-27T12:03:01Z",
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-16T16:57:59Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "hexamorphical/hypercut",
     "desc": "Real-time audio slicer, spectral pitchmapping and trance gate running inside a complex sequencer (VST3 / CLAP / LV2 / VST2 / JACK).",
-    "stars": 24,
+    "stars": 28,
     "language": "C++",
     "topics": [
       "music-production"
     ],
     "source": "search",
-    "starGrowth": 0,
+    "starGrowth": 4,
     "createdAt": "2026-11-18T19:09:38Z",
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T19:51:51Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "hjkcvn/adobe-audition-velraven",
     "desc": "Adobe Audition Velraven orchestrates a visual audio editing workflow.",
-    "stars": 156,
+    "stars": 148,
     "language": "TypeScript",
     "topics": [
       "music-production"
     ],
     "source": "search",
-    "starGrowth": 120,
+    "starGrowth": 0,
     "createdAt": "2026-11-19T23:36:09Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-11-21T19:58:13Z",
-    "retryCount": 5
+    "ts": "2026-11-22T00:15:09Z",
+    "retryCount": 1
   },
   {
     "repo": "itsdecodingai/building-a-coding-agent-from-scratch-course",
     "desc": "Learn harness engineering by building Claude Code from scratch. Free, open-source course: 8 articles, 6 videos, 1 codebase.",
-    "stars": 1227,
+    "stars": 1228,
     "language": "Python",
     "topics": [
       "course"
     ],
     "source": "search",
-    "starGrowth": 5,
+    "starGrowth": 1,
     "createdAt": "2026-06-19T14:25:15Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-24T08:43:07Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "jakobbjelver/messer-swipe",
@@ -916,10 +1044,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2025-12-26T15:18:50Z",
-    "silentRounds": 2,
+    "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-11-20T19:06:32Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "Jatin-Roopchandani/LORE",
@@ -930,12 +1058,28 @@
       "ebook"
     ],
     "source": "search",
-    "starGrowth": 3,
+    "starGrowth": 0,
     "createdAt": "2026-08-23T08:25:22Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-21T17:53:23Z",
-    "retryCount": 2
+    "retryCount": 3
+  },
+  {
+    "repo": "Joanegorov01/capture-one-pro-win",
+    "desc": "Phase One Capture One Pro - professional photo editing software for RAW conversion, tethered shooting and color grading on Windows 10/11",
+    "stars": 45,
+    "language": "",
+    "topics": [
+      "photography"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-11-21T14:35:15Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-21T14:40:40Z",
+    "retryCount": 1
   },
   {
     "repo": "jobtalle/Koi",
@@ -948,42 +1092,42 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2020-04-11T18:51:59Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-21T11:50:17Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "Kevin1550/borisfx-environment",
     "desc": "BorisFX Environment: Streamline Your Workflow",
-    "stars": 89,
+    "stars": 149,
     "language": "HTML",
     "topics": [
       "video-editor"
     ],
     "source": "search",
-    "starGrowth": 0,
+    "starGrowth": 60,
     "createdAt": "2026-11-21T13:08:30Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-21T20:25:57Z",
-    "retryCount": 1
+    "ts": "2026-11-22T01:02:42Z",
+    "retryCount": 2
   },
   {
     "repo": "kevincodeeng2099i4/shadps4-bloodborne-pc-1440p-4k-resolution-scaler-portable",
     "desc": "ShadPS4 Bloodborne PC 1440p/4K Resolution Scaler & Cloth Physics extension: native 64-bit Windows 10/11 portable x64 build with hot-reloadable JSON configuration, low-overhead runtime, and prebuilt portable release.",
-    "stars": 226,
+    "stars": 347,
     "language": "Jupyter Notebook",
     "topics": [
       "physics"
     ],
     "source": "search",
-    "starGrowth": 0,
+    "starGrowth": 121,
     "createdAt": "2026-11-21T21:29:42Z",
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T21:30:07Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "macrosergeantsquare/Native-Instruments-Massive-X-1.7-Free-Professional-Synthesizer",
@@ -996,7 +1140,7 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-08-15T01:13:29Z",
-    "silentRounds": 7,
+    "silentRounds": 8,
     "bigbros": [],
     "ts": "2026-11-11T17:09:26Z",
     "retryCount": 1
@@ -1004,34 +1148,34 @@
   {
     "repo": "mankidev/antialgorithm",
     "desc": "Agent skill that steers the model away from its first, most average pick in creative work: names, ideas, logo, posters, UI.",
-    "stars": 569,
+    "stars": 607,
     "language": "Python",
     "topics": [
       "design"
     ],
     "source": "search",
-    "starGrowth": 2,
+    "starGrowth": 38,
     "createdAt": "2026-11-14T09:48:23Z",
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-20T17:08:35Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "oinkvm/oink",
     "desc": "Your computers, working as one. Share keyboard, mouse, trackpad, clipboard, drag and drop and audio across Macs and PCs.",
-    "stars": 2429,
+    "stars": 2536,
     "language": "Rust",
     "topics": [
       "productivity"
     ],
     "source": "search",
-    "starGrowth": 136,
+    "starGrowth": 107,
     "createdAt": "2026-10-19T21:08:57Z",
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T11:03:05Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "OrangeViolin/content-pipeline",
@@ -1044,7 +1188,7 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-03-02T14:51:39Z",
-    "silentRounds": 1,
+    "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-20T17:45:23Z",
     "retryCount": 1
@@ -1060,10 +1204,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-11-06T14:54:38Z",
-    "silentRounds": 2,
+    "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-11-06T15:29:54Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "phone-harness/phone-harness",
@@ -1085,18 +1229,18 @@
   {
     "repo": "purvprajapati2504-design/premiere-pro-video-editor",
     "desc": "Professional Multi-Track Video Editing Suite for Windows with 4K/8K Export",
-    "stars": 87,
+    "stars": 151,
     "language": "HTML",
     "topics": [
       "video-editor"
     ],
     "source": "search",
-    "starGrowth": 0,
+    "starGrowth": 64,
     "createdAt": "2026-11-21T16:04:14Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-21T21:57:39Z",
-    "retryCount": 1
+    "ts": "2026-11-22T01:53:38Z",
+    "retryCount": 2
   },
   {
     "repo": "regisvidal/teddybears-revenge",
@@ -1109,31 +1253,31 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-11-19T14:00:22Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-21T20:48:19Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "RoboDojo-Benchmark/RoboDojo",
     "desc": "Official repository for RoboDojo",
-    "stars": 940,
+    "stars": 944,
     "language": "Python",
     "topics": [
       "robotics"
     ],
     "source": "search",
-    "starGrowth": 6,
+    "starGrowth": 4,
     "createdAt": "2026-07-07T21:02:32Z",
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-19T18:58:38Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "s0ld13rr/pentestcode",
     "desc": "PentestCode - Multi-agent AI penetration testing system with persistent engagement state, strategic coordination, and parallel autonomous operations.",
-    "stars": 1210,
+    "stars": 1222,
     "language": "TypeScript",
     "topics": [],
     "source": "trending",
@@ -1142,39 +1286,39 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-16T15:17:54.333Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "saya-ch/dsh-mobile",
     "desc": "DeepSeek Harness 的安全移动访问插件与 Android App，支持局域网和多种远程通道、iPhone/iPad 主屏幕 Web App 与网页推送，并提供移动界面适配、设备管理和自定义扩展。",
-    "stars": 900,
+    "stars": 904,
     "language": "TypeScript",
     "topics": [
       "mobile"
     ],
     "source": "search",
-    "starGrowth": 0,
+    "starGrowth": 4,
     "createdAt": "2026-08-15T05:28:38Z",
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T16:01:10Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "siddharthfreitas/native-instruments-kontakt-win",
     "desc": "Native Instruments Kontakt - software sampler and virtual instrument player for multisample libraries, scripting and DAW integration on Windows 10/11",
-    "stars": 24,
+    "stars": 30,
     "language": "",
     "topics": [
       "music-production"
     ],
     "source": "search",
-    "starGrowth": 0,
+    "starGrowth": 6,
     "createdAt": "2026-11-21T15:40:41Z",
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T15:45:36Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "SimpleAI2026/SimpleBase",
@@ -1187,26 +1331,42 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2022-04-09T03:58:41Z",
-    "silentRounds": 3,
+    "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-11-18T11:11:07Z",
-    "retryCount": 4
+    "retryCount": 5
+  },
+  {
+    "repo": "smhgzll/kkrieger-linux",
+    "desc": "The 96k FPS .kkrieger, decompiled and ported to Linux — packed into 95 KB, smaller than the 2004 original.",
+    "stars": 0,
+    "language": "C++",
+    "topics": [
+      "demoscene"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-11-21T17:27:23Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-21T17:28:01Z",
+    "retryCount": 1
   },
   {
     "repo": "sourcegit-org/sourcegit",
     "desc": "Windows/macOS/Linux GUI client for GIT users",
-    "stars": 6557,
+    "stars": 6560,
     "language": "C#",
     "topics": [
       "git"
     ],
     "source": "search",
-    "starGrowth": 8,
+    "starGrowth": 3,
     "createdAt": "2021-11-08T12:55:18Z",
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T15:23:55Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "super-libre/super-voice",
@@ -1219,10 +1379,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2025-08-16T12:24:16Z",
-    "silentRounds": 1,
+    "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-21T22:45:52Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "swapperfinance/swapper-toolkit",
@@ -1235,7 +1395,7 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-03-23T10:53:26Z",
-    "silentRounds": 1,
+    "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-16T17:18:21Z",
     "retryCount": 1
@@ -1243,34 +1403,34 @@
   {
     "repo": "tangency-labs/fieldcraft",
     "desc": "One open-source modeler for structures, heat and fluids, built from scratch in pure Rust: parametric part in, verified results out. Automatic all-hex and tet meshing, our own nonlinear implicit and explicit FEA, heat transfer and lattice Boltzmann CFD — every result checked against theory. For engineers and AI agents alike. Free, forever.",
-    "stars": 610,
+    "stars": 649,
     "language": "Rust",
     "topics": [
       "simulation"
     ],
     "source": "search",
-    "starGrowth": 0,
+    "starGrowth": 39,
     "createdAt": "2026-10-13T17:56:45Z",
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-20T14:01:38Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Tarunwang/fl-studio-win",
     "desc": "Image-Line FL Studio - digital audio workstation for beat making, MIDI sequencing and plugin hosting on Windows 10/11",
-    "stars": 36,
+    "stars": 44,
     "language": "",
     "topics": [
       "music-production"
     ],
     "source": "search",
-    "starGrowth": 0,
+    "starGrowth": 8,
     "createdAt": "2026-11-21T16:46:05Z",
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T16:51:22Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Tencent/LoopForge",
@@ -1298,10 +1458,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-10-23T16:07:40Z",
-    "silentRounds": 2,
+    "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-11-18T14:18:24Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "TPECKA180/living-planet",
@@ -1314,72 +1474,72 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-10-30T20:01:32Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-21T20:34:07Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "Viprasol-Tech/claude-video-editing-skills",
     "desc": "Free, local AI video editor for Claude Code: 95 skills turn raw footage into finished Reels, Shorts and YouTube edits - auto cuts, captions (Hindi/Devanagari too), motion graphics, scene sequences, colour, sound mix, QC.",
-    "stars": 41,
+    "stars": 43,
     "language": "Python",
     "topics": [
       "video-editor"
     ],
     "source": "search",
-    "starGrowth": 0,
+    "starGrowth": 2,
     "createdAt": "2026-11-17T00:15:24Z",
-    "silentRounds": 1,
+    "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-20T18:56:55Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "vstorm-co/agenticos",
     "desc": "Open-source, self-hosted AI agent platform for your company's AI teammates. Build, run and govern agents on your own servers and models: shared chat, RAG, skills, a real browser, 4,700+ MCP servers, budgets, approvals and an audit trail. An alternative to ChatGPT Enterprise and Grok Bot. Apache-2.0, built on Pydantic AI.",
-    "stars": 439,
+    "stars": 662,
     "language": "Python",
     "topics": [],
     "source": "trending",
-    "starGrowth": 10,
+    "starGrowth": 223,
     "createdAt": "2026-07-31T09:53:01Z",
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-16T15:17:54.333Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "W17ant/Claude-Office",
     "desc": "A pixel art virtual office that visualizes your AI agents working in real-time. Claude Code hooks, WebSocket events, and isometric pixel art.",
-    "stars": 398,
+    "stars": 404,
     "language": "TypeScript",
     "topics": [
       "pixel-art"
     ],
     "source": "search",
-    "starGrowth": 3,
+    "starGrowth": 6,
     "createdAt": "2026-03-17T21:26:27Z",
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-18T09:28:47Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "zanllp/agent-home",
     "desc": "给大肥鱼和你的 Agent 一个可以回去的家。A cozy 3D home harness for AI agents: live, decorate and interact through tools, watch in your browser.",
-    "stars": 3,
+    "stars": 4,
     "language": "JavaScript",
     "topics": [
       "virtual-pet"
     ],
     "source": "search",
-    "starGrowth": 0,
+    "starGrowth": 1,
     "createdAt": "2026-11-01T20:40:52Z",
-    "silentRounds": 2,
+    "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-11-21T22:28:30Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "zzzfu411/bakemono",
@@ -1392,9 +1552,9 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-05-17T04:59:04Z",
-    "silentRounds": 6,
+    "silentRounds": 7,
     "bigbros": [],
     "ts": "2026-11-13T17:32:52Z",
-    "retryCount": 1
+    "retryCount": 2
   }
 ]
