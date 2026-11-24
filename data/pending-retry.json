@@ -10,7 +10,7 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-10-19T13:32:19Z",
-    "silentRounds": 1,
+    "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-19T05:06:38Z",
     "retryCount": 1
@@ -26,15 +26,15 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2022-10-03T17:00:06Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-23T11:51:18Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "71chili/logseq-novara-knowledge-vault",
     "desc": "Logseq Novara Knowledge Vault structures notes into a linked, queryable knowledge base.",
-    "stars": 150,
+    "stars": 68,
     "language": "HTML",
     "topics": [
       "writing",
@@ -43,7 +43,7 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-11-18T14:14:40Z",
-    "silentRounds": 1,
+    "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-23T19:54:08Z",
     "retryCount": 1
@@ -60,15 +60,15 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2021-09-17T00:43:44Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-23T21:57:34Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "AhmadHassan-BTed/FormFilla",
     "desc": "About A local-first browser extension that fills job-application forms from local JSON profile data and files. Matches are computed deterministically via multi-signal scoring, structural repeated-block detection, and bipartite optimization.",
-    "stars": 4648,
+    "stars": 4644,
     "language": "TypeScript",
     "topics": [
       "privacy"
@@ -76,7 +76,7 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-07-10T15:21:56Z",
-    "silentRounds": 1,
+    "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-03T06:13:54Z",
     "retryCount": 1
@@ -92,21 +92,53 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2025-10-25T19:51:41Z",
-    "silentRounds": 7,
+    "silentRounds": 8,
     "bigbros": [],
     "ts": "2026-11-23T04:04:27Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
-    "repo": "Alastorono/filmora-license-short-video-studio",
-    "desc": "Short video editing workspace built around Filmora project files.",
-    "stars": 121,
+    "repo": "AiiHayashi/movavi-video-editor-license",
+    "desc": "Configures Movavi Video Editor project files for editing workflows and media export.",
+    "stars": 177,
     "language": "HTML",
     "topics": [
       "video-editor"
     ],
     "source": "search",
     "starGrowth": 0,
+    "createdAt": "2026-11-24T02:21:14Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-24T02:22:54Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "aitorgomez-net/MonochromeVGA",
+    "desc": "Turn your monitor into a monochrome one of yesteryear",
+    "stars": 22,
+    "language": "",
+    "topics": [
+      "retrocomputing"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2020-12-16T15:17:04Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-22T10:52:56Z",
+    "retryCount": 1
+  },
+  {
+    "repo": "Alastorono/filmora-license-short-video-studio",
+    "desc": "Short video editing workspace built around Filmora project files.",
+    "stars": 148,
+    "language": "HTML",
+    "topics": [
+      "video-editor"
+    ],
+    "source": "search",
+    "starGrowth": 27,
     "createdAt": "2026-11-23T22:33:41Z",
     "silentRounds": 0,
     "bigbros": [],
@@ -124,10 +156,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-10-26T12:02:16Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-10-26T18:24:10Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "alihasan9846/rv-there-yet-coop-faramir",
@@ -143,7 +175,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-23T00:32:56Z",
-    "retryCount": 5
+    "retryCount": 6
+  },
+  {
+    "repo": "alonzoalejandro579-pixel/lightroom-classic-fakalan-photo-workflow",
+    "desc": "Streamline RAW culling, develop edits, and export with a repeatable Lightroom Classic workflow.",
+    "stars": 177,
+    "language": "HTML",
+    "topics": [
+      "photography"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-11-24T02:17:27Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-24T02:18:27Z",
+    "retryCount": 1
   },
   {
     "repo": "AMVerge-team/AMVerge",
@@ -156,26 +204,26 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-03-17T20:16:21Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-11-24T01:07:53Z",
+    "ts": "2026-11-24T03:08:56Z",
     "retryCount": 1
   },
   {
-    "repo": "andyhuo520/beanpod",
-    "desc": "豆仓 BeanPod：原生 macOS 录音豆管理 App — 本机转写、纪要待办、知识库问答、逐句回听与英语学习、MCP 接入 Claude / Codex",
-    "stars": 99,
-    "language": "Swift",
+    "repo": "AnjaliShaw12/darktable-merlorin",
+    "desc": "Modular darktable build for image processing and workflow customization.",
+    "stars": 68,
+    "language": "HTML",
     "topics": [
-      "podcast"
+      "photography"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2026-11-16T08:56:19Z",
-    "silentRounds": 1,
+    "createdAt": "2026-11-18T19:20:42Z",
+    "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-18T03:25:32Z",
-    "retryCount": 4
+    "ts": "2026-11-23T20:55:03Z",
+    "retryCount": 1
   },
   {
     "repo": "Aratako/T5Gemma-TTS",
@@ -188,7 +236,7 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2025-12-13T15:30:45Z",
-    "silentRounds": 14,
+    "silentRounds": 15,
     "bigbros": [],
     "ts": "2026-11-04T10:32:06Z",
     "retryCount": 1
@@ -196,18 +244,18 @@
   {
     "repo": "ashmitmittal/trip-map-skill",
     "desc": "Claude skill that turns a start and an end point into an interactive 3D satellite trip map: real route, stops with photos, day plan, fuel, food and stays.",
-    "stars": 5,
+    "stars": 13,
     "language": "HTML",
     "topics": [
       "travel"
     ],
     "source": "search",
-    "starGrowth": 1,
+    "starGrowth": 8,
     "createdAt": "2026-11-21T03:44:23Z",
-    "silentRounds": 1,
+    "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T03:44:32Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "Astrmira/TriviumDB",
@@ -220,26 +268,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-03-26T07:15:22Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-22T11:08:03Z",
-    "retryCount": 4
-  },
-  {
-    "repo": "atlaslattice/aluminum-os",
-    "desc": "BULLSHIT GROK · BULLSHIT CLAUDE — Quarantined by repository owner; excluded from the active Continuum OS workspace.",
-    "stars": 1,
-    "language": "TypeScript",
-    "topics": [
-      "llm-model"
-    ],
-    "source": "search",
-    "starGrowth": 0,
-    "createdAt": "2026-03-13T04:03:56Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-11-24T00:31:55Z",
-    "retryCount": 1
+    "retryCount": 5
   },
   {
     "repo": "babygoton/WorkDaddy",
@@ -256,6 +288,22 @@
     "retryCount": 2
   },
   {
+    "repo": "baenv/beanfx",
+    "desc": "Pixel-art effects drawn as code: a Claude Code plugin that designs VFX from words or a reference image and exports sprite sheets, Aseprite JSON and gifs.",
+    "stars": 78,
+    "language": "Rust",
+    "topics": [
+      "pixel-art"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-10-31T09:18:07Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-14T18:07:30Z",
+    "retryCount": 1
+  },
+  {
     "repo": "bartp5/libtexprintf",
     "desc": "Library providing printf-style formatted output routines with tex-like syntax support. ",
     "stars": 90,
@@ -266,10 +314,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2022-07-04T22:33:38Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-12T08:48:22Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "BeniaBot/2049",
@@ -282,10 +330,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-07-16T18:25:33Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-23T22:44:22Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "Bigby0002/repo-coop-cetalin",
@@ -301,16 +349,16 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-23T00:39:27Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "bojieli/ai-infra-book",
     "desc": "《深入理解 AI Infra：量化分析与系统设计》（李博杰 著）开源书稿：从硬件约束和模型架构出发，量化推导 LLM 推理与训练系统设计。含全书正文、PDF、配套计算工具与实验",
-    "stars": 8185,
+    "stars": 8261,
     "language": "Python",
     "topics": [],
     "source": "trending",
-    "starGrowth": 22,
+    "starGrowth": 76,
     "createdAt": "2026-08-22T15:30:41Z",
     "silentRounds": 0,
     "bigbros": [],
@@ -328,7 +376,7 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-11-23T11:39:30Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-23T11:39:44Z",
     "retryCount": 1
@@ -336,18 +384,34 @@
   {
     "repo": "Bongorian/yadokari",
     "desc": "YADOKARI - standalone groovebox firmware for the MASCHINE MK3 (Raspberry Pi 4, bare-metal, GPL-3.0, unofficial)",
-    "stars": 25,
+    "stars": 27,
     "language": "C++",
     "topics": [
       "synthesizer"
     ],
     "source": "search",
-    "starGrowth": 0,
+    "starGrowth": 2,
     "createdAt": "2026-11-10T15:43:39Z",
-    "silentRounds": 3,
+    "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-23T16:28:56Z",
-    "retryCount": 2
+    "retryCount": 1
+  },
+  {
+    "repo": "Borealiscodes/roivas-manor-2026",
+    "desc": "Campy Q16.16 zero-float runic horror engine set in Roivas Manor (2026). Unifies 4-alignment cellular sheaf cohomology, a 12-rune $1 unistroke recognizer, a depth-sorted 3D floating crystal, 480x272 CLUT8 Bayer-dithered sprites, Karplus-Strong audio, and CI-rendered Piper neural British & Scottish narration with zero dependencies.",
+    "stars": 0,
+    "language": "JavaScript",
+    "topics": [
+      "demoscene"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-11-22T15:51:11Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-22T17:18:33Z",
+    "retryCount": 1
   },
   {
     "repo": "Borealiscodes/roivas-manor-horror",
@@ -360,10 +424,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-11-23T08:53:20Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-23T11:39:37Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "Borealiscodes/tome-of-eternal-holonomy",
@@ -376,25 +440,25 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-11-22T13:52:47Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-22T15:42:31Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "ch6vip/novel-sound",
     "desc": "「什锦铺」免费开源的内容聚合客户端：小说、短剧、漫剧、听书、漫画一站搞定 | Flutter UI + Rust 核心 | Android / Windows / Linux | 无广告",
-    "stars": 1702,
+    "stars": 1704,
     "language": "Dart",
     "topics": [
       "ebook"
     ],
     "source": "search",
-    "starGrowth": 0,
+    "starGrowth": 2,
     "createdAt": "2026-09-01T18:58:43Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-23T23:10:23Z",
+    "ts": "2026-11-24T03:51:31Z",
     "retryCount": 1
   },
   {
@@ -408,10 +472,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2024-10-28T11:01:12Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-22T06:29:51Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "contactvelorixai-source/yapyap-coop-cetalen",
@@ -427,7 +491,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-23T00:43:01Z",
-    "retryCount": 5
+    "retryCount": 6
+  },
+  {
+    "repo": "crmaykish/mackerel-68k",
+    "desc": "A series of single-board Motorola 68k computers with support for modern Linux",
+    "stars": 96,
+    "language": "C",
+    "topics": [
+      "retrocomputing"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2021-12-05T00:16:44Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-24T01:58:26Z",
+    "retryCount": 1
   },
   {
     "repo": "crobyskigh/izotope-ozone-11-mastering-suite",
@@ -440,10 +520,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-11-21T14:42:17Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-23T22:59:33Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "CTHRU/Hitrava",
@@ -456,26 +536,26 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2019-07-02T13:27:00Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-23T13:23:13Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "danielwh2/sprite-stacking",
     "desc": "Agent skill: turn four pixel art views into fake-3D sprites you can spin. Works with Claude Code, Codex, Cursor, OpenCode, Gemini CLI, Pi.",
-    "stars": 372,
+    "stars": 685,
     "language": "Python",
     "topics": [
       "pixel-art"
     ],
     "source": "search",
-    "starGrowth": 287,
+    "starGrowth": 313,
     "createdAt": "2026-11-20T14:32:43Z",
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T01:28:57Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "darkroomengineering/aniso",
@@ -488,10 +568,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2022-09-06T14:39:19Z",
-    "silentRounds": 2,
+    "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-11-11T18:58:01Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "Debrde30/deepl-pro-win",
@@ -521,41 +601,25 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-11-04T11:20:35Z",
-    "silentRounds": 6,
+    "silentRounds": 7,
     "bigbros": [],
     "ts": "2026-11-04T11:47:06Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
-    "repo": "Eglantine-Community/Eglantine",
-    "desc": "An experimental Switch 2 Emulator built for Windows, Linux and MacOS.",
-    "stars": 6193,
-    "language": "C++",
+    "repo": "dunamismax/c-from-the-ground-up",
+    "desc": "A free, progressive course in C: 38 small, runnable programs that take you from your first printf to pointers, memory, sockets, threads and a terminal game you build yourself.",
+    "stars": 174,
+    "language": "C",
     "topics": [
-      "emulator"
-    ],
-    "source": "search",
-    "starGrowth": 1,
-    "createdAt": "2026-10-29T00:25:18Z",
-    "silentRounds": 1,
-    "bigbros": [],
-    "ts": "2026-11-23T21:52:27Z",
-    "retryCount": 4
-  },
-  {
-    "repo": "Ehopatoo/capcut-pro-banorin-video-editor",
-    "desc": "Capcut Pro Banorin Video Editor provides a video editing workspace for timeline-based projects.",
-    "stars": 122,
-    "language": "HTML",
-    "topics": [
-      "video-editor"
+      "course"
     ],
     "source": "search",
     "starGrowth": 0,
-    "createdAt": "2026-11-23T21:52:40Z",
+    "createdAt": "2025-06-10T16:02:22Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-23T21:54:09Z",
+    "ts": "2026-11-22T18:29:59Z",
     "retryCount": 1
   },
   {
@@ -575,7 +639,7 @@
   {
     "repo": "fliks-app/fliks",
     "desc": "Fliks is an open-source, self-hosted media server and library manager. It organizes and streams movies, TV shows, music, books and comics.",
-    "stars": 30,
+    "stars": 31,
     "language": "Rust",
     "topics": [
       "ebook"
@@ -583,7 +647,7 @@
     "source": "search",
     "starGrowth": 1,
     "createdAt": "2026-05-02T13:41:09Z",
-    "silentRounds": 2,
+    "silentRounds": 3,
     "bigbros": [],
     "ts": "2026-11-23T19:53:13Z",
     "retryCount": 1
@@ -599,26 +663,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-05-20T05:05:32Z",
-    "silentRounds": 1,
+    "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-23T17:49:43Z",
-    "retryCount": 4
-  },
-  {
-    "repo": "GetStream/Agents",
-    "desc": "Quickly build text, voice and video agents. Fast, Go based Agent backend with SDKs for every language. Sensible defaults for search, knowledge, skills, telephony, sandboxes, memory and persistence. Sovereign AI. Take control of your AI.",
-    "stars": 8218,
-    "language": "Go",
-    "topics": [
-      "agents"
-    ],
-    "source": "search",
-    "starGrowth": 2,
-    "createdAt": "2025-08-11T18:02:04Z",
-    "silentRounds": 0,
-    "bigbros": [],
-    "ts": "2026-11-24T01:13:43Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "google-research/paper-orchestra",
@@ -652,29 +700,45 @@
   {
     "repo": "haydenschmitty/floorplan",
     "desc": "See how your app actually fits together. An interactive, plain-English map of your codebase, drawn by Claude or Codex.",
-    "stars": 5995,
+    "stars": 6494,
     "language": "JavaScript",
     "topics": [
       "developer-tools"
     ],
     "source": "search",
-    "starGrowth": 361,
+    "starGrowth": 499,
     "createdAt": "2026-10-27T12:03:01Z",
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-16T16:57:59Z",
-    "retryCount": 3
+    "retryCount": 1
+  },
+  {
+    "repo": "HelpBuoy/HelpBuoy",
+    "desc": "Self-hosted remote support for Windows and Linux over SSH, QuickAssist alternative",
+    "stars": 3,
+    "language": "Go",
+    "topics": [
+      "raylib"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-11-02T23:17:50Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-22T20:16:47Z",
+    "retryCount": 1
   },
   {
     "repo": "ihirwerugamba64-crypto/premiere-pro-for-windows",
     "desc": "Premiere Pro for Windows: a professional video editing and production workspace for desktop systems.",
-    "stars": 122,
+    "stars": 142,
     "language": "HTML",
     "topics": [
       "video-editor"
     ],
     "source": "search",
-    "starGrowth": 0,
+    "starGrowth": 20,
     "createdAt": "2026-11-23T22:31:11Z",
     "silentRounds": 0,
     "bigbros": [],
@@ -684,7 +748,7 @@
   {
     "repo": "jakobbjelver/messer-swipe",
     "desc": "Swipe on what to watch next, alone or with a group.",
-    "stars": 799,
+    "stars": 798,
     "language": "TypeScript",
     "topics": [
       "jellyfin"
@@ -692,10 +756,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2025-12-26T15:18:50Z",
-    "silentRounds": 3,
+    "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-11-22T22:10:49Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "Jatin-Roopchandani/LORE",
@@ -708,10 +772,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-08-23T08:25:22Z",
-    "silentRounds": 1,
+    "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-21T17:53:23Z",
-    "retryCount": 3
+    "retryCount": 1
   },
   {
     "repo": "Khateeb78/super-battle-golf-coop-macelin",
@@ -744,23 +808,23 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-21T16:52:07Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "liyupi/ai-code-helper",
     "desc": "基于 Spring Boot 3.5、Java 21、LangChain4j 与 Vue 3 打造的开源 AI 编程学习与求职辅导助手（AI Coding Assistant），由程序员鱼皮编程导航出品，适合希望快速入门 Java AI 全栈应用开发的程序员实战学习。项目以小而精的前后端分离架构，完整串联通义千问 Qwen 等大语言模型接入、AI Service 声明式开发、多轮对话记忆、结构化输出、RAG 向量知识库检索增强、Tool Calling 面试题爬虫工具调用、MCP 模型上下文协议、Guardrail 输入安全护轨、ChatModelListener 可观测性监听与 SSE 流式打字机响应，配套完整视频与文字教程，助你快速掌握企业级 LangChain4j 开发。",
-    "stars": 769,
+    "stars": 771,
     "language": "Vue",
     "topics": [
       "vector-db"
     ],
     "source": "search",
-    "starGrowth": 0,
+    "starGrowth": 2,
     "createdAt": "2025-07-09T08:09:59Z",
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-23T06:50:51Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "liyupi/yu-auto-reply",
@@ -773,7 +837,7 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2023-03-24T14:36:19Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-23T06:16:55Z",
     "retryCount": 1
@@ -789,10 +853,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2024-04-25T07:48:49Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-23T06:48:46Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "lukasr6048/serum-2-xfer-vst3-preset-suite",
@@ -805,10 +869,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-11-23T18:08:46Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-11-23T18:09:17Z",
-    "retryCount": 2
+    "ts": "2026-11-24T04:16:31Z",
+    "retryCount": 3
   },
   {
     "repo": "macrosergeantsquare/Native-Instruments-Massive-X-1.7-Free-Professional-Synthesizer",
@@ -821,42 +885,42 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-08-15T01:13:29Z",
-    "silentRounds": 8,
+    "silentRounds": 9,
     "bigbros": [],
     "ts": "2026-11-11T17:09:26Z",
-    "retryCount": 4
+    "retryCount": 5
   },
   {
     "repo": "MaryCache/tsuzuri",
     "desc": "Claude Code skill and viewer app for writing and reviewing Japanese prose sentence by sentence with explicit writing intent",
-    "stars": 61,
+    "stars": 99,
     "language": "Python",
     "topics": [
       "writing"
     ],
     "source": "search",
-    "starGrowth": 0,
+    "starGrowth": 38,
     "createdAt": "2026-11-23T10:06:43Z",
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-23T20:32:47Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "maxingan2412/MathInsight",
     "desc": "数鉴（MathInsight）· 高中数学智能学情分析与个性化辅导系统｜高考真题库 · Rasch 学情模型 · 横纵对比与归因 · 个性化练习 · 梯度组卷",
-    "stars": 112,
+    "stars": 125,
     "language": "Python",
     "topics": [
       "mathematics"
     ],
     "source": "search",
-    "starGrowth": 0,
+    "starGrowth": 13,
     "createdAt": "2026-11-06T05:08:56Z",
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-23T11:19:33Z",
-    "retryCount": 2
+    "retryCount": 1
   },
   {
     "repo": "meharanis2012-cpu/gamble-with-your-friends-coop-notalin",
@@ -893,13 +957,13 @@
   {
     "repo": "muhaiminrejoneabir-ai/fl-studio-tadalen-beat-lab",
     "desc": "FL Studio Tadalen Beat Lab: a focused beat-production toolkit for structured rhythm work.",
-    "stars": 122,
+    "stars": 141,
     "language": "HTML",
     "topics": [
       "music-production"
     ],
     "source": "search",
-    "starGrowth": 0,
+    "starGrowth": 19,
     "createdAt": "2026-11-23T22:06:42Z",
     "silentRounds": 0,
     "bigbros": [],
@@ -933,21 +997,21 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2019-11-11T11:44:06Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-23T15:27:20Z",
-    "retryCount": 2
+    "retryCount": 3
   },
   {
     "repo": "oinkvm/oink",
     "desc": "Your computers, working as one. Share keyboard, mouse, trackpad, clipboard, drag and drop and audio across Macs and PCs.",
-    "stars": 2536,
+    "stars": 2829,
     "language": "Rust",
     "topics": [
       "productivity"
     ],
     "source": "search",
-    "starGrowth": 107,
+    "starGrowth": 293,
     "createdAt": "2026-10-19T21:08:57Z",
     "silentRounds": 0,
     "bigbros": [],
@@ -972,6 +1036,22 @@
     "retryCount": 2
   },
   {
+    "repo": "qyx2007fk/lab-zero",
+    "desc": "零号实验区 · LAB ZERO — 纯前端 2D 俯视角战术枪战小游戏，Canvas + Web Audio 实时生成画面与音效，无需依赖、打开即玩",
+    "stars": 3,
+    "language": "JavaScript",
+    "topics": [
+      "roguelike"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-11-23T10:23:55Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-23T11:37:49Z",
+    "retryCount": 1
+  },
+  {
     "repo": "regisvidal/teddybears-revenge",
     "desc": "Teddybear's Revenge demo, first released in November 1996 for the Saturne Party",
     "stars": 2,
@@ -982,26 +1062,26 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-11-19T14:00:22Z",
-    "silentRounds": 1,
+    "silentRounds": 2,
     "bigbros": [],
     "ts": "2026-11-21T20:48:19Z",
-    "retryCount": 5
+    "retryCount": 6
   },
   {
     "repo": "RoboDojo-Benchmark/RoboDojo",
     "desc": "Official repository for RoboDojo",
-    "stars": 944,
+    "stars": 951,
     "language": "Python",
     "topics": [
       "robotics"
     ],
     "source": "search",
-    "starGrowth": 4,
+    "starGrowth": 7,
     "createdAt": "2026-07-07T21:02:32Z",
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-19T18:58:38Z",
-    "retryCount": 4
+    "retryCount": 1
   },
   {
     "repo": "RyanLambert40/serum-2-xfer-vst3-preset-suite",
@@ -1014,21 +1094,21 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-11-23T18:08:44Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-11-23T18:09:16Z",
+    "ts": "2026-11-24T04:16:42Z",
     "retryCount": 1
   },
   {
     "repo": "Sampo06/davinci-resolve-kadalor-color-studio",
     "desc": "Node-based color grading workspace for building and testing DaVinci Resolve looks.",
-    "stars": 122,
+    "stars": 143,
     "language": "HTML",
     "topics": [
       "video-editor"
     ],
     "source": "search",
-    "starGrowth": 0,
+    "starGrowth": 21,
     "createdAt": "2026-11-23T22:40:54Z",
     "silentRounds": 0,
     "bigbros": [],
@@ -1038,18 +1118,18 @@
   {
     "repo": "sourcegit-org/sourcegit",
     "desc": "Windows/macOS/Linux GUI client for GIT users",
-    "stars": 6560,
+    "stars": 6574,
     "language": "C#",
     "topics": [
       "git"
     ],
     "source": "search",
-    "starGrowth": 3,
+    "starGrowth": 14,
     "createdAt": "2021-11-08T12:55:18Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-23T06:44:49Z",
-    "retryCount": 3
+    "ts": "2026-11-24T02:47:36Z",
+    "retryCount": 1
   },
   {
     "repo": "srikarthik345-art/sledding-game-coop-rafalor",
@@ -1065,6 +1145,22 @@
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-23T00:39:44Z",
+    "retryCount": 2
+  },
+  {
+    "repo": "storagebits/ttl-overdrive",
+    "desc": "TTL OVERDRIVE: a demo for the 32K Gigatron, the computer with no microprocessor",
+    "stars": 1,
+    "language": "Assembly",
+    "topics": [
+      "demoscene"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-11-24T03:28:53Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-24T03:30:29Z",
     "retryCount": 1
   },
   {
@@ -1078,10 +1174,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-11-23T18:08:44Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
-    "ts": "2026-11-23T18:09:16Z",
-    "retryCount": 2
+    "ts": "2026-11-24T04:06:30Z",
+    "retryCount": 3
   },
   {
     "repo": "Tencent/LoopForge",
@@ -1101,18 +1197,18 @@
   {
     "repo": "ThaovsDzi/premiere-pro-for-windows-basic",
     "desc": "Real-time video editing workspace for Windows with timeline-based sequencing and effects.",
-    "stars": 122,
+    "stars": 149,
     "language": "HTML",
     "topics": [
       "video-editor"
     ],
     "source": "search",
-    "starGrowth": 0,
+    "starGrowth": 27,
     "createdAt": "2026-11-23T22:31:49Z",
     "silentRounds": 0,
     "bigbros": [],
     "ts": "2026-11-23T22:33:10Z",
-    "retryCount": 1
+    "retryCount": 2
   },
   {
     "repo": "Tianlinx/spire-echoes",
@@ -1125,10 +1221,10 @@
     "source": "search",
     "starGrowth": 0,
     "createdAt": "2026-10-23T16:07:40Z",
-    "silentRounds": 3,
+    "silentRounds": 4,
     "bigbros": [],
     "ts": "2026-11-18T14:18:24Z",
-    "retryCount": 3
+    "retryCount": 4
   },
   {
     "repo": "useless-crew/content-warning-coop-tavelor",
@@ -1147,20 +1243,36 @@
     "retryCount": 1
   },
   {
+    "repo": "velorcolllections/capcut-pro-jafalor-video-editor",
+    "desc": "Video editing workspace with multi-track timeline, effects, and export controls.",
+    "stars": 177,
+    "language": "HTML",
+    "topics": [
+      "video-editor"
+    ],
+    "source": "search",
+    "starGrowth": 0,
+    "createdAt": "2026-11-24T02:23:57Z",
+    "silentRounds": 0,
+    "bigbros": [],
+    "ts": "2026-11-24T02:24:56Z",
+    "retryCount": 1
+  },
+  {
     "repo": "vercel-labs/ui",
     "desc": "A library of behaviors for agents to build the next generation of user interfaces.",
-    "stars": 6730,
+    "stars": 6888,
     "language": "TypeScript",
     "topics": [
       "agents"
     ],
     "source": "search",
-    "starGrowth": 0,
+    "starGrowth": 158,
     "createdAt": "2026-10-26T17:39:27Z",
     "silentRounds": 0,
     "bigbros": [],
-    "ts": "2026-11-23T21:49:15Z",
-    "retryCount": 2
+    "ts": "2026-11-24T04:05:38Z",
+    "retryCount": 3
   },
   {
     "repo": "Viprasol-Tech/claude-video-editing-skills",
@@ -1171,9 +1283,9 @@
       "video-editor"
     ],
     "source": "search",
-    "starGrowth": 2,
+    "starGrowth": 0,
     "createdAt": "2026-11-17T00:15:24Z",
-    "silentRounds": 0,
+    "silentRounds": 1,
     "bigbros": [],
     "ts": "2026-11-21T07:13:56Z",
     "retryCount": 1
