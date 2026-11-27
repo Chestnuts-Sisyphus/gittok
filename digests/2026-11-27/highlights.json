@@ -1,0 +1,86 @@
+{
+  "zh": {
+    "ai-codex": [
+      "OpenAI Codex 社区发布 rust-v0.174.0-alpha.8 版本",
+      "Linux 桌面端原生应用请求获 953 赞成高居榜首",
+      "Nov 21 更新后出现沙箱内存泄漏及配置错误等 Bug",
+      "开发团队密集修复 TUI 模糊搜索与会话管理性能问题",
+      "Windows 平台用户反馈更新后权限丢失及设置消失",
+      "MCP 工具集成优化提升了多模态开发交互效率"
+    ],
+    "ai-agents": [
+      "NanoBot 过去 24 小时内保持中等活跃度产生 7 条 Issue",
+      "WebSocket 渲染通道新增数学格式提示解决公式渲染错位",
+      "WebUI 成功修复 Markdown 表格中裸标签换行问题",
+      "待合并 PR #6323 新增 WebUI 编辑与重新发送功能",
+      "高优先级 Bug 大图上传失效及 Docker 代理悬而未决",
+      "整体更新显著提升了客户端 WebUI 的交互灵活性与稳定性"
+    ],
+    "ai-trending": [
+      "Claude Code 性能优化系统 ECC 获得 31.1 万 Stars 高度关注",
+      "面向 Coding Agent 的本地代理工具 caveman 显著压减 Token",
+      "港大开源 CLI-Anything 将传统命令行工具升级为 Agent 原生",
+      "微软官方文件转 Markdown 工具 markitdown 突破 19.8 万 Stars",
+      "软件工程 Agentic Skills 框架 superpowers 获得 32.7 万 Stars",
+      "专注于 CI/CD 场景的开源 SRE Agent 展现自动化运维能力"
+    ],
+    "ai-arxiv": [
+      "Tokenisation 目标复杂度证明揭示大语言模型根本瓶颈",
+      "自适应修复框架有效解决知识蒸馏后可信性下降问题",
+      "VulnSafe 引入情境化评估提升大语言模型关系安全性",
+      "多样化推理轨迹显著提升大语言模型复杂数学解答成功率",
+      "Mixture-of-Loops Transformer 通过循环共享层实现可扩展表达力",
+      "长时序强化学习通过选项拼接成功解决全零奖励困境"
+    ],
+    "ai-hf": [
+      "Qwen3.8-27B 斩获超 600 万下载量霸榜开源多模态大模型",
+      "Lightricks/LTX-2.5 凭借高效单文件扩散架构引领视频生成领域",
+      "Thinking Machines Inkling-2-Mini 成为端侧多模态应用新宠",
+      "Aleph-Alpha 推出的 Kolibri-1.1 提供高性价比逻辑链推理能力",
+      "百度 ERNIE-5.5-Flash-Preview 展现中文稀疏化模型最新进展",
+      "inworld/voice-isolator 专注语音去噪大幅提升语音交互质量"
+    ]
+  },
+  "en": {
+    "ai-cli": [
+      "Claude Code leads in autonomous agents",
+      "GitHub Copilot CLI pushes sandboxing",
+      "OpenCode blends cloud and desktop",
+      "Pi focuses on terminal durability",
+      "Ecosystem consolidates around four tools",
+      "High daily activity across all repos"
+    ],
+    "ai-trending": [
+      "Superpowers hits 327K stars on GitHub",
+      "Firecrawl unifies 550+ data providers",
+      "CLI-Anything standardizes agent CLI",
+      "Last30days-skill researches social web",
+      "Agent-first infrastructure is surging",
+      "Local-first AI agents cut cloud costs"
+    ],
+    "ai-hn": [
+      "OpenAI throttles GPT-6.2 usage",
+      "Astra limits hit 40% faster",
+      "Sol limits hit 25% faster",
+      "Speculation on OpenAI cost-control",
+      "New AMD-optimized llama.cpp fork",
+      "DeepMind allocates compute to agents"
+    ],
+    "ai-arxiv": [
+      "Tokenisation complexity bounded",
+      "Proves tokenisers not in APX",
+      "AI-native communications advance",
+      "Vision-language reasoning revisited",
+      "Safety monitors vulnerable to attacks",
+      "New benchmarks test real-world tasks"
+    ],
+    "ai-hf": [
+      "Inkling-2-Mini gains massive traction",
+      "Qwen3.8-27B leads with 21k likes",
+      "Lightricks LTX-2.5 dominates video",
+      "Apple releases depth estimation tools",
+      "Inworld launches audio enhancement",
+      "Facebook updates SAM 3D body model"
+    ]
+  }
+}
